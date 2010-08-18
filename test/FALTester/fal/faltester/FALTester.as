@@ -12,7 +12,7 @@ package fal.faltester
 	{
 		public function FALTester()
 		{
-			trace("run");
+			debug("asdf");
 		}
 	}
 }

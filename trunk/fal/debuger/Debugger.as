@@ -1,3 +1,12 @@
+/******************************************
+ * Finalbug ActionScript Library( http://www.finalbug.org/ )
+ * 
+ * fal.debuger.Debuger
+ *
+ * @author Tang Bin (tangbin@finalbug.org)
+ * @since Jul 12, 2010 11:41:25 PM
+ *
+ *****************************************/
 package fal.debuger
 {
 	import fal.display.Bin;
@@ -7,20 +16,12 @@ package fal.debuger
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	
-	
-	/******************************************
-	 * Finalbug's ActionScript ( http://www.finalbug.org/ )
-	 * 
-	 * fal.debuger.Debuger
-	 *
-	 * @author Tang Bin (tangbin@finalbug.org)
-	 * @since Jul 12, 2010 11:41:25 PM
-	 *
-	 *****************************************/
 	public class Debugger extends AdvancedObject
 	{
 		/****************************************
+		 * 
 		 * DEFINE
+		 * 
 		 ****************************************/
 		
 		private static var _initialized:Boolean = false;
@@ -30,7 +31,9 @@ package fal.debuger
 		private static var txt:TextField;
 		
 		/****************************************
+		 * 
 		 * GETTER & SETTER
+		 * 
 		 ****************************************/
 		
 		public static function get initialized():Boolean
@@ -39,7 +42,9 @@ package fal.debuger
 		}
 		
 		/****************************************
+		 * 
 		 * fal.debuger.Debuger constructor.
+		 * 
 		 ****************************************/
 		public function Debugger()
 		{
@@ -47,13 +52,18 @@ package fal.debuger
 		}
 		
 		/****************************************
+		 * 
 		 * OVERRIDE METHODS
+		 * 
 		 * Whit out getter, setter and handler
 		 * include public, protected and private.
+		 * 
 		 ****************************************/
 		
 		/****************************************
+		 * 
 		 * PUBLIC
+		 * 
 		 ****************************************/
 		
 		public static function init(stage:Stage):void
@@ -90,11 +100,15 @@ package fal.debuger
 		}
 		
 		/****************************************
+		 * 
 		 * PROTECTED
+		 * 
 		 ****************************************/
 		
 		/****************************************
+		 * 
 		 * PRIVATE
+		 * 
 		 ****************************************/
 		
 		private static function swapToTop():void
@@ -103,7 +117,9 @@ package fal.debuger
 		}
 		
 		/****************************************
+		 * 
 		 * HANDLER
+		 * 
 		 ****************************************/
 	}
 }
