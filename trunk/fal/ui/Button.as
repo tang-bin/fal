@@ -1,7 +1,7 @@
-package fas.ui
+package fal.ui
 {
-	import fas.data.FillData;
-	import fas.utils.Flat;
+	import fal.data.FillData;
+	import fal.utils.Flat;
 	
 	import flash.display.DisplayObjectContainer;
 	import flash.filters.GlowFilter;

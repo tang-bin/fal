@@ -1,7 +1,7 @@
-package fas.motion
+package fal.motion
 {
-	import fas.errors.FOSError;
-	import fas.events.MotionEvent;
+	import fal.errors.FOSError;
+	import fal.events.MotionEvent;
 	
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -113,8 +113,8 @@ package fas.motion
 	}
 }
 
-	import fas.utils.Charset;
-	import fas.motion.Motion;
+	import fal.utils.Charset;
+	import fal.motion.Motion;
 	
 class RegMotionData
 {

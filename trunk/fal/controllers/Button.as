@@ -1,12 +1,12 @@
-package fas.controllers
+package fal.controllers
 {
-	import fas.display.Controller;
+	import fal.display.Controller;
 	
 	
 	/******************************************
 	 * Finalbug's ActionScript ( http://www.finalbug.org/ )
 	 * 
-	 * fas.controllers.Button
+	 * fal.controllers.Button
 	 *
 	 * @author Tang Bin (tangbin@finalbug.org)
 	 * @since Aug 8, 2010 7:05:41 PM
@@ -25,7 +25,7 @@ package fas.controllers
 		 ****************************************/
 		
 		/****************************************
-		 * fas.controllers.Button constructor.
+		 * fal.controllers.Button constructor.
 		 ****************************************/
 		public function Button()
 		{

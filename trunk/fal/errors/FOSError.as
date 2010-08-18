@@ -1,4 +1,4 @@
-package fas.errors
+package fal.errors
 {
 	/**
 	 * This class defines some popular errors.

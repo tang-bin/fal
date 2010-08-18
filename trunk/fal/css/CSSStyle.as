@@ -1,13 +1,13 @@
-package fas.css
+package fal.css
 {
-	import fas.data.DataModel;
-	import fas.utils.DataAnt;
+	import fal.data.DataModel;
+	import fal.utils.DataAnt;
 	
 	
 	/******************************************
 	 * Finalbug's ActionScript ( http://www.finalbug.org/ )
 	 * 
-	 * fas.css.CSSStyle
+	 * fal.css.CSSStyle
 	 *
 	 * @author Tang Bin (tangbin@finalbug.org)
 	 * @since Jul 12, 2010 11:04:52 PM
@@ -77,7 +77,7 @@ package fas.css
 		 ****************************************/
 		
 		/****************************************
-		 * fas.css.CSSData constructor.
+		 * fal.css.CSSData constructor.
 		 ****************************************/
 		public function CSSStyle(name:String, type:String = "classType")
 		{

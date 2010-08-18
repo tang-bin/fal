@@ -1,7 +1,7 @@
-package fas.debuger
+package fal.debuger
 {
-	import fas.display.Bin;
-	import fas.utils.AdvancedObject;
+	import fal.display.Bin;
+	import fal.utils.AdvancedObject;
 	
 	import flash.display.Stage;
 	import flash.text.TextField;
@@ -11,7 +11,7 @@ package fas.debuger
 	/******************************************
 	 * Finalbug's ActionScript ( http://www.finalbug.org/ )
 	 * 
-	 * fas.debuger.Debuger
+	 * fal.debuger.Debuger
 	 *
 	 * @author Tang Bin (tangbin@finalbug.org)
 	 * @since Jul 12, 2010 11:41:25 PM
@@ -39,7 +39,7 @@ package fas.debuger
 		}
 		
 		/****************************************
-		 * fas.debuger.Debuger constructor.
+		 * fal.debuger.Debuger constructor.
 		 ****************************************/
 		public function Debugger()
 		{

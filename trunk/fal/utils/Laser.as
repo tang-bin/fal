@@ -1,6 +1,6 @@
-package fas.utils
+package fal.utils
 {
-	import fas.math.Color;
+	import fal.math.Color;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;

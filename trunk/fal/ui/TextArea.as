@@ -1,8 +1,8 @@
-package fas.ui
+package fal.ui
 {
-	import fas.data.Status;
-	import fas.events.DataEvent;
-	import fas.events.UIEvent;
+	import fal.data.Status;
+	import fal.events.DataEvent;
+	import fal.events.UIEvent;
 	
 	import flash.events.Event;
 	import flash.events.FocusEvent;
@@ -10,9 +10,9 @@ package fas.ui
 	import flash.text.TextFormat;
 	
 	/**
-	 * @eventType fas.events.DataEvent.CHANGE_DATA
+	 * @eventType fal.events.DataEvent.CHANGE_DATA
 	 */	
-	[Event(name="FOSChangeData", type="fas.events.DataEvent")]
+	[Event(name="FOSChangeData", type="fal.events.DataEvent")]
 	
 	/**
 	 * Text area component.

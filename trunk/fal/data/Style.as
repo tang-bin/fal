@@ -1,4 +1,4 @@
-package fas.data
+package fal.data
 {
 	/**
 	 * This class just defines some style variables.
@@ -7,10 +7,10 @@ package fas.data
 	 * @author Finalbug
 	 * @since 0.1
 	 * 
-	 * @see fas.draw.style.StyleSetter
-	 * @see fas.draw.style.StyleCreator
-	 * @see fas.draw.style.StyleParser
-	 * @see fas.uistyle.UIStyle
+	 * @see fal.draw.style.StyleSetter
+	 * @see fal.draw.style.StyleCreator
+	 * @see fal.draw.style.StyleParser
+	 * @see fal.uistyle.UIStyle
 	 */	
 	public class Style
 	{

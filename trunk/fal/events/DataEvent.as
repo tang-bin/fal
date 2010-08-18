@@ -1,4 +1,4 @@
- package fas.events
+ package fal.events
 {
 	import flash.events.Event;
 

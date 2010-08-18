@@ -1,4 +1,4 @@
-package fas.errors
+package fal.errors
 {
 	public class DataError extends Error
 	{

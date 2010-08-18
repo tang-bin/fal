@@ -1,10 +1,10 @@
-package fas.display
+package fal.display
 {
 	
 	/******************************************
 	 * Finalbug's ActionScript ( http://www.finalbug.org/ )
 	 * 
-	 * fas.display.Glaze
+	 * fal.display.Glaze
 	 *
 	 * @author Tang Bin (tangbin@finalbug.org)
 	 * @since Jul 12, 2010 7:24:08 PM
@@ -21,7 +21,7 @@ package fas.display
 		 ****************************************/
 		
 		/****************************************
-		 * fas.display.Glaze constructor.
+		 * fal.display.Glaze constructor.
 		 ****************************************/
 		public function Glaze()
 		{

@@ -1,8 +1,8 @@
-package fas.events
+package fal.events
 {
 	import flash.events.Event;
 	
-	import fas.net.Protocol;
+	import fal.net.Protocol;
 
 	public class ConnEvent extends Event
 	{

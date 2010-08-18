@@ -1,13 +1,13 @@
-package fas.net
+package fal.net
 {
 	import flash.display.Bitmap;
 	import flash.events.EventDispatcher;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
-	import fas.errors.FOSError;
-	import fas.events.LoadEvent;
-	import fas.utils.Charset;
+	import fal.errors.FOSError;
+	import fal.events.LoadEvent;
+	import fal.utils.Charset;
 	
 	/**
 	 * This class is used to keep images which are loaded from outside of .swf file.
@@ -16,7 +16,7 @@ package fas.net
 	 * 
 	 * @author	Finalbug
 	 * @since 0.1
-	 * @see fas.net.BitmapLoader
+	 * @see fal.net.BitmapLoader
 	 */
 	public class BitmapPool
 	{
@@ -113,7 +113,7 @@ package fas.net
 		}
 		
 		/**
-		 * @throw fas.errors.Errors Throw canNotInstance error when try to instance this class.
+		 * @throw fal.errors.Errors Throw canNotInstance error when try to instance this class.
 		 */		
 		public function BitmapPool()
 		{
@@ -149,10 +149,10 @@ package fas.net
 		 * @param bitmapName Name of bitmap.(not the image file)
 		 * @param bitmapURL Image file URL.
 		 * 
-		 * @throw fas.errors.NameError Throw NAME_EXIST error when the bitmap name already exist.
-		 * @throw fas.errors.NameError Throw NAME_INVALID_VAR_NAME when the bitmap name is not level 1 string.
+		 * @throw fal.errors.NameError Throw NAME_EXIST error when the bitmap name already exist.
+		 * @throw fal.errors.NameError Throw NAME_INVALID_VAR_NAME when the bitmap name is not level 1 string.
 		 * 
-		 * @see fas.net.BitmapLoader
+		 * @see fal.net.BitmapLoader
 		 */		
 		public function loadBitmap(bitmapName:String, bitmapURL:String):BitmapLoader
 		{
@@ -175,7 +175,7 @@ package fas.net
 		 * @param bitmapName Name of bitmap which need be changed.
 		 * @param bitmapURL New image file URL.
 		 * 
-		 * @throw fas.errors.NameError Throw NAME_NOT_EXIST error when the bitmap name is not exist in container.
+		 * @throw fal.errors.NameError Throw NAME_NOT_EXIST error when the bitmap name is not exist in container.
 		 */		
 		public function changeBitmap(bitmapName:String, bitmapURL:String):BitmapLoader
 		{
@@ -208,7 +208,7 @@ package fas.net
 		 * @param bitmapName
 		 * @return
 		 * 
-		 * @throw fas.errors.NameError Throw NAME_NOT_EXIST error when bitmap name is not found in container.
+		 * @throw fal.errors.NameError Throw NAME_NOT_EXIST error when bitmap name is not found in container.
 		 */		
 		public function getBitmap(bitmapName:String):Bitmap
 		{

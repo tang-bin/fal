@@ -1,10 +1,10 @@
-package fas.ui
+package fal.ui
 {	
-	import fas.events.LoadEvent;
-	import fas.motion.FadeMotion;
-	import fas.motion.MoveMotion;
-	import fas.motion.SizeMotion;
-	import fas.utils.Tooltip;
+	import fal.events.LoadEvent;
+	import fal.motion.FadeMotion;
+	import fal.motion.MoveMotion;
+	import fal.motion.SizeMotion;
+	import fal.utils.Tooltip;
 	
 	import flash.display.DisplayObject;
 	import flash.display.Loader;

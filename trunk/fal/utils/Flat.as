@@ -1,6 +1,6 @@
-package fas.utils
+package fal.utils
 {
-	import fas.data.FillData;
+	import fal.data.FillData;
 	
 	import flash.display.GradientType;
 	import flash.display.Sprite;

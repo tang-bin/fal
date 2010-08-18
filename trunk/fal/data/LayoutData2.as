@@ -1,7 +1,7 @@
-package fas.data
+package fal.data
 {
-	import fas.ui.UIObject;
-	import fas.utils.Chars;
+	import fal.ui.UIObject;
+	import fal.utils.Chars;
 	
 	public class LayoutData2
 	{

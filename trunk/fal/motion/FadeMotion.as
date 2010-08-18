@@ -1,8 +1,8 @@
-package fas.motion
+package fal.motion
 {
 	import flash.utils.Timer;
 	
-	import fas.errors.UIError;
+	import fal.errors.UIError;
 	
 	public class FadeMotion extends Motion
 	{

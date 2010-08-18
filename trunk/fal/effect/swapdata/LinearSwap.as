@@ -1,4 +1,4 @@
-package fas.effect.swapdata
+package fal.effect.swapdata
 {
 	public class LinearSwap extends SwapData
 	{

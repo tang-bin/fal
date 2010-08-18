@@ -1,6 +1,6 @@
-package fas.draw
+package fal.draw
 {
-	import fas.errors.UIError;
+	import fal.errors.UIError;
 	
 	import flash.display.Sprite;
 	import flash.geom.Point;

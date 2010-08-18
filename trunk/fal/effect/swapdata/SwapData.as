@@ -1,6 +1,6 @@
-package fas.effect.swapdata
+package fal.effect.swapdata
 {
-	import fas.utils.AdvancedObject;
+	import fal.utils.AdvancedObject;
 	
 	public class SwapData extends AdvancedObject
 	{

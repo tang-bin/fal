@@ -1,16 +1,16 @@
-package fas.display
+package fal.display
 {
-	import fas.css.CSSFile;
-	import fas.css.CSSManager;
-	import fas.data.ErrorCode;
-	import fas.data.LayoutData2;
+	import fal.css.CSSFile;
+	import fal.css.CSSManager;
+	import fal.data.ErrorCode;
+	import fal.data.LayoutData2;
 	
 	import flash.display.Sprite;
 	
 	/******************************************
 	 * Finalbug's ActionScript
 	 * 
-	 * fas.display.Bin
+	 * fal.display.Bin
 	 * @author Tang Bin (tangbin@finalbug.org)
 	 * @since 2010 6:54:46 PM
 	 *
@@ -84,7 +84,7 @@ package fas.display
 		}
 		
 		/****************************************
-		 * fas.display.Bin Constructor
+		 * fal.display.Bin Constructor
 		 ****************************************/
 		
 		public function Bin()

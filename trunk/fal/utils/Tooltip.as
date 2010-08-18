@@ -1,7 +1,7 @@
-package fas.utils
+package fal.utils
 {
-	import fas.data.FillData;
-	import fas.ui.Label;
+	import fal.data.FillData;
+	import fal.ui.Label;
 	
 	import flash.display.Sprite;
 	import flash.display.Stage;

@@ -1,6 +1,6 @@
-package fas.ui
+package fal.ui
 {
-	import fas.data.Status;
+	import fal.data.Status;
 	
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Sprite;

@@ -1,4 +1,4 @@
-package fas.net
+package fal.net
 {
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -7,13 +7,13 @@ package fas.net
 	import flash.net.Socket;
 	import flash.utils.ByteArray;
 	
-	import fas.events.ConnEvent;
-	import fas.utils.AdvancedObject;
+	import fal.events.ConnEvent;
+	import fal.utils.AdvancedObject;
 	
-	[Event(name="ConnectError", type="fas.events.ConnEvent")]
-	[Event(name="connect", type="fas.events.ConnEvent")]
-	[Event(name="connectClose", type="fas.events.ConnEvent")]
-	[Event(name="getData", type="fas.events.ConnEvent")]
+	[Event(name="ConnectError", type="fal.events.ConnEvent")]
+	[Event(name="connect", type="fal.events.ConnEvent")]
+	[Event(name="connectClose", type="fal.events.ConnEvent")]
+	[Event(name="getData", type="fal.events.ConnEvent")]
 	
 	public class Conn extends AdvancedObject
 	{

@@ -1,4 +1,4 @@
-package fas.data
+package fal.data
 {
 	import flash.display.DisplayObject;
 	

@@ -1,10 +1,10 @@
-package fas.utils
+package fal.utils
 {
 	
 	/******************************************
 	 * Finalbug's ActionScript ( http://www.finalbug.org/ )
 	 * 
-	 * fas.utils.DataAnt
+	 * fal.utils.DataAnt
 	 *
 	 * @author Tang Bin (tangbin@finalbug.org)
 	 * @since Jul 13, 2010 8:04:38 PM
@@ -21,7 +21,7 @@ package fas.utils
 		 ****************************************/
 		
 		/****************************************
-		 * fas.utils.DataAnt constructor.
+		 * fal.utils.DataAnt constructor.
 		 ****************************************/
 		public function DataAnt()
 		{

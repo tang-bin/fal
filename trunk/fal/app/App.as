@@ -1,8 +1,8 @@
-package fas.app
+package fal.app
 {
-	import fas.ui.UIObject;
-	import fas.utils.Alert;
-	import fas.utils.Tooltip;
+	import fal.ui.UIObject;
+	import fal.utils.Alert;
+	import fal.utils.Tooltip;
 	
 	import flash.events.Event;
 

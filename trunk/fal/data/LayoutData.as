@@ -1,13 +1,13 @@
-package fas.data
+package fal.data
 {
-	import fas.display.Bin;
-	import fas.utils.AdvancedObject;
+	import fal.display.Bin;
+	import fal.utils.AdvancedObject;
 	
 	
 	/******************************************
 	 * Finalbug's ActionScript ( http://www.finalbug.org/ )
 	 * 
-	 * fas.data.LayoutData
+	 * fal.data.LayoutData
 	 *
 	 * @author Tang Bin (tangbin@finalbug.org)
 	 * @since Jul 12, 2010 9:10:38 PM
@@ -67,7 +67,7 @@ package fas.data
 		}
 		
 		/****************************************
-		 * fas.data.LayoutData constructor.
+		 * fal.data.LayoutData constructor.
 		 ****************************************/
 		public function LayoutData()
 		{

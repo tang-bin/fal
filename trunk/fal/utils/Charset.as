@@ -1,6 +1,6 @@
-package fas.utils
+package fal.utils
 {
-	import fas.math.Arith;
+	import fal.math.Arith;
 
 	/**
 	 * This class contains some useful string, number and characters.

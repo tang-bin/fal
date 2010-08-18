@@ -1,8 +1,8 @@
-package fas.ui
+package fal.ui
 {
-	import fas.data.Position;
-	import fas.data.Status;
-	import fas.events.DataEvent;
+	import fal.data.Position;
+	import fal.data.Status;
+	import fal.events.DataEvent;
 	
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;

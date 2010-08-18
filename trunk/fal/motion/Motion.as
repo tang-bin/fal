@@ -1,6 +1,6 @@
-package fas.motion
+package fal.motion
 {
-	import fas.utils.AdvancedObject;
+	import fal.utils.AdvancedObject;
 	
 	/**
 	 * Class Motion is the superclass of all motion classes such as move and fade.
@@ -30,9 +30,9 @@ package fas.motion
 		/**
 		 * move speed type. can be speed up, speed down and even pace.
 		 * 
-		 * @see fas.motion.Moting.SPEED_UP
-		 * @see fas.motion.Moting.SPEED_DOWN
-		 * @see fas.motion.Moting.EVEN_PACE
+		 * @see fal.motion.Moting.SPEED_UP
+		 * @see fal.motion.Moting.SPEED_DOWN
+		 * @see fal.motion.Moting.EVEN_PACE
 		 */		
 		public var speedType:String = "speedDown";
 		

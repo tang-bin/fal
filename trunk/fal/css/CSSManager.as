@@ -1,8 +1,8 @@
-package fas.css
+package fal.css
 {
-	import fas.data.DataModel;
-	import fas.data.ErrorCode;
-	import fas.events.LoadEvent;
+	import fal.data.DataModel;
+	import fal.data.ErrorCode;
+	import fal.events.LoadEvent;
 	
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -11,7 +11,7 @@ package fas.css
 	/******************************************
 	 * Finalbug's ActionScript ( http://www.finalbug.org/ )
 	 * 
-	 * fas.css.CSSManager
+	 * fal.css.CSSManager
 	 *
 	 * @author Tang Bin (tangbin@finalbug.org)
 	 * @since Jul 12, 2010 10:55:25 PM
@@ -54,7 +54,7 @@ package fas.css
 		}
 		
 		/****************************************
-		 * fas.css.CSSCore constructor.
+		 * fal.css.CSSCore constructor.
 		 ****************************************/
 		public function CSSManager()
 		{

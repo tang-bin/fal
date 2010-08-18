@@ -1,17 +1,11 @@
-package fas
+package fal
 {
 	/**
-	 * @author Finalbug
+	 * @author Tang Bin
 	 */	
 	public class Version
 	{
-		public static const VersionNum:Number = 1;
-		public static const RevisionNum:Number = 5;
-		public static const PulishDate:String = "091224";
-		
-		public static function get VersionString():String
-		{
-			return VersionNum + "." + RevisionNum + "." + PulishDate;
-		}
+		public static const VERSION:String = "2010.08";
+		public static const BUILD:uint = 1;
 	}
 }

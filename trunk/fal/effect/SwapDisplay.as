@@ -1,7 +1,7 @@
-package fas.effect
+package fal.effect
 {
-	import fas.effect.swapdata.SwapData;
-	import fas.utils.AdvancedObject;
+	import fal.effect.swapdata.SwapData;
+	import fal.utils.AdvancedObject;
 	
 	import flash.display.DisplayObject;
 	

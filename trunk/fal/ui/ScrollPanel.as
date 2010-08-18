@@ -1,10 +1,10 @@
-package fas.ui
+package fal.ui
 {
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	
-	import fas.events.UIEvent;
+	import fal.events.UIEvent;
 	
 	/**
 	 * This class create a panel with scrollbar x and y.

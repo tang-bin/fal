@@ -1,19 +1,19 @@
-package fas.net
+package fal.net
 {
 	import flash.display.Bitmap;
 	import flash.display.Loader;
 	import flash.events.*;
 	import flash.net.URLRequest;
 	
-	import fas.errors.FOSError;
-	import fas.events.LoadEvent;
+	import fal.errors.FOSError;
+	import fal.events.LoadEvent;
 	
 	/**
 	 * This class is used to load a image file.
 	 * 
 	 * @author Finalbug
 	 * @since 0.1
-	 * @see fas.net.BitmapContainer
+	 * @see fal.net.BitmapContainer
 	 */	
 	public class BitmapLoader
 	{
@@ -91,7 +91,7 @@ package fas.net
 		 * 
 		 * @param URL
 		 * 
-		 * @throw fas.errors.Errors Throw URLisEmpty error when URL parameter is "".
+		 * @throw fal.errors.Errors Throw URLisEmpty error when URL parameter is "".
 		 */		
 		public function changeBitmap(URL:String):void
 		{

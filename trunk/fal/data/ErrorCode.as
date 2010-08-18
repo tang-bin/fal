@@ -1,10 +1,10 @@
-package fas.data
+package fal.data
 {
 	
 	/******************************************
 	 * Finalbug's ActionScript ( http://www.finalbug.org/ )
 	 * 
-	 * fas.data.ErrorCode
+	 * fal.data.ErrorCode
 	 *
 	 * @author Tang Bin (tangbin@finalbug.org)
 	 * @since Aug 8, 2010 6:40:03 PM
@@ -26,7 +26,7 @@ package fas.data
 		 ****************************************/
 		
 		/****************************************
-		 * fas.data.ErrorCode constructor.
+		 * fal.data.ErrorCode constructor.
 		 ****************************************/
 		public function ErrorCode(message:*="", id:*=0)
 		{

@@ -1,10 +1,10 @@
-package fas.draw
+package fal.draw
 {
 	import flash.display.GradientType;
 	import flash.display.Sprite;
 	import flash.geom.Matrix;
 	
-	import fas.data.CubeData;
+	import fal.data.CubeData;
 	
 	/**
 	 * This class offers some methods to draw a graph.

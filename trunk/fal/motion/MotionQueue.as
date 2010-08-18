@@ -1,4 +1,4 @@
-package fas.motion
+package fal.motion
 {
 	import flash.display.DisplayObject;
 	

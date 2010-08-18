@@ -1,4 +1,4 @@
-package fas.math
+package fal.math
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;

@@ -1,6 +1,6 @@
-package fas.motion
+package fal.motion
 {
-	import fas.errors.UIError;
+	import fal.errors.UIError;
 	
 	public class MoveMotion extends Motion
 	{

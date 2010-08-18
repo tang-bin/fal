@@ -1,8 +1,8 @@
-package fas.css
+package fal.css
 {
-	import fas.data.DataModel;
-	import fas.debuger.Debugger;
-	import fas.utils.Chars;
+	import fal.data.DataModel;
+	import fal.debuger.Debugger;
+	import fal.utils.Chars;
 	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -12,7 +12,7 @@ package fas.css
 	/******************************************
 	 * Finalbug's ActionScript ( http://www.finalbug.org/ )
 	 * 
-	 * fas.css.CSSFile
+	 * fal.css.CSSFile
 	 *
 	 * @author Tang Bin (tangbin@finalbug.org)
 	 * @since Jul 12, 2010 11:07:02 PM
@@ -50,7 +50,7 @@ package fas.css
 		}
 		
 		/****************************************
-		 * fas.css.CSSFile constructor.
+		 * fal.css.CSSFile constructor.
 		 ****************************************/
 		public function CSSFile(url:String = "")
 		{
@@ -169,7 +169,7 @@ package fas.css
 		}
 	}
 }
-import fas.css.CSSStyle;
+import fal.css.CSSStyle;
 
 class StyleList
 {

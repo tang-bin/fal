@@ -1,6 +1,6 @@
-package fas.data
+package fal.data
 {
-	import fas.errors.UIError;
+	import fal.errors.UIError;
 	
 	/**
 	 * This class defines a size object which is maked up by width and height.
@@ -16,7 +16,7 @@ package fas.data
 		/**
 		 * size's width, in pels.
 		 * 
-		 * @throws fas.errors.DisplayError When the width is less than 0, throw WIDTH_LESS_THAN_ZERO error.
+		 * @throws fal.errors.DisplayError When the width is less than 0, throw WIDTH_LESS_THAN_ZERO error.
 		 */		
 		public function get width():Number
 		{
@@ -34,7 +34,7 @@ package fas.data
 		/**
 		 * size's height,in pels.
 		 * 
-		 * @throws fas.errors.DisplayError When the height is less than 0, throw HEIGHT_LESS_THAN_ZERO error.
+		 * @throws fal.errors.DisplayError When the height is less than 0, throw HEIGHT_LESS_THAN_ZERO error.
 		 */	
 		public function get height():Number
 		{
@@ -63,8 +63,8 @@ package fas.data
 		 * @param width 
 		 * @param height 
 		 * 
-		 * @throws fas.errors.DisplayError If width is less than 0, throw WIDTH_LESS_THAN_ZERO error.
-		 * @throws fas.errors.DisplayError if height is less than 0, throw HEIGHT_LESS_THAN_ZERO error.
+		 * @throws fal.errors.DisplayError If width is less than 0, throw WIDTH_LESS_THAN_ZERO error.
+		 * @throws fal.errors.DisplayError if height is less than 0, throw HEIGHT_LESS_THAN_ZERO error.
 		 */		
 		public function Size(width:Number = 0, height:Number = 0):void
 		{

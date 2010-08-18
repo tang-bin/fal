@@ -1,8 +1,8 @@
-package fas.data
+package fal.data
 {
-	import fas.events.DataEvent;
-	import fas.math.Arith;
-	import fas.utils.AdvancedObject;
+	import fal.events.DataEvent;
+	import fal.math.Arith;
+	import fal.utils.AdvancedObject;
 	
 	/**
 	 * Class FOSFillData contains all datas for draw a flat or fill area.

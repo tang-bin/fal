@@ -1,4 +1,4 @@
-package fas.utils
+package fal.utils
 {
 	/**
 	 * This class offers some useful methods to deal with string.

@@ -1,4 +1,4 @@
-package fas.chart
+package fal.chart
 {
 	import flash.display.Sprite;
 

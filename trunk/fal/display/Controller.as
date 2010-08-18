@@ -1,11 +1,11 @@
-package fas.display
+package fal.display
 {
-	import fas.css.CSSStyle;
+	import fal.css.CSSStyle;
 	
 	/******************************************
 	 * Finalbug's ActionScript ( http://www.finalbug.org/ )
 	 * 
-	 * fas.display.Controller
+	 * fal.display.Controller
 	 *
 	 * @author Tang Bin (tangbin@finalbug.org)
 	 * @since Jul 12, 2010 7:23:15 PM
@@ -25,7 +25,7 @@ package fas.display
 		 ****************************************/
 		
 		/****************************************
-		 * fas.display.Controller constructor.
+		 * fal.display.Controller constructor.
 		 ****************************************/
 		public function Controller()
 		{

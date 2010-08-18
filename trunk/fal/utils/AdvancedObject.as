@@ -1,4 +1,4 @@
-package fas.utils
+package fal.utils
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;

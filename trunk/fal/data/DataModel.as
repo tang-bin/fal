@@ -1,4 +1,4 @@
-package fas.data
+package fal.data
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -6,7 +6,7 @@ package fas.data
 	/******************************************
 	 * Finalbug's ActionScript ( http://www.finalbug.org/ )
 	 * 
-	 * fas.data.DataModel
+	 * fal.data.DataModel
 	 *
 	 * @author Tang Bin (tangbin@finalbug.org)
 	 * @since Aug 7, 2010 7:08:33 PM
@@ -25,7 +25,7 @@ package fas.data
 		 ****************************************/
 		
 		/****************************************
-		 * fas.data.DataModel constructor.
+		 * fal.data.DataModel constructor.
 		 ****************************************/
 		public function DataModel()
 		{

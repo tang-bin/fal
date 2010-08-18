@@ -1,6 +1,6 @@
-package fas.math
+package fal.math
 {
-	import fas.data.Size;
+	import fal.data.Size;
 	
 	import flash.geom.Point;
 	import flash.geom.Rectangle;

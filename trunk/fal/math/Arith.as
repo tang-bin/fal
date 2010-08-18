@@ -1,4 +1,4 @@
-package fas.math
+package fal.math
 {
 	import flash.geom.Point;
 	import flash.geom.Rectangle;

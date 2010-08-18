@@ -1,11 +1,11 @@
-package fas.net
+package fal.net
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.IOErrorEvent;
 	import flash.events.ProgressEvent;
 	
-	import fas.events.LoadEvent;
+	import fal.events.LoadEvent;
 	
 	/**
 	 * This class is the super class for class which is used to load file(s).
