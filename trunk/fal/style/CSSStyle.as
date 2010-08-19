@@ -12,6 +12,8 @@ package fal.style
 	import fal.data.DataModel;
 	import fal.utils.DataAnt;
 	
+	import flash.display.DisplayObject;
+	
 	public class CSSStyle extends DataModel
 	{
 		//***************************************
@@ -19,6 +21,9 @@ package fal.style
 		// DEFINE
 		// 
 		//***************************************/
+		
+		private const reg1:RegExp = /^(\d*\.?\d*)$/;
+		private const reg2:RegExp = /^(\d*\.?\d*)%$/;
 		
 		// css class typies
 		public static const CLASS_TYPE:String = "classType";
@@ -42,15 +47,15 @@ package fal.style
 		// 
 		// **************************
 		// position and size
-		private var _width:String = "0";
-		private var _height:String = "0";
-		private var _left:String = "0";
-		private var _right:String = "0";
-		private var _top:String = "0";
-		private var _bottom:String = "0";
+		private var _width:String = "";
+		private var _height:String = "";
+		private var _left:String = "";
+		private var _right:String = "";
+		private var _top:String = "";
+		private var _bottom:String = "";
 		// addtion position and size attributes
-		private var _horizontal:String = "0";
-		private var _vertical:String = "0";
+		private var _horizontal:String = "";
+		private var _vertical:String = "";
 		
 		// **************************
 		// fill style
@@ -130,6 +135,98 @@ package fal.style
 			}
 		}
 		
+		public function getWidth(parent:DisplayObject):Number
+		{
+			return getWidthBySize(parent.width);
+		}
+		
+		public function getWidthBySize(parentWidth:Number):Number
+		{
+			if(validValue(_width))
+			{
+				return getValue(_width, parentWidth);
+			}
+			else if(validValue(_left) && validValue(_right))
+			{
+				return parentWidth - getValue(_left, parentWidth) - getValue(_right, parentWidth);
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		
+		public function getHeight(parent:DisplayObject):Number
+		{
+			return getHeightBySize(parent.height);
+		}
+		
+		public function getHeightBySize(parentHeight:Number):Number
+		{
+			if(validValue(_height))
+			{
+				return getValue(_height, parentHeight);
+			}
+			else if(validValue(_top) && validValue(_bottom))
+			{
+				return parentHeight - getValue(_top, parentHeight) - getValue(_bottom, parentHeight);
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		
+		public function getX(parent:DisplayObject):Number
+		{
+			return getXBySize(parent.width);
+		}
+		
+		public function getXBySize(parentWidth:Number):Number
+		{
+			if(validValue(_left))
+			{
+				return getValue(_left, parentWidth);
+			}
+			else if(validValue(_right) && validValue(_width))
+			{
+				return parentWidth - getValue(_right, parentWidth) - getValue(_width, parentWidth);
+			}
+			else if(validValue(_width) && validValue(_horizontal))
+			{
+				return (parentWidth - getValue(_width, parentWidth)) / 2 + getValue(_horizontal);
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		
+		public function getY(parent:DisplayObject):Number
+		{
+			return getYBySize(parent.width);
+		}
+		
+		public function getYBySize(parentHeight:Number):Number
+		{
+			if(validValue(_top))
+			{
+				return getValue(_top, parentHeight);
+			}
+			else if(validValue(_bottom) && validValue(_height))
+			{
+				return parentHeight - getValue(_bottom, parentHeight) - getValue(_height, parentHeight);
+			}
+			else if(validValue(_height) && validValue(_vertical))
+			{
+				return (parentHeight - getValue(_height, parentHeight)) / 2 + getValue(_vertical);
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		
 		//***************************************
 		// 
 		// PROTECTED
@@ -141,6 +238,29 @@ package fal.style
 		// PRIVATE
 		// 
 		//***************************************/
+		
+		private function validValue(str:String):Boolean
+		{
+			return (reg1.exec(str) || reg2.exec(str));
+		}
+		
+		private function getValue(valueStr:String, parentValue:Number = 0):Number
+		{
+			if(reg1.exec(valueStr))
+			{
+				return Number(valueStr);
+			}
+			else if(reg2.exec(valueStr))
+			{
+				var p:Number = Number(valueStr.replace(reg2, "$1"));
+				p = p / 100;
+				return parentValue * p;
+			}
+			else
+			{
+				return 0;
+			}
+		}
 		
 		//***************************************
 		// 
