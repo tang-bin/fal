@@ -1,16 +1,16 @@
+/******************************************
+ * Finalbug ActionScript Library ( http://www.finalbug.org/ )
+ * 
+ * fal.display.Controller
+ *
+ * @author Tang Bin (tangbin@finalbug.org)
+ * @since Jul 12, 2010 7:23:15 PM
+ *
+ *****************************************/
 package fal.display
 {
-	import fal.css.CSSStyle;
+	import fal.style.CSSStyle;
 	
-	/******************************************
-	 * Finalbug's ActionScript ( http://www.finalbug.org/ )
-	 * 
-	 * fal.display.Controller
-	 *
-	 * @author Tang Bin (tangbin@finalbug.org)
-	 * @since Jul 12, 2010 7:23:15 PM
-	 *
-	 *****************************************/
 	public class Controller extends Bin
 	{
 		/****************************************

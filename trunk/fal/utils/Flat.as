@@ -1,9 +1,9 @@
 package fal.utils
 {
 	import fal.data.FillData;
+	import fal.display.Glaze;
 	
 	import flash.display.GradientType;
-	import flash.display.Sprite;
 	import flash.filters.GlowFilter;
 	import flash.geom.Matrix;
 	import flash.geom.Rectangle;
@@ -14,7 +14,7 @@ package fal.utils
 	 * @author Finalbug
 	 * @since 0.1
 	 */	
-	public class Flat extends Sprite
+	public class Flat extends Glaze
 	{
 		private var fd:FillData;
 		private var _width:Number;
@@ -66,6 +66,8 @@ package fal.utils
 		
 		public function Flat(width:Number = 10, height:Number = 10, fillData:FillData = null)
 		{
+			super();
+			this.mouseEnabled = false;
 			fd = fillData == null ? new FillData() : fillData;
 			_width = width;
 			_height = height;

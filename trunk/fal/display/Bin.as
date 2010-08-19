@@ -1,20 +1,21 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * 
+ * fal.display.Bin
+ * @author Tang Bin (tangbin@finalbug.org)
+ * @since 2010 6:54:46 PM
+ *
+ *****************************************/
 package fal.display
 {
-	import fal.css.CSSFile;
-	import fal.css.CSSManager;
 	import fal.data.ErrorCode;
-	import fal.data.LayoutData2;
+	import fal.style.CSSFile;
+	import fal.style.CSSManager;
 	
 	import flash.display.Sprite;
 	
-	/******************************************
-	 * Finalbug's ActionScript
-	 * 
-	 * fal.display.Bin
-	 * @author Tang Bin (tangbin@finalbug.org)
-	 * @since 2010 6:54:46 PM
-	 *
-	 *****************************************/
+	import mx.managers.PopUpManager;
+	
 	public class Bin extends Sprite
 	{
 		/****************************************
@@ -77,14 +78,16 @@ package fal.display
 				else
 				{
 					CPath = value;
-					CFile = CSSManager.instance.getCSSFile(CPath);
+					//CFile = CSSManager.instance.getCSSFile(CPath);
 					this.updateView();
 				}
 			}
 		}
 		
 		/****************************************
+		 * 
 		 * fal.display.Bin Constructor
+		 * 
 		 ****************************************/
 		
 		public function Bin()
@@ -128,6 +131,14 @@ package fal.display
 		public function move(x:Number, y:Number, during:uint = 500):void
 		{
 			
+		}
+		
+		public function toFront():void
+		{
+			if(this.parent != null)
+			{
+				this.parent.setChildIndex(this, this.parent.numChildren - 1);
+			}
 		}
 		
 		/****************************************

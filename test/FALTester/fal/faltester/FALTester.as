@@ -6,9 +6,9 @@
  ****************************/
 package fal.faltester
 {
-	import flash.display.Sprite;
+	import fal.app.FALApp;
 	
-	public class FALTester extends Sprite
+	public class FALTester extends FALApp
 	{
 		public function FALTester()
 		{

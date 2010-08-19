@@ -2,7 +2,7 @@ package fal.data
 {
 	
 	/******************************************
-	 * Finalbug's ActionScript ( http://www.finalbug.org/ )
+	 * Finalbug ActionScript Library ( http://www.finalbug.org/ )
 	 * 
 	 * fal.data.ErrorCode
 	 *

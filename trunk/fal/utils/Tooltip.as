@@ -1,17 +1,17 @@
 package fal.utils
 {
 	import fal.data.FillData;
+	import fal.display.Bin;
 	import fal.ui.Label;
 	
 	import flash.display.Sprite;
-	import flash.display.Stage;
 	import flash.text.TextFormat;
 
 	public class Tooltip
 	{
 		public static var showDelay:Number = 500;
 		public static var removeDelay:Number = 0;
-		public static var stage:Stage;
+		public static var container:Bin;
 
 		private static var box:Sprite;
 		private static var bg:Flat;
@@ -36,10 +36,10 @@ package fal.utils
 		
 		private static function createTip():void
 		{
-			if(stage != null)
+			if(container != null)
 			{
 				box = new Sprite();
-				stage.addChild(box);
+				container.addChild(box);
 				//
 				var fd:FillData = new FillData(false);
 				fd.borderColor = 0x990000;
@@ -63,19 +63,19 @@ package fal.utils
 			bg.width = txt.width + 4;
 			bg.height = txt.height;
 			box.visible = true;
-			stage.setChildIndex(box, stage.numChildren - 1);
 			//
-			box.x = stage.mouseX + 10;
-			box.y = stage.mouseY + 20;
+			box.x = container.stage.mouseX + 10;
+			box.y = container.stage.mouseY + 20;
 			//
-			if(box.x + box.width > stage.stageWidth)
+			if(box.x + box.width > container.stage.stageWidth)
 			{
-				box.x = stage.stageWidth - box.width;
+				box.x = container.stage.stageWidth - box.width;
 			}
-			if(box.y + box.height > stage.stageHeight)
+			if(box.y + box.height > container.stage.stageHeight)
 			{
-				box.y = stage.stageHeight - box.height;
+				box.y = container.stage.stageHeight - box.height;
 			}
+			//container.toFront();
 		}
 	}
 }

@@ -10,13 +10,12 @@
 package fal.debuger
 {
 	import fal.display.Bin;
-	import fal.utils.AdvancedObject;
 	
 	import flash.display.Stage;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	
-	public class Debugger extends AdvancedObject
+	public class Debugger extends Bin
 	{
 		/****************************************
 		 * 
@@ -24,9 +23,7 @@ package fal.debuger
 		 * 
 		 ****************************************/
 		
-		private static var _initialized:Boolean = false;
-		private static var container:Bin;
-		private static var stage:Stage;
+		private static var _container:Bin;
 		
 		private static var txt:TextField;
 		
@@ -36,19 +33,10 @@ package fal.debuger
 		 * 
 		 ****************************************/
 		
-		public static function get initialized():Boolean
+		public static function set container(value:Bin):void
 		{
-			return _initialized;
-		}
-		
-		/****************************************
-		 * 
-		 * fal.debuger.Debuger constructor.
-		 * 
-		 ****************************************/
-		public function Debugger()
-		{
-			super();
+			_container = value;
+			init();
 		}
 		
 		/****************************************
@@ -66,28 +54,7 @@ package fal.debuger
 		 * 
 		 ****************************************/
 		
-		public static function init(stage:Stage):void
-		{
-			if(stage != null)
-			{
-				Debugger.stage = stage;
-				container = new Bin();
-				stage.addChild(container);
-				swapToTop();
-				_initialized = true;
-				//
-				txt = new TextField();
-				container.addChild(txt);
-				txt.width = 300;
-				txt.height = 200;
-				txt.defaultTextFormat = new TextFormat("Arial", 12, 0xFF9900);
-				txt.wordWrap = true;
-				txt.multiline = true;
-				txt.border = true;
-			}
-		}
-		
-		public static function print(...args):void
+		public static function log(...args):void
 		{
 			var str:String = "";
 			var len:uint = args.length;
@@ -111,9 +78,19 @@ package fal.debuger
 		 * 
 		 ****************************************/
 		
-		private static function swapToTop():void
+		public static function init():void
 		{
-			stage.setChildIndex(container, stage.numChildren - 1);
+			if(_container != null)
+			{
+				txt = new TextField();
+				_container.addChild(txt);
+				txt.width = 300;
+				txt.height = 200;
+				txt.defaultTextFormat = new TextFormat("Arial", 12, 0xFF9900);
+				txt.wordWrap = true;
+				txt.multiline = true;
+				txt.border = true;
+			}
 		}
 		
 		/****************************************
