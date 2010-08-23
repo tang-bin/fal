@@ -31,12 +31,24 @@ package fal.style.styles
 			}
 		}
 		
-		public function validValue(str:String):Boolean
+		public function getStyle(name:String):String
+		{
+			if(this.hasOwnProperty(name))
+			{
+				return this[name].toString();
+			}
+			else
+			{
+				return "";
+			}
+		}
+		
+		public function validLayoutValue(str:String):Boolean
 		{
 			return (Style.NUM_REG.exec(str) || Style.PERCENT_REG.exec(str));
 		}
 		
-		public function getValue(valueStr:String, parentValue:Number = 0):Number
+		public function getLayoutValue(valueStr:String, parentValue:Number = 0):Number
 		{
 			if(Style.NUM_REG.exec(valueStr))
 			{

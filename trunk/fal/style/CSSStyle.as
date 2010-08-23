@@ -13,6 +13,9 @@ package fal.style
 	import fal.errors.FALError;
 	import fal.style.styles.FillStyle;
 	import fal.style.styles.LayoutStyle;
+	import fal.style.styles.Style;
+	import fal.style.styles._fillStyle;
+	import fal.style.styles._layoutStyle;
 	import fal.utils.DataAnt;
 	
 	import flash.display.DisplayObject;
@@ -36,8 +39,10 @@ package fal.style
 		
 		private var useGradientBg:Boolean = false;
 		
-		private var layoutStyle:LayoutStyle = new LayoutStyle();
-		private var fillStyle:FillStyle = new FillStyle();
+		private var _layoutStyle:_layoutStyle = new _layoutStyle();
+		private var _fillStyle:_fillStyle = new _fillStyle();
+		
+		private var styleList:Array = [_layoutStyle, _fillStyle];
 		
 		//***************************************
 		// 
@@ -45,9 +50,15 @@ package fal.style
 		// 
 		//***************************************/
 		
-		// for fill style.
-		public function get borderColor():Number{return fillStyle.borderColor;}
-		public function set borderColor(value:Number):void{fillStyle.borderColor = value;}
+		public function get layoutStyle():LayoutStyle
+		{
+			return _layoutStyle;
+		}
+		
+		public function get fillStyle():FillStyle
+		{
+			return _fillStyle;
+		}
 		
 		//***************************************
 		// 
@@ -90,48 +101,21 @@ package fal.style
 		
 		public function addStyle(name:String, value:String):void
 		{
-			if(layoutStyle.setStyle(name, value)){}
+			if(_layoutStyle.setStyle(name, value)){}
 			else this[name] = value;
 		}
 		
-		public function getWidth(parent:DisplayObject):Number
+		public function getStyle(name:String):String
 		{
-			return layoutStyle.getWidth(parent);
-		}
-		
-		public function getWidthBySize(parentWidth:Number):Number
-		{
-			return layoutStyle.getWidthBySize(parentWidth);
-		}
-		
-		public function getHeight(parent:DisplayObject):Number
-		{
-			return layoutStyle.getHeight(parent);
-		}
-		
-		public function getHeightBySize(parentHeight:Number):Number
-		{
-			return layoutStyle.getHeightBySize(parentHeight);
-		}
-		
-		public function getX(parent:DisplayObject):Number
-		{
-			return layoutStyle.getX(parent);
-		}
-		
-		public function getXBySize(parentWidth:Number):Number
-		{
-			return layoutStyle.getXBySize(parentWidth);
-		}
-		
-		public function getY(parent:DisplayObject):Number
-		{
-			return layoutStyle.getY(parent);
-		}
-		
-		public function getYBySize(parentHeight:Number):Number
-		{
-			return layoutStyle.getYBySize(parentHeight);
+			for each(var style:Style in styleList)
+			{
+				var str:String = style.getStyle(name);
+				if(str != "")
+				{
+					return str;
+				}
+			}
+			return "";
 		}
 		
 		//***************************************

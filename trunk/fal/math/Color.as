@@ -31,7 +31,7 @@ package fal.math
 			return Number(str);
 		}
 		
-		public static function setColor(target:DisplayObjectContainer, color:Number):void
+		public static function setColor(target:DisplayObject, color:Number):void
 		{
 			var ct:ColorTransform = new ColorTransform();
 			ct.color = color;
@@ -53,6 +53,22 @@ package fal.math
 			var m:Array = [0.3086,0.6094,0.082,0,30,0.3086,0.6094,0.082,0,30,0.3086,0.6094,0.082,0,30,0,0,0,1,0];
 			var cf:ColorMatrixFilter = new ColorMatrixFilter(m);
 			target.filters = [cf];
+		}
+		
+		public static function color2String(color:uint):String
+		{
+			return "#" + color.toString(16);
+		}
+		
+		public static function string2Color(str:String):Number
+		{
+			if(str.charAt(0) == "#")
+			{
+				str = "0x" + str.substring(1);
+			}
+			var value:Number = Number(str);
+			if(isNaN(value) || value < 0) return 0;
+			else return value;
 		}
 	}
 }

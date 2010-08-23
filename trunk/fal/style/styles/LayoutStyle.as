@@ -34,13 +34,13 @@ package fal.style.styles
 		
 		public function getWidthBySize(parentWidth:Number):Number
 		{
-			if(validValue(_width))
+			if(validLayoutValue(_width))
 			{
-				return getValue(_width, parentWidth);
+				return getLayoutValue(_width, parentWidth);
 			}
-			else if(validValue(_left) && validValue(_right))
+			else if(validLayoutValue(_left) && validLayoutValue(_right))
 			{
-				return parentWidth - getValue(_left, parentWidth) - getValue(_right, parentWidth);
+				return parentWidth - getLayoutValue(_left, parentWidth) - getLayoutValue(_right, parentWidth);
 			}
 			else
 			{
@@ -55,13 +55,13 @@ package fal.style.styles
 		
 		public function getHeightBySize(parentHeight:Number):Number
 		{
-			if(validValue(_height))
+			if(validLayoutValue(_height))
 			{
-				return getValue(_height, parentHeight);
+				return getLayoutValue(_height, parentHeight);
 			}
-			else if(validValue(_top) && validValue(_bottom))
+			else if(validLayoutValue(_top) && validLayoutValue(_bottom))
 			{
-				return parentHeight - getValue(_top, parentHeight) - getValue(_bottom, parentHeight);
+				return parentHeight - getLayoutValue(_top, parentHeight) - getLayoutValue(_bottom, parentHeight);
 			}
 			else
 			{
@@ -76,17 +76,17 @@ package fal.style.styles
 		
 		public function getXBySize(parentWidth:Number):Number
 		{
-			if(validValue(_left))
+			if(validLayoutValue(_left))
 			{
-				return getValue(_left, parentWidth);
+				return getLayoutValue(_left, parentWidth);
 			}
-			else if(validValue(_right) && validValue(_width))
+			else if(validLayoutValue(_right) && validLayoutValue(_width))
 			{
-				return parentWidth - getValue(_right, parentWidth) - getValue(_width, parentWidth);
+				return parentWidth - getLayoutValue(_right, parentWidth) - getLayoutValue(_width, parentWidth);
 			}
-			else if(validValue(_width) && validValue(_horizontal))
+			else if(validLayoutValue(_width) && validLayoutValue(_horizontal))
 			{
-				return (parentWidth - getValue(_width, parentWidth)) / 2 + getValue(_horizontal);
+				return (parentWidth - getLayoutValue(_width, parentWidth)) / 2 + getLayoutValue(_horizontal);
 			}
 			else
 			{
@@ -101,17 +101,17 @@ package fal.style.styles
 		
 		public function getYBySize(parentHeight:Number):Number
 		{
-			if(validValue(_top))
+			if(validLayoutValue(_top))
 			{
-				return getValue(_top, parentHeight);
+				return getLayoutValue(_top, parentHeight);
 			}
-			else if(validValue(_bottom) && validValue(_height))
+			else if(validLayoutValue(_bottom) && validLayoutValue(_height))
 			{
-				return parentHeight - getValue(_bottom, parentHeight) - getValue(_height, parentHeight);
+				return parentHeight - getLayoutValue(_bottom, parentHeight) - getLayoutValue(_height, parentHeight);
 			}
-			else if(validValue(_height) && validValue(_vertical))
+			else if(validLayoutValue(_height) && validLayoutValue(_vertical))
 			{
-				return (parentHeight - getValue(_height, parentHeight)) / 2 + getValue(_vertical);
+				return (parentHeight - getLayoutValue(_height, parentHeight)) / 2 + getLayoutValue(_vertical);
 			}
 			else
 			{
