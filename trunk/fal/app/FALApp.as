@@ -11,6 +11,7 @@ package fal.app
 {
 	import fal.debuger.Debugger;
 	import fal.display.Bin;
+	import fal.display.Flat;
 	import fal.errors.FALError;
 	import fal.utils.Alert;
 	import fal.utils.Tooltip;
@@ -46,7 +47,7 @@ package fal.app
 			return FALApp._app;
 		}
 		
-		private var bgLayer:Bin; // index 0
+		private var bgLayer:Flat; // index 0
 		private var alertLayer:Bin; // index 2, 1 is this(app)
 		private var tipLayer:Bin; // index 3
 		private var debugLayer:Bin; // index 4
@@ -65,7 +66,7 @@ package fal.app
 				throw new Error(FALError.APP_NOT_ROOT);
 			}
 			//
-			bgLayer = new Bin();
+			bgLayer = new Flat(this.width, this.height);
 			stage.addChild(bgLayer);
 			stage.setChildIndex(bgLayer, 0);
 			//
@@ -84,9 +85,16 @@ package fal.app
 			stage.addEventListener(Event.RESIZE, resizeHandler);
 		}
 		
+		override protected function doResize():void
+		{
+			bgLayer.width = this.displayWidth;
+			bgLayer.height = this.displayHeight;
+		}
+		
 		private function resizeHandler(e:Event):void
 		{
-			this.resize(stage.stageWidth, stage.stageHeight);
+			this.resize(Math.max(this.minWidth, stage.stageWidth),
+						Math.max(this.minHeight, stage.stageHeight));
 		}
 	}
 }

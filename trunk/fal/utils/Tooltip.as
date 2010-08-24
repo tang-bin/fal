@@ -2,6 +2,8 @@ package fal.utils
 {
 	import fal.data.FillData;
 	import fal.display.Bin;
+	import fal.display.Flat;
+	import fal.style.styles.FillStyle;
 	import fal.ui.Label;
 	
 	import flash.display.Sprite;
@@ -41,11 +43,11 @@ package fal.utils
 				box = new Sprite();
 				container.addChild(box);
 				//
-				var fd:FillData = new FillData(false);
-				fd.borderColor = 0x990000;
-				fd.bodyColor = 0xFFE1E1;
-				fd.glowAlpha = 0;
-				bg = new Flat(10, 10, fd);
+				var style:FillStyle = new FillStyle();
+				style.borderColor = 0x990000;
+				style.bgColor = 0xFFE1E1;
+				style.glowAlpha = 0;
+				bg = new Flat(10, 10, style);
 				box.addChild(bg);
 				//
 				var tf:TextFormat = new TextFormat("Arial", 12, 0x333333);

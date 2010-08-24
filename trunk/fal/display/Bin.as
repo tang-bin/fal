@@ -22,15 +22,15 @@ package fal.display
 		 * DEFINE
 		 ****************************************/
 		
+		protected var displayWidth:Number = 0;
+		protected var displayHeight:Number = 0;
+		protected var displayX:Number = 0;
+		protected var displayY:Number = 0;
+		
 		private var ww:Number = 0;
 		private var hh:Number = 0;
 		private var xx:Number = 0;
 		private var yy:Number = 0;
-		
-		private var targetW:Number = 0;
-		private var targetH:Number = 0;
-		private var targetX:Number = 0;
-		private var targetY:Number = 0;
 		
 		private var CPath:String = "";
 		private var CFile:CSSFile;

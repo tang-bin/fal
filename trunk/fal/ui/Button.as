@@ -1,7 +1,7 @@
 package fal.ui
 {
 	import fal.data.FillData;
-	import fal.utils.Flat;
+	import fal.display.Flat;
 	
 	import flash.display.DisplayObjectContainer;
 	import flash.filters.GlowFilter;
@@ -140,7 +140,8 @@ package fal.ui
 		private function createFlat():void
 		{
 			// normal layer
-			var normalFD:FillData = new FillData(false);
+			/*
+			var normalStyle:FillData = new FillData(false);
 			normalFD.radius = 3;
 			normalFD.borderAlpha = 0;
 			normalFD.gradient = true;
@@ -168,6 +169,7 @@ package fal.ui
 			holdFD.borderColor = 0xFFFFFF;
 			holdFD.gradient = false;
 			this.holdLayer = new Flat(this.DEFAULT_WIDTH, this.DEFAULT_HEIGHT, holdFD);
+			*/
 		}
 	}
 }

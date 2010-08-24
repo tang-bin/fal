@@ -14,11 +14,7 @@ package fal.style
 	import fal.style.styles.FillStyle;
 	import fal.style.styles.LayoutStyle;
 	import fal.style.styles.Style;
-	import fal.style.styles._fillStyle;
-	import fal.style.styles._layoutStyle;
 	import fal.utils.DataAnt;
-	
-	import flash.display.DisplayObject;
 	
 	dynamic public class CSSStyle extends DataModel
 	{
@@ -39,8 +35,8 @@ package fal.style
 		
 		private var useGradientBg:Boolean = false;
 		
-		private var _layoutStyle:_layoutStyle = new _layoutStyle();
-		private var _fillStyle:_fillStyle = new _fillStyle();
+		private var _layoutStyle:LayoutStyle = new LayoutStyle();
+		private var _fillStyle:FillStyle = new FillStyle();
 		
 		private var styleList:Array = [_layoutStyle, _fillStyle];
 		

@@ -7,7 +7,7 @@ package fal.ui
 	import fal.events.UIEvent;
 	import fal.events.UIMouseEvent;
 	import fal.math.Arith;
-	import fal.utils.Flat;
+	import fal.display.Flat;
 	
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
@@ -249,10 +249,10 @@ package fal.ui
 		
 		private function createScrollBarX():void
 		{
-			leftBtn = new Flat(10, 10, btnFD);
-			rightBtn = new Flat(10, 10, btnFD);
-			back = new Flat(10, 10, bgFD);
-			slider = new Flat(10, 10, sliderFD);
+			leftBtn = new Flat(10, 10);
+			rightBtn = new Flat(10, 10);
+			back = new Flat(10, 10);
+			slider = new Flat(10, 10);
 			leftBtn.name = "leftBtn";
 			rightBtn.name = "rightBtn";
 			this.addChild(leftBtn);
@@ -263,10 +263,10 @@ package fal.ui
 		
 		private function createScrollBarY():void
 		{
-			upBtn = new Flat(10, 10, btnFD);
-			downBtn = new Flat(10, 10, btnFD);
-			back = new Flat(10, 10, bgFD);
-			slider = new Flat(10, 10, sliderFD);
+			upBtn = new Flat(10, 10);
+			downBtn = new Flat(10, 10);
+			back = new Flat(10, 10);
+			slider = new Flat(10, 10);
 			upBtn.name = "upBtn";
 			downBtn.name = "downBtn";
 			this.addChild(upBtn);

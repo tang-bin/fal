@@ -2,7 +2,7 @@ package fal.ui
 {
 	import fal.data.FillData;
 	import fal.events.UIEvent;
-	import fal.utils.Flat;
+	import fal.display.Flat;
 	
 	/**
 	 * This class is a container with scroll bar.
@@ -97,11 +97,13 @@ package fal.ui
 			_height = height;
 			//
 			/* create elements. */
+			/*
 			var bgFD:FillData = new FillData(false);
 			bgFD.borderColor = 0x990000;
 			bgFD.bodyColor = 0xFFFFFF;
 			bgFD.glowAlpha = 0;
-			back = new Flat(width, height, bgFD);
+			*/
+			back = new Flat(width, height);
 			this.addChild(back);
 			//
 			xBar = new ScrollBar(ScrollBar.SCROLL_X, 100);

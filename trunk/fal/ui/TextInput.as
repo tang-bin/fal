@@ -3,7 +3,7 @@ package fal.ui
 	import fal.data.FillData;
 	import fal.data.Status;
 	import fal.events.DataEvent;
-	import fal.utils.Flat;
+	import fal.display.Flat;
 	
 	import flash.events.Event;
 	import flash.events.FocusEvent;
@@ -142,15 +142,15 @@ package fal.ui
 			switch(currentStatus)
 			{
 				case Status.NORMAL_STATUS:
-					back.fillData = normalFD;
+					//back.fillData = normalFD;
 					txt.textColor = normalColor;
 					break;
 				case Status.ACTIVE_STATUS:
-					back.fillData = activeFD;
+					//back.fillData = activeFD;
 					txt.textColor = activeColor;
 					break;
 				case Status.DISABLE_STATUS:
-					back.fillData = disableFD;
+					//back.fillData = disableFD;
 					txt.textColor = disableColor;
 					break;
 			}
@@ -169,7 +169,7 @@ package fal.ui
 			normalFD.borderSize = 2;
 			normalFD.glowAlpha = 0;
 			normalFD.radius = 3;
-			back = new Flat(10, 10, normalFD);
+			back = new Flat(10, 10);
 			this.addChild(back);
 			//
 			activeFD = normalFD.clone();

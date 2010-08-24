@@ -26,6 +26,7 @@ package fal.display
 		{
 			super();
 			this.mouseChildren = this.mouseEnabled = false;
+			this.cacheAsBitmap = true;
 		}
 		
 		/****************************************
