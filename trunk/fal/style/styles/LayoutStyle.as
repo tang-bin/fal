@@ -1,9 +1,7 @@
-/****************************
- * fal.style.styles.LayoutStyle
- *
- * @author Tang Bin
- * @since 2010-8-20
- ****************************/
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.style.styles
 {
 	import fal.style.styles.Style;

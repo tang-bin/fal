@@ -1,11 +1,6 @@
 /******************************************
- * Finalbug ActionScript Library( http://www.finalbug.org/ )
- * 
- * fal.debuger.Debuger
- *
- * @author Tang Bin (tangbin@finalbug.org)
- * @since Jul 12, 2010 11:41:25 PM
- *
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
  *****************************************/
 package fal.debuger
 {

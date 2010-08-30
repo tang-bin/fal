@@ -1,3 +1,7 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.math
 {
 	import flash.display.DisplayObject;

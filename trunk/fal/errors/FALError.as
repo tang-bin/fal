@@ -18,6 +18,8 @@ package fal.errors
 		public static const CSS_TYPE_ERROR:String = "Parameter type must be one of the following " +
 			"values:classType, idType, selectorType.";
 		
+		public static const CONTROL_STATUS_NULL:String = "Must register status before effect.";
+		
 		public function FALError(message:*="", id:*=0)
 		{
 			super(message, id);

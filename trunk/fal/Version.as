@@ -1,7 +1,12 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal
 {
 	/**
-	 * @author Tang Bin
+	 * @author	Tang Bin
+	 * @since	2010.08
 	 */	
 	public class Version
 	{

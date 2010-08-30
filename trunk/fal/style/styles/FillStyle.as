@@ -1,13 +1,12 @@
-/****************************
- * fal.style.styles.FillStyle
- *
- * @author Tang Bin
- * @since 2010-8-20
- ****************************/
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.style.styles
 {
 	import fal.math.Arith;
 	import fal.math.Color;
+	import fal.style.CSSStyle;
 	import fal.utils.Chars;
 	
 	import flash.net.drm.VoucherAccessInfo;
@@ -274,6 +273,13 @@ package fal.style.styles
 		public function FillStyle()
 		{
 			super();
+		}
+		
+		public function createCSSSTyle():CSSStyle
+		{
+			var style:CSSStyle = new CSSStyle();
+			style.fillStyle = this.clone();
+			return style;
 		}
 		
 		public function clone():FillStyle

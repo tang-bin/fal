@@ -1,11 +1,6 @@
 /******************************************
- * Finalbug ActionScript Library ( http://www.finalbug.org/ )
- * 
- * fal.css.CSSManager
- *
- * @author Tang Bin (tangbin@finalbug.org)
- * @since Jul 12, 2010 10:55:25 PM
- *
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
  *****************************************/
 package fal.style
 {

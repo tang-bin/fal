@@ -1,11 +1,6 @@
-/*****************************************
- * Finalbug ActionScript Library ( http://www.finalbug.org/ )
- * 
- * fal.css.CSSStyle
- *
- * @author Tang Bin (tangbin@finalbug.org)
- * @since Jul 12, 2010 11:04:52 PM
- *
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
  *****************************************/
 package fal.style
 {
@@ -50,10 +45,20 @@ package fal.style
 		{
 			return _layoutStyle;
 		}
+		public function set layoutStyle(value:LayoutStyle):void
+		{
+			_layoutStyle = value;
+			// TODO : dispatch style changed.
+		}
 		
 		public function get fillStyle():FillStyle
 		{
 			return _fillStyle;
+		}
+		public function set fillStyle(value:FillStyle):void
+		{
+			_fillStyle = value;
+			// TODO : dispatch style changed.
 		}
 		
 		//***************************************
@@ -61,15 +66,11 @@ package fal.style
 		// fal.css.CSSData constructor.
 		// 
 		//***************************************/
-		public function CSSStyle(name:String, type:String = "classType")
+		public function CSSStyle(name:String = "", type:String = "classType")
 		{
 			super();
 			var typeIndex:uint = DataAnt.match(type, [CLASS_TYPE, ID_TYPE, SELECTOR_TYPE]);
-			if(name == null || name == "")
-			{
-				throw new Error(FALError.NAME_NULL);
-			}
-			else if(typeIndex == -1)
+			if(typeIndex == -1)
 			{
 				throw new Error(FALError.CSS_TYPE_ERROR);
 			}

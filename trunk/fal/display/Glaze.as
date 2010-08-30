@@ -1,11 +1,6 @@
 /******************************************
- * Finalbug ActionScript Library ( http://www.finalbug.org/ )
- * 
- * fal.display.Glaze
- *
- * @author Tang Bin (tangbin@finalbug.org)
- * @since Jul 12, 2010 7:24:08 PM
- *
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
  *****************************************/
 package fal.display
 {

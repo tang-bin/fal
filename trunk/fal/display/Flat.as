@@ -1,121 +1,67 @@
-/****************************
- * fal.display.Flat
- *
- * @author Tang Bin
- * @since 2010-8-19
- ****************************/
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.display
 {
-	import fal.data.FillData;
+	import fal.style.CSSStyle;
 	import fal.style.styles.FillStyle;
 	
 	import flash.display.GradientType;
 	import flash.filters.GlowFilter;
 	import flash.geom.Matrix;
-	import flash.geom.Rectangle;
 	
 	public class Flat extends Glaze
 	{
-		private var _style:FillStyle
-		private var _width:Number;
-		private var _height:Number;
-		// default size
-		
-		public function get style():FillStyle
-		{
-			return _style;
-		}
-		public function set style(value:FillStyle):void
-		{
-			_style = value;
-			drawFlat();
-		}
-		
-		public function setsize(width:Number, height:Number):void
-		{
-			_width = width;
-			_height = height;
-			drawFlat();
-		}
-		
-		public function Flat(width:Number = 10, height:Number = 10, style:FillStyle = null)
+		public function Flat(width:Number = 10, height:Number = 10, style:CSSStyle = null)
 		{
 			super();
-			this._style = style == null ? new FillStyle() : style;
+			this.style = style == null ? new CSSStyle() : style;
 			this.displayWidth = width;
 			this.displayHeight = height;
-			drawFlat();
+			updateView();
 		}
 		
-		/**
-		 * Redraw flat. if dont use auto draw function(by default), you need to call the mothed to make flat
-		 * redraw using new datas.
-		 * 
-		 * if autoRedraw is true, once a new display data is set, flat will auto redraw.
-		 */		
-		public function refresh():void
+		override protected function updateView():void
 		{
-			drawFlat();
-		}
-		
-		override protected function doResize():void
-		{
-			drawFlat();
-		}
-		
-		/**
-		 * method to draw flat.
-		 */		
-		private function drawFlat():void
-		{
-			// clear all at first.
+			var s:FillStyle = style.fillStyle;
 			this.graphics.clear();
-			// set border style
-			this.graphics.lineStyle(_style.borderSize, _style.borderColor, _style.borderAlpha);
-			// set fill style
-			if(_style.useGradient)
+			if(displayWidth != 0 && displayHeight != 0)
 			{
-				var fillType:String = GradientType.LINEAR;
-				var matr:Matrix = new Matrix();
-				matr.createGradientBox(displayWidth, displayHeight, Math.PI * _style.bgRotation / 180, 0, 0);
-				this.graphics.beginGradientFill(fillType, _style.bgColors, _style.bgAlphas, _style.bgRatios, matr);
-			}
-			else
-			{
-				this.graphics.beginFill(_style.bgColor, _style.bgAlpha);
-			}
-			//
-			this.graphics.drawRoundRectComplex(0, 0, displayWidth, displayHeight, 
-											_style.topLeftRadius,
-											_style.topRightRadius,
-											_style.bottomLeftRadius,
-											_style.bottomRightRadius);
-			this.graphics.endFill();
-			//
-			// set scale 9 grid
-			var scaleSize:Number = Math.max(_style.topLeftRadius, _style.topRightRadius, _style.bottomLeftRadius, _style.bottomRightRadius);
-			if(scaleSize > 0 && displayWidth > 2 * scaleSize && displayHeight > 2 * scaleSize)
-			{
-				this.scale9Grid = new Rectangle(scaleSize, scaleSize,
-												displayWidth - 2 * scaleSize,
-												displayHeight - 2 * scaleSize);
-			}
-			else
-			{
-				this.scale9Grid = null;
-			}
-			//
-			/* set filter */
-			if(_style.glowAlpha != 0 && _style.glowBlur != 0)
-			{
-				var gf:GlowFilter = new GlowFilter(_style.glowColor, _style.glowAlpha,
-													_style.glowBlur, _style.glowBlur,
-													_style.glowStrength, 3);
-				this.filters = [gf];
-			}
-			else
-			{
-				this.filters = [];
+				// set border style
+				this.graphics.lineStyle(s.borderSize, s.borderColor, s.borderAlpha);
+				// set fill style
+				if(s.useGradient)
+				{
+					var fillType:String = GradientType.LINEAR;
+					var matr:Matrix = new Matrix();
+					matr.createGradientBox(displayWidth, displayHeight, Math.PI * s.bgRotation / 180, 0, 0);
+					this.graphics.beginGradientFill(fillType, s.bgColors, s.bgAlphas, s.bgRatios, matr);
+				}
+				else
+				{
+					this.graphics.beginFill(s.bgColor, s.bgAlpha);
+				}
+				//
+				this.graphics.drawRoundRectComplex(0, 0, displayWidth, displayHeight, 
+					s.topLeftRadius,
+					s.topRightRadius,
+					s.bottomLeftRadius,
+					s.bottomRightRadius);
+				this.graphics.endFill();
+				//
+				// set filter 
+				if(s.glowAlpha != 0 && s.glowBlur != 0)
+				{
+					var gf:GlowFilter = new GlowFilter(s.glowColor, s.glowAlpha,
+						s.glowBlur, s.glowBlur,
+						s.glowStrength, 3);
+					this.filters = [gf];
+				}
+				else
+				{
+					this.filters = [];
+				}
 			}
 		}
 	}

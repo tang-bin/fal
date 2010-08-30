@@ -1,3 +1,7 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.math
 {
 	import flash.geom.Point;
@@ -6,8 +10,8 @@ package fal.math
 	/**
 	 * Arith class offers some mathematic methods to extends Math class.
 	 * 
-	 * @author	Finalbug
-	 * @since 0.1
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since 2010.08
 	 */
 	public class Arith
 	{

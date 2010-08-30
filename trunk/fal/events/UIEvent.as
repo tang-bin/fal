@@ -1,7 +1,16 @@
+/******************************************
+ * Finalbug ActionScript Library ( http://www.finalbug.org/ )
+ * 
+ * fal.events.UIEvent
+ *
+ * @author Tang Bin (tangbin@finalbug.org)
+ * @since Jul 12, 2010 7:24:08 PM
+ *
+ *****************************************/
 package fal.events
 {
 	import flash.events.Event;
-
+	
 	public class UIEvent extends Event
 	{
 		/**

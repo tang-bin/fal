@@ -1,8 +1,13 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.utils
 {
 	import fal.data.FillData;
 	import fal.display.Bin;
 	import fal.display.Flat;
+	import fal.style.CSSStyle;
 	import fal.style.styles.FillStyle;
 	import fal.ui.Label;
 	
@@ -43,11 +48,11 @@ package fal.utils
 				box = new Sprite();
 				container.addChild(box);
 				//
-				var style:FillStyle = new FillStyle();
-				style.borderColor = 0x990000;
-				style.bgColor = 0xFFE1E1;
-				style.glowAlpha = 0;
-				bg = new Flat(10, 10, style);
+				var fs:FillStyle = new FillStyle();
+				fs.borderColor = 0x990000;
+				fs.bgColor = 0xFFE1E1;
+				fs.glowAlpha = 0;
+				bg = new Flat(10, 10, fs.createCSSSTyle());
 				box.addChild(bg);
 				//
 				var tf:TextFormat = new TextFormat("Arial", 12, 0x333333);

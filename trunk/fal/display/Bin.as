@@ -1,18 +1,20 @@
 /******************************************
  * Finalbug ActionScript Library
- * 
- * fal.display.Bin
- * @author Tang Bin (tangbin@finalbug.org)
- * @since 2010 6:54:46 PM
- *
+ * http://www.finalbug.org/
  *****************************************/
 package fal.display
 {
 	import fal.data.ErrorCode;
+	import fal.events.DisplayEvent;
+	import fal.math.Arith;
 	import fal.style.CSSFile;
 	import fal.style.CSSManager;
+	import fal.style.CSSStyle;
 	
 	import flash.display.Sprite;
+	import flash.events.TimerEvent;
+	import flash.geom.Point;
+	import flash.utils.Timer;
 	
 	import mx.managers.PopUpManager;
 	
@@ -21,66 +23,116 @@ package fal.display
 		/****************************************
 		 * DEFINE
 		 ****************************************/
+		private const SMOOTH_DELAY:Number = 30;
 		
 		protected var displayWidth:Number = 0;
 		protected var displayHeight:Number = 0;
-		protected var displayX:Number = 0;
-		protected var displayY:Number = 0;
 		
-		private var ww:Number = 0;
-		private var hh:Number = 0;
-		private var xx:Number = 0;
-		private var yy:Number = 0;
+		protected var _style:CSSStyle = new CSSStyle();
 		
-		private var CPath:String = "";
-		private var CFile:CSSFile;
+		private var moveTimer:Timer;
+		private var moveStep:Point;
+		
+		private var zoomTimer:Timer;
+		private var zoomStep:Point;
+		
+		private var _maxWidth:Number = 4000;
+		private var _minWidth:Number = 4000;
+		private var _maxHeight:Number = 0;
+		private var _minHeight:Number = 0;
 		
 		/****************************************
+		 * 
 		 * GETTER & SETTER
+		 * 
 		 ****************************************/
 		
 		override public function get width():Number
 		{
-			return ww;
+			return displayWidth;
 		}
 		override public function set width(value:Number):void
 		{
-			
+			this.displayWidth = Arith.getNumArea(value, minWidth, maxWidth);
+			this.updateView();
 		}
 		
 		override public function get height():Number
 		{
-			return hh;
+			return displayHeight;
 		}
 		override public function set height(value:Number):void
 		{
-			
+			this.displayHeight = Arith.getNumArea(value, minHeight, maxHeight);
+			this.updateView();
 		}
 		
-		public function get bindCSS():String
+		public function get style():CSSStyle
 		{
-			return CPath;
+			return _style;
 		}
-		
-		public function set bindCSS(value:String):void
+		public function set style(value:CSSStyle):void
 		{
-			if(value == null || value == "")
+			if(_style != value)
 			{
-				// reset CSS
+				_style = value;
+				updateView();
 			}
-			else
+		}
+		
+		public function get maxWidth():Number
+		{
+			return _maxWidth;
+		}
+		public function set maxWidth(value:Number):void
+		{
+			_maxWidth = value;
+			if(this.displayWidth > _maxWidth)
 			{
-				if(!CSSManager.instance.CSSRegistered(value))
-				{
-					// if css file is unregistered.
-					throw new Error(ErrorCode.CSS_UNREGISTERED);
-				}
-				else
-				{
-					CPath = value;
-					//CFile = CSSManager.instance.getCSSFile(CPath);
-					this.updateView();
-				}
+				this.displayWidth = _maxWidth;
+				this.updateView();
+			}
+		}
+		
+		public function get maxHeight():Number
+		{
+			return _maxHeight;
+		}
+		public function set maxHeight(value:Number):void
+		{
+			_maxHeight = value;
+			if(this.displayHeight > _maxHeight)
+			{
+				this.displayHeight = _maxHeight;
+				this.updateView();
+			}
+		}
+		
+		public function get minWidth():Number
+		{
+			return _minWidth;
+		}
+		public function set minWidth(value:Number):void
+		{
+			_minWidth = Math.max(value, 0);
+			if(this.displayWidth < _minWidth)
+			{
+				this.displayWidth = _minWidth;
+				this.updateView();
+			}
+		}
+		
+		public function get minHeight():Number
+		{
+			return _minHeight;
+		}
+		public function set minHeight(value:Number):void
+		{
+			_minHeight = Math.max(value, 0);
+			if(this.displayHeight < _minHeight)
+			{
+				this.displayHeight = _minHeight;
+				this.updateView();
 			}
 		}
 		
@@ -105,10 +157,13 @@ package fal.display
 		
 		/**
 		 * Change Bin's size to target width and height immediately.
+		 * run updateView to reisze.
 		 */	
 		public function resize(width:Number, height:Number):void
 		{
-			
+			this.displayWidth = Arith.getNumArea(width, this.minWidth, this.maxWidth);
+			this.displayHeight = Arith.getNumArea(height, this.minHeight, this.maxHeight);
+			this.updateView();
 		}
 		
 		/**
@@ -120,17 +175,38 @@ package fal.display
 		 */	
 		public function zoom(width:Number, height:Number, during:uint = 500):void
 		{
-			
-		}
-		
-		public function put(x:Number, y:Number):void
-		{
-			
+			if(zoomTimer != null && zoomTimer.running)
+			{
+				zoomTimer.stop();
+				zoomTimer = null;
+			}
+			var stepCount:uint = Math.floor(during / SMOOTH_DELAY);
+			zoomStep = new Point();
+			zoomStep.x = (width - displayWidth) / stepCount;
+			zoomStep.y = (height - displayHeight) / stepCount;
+			//
+			zoomTimer = new Timer(SMOOTH_DELAY, stepCount);
+			zoomTimer.addEventListener(TimerEvent.TIMER, zoomTimerHandler);
+			zoomTimer.addEventListener(TimerEvent.TIMER_COMPLETE, zoomTimerEndHandler);
+			zoomTimer.start();
 		}
 		
 		public function move(x:Number, y:Number, during:uint = 500):void
 		{
-			
+			if(moveTimer != null && moveTimer.running)
+			{
+				moveTimer.stop();
+				moveTimer = null;
+			}
+			var stepCount:uint = Math.floor(during / SMOOTH_DELAY);
+			moveStep = new Point();
+			moveStep.x = (x - this.x) / stepCount;
+			moveStep.y = (y - this.y) / stepCount;
+			//
+			moveTimer = new Timer(SMOOTH_DELAY, stepCount);
+			moveTimer.addEventListener(TimerEvent.TIMER, moveTimerHandler);
+			moveTimer.addEventListener(TimerEvent.TIMER_COMPLETE, moveTimerEndHandler);
+			moveTimer.start();
 		}
 		
 		public function toFront():void
@@ -142,13 +218,10 @@ package fal.display
 		}
 		
 		/****************************************
+		 * 
 		 * PROTECTED
+		 * 
 		 ****************************************/
-		protected function doResize():void
-		{
-			
-		}
-		
 		protected function updateView():void
 		{
 			
@@ -159,7 +232,37 @@ package fal.display
 		 ****************************************/
 		
 		/****************************************
+		 * 
 		 * HANDLER
+		 * 
 		 ****************************************/
+		private function zoomTimerHandler(e:TimerEvent):void
+		{
+			this.displayWidth += zoomStep.x;
+			this.displayHeight += zoomStep.y;
+			this.updateView();
+			e.updateAfterEvent();
+		}
+		
+		private function zoomTimerEndHandler(e:TimerEvent):void
+		{
+			this.zoomTimer = null;
+			this.zoomStep = null;
+			this.dispatchEvent(new DisplayEvent(DisplayEvent.END_ZOOM));
+		}
+		
+		private function moveTimerHandler(e:TimerEvent):void
+		{
+			this.x += moveStep.x;
+			this.y += moveStep.y;
+			e.updateAfterEvent();
+		}
+		
+		private function moveTimerEndHandler(e:TimerEvent):void
+		{
+			this.moveTimer = null;
+			this.moveStep = null;
+			this.dispatchEvent(new DisplayEvent(DisplayEvent.END_MOVE));
+		}
 	}
 }

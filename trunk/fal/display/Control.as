@@ -1,33 +1,62 @@
 /******************************************
- * Finalbug ActionScript Library ( http://www.finalbug.org/ )
- * 
- * fal.display.Controller
- *
- * @author Tang Bin (tangbin@finalbug.org)
- * @since Jul 12, 2010 7:23:15 PM
- *
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
  *****************************************/
 package fal.display
 {
+	import fal.errors.FALError;
 	import fal.style.CSSStyle;
 	
-	public class Controller extends Bin
+	/**
+	 * Class Control is the super class for all of the controls.
+	 * 
+	 * @author Tang Bin (tangbin@finalbug.org)
+	 * @since 2010.08
+	 */	
+	public class Control extends Bin
 	{
 		/****************************************
+		 * 
 		 * DEFINE
+		 * 
 		 ****************************************/
 		
+		public var defaultStatus:String = "";
+		
 		protected var statusList:Object = new Object();
-		protected var defaultStatus:String;
+		protected var currentStatus:String;
 		
 		/****************************************
 		 * GETTER & SETTER
 		 ****************************************/
 		
+		public function get status():String
+		{
+			return currentStatus;
+		}
+		public function set status(value:String):void
+		{
+			if(value != currentStatus && value != "")
+			{
+				if(statusList[value] != null)
+				{
+					currentStatus = value;
+					updateView();
+				}
+				else if(defaultStatus != "" && statusList[defaultStatus] != null)
+				{
+					currentStatus = defaultStatus;
+					updateView();
+				}
+			}
+		}
+		
 		/****************************************
+		 * 
 		 * fal.display.Controller constructor.
+		 * 
 		 ****************************************/
-		public function Controller()
+		public function Control()
 		{
 			super();
 		}
@@ -42,11 +71,9 @@ package fal.display
 		 * PUBLIC
 		 ****************************************/
 		
-		public function registerStatus(name:String, style:CSSStyle, setAsDefault:Boolean = false):void
+		public function registerStatus(name:String, style:CSSStyle):void
 		{
 			statusList[name] = style;
-			if(setAsDefault) defaultStatus = name;
-			updateView();
 		}
 		
 		/**
@@ -56,13 +83,13 @@ package fal.display
 		 * select any one status as the default.
 		 * 
 		 * @param name
-		 * @param defaultName
 		 */		
-		public function unregisterStatus(name:String, defaultName:String = ""):void
+		public function unregisterStatus(name:String):void
 		{
 			if(statusList[name] != null)
 			{
-				
+				delete statusList[name];
+				statusList[name] = null;
 			}
 		}
 		

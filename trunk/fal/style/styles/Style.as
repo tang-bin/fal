@@ -1,9 +1,7 @@
-/****************************
- * fal.style.styles.Style
- *
- * @author Tang Bin
- * @since 2010-8-20
- ****************************/
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.style.styles
 {
 	import fal.data.DataModel;

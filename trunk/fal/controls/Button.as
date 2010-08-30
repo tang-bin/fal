@@ -1,31 +1,30 @@
-package fal.controllers
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
+package fal.controls
 {
-	import fal.display.Controller;
+	import fal.display.Control;
 	
 	
 	/******************************************
-	 * Finalbug ActionScript Library ( http://www.finalbug.org/ )
-	 * 
-	 * fal.controllers.Button
-	 *
-	 * @author Tang Bin (tangbin@finalbug.org)
-	 * @since Aug 8, 2010 7:05:41 PM
-	 *
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	2010.08
 	 *****************************************/
-	public class Button extends Controller
+	public class Button extends Control
 	{
 		/****************************************
 		 * DEFINE
 		 ****************************************/
-		
-		
 		
 		/****************************************
 		 * GETTER & SETTER
 		 ****************************************/
 		
 		/****************************************
+		 * 
 		 * fal.controllers.Button constructor.
+		 * 
 		 ****************************************/
 		public function Button()
 		{

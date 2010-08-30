@@ -1,11 +1,6 @@
 /******************************************
  * Finalbug ActionScript Library
- * 
- * fal.app.FALApp
- * 
- * @author Tang Bin (tangbin@finalbug.org)
- * @since 2010.08
- *
+ * http://www.finalbug.org/
  *****************************************/
 package fal.app
 {
@@ -21,9 +16,6 @@ package fal.app
 	
 	public class FALApp extends Bin
 	{
-		public var minWidth:Number = 400;
-		public var minHeight:Number = 300;
-		
 		override public function get width() : Number
 		{
 			return Math.max(stage.stageWidth, minWidth);
@@ -85,7 +77,7 @@ package fal.app
 			stage.addEventListener(Event.RESIZE, resizeHandler);
 		}
 		
-		override protected function doResize():void
+		override protected function updateView():void
 		{
 			bgLayer.width = this.displayWidth;
 			bgLayer.height = this.displayHeight;
@@ -93,8 +85,7 @@ package fal.app
 		
 		private function resizeHandler(e:Event):void
 		{
-			this.resize(Math.max(this.minWidth, stage.stageWidth),
-						Math.max(this.minHeight, stage.stageHeight));
+			this.resize(stage.stageWidth, stage.stageHeight);
 		}
 	}
 }
