@@ -1,8 +1,5 @@
 package fal.ui
 {
-	import fal.data.FillData;
-	import fal.display.Flat;
-	
 	import flash.display.DisplayObjectContainer;
 	import flash.filters.GlowFilter;
 	import flash.text.TextField;

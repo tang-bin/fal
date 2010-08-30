@@ -1,6 +1,6 @@
-package fal.utils
+package fal.gadgets
 {
-	import fal.math.Color;
+	import fal.utils.ColorUtil;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -43,7 +43,7 @@ package fal.utils
 			{
 				for(var j:uint = 0 ; j < bd.height ; j+=2)
 				{
-					if(Color.color32IsViewable(bd.getPixel32(i, j)))
+					if(ColorUtil.color32IsViewable(bd.getPixel32(i, j)))
 					{
 						var line:Shape = new Shape();
 						line.graphics.lineStyle(0, bd.getPixel(i, j), 0.2);

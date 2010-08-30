@@ -2,14 +2,14 @@
  * Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
-package fal.style
+package fal.css
 {
 	import fal.data.DataModel;
 	import fal.errors.FALError;
-	import fal.style.styles.FillStyle;
-	import fal.style.styles.LayoutStyle;
-	import fal.style.styles.Style;
-	import fal.utils.DataAnt;
+	import fal.css.styles.FillStyle;
+	import fal.css.styles.LayoutStyle;
+	import fal.css.styles.Style;
+	import fal.utils.DataUtil;
 	
 	dynamic public class CSSStyle extends DataModel
 	{
@@ -69,7 +69,7 @@ package fal.style
 		public function CSSStyle(name:String = "", type:String = "classType")
 		{
 			super();
-			var typeIndex:uint = DataAnt.match(type, [CLASS_TYPE, ID_TYPE, SELECTOR_TYPE]);
+			var typeIndex:uint = DataUtil.match(type, [CLASS_TYPE, ID_TYPE, SELECTOR_TYPE]);
 			if(typeIndex == -1)
 			{
 				throw new Error(FALError.CSS_TYPE_ERROR);

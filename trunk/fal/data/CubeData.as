@@ -1,5 +1,6 @@
 package fal.data
 {
+	import fal.utils.ColorUtil;
 	/**
 	 * This class defines datas for cube.
 	 * 
@@ -114,8 +115,8 @@ package fal.data
 		private function accountColor():void
 		{
 			_topColor = _color;
-			_frontColor = Style.offsetColor(_color, -50);
-			_sideColor = Style.offsetColor(_color, 50);
+			_frontColor = ColorUtil.offsetColor(_color, -50);
+			_sideColor = ColorUtil.offsetColor(_color, 50);
 		}
 	}
 }

@@ -2,10 +2,10 @@
  * Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
-package fal.style
+package fal.css
 {
 	import fal.data.DataModel;
-	import fal.data.ErrorCode;
+	import fal.errors.StyleError;
 	import fal.events.LoadEvent;
 	
 	import flash.events.TimerEvent;
@@ -55,7 +55,7 @@ package fal.style
 			super();
 			if(!instanceable)
 			{
-				throw new Error(ErrorCode.SINGLETON);
+				throw new StyleError(StyleError.CSS_UNREGISTERED);
 			}
 		}
 		

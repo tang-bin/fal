@@ -2,14 +2,12 @@
  * Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
-package fal.style.styles
+package fal.css.styles
 {
-	import fal.math.Arith;
-	import fal.math.Color;
-	import fal.style.CSSStyle;
-	import fal.utils.Chars;
-	
-	import flash.net.drm.VoucherAccessInfo;
+	import fal.utils.MathUtil;
+	import fal.utils.ColorUtil;
+	import fal.css.CSSStyle;
+	import fal.utils.StringUtil;
 
 	public class FillStyle extends Style
 	{
@@ -43,17 +41,17 @@ package fal.style.styles
 		}
 		public function set borderSize(value:Number):void
 		{
-			value = Arith.getNumArea(value, 0, 20);
+			value = MathUtil.getNumArea(value, 0, 20);
 			_borderSize = value.toString();
 		}
 		
 		public function get borderColor():Number
 		{
-			return Color.string2Color(_borderColor);
+			return ColorUtil.string2Color(_borderColor);
 		}
 		public function set borderColor(value:Number):void
 		{
-			_borderColor = Color.color2String(value);
+			_borderColor = ColorUtil.color2String(value);
 		}
 		
 		public function get borderAlpha():Number
@@ -62,17 +60,17 @@ package fal.style.styles
 		}
 		public function set borderAlpha(value:Number):void
 		{
-			value = Arith.getNumArea(value, 0, 1);
+			value = MathUtil.getNumArea(value, 0, 1);
 			_borderAlpha = value.toString();
 		}
 		
 		public function get bgColor():Number
 		{
-			return Color.string2Color(_bgColor);
+			return ColorUtil.string2Color(_bgColor);
 		}
 		public function set bgColor(value:Number):void
 		{
-			_bgColor = Color.color2String(value);
+			_bgColor = ColorUtil.color2String(value);
 		}
 		
 		public function get bgAlpha():Number
@@ -82,7 +80,7 @@ package fal.style.styles
 		
 		public function set bgAlpha(value:Number):void
 		{
-			value = Arith.getNumArea(value, 0, 1);
+			value = MathUtil.getNumArea(value, 0, 1);
 			_bgAlpha = value.toString();
 		}
 		
@@ -161,10 +159,10 @@ package fal.style.styles
 			for(var i:uint = arr.length ; --i >= 0 ;)
 			{
 				var str:String = arr[i].toString();
-				str = Chars.trimAll(str);
+				str = StringUtil.trimAll(str);
 				if(str != "")
 				{
-					arr[i] = Color.string2Color(str);
+					arr[i] = ColorUtil.string2Color(str);
 				}
 				else
 				{
@@ -177,7 +175,7 @@ package fal.style.styles
 		{
 			for(var i:uint = value.length ; --i >= 0 ;)
 			{
-				value[i] = Color.color2String(value[i]);
+				value[i] = ColorUtil.color2String(value[i]);
 			}
 			_bgColors = value.join(",");
 		}
@@ -211,11 +209,11 @@ package fal.style.styles
 		
 		public function get glowColor():Number
 		{
-			return Color.string2Color(_glowColor);
+			return ColorUtil.string2Color(_glowColor);
 		}
 		public function set glowColor(value:Number):void
 		{
-			_glowColor = Color.color2String(value);
+			_glowColor = ColorUtil.color2String(value);
 		}
 		
 		public function get glowAlpha():Number
@@ -224,7 +222,7 @@ package fal.style.styles
 		}
 		public function set glowAlpha(value:Number):void
 		{
-			value = Arith.getNumArea(value, 0, 1);
+			value = MathUtil.getNumArea(value, 0, 1);
 			_glowAlpha = value.toString();
 		}
 		
@@ -234,7 +232,7 @@ package fal.style.styles
 		}
 		public function set glowBlur(value:Number):void
 		{
-			value = Arith.getNumArea(value, 0, 100);
+			value = MathUtil.getNumArea(value, 0, 100);
 			_glowBlur = value.toString();
 		}
 		
@@ -244,7 +242,7 @@ package fal.style.styles
 		}
 		public function set glowStrength(value:int):void
 		{
-			value = Arith.getNumArea(value, 1, 3);
+			value = MathUtil.getNumArea(value, 1, 3);
 			_glowStrength = value.toString();
 		}
 		

@@ -1,29 +1,37 @@
-package fal.math
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ ******************************************/
+package fal.utils
 {
-	import fal.data.Size;
-	
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
-
-	public class Geometry
+	
+	/******************************************
+	 * fal.utils.GeometryUtil
+	 *
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
+	 *****************************************/
+	public class GeometryUtil
 	{
 		/**
 		 * Get a new Size which is geometric proportion zoom in/out from a given size object.
 		 * @param oldSize Given size object.
 		 * @param areaSize A area, the new Size is limited in this area after zoom in/out.
 		 * @param enableZoomout Zoom out the size or not when the given area is lager than the given size.
-		 * @return New Size object.
+		 * @return Array object.
 		 */		
-		public static function getLockScaleSize(oldSize:Size, areaSize:Size, enableZoomout:Boolean = true):Size
+		public static function getLockScaleSize(oldWidth:Number, oldHeight:Number, 
+												areaWidth:Number, areaHeight:Number, 
+												enableZoomout:Boolean = true):Array
 		{
-			var rate:Number = Math.min(areaSize.width / oldSize.width, areaSize.height / oldSize.height);
+			var rate:Number = Math.min(areaWidth / oldWidth, areaHeight / oldHeight);
 			if(!enableZoomout && rate > 1)
 			{
 				rate = 1;
 			}
-			var s:Size = oldSize.clone();
-			s.setScale(rate);
-			return s;
+			return [oldWidth * rate, oldHeight * rate];
 		}
 		
 		/**
@@ -57,7 +65,7 @@ package fal.math
 		 */		
 		public static function accountControlPoint(p1:Point, p2:Point, type:String, degree:Number):Point
 		{
-			if(!Arith.checkNumArea(degree, 0, 180, false, false))
+			if(!MathUtil.checkNumArea(degree, 0, 180, false, false))
 			{
 				return new Point((p1.x + p2.x) / 2, (p1.y + p2.y) / 2);
 			}

@@ -1,9 +1,7 @@
-/****************************
- * .GlobalMethods
- *
- * @author Tang Bin
- * @since 2010-8-18
- ****************************/
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ ******************************************/
 package
 {
 	import fal.debuger.Debugger;

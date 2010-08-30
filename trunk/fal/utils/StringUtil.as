@@ -1,13 +1,34 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.utils
 {
 	/**
 	 * This class offers some useful methods to deal with string.
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
 	 */	
-	public class Chars
+	public class StringUtil
 	{
+		/**
+		 * uppercase
+		 */		
+		public static const UPPERCASE:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		/**
+		 * lowercase
+		 */		
+		public static const LOWERCASE:String = "abcedfghijklmnopqrstuvwxyz";
+		/**
+		 * number in string type.
+		 */		
+		public static const NUMBER:String = "0123456789";
+		/**
+		 * chars can be used as object's name in AS.
+		 */		
+		public static const NAME_AVAILABLE:String = "-_%$#";
+		
 		/**
 		 * replace a short string in a long string to another stort string.
 		 * 
@@ -29,6 +50,23 @@ package fal.utils
 				}
 			}
 			return oldStr;
+		}
+		
+		/**
+		 * Get a random string which is maked up by lowercase.
+		 * @param len Length of the string.
+		 * @return 
+		 * 
+		 */		
+		public static function getRandomString(len:Number = 10):String
+		{
+			var s:String = "";
+			for(var i:Number = len ; --i >= 0 ; )
+			{
+				var index:Number = MathUtil.getRandomInt(0, LOWERCASE.length-1);
+				s += LOWERCASE.charAt(index);
+			}
+			return s;
 		}
 		
 		/**
@@ -110,8 +148,8 @@ package fal.utils
 		 */
 		public static function trim(str:String):String
 		{
-			str = Chars.trimLeft(str);
-			str = Chars.trimRight(str);
+			str = StringUtil.trimLeft(str);
+			str = StringUtil.trimRight(str);
 			return str;
 		}
 		

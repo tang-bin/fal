@@ -1,17 +1,16 @@
 /******************************************
- * Finalbug ActionScript Library ( http://www.finalbug.org/ )
- * 
- * fal.data.DataModel
- *
- * @author Tang Bin (tangbin@finalbug.org)
- * @since Aug 7, 2010 7:08:33 PM
- *
+ * Finalbug ActionScript Library 
+ * http://www.finalbug.org/
  *****************************************/
 package fal.data
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	
+	/**
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	2010.08
+	 */	
 	public class DataModel
 	{
 		/****************************************

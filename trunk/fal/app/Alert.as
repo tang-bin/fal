@@ -1,4 +1,8 @@
-package fal.utils
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
+package fal.app
 {
 	import fal.data.AlertData;
 	import fal.display.Bin;
@@ -10,7 +14,13 @@ package fal.utils
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.text.TextFormat;
-
+	
+	/**
+	 * fal.app.Alert
+	 * 
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
+	 */
 	public class Alert
 	{
 		public static var alertList:Array = new Array();

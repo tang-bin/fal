@@ -4,6 +4,12 @@
  *****************************************/
 package fal.display
 {
+	/**
+	 * fal.display.Glaze
+	 * 
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	2010.08
+	 */	
 	public class Glaze extends Bin
 	{
 		/****************************************

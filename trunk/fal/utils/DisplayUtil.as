@@ -1,3 +1,7 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.utils
 {
 	import flash.display.DisplayObject;
@@ -5,13 +9,12 @@ package fal.utils
 	import flash.geom.Point;
 	
 	/**
-	 * Class DOO = DisplayObject Operation.<br/>
 	 * This class offers some useful method to operate display object.
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
 	 */	
-	public class DOO
+	public class DisplayUtil
 	{
 		/**
 		 * Get target display object's center point.
@@ -35,7 +38,7 @@ package fal.utils
 		 * 
 		 * @param target
 		 */
-		public static function swapToTop(target:DisplayObjectContainer):void
+		public static function toFront(target:DisplayObject):void
 		{
 			var p:DisplayObjectContainer = target.parent;
 			if(p != null)

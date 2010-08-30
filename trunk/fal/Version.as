@@ -5,7 +5,7 @@
 package fal
 {
 	/**
-	 * @author	Tang Bin
+	 * @author	Tang Bin (tangbin@finalbug.org)
 	 * @since	2010.08
 	 */	
 	public class Version

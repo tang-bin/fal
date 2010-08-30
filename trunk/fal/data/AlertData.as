@@ -1,5 +1,15 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.data
 {
+	/**
+	 * fal.data.AlertData
+	 * 
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
+	 */
 	public class AlertData
 	{
 		public var label:String = "Alert";

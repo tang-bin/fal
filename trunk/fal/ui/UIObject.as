@@ -4,7 +4,7 @@ package fal.ui
 	import fal.motion.FadeMotion;
 	import fal.motion.MoveMotion;
 	import fal.motion.SizeMotion;
-	import fal.utils.Tooltip;
+	import fal.app.Tooltip;
 	
 	import flash.display.DisplayObject;
 	import flash.display.Loader;

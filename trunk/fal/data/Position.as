@@ -1,10 +1,14 @@
-﻿package fal.data 
+﻿/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
+package fal.data 
 {
 	/**
 	 * Class Position define .
 	 * 
-	 * @author Finalbug
-	 * @since 1.0
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
 	 */
 	public class Position
 	{

@@ -5,13 +5,13 @@
 package fal.display
 {
 	import fal.errors.FALError;
-	import fal.style.CSSStyle;
+	import fal.css.CSSStyle;
 	
 	/**
 	 * Class Control is the super class for all of the controls.
 	 * 
-	 * @author Tang Bin (tangbin@finalbug.org)
-	 * @since 2010.08
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	2010.08
 	 */	
 	public class Control extends Bin
 	{

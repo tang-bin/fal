@@ -4,13 +4,19 @@
  *****************************************/
 package fal.display
 {
-	import fal.style.CSSStyle;
-	import fal.style.styles.FillStyle;
+	import fal.css.CSSStyle;
+	import fal.css.styles.FillStyle;
 	
 	import flash.display.GradientType;
 	import flash.filters.GlowFilter;
 	import flash.geom.Matrix;
 	
+	/**
+	 * fal.app.FALApp
+	 * 
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
+	 */	
 	public class Flat extends Glaze
 	{
 		public function Flat(width:Number = 10, height:Number = 10, style:CSSStyle = null)

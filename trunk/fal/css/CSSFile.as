@@ -2,11 +2,11 @@
  * Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
-package fal.style
+package fal.css
 {
 	import fal.data.DataModel;
 	import fal.debuger.Debugger;
-	import fal.utils.Chars;
+	import fal.utils.StringUtil;
 	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -119,12 +119,12 @@ package fal.style
 				var styleStr:String = styleStrs[i].toString();
 				
 				var styleName:String = styleStr.replace(/([^\}\{]+)\{[^\}]*\}/, "$1");
-				styleName = Chars.trimAll(styleName);
+				styleName = StringUtil.trimAll(styleName);
 				var style:CSSStyle = styleList.addStyle(styleName);
 				debug("1", styleName);
 				
 				var styleValues:String = styleStr.replace(/[^\}\{]+\{([^\}]*)\}/, "$1");
-				styleValues = Chars.trimAll(styleValues);
+				styleValues = StringUtil.trimAll(styleValues);
 				
 				debug(2, styleValues);
 				
@@ -181,7 +181,7 @@ package fal.style
 		}
 	}
 }
-import fal.style.CSSStyle;
+import fal.css.CSSStyle;
 
 class StyleList
 {

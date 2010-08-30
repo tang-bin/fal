@@ -1,9 +1,8 @@
 package fal.ui
 {
-	import fal.data.FillData;
 	import fal.data.Status;
-	import fal.events.DataEvent;
 	import fal.display.Flat;
+	import fal.events.DataEvent;
 	
 	import flash.events.Event;
 	import flash.events.FocusEvent;
@@ -22,9 +21,6 @@ package fal.ui
 		private var oldText:String ="";
 		private var currentStatus:String;
 		
-		private var normalFD:FillData;
-		private var activeFD:FillData;
-		private var disableFD:FillData;
 		private var normalColor:Number;
 		private var activeColor:Number;
 		private var disableColor:Number;
@@ -163,27 +159,9 @@ package fal.ui
 		
 		private function createTextInput():void
 		{
-			normalFD = new FillData(false);
-			normalFD.borderColor = 0x990000;
-			normalFD.bodyColor = 0xFFFFFF;
-			normalFD.borderSize = 2;
-			normalFD.glowAlpha = 0;
-			normalFD.radius = 3;
 			back = new Flat(10, 10);
 			this.addChild(back);
 			//
-			activeFD = normalFD.clone();
-			activeFD.glowAlpha = 0.8;
-			activeFD.glowBlur = 2;
-			activeFD.bodyColor = 0x990000;
-			activeColor = 0xFFFFFF;
-			//
-			disableFD = normalFD.clone();
-			disableFD.borderColor = 0x999999;
-			disableFD.bodyColor = 0xCCCCCC;
-			disableColor = 0xAAAAAA;
-			//
-			normalColor = 0x333333;
 			var tf:TextFormat = new TextFormat("Arial", 12, normalColor);
 			txt = new TextField();
 			this.addChild(txt);

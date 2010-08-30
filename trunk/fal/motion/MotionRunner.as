@@ -113,7 +113,7 @@ package fal.motion
 	}
 }
 
-	import fal.utils.Charset;
+	import fal.utils.StringUtil;
 	import fal.motion.Motion;
 	
 class RegMotionData
@@ -132,7 +132,7 @@ class RegMotionData
 		this.target = target;
 		this.value = value;
 		this.steps = steps;
-		this.name = "motion_" + this.target + "_" + value + "_"+ Charset.getRandomString();
+		this.name = "motion_" + this.target + "_" + value + "_"+ StringUtil.getRandomString();
 		this.copySteps = new Array();
 	}
 }

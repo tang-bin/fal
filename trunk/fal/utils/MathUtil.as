@@ -2,18 +2,18 @@
  * Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
-package fal.math
+package fal.utils
 {
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
 	/**
-	 * Arith class offers some mathematic methods to extends Math class.
+	 * MathUtil class offers some mathematic methods to extends Math class.
 	 * 
 	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since 2010.08
+	 * @since	old version
 	 */
-	public class Arith
+	public class MathUtil
 	{
 		/**
 		 * Change a decimal number to a hex string.
@@ -184,6 +184,7 @@ package fal.math
 		
 		/**
 		 * Get a Random integer between 2 given integers.
+		 * 
 		 * @param start
 		 * @param end
 		 * @return 
@@ -194,24 +195,6 @@ package fal.math
 			var n:Number = Math.random();
 			n = start + (end - start) * n;
 			return Math.round(n);
-		}
-		
-		/**
-		 * Check out if the given parameter's value is contained in a group of values.
-		 * @param value Given parameter.
-		 * @param arg A group of values.
-		 * @return 
-		 */		
-		public static function areaCheck(value:*, ...arg):Boolean
-		{
-			for(var i:Number = arg.length ; --i >= 0 ;)
-			{
-				if(value == arg[i])
-				{
-					return true;
-				}
-			}
-			return false;
 		}
 	}
 }

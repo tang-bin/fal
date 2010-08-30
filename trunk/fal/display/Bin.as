@@ -4,20 +4,21 @@
  *****************************************/
 package fal.display
 {
-	import fal.data.ErrorCode;
+	import fal.css.CSSStyle;
 	import fal.events.DisplayEvent;
-	import fal.math.Arith;
-	import fal.style.CSSFile;
-	import fal.style.CSSManager;
-	import fal.style.CSSStyle;
+	import fal.utils.MathUtil;
 	
 	import flash.display.Sprite;
 	import flash.events.TimerEvent;
 	import flash.geom.Point;
 	import flash.utils.Timer;
 	
-	import mx.managers.PopUpManager;
-	
+	/**
+	 * fal.display.Bin
+	 * 
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	2010.08
+	 */	
 	public class Bin extends Sprite
 	{
 		/****************************************
@@ -53,7 +54,7 @@ package fal.display
 		}
 		override public function set width(value:Number):void
 		{
-			this.displayWidth = Arith.getNumArea(value, minWidth, maxWidth);
+			this.displayWidth = MathUtil.getNumArea(value, minWidth, maxWidth);
 			this.updateView();
 		}
 		
@@ -63,7 +64,7 @@ package fal.display
 		}
 		override public function set height(value:Number):void
 		{
-			this.displayHeight = Arith.getNumArea(value, minHeight, maxHeight);
+			this.displayHeight = MathUtil.getNumArea(value, minHeight, maxHeight);
 			this.updateView();
 		}
 		
@@ -161,8 +162,8 @@ package fal.display
 		 */	
 		public function resize(width:Number, height:Number):void
 		{
-			this.displayWidth = Arith.getNumArea(width, this.minWidth, this.maxWidth);
-			this.displayHeight = Arith.getNumArea(height, this.minHeight, this.maxHeight);
+			this.displayWidth = MathUtil.getNumArea(width, this.minWidth, this.maxWidth);
+			this.displayHeight = MathUtil.getNumArea(height, this.minHeight, this.maxHeight);
 			this.updateView();
 		}
 		

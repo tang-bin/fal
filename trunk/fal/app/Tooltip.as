@@ -2,13 +2,11 @@
  * Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
-package fal.utils
+package fal.app
 {
-	import fal.data.FillData;
+	import fal.css.styles.FillStyle;
 	import fal.display.Bin;
 	import fal.display.Flat;
-	import fal.style.CSSStyle;
-	import fal.style.styles.FillStyle;
 	import fal.ui.Label;
 	
 	import flash.display.Sprite;

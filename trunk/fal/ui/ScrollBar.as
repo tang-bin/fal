@@ -1,13 +1,12 @@
 package fal.ui
 {
-	import fal.data.FillData;
 	import fal.data.Status;
+	import fal.display.Flat;
 	import fal.draw.Track;
 	import fal.errors.UIError;
 	import fal.events.UIEvent;
 	import fal.events.UIMouseEvent;
-	import fal.math.Arith;
-	import fal.display.Flat;
+	import fal.utils.MathUtil;
 	
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
@@ -28,9 +27,6 @@ package fal.ui
 		public static const SCROLL_X:String = "xScrollBar";
 		public static const SCROLL_Y:String = "yScrollBar";
 		
-		private var btnFD:FillData;
-		private var bgFD:FillData;
-		private var sliderFD:FillData;
 		private var buttonIconColor:Number = 0xFFFFFF;
 		
 		/* variates */
@@ -96,7 +92,7 @@ package fal.ui
 		public function set scale(value:Number):void
 		{
 			_scale = value;
-			_scale = Arith.getNumArea(_scale, 0, 1);
+			_scale = MathUtil.getNumArea(_scale, 0, 1);
 			setSlider();
 		}
 		
@@ -110,7 +106,7 @@ package fal.ui
 		public function set position(value:Number):void
 		{
 			_position = value;
-			_position = Arith.getNumArea(_position, 0, 1);
+			_position = MathUtil.getNumArea(_position, 0, 1);
 			this.setSlider();
 		}
 		
@@ -153,21 +149,6 @@ package fal.ui
 			_type = type;
 			this._thickness = 16;
 			this._length = length;
-			//
-			btnFD = new FillData(false);
-			btnFD.glowAlpha = 0;
-			btnFD.borderColor = 0x990000;
-			btnFD.gradient = true;
-			btnFD.bodyColor = 0x990000;
-			btnFD.rotate = 45;
-			//
-			bgFD = new FillData(false);
-			bgFD.glowAlpha = 0;
-			bgFD.borderColor = 0x990000;
-			bgFD.bodyColor = 0xFAFAFA;
-			//
-			sliderFD = btnFD.clone();
-			sliderFD.rotate = _type == ScrollBar.SCROLL_X ? 90 : 0;
 			//
 			if(_type == ScrollBar.SCROLL_X)
 			{
@@ -217,8 +198,8 @@ package fal.ui
 		
 		public function changeSlider(position:Number, scale:Number):void
 		{
-			_position = Arith.getNumArea(position, 0, 1);
-			_scale = Arith.getNumArea(scale, 0, 1);
+			_position = MathUtil.getNumArea(position, 0, 1);
+			_scale = MathUtil.getNumArea(scale, 0, 1);
 			this.setSlider();
 		}
 		
@@ -361,7 +342,7 @@ package fal.ui
 			{
 				rate = (slider.y - _thickness) / (availLength - slider.height);
 			}
-			rate = Arith.accountDecimalDigit(rate, -3);
+			rate = MathUtil.accountDecimalDigit(rate, -3);
 			rate = rate > 0.95 ? 1 : rate;
 			rate = rate < 0.05 ? 0 : rate;
 			var ee:UIEvent = new UIEvent(UIEvent.SCROLL);

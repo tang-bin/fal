@@ -2,9 +2,9 @@
  * Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
-package fal.style.styles
+package fal.css.styles
 {
-	import fal.style.styles.Style;
+	import fal.css.styles.Style;
 	
 	import flash.display.DisplayObject;
 	

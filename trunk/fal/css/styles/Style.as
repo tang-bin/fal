@@ -2,7 +2,7 @@
  * Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
-package fal.style.styles
+package fal.css.styles
 {
 	import fal.data.DataModel;
 	
@@ -10,6 +10,16 @@ package fal.style.styles
 	{
 		public static const NUM_REG:RegExp = /^(-?\d*\.?\d*)$/;
 		public static const PERCENT_REG:RegExp = /^(-?\d*\.?\d*)%$/;
+		
+		public static const DEFAULT_FONT:String = "Verdana";
+		
+		public static const SMALLEST_TEXT_SIZE:Number = 4;
+		public static const SMALLER_TEXT_SIZE:Number = 8;
+		public static const SMALL_TEXT_SIZE:Number = 10
+		public static const NORMAL_TEXT_SIZE:Number = 12;
+		public static const LARGE_TEXT_SIZE:Number = 14;
+		public static const LARGER_TEXT_SIZE:Number = 16;
+		public static const LARGEST_TEXT_SIZE:Number = 20;
 		
 		public function Style()
 		{

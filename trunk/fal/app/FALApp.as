@@ -8,12 +8,16 @@ package fal.app
 	import fal.display.Bin;
 	import fal.display.Flat;
 	import fal.errors.FALError;
-	import fal.utils.Alert;
-	import fal.utils.Tooltip;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	
+	/**
+	 * fal.app.FALApp
+	 * 
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	2010.08
+	 */	
 	public class FALApp extends Bin
 	{
 		override public function get width() : Number

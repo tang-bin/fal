@@ -7,7 +7,7 @@ package fal.net
 	
 	import fal.errors.FOSError;
 	import fal.events.LoadEvent;
-	import fal.utils.Charset;
+	import fal.utils.StringUtil;
 	
 	/**
 	 * This class is used to keep images which are loaded from outside of .swf file.
@@ -160,10 +160,12 @@ package fal.net
 			{
 				throw new FOSError(FOSError.NAME_EXIST);
 			}
+			/*
 			if(!Charset.checkCharIsNameAvailable(bitmapName))
 			{
 				throw new FOSError(FOSError.INVALID_VAR_NAME);
 			}
+			*/
 			bitmapList[bitmapName] = new BitmapLoader(bitmapURL);
 			return bitmapList[bitmapName];
 		}

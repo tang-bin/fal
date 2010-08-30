@@ -1,7 +1,7 @@
 package fal.data
 {
 	import fal.ui.UIObject;
-	import fal.utils.Chars;
+	import fal.utils.StringUtil;
 	
 	public class LayoutData2
 	{
@@ -46,17 +46,17 @@ package fal.data
 		
 		public function sizeLayout(x:String = "0", y:String = "0", width:String = "0", height:String = "0"):void
 		{
-			llp = Chars.isPercnet(x);
-			ll = Chars.getLayoutNum(x);
+			llp = StringUtil.isPercnet(x);
+			ll = StringUtil.getLayoutNum(x);
 			//
-			ttp = Chars.isPercnet(y);
-			tt = Chars.getLayoutNum(y);
+			ttp = StringUtil.isPercnet(y);
+			tt = StringUtil.getLayoutNum(y);
 			//
-			wwp = Chars.isPercnet(width);
-			ww = Chars.getLayoutNum(width);
+			wwp = StringUtil.isPercnet(width);
+			ww = StringUtil.getLayoutNum(width);
 			//
-			hhp = Chars.isPercnet(height);
-			hh = Chars.getLayoutNum(height);
+			hhp = StringUtil.isPercnet(height);
+			hh = StringUtil.getLayoutNum(height);
 			//
 			type = LayoutData2.TOP_LEFT;
 			//
@@ -66,17 +66,17 @@ package fal.data
 		
 		public function roundLayout(top:String, right:String, bottom:String, left:String):void
 		{
-			llp = Chars.isPercnet(top);
-			ll = Chars.getLayoutNum(top);
+			llp = StringUtil.isPercnet(top);
+			ll = StringUtil.getLayoutNum(top);
 			//
-			ttp = Chars.isPercnet(right);
-			tt = Chars.getLayoutNum(right);
+			ttp = StringUtil.isPercnet(right);
+			tt = StringUtil.getLayoutNum(right);
 			//
-			bbp = Chars.isPercnet(bottom);
-			bb = Chars.getLayoutNum(bottom);
+			bbp = StringUtil.isPercnet(bottom);
+			bb = StringUtil.getLayoutNum(bottom);
 			//
-			rrp = Chars.isPercnet(right);
-			rr = Chars.getLayoutNum(right);
+			rrp = StringUtil.isPercnet(right);
+			rr = StringUtil.getLayoutNum(right);
 			//
 			type = LayoutData2.AROUND;
 			//
@@ -182,8 +182,8 @@ package fal.data
 		
 		public function set horizon(value:String):void
 		{
-			horp = Chars.isPercnet(value);
-			hor = Chars.getLayoutNum(value);
+			horp = StringUtil.isPercnet(value);
+			hor = StringUtil.getLayoutNum(value);
 			sethor = true;
 			this.enabled = true;
 		}
@@ -205,8 +205,8 @@ package fal.data
 		
 		public function set vertical(value:String):void
 		{
-			verp = Chars.isPercnet(value);
-			ver = Chars.getLayoutNum(value);
+			verp = StringUtil.isPercnet(value);
+			ver = StringUtil.getLayoutNum(value);
 			setver = true;
 			this.enabled = true;
 		}
