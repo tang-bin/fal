@@ -18,9 +18,8 @@ package fal.ui
 	/**
 	 * ScrollBar
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
-	 */	
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 */
 	public class ScrollBar extends UIObject
 	{
 		/* constants */

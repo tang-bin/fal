@@ -1,14 +1,24 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.motion
 {
-	import fal.utils.AdvancedObject;
+	import fal.data.DataModel;
+	import fal.events.MotionEvent;
+	
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
+	
+	import org.osmf.events.TimeEvent;
 	
 	/**
 	 * Class Motion is the superclass of all motion classes such as move and fade.
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
 	 */	
-	public class Motion extends AdvancedObject
+	public class Motion extends DataModel
 	{
 		public static const INTERVAL:Number = 30;
 		
@@ -40,13 +50,16 @@ package fal.motion
 		public var delayTime:Number = 0;
 		
 		protected var targetList:Array; // list of display objects
-		protected var time:uint = 1;
+		protected var times:uint = 1;
 		protected var getBack:Boolean = false;
 		protected var registeredMotions:Array;
 		
-		public function Motion(target:Object)
+		public function Motion(target:Object = null)
 		{
-			targetList = [target];
+			if(target != null)
+			{
+				targetList = [target];
+			}
 		}
 		
 		/**
@@ -56,19 +69,28 @@ package fal.motion
 		 * @param back Play back after motion end.
 		 * @param time Play times.
 		 */		
-		public function start(targets:Array = null, getBack:Boolean = false, time:uint = 1):void
+		public function start(targets:Array = null, getBack:Boolean = false, times:uint = 1):void
 		{
 			if(targets != null)
 			{
 				targetList = targets;
 			}
-			this.getBack = getBack;
-			this.time = time;
-			registeredMotions = new Array();
-			//
-			for(var i:Number = 0 ; i < targetList.length ; i++)
+			if(targetList != null && targetList.length > 0)
 			{
-				account(targetList[i]);
+				this.getBack = getBack;
+				this.times = times;
+				registeredMotions = new Array();
+				//
+				if(delayTime > 0)
+				{
+					var delayTimer:Timer = new Timer(delayTime, 1);
+					delayTimer.addEventListener(TimerEvent.TIMER_COMPLETE, startAccount);
+					delayTimer.start();
+				}
+				else
+				{
+					startAccount();
+				}
 			}
 		}
 		
@@ -78,6 +100,17 @@ package fal.motion
 		public function stop():void
 		{
 			registeredMotions.forEach(stopMotion);
+		}
+		
+		private function startAccount(e:* = null):void
+		{
+			for(var i:Number = 0 ; i < targetList.length ; i++)
+			{
+				account(targetList[i]);
+				var startEvent:MotionEvent = new MotionEvent(MotionEvent.MOTION_START);
+				startEvent.motionTarget = targetList[i];
+				this.dispatchEvent(startEvent);
+			}
 		}
 		
 		private function stopMotion(element:*, index:int, arr:Array):void
@@ -93,31 +126,18 @@ package fal.motion
 		
 		protected function repeatSteps(steps:Array):Array
 		{
-			setDelay(steps);
-			if(time != 1)
+			if(times != 1)
 			{
 				var back:Boolean = false;
 				var s1:Array = steps.concat();
 				var s2:Array = steps.concat().reverse();
-				for(var i:Number = (time == 0 ? 2 : time) ; --i > 0 ;)
+				for(var i:Number = (times == 0 ? 2 : times) ; --i > 0 ;)
 				{
 					back = getBack ? !back : false;
 					steps = steps.concat(back ? s2 : s1);
 				}
 			}
 			return steps;
-		}
-		
-		private function setDelay(steps:Array):void
-		{
-			if(delayTime != 0)
-			{
-				var delayCount:uint = Math.round(delayTime / Motion.INTERVAL);
-				for(var i:Number = delayCount ; --i >= 0 ;)
-				{
-					steps.unshift(steps[0]);
-				}
-			}
 		}
 		
 		protected function getStepList(fromValue:Number, toValue:Number):Array

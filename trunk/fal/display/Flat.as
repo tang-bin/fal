@@ -12,7 +12,7 @@ package fal.display
 	import flash.geom.Matrix;
 	
 	/**
-	 * fal.app.FALApp
+	 * fal.display.Flat
 	 * 
 	 * @author	Tang Bin (tangbin@finalbug.org)
 	 * @since	old version

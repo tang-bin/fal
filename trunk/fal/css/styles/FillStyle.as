@@ -8,7 +8,13 @@ package fal.css.styles
 	import fal.utils.ColorUtil;
 	import fal.css.CSSStyle;
 	import fal.utils.StringUtil;
-
+	
+	/**
+	 * fal.css.styles.FillStyle
+	 *  
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	2010.08
+	 */	
 	public class FillStyle extends Style
 	{
 		private var _borderSize:String = "1";

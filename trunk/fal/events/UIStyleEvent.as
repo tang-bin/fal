@@ -5,9 +5,8 @@ package fal.events
 	/**
 	 * Event class for UI component that is changing style.
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
-	 */	
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 */
 	public class UIStyleEvent extends Event
 	{
 		/**

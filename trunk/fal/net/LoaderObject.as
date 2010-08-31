@@ -10,9 +10,8 @@ package fal.net
 	/**
 	 * This class is the super class for class which is used to load file(s).
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
-	 */	
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 */
 	public class LoaderObject
 	{
 		protected var _loaded:Boolean = false;

@@ -12,9 +12,8 @@ package fal.ui
 	/**
 	 * text input component
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
-	 */	
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 */
 	public class TextInput extends UIObject
 	{
 		private var _textType:String = "input";

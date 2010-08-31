@@ -1,3 +1,7 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.draw
 {
 	import flash.display.GradientType;
@@ -9,8 +13,8 @@ package fal.draw
 	/**
 	 * This class offers some methods to draw a graph.
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
 	 */	
 	public class Graph
 	{

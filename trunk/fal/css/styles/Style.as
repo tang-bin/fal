@@ -6,6 +6,12 @@ package fal.css.styles
 {
 	import fal.data.DataModel;
 	
+	/**
+	 * fal.css.styles.Style
+	 *  
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	2010.08
+	 */	
 	public class Style extends DataModel
 	{
 		public static const NUM_REG:RegExp = /^(-?\d*\.?\d*)$/;

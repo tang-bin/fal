@@ -8,9 +8,8 @@ package fal.ui
 	 * In cage object, only create scrollBar, but not set scrollbar events.
 	 * Class cage is used as other components' super class.
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
-	 */	
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 */
 	public class Cage extends UIObject
 	{
 		protected var back:Flat; // background

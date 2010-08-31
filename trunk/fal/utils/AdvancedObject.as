@@ -6,9 +6,8 @@ package fal.utils
 	/**
 	 * This class extends from Object directly and create some methods for sub class to invake easily.
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
-	 */	
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 */
 	public class AdvancedObject extends Object
 	{
 		protected var dispatcher:EventDispatcher = new EventDispatcher();

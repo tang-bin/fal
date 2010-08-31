@@ -3,9 +3,8 @@ package fal.errors
 	/**
 	 * This class defines some popular errors.
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
-	 */	
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 */
 	public class FOSError extends Error
 	{
 		public static const canNotInstance:String = "This class is singleton that cannot be instance.";

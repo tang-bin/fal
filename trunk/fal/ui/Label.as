@@ -8,9 +8,8 @@ package fal.ui
 	/**
 	 * Label component.
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
-	 */	
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 */
 	public class Label extends UIObject
 	{
 		private var str:String;

@@ -10,6 +10,12 @@ package fal.debuger
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	
+	/**
+	 * fal.debugger.Debugger
+	 * 
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	2010.08
+	 */	
 	public class Debugger extends Bin
 	{
 		/****************************************

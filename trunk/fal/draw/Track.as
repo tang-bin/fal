@@ -1,3 +1,7 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.draw
 {
 	import fal.errors.UIError;
@@ -9,8 +13,8 @@ package fal.draw
 	 * This class offers some methods to draw a track.
 	 * Draw track means no fill and line style will be set here, there are "lineTo" and "moveTo" only.
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
 	 */	
 	public class Track
 	{

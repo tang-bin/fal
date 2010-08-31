@@ -1,11 +1,15 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.data
 {
 	import fal.utils.ColorUtil;
 	/**
 	 * This class defines datas for cube.
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
 	 */	
 	public class CubeData
 	{

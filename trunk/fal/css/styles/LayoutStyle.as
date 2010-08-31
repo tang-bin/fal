@@ -8,6 +8,12 @@ package fal.css.styles
 	
 	import flash.display.DisplayObject;
 	
+	/**
+	 * fal.css.styles.LayoutStyle
+	 *  
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	2010.08
+	 */	
 	public class LayoutStyle extends Style
 	{
 		private var _width:String = "";

@@ -11,7 +11,13 @@ package fal.app
 	
 	import flash.display.Sprite;
 	import flash.text.TextFormat;
-
+	
+	/**
+	 * fal.app.Tooltip
+	 *  
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
+	 */	
 	public class Tooltip
 	{
 		public static var showDelay:Number = 500;

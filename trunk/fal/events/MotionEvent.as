@@ -5,10 +5,7 @@ package fal.events
 	/**
 	 * Event class for Class Move.
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
-	 * 
-	 */	
+	 * @author	Tang Bin (tangbin@finalbug.org)n	 */	
 	public class MotionEvent extends Event
 	{
 		/**
@@ -33,12 +30,7 @@ package fal.events
 		/**
 		* move object.
 		*/		
-		public var moveObject:*;
-		public var movedRate:Number;
-		/**
-		* move type.
-		*/		
-		public var moveType:String;
+		public var motionTarget:*;
 		
 		public function MotionEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false)
 		{

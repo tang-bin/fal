@@ -10,7 +10,7 @@ package fal.ui
 	 * This class create a panel with scrollbar x and y.
 	 * 
 	 * @author	Finalbug
-	 * @since 0.1
+	 * @since	old version
 	 */
 	public class ScrollPanel extends Cage
 	{

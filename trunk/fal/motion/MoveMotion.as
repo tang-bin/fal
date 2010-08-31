@@ -1,7 +1,17 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.motion
 {
 	import fal.errors.UIError;
 	
+	/**
+	 * fal.motion.MoveMotion
+	 * 
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
+	 */	
 	public class MoveMotion extends Motion
 	{
 		/**
@@ -25,7 +35,7 @@ package fal.motion
 		 */		
 		public var yTo:Number;
 		
-		public function MoveMotion(target:Object)
+		public function MoveMotion(target:Object = null)
 		{
 			super(target);
 		}
@@ -39,7 +49,7 @@ package fal.motion
 		{
 			try
 			{
-				if(time >= 1)
+				if(times >= 1)
 				{
 					/* account x values */
 					var x0:Number = isNaN(xFrom) ? target["x"] : xFrom; // x from
@@ -50,8 +60,8 @@ package fal.motion
 					var y1:Number = isNaN(yTo) ? target["y"] : yTo;
 					var ySteps:Array = getStepList(y0, y1);
 					// register moting to runner.
-					registeredMotions.push(MotionRunner.instance.register(target, "x", xSteps, this.time, this));
-					registeredMotions.push(MotionRunner.instance.register(target, "y", ySteps, this.time));
+					registeredMotions.push(MotionRunner.instance.register(target, "x", xSteps, this.times, this));
+					registeredMotions.push(MotionRunner.instance.register(target, "y", ySteps, this.times));
 				}
 			}
 			catch(e:Error)

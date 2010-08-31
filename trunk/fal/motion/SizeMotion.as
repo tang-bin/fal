@@ -1,7 +1,17 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.motion
 {
 	import fal.errors.UIError;
 	
+	/**
+	 * fal.motion.SizeMotion
+	 * 
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
+	 */	
 	public class SizeMotion extends Motion
 	{
 		public var widthFrom:Number;
@@ -9,7 +19,7 @@ package fal.motion
 		public var widthTo:Number;
 		public var heightTo:Number;
 		
-		public function SizeMotion(target:Object)
+		public function SizeMotion(target:Object = null)
 		{
 			super(target);
 		}
@@ -18,7 +28,7 @@ package fal.motion
 		{
 			try
 			{
-				if(time >= 1)
+				if(times >= 1)
 				{
 					/* account values */
 					var w0:Number = isNaN(widthFrom) ? target["width"] : widthFrom;
@@ -29,8 +39,8 @@ package fal.motion
 					var h1:Number = isNaN(heightTo) ? target["height"] : heightTo;
 					var hSteps:Array = getStepList(h0, h1);
 					// register moting to runner.
-					registeredMotions.push(MotionRunner.instance.register(target, "width", wSteps, this.time, this));
-					registeredMotions.push(MotionRunner.instance.register(target, "height", hSteps, this.time));
+					registeredMotions.push(MotionRunner.instance.register(target, "width", wSteps, this.times, this));
+					registeredMotions.push(MotionRunner.instance.register(target, "height", hSteps, this.times));
 				}
 			}
 			catch(e:Error)

@@ -17,9 +17,8 @@ package fal.ui
 	/**
 	 * Text area component.
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
-	 */	
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 */
 	public class TextArea extends Cage
 	{
 		private var txt:TextField;

@@ -11,6 +11,12 @@ package fal.css
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
+	/**
+	 * fal.css.CSSManager
+	 *  
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	2010.08
+	 */	
 	public class CSSManager extends DataModel
 	{
 		/****************************************

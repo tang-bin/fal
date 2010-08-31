@@ -9,7 +9,7 @@ package fal.data
 	
 	/**
 	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @since	old version
 	 */	
 	public class DataModel
 	{
@@ -17,7 +17,7 @@ package fal.data
 		 * DEFINE
 		 ****************************************/
 		
-		protected var dispatcher:EventDispatcher = new EventDispatcher();
+		private var dispatcher:EventDispatcher = new EventDispatcher();
 		
 		/****************************************
 		 * GETTER & SETTER

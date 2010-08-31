@@ -13,6 +13,12 @@ package fal.css
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
+	/**
+	 * fal.css.CSSFile
+	 *  
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	2010.08
+	 */	
 	public class CSSFile extends DataModel
 	{
 		//***************************************

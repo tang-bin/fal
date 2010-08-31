@@ -21,7 +21,7 @@ package fal.ui
 	 * Super class for all UI components.
 	 * 
 	 * @author	Finalbug
-	 * @since 0.1
+	 * @since	old version
 	 */
 	public class UIObject extends Sprite
 	{

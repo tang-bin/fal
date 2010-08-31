@@ -1,6 +1,10 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.motion
 {
-	import fal.errors.FOSError;
+	import fal.errors.FALError;
 	import fal.events.MotionEvent;
 	
 	import flash.events.TimerEvent;
@@ -11,9 +15,9 @@ package fal.motion
 	 * during runtime, MotionRunner will create only one timer to do the motion effect.
 	 * each motion will be register here to take effect. 
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
-	 */	
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
+	 */
 	public class MotionRunner
 	{
 		private static var mr:MotionRunner;
@@ -36,7 +40,7 @@ package fal.motion
 		{
 			if(!instanceable)
 			{
-				throw new FOSError(FOSError.canNotInstance);
+				throw new FALError(FALError.SINGLETON);
 			}
 			else
 			{
@@ -55,12 +59,13 @@ package fal.motion
 		 * 
 		 * @return The name of new moting event. 
 		 */		
-		public function register(target:*, value:String, steps:Array, time:uint = 1, motionClass:Motion = null):String
+		public function register(target:*, value:String, steps:Array, times:uint = 1, motionClass:Motion = null):String
 		{
-			var data:RegMotionData = new RegMotionData(target, value, steps);
-			data.time = time;
-			data.motionClass = motionClass;
+			var data:MotionData = new MotionData(target, value, steps, times, motionClass);
 			motionList[data.name] = data;
+			//
+			target[value] = steps[0];
+			//
 			return data.name;
 		}
 		
@@ -73,66 +78,81 @@ package fal.motion
 			}
 		}
 		
+		/**
+		 * core method of motion. All displayObject's attributes are modified at here.
+		 * 
+		 * @param e
+		 */		
 		private function motionTimerHandler(e:TimerEvent):void
 		{
-			for each(var d:RegMotionData in motionList)
+			for each(var d:MotionData in motionList)
 			{
-				var str:String = "[" + d.name + "]";
 				if(d.steps.length != 0)
 				{
-					str += " " + d.steps.length;
+					// get next step value
 					var val:* = d.steps.shift();
+					// copySteps save the array of step. for re-motion.
 					d.copySteps.push(val);
 					d.target[d.value] = val;
+					// dispath motion running event
+					if(d.motionClass != null)
+					{
+						var runningEvent:MotionEvent = new MotionEvent(MotionEvent.MOTION_RUNNING);
+						runningEvent.motionTarget = d.target;
+						d.motionClass.dispatchEvent(runningEvent);
+					}
 				}
 				else
 				{
-					str += " end time = " + d.time;
-					if(d.time == 0)
+					// one loop is end.
+					if(d.times == 0)
 					{
+						// if motion continues 
 						d.steps = d.copySteps;
 						d.copySteps = new Array();
 					}
 					else
 					{
 						var n:String = d.name;
-						var data:RegMotionData = motionList[n] as RegMotionData;
-						if(data.motionClass != null)
+						if(d.motionClass != null)
 						{
-							var ee:MotionEvent = new MotionEvent(MotionEvent.MOTION_STOP);
-							data.motionClass.dispatchEvent(ee);
+							var stopEvent:MotionEvent = new MotionEvent(MotionEvent.MOTION_STOP);
+							stopEvent.motionTarget = d.target;
+							d.motionClass.dispatchEvent(stopEvent);
 						}
 						motionList[n] = null;
 						delete motionList[n];
 					}
 				}
-				trace(str, motionList[d.name] == null);
 			}
 			e.updateAfterEvent();
 		}
 	}
 }
 
-	import fal.utils.StringUtil;
 	import fal.motion.Motion;
 	
-class RegMotionData
+class MotionData
 {
+	public static var nameCount:uint = 0;
+	
 	public var name:String;
 	public var target:*;
 	public var value:String;
 	public var steps:Array;
 	public var copySteps:Array;
-	public var time:uint;
+	public var times:uint;
 	
 	public var motionClass:Motion;
 	
-	public function RegMotionData(target:*, value:String, steps:Array)
+	public function MotionData(target:*, value:String, steps:Array, times:uint = 1, cls:Motion = null)
 	{
 		this.target = target;
 		this.value = value;
 		this.steps = steps;
-		this.name = "motion_" + this.target + "_" + value + "_"+ StringUtil.getRandomString();
+		this.name = "_motion" + (nameCount++).toString();
+		this.times = times;
+		this.motionClass = cls;
 		this.copySteps = new Array();
 	}
 }

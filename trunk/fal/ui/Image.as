@@ -9,9 +9,8 @@ package fal.ui
 	import flash.net.URLRequest;
 	
 	/**
-	 * @author Finalbug
-	 * @since 0.1
-	 */	
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 */
 	public class Image extends UIObject
 	{
 		private var loader:Loader;

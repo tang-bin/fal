@@ -6,8 +6,8 @@ package fal.events
 	 * Event class for net operations. mostly are load files and connect to server.
 	 * 
 	 * @author Tang Bin (tangbin@finalbug.org)
-	 * @since 0.1
-	 */	
+	 * @since	old version
+	 */
 	public class LoadEvent extends Event
 	{
 		/* event for load */

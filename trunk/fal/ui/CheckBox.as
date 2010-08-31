@@ -11,9 +11,8 @@ package fal.ui
 	/**
 	 * CheckBox component.
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
-	 */	
+	 * @author	Tang Bin (tangbin@finalbug.org)n
+	 */
 	public class CheckBox extends UIObject
 	{
 		private var _selected:Boolean = false;

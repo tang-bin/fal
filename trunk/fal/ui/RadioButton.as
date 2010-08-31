@@ -10,9 +10,8 @@ package fal.ui
 	/**
 	 * radio button
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
-	 */	
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 */
 	public class RadioButton extends UIObject
 	{
 		protected static var groupList:Object = new Object();

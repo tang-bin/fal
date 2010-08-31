@@ -1,3 +1,7 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
 package fal.gadgets
 {
 	import fal.utils.ColorUtil;
@@ -9,6 +13,12 @@ package fal.gadgets
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
+	/**
+	 * fal.gadgets.Laser
+	 * 
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	2010.08
+	 */	
 	public class Laser extends Sprite
 	{
 		private var lines:Sprite;

@@ -11,9 +11,7 @@ package fal.net
 	/**
 	 * This class is used to load a image file.
 	 * 
-	 * @author Finalbug
-	 * @since 0.1
-	 * @see fal.net.BitmapContainer
+	 * @author	Tang Bin (tangbin@finalbug.org)nee fal.net.BitmapContainer
 	 */	
 	public class BitmapLoader
 	{

@@ -5,8 +5,7 @@
 package fal.data
 {
 	/**
-	 * @author Finalbug
-	 * @since 1.0
+	 * @author	Tang Bin (tangbin@finalbug.org)
 	 */
 	public class Status
 	{

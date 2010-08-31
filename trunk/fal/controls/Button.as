@@ -6,10 +6,11 @@ package fal.controls
 {
 	import fal.display.Control;
 	
-	
 	/******************************************
+	 * fal.controls.Button
+	 * 
 	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @since	old version
 	 *****************************************/
 	public class Button extends Control
 	{

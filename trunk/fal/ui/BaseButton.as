@@ -9,9 +9,8 @@ package fal.ui
 	import flash.utils.Timer;
 	
 	/**
-	 * @author Finalbug
-	 * @since 1.0
-	 */	
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 */
 	public class BaseButton extends UIObject
 	{
 		private var normalSP:DisplayObjectContainer;

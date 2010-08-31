@@ -11,6 +11,12 @@ package fal.css
 	import fal.css.styles.Style;
 	import fal.utils.DataUtil;
 	
+	/**
+	 * fal.css.CSSStyle
+	 *  
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	2010.08
+	 */	
 	dynamic public class CSSStyle extends DataModel
 	{
 		//***************************************

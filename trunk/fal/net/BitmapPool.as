@@ -15,8 +15,7 @@ package fal.net
 	 * This class running in singleton mode.
 	 * 
 	 * @author	Finalbug
-	 * @since 0.1
-	 * @see fal.net.BitmapLoader
+	 * @since	old versionee fal.net.BitmapLoader
 	 */
 	public class BitmapPool
 	{
