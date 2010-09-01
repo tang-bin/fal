@@ -4,8 +4,6 @@
  *****************************************/
 package fal.motion
 {
-	import fal.errors.UIError;
-	
 	/**
 	 * fal.motion.MoveMotion
 	 * 
@@ -47,26 +45,19 @@ package fal.motion
 		 */		
 		override protected function account(target:Object):void
 		{
-			try
+			if(times >= 0)
 			{
-				if(times >= 1)
-				{
-					/* account x values */
-					var x0:Number = isNaN(xFrom) ? target["x"] : xFrom; // x from
-					var x1:Number = isNaN(xTo) ? target["x"] : xTo; // x to
-					var xSteps:Array = getStepList(x0, x1);
-					/* account y values */
-					var y0:Number = isNaN(yFrom) ? target["y"] : yFrom;
-					var y1:Number = isNaN(yTo) ? target["y"] : yTo;
-					var ySteps:Array = getStepList(y0, y1);
-					// register moting to runner.
-					registeredMotions.push(MotionRunner.instance.register(target, "x", xSteps, this.times, this));
-					registeredMotions.push(MotionRunner.instance.register(target, "y", ySteps, this.times));
-				}
-			}
-			catch(e:Error)
-			{
-				throw new UIError(UIError.NO_IUI);
+				/* account x values */
+				var x0:Number = isNaN(xFrom) ? target["x"] : xFrom; // x from
+				var x1:Number = isNaN(xTo) ? target["x"] : xTo; // x to
+				var xSteps:Array = getStepList(x0, x1);
+				/* account y values */
+				var y0:Number = isNaN(yFrom) ? target["y"] : yFrom;
+				var y1:Number = isNaN(yTo) ? target["y"] : yTo;
+				var ySteps:Array = getStepList(y0, y1);
+				// register moting to runner.
+				registeredMotions.push(MotionRunner.instance.register(target, "x", xSteps, this.times, this));
+				registeredMotions.push(MotionRunner.instance.register(target, "y", ySteps, this.times));
 			}
 		}
 	}

@@ -4,10 +4,6 @@
  *****************************************/
 package fal.motion
 {
-	import flash.utils.Timer;
-	
-	import fal.errors.UIError;
-	
 	/**
 	 * fal.motion.FadeMotion
 	 *  
@@ -26,21 +22,14 @@ package fal.motion
 		
 		override protected function account(target:Object):void
 		{
-			try
+			if(times >= 0)
 			{
-				if(times >= 0)
-				{
-					/* account x values */
-					var a0:Number = isNaN(alphaFrom) ? target["alpha"] : alphaFrom; // alpha from
-					var a1:Number = isNaN(alphaTo) ? target["alpha"] : alphaTo; // alpha to
-					var aSteps:Array = getStepList(a0, a1);
-					// register moting to runner.
-					registeredMotions.push(MotionRunner.instance.register(target, "alpha", aSteps, this.times));
-				}
-			}
-			catch(e:Error)
-			{
-				throw new UIError(UIError.NO_IUI);
+				/* account x values */
+				var a0:Number = isNaN(alphaFrom) ? target["alpha"] : alphaFrom; // alpha from
+				var a1:Number = isNaN(alphaTo) ? target["alpha"] : alphaTo; // alpha to
+				var aSteps:Array = getStepList(a0, a1);
+				// register moting to runner.
+				registeredMotions.push(MotionRunner.instance.register(target, "alpha", aSteps, this.times));
 			}
 		}
 	}

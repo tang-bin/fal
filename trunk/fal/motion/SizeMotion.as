@@ -4,7 +4,7 @@
  *****************************************/
 package fal.motion
 {
-	import fal.errors.UIError;
+	
 	
 	/**
 	 * fal.motion.SizeMotion
@@ -26,26 +26,19 @@ package fal.motion
 		
 		override protected function account(target:Object):void
 		{
-			try
+			if(times >= 0)
 			{
-				if(times >= 1)
-				{
-					/* account values */
-					var w0:Number = isNaN(widthFrom) ? target["width"] : widthFrom;
-					var w1:Number = isNaN(widthTo) ? target["width"] : widthTo;
-					var wSteps:Array = getStepList(w0, w1);
-					//
-					var h0:Number = isNaN(heightFrom) ? target["height"] : heightFrom;
-					var h1:Number = isNaN(heightTo) ? target["height"] : heightTo;
-					var hSteps:Array = getStepList(h0, h1);
-					// register moting to runner.
-					registeredMotions.push(MotionRunner.instance.register(target, "width", wSteps, this.times, this));
-					registeredMotions.push(MotionRunner.instance.register(target, "height", hSteps, this.times));
-				}
-			}
-			catch(e:Error)
-			{
-				throw new UIError(UIError.NO_IUI);
+				/* account values */
+				var w0:Number = isNaN(widthFrom) ? target["width"] : widthFrom;
+				var w1:Number = isNaN(widthTo) ? target["width"] : widthTo;
+				var wSteps:Array = getStepList(w0, w1);
+				//
+				var h0:Number = isNaN(heightFrom) ? target["height"] : heightFrom;
+				var h1:Number = isNaN(heightTo) ? target["height"] : heightTo;
+				var hSteps:Array = getStepList(h0, h1);
+				// register moting to runner.
+				registeredMotions.push(MotionRunner.instance.register(target, "width", wSteps, this.times, this));
+				registeredMotions.push(MotionRunner.instance.register(target, "height", hSteps, this.times));
 			}
 		}
 	}

@@ -116,6 +116,7 @@ package fal.motion
 						var n:String = d.name;
 						if(d.motionClass != null)
 						{
+							d.motionClass._running = false;
 							var stopEvent:MotionEvent = new MotionEvent(MotionEvent.MOTION_STOP);
 							stopEvent.motionTarget = d.target;
 							d.motionClass.dispatchEvent(stopEvent);

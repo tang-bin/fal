@@ -27,8 +27,10 @@ package fal.controls
 		 * fal.controllers.Button constructor.
 		 * 
 		 ****************************************/
-		public function Button()
+		public function Button(text:String = "Button")
 		{
+			this.displayWidth = 80;
+			this.displayHeight = 20;
 			super();
 		}
 		

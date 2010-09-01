@@ -6,12 +6,12 @@ package fal.display
 {
 	import fal.css.CSSStyle;
 	import fal.events.DisplayEvent;
+	import fal.events.MotionEvent;
+	import fal.motion.MoveMotion;
+	import fal.motion.SizeMotion;
 	import fal.utils.MathUtil;
 	
 	import flash.display.Sprite;
-	import flash.events.TimerEvent;
-	import flash.geom.Point;
-	import flash.utils.Timer;
 	
 	/**
 	 * fal.display.Bin
@@ -31,16 +31,13 @@ package fal.display
 		
 		protected var _style:CSSStyle = new CSSStyle();
 		
-		private var moveTimer:Timer;
-		private var moveStep:Point;
-		
-		private var zoomTimer:Timer;
-		private var zoomStep:Point;
-		
 		private var _maxWidth:Number = 4000;
-		private var _minWidth:Number = 4000;
-		private var _maxHeight:Number = 0;
+		private var _maxHeight:Number = 4000;
+		private var _minWidth:Number = 0;
 		private var _minHeight:Number = 0;
+		
+		private var moveMotion:MoveMotion;
+		private var sizeMotion:SizeMotion;
 		
 		/****************************************
 		 * 
@@ -174,40 +171,42 @@ package fal.display
 		 * @param height Target height.
 		 * @param during Time spend to change, in millisecond.
 		 */	
-		public function zoom(width:Number, height:Number, during:uint = 500):void
+		public function zoomTo(width:Number, height:Number, during:uint = 500):void
 		{
-			if(zoomTimer != null && zoomTimer.running)
+			if(this.sizeMotion == null)
 			{
-				zoomTimer.stop();
-				zoomTimer = null;
+				this.sizeMotion = new SizeMotion(this);
+				this.sizeMotion.addEventListener(MotionEvent.MOTION_STOP, stopZoomHandler);
 			}
-			var stepCount:uint = Math.floor(during / SMOOTH_DELAY);
-			zoomStep = new Point();
-			zoomStep.x = (width - displayWidth) / stepCount;
-			zoomStep.y = (height - displayHeight) / stepCount;
-			//
-			zoomTimer = new Timer(SMOOTH_DELAY, stepCount);
-			zoomTimer.addEventListener(TimerEvent.TIMER, zoomTimerHandler);
-			zoomTimer.addEventListener(TimerEvent.TIMER_COMPLETE, zoomTimerEndHandler);
-			zoomTimer.start();
+			else if(this.sizeMotion.running)
+			{
+				this.sizeMotion.stop();
+			}
+			this.sizeMotion.widthFrom = this.displayWidth;
+			this.sizeMotion.heightFrom = this.displayHeight;
+			this.sizeMotion.widthTo = width;
+			this.sizeMotion.heightTo = height;
+			this.sizeMotion.during = during;
+			this.sizeMotion.start();
 		}
 		
-		public function move(x:Number, y:Number, during:uint = 500):void
+		public function moveTo(x:Number, y:Number, during:uint = 500):void
 		{
-			if(moveTimer != null && moveTimer.running)
+			if(this.moveMotion == null)
 			{
-				moveTimer.stop();
-				moveTimer = null;
+				this.moveMotion = new MoveMotion(this);
+				moveMotion.addEventListener(MotionEvent.MOTION_STOP, stopMoveHandler);
 			}
-			var stepCount:uint = Math.floor(during / SMOOTH_DELAY);
-			moveStep = new Point();
-			moveStep.x = (x - this.x) / stepCount;
-			moveStep.y = (y - this.y) / stepCount;
-			//
-			moveTimer = new Timer(SMOOTH_DELAY, stepCount);
-			moveTimer.addEventListener(TimerEvent.TIMER, moveTimerHandler);
-			moveTimer.addEventListener(TimerEvent.TIMER_COMPLETE, moveTimerEndHandler);
-			moveTimer.start();
+			else if(this.moveMotion.running)
+			{
+				this.moveMotion.stop();
+			}
+			moveMotion.xFrom = this.x;
+			moveMotion.yFrom = this.y;
+			moveMotion.xTo = x;
+			moveMotion.yTo = y;
+			moveMotion.during = during;
+			moveMotion.start();
 		}
 		
 		public function toFront():void
@@ -237,32 +236,13 @@ package fal.display
 		 * HANDLER
 		 * 
 		 ****************************************/
-		private function zoomTimerHandler(e:TimerEvent):void
+		private function stopZoomHandler(e:MotionEvent):void
 		{
-			this.displayWidth += zoomStep.x;
-			this.displayHeight += zoomStep.y;
-			this.updateView();
-			e.updateAfterEvent();
-		}
-		
-		private function zoomTimerEndHandler(e:TimerEvent):void
-		{
-			this.zoomTimer = null;
-			this.zoomStep = null;
 			this.dispatchEvent(new DisplayEvent(DisplayEvent.END_ZOOM));
 		}
 		
-		private function moveTimerHandler(e:TimerEvent):void
+		private function stopMoveHandler(e:MotionEvent):void
 		{
-			this.x += moveStep.x;
-			this.y += moveStep.y;
-			e.updateAfterEvent();
-		}
-		
-		private function moveTimerEndHandler(e:TimerEvent):void
-		{
-			this.moveTimer = null;
-			this.moveStep = null;
 			this.dispatchEvent(new DisplayEvent(DisplayEvent.END_MOVE));
 		}
 	}

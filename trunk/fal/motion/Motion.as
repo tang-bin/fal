@@ -54,6 +54,13 @@ package fal.motion
 		protected var getBack:Boolean = false;
 		protected var registeredMotions:Array;
 		
+		internal var _running:Boolean = false;
+		
+		public function get running():Boolean
+		{
+			return _running;
+		}
+		
 		public function Motion(target:Object = null)
 		{
 			if(target != null)
@@ -107,6 +114,7 @@ package fal.motion
 			for(var i:Number = 0 ; i < targetList.length ; i++)
 			{
 				account(targetList[i]);
+				this._running = true;
 				var startEvent:MotionEvent = new MotionEvent(MotionEvent.MOTION_START);
 				startEvent.motionTarget = targetList[i];
 				this.dispatchEvent(startEvent);
@@ -116,6 +124,7 @@ package fal.motion
 		private function stopMotion(element:*, index:int, arr:Array):void
 		{
 			MotionRunner.instance.stopAndRemoveMotion(element);
+			this._running = false;
 		}
 		
 		/**
