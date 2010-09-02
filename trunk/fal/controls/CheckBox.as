@@ -5,10 +5,14 @@
 package fal.controls
 {
 	import fal.data.Position;
+	import fal.data.Status;
 	import fal.display.Control;
 	import fal.events.DataEvent;
-	import fal.ui.Label;
+	import fal.glazes.Flat;
+	import fal.style.stylefactory.CheckBoxStyleFactory;
+	import fal.style.styles.FillStyle;
 	
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.text.TextFormat;
@@ -21,20 +25,18 @@ package fal.controls
 	 */
 	public class CheckBox extends Control
 	{
+		private const BOX_SIZE:Number = 12;
+		private const THICKNESS:Number = 2;
+		private const OFFSET:Number = 3;
+		
 		private var _selected:Boolean = false;
 		private var _label:String = "CheckBox";	
 		private var _labelPosition:String;
 		
 		private var innerBox:Sprite;
-		private var outerBox:Sprite;
+		private var outerBox:Flat
 		private var txt:Label;
-		private var back:Sprite;
-		
-		private var boxSize:Number = 12;
-		private var offset:Number = 3;
-		private var outerBoxSize:Number = 2;
-		private var outerBoxColor:uint = 0x333333;
-		private var innerBoxColor:uint = 0x990000;;
+		private var back:Shape;
 		
 		/**
 		 * if is checked of not.
@@ -48,7 +50,7 @@ package fal.controls
 			if(value != _selected)
 			{
 				_selected = value;
-				changeChecked();
+				innerBox.visible = value;
 			}
 		}
 		
@@ -63,7 +65,7 @@ package fal.controls
 		{
 			_label = value;
 			txt.text = value;
-			setPosition();
+			resetPosition();
 		}
 		
 		public function get labelPosition():String
@@ -73,7 +75,7 @@ package fal.controls
 		public function set labelPosition(value:String):void
 		{
 			_labelPosition = value;
-			setPosition();
+			resetPosition();
 		}
 		
 		public function set labelColor(value:Number):void
@@ -96,104 +98,79 @@ package fal.controls
 		 */		
 		public function CheckBox(label:String = "checkBox")
 		{
-			this.uiName = "CheckBox";
-			_label = label;
+			super();
 			//
-			createChildren();
-			setEvent();
-			changeChecked();
-		}
-		
-		/**
-		 * Create elements.
-		 */		
-		private function createChildren():void
-		{
 			// outer box
-			outerBox = createOuterBox();
-			this.addChild(outerBox);
-			// inner box
-			innerBox = createInnerBox();
-			this.addChild(innerBox);
-			// label
-			var tf:TextFormat = new TextFormat("Arial", 12, 0x333333);
-			txt = new Label(_label, tf);
-			this.addChild(txt);
-			// action background, dont display.
-			back = new Sprite();
-			back.graphics.beginFill(0, 0);
-			back.graphics.drawRect(0, 0, 10, 10);
-			back.graphics.endFill();
-			this.addChild(back);
+			outerBox = new Flat();
+			innerBox = new Sprite();
+			txt = new Label(_label);
+			back = new Shape();
+			this.addAll(outerBox, innerBox, txt, back);
 			//
-			setPosition();
+			this.registerStatus(Status.NORMAL_STATUS, CheckBoxStyleFactory.createNormalStyle(), true);
+			this.registerStatus(Status.MOUSE_OVER_STATUS, CheckBoxStyleFactory.createOverStyle(), true);
+			this.registerStatus(Status.MOUSE_DOWN_STATUS, CheckBoxStyleFactory.createDownStyle(), true);
+			this.registerStatus(Status.DISABLE_STATUS, CheckBoxStyleFactory.createDisableStyle(), true);
+			//
+			this.addEventListener(MouseEvent.CLICK, clickHandler);
 		}
 		
-		/**
-		 * Change checked view.
-		 */		
-		private function changeChecked():void
+		override protected function updateView():void
 		{
+			drawOuterBox();
+			drawInnerBox();
+			txt.textFormat = currentStyle.textStyle.format;
 			innerBox.visible = _selected;
+			resetPosition();
 		}
 		
-		/**
-		 * set event listener.
-		 */		
-		private function setEvent():void
-		{
-			back.addEventListener(MouseEvent.CLICK, clickHandler);
-		}
 		
 		/**
 		 * set elements position.
 		 */		
-		private function setPosition():void
+		private function resetPosition():void
 		{
-			if(outerBox != null && innerBox != null && txt != null && back != null)
+			var ww:Number = Math.max(txt.width, BOX_SIZE);
+			var hh:Number = Math.max(txt.height, BOX_SIZE);
+			//
+			if(_labelPosition == Position.LEFT)
 			{
-				var ww:Number = Math.max(txt.width, boxSize);
-				var hh:Number = Math.max(txt.height, boxSize);
-				//
-				if(_labelPosition == Position.LEFT)
-				{
-					txt.x = 0;
-					txt.y = (hh - txt.height) / 2;
-					outerBox.x = txt.width + offset;
-					outerBox.y = (hh - outerBox.height) / 2;
-					back.width = ww + offset + outerBox.width;
-					back.height = hh;
-				}
-				else if(_labelPosition == Position.TOP)
-				{
-					txt.x = (ww - txt.width) / 2;
-					txt.y = 0;
-					outerBox.x = (ww - outerBox.width) / 2;
-					outerBox.y = txt.height + offset;
-					back.width = ww;
-					back.height = hh + offset + outerBox.height;
-				}
-				else if(_labelPosition == Position.BOTTOM)
-				{
-					outerBox.x = (ww - outerBox.width) / 2;
-					outerBox.y = 0;
-					txt.x = (ww - txt.height) / 2;
-					txt.y = outerBox.height + offset;
-					back.width = ww;
-					back.height = hh + offset + outerBox.height;
-				}
-				else
-				{
-					outerBox.x = 0;
-					outerBox.y = (hh - outerBox.height) / 2;
-					txt.x = outerBox.width + offset;
-					txt.y = (hh - txt.height) / 2;
-					back.width = ww + offset + outerBox.width;
-					back.height = hh;
-				}
-				innerBox.x = outerBox.x;
-				innerBox.y = outerBox.y;
+				txt.x = 0;
+				txt.y = (hh - txt.height) / 2;
+				outerBox.x = txt.width + OFFSET;
+				outerBox.y = (hh - outerBox.height) / 2;
+				back.width = ww + OFFSET + outerBox.width;
+				back.height = hh;
 			}
+			else if(_labelPosition == Position.TOP)
+			{
+				txt.x = (ww - txt.width) / 2;
+				txt.y = 0;
+				outerBox.x = (ww - outerBox.width) / 2;
+				outerBox.y = txt.height + OFFSET;
+				back.width = ww;
+				back.height = hh + OFFSET + outerBox.height;
+			}
+			else if(_labelPosition == Position.BOTTOM)
+			{
+				outerBox.x = (ww - outerBox.width) / 2;
+				outerBox.y = 0;
+				txt.x = (ww - txt.height) / 2;
+				txt.y = outerBox.height + OFFSET;
+				back.width = ww;
+				back.height = hh + OFFSET + outerBox.height;
+			}
+			else
+			{
+				outerBox.x = 0;
+				outerBox.y = (hh - outerBox.height) / 2;
+				txt.x = outerBox.width + OFFSET;
+				txt.y = (hh - txt.height) / 2;
+				back.width = ww + OFFSET + outerBox.width;
+				back.height = hh;
+			}
+			innerBox.x = outerBox.x;
+			innerBox.y = outerBox.y;
 		}
 		
 		///////////////////////////////////////////////////////////////////////////////
@@ -207,7 +184,7 @@ package fal.controls
 		private function clickHandler(e:MouseEvent):void
 		{
 			_selected = !_selected;
-			changeChecked();
+			innerBox.visible = _selected;
 			this.dispatchEvent(new DataEvent(DataEvent.CHANGE_DATA));
 		}
 		
@@ -215,45 +192,24 @@ package fal.controls
 		 * create and draw outer box.
 		 * @return 
 		 */	
-		private function createOuterBox():Sprite
+		private function drawOuterBox():void
 		{
-			var sp:Sprite = new Sprite();
-			//
-			sp.graphics.beginFill(0xFFFFFF, 1);
-			sp.graphics.drawRect(0, 0, boxSize, boxSize);
-			sp.graphics.endFill();
-			//
-			sp.graphics.beginFill(outerBoxColor, 1);
-			sp.graphics.moveTo(0, 0);
-			sp.graphics.lineTo(boxSize, 0);
-			sp.graphics.lineTo(boxSize, boxSize);
-			sp.graphics.lineTo(0, boxSize);
-			sp.graphics.lineTo(0, outerBoxSize);
-			sp.graphics.lineTo(outerBoxSize, outerBoxSize);
-			sp.graphics.lineTo(outerBoxSize, boxSize - outerBoxSize);
-			sp.graphics.lineTo(boxSize - outerBoxSize, boxSize - outerBoxSize);
-			sp.graphics.lineTo(boxSize - outerBoxSize, outerBoxSize);
-			sp.graphics.lineTo(0, outerBoxSize);
-			sp.graphics.lineTo(0, 0);
-			sp.graphics.endFill();
-			//
-			return sp;
+			outerBox.fillStyle = currentStyle.fillStyle;
 		}
 		
 		/**
 		 * create and draw inner box.
 		 * @return 
 		 */	
-		private function createInnerBox():Sprite
+		private function drawInnerBox():void
 		{
-			var sp:Sprite = new Sprite();
+			var fs:FillStyle = currentStyle.fillStyle;
 			//
-			sp.graphics.lineStyle(3, innerBoxColor, 1);
-			sp.graphics.moveTo(outerBoxSize, boxSize / 2);
-			sp.graphics.lineTo(boxSize / 2, boxSize - outerBoxSize - 2);
-			sp.graphics.lineTo(boxSize, 0);
-			//
-			return sp;
+			innerBox.graphics.clear();
+			innerBox.graphics.lineStyle(3, fs.borderColor, 1);
+			innerBox.graphics.moveTo(THICKNESS, BOX_SIZE / 2);
+			innerBox.graphics.lineTo(BOX_SIZE / 2, BOX_SIZE - THICKNESS - 2);
+			innerBox.graphics.lineTo(BOX_SIZE, 0);
 		}
 	}
 }

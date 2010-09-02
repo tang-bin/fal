@@ -9,6 +9,8 @@ package fal.display
 	import fal.style.CSSFilter;
 	import fal.style.DisplayStyle;
 	
+	import flash.events.MouseEvent;
+	
 	/**
 	 * Class Control is the super class for all of the controls.
 	 * 
@@ -67,6 +69,10 @@ package fal.display
 		public function Control()
 		{
 			super();
+			this.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
+			this.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
+			this.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+			this.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 		}
 		
 		/****************************************
@@ -161,5 +167,24 @@ package fal.display
 		/****************************************
 		 * HANDLER
 		 ****************************************/
+		protected function rollOverHandler(e:MouseEvent):void
+		{
+			this.status = Status.MOUSE_OVER_STATUS;
+		}
+		
+		protected function rollOutHandler(e:MouseEvent):void
+		{
+			this.status = Status.NORMAL_STATUS;
+		}
+		
+		protected function mouseDownHandler(e:MouseEvent):void
+		{
+			this.status = Status.MOUSE_DOWN_STATUS;
+		}
+		
+		protected function mouseUpHandler(e:MouseEvent):void
+		{
+			this.status = Status.MOUSE_OVER_STATUS;
+		}
 	}
 }

@@ -7,20 +7,15 @@
 package fal.faltester
 {
 	import fal.app.FALApp;
-	import fal.controls.Button;
-	import fal.controls.Label;
-	import fal.controls.ScrollBar;
-	import fal.events.MotionEvent;
-	import fal.glazes.Flat;
-	import fal.motion.MoveMotion;
-	import fal.motion.SizeMotion;
-	
-	import flash.text.TextFormat;
+	import fal.controls.CheckBox;
 	
 	public class FALTester extends FALApp
 	{
 		public function FALTester()
 		{
+			var cb:CheckBox = new CheckBox();
+			this.addAll(cb);
+			cb.x = cb.y = 300;
 		}
 	}
 }

@@ -145,8 +145,8 @@ package fal.controls
 				createScrollBarY();
 			}
 			//
-			this.registerStatus(Status.NORMAL_STATUS, ScrollBarStyleFactory.createNormalScrollBarStyle(), true);
-			this.registerStatus(Status.DISABLE_STATUS, ScrollBarStyleFactory.createDisableScrollBarStyle());
+			this.registerStatus(Status.NORMAL_STATUS, ScrollBarStyleFactory.createNormalStyle(), true);
+			this.registerStatus(Status.DISABLE_STATUS, ScrollBarStyleFactory.createDisableStyle());
 			//
 			if(_type == ScrollBar.SCROLL_X)
 			{

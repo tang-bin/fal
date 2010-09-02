@@ -64,11 +64,6 @@ package fal.controls
 			this.registerStatus(Status.MOUSE_OVER_STATUS, ButtonStyleFactory.createOverStyle());
 			this.registerStatus(Status.MOUSE_DOWN_STATUS, ButtonStyleFactory.createDownStyle());
 			this.registerStatus(Status.DISABLE_STATUS, ButtonStyleFactory.createDisableStyle());
-			//
-			this.addEventListener(MouseEvent.ROLL_OVER, overHandler);
-			this.addEventListener(MouseEvent.MOUSE_DOWN, downHandler);
-			this.addEventListener(MouseEvent.ROLL_OUT, outHandler);
-			this.addEventListener(MouseEvent.MOUSE_UP, upHandler);
 		}
 		
 		override protected function updateView():void
@@ -98,25 +93,5 @@ package fal.controls
 		/****************************************
 		 * HANDLER
 		 ****************************************/
-		
-		private function overHandler(e:MouseEvent):void
-		{
-			this.status = Status.MOUSE_OVER_STATUS;
-		}
-		
-		private function outHandler(e:MouseEvent):void
-		{
-			this.status = Status.NORMAL_STATUS;
-		}
-		
-		private function downHandler(e:MouseEvent):void
-		{
-			this.status = Status.MOUSE_DOWN_STATUS;
-		}
-		
-		private function upHandler(e:MouseEvent):void
-		{
-			this.status = Status.MOUSE_OVER_STATUS;
-		}
 	}
 }

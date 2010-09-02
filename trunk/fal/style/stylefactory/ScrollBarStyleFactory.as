@@ -8,7 +8,7 @@ package fal.style.stylefactory
 
 	public class ScrollBarStyleFactory
 	{
-		public static function createNormalScrollBarStyle():DisplayStyle
+		public static function createNormalStyle():DisplayStyle
 		{
 			var ds:DisplayStyle = new DisplayStyle();
 			ds.fillStyle.useGradient = true;
@@ -26,9 +26,9 @@ package fal.style.stylefactory
 			return ds;
 		}
 		
-		public static function createDisableScrollBarStyle():DisplayStyle
+		public static function createDisableStyle():DisplayStyle
 		{
-			var ds:DisplayStyle = createNormalScrollBarStyle();
+			var ds:DisplayStyle = createNormalStyle();
 			return ds;
 		}
 	}
