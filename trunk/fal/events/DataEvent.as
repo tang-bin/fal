@@ -9,6 +9,7 @@
 		 */		
 		public static const CHANGE_DATA:String = "FOSChangeData";
 		
+		public var dataName:String = "";
 		public var oldData:*;
 		public var newData:*;
 		

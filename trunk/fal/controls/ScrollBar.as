@@ -1,14 +1,20 @@
-package fal.ui
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
+package fal.controls
 {
 	import fal.data.Status;
-	import fal.display.Flat;
+	import fal.display.Control;
 	import fal.draw.Track;
-	import fal.errors.UIError;
+	import fal.errors.ControlError;
 	import fal.events.UIEvent;
 	import fal.events.UIMouseEvent;
+	import fal.glazes.Flat;
+	import fal.style.stylefactory.ScrollBarStyleFactory;
+	import fal.style.styles.FillStyle;
 	import fal.utils.MathUtil;
 	
-	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.geom.Point;
@@ -19,14 +25,13 @@ package fal.ui
 	 * ScrollBar
 	 * 
 	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
 	 */
-	public class ScrollBar extends UIObject
+	public class ScrollBar extends Control
 	{
 		/* constants */
 		public static const SCROLL_X:String = "xScrollBar";
 		public static const SCROLL_Y:String = "yScrollBar";
-		
-		private var buttonIconColor:Number = 0xFFFFFF;
 		
 		/* variates */
 		private var moveStep:Number;
@@ -49,7 +54,6 @@ package fal.ui
 		private var downBtn:Flat;
 		private var back:Flat;
 		private var slider:Flat;
-		private var disableMask:Sprite;
 		
 		private var _enabled:Boolean = true;
 		
@@ -64,22 +68,6 @@ package fal.ui
 			return _type == ScrollBar.SCROLL_X ? this._thickness : this._length;
 		}
 		override public function set height(value:Number) : void{}
-		
-		/**
-		 * enabled scrollBar or not.
-		 */		
-		public function set enabled(value:Boolean):void
-		{
-			if(enabled != value)
-			{
-				_enabled = value;
-				setEnabled();
-			}
-		}
-		public function get enabled():Boolean
-		{
-			return _enabled;
-		}
 		
 		/**
 		 * scale value of slider in percent. from 0 to 1.
@@ -116,8 +104,7 @@ package fal.ui
 		public function set length(value:Number):void
 		{
 			this._length = value;
-			setView();
-			setSlider();
+			this.updateView();
 		}	
 		
 		public function get thickness():Number
@@ -138,12 +125,12 @@ package fal.ui
 		 * @param length Length of ScrollBar, in pixel.
 		 * @param style Display style.
 		 */		
-		public function ScrollBar(type:String, length:Number)
+		public function ScrollBar(type:String, length:Number = 100)
 		{
-			super.uiName = "ScrollBar";
+			super();
 			if(type != ScrollBar.SCROLL_X && type != ScrollBar.SCROLL_Y)
 			{
-				throw new UIError(UIError.WRONG_SCROLLBAR_TYPE);
+				throw new ControlError(ControlError.WRONG_SCROLLBAR_TYPE);
 			}
 			_type = type;
 			this._thickness = 16;
@@ -157,42 +144,65 @@ package fal.ui
 			{
 				createScrollBarY();
 			}
-			setView();
-			setSlider();
-			setEvent();
-		}
-		
-		private function setView():void
-		{
+			//
+			this.registerStatus(Status.NORMAL_STATUS, ScrollBarStyleFactory.createNormalScrollBarStyle(), true);
+			this.registerStatus(Status.DISABLE_STATUS, ScrollBarStyleFactory.createDisableScrollBarStyle());
+			//
 			if(_type == ScrollBar.SCROLL_X)
 			{
+				leftBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
+				rightBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
+				slider.addEventListener(MouseEvent.MOUSE_DOWN, pressSliderHandler);
+			}
+			else
+			{
+				upBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
+				downBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
+				slider.addEventListener(MouseEvent.MOUSE_DOWN, pressSliderHandler);
+			}
+		}
+		
+		override protected function updateView():void
+		{
+			var fs:FillStyle = currentStyle.fillStyle;
+			if(_type == ScrollBar.SCROLL_X)
+			{
+				leftBtn.fillStyle = fs;
 				leftBtn.width = leftBtn.height = _thickness;
 				drawLeftBtnAddon();
+				//
+				rightBtn.fillStyle = fs;
 				rightBtn.x = _length - _thickness;
 				rightBtn.width = rightBtn.height = _thickness;
 				drawRightBtnAddon();
 				//
+				back.fillStyle = fs;
+				back.alpha = 0.5;
 				back.width = availLength;
 				back.height = _thickness;
 				back.x = _thickness;
 			}
 			else
 			{
+				upBtn.fillStyle = fs;
 				upBtn.width = upBtn.height = _thickness;
 				drawUpBtnAddon();
+				//
+				downBtn.fillStyle = fs;
 				downBtn.y = _length - _thickness;
 				downBtn.width = downBtn.height = _thickness;
 				drawDownBtnAddon();
 				//
+				back.fillStyle = fs;
+				back.alpha = 0.5;
 				back.y = _thickness;
 				back.width = _thickness;
 				back.height = availLength;
 			}
-			if(disableMask != null)
-			{
-				disableMask.width = width;
-				disableMask.height = height;
-			}
+			fs = fs.clone();
+			fs.useGradient = false;
+			slider.fillStyle = fs;
+			this.setSlider();
 		}
 		
 		public function changeSlider(position:Number, scale:Number):void
@@ -229,76 +239,30 @@ package fal.ui
 		
 		private function createScrollBarX():void
 		{
-			leftBtn = new Flat(10, 10);
-			rightBtn = new Flat(10, 10);
-			back = new Flat(10, 10);
-			slider = new Flat(10, 10);
+			leftBtn = new Flat();
+			rightBtn = new Flat();
+			back = new Flat();
+			slider = new Flat();
 			leftBtn.name = "leftBtn";
 			rightBtn.name = "rightBtn";
-			this.addChild(leftBtn);
-			this.addChild(rightBtn);
-			this.addChild(back);
-			this.addChild(slider);
+			//
+			leftBtn.mouseEnabled = rightBtn.mouseEnabled = slider.mouseEnabled = true;
+			//
+			this.addAll(back, leftBtn, rightBtn, slider);
 		}
 		
 		private function createScrollBarY():void
 		{
-			upBtn = new Flat(10, 10);
-			downBtn = new Flat(10, 10);
-			back = new Flat(10, 10);
-			slider = new Flat(10, 10);
+			upBtn = new Flat();
+			downBtn = new Flat();
+			back = new Flat();
+			slider = new Flat();
 			upBtn.name = "upBtn";
 			downBtn.name = "downBtn";
-			this.addChild(upBtn);
-			this.addChild(downBtn);
-			this.addChild(back);
-			this.addChild(slider);
-		}
-		
-		private function setEnabled():void
-		{
-			if(enabled)
-			{
-				if(disableMask != null)
-				{
-					disableMask.visible = false;
-				}
-				slider.visible = true;
-			}
-			else
-			{
-				// create and add disable mask flat to stage if its not created yet.
-				if(disableMask == null)
-				{
-					disableMask = new Sprite();
-					disableMask.graphics.beginFill(0, 0.7);
-					disableMask.graphics.drawRect(0, 0, 10, 10);
-					disableMask.graphics.endFill();
-					this.addChild(disableMask);
-				}
-				// set size
-				disableMask.width = width;
-				disableMask.height = height;
-				// set display.
-				disableMask.visible = true;
-				slider.visible = false;
-			}
-		}
-		
-		private function setEvent():void
-		{
-			if(_type == ScrollBar.SCROLL_X)
-			{
-				leftBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
-				rightBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
-				slider.addEventListener(MouseEvent.MOUSE_DOWN, pressSliderHandler);
-			}
-			else
-			{
-				upBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
-				downBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
-				slider.addEventListener(MouseEvent.MOUSE_DOWN, pressSliderHandler);
-			}
+			//
+			upBtn.mouseEnabled = downBtn.mouseEnabled = slider.mouseEnabled = true;
+			//
+			this.addAll(back, upBtn, downBtn, slider);
 		}
 		
 		private function stopMove():void
@@ -354,7 +318,7 @@ package fal.ui
 		
 		private function pressBtnHandler(e:MouseEvent):void
 		{
-			if(enabled)
+			if(_enabled)
 			{
 				moveStep = (this.availLength - slider.width) * _speed / 100;
 				//
@@ -506,32 +470,36 @@ package fal.ui
 		
 		private function drawLeftBtnAddon():void
 		{
+			var color:Number = Number(currentStyle.textStyle.format.color);
 			var len:Number = _thickness / 2;
-			leftBtn.graphics.beginFill(buttonIconColor, 1);
+			leftBtn.graphics.beginFill(color, 1);
 			Track.drawTriangle(leftBtn, new Point(len, len), len, len, "left");
 			leftBtn.graphics.endFill();
 		}
 		
 		private function drawRightBtnAddon():void
 		{
+			var color:Number = Number(currentStyle.textStyle.format.color);
 			var len:Number = _thickness / 2;
-			rightBtn.graphics.beginFill(buttonIconColor, 1);
+			rightBtn.graphics.beginFill(color, 1);
 			Track.drawTriangle(rightBtn, new Point(len, len), len, len, "right");
 			rightBtn.graphics.endFill();
 		}
 		
 		private function drawUpBtnAddon():void
 		{
+			var color:Number = Number(currentStyle.textStyle.format.color);
 			var len:Number = _thickness / 2;
-			upBtn.graphics.beginFill(buttonIconColor, 1);
+			upBtn.graphics.beginFill(color, 1);
 			Track.drawTriangle(upBtn, new Point(len, len), len, len, "up");
 			upBtn.graphics.endFill();
 		}
 		
 		private function drawDownBtnAddon():void
 		{
+			var color:Number = Number(currentStyle.textStyle.format.color);
 			var len:Number = _thickness / 2;
-			downBtn.graphics.beginFill(buttonIconColor, 1);
+			downBtn.graphics.beginFill(color, 1);
 			Track.drawTriangle(downBtn, new Point(len, len), len, len, "down");
 			downBtn.graphics.endFill();
 		}

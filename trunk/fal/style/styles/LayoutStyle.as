@@ -2,9 +2,10 @@
  * Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
-package fal.css.styles
+package fal.style.styles
 {
-	import fal.css.styles.Style;
+	import fal.style.Style;
+	import fal.utils.DataUtil;
 	
 	import flash.display.DisplayObject;
 	
@@ -31,13 +32,10 @@ package fal.css.styles
 			super();
 		}
 		
-		public function getWidth(parent:DisplayObject):Number
+		public function get width():Number
 		{
-			return getWidthBySize(parent.width);
-		}
-		
-		public function getWidthBySize(parentWidth:Number):Number
-		{
+			var parentWidth:Number = owner != null && owner.parent != null ? owner.parent.width : 0;
+			trace("b", _width);
 			if(validLayoutValue(_width))
 			{
 				return getLayoutValue(_width, parentWidth);
@@ -52,13 +50,9 @@ package fal.css.styles
 			}
 		}
 		
-		public function getHeight(parent:DisplayObject):Number
+		public function get height():Number
 		{
-			return getHeightBySize(parent.height);
-		}
-		
-		public function getHeightBySize(parentHeight:Number):Number
-		{
+			var parentHeight:Number = owner != null && owner.parent != null ? owner.parent.height : 0;
 			if(validLayoutValue(_height))
 			{
 				return getLayoutValue(_height, parentHeight);
@@ -73,13 +67,9 @@ package fal.css.styles
 			}
 		}
 		
-		public function getX(parent:DisplayObject):Number
+		public function get x():Number
 		{
-			return getXBySize(parent.width);
-		}
-		
-		public function getXBySize(parentWidth:Number):Number
-		{
+			var parentWidth:Number = owner != null && owner.parent != null ? owner.parent.width : 0;
 			if(validLayoutValue(_left))
 			{
 				return getLayoutValue(_left, parentWidth);
@@ -98,13 +88,9 @@ package fal.css.styles
 			}
 		}
 		
-		public function getY(parent:DisplayObject):Number
+		public function get y():Number
 		{
-			return getYBySize(parent.width);
-		}
-		
-		public function getYBySize(parentHeight:Number):Number
-		{
+			var parentHeight:Number = owner != null && owner.parent != null ? owner.parent.height : 0;
 			if(validLayoutValue(_top))
 			{
 				return getLayoutValue(_top, parentHeight);
@@ -121,6 +107,29 @@ package fal.css.styles
 			{
 				return 0;
 			}
+		}
+		
+		public function setValue(name:String, value:*):void
+		{
+			if(this["_" + name] != null)
+			{
+				this["_" + name] = String(value);
+			}
+		}
+		
+		public function clone():LayoutStyle
+		{
+			var ls:LayoutStyle = new LayoutStyle();
+			ls.filters = this.filters;
+			ls._width = this._width;
+			ls._height = this._height;
+			ls._left = this._left;
+			ls._right = this._right;
+			ls._bottom = this._bottom;
+			ls._top = this._top;
+			ls._horizontal = this._horizontal;
+			ls._vertical = this._vertical;
+			return ls;
 		}
 	}
 }

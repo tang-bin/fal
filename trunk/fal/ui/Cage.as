@@ -1,7 +1,8 @@
 package fal.ui
 {
-	import fal.display.Flat;
+	import fal.glazes.Flat;
 	import fal.events.UIEvent;
+	import fal.controls.ScrollBar;
 	
 	/**
 	 * This class is a container with scroll bar.

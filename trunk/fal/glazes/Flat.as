@@ -2,14 +2,15 @@
  * Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
-package fal.display
+package fal.glazes
 {
-	import fal.css.CSSStyle;
-	import fal.css.styles.FillStyle;
+	import fal.style.CSSFilter;
+	import fal.style.styles.FillStyle;
 	
 	import flash.display.GradientType;
 	import flash.filters.GlowFilter;
 	import flash.geom.Matrix;
+	import fal.display.Glaze;
 	
 	/**
 	 * fal.display.Flat
@@ -19,10 +20,25 @@ package fal.display
 	 */	
 	public class Flat extends Glaze
 	{
-		public function Flat(width:Number = 10, height:Number = 10, style:CSSStyle = null)
+		private var _fillStyle:FillStyle;
+		
+		public function get fillStyle():FillStyle
+		{
+			return _fillStyle;
+		}
+		public function set fillStyle(value:FillStyle):void
+		{
+			if(_fillStyle != value)
+			{
+				_fillStyle = value;
+				this.updateView();
+			}
+		}
+		
+		public function Flat(width:Number = 10, height:Number = 10, style:FillStyle = null)
 		{
 			super();
-			this.style = style == null ? new CSSStyle() : style;
+			this._fillStyle = style == null ? new FillStyle() : style;
 			this.displayWidth = width;
 			this.displayHeight = height;
 			updateView();
@@ -30,7 +46,7 @@ package fal.display
 		
 		override protected function updateView():void
 		{
-			var s:FillStyle = style.fillStyle;
+			var s:FillStyle = _fillStyle;
 			this.graphics.clear();
 			if(displayWidth != 0 && displayHeight != 0)
 			{

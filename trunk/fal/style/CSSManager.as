@@ -2,7 +2,7 @@
  * Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
-package fal.css
+package fal.style
 {
 	import fal.data.DataModel;
 	import fal.errors.StyleError;

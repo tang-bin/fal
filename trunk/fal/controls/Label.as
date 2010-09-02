@@ -48,9 +48,9 @@ package fal.controls
 		{
 			return ft;
 		}
-		public function set textFormat(v:TextFormat):void
+		public function set textFormat(value:TextFormat):void
 		{
-			ft = v;
+			ft = value;
 			createLabel();
 		}
 		

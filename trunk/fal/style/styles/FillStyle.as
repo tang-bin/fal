@@ -2,11 +2,12 @@
  * Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
-package fal.css.styles
+package fal.style.styles
 {
-	import fal.utils.MathUtil;
+	import fal.style.CSSFilter;
+	import fal.style.Style;
 	import fal.utils.ColorUtil;
-	import fal.css.CSSStyle;
+	import fal.utils.MathUtil;
 	import fal.utils.StringUtil;
 	
 	/**
@@ -17,88 +18,88 @@ package fal.css.styles
 	 */	
 	public class FillStyle extends Style
 	{
-		private var _borderSize:String = "1";
-		private var _borderColor:String = "#333333";
-		private var _borderAlpha:String = "0.1";
-		private var _bgColor:String = "#FFFFFF";
-		private var _bgAlpha:String = "0.1";
+		private var _borderSize:Number = 1;
+		private var _borderColor:Number = 0x333333;
+		private var _borderAlpha:Number = 0.1;
+		private var _bgColor:Number = 0xFFFFFF;
+		private var _bgAlpha:Number = 0.1;
 		
-		private var _topLeftRadius:String = "0";
-		private var _topRightRadius:String = "0";
-		private var _bottomLeftRadius:String = "0";
-		private var _bottomRightRadius:String = "0";
-		private var _radius:String = "0";
+		private var _topLeftRadius:Number = 0;
+		private var _topRightRadius:Number = 0;
+		private var _bottomLeftRadius:Number = 0;
+		private var _bottomRightRadius:Number = 0;
+		private var _radius:Number = 0;
 		private var uniformRadius:Boolean = true;
 		
-		private var _bgColors:String = "#333, #FFF";
-		private var _bgAlphas:String = "1, 1";
-		private var _bgRotation:String = "0";
-		private var _bgRatios:String = "0, 1";
+		private var _bgColors:Array = [0x333, 0xFFF];
+		private var _bgAlphas:Array = [1, 1];
+		private var _bgRotation:Number = 0;
+		private var _bgRatios:Array = [0, 0xFF];
 		public var useGradient:Boolean = false;
 		
-		private var _glowColor:String = "#000";
-		private var _glowAlpha:String = "1";
-		private var _glowBlur:String = "3";
-		private var _glowStrength:String = "3";
+		private var _glowColor:Number = 0;
+		private var _glowAlpha:Number = 1;
+		private var _glowBlur:Number = 3;
+		private var _glowStrength:int = 3;
 		
 		public function get borderSize():Number
 		{
-			return Number(_borderSize);
+			return _borderSize;
 		}
 		public function set borderSize(value:Number):void
 		{
 			value = MathUtil.getNumArea(value, 0, 20);
-			_borderSize = value.toString();
+			_borderSize = value;
 		}
 		
 		public function get borderColor():Number
 		{
-			return ColorUtil.string2Color(_borderColor);
+			return _borderColor;
 		}
 		public function set borderColor(value:Number):void
 		{
-			_borderColor = ColorUtil.color2String(value);
+			_borderColor = value;
 		}
 		
 		public function get borderAlpha():Number
 		{
-			return Number(_borderAlpha);
+			return _borderAlpha;
 		}
 		public function set borderAlpha(value:Number):void
 		{
 			value = MathUtil.getNumArea(value, 0, 1);
-			_borderAlpha = value.toString();
+			_borderAlpha = value;
 		}
 		
 		public function get bgColor():Number
 		{
-			return ColorUtil.string2Color(_bgColor);
+			return _bgColor;
 		}
 		public function set bgColor(value:Number):void
 		{
-			_bgColor = ColorUtil.color2String(value);
+			_bgColor = value;
 		}
 		
 		public function get bgAlpha():Number
 		{
-			return Number(_bgAlpha);
+			return _bgAlpha;
 		}
 		
 		public function set bgAlpha(value:Number):void
 		{
 			value = MathUtil.getNumArea(value, 0, 1);
-			_bgAlpha = value.toString();
+			_bgAlpha = value;
 		}
 		
 		public function get radius():Number
 		{
-			return Number(_radius);
+			return _radius;
 		}
 		public function set radius(value:Number):void
 		{
 			if(value >= 0)
 			{
-				this._radius = value.toString();
+				this._radius = value;
 				this.uniformRadius = true;
 			}
 		}
@@ -106,13 +107,13 @@ package fal.css.styles
 		public function get topLeftRadius():Number
 		{
 			if(this.uniformRadius) return radius;
-			else return Number(_topLeftRadius);
+			else return _topLeftRadius;
 		}
 		public function set topLeftRadius(value:Number):void
 		{
 			if(value >= 0)
 			{
-				_topLeftRadius = value.toString();
+				_topLeftRadius = value;
 				this.uniformRadius = false;
 			}
 		}
@@ -120,13 +121,13 @@ package fal.css.styles
 		public function get topRightRadius():Number
 		{
 			if(this.uniformRadius) return radius;
-			else return Number(_topRightRadius);
+			else return _topRightRadius;
 		}
 		public function set topRightRadius(value:Number):void
 		{
 			if(value >= 0)
 			{
-				_topRightRadius = value.toString();
+				_topRightRadius = value;
 				this.uniformRadius = false;
 			}
 		}
@@ -134,13 +135,13 @@ package fal.css.styles
 		public function get bottomLeftRadius():Number
 		{
 			if(this.uniformRadius) return radius;
-			else return Number(_bottomLeftRadius);
+			else return _bottomLeftRadius;
 		}
 		public function set bottomLeftRadius(value:Number):void
 		{
 			if(value >= 0)
 			{
-				_bottomLeftRadius = value.toString();
+				_bottomLeftRadius = value;
 				this.uniformRadius = false;
 			}
 		}
@@ -148,130 +149,90 @@ package fal.css.styles
 		public function get bottomRightRadius():Number
 		{
 			if(this.uniformRadius) return radius;
-			else return Number(_bottomRightRadius);
+			else return _bottomRightRadius;
 		}
 		public function set bottomRightRadius(value:Number):void
 		{
 			if(value >= 0)
 			{
-				_bottomRightRadius = value.toString();
+				_bottomRightRadius = value;
 				this.uniformRadius = false;
 			}
 		}
 		
 		public function get bgColors():Array
 		{
-			var arr:Array = _bgColors.split(",");
-			for(var i:uint = arr.length ; --i >= 0 ;)
-			{
-				var str:String = arr[i].toString();
-				str = StringUtil.trimAll(str);
-				if(str != "")
-				{
-					arr[i] = ColorUtil.string2Color(str);
-				}
-				else
-				{
-					arr.splice(i, 1);
-				}
-			}
-			return arr;
+			return _bgColors;
 		}
 		public function set bgColors(value:Array):void
 		{
-			for(var i:uint = value.length ; --i >= 0 ;)
-			{
-				value[i] = ColorUtil.color2String(value[i]);
-			}
-			_bgColors = value.join(",");
+			_bgColors = value;
 		}
 		
 		public function get bgAlphas():Array
 		{
-			var arr:Array = _bgAlphas.split(",");
-			for(var i:uint = arr.length ; --i >= 0 ;)
-			{
-				arr[i] = Number(arr[i]);
-				if(isNaN(arr[i]))
-				{
-					arr.splice(i, 1);
-				}
-			}
-			return arr;
+			return _bgAlphas;
 		}
 		public function set bgAlphas(value:Array):void
 		{
-			_bgAlphas = value.join(",");
+			_bgAlphas = value;
 		}
 		
 		public function get bgRotation():Number
 		{
-			return Number(_bgRotation);
+			return _bgRotation;
 		}
 		public function set bgRotation(value:Number):void
 		{
-			_bgRotation = value.toString();
+			_bgRotation = value;
 		}
 		
 		public function get glowColor():Number
 		{
-			return ColorUtil.string2Color(_glowColor);
+			return _glowColor;
 		}
 		public function set glowColor(value:Number):void
 		{
-			_glowColor = ColorUtil.color2String(value);
+			_glowColor = value;
 		}
 		
 		public function get glowAlpha():Number
 		{
-			return Number(_glowAlpha);
+			return _glowAlpha;
 		}
 		public function set glowAlpha(value:Number):void
 		{
 			value = MathUtil.getNumArea(value, 0, 1);
-			_glowAlpha = value.toString();
+			_glowAlpha = value;
 		}
 		
 		public function get glowBlur():Number
 		{
-			return Number(_glowBlur);
+			return _glowBlur;
 		}
 		public function set glowBlur(value:Number):void
 		{
 			value = MathUtil.getNumArea(value, 0, 100);
-			_glowBlur = value.toString();
+			_glowBlur = value;
 		}
 		
 		public function get glowStrength():int
 		{
-			return int(_glowStrength);
+			return _glowStrength;
 		}
 		public function set glowStrength(value:int):void
 		{
 			value = MathUtil.getNumArea(value, 1, 3);
-			_glowStrength = value.toString();
+			_glowStrength = value;
 		}
 		
 		public function get bgRatios():Array
 		{
-			var arr:Array = _bgRatios.split(",");
-			for(var i:uint = arr.length ; --i >= 0 ; )
-			{
-				arr[i] = Number(arr[i]);
-				if(isNaN(arr[i]))
-				{
-					arr.splice(i, 1);
-				}
-				else
-				{
-					arr[i] *= 0xFF;
-				}
-			}
-			return arr;
+			return _bgRatios;
 		}
 		public function set bgRatios(value:Array):void
 		{
-			_bgRatios = value.join(",");
+			_bgRatios = value;
 		}
 		
 		public function FillStyle()
@@ -279,16 +240,10 @@ package fal.css.styles
 			super();
 		}
 		
-		public function createCSSSTyle():CSSStyle
-		{
-			var style:CSSStyle = new CSSStyle();
-			style.fillStyle = this.clone();
-			return style;
-		}
-		
 		public function clone():FillStyle
 		{
 			var style:FillStyle = new FillStyle();
+			style.filters = this.filters;
 			//
 			style.borderSize = this.borderSize;
 			style.borderAlpha = this.borderAlpha;

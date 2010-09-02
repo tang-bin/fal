@@ -1,17 +1,24 @@
-package fal.ui
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
+package fal.glazes
 {
+	import fal.display.Glaze;
+	import fal.events.LoadEvent;
+	
 	import flash.display.Bitmap;
 	import flash.display.Loader;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
-	import flash.events.MouseEvent;
 	import flash.events.ProgressEvent;
 	import flash.net.URLRequest;
 	
 	/**
 	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
 	 */
-	public class Image extends UIObject
+	public class Image extends Glaze
 	{
 		private var loader:Loader;
 		private var url:String;
@@ -30,26 +37,24 @@ package fal.ui
 			return orgh;
 		}
 		
-		override public function resize() : void
+		public function Image(url:String = "")
 		{
-			super.resize();
+			super();
+			this.url = url;
+			loadImg();
+		}
+		
+		override protected function updateView():void
+		{
 			if(img == null)
 			{
 				setSizeAfterLoaded = true;
 			}
 			else
 			{
-				img.width = this.width;
-				img.height = this.height;
+				img.width = this.displayWidth;
+				img.height = this.displayHeight;
 			}
-		}
-		
-		public function Image(url:String = "")
-		{
-			super();
-			this.uiName = "Image";
-			this.url = url;
-			loadImg();
 		}
 		
 		private function loadImg():void
@@ -57,12 +62,9 @@ package fal.ui
 			if(url == "" || url == null)
 			{
 				url = "";
-				if(img != null)
+				if(img != null && this.contains(img))
 				{
-					if(this.contains(img))
-					{
-						this.removeChild(img);
-					}
+					this.removeChild(img);
 					img = null;
 				}
 			}
@@ -99,8 +101,7 @@ package fal.ui
 			orgh = img.height;
 			if(setSizeAfterLoaded)
 			{
-				img.width = this.width;
-				img.height = this.height;
+				this.updateView();
 			}
 			this.addChild(img);
 			setSizeAfterLoaded = false;

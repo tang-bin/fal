@@ -1,8 +1,13 @@
-package fal.ui
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
+package fal.controls
 {
 	import fal.data.Position;
-	import fal.data.Status;
+	import fal.display.Control;
 	import fal.events.DataEvent;
+	import fal.ui.Label;
 	
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
@@ -11,9 +16,10 @@ package fal.ui
 	/**
 	 * CheckBox component.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)n
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
 	 */
-	public class CheckBox extends UIObject
+	public class CheckBox extends Control
 	{
 		private var _selected:Boolean = false;
 		private var _label:String = "CheckBox";	

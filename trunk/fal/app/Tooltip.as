@@ -4,9 +4,9 @@
  *****************************************/
 package fal.app
 {
-	import fal.css.styles.FillStyle;
+	import fal.style.styles.FillStyle;
 	import fal.display.Bin;
-	import fal.display.Flat;
+	import fal.glazes.Flat;
 	import fal.ui.Label;
 	
 	import flash.display.Sprite;
@@ -56,7 +56,7 @@ package fal.app
 				fs.borderColor = 0x990000;
 				fs.bgColor = 0xFFE1E1;
 				fs.glowAlpha = 0;
-				bg = new Flat(10, 10, fs.createCSSSTyle());
+				bg = new Flat(10, 10, fs);
 				box.addChild(bg);
 				//
 				var tf:TextFormat = new TextFormat("Arial", 12, 0x333333);

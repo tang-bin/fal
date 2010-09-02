@@ -4,8 +4,10 @@
  *****************************************/
 package fal.display
 {
-	import fal.errors.FALError;
-	import fal.css.CSSStyle;
+	import fal.data.Status;
+	import fal.style.CSSFile;
+	import fal.style.CSSFilter;
+	import fal.style.DisplayStyle;
 	
 	/**
 	 * Class Control is the super class for all of the controls.
@@ -21,10 +23,10 @@ package fal.display
 		 * 
 		 ****************************************/
 		
-		public var defaultStatus:String = "";
-		
 		protected var statusList:Object = new Object();
 		protected var currentStatus:String;
+		
+		private var _enabled:Boolean = true;
 		
 		/****************************************
 		 * GETTER & SETTER
@@ -36,18 +38,24 @@ package fal.display
 		}
 		public function set status(value:String):void
 		{
-			if(value != currentStatus && value != "")
+			if(value != currentStatus && value != "" && statusList[value] != null)
 			{
-				if(statusList[value] != null)
-				{
-					currentStatus = value;
-					updateView();
-				}
-				else if(defaultStatus != "" && statusList[defaultStatus] != null)
-				{
-					currentStatus = defaultStatus;
-					updateView();
-				}
+				currentStatus = value;
+				updateView();
+			}
+		}
+		
+		public function get enabled():Boolean
+		{
+			return _enabled;
+		}
+		public function set enabled(value:Boolean):void
+		{
+			if(_enabled != value)
+			{
+				_enabled = value;
+				this.mouseEnabled = _enabled;
+				this.status = _enabled ? Status.NORMAL_STATUS : Status.DISABLE_STATUS;
 			}
 		}
 		
@@ -67,13 +75,27 @@ package fal.display
 		 * include public, protected and private.
 		 ****************************************/
 		
+		override protected function updateView():void
+		{
+			if(currentStyle != null && currentStyle.layoutStyle != null)
+			{
+				this.displayWidth = currentStyle.layoutStyle.width;
+				this.displayHeight = currentStyle.layoutStyle.height;
+			}
+		}
+		
 		/****************************************
 		 * PUBLIC
 		 ****************************************/
 		
-		public function registerStatus(name:String, style:CSSStyle):void
+		public function registerStatus(name:String, style:DisplayStyle, enforce:Boolean = false):void
 		{
+			style.owner = this;
 			statusList[name] = style;
+			if(enforce)
+			{
+				this.status = name;
+			}
 		}
 		
 		/**
@@ -93,9 +115,44 @@ package fal.display
 			}
 		}
 		
+		public function addCSSFilter(filter:CSSFilter, status:String = ""):void
+		{
+			for(var dsName:String in statusList)
+			{
+				if(status == "" || status == dsName)
+				{
+					var ds:DisplayStyle = statusList[dsName] as DisplayStyle;
+					if(ds != null)
+					{
+						ds.addCSSFilter(filter);
+					}
+				}
+			}
+		}
+		
+		public function removeFilter(filter:CSSFilter, status:String = ""):void
+		{
+			for(var dsName:String in statusList)
+			{
+				if(status == "" || status == dsName)
+				{
+					var ds:DisplayStyle = statusList[dsName] as DisplayStyle;
+					if(ds != null)
+					{
+						ds.removeCSSFilter(filter);
+					}
+				}
+			}
+		}
+		
 		/****************************************
 		 * PROTECTED
 		 ****************************************/
+		
+		protected function get currentStyle():DisplayStyle
+		{
+			return statusList[this.currentStatus];
+		}
 		
 		/****************************************
 		 * PRIVATE

@@ -1,7 +1,7 @@
 package fal.ui
 {
 	import fal.data.Status;
-	import fal.display.Flat;
+	import fal.glazes.Flat;
 	import fal.events.DataEvent;
 	
 	import flash.events.Event;

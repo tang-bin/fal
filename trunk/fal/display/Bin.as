@@ -4,14 +4,16 @@
  *****************************************/
 package fal.display
 {
-	import fal.css.CSSStyle;
 	import fal.events.DisplayEvent;
 	import fal.events.MotionEvent;
 	import fal.motion.MoveMotion;
 	import fal.motion.SizeMotion;
+	import fal.style.DisplayStyle;
 	import fal.utils.MathUtil;
 	
+	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import flash.events.Event;
 	
 	/**
 	 * fal.display.Bin
@@ -29,7 +31,7 @@ package fal.display
 		protected var displayWidth:Number = 0;
 		protected var displayHeight:Number = 0;
 		
-		protected var _style:CSSStyle = new CSSStyle();
+		protected var _style:DisplayStyle = new DisplayStyle();
 		
 		private var _maxWidth:Number = 4000;
 		private var _maxHeight:Number = 4000;
@@ -65,11 +67,11 @@ package fal.display
 			this.updateView();
 		}
 		
-		public function get style():CSSStyle
+		public function get style():DisplayStyle
 		{
 			return _style;
 		}
-		public function set style(value:CSSStyle):void
+		public function set style(value:DisplayStyle):void
 		{
 			if(_style != value)
 			{
@@ -143,6 +145,7 @@ package fal.display
 		public function Bin()
 		{
 			super();
+			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
 		
 		/****************************************
@@ -217,15 +220,44 @@ package fal.display
 			}
 		}
 		
+		public function toCenter():void
+		{
+			if(this.parent != null)
+			{
+				this.x = (this.parent.width - this.width) / 2;
+				this.y = (this.parent.height - this.height) / 2;
+			}
+		}
+		
+		public function addAll(...args):void
+		{
+			var len:uint = args.length;
+			for(var i:uint = 0 ; i < len ; i++)
+			{
+				if(args[i] is DisplayObject)
+				{
+					this.addChild(args[i]);
+				}
+			}
+		}
+		
+		public function removeAll():void
+		{
+			this.graphics.clear();
+			for(var i:uint = this.numChildren ; --i >= 0 ; )
+			{
+				this.removeChildAt(i);
+			}
+		}
+		
 		/****************************************
 		 * 
 		 * PROTECTED
 		 * 
 		 ****************************************/
-		protected function updateView():void
-		{
-			
-		}
+		protected function updateView():void{}
+		
+		protected function callAtAdded():void{}
 		
 		/****************************************
 		 * PRIVATE
@@ -244,6 +276,12 @@ package fal.display
 		private function stopMoveHandler(e:MotionEvent):void
 		{
 			this.dispatchEvent(new DisplayEvent(DisplayEvent.END_MOVE));
+		}
+		
+		private function addedToStageHandler(e:Event):void
+		{
+			this.removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+			this.callAtAdded();
 		}
 	}
 }

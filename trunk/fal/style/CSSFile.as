@@ -2,7 +2,7 @@
  * Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
-package fal.css
+package fal.style
 {
 	import fal.data.DataModel;
 	import fal.debuger.Debugger;
@@ -126,7 +126,7 @@ package fal.css
 				
 				var styleName:String = styleStr.replace(/([^\}\{]+)\{[^\}]*\}/, "$1");
 				styleName = StringUtil.trimAll(styleName);
-				var style:CSSStyle = styleList.addStyle(styleName);
+				var style:CSSFilter = styleList.addStyle(styleName);
 				debug("1", styleName);
 				
 				var styleValues:String = styleStr.replace(/[^\}\{]+\{([^\}]*)\}/, "$1");
@@ -187,7 +187,7 @@ package fal.css
 		}
 	}
 }
-import fal.css.CSSStyle;
+import fal.style.CSSFilter;
 
 class StyleList
 {
@@ -195,7 +195,7 @@ class StyleList
 	private var idList:Object = new Object(); // css classes whose names are start with "#"
 	private var selectorList:Object = new Object(); // no start with..
 	
-	public function addStyle(name:String):CSSStyle
+	public function addStyle(name:String):CSSFilter
 	{
 		var char:String = name.charAt(0);
 		if(char == ".")
@@ -203,7 +203,7 @@ class StyleList
 			name = name.substring(1);
 			if(classList[name] == null)
 			{
-				classList[name] = new CSSStyle(name, CSSStyle.CLASS_TYPE);
+				classList[name] = new CSSFilter(name, CSSFilter.CLASS_TYPE);
 			}
 			return classList[name];
 		}
@@ -212,7 +212,7 @@ class StyleList
 			name = name.substring(1);
 			if(idList[name] == null)
 			{
-				idList[name] = new CSSStyle(name, CSSStyle.ID_TYPE);
+				idList[name] = new CSSFilter(name, CSSFilter.ID_TYPE);
 			}
 			return idList[name];
 		}
@@ -220,7 +220,7 @@ class StyleList
 		{
 			if(selectorList[name] == null)
 			{
-				selectorList[name] = new CSSStyle(name, CSSStyle.SELECTOR_TYPE);
+				selectorList[name] = new CSSFilter(name, CSSFilter.SELECTOR_TYPE);
 			}
 			return selectorList[name];
 		}

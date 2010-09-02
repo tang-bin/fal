@@ -2,9 +2,13 @@
  * Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
-package fal.css.styles
+package fal.style
 {
 	import fal.data.DataModel;
+	import fal.display.Bin;
+	import fal.events.DataEvent;
+	
+	import flash.display.DisplayObject;
 	
 	/**
 	 * fal.css.styles.Style
@@ -27,33 +31,41 @@ package fal.css.styles
 		public static const LARGER_TEXT_SIZE:Number = 16;
 		public static const LARGEST_TEXT_SIZE:Number = 20;
 		
+		protected var filters:Array = new Array();
+		
+		private var _owner:DisplayObject;
+		
 		public function Style()
 		{
 			super();
 		}
 		
-		public function setStyle(styleName:String, styleValue:String):Boolean
+		public function get owner():DisplayObject
 		{
-			if(this.hasOwnProperty(styleName))
+			return _owner;
+		}
+		public function set owner(value:DisplayObject):void
+		{
+			if(_owner != value)
 			{
-				this[styleName] = styleValue;
-				return true;
-			}
-			else
-			{
-				return false;
+				_owner = value;
 			}
 		}
 		
-		public function getStyle(name:String):String
+		public function addCSSFilter(filter:CSSFilter):void
 		{
-			if(this.hasOwnProperty(name))
+			filters.push(filter);
+		}
+		
+		public function removeCSSFilter(filter:CSSFilter):void
+		{
+			for(var i:uint = filters.length ; --i >= 0 ; )
 			{
-				return this[name].toString();
-			}
-			else
-			{
-				return "";
+				var ft:CSSFilter = filters[i] as CSSFilter;
+				if(ft == filter)
+				{
+					filters.splice(i, 1);
+				}
 			}
 		}
 		

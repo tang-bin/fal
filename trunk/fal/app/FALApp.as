@@ -6,7 +6,7 @@ package fal.app
 {
 	import fal.debuger.Debugger;
 	import fal.display.Bin;
-	import fal.display.Flat;
+	import fal.glazes.Flat;
 	import fal.errors.FALError;
 	
 	import flash.display.DisplayObject;
@@ -75,6 +75,7 @@ package fal.app
 			Tooltip.container = tipLayer;
 			//
 			debugLayer = new Bin();
+			debugLayer.mouseChildren = debugLayer.mouseEnabled = false;
 			stage.addChild(debugLayer);
 			Debugger.container = debugLayer;
 			//
