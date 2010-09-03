@@ -117,6 +117,13 @@ package fal.controls
 			return _length - 2 * _thickness;
 		}
 		
+		override public function set enabled(value:Boolean):void
+		{
+			super.enabled = value;
+			this.slider.visible = value;
+			this.mouseChildren = this.mouseEnabled = value;
+		}
+		
 		/**
 		 * Constuctor. create and initialize a new scrollBar
 		 * 

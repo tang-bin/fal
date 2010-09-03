@@ -1,32 +1,35 @@
-package fal.ui
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
+package fal.controls
 {
 	import fal.data.Status;
 	import fal.events.DataEvent;
 	import fal.events.UIEvent;
+	import fal.style.stylefactory.TextAreaStyleFactory;
 	
 	import flash.events.Event;
 	import flash.events.FocusEvent;
 	import flash.text.TextField;
-	import flash.text.TextFormat;
 	
 	/**
 	 * @eventType fal.events.DataEvent.CHANGE_DATA
 	 */	
-	[Event(name="FOSChangeData", type="fal.events.DataEvent")]
+	[Event(name="ChangeData", type="fal.events.DataEvent")]
 	
 	/**
 	 * Text area component.
 	 * 
 	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
 	 */
-	public class TextArea extends Cage
+	public class TextArea extends ScrollBox
 	{
 		private var txt:TextField;
 		private var _embed:Boolean = false;
 		private var scrollManual:Boolean = false;
-		private var currentStatus:String;
 		private var _editable:Boolean = true;
-		private var _enabled:Boolean = true;
 		
 		/**
 		 * If this text area can input in or not.
@@ -54,27 +57,6 @@ package fal.ui
 		public function set text(value:String):void
 		{
 			txt.text = value;
-		}
-		
-		/**
-		 * enable textarea or not.
-		 */	
-		public function set enabled(value:Boolean):void
-		{
-			if(value != _enabled)
-			{
-				_enabled = value;
-				currentStatus = _enabled ? Status.NORMAL_STATUS : Status.DISABLE_STATUS;
-				xBar.enabled = _enabled && (txt.maxScrollH > 1);
-				yBar.enabled = _enabled && (txt.maxScrollV > 1);
-				txt.selectable = _enabled;
-				txt.type = _enabled && editable ? "input" : "dynamic";
-				resetView();
-			}
-		}
-		public function get enabled():Boolean
-		{
-			return this._enabled;
 		}
 		
 		/**
@@ -106,46 +88,37 @@ package fal.ui
 		 * @param wordwrap wrap word
 		 * @param style DipslayStyle
 		 */		
-		public function TextArea(width:Number = 200, height:Number = 160)
+		public function TextArea()
 		{
-			super(width, height);
-			this.uiName = "TextArea";
+			super(true, true);
 			//
-			var tf:TextFormat = new TextFormat("Arial", 12, 0x333333);
 			txt = new TextField();
 			txt.wordWrap = !enableX;
 			txt.multiline = true;
-			txt.defaultTextFormat = tf;
 			this.addChild(txt);
 			txt.type = "input";
 			//
-			currentStatus = Status.NORMAL_STATUS;
+			this.registerStatus(Status.NORMAL_STATUS, TextAreaStyleFactory.createNormalStyle(), true);
+			this.registerStatus(Status.ACTIVE_STATUS, TextAreaStyleFactory.createActiveStyle());
+			this.registerStatus(Status.DISABLE_STATUS, TextAreaStyleFactory.createDisableStyle());
 			//
-			resetView();
+			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
+			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
+			txt.addEventListener(Event.CHANGE, changeTextHandler);
+			//
+			updateView();
 			setEvent();
 		}
 		
-		private function resetView():void
+		override protected function updateView():void
 		{
-			txt.width = this.containerWidth;
-			txt.height = this.containerHeight;
-			switch(currentStatus)
+			if(txt != null)
 			{
-				case Status.NORMAL_STATUS:
-					//back.fillData = _style.fillData;
-					//txt.setTextFormat(_style.textFormat);
-					//txt.defaultTextFormat = _style.textFormat;
-					break;
-				case Status.ACTIVE_STATUS:
-					//back.fillData = _style.activeFillData;
-					//txt.setTextFormat(_style.activeTextFormat);
-					//txt.defaultTextFormat = _style.activeTextFormat;
-					break;
-				case Status.DISABLE_STATUS:
-					//back.fillData = _style.disableFillData;
-					//txt.setTextFormat(_style.disableTextFormat);
-					//txt.defaultTextFormat = _style.disableTextFormat;
-					break;
+				super.updateView();
+				txt.width = containerWidth;
+				txt.height = containerHeight;
+				txt.defaultTextFormat = currentStyle.textStyle.format;
+				txt.setTextFormat(currentStyle.textStyle.format);
 			}
 		}
 		
@@ -184,7 +157,7 @@ package fal.ui
 			if(enabled)
 			{
 				currentStatus = Status.ACTIVE_STATUS;
-				resetView();
+				updateView();
 			}
 		}
 		
@@ -193,15 +166,8 @@ package fal.ui
 			if(enabled)
 			{
 				currentStatus = Status.NORMAL_STATUS;
-				resetView();
+				updateView();
 			}
-		}
-		
-		private function changeTextHandler(e:Event):void
-		{
-			var ee:DataEvent = new DataEvent(DataEvent.CHANGE_DATA)
-			ee.newData = txt.text;
-			this.dispatchEvent(ee);
 		}
 		
 		private function setScrollView():void
@@ -232,6 +198,25 @@ package fal.ui
 					xBar.enabled = false;
 				}
 			}
+		}
+		
+		private function txtFocusInHandler(e:FocusEvent):void
+		{
+			this.status = Status.ACTIVE_STATUS;
+		}
+		
+		private function txtFocusOutHandler(e:FocusEvent):void
+		{
+			this.status = Status.NORMAL_STATUS;
+		}
+		
+		private function changeTextHandler(e:Event):void
+		{
+			var ee:DataEvent = new DataEvent(DataEvent.CHANGE_DATA);
+			//ee.oldData = oldText;
+			//ee.newData = txt.text;
+			this.dispatchEvent(ee);
+			//oldText = txt.text;
 		}
 	}
 }

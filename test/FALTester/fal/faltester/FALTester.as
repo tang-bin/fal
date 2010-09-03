@@ -8,14 +8,17 @@ package fal.faltester
 {
 	import fal.app.FALApp;
 	import fal.controls.CheckBox;
+	import fal.controls.RadioButton;
+	import fal.controls.TextArea;
+	import fal.controls.TextInput;
 	
 	public class FALTester extends FALApp
 	{
 		public function FALTester()
 		{
-			var cb:CheckBox = new CheckBox();
-			this.addAll(cb);
-			cb.x = cb.y = 300;
+			var ti:TextArea = new TextArea();
+			this.addAll(ti);
+			ti.toCenter();
 		}
 	}
 }

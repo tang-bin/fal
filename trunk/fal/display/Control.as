@@ -5,10 +5,10 @@
 package fal.display
 {
 	import fal.data.Status;
-	import fal.style.CSSFile;
 	import fal.style.CSSFilter;
 	import fal.style.DisplayStyle;
 	
+	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
 	
 	/**
@@ -58,6 +58,15 @@ package fal.display
 				_enabled = value;
 				this.mouseEnabled = _enabled;
 				this.status = _enabled ? Status.NORMAL_STATUS : Status.DISABLE_STATUS;
+				//
+				for(var i:uint = this.numChildren ; --i >= 0 ; )
+				{
+					var obj:DisplayObject = this.getChildAt(i) as DisplayObject;
+					if(obj is Control)
+					{
+						(obj as Control)._enabled = this._enabled;
+					}
+				}
 			}
 		}
 		
@@ -174,7 +183,10 @@ package fal.display
 		
 		protected function rollOutHandler(e:MouseEvent):void
 		{
-			this.status = Status.NORMAL_STATUS;
+			if(this.statusList[Status.MOUSE_OVER_STATUS] != null)
+			{
+				this.status = Status.NORMAL_STATUS;
+			}
 		}
 		
 		protected function mouseDownHandler(e:MouseEvent):void

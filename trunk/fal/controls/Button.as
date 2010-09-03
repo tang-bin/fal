@@ -24,15 +24,28 @@ package fal.controls
 		 * DEFINE
 		 ****************************************/
 		
-		private var _text:String = "Button";
+		private var _labelStr:String = "Button";
 		
-		private var label:Label;
+		private var _label:Label;
 		private var bg:Flat;
 		private var icon:Image;
 		
 		/****************************************
 		 * GETTER & SETTER
 		 ****************************************/
+		
+		public function get label():String
+		{
+			return _labelStr;
+		}
+		public function set label(value:String):void
+		{
+			if(_labelStr != value)
+			{
+				_labelStr = value;
+				this.updateView();
+			}
+		}
 		
 		/****************************************
 		 * 
@@ -43,7 +56,7 @@ package fal.controls
 		{
 			super();
 			this.mouseChildren = false;
-			this._text = text;
+			this._labelStr = text;
 		}
 		
 		/****************************************
@@ -56,9 +69,9 @@ package fal.controls
 		{
 			// create elements
 			bg = new Flat();
-			label = new Label(this._text);
+			_label = new Label(this._labelStr);
 			icon = new Image();
-			this.addAll(bg, label, icon);
+			this.addAll(bg, _label, icon);
 			//
 			this.registerStatus(Status.NORMAL_STATUS, ButtonStyleFactory.createNormalStyle(), true);
 			this.registerStatus(Status.MOUSE_OVER_STATUS, ButtonStyleFactory.createOverStyle());
@@ -72,9 +85,9 @@ package fal.controls
 			if(currentStyle != null)
 			{
 				bg.fillStyle = currentStyle.fillStyle;
-				label.textFormat = currentStyle.textStyle.format;
+				_label.textFormat = currentStyle.textStyle.format;
 				bg.resize(displayWidth, displayHeight);
-				label.toCenter();
+				_label.toCenter();
 			}
 		}
 		

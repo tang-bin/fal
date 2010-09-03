@@ -4,11 +4,11 @@
  *****************************************/
 package fal.app
 {
+	import fal.controls.Button;
+	import fal.controls.Label;
 	import fal.data.AlertData;
 	import fal.display.Bin;
 	import fal.errors.FALError;
-	import fal.ui.Button;
-	import fal.ui.Label;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;

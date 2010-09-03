@@ -1,8 +1,14 @@
-package fal.ui
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
+package fal.controls
 {
-	import fal.glazes.Flat;
+	import fal.data.Status;
+	import fal.display.Control;
 	import fal.events.UIEvent;
-	import fal.controls.ScrollBar;
+	import fal.glazes.Flat;
+	import fal.style.stylefactory.ScrollBoxStyleFactory;
 	
 	/**
 	 * This class is a container with scroll bar.
@@ -10,8 +16,9 @@ package fal.ui
 	 * Class cage is used as other components' super class.
 	 * 
 	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
 	 */
-	public class Cage extends UIObject
+	public class ScrollBox extends Control
 	{
 		protected var back:Flat; // background
 		protected var xBar:ScrollBar; // scroll bar X
@@ -19,15 +26,12 @@ package fal.ui
 		protected var enableX:Boolean; // enable scrollbar x or not
 		protected var enableY:Boolean; // enable scrollbar y or not
 		
-		private var _width:Number;
-		private var _height:Number;
-
 		/**
 		 * Width of container, not the width of scrollContainer.
 		 */		
 		public function get containerWidth():Number
 		{
-			return enableY ? _width - yBar.thickness : _width;
+			return enableY ? displayWidth - yBar.thickness : displayWidth;
 		}
 		
 		/**
@@ -35,7 +39,7 @@ package fal.ui
 		 */		
 		public function get containerHeight():Number
 		{
-			return enableX ? _height - xBar.thickness : _height;
+			return enableX ? displayHeight - xBar.thickness : displayHeight;
 		}
 		
 		public function get xScrollEnabled():Boolean
@@ -47,7 +51,7 @@ package fal.ui
 			if(enableX != value)
 			{
 				enableX = value;
-				resetView();
+				updateView();
 			}
 		}
 		
@@ -60,19 +64,8 @@ package fal.ui
 			if(enableY != value)
 			{
 				enableY = value;
-				resetView();
+				updateView();
 			}
-		}
-		
-		override public function set width(value:Number) : void
-		{
-			_width = value;
-			resetView();
-		}
-		override public function set height(value:Number) : void
-		{
-			_height = value;
-			resetView();
 		}
 		
 		/**
@@ -85,15 +78,11 @@ package fal.ui
 		 * @return 
 		 * 
 		 */		
-		public function Cage(width:Number = 400, height:Number = 300,
-							 xScroll:Boolean = true, yScroll:Boolean = true)
+		public function ScrollBox(xScroll:Boolean = true, yScroll:Boolean = true)
 		{
-			this.uiName = "Cage";
 			/* save parameters */
 			enableX = xScroll;
 			enableY = yScroll;
-			_width = width;
-			_height = height;
 			//
 			/* create elements. */
 			/*
@@ -102,37 +91,34 @@ package fal.ui
 			bgFD.bodyColor = 0xFFFFFF;
 			bgFD.glowAlpha = 0;
 			*/
-			back = new Flat(width, height);
-			this.addChild(back);
+			back = new Flat();
+			xBar = new ScrollBar(ScrollBar.SCROLL_X);
+			yBar = new ScrollBar(ScrollBar.SCROLL_Y);
+			this.addAll(back, xBar, yBar);
 			//
-			xBar = new ScrollBar(ScrollBar.SCROLL_X, 100);
-			this.addChild(xBar);
 			xBar.enabled = xBar.visible = false;
-			xBar.addEventListener(UIEvent.SCROLL, xScrollHandler);
-			//
-			yBar = new ScrollBar(ScrollBar.SCROLL_Y, 100);
-			this.addChild(yBar);
 			yBar.enabled = yBar.visible = false;
-			yBar.addEventListener(UIEvent.SCROLL, yScrollHandler);
 			//
-			// init.
-			xBar.length = enableY ? width - yBar.thickness : width;
-			yBar.length = enableX ? height - xBar.thickness : height;
-			xBar.y = height - xBar.thickness;
-			yBar.x = width - yBar.thickness;
-			xBar.visible = enableX;
-			yBar.visible = enableY;
+			this.registerStatus(Status.NORMAL_STATUS, ScrollBoxStyleFactory.createNormalStyle(), true);
+			this.registerStatus(Status.DISABLE_STATUS, ScrollBoxStyleFactory.createDisableStyle());
+			//
+			xBar.addEventListener(UIEvent.SCROLL, xScrollHandler);
+			yBar.addEventListener(UIEvent.SCROLL, yScrollHandler);
 		}
 		
-		private function resetView():void
+		override protected function updateView():void
 		{
-			back.width = _width;
-			back.height = _height;
+			super.updateView();
+			//
+			back.fillStyle = currentStyle.fillStyle;
+			back.width = this.displayWidth;
+			back.height = this.displayHeight;
+			//
 			if(enableX)
 			{
 				xBar.visible = true;
-				xBar.length = enableY ? _width - yBar.thickness : _width;
-				xBar.y = _height - xBar.thickness;
+				xBar.length = enableY ? displayWidth - yBar.thickness : displayWidth;
+				xBar.y = displayHeight - xBar.thickness;
 			}
 			else
 			{
@@ -141,8 +127,8 @@ package fal.ui
 			if(enableY)
 			{
 				yBar.visible = true;
-				yBar.length = enableX ? _height - xBar.thickness : _height;
-				yBar.x = _width - yBar.thickness;
+				yBar.length = enableX ? displayHeight - xBar.thickness : displayHeight;
+				yBar.x = displayWidth - yBar.thickness;
 			}
 			else
 			{

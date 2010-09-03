@@ -1,5 +1,10 @@
-package fal.ui
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
+package fal.glazes
 {
+	import fal.display.Glaze;
 	import fal.draw.Track;
 	
 	import flash.display.Sprite;
@@ -7,7 +12,7 @@ package fal.ui
 	import flash.filters.GlowFilter;
 	import flash.utils.Timer;
 
-	public class ProgressRound extends UIObject
+	public class ProgressRound extends Glaze
 	{
 		private var radius:Number = 20;
 		private var backColor:Number = 0x990000;

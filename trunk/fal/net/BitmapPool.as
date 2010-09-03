@@ -14,8 +14,8 @@ package fal.net
 	 * All the images loaded will be changed to bitmap.
 	 * This class running in singleton mode.
 	 * 
-	 * @author	Finalbug
-	 * @since	old versionee fal.net.BitmapLoader
+	 * @author	Tang Bin (tangbin@finalbug.org);
+	 * @since	old versionee
 	 */
 	public class BitmapPool
 	{

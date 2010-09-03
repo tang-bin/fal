@@ -1,13 +1,17 @@
- package fal.events
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
+package fal.events
 {
 	import flash.events.Event;
 
 	public class DataEvent extends Event
 	{
 		/**
-		 * @eventType FOSChangeData
+		 * @eventType ChangeData
 		 */		
-		public static const CHANGE_DATA:String = "FOSChangeData";
+		public static const CHANGE_DATA:String = "ChangeData";
 		
 		public var dataName:String = "";
 		public var oldData:*;

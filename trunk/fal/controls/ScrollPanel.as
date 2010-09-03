@@ -1,10 +1,15 @@
-package fal.ui
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
+package fal.controls
 {
+	import fal.draw.Graph;
+	import fal.events.UIEvent;
+	
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
-	
-	import fal.events.UIEvent;
 	
 	/**
 	 * This class create a panel with scrollbar x and y.
@@ -12,7 +17,7 @@ package fal.ui
 	 * @author	Finalbug
 	 * @since	old version
 	 */
-	public class ScrollPanel extends Cage
+	public class ScrollPanel extends ScrollBox
 	{
 		private var masker:Sprite;
 		private var _dragable:Boolean = true;
@@ -35,69 +40,42 @@ package fal.ui
 			return box;
 		}
 		
-		override public function set width(value:Number) : void
-		{
-			super.width = value;
-			masker.width = super.containerWidth;
-			refresh();
-		}
-		override public function set height(value:Number) : void
-		{
-			super.height = value;
-			masker.height = super.containerHeight;
-			refresh();
-		}
-		
 		override public function set xScrollEnabled(value:Boolean) : void
 		{
 			super.xScrollEnabled = value;
-			refresh();
+			this.updateView();
 		}
 		
 		override public function set yScrollEnabled(value:Boolean) : void
 		{
 			super.yScrollEnabled = value;
-			refresh();
+			this.updateView();
 		}
 		
 		/**
 		 * Create a new ScrollPanel object.
 		 */
-		public function ScrollPanel(width:Number = 400, height:Number = 300,
-									xScroll:Boolean = true, yScroll:Boolean = true)
+		public function ScrollPanel(xScroll:Boolean = true, yScroll:Boolean = true)
 		{
-			super(width, height, xScroll, yScroll);
-			this.uiName = "ScrollPanel";
+			super(xScroll, yScroll);
 			//
 			masker = new Sprite();
-			masker.graphics.beginFill(0, 0);
-			masker.graphics.drawRect(0, 0, 10, 10);
-			masker.graphics.endFill();
-			this.addChild(masker);
+			masker.mouseChildren = masker.mouseChildren = false;
+			Graph.drawLucidRectangle(masker);
+			box = new Sprite();
+			box.mask = masker;
+			this.addAll(box, masker);
+			//
+			box.addEventListener(MouseEvent.MOUSE_DOWN, pressContainerHandler);
+		}
+		
+		override protected function updateView():void
+		{
+			super.updateView();
+			//
 			masker.width = super.containerWidth;
 			masker.height = super.containerHeight;
 			//
-			box = new Sprite();
-			this.addChild(box);
-			box.mask = masker;
-			box.x = box.y = 0;
-			//
-			setEvent();
-		}
-		
-		public function refresh():void
-		{
-			resetView();
-			resetScroll();
-		}
-		
-		private function resetView():void
-		{
-			if(masker != null)
-			{
-				masker.width = super.containerWidth;
-				masker.height = super.containerHeight;
-			}
 			if(box.x > 0)
 			{
 				box.x = 0;
@@ -115,6 +93,8 @@ package fal.ui
 			{
 				box.y = masker.height - box.height;
 			}
+			//
+			resetScroll();
 		}
 		
 		private function resetScroll():void
@@ -141,11 +121,6 @@ package fal.ui
 				yBar.scale = masker.height / box.height;
 				yBar.position = box.y / (masker.height - box.height);
 			}
-		}
-		
-		private function setEvent():void
-		{
-			box.addEventListener(MouseEvent.MOUSE_DOWN, pressContainerHandler);
 		}
 		
 		////////////////////////////////////////////////////////////////////////////////////

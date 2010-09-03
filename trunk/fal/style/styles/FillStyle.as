@@ -10,6 +10,8 @@ package fal.style.styles
 	import fal.utils.MathUtil;
 	import fal.utils.StringUtil;
 	
+	import flash.filters.GlowFilter;
+	
 	/**
 	 * fal.css.styles.FillStyle
 	 *  
@@ -238,6 +240,17 @@ package fal.style.styles
 		public function FillStyle()
 		{
 			super();
+		}
+		
+		public function createGlowFilter():GlowFilter
+		{
+			var gf:GlowFilter = new GlowFilter(this._glowColor, 
+				this._glowAlpha, 
+				this._glowBlur, 
+				this._glowBlur, 
+				this._glowStrength, 
+				3);
+			return gf;
 		}
 		
 		public function clone():FillStyle

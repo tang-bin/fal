@@ -108,9 +108,9 @@ package fal.controls
 			this.addAll(outerBox, innerBox, txt, back);
 			//
 			this.registerStatus(Status.NORMAL_STATUS, CheckBoxStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.MOUSE_OVER_STATUS, CheckBoxStyleFactory.createOverStyle(), true);
-			this.registerStatus(Status.MOUSE_DOWN_STATUS, CheckBoxStyleFactory.createDownStyle(), true);
-			this.registerStatus(Status.DISABLE_STATUS, CheckBoxStyleFactory.createDisableStyle(), true);
+			this.registerStatus(Status.MOUSE_OVER_STATUS, CheckBoxStyleFactory.createOverStyle());
+			this.registerStatus(Status.MOUSE_DOWN_STATUS, CheckBoxStyleFactory.createDownStyle());
+			this.registerStatus(Status.DISABLE_STATUS, CheckBoxStyleFactory.createDisableStyle());
 			//
 			this.addEventListener(MouseEvent.CLICK, clickHandler);
 		}

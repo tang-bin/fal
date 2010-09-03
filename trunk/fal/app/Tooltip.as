@@ -4,10 +4,10 @@
  *****************************************/
 package fal.app
 {
-	import fal.style.styles.FillStyle;
+	import fal.controls.Label;
 	import fal.display.Bin;
 	import fal.glazes.Flat;
-	import fal.ui.Label;
+	import fal.style.styles.FillStyle;
 	
 	import flash.display.Sprite;
 	import flash.text.TextFormat;

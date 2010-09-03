@@ -4,11 +4,12 @@
  *****************************************/
 package fal.draw
 {
+	import fal.data.CubeData;
+	
+	import flash.display.DisplayObject;
 	import flash.display.GradientType;
 	import flash.display.Sprite;
 	import flash.geom.Matrix;
-	
-	import fal.data.CubeData;
 	
 	/**
 	 * This class offers some methods to draw a graph.
@@ -88,6 +89,17 @@ package fal.draw
 				front.x = cubeData.thickness;
 				front.y = -cubeData.height + cubeData.thickness;
 				side.x = side.y = 0;
+			}
+		}
+		
+		public static function drawLucidRectangle(target:DisplayObject):void
+		{
+			if(target.hasOwnProperty("graphics"))
+			{
+				target["graphics"].clear();
+				target["graphics"].beginFill(0, 0);
+				target["graphics"].drawRect(0, 0, 10, 10);
+				target["graphics"].endFill();
 			}
 		}
 	}

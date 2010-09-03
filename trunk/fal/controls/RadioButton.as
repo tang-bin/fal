@@ -1,20 +1,35 @@
-package fal.ui
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ *****************************************/
+package fal.controls
 {
 	import fal.data.Position;
+	import fal.data.Status;
+	import fal.display.Control;
+	import fal.draw.Graph;
 	import fal.events.DataEvent;
+	import fal.style.stylefactory.CheckBoxStyleFactory;
+	import fal.style.styles.FillStyle;
 	
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
-	import flash.text.TextFormat;
 	
 	/**
 	 * radio button
 	 * 
 	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
 	 */
-	public class RadioButton extends UIObject
+	public class RadioButton extends Control
 	{
 		protected static var groupList:Object = new Object();
+		
+		private const BOX_SIZE:Number = 12;
+		private const OFFSET:Number = 3;
+		private const OUTERBOX_SIZE:Number = 2;
+		private const OUTER_INNER_OFFSET:Number = 1;
 		
 		private var _label:String;
 		private var _selected:Boolean = false;
@@ -24,14 +39,7 @@ package fal.ui
 		private var outerBox:Sprite;
 		private var innerBox:Sprite;
 		private var txt:Label;
-		private var act:Sprite;
-		
-		public var outerBoxColor:uint = 0xCCCCCC;
-		public var innerBoxColor:uint = 0x990000;
-		public var boxSize:Number = 12;
-		public var offset:Number = 3;
-		public var outerBoxSize:Number = 2;
-		public var outerInnerOffset:Number = 1;
+		private var bg:Shape;
 		
 		/**
 		 * label string
@@ -99,12 +107,10 @@ package fal.ui
 		 * @param label Label field
 		 * @param style Display style
 		 */		
-		public function RadioButton(groupName:String = "ungrouped", label:String = "RadioButton")
+		public function RadioButton(label:String = "RadioButton", groupName:String = "ungrouped")
 		{
-			this.uiName = "RadioButton";
 			_group = groupName;
 			_label = label == "" ? "RadioButton" : label;
-			//
 			if(RadioButton.groupList[_group] == null)
 			{
 				RadioButton.groupList[_group] = new Array();
@@ -113,25 +119,31 @@ package fal.ui
 			//
 			outerBox = new Sprite();
 			innerBox = new Sprite();
-			var tf:TextFormat = new TextFormat("Arial", 12, 0x333333);
-			txt = new Label(_label, tf);
+			txt = new Label(_label);
+			bg = new Shape();
+			//
+			Graph.drawLucidRectangle(bg);
 			innerBox.visible = false;
 			//
-			act = new Sprite();
-			act.graphics.beginFill(0, 0);
-			act.graphics.drawRect(0, 0, 10, 10);
-			act.graphics.endFill();
+			this.addAll(outerBox, innerBox, txt, bg);
 			//
-			this.addChild(outerBox);
-			this.addChild(innerBox);
-			this.addChild(txt);
-			this.addChild(act);
+			this.registerStatus(Status.NORMAL_STATUS, CheckBoxStyleFactory.createNormalStyle(), true);
+			this.registerStatus(Status.MOUSE_OVER_STATUS, CheckBoxStyleFactory.createOverStyle());
+			this.registerStatus(Status.MOUSE_DOWN_STATUS, CheckBoxStyleFactory.createDownStyle());
+			this.registerStatus(Status.DISABLE_STATUS, CheckBoxStyleFactory.createDisableStyle());
 			//
-			drawOuterBox(outerBox);
-			drawInnerBox(innerBox);
-			//
-			setPosition();
-			setEvent();
+			this.addEventListener(MouseEvent.CLICK, clickBoxHandler);
+		}
+		
+		override protected function updateView():void
+		{
+			if(currentStyle != null)
+			{
+				drawOuterBox();
+				drawInnerBox();
+				txt.textFormat = currentStyle.textStyle.format;
+				setPosition();
+			}
 		}
 		
 		/**
@@ -157,50 +169,45 @@ package fal.ui
 		
 		private function setPosition():void
 		{
-			var ww:Number = Math.max(boxSize, txt.width);
-			var hh:Number = Math.max(boxSize, txt.height);
+			var ww:Number = Math.max(BOX_SIZE, txt.width);
+			var hh:Number = Math.max(BOX_SIZE, txt.height);
 			//
 			if(_labelPosition == Position.LEFT)
 			{
 				txt.x = 0;
 				txt.y = (hh - txt.height) / 2;
-				innerBox.x = outerBox.x = txt.width + offset + boxSize / 2;
+				innerBox.x = outerBox.x = txt.width + OFFSET + BOX_SIZE / 2;
 				innerBox.y = outerBox.y = hh / 2;
-				act.width = boxSize + offset + txt.width;
-				act.height = hh;
+				bg.width = BOX_SIZE + OFFSET + txt.width;
+				bg.height = hh;
 			}
 			else if(_labelPosition == Position.TOP)
 			{
-				innerBox.y = outerBox.y = boxSize / 2;
+				innerBox.y = outerBox.y = BOX_SIZE / 2;
 				innerBox.x = outerBox.x = ww / 2;
 				txt.x = (ww - txt.width) / 2;
-				txt.y = boxSize + offset;
-				act.width = ww;
-				act.height = boxSize + offset + txt.height;
+				txt.y = BOX_SIZE + OFFSET;
+				bg.width = ww;
+				bg.height = BOX_SIZE + OFFSET + txt.height;
 			}
 			else if(_labelPosition == Position.BOTTOM)
 			{
 				txt.x = (ww - txt.width) / 2;
 				txt.y = 0;
 				innerBox.x = outerBox.x = ww / 2;
-				innerBox.y = txt.height + offset + boxSize;
-				act.width = ww;
-				act.height = boxSize + offset + txt.height;
+				innerBox.y = txt.height + OFFSET + BOX_SIZE;
+				bg.width = ww;
+				bg.height = BOX_SIZE + OFFSET + txt.height;
 			}
 			else
 			{
-				innerBox.x = outerBox.x = boxSize / 2;
+				innerBox.x = outerBox.x = BOX_SIZE / 2;
 				innerBox.y = outerBox.y = hh / 2;
-				txt.x = boxSize + offset;
+				txt.x = BOX_SIZE + OFFSET;
 				txt.y = (hh - txt.height) / 2;
-				act.width = boxSize + offset + txt.width;
-				act.height = hh;
+				bg.width = BOX_SIZE + OFFSET + txt.width;
+				bg.height = hh;
 			}
-		}
-		
-		private function setEvent():void
-		{
-			act.addEventListener(MouseEvent.CLICK, clickBoxHandler);
 		}
 		
 		private function clickBoxHandler(e:MouseEvent):void
@@ -212,6 +219,9 @@ package fal.ui
 				innerBox.visible = true;
 				//
 				var ee:DataEvent = new DataEvent(DataEvent.CHANGE_DATA);
+				ee.dataName = "selected";
+				ee.oldData = !this._selected;
+				ee.newData = this._selected;
 				this.dispatchEvent(ee);
 			}
 		}
@@ -227,30 +237,23 @@ package fal.ui
 			}
 		}
 		
-		private function drawOuterBox(target:Sprite):void
+		private function drawOuterBox():void
 		{
-			if(target != null)
-			{
-				target.graphics.clear();
-				target.graphics.beginFill(outerBoxColor, 1);
-				target.graphics.drawCircle(0, 0, boxSize / 2);
-				target.graphics.endFill();
-				//
-				target.graphics.beginFill(0xFFFFFF, 1);
-				target.graphics.drawCircle(0, 0, boxSize / 2 - outerBoxSize);
-				target.graphics.endFill();
-			}
+			var fs:FillStyle = currentStyle.fillStyle;
+			outerBox.graphics.clear();
+			outerBox.graphics.beginFill(fs.bgColor, 1);
+			outerBox.graphics.drawCircle(0, 0, BOX_SIZE / 2);
+			outerBox.graphics.endFill();
+			outerBox.filters = [fs.createGlowFilter()];
 		}
 		
-		private function drawInnerBox(target:Sprite):void
+		private function drawInnerBox():void
 		{
-			if(target != null)
-			{
-				target.graphics.clear();
-				target.graphics.beginFill(innerBoxColor, 1);
-				target.graphics.drawCircle(0, 0, boxSize / 2 - outerBoxSize - outerInnerOffset);
-				target.graphics.endFill();
-			}
+			var fs:FillStyle = currentStyle.fillStyle;
+			innerBox.graphics.clear();
+			innerBox.graphics.beginFill(fs.borderColor, 1);
+			innerBox.graphics.drawCircle(0, 0, BOX_SIZE / 2 - OUTERBOX_SIZE - OUTER_INNER_OFFSET);
+			innerBox.graphics.endFill();
 		}
 	}
 }
