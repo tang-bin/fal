@@ -9,6 +9,7 @@ package fal.app
 	import fal.data.AlertData;
 	import fal.display.Bin;
 	import fal.errors.FALError;
+	import fal.errors.UIError;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -39,7 +40,7 @@ package fal.app
 		{
 			if(container == null)
 			{
-				throw new Error(FALError.NULL_CONTAINER);
+				throw new UIError(UIError.DISPLAY_OBJECT_NULL);
 			}
 			//
 			if(currentData != null)

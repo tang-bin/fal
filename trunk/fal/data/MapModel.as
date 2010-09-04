@@ -2,25 +2,22 @@
  * Finalbug ActionScript Library
  * http://www.finalbug.org/
  ******************************************/
-package fal.errors
+package fal.data
 {
 	
 	/******************************************
-	 * fal.errors.StyleError
+	 * fal.data.MapData
 	 *
 	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @since	2010.09
 	 *****************************************/
-	public class StyleError extends Error
+	public class MapModel extends DataModel
 	{
 		/****************************************
 		 *
 		 * DEFINE
 		 *
 		 ****************************************/
-		
-		public static const CSS_UNREGISTERED:String = "Bind CSS in Class Bin must be registered in CSSManager.";
-		public static const CSS_TYPE_ERROR:String = "CSS type must be one of classType, idType and selectorType.";
 		
 		/****************************************
 		 *
@@ -30,12 +27,12 @@ package fal.errors
 		
 		/****************************************
 		 *
-		 * fal.errors.StyleError constructor.
+		 * Constructor.
 		 *
 		 ****************************************/
-		public function StyleError(message:*="", id:*=0)
+		public function MapModel()
 		{
-			super(message, id);
+			super();
 		}
 		
 		/****************************************

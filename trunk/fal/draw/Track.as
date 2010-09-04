@@ -106,10 +106,6 @@ package fal.draw
 		{
 			if(target != null)
 			{
-				if(innerRadius >= outerRadius)
-				{
-					throw new UIError(UIError.OUT_LESS_THAN_INNER);
-				}
 				var x:Number = center.x;
 				var y:Number = center.y;
 				var ir:Number = innerRadius;

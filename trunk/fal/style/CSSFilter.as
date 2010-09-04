@@ -6,6 +6,8 @@ package fal.style
 {
 	import fal.data.DataModel;
 	import fal.errors.FALError;
+	import fal.errors.StyleError;
+	import fal.errors.UIError;
 	import fal.style.styles.FillStyle;
 	import fal.style.styles.LayoutStyle;
 	import fal.utils.DataUtil;
@@ -50,7 +52,7 @@ package fal.style
 			var typeIndex:uint = DataUtil.match(type, [CLASS_TYPE, ID_TYPE, SELECTOR_TYPE]);
 			if(typeIndex == -1)
 			{
-				throw new FALError(FALError.CSS_TYPE_ERROR);
+				throw new StyleError(StyleError.CSS_TYPE_ERROR);
 			}
 			else
 			{

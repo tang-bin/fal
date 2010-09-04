@@ -18,13 +18,8 @@ package fal.errors
 		public static const APP_WIDTH_UNCHANGEABLE:String = "Width value of App CANNOT be changed.";
 		public static const APP_HEIGHT_UNCHANGEABLE:String = "Height value of App CANNOT be changed.";
 		
-		public static const NULL_CONTAINER:String = "Container is null.";
-		
-		public static const NAME_NULL:String = "Parameter name cannot be null or empty.";
-		public static const CSS_TYPE_ERROR:String = "Parameter type must be one of the following " +
-			"values:classType, idType, selectorType.";
-		
-		public static const CONTROL_STATUS_NULL:String = "Must register status before effect.";
+		public static const NAME_EXIST:String = "The name of this data already exist.";
+		public static const NAME_NOT_EXIST:String = "Object not exist.";
 		
 		public function FALError(message:*="", id:*=0)
 		{

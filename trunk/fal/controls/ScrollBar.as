@@ -7,7 +7,7 @@ package fal.controls
 	import fal.data.Status;
 	import fal.display.Control;
 	import fal.draw.Track;
-	import fal.errors.ControlError;
+	import fal.errors.UIError;
 	import fal.events.UIEvent;
 	import fal.events.UIMouseEvent;
 	import fal.glazes.Flat;
@@ -137,7 +137,7 @@ package fal.controls
 			super();
 			if(type != ScrollBar.SCROLL_X && type != ScrollBar.SCROLL_Y)
 			{
-				throw new ControlError(ControlError.WRONG_SCROLLBAR_TYPE);
+				throw new UIError(UIError.WRONG_SCROLLBAR_TYPE);
 			}
 			_type = type;
 			this._thickness = 16;

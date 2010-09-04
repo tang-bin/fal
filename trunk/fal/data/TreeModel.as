@@ -2,16 +2,16 @@
  * Finalbug ActionScript Library
  * http://www.finalbug.org/
  ******************************************/
-package fal.errors
+package fal.data
 {
 	
 	/******************************************
-	 * fal.errors.StyleError
+	 * fal.data.TreeModel
 	 *
 	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @since	2010.09
 	 *****************************************/
-	public class StyleError extends Error
+	public class TreeModel extends DataModel
 	{
 		/****************************************
 		 *
@@ -19,8 +19,7 @@ package fal.errors
 		 *
 		 ****************************************/
 		
-		public static const CSS_UNREGISTERED:String = "Bind CSS in Class Bin must be registered in CSSManager.";
-		public static const CSS_TYPE_ERROR:String = "CSS type must be one of classType, idType and selectorType.";
+		private var _root:Object = new Object();
 		
 		/****************************************
 		 *
@@ -28,14 +27,23 @@ package fal.errors
 		 *
 		 ****************************************/
 		
+		public function get root():Object
+		{
+			return 
+		}
+		public function set root(value:Object):void
+		{
+			// TODO
+		}
+		
 		/****************************************
 		 *
-		 * fal.errors.StyleError constructor.
+		 * fal.data.TreeModel constructor.
 		 *
 		 ****************************************/
-		public function StyleError(message:*="", id:*=0)
+		public function TreeModel()
 		{
-			super(message, id);
+			super();
 		}
 		
 		/****************************************
@@ -51,6 +59,36 @@ package fal.errors
 		 * PUBLIC
 		 *
 		 ****************************************/
+		
+		public function addNode(parent:Object, node:Object):void
+		{
+			// TODO
+		}
+		
+		public function removeNode(node:Object, removeChildrenOfNode:Boolean = true):void
+		{
+			// TODO
+		}
+		
+		public function removeNodes(parent:Object):void
+		{
+			// TODO
+		}
+		
+		public function getNodes(parent:Object):void
+		{
+			// TODO
+		}
+		
+		public function changeNode(oldNode:Object, newNode:Object):void
+		{
+			// TODO
+		}
+		
+		public function moveNode(node:Object, oldParent:Object, newParent:Object):void
+		{
+			// TODO
+		}
 		
 		/****************************************
 		 *

@@ -1,25 +1,29 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ ******************************************/
 package fal.net
 {
+	import fal.data.DataModel;
+	import fal.events.LoadEvent;
+	
 	import flash.display.Bitmap;
 	import flash.display.Loader;
 	import flash.events.*;
 	import flash.net.URLRequest;
 	
-	import fal.errors.FOSError;
-	import fal.events.LoadEvent;
-	
 	/**
 	 * This class is used to load a image file.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)nee fal.net.BitmapContainer
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
 	 */	
-	public class BitmapLoader
+	public class BitmapLoader extends DataModel
 	{
 		private var loader:Loader;
 		private var _loaded:Boolean = false;
 		private var _failed:Boolean = false;
 		private var _percent:Number = 0;
-		private var dispatcher:EventDispatcher;
 		
 		/**
 		 * File is loaded or not.
@@ -64,24 +68,14 @@ package fal.net
 		 */		
 		public function BitmapLoader(URL:String)
 		{
-			if(URL == "")
+			if(URL != "")
 			{
-				throw new Error(FOSError.URLisEmpty);
-			}
-			else
-			{
-				dispatcher = new EventDispatcher();
 				loader = new Loader();
 				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoadSuccess);
 				loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, onLoadFailed);
 				loader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS, onLoading);
 				loader.load(new URLRequest(URL)); 	
 			}	
-		}
-		
-		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
-		{
-			dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
 		}
 		
 		/**
@@ -93,11 +87,7 @@ package fal.net
 		 */		
 		public function changeBitmap(URL:String):void
 		{
-			if(URL == "")
-			{
-				throw new Error(FOSError.URLisEmpty);
-			}
-			else
+			if(URL != "")
 			{
 				_loaded = _failed = false;
 				_percent = 0;
@@ -116,7 +106,7 @@ package fal.net
 			_percent = 1;
 			var newE:LoadEvent = new LoadEvent(LoadEvent.LOAD_SUCCESS);
 			newE.data = this.bitmap;
-			dispatcher.dispatchEvent(newE);
+			this.dispatchEvent(newE);
 		}
 		
 		private function onLoadFailed(e:IOErrorEvent):void
@@ -125,7 +115,7 @@ package fal.net
 			_failed = true;
 			_percent = 0;
 			var newE:LoadEvent = new LoadEvent(LoadEvent.LOAD_FAILED);
-			dispatcher.dispatchEvent(newE);
+			this.dispatchEvent(newE);
 		}
 		
 		private function onLoading(e:ProgressEvent):void
@@ -137,7 +127,7 @@ package fal.net
 			newE.totalBytes = e.bytesTotal;
 			newE.loadedRate = newE.loadedBytes / newE.totalBytes;
 			_percent = newE.loadedRate;
-			dispatcher.dispatchEvent(newE);
+			this.dispatchEvent(newE);
 		}
 	}
 }

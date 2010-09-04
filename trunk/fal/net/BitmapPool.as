@@ -1,23 +1,27 @@
+/******************************************
+ * Finalbug ActionScript Library
+ * http://www.finalbug.org/
+ ******************************************/
 package fal.net
 {
+	import fal.data.DataModel;
+	import fal.errors.FALError;
+	import fal.events.LoadEvent;
+	
 	import flash.display.Bitmap;
 	import flash.events.EventDispatcher;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
-	
-	import fal.errors.FOSError;
-	import fal.events.LoadEvent;
-	import fal.utils.StringUtil;
 	
 	/**
 	 * This class is used to keep images which are loaded from outside of .swf file.
 	 * All the images loaded will be changed to bitmap.
 	 * This class running in singleton mode.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org);
-	 * @since	old versionee
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @since	old version
 	 */
-	public class BitmapPool
+	public class BitmapPool extends DataModel
 	{
 		private const checkTimeSpace:Number = 100;
 		
@@ -27,8 +31,6 @@ package fal.net
 
 		private var bitmapList:Object;
 		//	bitmapList[bitmap name] = BitmapLoader
-		
-		private var dispatcher:EventDispatcher = new EventDispatcher();
 
 		private var checkTimer:Timer;
 		
@@ -123,23 +125,10 @@ package fal.net
 			}
 			else
 			{
-				throw new Error(FOSError.canNotInstance);
+				throw new FALError(FALError.SINGLETON);
 			}
 		}
 				
-		/**
-		 * @param type
-		 * @param listener
-		 * @param useCapture
-		 * @param priority
-		 * @param useWeakReference
-		 * 
-		 */		
-		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
-		{
-			dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
-		}
-		
 		/**
 		 * Add a new image file to load
 		 * Image file must be .gif, .jpeg, .jpg, .swf.
@@ -157,12 +146,12 @@ package fal.net
 		{
 			if(bitmapList[bitmapName] != null)
 			{
-				throw new FOSError(FOSError.NAME_EXIST);
+				throw new FALError(FALError.NAME_EXIST);
 			}
 			/*
 			if(!Charset.checkCharIsNameAvailable(bitmapName))
 			{
-				throw new FOSError(FOSError.INVALID_VAR_NAME);
+				throw new FALError(FALError.INVALID_VAR_NAME);
 			}
 			*/
 			bitmapList[bitmapName] = new BitmapLoader(bitmapURL);
@@ -182,7 +171,7 @@ package fal.net
 		{
 			if(bitmapList[bitmapName] == null)
 			{
-				throw new FOSError(FOSError.NAME_NOT_EXIST);
+				throw new FALError(FALError.NAME_NOT_EXIST);
 			}
 			bitmapList[bitmapName].changeBitmap(bitmapURL);
 			return bitmapList[bitmapName];
@@ -215,7 +204,7 @@ package fal.net
 		{
 			if(bitmapList[bitmapName] == null)
 			{
-				throw new FOSError(FOSError.NAME_NOT_EXIST);
+				throw new FALError(FALError.NAME_NOT_EXIST);
 			}
 			if(bitmapList[bitmapName].loaded)
 			{
@@ -231,7 +220,7 @@ package fal.net
 		 * This method make this container start a load check.
 		 * 
 		 * @param timeout If container cannot load all files in this time(sec.), 
-		 * a new Event will be dispather to broadcast loading timeou.
+		 * a new Event will be dispathed to broadcast loading timeou.
 		 */		
 		public function startCheck(timeout:Number = 300):void
 		{
@@ -269,7 +258,7 @@ package fal.net
 			checkTimer.stop();
 			checkTimer = null;
 			var newEvent:LoadEvent = new LoadEvent(LoadEvent.LOAD_SUCCESS);
-			dispatcher.dispatchEvent(newEvent);
+			this.dispatchEvent(newEvent);
 		}
 		
 		private function onTimeout(e:TimerEvent):void
@@ -277,7 +266,7 @@ package fal.net
 			checkTimer.stop();
 			checkTimer = null;
 			var newEvent:LoadEvent = new LoadEvent(LoadEvent.TIMEOUT);
-			dispatcher.dispatchEvent(newEvent);
+			this.dispatchEvent(newEvent);
 		}
 	}
 }
