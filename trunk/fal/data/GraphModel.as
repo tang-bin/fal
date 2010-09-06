@@ -11,7 +11,7 @@ package fal.data
 	 * @author	Tang Bin (tangbin@finalbug.org)
 	 * @since	2010.09
 	 *****************************************/
-	public class MapModel extends DataModel
+	public class GraphModel extends DataModel
 	{
 		/****************************************
 		 *
@@ -30,7 +30,7 @@ package fal.data
 		 * Constructor.
 		 *
 		 ****************************************/
-		public function MapModel()
+		public function GraphModel()
 		{
 			super();
 		}
