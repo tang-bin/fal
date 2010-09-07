@@ -18,5 +18,10 @@ package fal.data
 		public static const BOTTOM:String = "bottom";
 		public static const UP:String = "up";
 		public static const DOWN:String = "down";
+		
+		public static const TOP_LEFT:String = "topLeft";
+		public static const TOP_RIGHT:String = "topRight";
+		public static const BOTTOM_LEFT:String = "bottomLeft";
+		public static const BOTTOM_RIGHT:String = "bottomRight";
 	}
 }

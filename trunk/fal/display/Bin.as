@@ -6,6 +6,7 @@ package fal.display
 {
 	import fal.events.DisplayEvent;
 	import fal.events.MotionEvent;
+	import fal.layout.Layout;
 	import fal.motion.MoveMotion;
 	import fal.motion.SizeMotion;
 	import fal.style.DisplayStyle;
@@ -41,6 +42,8 @@ package fal.display
 		
 		private var moveMotion:MoveMotion;
 		private var sizeMotion:SizeMotion;
+		
+		private var _displayLv:String = "static";
 		
 		/****************************************
 		 * 
@@ -134,6 +137,19 @@ package fal.display
 			{
 				this.displayHeight = _minHeight;
 				this.updateView();
+			}
+		}
+		
+		public function get displayLv():String
+		{
+			return _displayLv;
+		}
+		public function set displayLv(value:String):void
+		{
+			if(_displayLv != value && (value == Layout.ABSOLUTE || value == Layout.STATIC))
+			{
+				_displayLv = value;
+				// TODO: change something?
 			}
 		}
 		

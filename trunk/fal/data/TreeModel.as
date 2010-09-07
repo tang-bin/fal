@@ -4,6 +4,8 @@
  ******************************************/
 package fal.data
 {
+	import fal.errors.DataError;
+	
 	import flash.utils.Dictionary;
 	
 	/******************************************
@@ -64,13 +66,13 @@ package fal.data
 		
 		public function addNode(parent:Object, node:Object):void
 		{
-			if(nodes == _root || nodes[parent])
+			if(hasNode(parent))
 			{
 				nodes[node] = parent;
 			}
 			else
 			{
-				// TODO: throw error
+				throw new DataError(DataError.DATA_NULL);
 			}
 		}
 		
@@ -87,9 +89,14 @@ package fal.data
 					changeParent(node, getParent(node));
 				}
 			}
+			else if(node == _root)
+			{
+				_root = new Object();
+				nodes = new Dictionary();
+			}
 			else
 			{
-				// TODO: throw error.
+				throw new DataError(DataError.DATA_NULL);
 			}
 		}
 		
@@ -123,11 +130,11 @@ package fal.data
 		{
 			if(nodes[newNode])
 			{
-				// TODO: throw error
+				throw new DataError(DataError.DATA_NULL);
 			}
 			else if(!nodes[oldNode])
 			{
-				// TODO: throw error.
+				throw new DataError(DataError.DATA_NULL);
 			}
 			for(var key:Object in nodes)
 			{
@@ -158,9 +165,16 @@ package fal.data
 			}
 		}
 		
-		public function moveNode(node:Object, oldParent:Object, newParent:Object):void
+		public function moveNode(node:Object, newParent:Object):void
 		{
-			// TODO
+			if(!hasNode(newParent) || !nodes[node])
+			{
+				throw new DataError(DataError.DATA_NULL);
+			}
+			else
+			{
+				nodes[node] = newParent;
+			}
 		}
 		
 		public function getParent(node:Object):Object
@@ -180,6 +194,11 @@ package fal.data
 		 * PROTECTED
 		 *
 		 ****************************************/
+		
+		public function hasNode(node:Object):Boolean
+		{
+			return nodes[node] || node == _root;
+		}
 		
 		/****************************************
 		 *
