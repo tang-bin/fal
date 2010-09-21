@@ -13,6 +13,7 @@ package fal.events
 		 */		
 		public static const CHANGE_DATA:String = "ChangeData";
 		
+		public var dataPath:String = "";
 		public var dataName:String = "";
 		public var oldData:*;
 		public var newData:*;
