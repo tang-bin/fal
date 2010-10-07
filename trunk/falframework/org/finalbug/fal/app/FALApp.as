@@ -4,15 +4,13 @@
  *****************************************/
 package org.finalbug.fal.app
 {
-	import org.finalbug.fal.debuger.Debugger;
-	import org.finalbug.fal.display.Bin;
-	import org.finalbug.fal.glazes.Flat;
-	import org.finalbug.fal.errors.AppError;
-	
-	import flash.display.DisplayObject;
 	import flash.events.Event;
-	import org.finalbug.fal.app.Alert;
-	import org.finalbug.fal.app.Tooltip;
+	
+	import org.finalbug.fal.debugger.Debug;
+	import org.finalbug.fal.debugger.Debugger;
+	import org.finalbug.fal.display.Bin;
+	import org.finalbug.fal.errors.AppError;
+	import org.finalbug.fal.glazes.Flat;
 	
 	/**
 	 * org.finalbug.fal.app.FALApp
@@ -75,9 +73,11 @@ package org.finalbug.fal.app
 			Tooltip.container = tipLayer;
 			//
 			debugLayer = new Bin();
-			debugLayer.mouseChildren = debugLayer.mouseEnabled = false;
+			//debugLayer.mouseChildren = debugLayer.mouseEnabled = false;
 			stage.addChild(debugLayer);
-			Debugger.container = debugLayer;
+			//
+			Debug.debugger = new Debugger();
+			Debug.debugger.container = debugLayer;
 			//
 			stage.addEventListener(Event.RESIZE, resizeHandler);
 		}

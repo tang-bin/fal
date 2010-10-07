@@ -97,9 +97,9 @@ package org.finalbug.fal.data
 		 * @param border If show Cube's border or not.
 		 */		
 		public function CubeData(color:uint = 0xFF0000,
-								width:Number = 10,
-								height:Number = 10,
-								thickness:Number = 10,
+								width:Number = 300,
+								height:Number = 400,
+								thickness:Number = 30,
 								lean:String = "",
 								border:Boolean = false)
 		{
