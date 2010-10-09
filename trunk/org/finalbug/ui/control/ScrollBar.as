@@ -1,5 +1,5 @@
 /******************************************
- * Finalbug ActionScript Library
+ * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
 package org.finalbug.ui.control
@@ -151,8 +151,8 @@ package org.finalbug.ui.control
 				createScrollBarY();
 			}
 			//
-			this.registerStatus(Status.NORMAL_STATUS, ScrollBarStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.DISABLE_STATUS, ScrollBarStyleFactory.createDisableStyle());
+			this.registerStatus(Status.NORMAL, ScrollBarStyleFactory.createNormalStyle(), true);
+			this.registerStatus(Status.DISABLE, ScrollBarStyleFactory.createDisableStyle());
 			//
 			if(_type == ScrollBar.SCROLL_X)
 			{
@@ -370,16 +370,16 @@ package org.finalbug.ui.control
 			switch(currentMoveType)
 			{
 				case "up":
-					ee.targetStatus = Status.UP_STATUS;
+					ee.targetStatus = Status.UP;
 					break;
 				case "down":
-					ee.targetStatus = Status.DOWN_STATUS;
+					ee.targetStatus = Status.DOWN;
 					break;
 				case "left":
-					ee.targetStatus = Status.LEFT_STATUS;
+					ee.targetStatus = Status.LEFT;
 					break;
 				case "right":
-					ee.targetStatus = Status.RIGHT_STATUS;
+					ee.targetStatus = Status.RIGHT;
 					break;
 			}
 			this.dispatchEvent(ee);

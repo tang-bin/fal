@@ -1,5 +1,5 @@
 /******************************************
- * Finalbug ActionScript Library
+ * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
 package org.finalbug.ui.control
@@ -105,10 +105,10 @@ package org.finalbug.ui.control
 			back = new Shape();
 			this.addAll(outerBox, innerBox, txt, back);
 			//
-			this.registerStatus(Status.NORMAL_STATUS, CheckBoxStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.MOUSE_OVER_STATUS, CheckBoxStyleFactory.createOverStyle());
-			this.registerStatus(Status.MOUSE_DOWN_STATUS, CheckBoxStyleFactory.createDownStyle());
-			this.registerStatus(Status.DISABLE_STATUS, CheckBoxStyleFactory.createDisableStyle());
+			this.registerStatus(Status.NORMAL, CheckBoxStyleFactory.createNormalStyle(), true);
+			this.registerStatus(Status.MOUSE_OVER, CheckBoxStyleFactory.createOverStyle());
+			this.registerStatus(Status.MOUSE_DOWN, CheckBoxStyleFactory.createDownStyle());
+			this.registerStatus(Status.DISABLE, CheckBoxStyleFactory.createDisableStyle());
 			//
 			this.addEventListener(MouseEvent.CLICK, clickHandler);
 		}

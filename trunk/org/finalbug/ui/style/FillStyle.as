@@ -1,5 +1,5 @@
 /******************************************
- * Finalbug ActionScript Library
+ * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
 package org.finalbug.ui.style
@@ -35,10 +35,15 @@ package org.finalbug.ui.style
 		private var _bgRatios:Array = [0, 0xFF];
 		public var useGradient:Boolean = false;
 		
-		private var _glowColor:Number = 0;
-		private var _glowAlpha:Number = 1;
+		private var _glowColor:uint = 0;
+		private var _glowAlpha:Number = 0.8;
 		private var _glowBlur:Number = 3;
 		private var _glowStrength:int = 3;
+		
+		private var _shadowColor:uint = 0;
+		private var _shadowAlpha:Number = 0.8;
+		private var _shadowBlur:Number = 3;
+		private var _shadowStrength:int = 3;
 		
 		public function get borderSize():Number
 		{
@@ -233,6 +238,42 @@ package org.finalbug.ui.style
 			_bgRatios = value;
 		}
 		
+		public function get shadowColor():uint
+		{
+			return _shadowColor;
+		}
+		public function set shadowColor(value:uint):void
+		{
+			_shadowColor = value;
+		}
+		
+		public function get shadowAlpha():Number
+		{
+			return _shadowAlpha;
+		}
+		public function set shadowAlpha(value:Number):void
+		{
+			_shadowAlpha = value;
+		}
+		
+		public function get shadowBlur():Number
+		{
+			return _shadowBlur;
+		}
+		public function set shadowBlur(value:Number):void
+		{
+			_shadowBlur = value;
+		}
+		
+		public function get shadowStrength():Number
+		{
+			return _shadowStrength;
+		}
+		public function set shadowStrength(value:Number):void
+		{
+			_shadowStrength = value;
+		}
+		
 		public function FillStyle()
 		{
 			super();
@@ -283,6 +324,11 @@ package org.finalbug.ui.style
 			style.glowAlpha = this.glowAlpha;
 			style.glowBlur = this.glowBlur;
 			style.glowStrength = this.glowStrength;
+			//
+			style.shadowColor = this.shadowColor;
+			style.shadowAlpha = this.shadowAlpha;
+			style.shadowBlur = this.shadowBlur;
+			style.shadowStrength = this.shadowStrength;
 			//
 			return style;
 		}

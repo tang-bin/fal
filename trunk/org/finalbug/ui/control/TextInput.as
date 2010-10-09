@@ -1,5 +1,5 @@
 /******************************************
- * Finalbug ActionScript Library
+ * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
 package org.finalbug.ui.control
@@ -105,9 +105,9 @@ package org.finalbug.ui.control
 			//
 			setTextType();
 			//
-			this.registerStatus(Status.NORMAL_STATUS, TextInputStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.ACTIVE_STATUS, TextInputStyleFactory.createActiveStyle());
-			this.registerStatus(Status.DISABLE_STATUS, TextInputStyleFactory.createDisableStyle());
+			this.registerStatus(Status.NORMAL, TextInputStyleFactory.createNormalStyle(), true);
+			this.registerStatus(Status.ACTIVE, TextInputStyleFactory.createActiveStyle());
+			this.registerStatus(Status.DISABLE, TextInputStyleFactory.createDisableStyle());
 			//
 			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
 			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
@@ -153,12 +153,12 @@ package org.finalbug.ui.control
 		
 		private function txtFocusInHandler(e:FocusEvent):void
 		{
-			this.status = Status.ACTIVE_STATUS;
+			this.status = Status.ACTIVE;
 		}
 		
 		private function txtFocusOutHandler(e:FocusEvent):void
 		{
-			this.status = Status.NORMAL_STATUS;
+			this.status = Status.NORMAL;
 		}
 		
 		private function changeTextHandler(e:Event):void

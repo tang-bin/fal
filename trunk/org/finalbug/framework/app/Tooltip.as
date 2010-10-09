@@ -1,5 +1,5 @@
 /******************************************
- * Finalbug ActionScript Library
+ * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
 package org.finalbug.framework.app
@@ -59,7 +59,7 @@ package org.finalbug.framework.app
 				bg = new Flat(10, 10, fs);
 				box.addChild(bg);
 				//
-				var tf:TextFormat = new TextFormat("Arial", 12, 0x333333);
+				var tf:TextFormat = new TextFormat("Verdana", 12, 0x333333);
 				txt = new Label("", tf);
 				box.addChild(txt);
 				txt.x = 2;

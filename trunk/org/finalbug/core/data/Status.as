@@ -1,5 +1,5 @@
 ﻿/******************************************
- * Finalbug ActionScript Library
+ * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
 package org.finalbug.core.data
@@ -9,21 +9,21 @@ package org.finalbug.core.data
 	 */
 	public class Status
 	{
-		public static const YES_STATUS:String = "yesStatus";
-		public static const NO_STATUS:String = "noStatus";
-		public static const CANCEL_STATUS:String = "cancelStatus";
+		public static const YES:String = "yesStatus";
+		public static const NO:String = "noStatus";
+		public static const CANCEL:String = "cancelStatus";
 		
-		public static const LEFT_STATUS:String = "leftStatus";
-		public static const RIGHT_STATUS:String = "rightStatus";
-		public static const UP_STATUS:String = "upStatus";
-		public static const DOWN_STATUS:String = "downStatus";
+		public static const LEFT:String = "leftStatus";
+		public static const RIGHT:String = "rightStatus";
+		public static const UP:String = "upStatus";
+		public static const DOWN:String = "downStatus";
 		
-		public static const NORMAL_STATUS:String = "normalStatus";
-		public static const MOUSE_OVER_STATUS:String = "mouseOverStatus";
-		public static const MOUSE_DOWN_STATUS:String = "mouseDownStatus";
-		public static const HOLD_STATUS:String = "holdStatus";
-		public static const DISABLE_STATUS:String = "disableStatus";
+		public static const NORMAL:String = "normalStatus";
+		public static const MOUSE_OVER:String = "mouseOverStatus";
+		public static const MOUSE_DOWN:String = "mouseDownStatus";
+		public static const HOLD:String = "holdStatus";
+		public static const DISABLE:String = "disableStatus";
 		
-		public static const ACTIVE_STATUS:String = "activeStatus";
+		public static const ACTIVE:String = "activeStatus";
 	}
 }

@@ -1,5 +1,5 @@
 /******************************************
- * Finalbug ActionScript Library ( http://www.finalbug.org/ )
+ * [fb-aslib] Finalbug ActionScript Library ( http://www.finalbug.org/ )
  * 
  * org.finalbug.fal.events.UIEvent
  *

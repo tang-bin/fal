@@ -1,5 +1,5 @@
 /******************************************
- * Finalbug ActionScript Library
+ * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
 package org.finalbug.ui.control
@@ -10,7 +10,7 @@ package org.finalbug.ui.control
 	import org.finalbug.ui.style.stylefactory.ButtonStyleFactory;
 	
 	/******************************************
-	 * org.finalbug.fal.controls.Button
+	 * org.finalbug.ui.control.Button
 	 * 
 	 * @author	Tang Bin (tangbin@finalbug.org)
 	 * @since	old version
@@ -70,10 +70,10 @@ package org.finalbug.ui.control
 			icon = new Image();
 			this.addAll(bg, _label, icon);
 			//
-			this.registerStatus(Status.NORMAL_STATUS, ButtonStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.MOUSE_OVER_STATUS, ButtonStyleFactory.createOverStyle());
-			this.registerStatus(Status.MOUSE_DOWN_STATUS, ButtonStyleFactory.createDownStyle());
-			this.registerStatus(Status.DISABLE_STATUS, ButtonStyleFactory.createDisableStyle());
+			this.registerStatus(Status.NORMAL, ButtonStyleFactory.createNormalStyle(), true);
+			this.registerStatus(Status.MOUSE_OVER, ButtonStyleFactory.createOverStyle());
+			this.registerStatus(Status.MOUSE_DOWN, ButtonStyleFactory.createDownStyle());
+			this.registerStatus(Status.DISABLE, ButtonStyleFactory.createDisableStyle());
 		}
 		
 		override protected function updateView():void

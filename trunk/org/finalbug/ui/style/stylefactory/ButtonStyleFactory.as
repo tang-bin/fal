@@ -1,5 +1,5 @@
 /******************************************
- * Finalbug ActionScript Library
+ * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
 package org.finalbug.ui.style.stylefactory
@@ -8,11 +8,14 @@ package org.finalbug.ui.style.stylefactory
 	
 	public class ButtonStyleFactory
 	{
+		public static const DEFAULT_WIDTH:Number = 80;
+		public static const DEFAULT_HEIGHT:Number = 20;
+		
 		public static function createNormalStyle():DisplayStyle
 		{
 			var ds:DisplayStyle = new DisplayStyle();
-			ds.layoutStyle.setValue("width", 80);
-			ds.layoutStyle.setValue("height", 20);
+			ds.layoutStyle.setValue("width", DEFAULT_WIDTH);
+			ds.layoutStyle.setValue("height", DEFAULT_HEIGHT);
 			ds.fillStyle.useGradient = true;
 			ds.fillStyle.bgColors = [0x999999, 0];
 			ds.fillStyle.bgAlphas = [0.8, 0.8];

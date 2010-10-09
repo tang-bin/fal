@@ -1,10 +1,11 @@
 /******************************************
- * Finalbug ActionScript Library
+ * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
 package org.finalbug.ui.glazes
 {
 	import flash.display.GradientType;
+	import flash.filters.DropShadowFilter;
 	import flash.filters.GlowFilter;
 	import flash.geom.Matrix;
 	
@@ -72,6 +73,7 @@ package org.finalbug.ui.glazes
 				this.graphics.endFill();
 				//
 				// set filter 
+				this.filters = null;
 				if(s.glowAlpha != 0 && s.glowBlur != 0)
 				{
 					var gf:GlowFilter = new GlowFilter(s.glowColor, s.glowAlpha,
@@ -79,9 +81,9 @@ package org.finalbug.ui.glazes
 						s.glowStrength, 3);
 					this.filters = [gf];
 				}
-				else
+				if(s.shadowAlpha != 0 && s.shadowBlur != 0)
 				{
-					this.filters = [];
+					// TODO: set shadow. change style.shadows
 				}
 			}
 		}

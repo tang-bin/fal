@@ -1,5 +1,5 @@
 /******************************************
- * Finalbug ActionScript Library
+ * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
 package org.finalbug.ui.control
@@ -98,9 +98,9 @@ package org.finalbug.ui.control
 			this.addChild(txt);
 			txt.type = "input";
 			//
-			this.registerStatus(Status.NORMAL_STATUS, TextAreaStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.ACTIVE_STATUS, TextAreaStyleFactory.createActiveStyle());
-			this.registerStatus(Status.DISABLE_STATUS, TextAreaStyleFactory.createDisableStyle());
+			this.registerStatus(Status.NORMAL, TextAreaStyleFactory.createNormalStyle(), true);
+			this.registerStatus(Status.ACTIVE, TextAreaStyleFactory.createActiveStyle());
+			this.registerStatus(Status.DISABLE, TextAreaStyleFactory.createDisableStyle());
 			//
 			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
 			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
@@ -156,7 +156,7 @@ package org.finalbug.ui.control
 		{
 			if(enabled)
 			{
-				currentStatus = Status.ACTIVE_STATUS;
+				currentStatus = Status.ACTIVE;
 				updateView();
 			}
 		}
@@ -165,7 +165,7 @@ package org.finalbug.ui.control
 		{
 			if(enabled)
 			{
-				currentStatus = Status.NORMAL_STATUS;
+				currentStatus = Status.NORMAL;
 				updateView();
 			}
 		}
@@ -202,12 +202,12 @@ package org.finalbug.ui.control
 		
 		private function txtFocusInHandler(e:FocusEvent):void
 		{
-			this.status = Status.ACTIVE_STATUS;
+			this.status = Status.ACTIVE;
 		}
 		
 		private function txtFocusOutHandler(e:FocusEvent):void
 		{
-			this.status = Status.NORMAL_STATUS;
+			this.status = Status.NORMAL;
 		}
 		
 		private function changeTextHandler(e:Event):void

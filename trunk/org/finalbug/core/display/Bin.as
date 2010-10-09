@@ -1,5 +1,5 @@
 /******************************************
- * Finalbug ActionScript Library
+ * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
 package org.finalbug.core.display
@@ -8,6 +8,7 @@ package org.finalbug.core.display
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
+	import org.finalbug.core.data.Position;
 	import org.finalbug.core.events.DisplayEvent;
 	import org.finalbug.core.events.MotionEvent;
 	import org.finalbug.core.motion.MoveMotion;
@@ -204,12 +205,61 @@ package org.finalbug.core.display
 			}
 		}
 		
+		public function toBack():void
+		{
+			if(this.parent != null)
+			{
+				this.parent.setChildIndex(this, 0);
+			}
+		}
+		
 		public function toCenter():void
 		{
 			if(this.parent != null)
 			{
 				this.x = (this.parent.width - this.width) / 2;
 				this.y = (this.parent.height - this.height) / 2;
+			}
+		}
+		
+		public function toPosition(pos:String, center:Boolean = true):void
+		{
+			if(this.parent != null)
+			{
+				switch(pos)
+				{
+					case Position.TOP:
+						if(center) this.x = (this.parent.width - this.width) / 2;
+						this.y = 0;
+						break;
+					case Position.TOP_LEFT:
+						this.x = this.y = 0;
+						break;
+					case Position.TOP_RIGHT:
+						this.x = this.parent.width - this.width;
+						this.y = 0;
+						break;
+					case Position.LEFT:
+						if(center) this.y = (this.parent.height - this.height) / 2;
+						this.x = 0;
+						break;
+					case Position.RIGHT:
+						if(center) this.y = (this.parent.height - this.height) / 2;
+						this.x = this.parent.width - this.width;
+						break;
+					case Position.BOTTOM:
+						if(center) this.x = (this.parent.width - this.width) / 2;
+						this.y = this.parent.height - this.height;
+						break;
+					case Position.BOTTOM_LEFT:
+						this.x = 0;
+						this.y = this.parent.height - this.height;
+						break;
+					case Position.BOTTOM_RIGHT:
+						this.x = this.parent.width - this.width;
+						this.y = this.parent.height - this.height;
+						break;
+				}
 			}
 		}
 		

@@ -1,5 +1,5 @@
 /******************************************
- * Finalbug ActionScript Library 
+ * [fb-aslib] Finalbug ActionScript Library 
  * http://www.finalbug.org/
  *****************************************/
 package org.finalbug.core.net

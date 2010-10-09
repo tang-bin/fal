@@ -6,19 +6,18 @@
  ****************************/
 package fal.faltester
 {
-	import fal.app.FALApp;
-	import fal.controls.CheckBox;
-	import fal.controls.RadioButton;
-	import fal.controls.TextArea;
-	import fal.controls.TextInput;
+	import org.finalbug.framework.app.FALApp;
+	import org.finalbug.framework.app.Tooltip;
+	import org.finalbug.ui.control.TextArea;
 	
-	public class FALTester extends FALApp
+	public class FALTester extends org.finalbug.framework.app.FALApp
 	{
 		public function FALTester()
 		{
 			var ti:TextArea = new TextArea();
 			this.addAll(ti);
 			ti.toCenter();
+			Tooltip.show("asdf");
 		}
 	}
 }

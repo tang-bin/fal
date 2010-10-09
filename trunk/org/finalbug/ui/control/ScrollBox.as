@@ -1,5 +1,5 @@
 /******************************************
- * Finalbug ActionScript Library
+ * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
 package org.finalbug.ui.control
@@ -98,8 +98,8 @@ package org.finalbug.ui.control
 			xBar.enabled = xBar.visible = false;
 			yBar.enabled = yBar.visible = false;
 			//
-			this.registerStatus(Status.NORMAL_STATUS, ScrollBoxStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.DISABLE_STATUS, ScrollBoxStyleFactory.createDisableStyle());
+			this.registerStatus(Status.NORMAL, ScrollBoxStyleFactory.createNormalStyle(), true);
+			this.registerStatus(Status.DISABLE, ScrollBoxStyleFactory.createDisableStyle());
 			//
 			xBar.addEventListener(UIEvent.SCROLL, xScrollHandler);
 			yBar.addEventListener(UIEvent.SCROLL, yScrollHandler);

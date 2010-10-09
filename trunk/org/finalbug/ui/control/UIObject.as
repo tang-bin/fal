@@ -1,5 +1,5 @@
 /******************************************
- * Finalbug ActionScript Library
+ * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org/
  *****************************************/
 package org.finalbug.ui.control
@@ -57,7 +57,7 @@ package org.finalbug.ui.control
 			{
 				_enabled = value;
 				this.mouseEnabled = _enabled;
-				this.status = _enabled ? Status.NORMAL_STATUS : Status.DISABLE_STATUS;
+				this.status = _enabled ? Status.NORMAL : Status.DISABLE;
 				//
 				for(var i:uint = this.numChildren ; --i >= 0 ; )
 				{
@@ -72,7 +72,7 @@ package org.finalbug.ui.control
 		
 		/****************************************
 		 * 
-		 * org.finalbug.fal.display.Controller constructor.
+		 * constructor.
 		 * 
 		 ****************************************/
 		public function UIObject()
@@ -148,25 +148,25 @@ package org.finalbug.ui.control
 		 ****************************************/
 		protected function rollOverHandler(e:MouseEvent):void
 		{
-			this.status = Status.MOUSE_OVER_STATUS;
+			this.status = Status.MOUSE_OVER;
 		}
 		
 		protected function rollOutHandler(e:MouseEvent):void
 		{
-			if(this.statusList[Status.MOUSE_OVER_STATUS] != null)
+			if(this.statusList[Status.MOUSE_OVER] != null)
 			{
-				this.status = Status.NORMAL_STATUS;
+				this.status = Status.NORMAL;
 			}
 		}
 		
 		protected function mouseDownHandler(e:MouseEvent):void
 		{
-			this.status = Status.MOUSE_DOWN_STATUS;
+			this.status = Status.MOUSE_DOWN;
 		}
 		
 		protected function mouseUpHandler(e:MouseEvent):void
 		{
-			this.status = Status.MOUSE_OVER_STATUS;
+			this.status = Status.MOUSE_OVER;
 		}
 	}
 }
