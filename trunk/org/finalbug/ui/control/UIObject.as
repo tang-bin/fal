@@ -9,6 +9,8 @@ package org.finalbug.ui.control
 	
 	import org.finalbug.core.data.Status;
 	import org.finalbug.core.display.Bin;
+	import org.finalbug.core.utils.MathUtil;
+	import org.finalbug.framework.app.Tooltip;
 	import org.finalbug.ui.style.DisplayStyle;
 	
 	/**
@@ -24,6 +26,8 @@ package org.finalbug.ui.control
 		 * DEFINE
 		 * 
 		 ****************************************/
+		
+		public var tooltip:String = "";
 		
 		protected var statusList:Object = new Object();
 		protected var currentStatus:String;
@@ -70,6 +74,24 @@ package org.finalbug.ui.control
 			}
 		}
 		
+		override public function set width(value:Number):void
+		{
+			for each(var status:DisplayStyle in this.statusList)
+			{
+				status.layoutStyle.setValue("width", MathUtil.getNumArea(value, minWidth, maxWidth));
+			}
+			this.updateView();
+		}
+		
+		override public function set height(value:Number):void
+		{
+			for each(var status:DisplayStyle in this.statusList)
+			{
+				status.layoutStyle.setValue("height", MathUtil.getNumArea(value, minHeight, maxHeight));
+			}
+			this.updateView();
+		}
+		
 		/****************************************
 		 * 
 		 * constructor.
@@ -92,6 +114,7 @@ package org.finalbug.ui.control
 		
 		override protected function updateView():void
 		{
+			super.updateView();
 			if(currentStyle != null && currentStyle.layoutStyle != null)
 			{
 				this.displayWidth = currentStyle.layoutStyle.width;
@@ -149,6 +172,10 @@ package org.finalbug.ui.control
 		protected function rollOverHandler(e:MouseEvent):void
 		{
 			this.status = Status.MOUSE_OVER;
+			if(tooltip != null && tooltip != "")
+			{
+				Tooltip.show(tooltip);
+			}
 		}
 		
 		protected function rollOutHandler(e:MouseEvent):void
@@ -156,6 +183,7 @@ package org.finalbug.ui.control
 			if(this.statusList[Status.MOUSE_OVER] != null)
 			{
 				this.status = Status.NORMAL;
+				Tooltip.remove();
 			}
 		}
 		

@@ -73,18 +73,22 @@ package org.finalbug.ui.glazes
 				this.graphics.endFill();
 				//
 				// set filter 
-				this.filters = null;
-				if(s.glowAlpha != 0 && s.glowBlur != 0)
+				var fs:Array = new Array();
+				if(s.glowAlpha > 0 && s.glowBlur > 0)
 				{
 					var gf:GlowFilter = new GlowFilter(s.glowColor, s.glowAlpha,
 						s.glowBlur, s.glowBlur,
 						s.glowStrength, 3);
-					this.filters = [gf];
+					fs.push(gf);
 				}
-				if(s.shadowAlpha != 0 && s.shadowBlur != 0)
+				if(s.shadowAlpha > 0 && s.shadowBlur > 0)
 				{
-					// TODO: set shadow. change style.shadows
+					var sf:DropShadowFilter = new DropShadowFilter(s.shadowDistance, 45, 
+						s.shadowColor, s.shadowAlpha, 
+						s.shadowBlur, s.shadowBlur, s.shadowStrength);
+					fs.push(sf);
 				}
+				this.filters = fs.length == 0 ? null : fs;
 			}
 		}
 	}

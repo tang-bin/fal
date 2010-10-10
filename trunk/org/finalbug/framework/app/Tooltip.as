@@ -5,6 +5,7 @@
 package org.finalbug.framework.app
 {
 	import flash.display.Sprite;
+	import flash.events.MouseEvent;
 	import flash.text.TextFormat;
 	
 	import org.finalbug.core.display.Bin;
@@ -42,6 +43,7 @@ package org.finalbug.framework.app
 			if(box != null)
 			{
 				box.visible = false;
+				container.stage.removeEventListener(MouseEvent.MOUSE_MOVE, stageMoveHandler);
 			}
 		}
 		
@@ -54,8 +56,10 @@ package org.finalbug.framework.app
 				//
 				var fs:FillStyle = new FillStyle();
 				fs.borderColor = 0x990000;
+				fs.bgAlpha = 1;
 				fs.bgColor = 0xFFE1E1;
 				fs.glowAlpha = 0;
+				fs.shadowAlpha = 0.5;
 				bg = new Flat(10, 10, fs);
 				box.addChild(bg);
 				//
@@ -74,19 +78,32 @@ package org.finalbug.framework.app
 			bg.width = txt.width + 4;
 			bg.height = txt.height;
 			box.visible = true;
-			//
-			box.x = container.stage.mouseX + 10;
-			box.y = container.stage.mouseY + 20;
-			//
-			if(box.x + box.width > container.stage.stageWidth)
+			setBoxPosition();
+			container.stage.addEventListener(MouseEvent.MOUSE_MOVE, stageMoveHandler);
+		}
+		
+		private static function stageMoveHandler(e:MouseEvent):void
+		{
+			setBoxPosition();
+			e.updateAfterEvent();
+		}
+		
+		private static function setBoxPosition():void
+		{
+			if(box != null && container.contains(box) && box.visible)
 			{
-				box.x = container.stage.stageWidth - box.width;
+				box.x = container.stage.mouseX + 10;
+				box.y = container.stage.mouseY + 20;
+				//
+				if(box.x + box.width > container.stage.stageWidth)
+				{
+					box.x = container.stage.stageWidth - box.width;
+				}
+				if(box.y + box.height > container.stage.stageHeight)
+				{
+					box.y = container.stage.stageHeight - box.height;
+				}
 			}
-			if(box.y + box.height > container.stage.stageHeight)
-			{
-				box.y = container.stage.stageHeight - box.height;
-			}
-			//container.toFront();
 		}
 	}
 }

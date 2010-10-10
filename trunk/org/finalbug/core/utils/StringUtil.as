@@ -400,5 +400,25 @@ package org.finalbug.core.utils
 				return 0;
 			}
 		}
+		
+		public static function getLogStringFromArray(arr:Array, showArea:Boolean = false):String
+		{
+			var str:String = "";
+			var len:uint = arr.length;
+			for(var i:uint = 0 ; i < len ; i++)
+			{
+				var obj:* = arr[i];
+				if(obj is Array)
+				{
+					str += " " + getLogStringFromArray(obj, true);
+				}
+				else
+				{
+					str += " " + obj.toString();
+				}
+			}
+			if(showArea) str = "[" + str + "]";
+			return str;
+		}
 	}
 }

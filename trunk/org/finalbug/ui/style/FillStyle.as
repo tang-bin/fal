@@ -17,7 +17,7 @@ package org.finalbug.ui.style
 	public class FillStyle extends org.finalbug.ui.style.Style
 	{
 		private var _borderSize:Number = 1;
-		private var _borderColor:Number = 0x333333;
+		private var _borderColor:Number = 0x999999;
 		private var _borderAlpha:Number = 0.1;
 		private var _bgColor:Number = 0xFFFFFF;
 		private var _bgAlpha:Number = 0.1;
@@ -36,14 +36,15 @@ package org.finalbug.ui.style
 		public var useGradient:Boolean = false;
 		
 		private var _glowColor:uint = 0;
-		private var _glowAlpha:Number = 0.8;
-		private var _glowBlur:Number = 3;
+		private var _glowAlpha:Number = 0.5;
+		private var _glowBlur:Number = 2;
 		private var _glowStrength:int = 3;
 		
 		private var _shadowColor:uint = 0;
-		private var _shadowAlpha:Number = 0.8;
-		private var _shadowBlur:Number = 3;
+		private var _shadowAlpha:Number = 0;
+		private var _shadowDistance:Number = 3;
 		private var _shadowStrength:int = 3;
+		private var _shadowBlur:Number = 3
 		
 		public function get borderSize():Number
 		{
@@ -256,13 +257,13 @@ package org.finalbug.ui.style
 			_shadowAlpha = value;
 		}
 		
-		public function get shadowBlur():Number
+		public function get shadowDistance():Number
 		{
-			return _shadowBlur;
+			return _shadowDistance;
 		}
-		public function set shadowBlur(value:Number):void
+		public function set shadowDistance(value:Number):void
 		{
-			_shadowBlur = value;
+			_shadowDistance = value;
 		}
 		
 		public function get shadowStrength():Number
@@ -272,6 +273,15 @@ package org.finalbug.ui.style
 		public function set shadowStrength(value:Number):void
 		{
 			_shadowStrength = value;
+		}
+		
+		public function get shadowBlur():Number
+		{
+			return _shadowBlur;
+		}
+		public function set shadowBlur(value:Number):void
+		{
+			_shadowBlur = value;
 		}
 		
 		public function FillStyle()
@@ -327,8 +337,9 @@ package org.finalbug.ui.style
 			//
 			style.shadowColor = this.shadowColor;
 			style.shadowAlpha = this.shadowAlpha;
-			style.shadowBlur = this.shadowBlur;
+			style.shadowDistance = this.shadowDistance;
 			style.shadowStrength = this.shadowStrength;
+			style.shadowBlur = this.shadowBlur;
 			//
 			return style;
 		}
