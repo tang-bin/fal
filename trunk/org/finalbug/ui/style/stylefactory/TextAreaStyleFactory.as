@@ -14,9 +14,12 @@ package org.finalbug.ui.style.stylefactory
 			ds.layoutStyle.setValue("width", 400);
 			ds.layoutStyle.setValue("height", 300);
 			ds.fillStyle.useGradient = false;
+			ds.fillStyle.borderColor = 0xCCCCCC;
+			ds.fillStyle.borderAlpha = 1;
 			ds.fillStyle.bgColor = 0xDDDDDD;
 			ds.fillStyle.bgAlpha = 1;
 			ds.fillStyle.radius = 0;
+			ds.fillStyle.glowAlpha = 0;
 			ds.textStyle.format.color = 0x333333;
 			return ds;
 		}
@@ -27,6 +30,7 @@ package org.finalbug.ui.style.stylefactory
 			ds.fillStyle.useGradient = false;
 			ds.fillStyle.bgColor = 0xEEEEEE;
 			ds.fillStyle.bgAlpha = 1;
+			ds.fillStyle.glowAlpha = 0.5;
 			return ds;
 		}
 		

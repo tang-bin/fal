@@ -10,15 +10,16 @@ package org.finalbug.ui.control
 	import flash.geom.Rectangle;
 	import flash.utils.Timer;
 	
+	import org.finalbug.core.data.Position;
 	import org.finalbug.core.data.Status;
 	import org.finalbug.core.draw.Track;
+	import org.finalbug.core.utils.MathUtil;
 	import org.finalbug.ui.errors.UIError;
 	import org.finalbug.ui.events.UIEvent;
 	import org.finalbug.ui.events.UIMouseEvent;
 	import org.finalbug.ui.glazes.Flat;
-	import org.finalbug.ui.style.stylefactory.ScrollBarStyleFactory;
 	import org.finalbug.ui.style.FillStyle;
-	import org.finalbug.core.utils.MathUtil;
+	import org.finalbug.ui.style.stylefactory.ScrollBarStyleFactory;
 	
 	/**
 	 * ScrollBar
@@ -28,9 +29,7 @@ package org.finalbug.ui.control
 	 */
 	public class ScrollBar extends UIObject
 	{
-		/* constants */
-		public static const SCROLL_X:String = "xScrollBar";
-		public static const SCROLL_Y:String = "yScrollBar";
+		public static const DEFAULT_THICKNESS:Number = 14;
 		
 		/* variates */
 		private var moveStep:Number;
@@ -43,7 +42,7 @@ package org.finalbug.ui.control
 		private var _position:Number = 0.5;
 		private var _speed:Number = 3;
 		
-		private var _thickness:Number = 16;
+		private var _thickness:Number = 10;
 		private var _length:Number = 100;
 		
 		/* display containers */
@@ -56,15 +55,15 @@ package org.finalbug.ui.control
 		
 		private var _enabled:Boolean = true;
 		
-		override public function get width() : Number
+		override public function get width():Number
 		{
-			return _type == ScrollBar.SCROLL_X ? this._length : this._thickness;
+			return _type == Position.HORIZONTAL ? this._length : this._thickness;
 		}
 		override public function set width(value:Number) : void{}
 		
-		override public function get height() : Number
+		override public function get height():Number
 		{
-			return _type == ScrollBar.SCROLL_X ? this._thickness : this._length;
+			return _type == Position.HORIZONTAL ? this._thickness : this._length;
 		}
 		override public function set height(value:Number) : void{}
 		
@@ -126,7 +125,7 @@ package org.finalbug.ui.control
 		/**
 		 * Constuctor. create and initialize a new scrollBar
 		 * 
-		 * @param type ScrollType, can be ScrollBar.SCROLL_X or ScrollBar.SCROLL_Y.
+		 * @param type ScrollType, can be Position.HORIZONTAL or Position.VERTICAL.
 		 * 				Once this parameter is set, cannot be changed during runtime.
 		 * @param length Length of ScrollBar, in pixel.
 		 * @param style Display style.
@@ -134,15 +133,15 @@ package org.finalbug.ui.control
 		public function ScrollBar(type:String, length:Number = 100)
 		{
 			super();
-			if(type != ScrollBar.SCROLL_X && type != ScrollBar.SCROLL_Y)
+			if(type != Position.HORIZONTAL && type != Position.VERTICAL)
 			{
 				throw new UIError(UIError.WRONG_SCROLLBAR_TYPE);
 			}
 			_type = type;
-			this._thickness = 16;
+			this._thickness = DEFAULT_THICKNESS;
 			this._length = length;
 			//
-			if(_type == ScrollBar.SCROLL_X)
+			if(_type == Position.HORIZONTAL)
 			{
 				createScrollBarX();
 			}
@@ -154,7 +153,7 @@ package org.finalbug.ui.control
 			this.registerStatus(Status.NORMAL, ScrollBarStyleFactory.createNormalStyle(), true);
 			this.registerStatus(Status.DISABLE, ScrollBarStyleFactory.createDisableStyle());
 			//
-			if(_type == ScrollBar.SCROLL_X)
+			if(_type == Position.HORIZONTAL)
 			{
 				leftBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
 				rightBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
@@ -170,8 +169,9 @@ package org.finalbug.ui.control
 		
 		override protected function updateView():void
 		{
+			super.updateView();
 			var fs:FillStyle = currentStyle.fillStyle;
-			if(_type == ScrollBar.SCROLL_X)
+			if(_type == Position.HORIZONTAL)
 			{
 				leftBtn.fillStyle = fs;
 				leftBtn.width = leftBtn.height = _thickness;
@@ -226,7 +226,7 @@ package org.finalbug.ui.control
 			if(slider != null)
 			{
 				var len:Number = (_length - 2 * _thickness) * _scale;
-				if(_type == ScrollBar.SCROLL_X)
+				if(_type == Position.HORIZONTAL)
 				{
 					slider.width = len;
 					slider.height = _thickness;
@@ -303,7 +303,7 @@ package org.finalbug.ui.control
 		private function accountSlider():void
 		{
 			var rate:Number;
-			if(_type == ScrollBar.SCROLL_X)
+			if(_type == Position.HORIZONTAL)
 			{
 				rate = (slider.x - _thickness) / (availLength - slider.width);
 			}
@@ -395,7 +395,7 @@ package org.finalbug.ui.control
 			if(enabled)
 			{
 				var dragArea:Rectangle;
-				if(_type == ScrollBar.SCROLL_X)
+				if(_type == Position.HORIZONTAL)
 				{
 					dragArea = new Rectangle(_thickness, slider.y, availLength - slider.width, 0);
 				}

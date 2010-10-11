@@ -93,7 +93,6 @@ package org.finalbug.faltester.tester
 				container.addAll(bin);
 				list["bin" + i] = {obj:bin, x:Math.random() * stage.stageWidth, y:Math.random() * stage.stageHeight}
 			}
-			
 			Debug.log(total, flash.utils.getTimer() - t);
 		}
 		
@@ -114,7 +113,7 @@ package org.finalbug.faltester.tester
 			{
 				container.removeAll();
 			}
-			startTest(10000);
+			startTest(100);
 		}
 	}
 }

@@ -154,7 +154,7 @@ package org.finalbug.debugger
 			txt.height = bg.height - 2 * title.height;
 			txt.visible = shown;
 			//
-			_container.moveTo(0, shown ? sh - SHOW_HEIGHT : sh - HIDE_HEIGHT);
+			_container.moveTo(0, shown ? sh - SHOW_HEIGHT : sh - HIDE_HEIGHT, 200);
 		}
 		
 		/****************************************

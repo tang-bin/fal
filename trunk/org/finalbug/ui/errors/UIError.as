@@ -10,6 +10,8 @@ package org.finalbug.ui.errors
 		public static const CONTROL_NULL:String = "Must register status before effect.";
 		public static const DISPLAY_OBJECT_NULL:String = "Target displayObject not exist.";
 		
+		public static const WRONG_TYPE:String = "Type Error.";
+		
 		public function UIError(message:String = "", id:int = 0)
 		{
 			super(message, id);

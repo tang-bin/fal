@@ -4,12 +4,14 @@
  *****************************************/
 package org.finalbug.framework.app
 {
+	import flash.display.DisplayObject;
 	import flash.events.Event;
 	
 	import org.finalbug.core.display.Bin;
 	import org.finalbug.debugger.Debug;
 	import org.finalbug.debugger.Debugger;
 	import org.finalbug.framework.errors.AppError;
+	import org.finalbug.framework.layout.Container;
 	import org.finalbug.ui.glazes.Flat;
 	
 	/**
@@ -20,6 +22,8 @@ package org.finalbug.framework.app
 	 */	
 	public class FALApp extends Bin
 	{
+		public static const DEBUG:Boolean = false;
+		
 		override public function get width() : Number
 		{
 			return Math.max(stage.stageWidth, minWidth);
@@ -42,6 +46,7 @@ package org.finalbug.framework.app
 		}
 		
 		private var bgLayer:Flat; // index 0
+		private var container:Container;
 		private var alertLayer:Bin; // index 2, 1 is this(app)
 		private var tipLayer:Bin; // index 3
 		private var debugLayer:Bin; // index 4
@@ -64,6 +69,9 @@ package org.finalbug.framework.app
 			stage.addChild(bgLayer);
 			stage.setChildIndex(bgLayer, 0);
 			//
+			container = new Container();
+			stage.addChild(container);
+			//
 			alertLayer = new Bin();
 			stage.addChild(alertLayer);
 			Alert.container = alertLayer;
@@ -72,12 +80,14 @@ package org.finalbug.framework.app
 			stage.addChild(tipLayer);
 			Tooltip.container = tipLayer;
 			//
-			debugLayer = new Bin();
-			//debugLayer.mouseChildren = debugLayer.mouseEnabled = false;
-			stage.addChild(debugLayer);
-			//
-			Debug.debugger = new Debugger();
-			Debug.debugger.container = debugLayer;
+			if(DEBUG)
+			{
+				debugLayer = new Bin();
+				//debugLayer.mouseChildren = debugLayer.mouseEnabled = false;
+				stage.addChild(debugLayer);
+				Debug.debugger = new Debugger();
+				Debug.debugger.container = debugLayer;
+			}
 			//
 			stage.addEventListener(Event.RESIZE, resizeHandler);
 		}
@@ -91,6 +101,57 @@ package org.finalbug.framework.app
 		private function resizeHandler(e:Event):void
 		{
 			this.resize(stage.stageWidth, stage.stageHeight);
+			container.refresh();
+		}
+		
+		override public function addChild(child:DisplayObject):DisplayObject
+		{
+			return container.addChild(child);
+		}
+		
+		override public function addAll(...args):void
+		{
+			var len:uint = args.length;
+			for(var i:uint = 0 ; i < len ; i++)
+			{
+				var obj:DisplayObject = args[i] as DisplayObject;
+				container.addChild(obj);
+			}
+		}
+		
+		override public function addChildAt(child:DisplayObject, index:int):DisplayObject
+		{
+			return container.addChildAt(child, index);
+		}
+		
+		override public function removeAll():void
+		{
+			container.removeAll();
+		}
+		
+		override public function removeChild(child:DisplayObject):DisplayObject
+		{
+			return container.removeChild(child);
+		}
+		
+		override public function removeChildAt(index:int):DisplayObject
+		{
+			return container.removeChildAt(index);
+		}
+		
+		override public function setChildIndex(child:DisplayObject, index:int):void
+		{
+			container.setChildIndex(child, index);
+		}
+		
+		override public function swapChildren(child1:DisplayObject, child2:DisplayObject):void
+		{
+			container.swapChildren(child1, child2);
+		}
+		
+		override public function swapChildrenAt(index1:int, index2:int):void
+		{
+			container.swapChildrenAt(index1, index1);
 		}
 	}
 }

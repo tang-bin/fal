@@ -4,6 +4,7 @@
  *****************************************/
 package org.finalbug.ui.control
 {
+	import org.finalbug.core.data.Position;
 	import org.finalbug.core.data.Status;
 	import org.finalbug.ui.events.UIEvent;
 	import org.finalbug.ui.glazes.Flat;
@@ -91,8 +92,8 @@ package org.finalbug.ui.control
 			bgFD.glowAlpha = 0;
 			*/
 			back = new Flat();
-			xBar = new ScrollBar(ScrollBar.SCROLL_X);
-			yBar = new ScrollBar(ScrollBar.SCROLL_Y);
+			xBar = new ScrollBar(Position.HORIZONTAL);
+			yBar = new ScrollBar(Position.VERTICAL);
 			this.addAll(back, xBar, yBar);
 			//
 			xBar.enabled = xBar.visible = false;
@@ -116,8 +117,9 @@ package org.finalbug.ui.control
 			if(enableX)
 			{
 				xBar.visible = true;
-				xBar.length = enableY ? displayWidth - yBar.thickness : displayWidth;
+				xBar.length = enableY ? displayWidth - yBar.thickness - 2 : displayWidth - 2;
 				xBar.y = displayHeight - xBar.thickness;
+				xBar.x = 1;
 			}
 			else
 			{
@@ -126,8 +128,9 @@ package org.finalbug.ui.control
 			if(enableY)
 			{
 				yBar.visible = true;
-				yBar.length = enableX ? displayHeight - xBar.thickness : displayHeight;
+				yBar.length = enableX ? displayHeight - xBar.thickness - 2 : displayHeight - 2;
 				yBar.x = displayWidth - yBar.thickness;
+				yBar.y = 1;
 			}
 			else
 			{
@@ -135,14 +138,7 @@ package org.finalbug.ui.control
 			}
 		}
 		
-		protected function xScrollHandler(e:UIEvent):void
-		{
-			
-		}
-		
-		protected function yScrollHandler(e:UIEvent):void
-		{
-			
-		}
+		protected function xScrollHandler(e:UIEvent):void{}
+		protected function yScrollHandler(e:UIEvent):void{}
 	}
 }

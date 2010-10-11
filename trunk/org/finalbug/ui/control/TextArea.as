@@ -91,6 +91,7 @@ package org.finalbug.ui.control
 		public function TextArea()
 		{
 			super(true, true);
+			this.autoResizeChildren = false;
 			//
 			txt = new TextField();
 			txt.wordWrap = !enableX;
@@ -202,12 +203,12 @@ package org.finalbug.ui.control
 		
 		private function txtFocusInHandler(e:FocusEvent):void
 		{
-			this.status = Status.ACTIVE;
+			this.statusName = Status.ACTIVE;
 		}
 		
 		private function txtFocusOutHandler(e:FocusEvent):void
 		{
-			this.status = Status.NORMAL;
+			this.statusName = Status.NORMAL;
 		}
 		
 		private function changeTextHandler(e:Event):void

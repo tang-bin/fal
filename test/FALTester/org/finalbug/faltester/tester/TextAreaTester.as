@@ -5,12 +5,10 @@
 package org.finalbug.faltester.tester
 {
 	import flash.events.MouseEvent;
-	import flash.ui.Mouse;
 	
-	import org.finalbug.debugger.Debug;
+	import org.finalbug.framework.layout.Container;
 	import org.finalbug.ui.control.Button;
 	import org.finalbug.ui.control.TextArea;
-	import org.finalbug.ui.control.UIObject;
 	
 	
 	/******************************************
@@ -19,7 +17,7 @@ package org.finalbug.faltester.tester
 	 * @author	Tang Bin (tangbin@finalbug.org)
 	 * @since	2010.08
 	 *****************************************/
-	public class TextAreaTester extends UIObject
+	public class TextAreaTester extends Container
 	{
 		/****************************************
 		 *
@@ -44,6 +42,7 @@ package org.finalbug.faltester.tester
 		public function TextAreaTester()
 		{
 			super();
+			
 		}
 		
 		/****************************************
@@ -61,12 +60,14 @@ package org.finalbug.faltester.tester
 			{
 				txt = new TextArea();
 				txt.x = txt.y = 100;
+				//txt.layoutStyle = new LayoutStyle();
+				//
 				btn = new Button("CLICK");
 				btn.x = btn.y = 20;
 				btn.addEventListener(MouseEvent.CLICK, clickBtnHandler);
 				//
 				this.addAll(btn, txt);
-				
+				this.horizontalRank(20);
 			}
 		}
 		
@@ -96,9 +97,9 @@ package org.finalbug.faltester.tester
 		
 		private function clickBtnHandler(e:MouseEvent):void
 		{
-			txt.width += 10;
-			txt.height += 5;
-			Debug.log(txt.width, txt.height);
+			txt.setLayoutValue("width", "50%");
+			txt.setLayoutValue("height", "50%");
+			trace(txt.width, txt.height);
 		}
 	}
 }

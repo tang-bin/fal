@@ -23,5 +23,8 @@ package org.finalbug.core.data
 		public static const TOP_RIGHT:String = "topRight";
 		public static const BOTTOM_LEFT:String = "bottomLeft";
 		public static const BOTTOM_RIGHT:String = "bottomRight";
+		
+		public static const HORIZONTAL:String = "horizontal";
+		public static const VERTICAL:String = "vertical";
 	}
 }

@@ -12,7 +12,7 @@ package org.finalbug.debugger
 		
 		public static function log(...args):void
 		{
-			debugger.log(StringUtil.getLogStringFromArray(args));
+			if(debugger != null) debugger.log(StringUtil.getLogStringFromArray(args));
 		}
 	}
 }

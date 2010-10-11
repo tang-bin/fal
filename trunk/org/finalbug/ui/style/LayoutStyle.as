@@ -11,7 +11,7 @@ package org.finalbug.ui.style
 	 * @author	Tang Bin (tangbin@finalbug.org)
 	 * @since	2010.08
 	 */	
-	public class LayoutStyle extends org.finalbug.ui.style.Style	
+	public class LayoutStyle extends Style
 	{
 		private var _width:String = "";
 		private var _height:String = "";
@@ -30,8 +30,8 @@ package org.finalbug.ui.style
 		
 		public function get width():Number
 		{
-			var parentWidth:Number = owner != null && owner.parent != null ? owner.parent.width : 0;
-			trace("b", _width);
+			trace(this.owner, "get width", _width);
+			var parentWidth:Number = (owner != null && owner.parent != null) ? owner.parent.width : 0;
 			if(validLayoutValue(_width))
 			{
 				return getLayoutValue(_width, parentWidth);
@@ -48,7 +48,7 @@ package org.finalbug.ui.style
 		
 		public function get height():Number
 		{
-			var parentHeight:Number = owner != null && owner.parent != null ? owner.parent.height : 0;
+			var parentHeight:Number = (owner != null && owner.parent != null) ? owner.parent.height : 0;
 			if(validLayoutValue(_height))
 			{
 				return getLayoutValue(_height, parentHeight);
@@ -65,7 +65,7 @@ package org.finalbug.ui.style
 		
 		public function get x():Number
 		{
-			var parentWidth:Number = owner != null && owner.parent != null ? owner.parent.width : 0;
+			var parentWidth:Number = (owner != null && owner.parent != null) ? owner.parent.width : 0;
 			if(validLayoutValue(_left))
 			{
 				return getLayoutValue(_left, parentWidth);
@@ -80,13 +80,13 @@ package org.finalbug.ui.style
 			}
 			else
 			{
-				return 0;
+				return NaN;
 			}
 		}
 		
 		public function get y():Number
 		{
-			var parentHeight:Number = owner != null && owner.parent != null ? owner.parent.height : 0;
+			var parentHeight:Number = (owner != null && owner.parent != null) ? owner.parent.height : 0;
 			if(validLayoutValue(_top))
 			{
 				return getLayoutValue(_top, parentHeight);
@@ -101,7 +101,7 @@ package org.finalbug.ui.style
 			}
 			else
 			{
-				return 0;
+				return NaN;
 			}
 		}
 		

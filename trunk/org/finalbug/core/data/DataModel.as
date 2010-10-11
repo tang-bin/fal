@@ -9,6 +9,7 @@ package org.finalbug.core.data
 	import flash.utils.ByteArray;
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
+	import flash.utils.getQualifiedClassName;
 	
 	import org.finalbug.core.events.DataEvent;
 	
@@ -74,6 +75,11 @@ package org.finalbug.core.data
 		public function dispatchEvent(event:Event):void
 		{
 			this.dispatcher.dispatchEvent(event);
+		}
+		
+		public function toString():String
+		{
+			return flash.utils.getQualifiedClassName(this);
 		}
 		
 		override flash_proxy function getProperty(name:*):*

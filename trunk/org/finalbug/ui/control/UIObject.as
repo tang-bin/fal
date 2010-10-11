@@ -7,11 +7,15 @@ package org.finalbug.ui.control
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
 	
+	import org.finalbug.core.data.SetType;
 	import org.finalbug.core.data.Status;
 	import org.finalbug.core.display.Bin;
+	import org.finalbug.core.utils.DataUtil;
 	import org.finalbug.core.utils.MathUtil;
 	import org.finalbug.framework.app.Tooltip;
+	import org.finalbug.ui.errors.UIError;
 	import org.finalbug.ui.style.DisplayStyle;
+	import org.finalbug.ui.style.LayoutStyle;
 	
 	/**
 	 * Class Control is the super class for all of the controls.
@@ -28,21 +32,23 @@ package org.finalbug.ui.control
 		 ****************************************/
 		
 		public var tooltip:String = "";
+		public var autoResizeChildren:Boolean = true;
 		
 		protected var statusList:Object = new Object();
 		protected var currentStatus:String;
 		
 		private var _enabled:Boolean = true;
+		private var _layoutStyle:LayoutStyle;
 		
 		/****************************************
 		 * GETTER & SETTER
 		 ****************************************/
 		
-		public function get status():String
+		public function get statusName():String
 		{
 			return currentStatus;
 		}
-		public function set status(value:String):void
+		public function set statusName(value:String):void
 		{
 			if(value != currentStatus && value != "" && statusList[value] != null)
 			{
@@ -61,7 +67,7 @@ package org.finalbug.ui.control
 			{
 				_enabled = value;
 				this.mouseEnabled = _enabled;
-				this.status = _enabled ? Status.NORMAL : Status.DISABLE;
+				this.statusName = _enabled ? Status.NORMAL : Status.DISABLE;
 				//
 				for(var i:uint = this.numChildren ; --i >= 0 ; )
 				{
@@ -76,20 +82,60 @@ package org.finalbug.ui.control
 		
 		override public function set width(value:Number):void
 		{
+			var widthValue:Number = MathUtil.getNumArea(value, minWidth, maxWidth)
 			for each(var status:DisplayStyle in this.statusList)
 			{
-				status.layoutStyle.setValue("width", MathUtil.getNumArea(value, minWidth, maxWidth));
+				status.layoutStyle.setValue("width", widthValue);
 			}
+			if(_layoutStyle != null) _layoutStyle.setValue("width", widthValue);
+			this.displayWidth = widthValue;
 			this.updateView();
 		}
 		
 		override public function set height(value:Number):void
 		{
+			var heightValue:Number = MathUtil.getNumArea(value, minHeight, maxHeight)
 			for each(var status:DisplayStyle in this.statusList)
 			{
-				status.layoutStyle.setValue("height", MathUtil.getNumArea(value, minHeight, maxHeight));
+				status.layoutStyle.setValue("height", heightValue);
 			}
+			if(_layoutStyle != null) _layoutStyle.setValue("height", heightValue);
+			this.displayHeight = heightValue;
 			this.updateView();
+		}
+		
+		override public function set x(value:Number):void
+		{
+			for each(var status:DisplayStyle in this.statusList)
+			{
+				status.layoutStyle.setValue("left", value);
+			}
+			if(_layoutStyle != null) _layoutStyle.setValue("left", value);
+			if(this.getLayout() == null)
+			{
+				super.x = value;
+			}
+			else
+			{
+				this.updateView();
+			}
+		}
+		
+		override public function set y(value:Number):void
+		{
+			for each(var status:DisplayStyle in this.statusList)
+			{
+				status.layoutStyle.setValue("top", value);
+			}
+			if(_layoutStyle != null) _layoutStyle.setValue("top", value);
+			if(this.getLayout() == null)
+			{
+				super.y = value;
+			}
+			else
+			{
+				this.updateView();
+			}
 		}
 		
 		/****************************************
@@ -112,13 +158,22 @@ package org.finalbug.ui.control
 		 * include public, protected and private.
 		 ****************************************/
 		
+		override protected function callAtAdded():void
+		{
+			updateView();
+		}
+		
 		override protected function updateView():void
 		{
 			super.updateView();
-			if(currentStyle != null && currentStyle.layoutStyle != null)
+			if(this.getLayout() != null)
 			{
-				this.displayWidth = currentStyle.layoutStyle.width;
-				this.displayHeight = currentStyle.layoutStyle.height;
+				this.displayWidth = this.getLayout().width;
+				this.displayHeight = this.getLayout().height;
+				var newX:Number = this.getLayout().x;
+				var newY:Number = this.getLayout().y;
+				if(!isNaN(newX)) super.x = newX;
+				if(!isNaN(newY)) super.y = newY;
 			}
 		}
 		
@@ -126,13 +181,52 @@ package org.finalbug.ui.control
 		 * PUBLIC
 		 ****************************************/
 		
+		public function refresh():void
+		{
+			this.updateView();
+			if(this.autoResizeChildren)
+			{
+				for(var i:uint = this.numChildren ; --i >= 0 ; )
+				{
+					var child:DisplayObject = this.getChildAt(i);
+					if(child is UIObject)
+					{
+						(child as UIObject).refresh();
+					}
+				}
+			}
+		}
+		
+		public function setLayoutValue(name:String, value:*, allStatus:Boolean = true):void
+		{
+			if(_layoutStyle != null)
+			{
+				_layoutStyle.setValue(name, value);
+			}
+			if(allStatus)
+			{
+				for each(var style:DisplayStyle in this.statusList)
+				{
+					style.layoutStyle.setValue(name, value);
+				}
+			}
+			else
+			{
+				if(this.currentStyle != null && this.currentStyle.layoutStyle != null)
+				{
+					this.currentStyle.layoutStyle.setValue(name, value);
+				}
+			}
+			this.updateView();
+		}
+		
 		public function registerStatus(name:String, style:DisplayStyle, enforce:Boolean = false):void
 		{
 			style.owner = this;
 			statusList[name] = style;
 			if(enforce)
 			{
-				this.status = name;
+				this.statusName = name;
 			}
 		}
 		
@@ -150,6 +244,69 @@ package org.finalbug.ui.control
 			{
 				delete statusList[name];
 				statusList[name] = null;
+			}
+		}
+		
+		public function getStatus(name:String):DisplayStyle
+		{
+			if(statusList[name] != null)
+			{
+				return statusList[name];
+			}
+			else
+			{
+				return null;
+			}
+		}
+		
+		public function getAllStatus():Object
+		{
+			return statusList;
+		}
+		
+		public function setLayout(style:LayoutStyle, type:String = "global"):void
+		{
+			style.owner = this;
+			if(type == SetType.GLOBAL)
+			{
+				this._layoutStyle = style;
+				this.updateView();
+			}
+			else if(type == SetType.CURRENT)
+			{
+				if(currentStyle != null)
+				{
+					this.currentStyle.layoutStyle = style;
+					this.updateView();
+				}
+			}
+			else if(type == SetType.ALL)
+			{
+				for each(var status:DisplayStyle in this.statusList)
+				{
+					status.layoutStyle = style;
+				}
+				this.updateView();
+			}
+			else
+			{
+				throw new UIError(UIError.WRONG_TYPE);
+			}
+		}
+		
+		public function getLayout():LayoutStyle
+		{
+			if(_layoutStyle != null)
+			{
+				return _layoutStyle;
+			}
+			else if(currentStyle != null && this.currentStyle.layoutStyle != null)
+			{
+				return currentStyle.layoutStyle;
+			}
+			else
+			{
+				return null;
 			}
 		}
 		
@@ -171,7 +328,7 @@ package org.finalbug.ui.control
 		 ****************************************/
 		protected function rollOverHandler(e:MouseEvent):void
 		{
-			this.status = Status.MOUSE_OVER;
+			this.statusName = Status.MOUSE_OVER;
 			if(tooltip != null && tooltip != "")
 			{
 				Tooltip.show(tooltip);
@@ -182,19 +339,19 @@ package org.finalbug.ui.control
 		{
 			if(this.statusList[Status.MOUSE_OVER] != null)
 			{
-				this.status = Status.NORMAL;
+				this.statusName = Status.NORMAL;
 				Tooltip.remove();
 			}
 		}
 		
 		protected function mouseDownHandler(e:MouseEvent):void
 		{
-			this.status = Status.MOUSE_DOWN;
+			this.statusName = Status.MOUSE_DOWN;
 		}
 		
 		protected function mouseUpHandler(e:MouseEvent):void
 		{
-			this.status = Status.MOUSE_OVER;
+			this.statusName = Status.MOUSE_OVER;
 		}
 	}
 }

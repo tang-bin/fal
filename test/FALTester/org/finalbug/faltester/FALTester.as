@@ -6,10 +6,13 @@
  ****************************/
 package org.finalbug.faltester
 {
+	import org.finalbug.core.data.Position;
 	import org.finalbug.faltester.tester.MotionTester;
 	import org.finalbug.faltester.tester.TextAreaTester;
 	import org.finalbug.framework.app.FALApp;
 	import org.finalbug.framework.app.Tooltip;
+	import org.finalbug.ui.control.Button;
+	import org.finalbug.ui.control.ScrollBar;
 	import org.finalbug.ui.control.TextArea;
 	import org.finalbug.ui.control.UIObject;
 	
@@ -17,7 +20,7 @@ package org.finalbug.faltester
 	{
 		public function FALTester()
 		{
-			var num:uint = 0;
+			var num:uint = 1;
 			var tester:UIObject;
 			switch(num)
 			{
