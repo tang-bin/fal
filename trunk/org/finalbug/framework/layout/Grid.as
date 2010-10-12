@@ -14,12 +14,15 @@ package org.finalbug.framework.layout
 	public class Grid extends Container
 	{
 		private var _autoSize:Boolean = false;
+		private var cells:Array = new Array();
+		private var _rows:Array = new Array();
+		private var _columns:Array = new Array(); 
 		
 		public function get autoSize():Boolean
 		{
 			return _autoSize;
 		}
-		public function get autoSize(value:Boolean):void
+		public function set autoSize(value:Boolean):void
 		{
 			if(_autoSize != value)
 			{
@@ -27,59 +30,27 @@ package org.finalbug.framework.layout
 			}
 		}
 		
+		public function get rows():Array
+		{
+			return _rows;
+		}
+		public function set rows(value:Array):void
+		{
+			_rows = value;
+		}
+		
+		public function get columns():Array
+		{
+			return _columns;
+		}
+		public function set columns(value:Array):void
+		{
+			_columns = value;
+		}
+		
 		public function Grid()
 		{
 			super();
-		}
-		
-		public function setRow(...args):void
-		{
-			
-		}
-		
-		public function setColumn(...args):void
-		{
-			
-		}
-		
-		public function addRow(size:*):void
-		{
-			
-		}
-		
-		public function addColumn(size:*):void
-		{
-			
-		}
-		
-		public function addRowAt(size:*, index:uint):void
-		{
-			
-		}
-		
-		public function addColumnAt(size:*, index:uint):void
-		{
-			
-		}
-		
-		public function removeRowAt(index:uint):void
-		{
-			
-		}
-		
-		public function removeColumnAt(index:uint):void
-		{
-			
-		}
-		
-		public function moveRow(fromIndex:uint, toIndex:uint):void
-		{
-			
-		}
-		
-		public function moveColumn(fromIndex:uint, toIndex:uint):void
-		{
-			
 		}
 		
 		public function getCell(row:uint, column:uint):Container
@@ -87,9 +58,72 @@ package org.finalbug.framework.layout
 			return null;
 		}
 		
-		public function refresh():void
+		public function rebuild():void
 		{
-			
+			var currentX:Number = 0;
+			var currentY:Number = 0;
+			var cellWidth:Number = 0;
+			var cellHeight:Number = 0;
+			//
+			var rowNum:uint = rows.length;
+			for(var yIndex:uint = 0 ; yIndex < rowNum ; yIndex++)
+			{
+				if(cells[yIndex] == null) cells[yIndex] = new Array();
+				cellHeight = getCellHeight(yIndex);
+				//
+				var colNum:uint = columns.length;
+				for(var xIndex:uint = 0 ; xIndex < colNum ; xIndex++)
+				{
+					cellWidth = getCellWidth(xIndex);
+					if(cells[yIndex][xIndex] == null)
+					{
+						cells[yIndex][xIndex] = new GridCell();
+						this.addChild(cells[yIndex][xIndex]);
+					}
+					var cell:GridCell = cells[yIndex][xIndex] as GridCell;
+					cell.xIndex = xIndex;
+					cell.yIndex = yIndex;
+					cell.resetPosition(currentX, currentY, cellWidth, cellHeight);
+					cell.updated = true;
+					//
+					if(xIndex == colNum - 1)
+					{
+						currentX = 0;
+						currentY += cellHeight;
+					}
+					else
+					{
+						currentX += cellWidth;
+					}
+				}
+			}
+			// remove cells
+			for(var i:uint = 0 ; i < rowNum ; i++)
+			{
+				for(var j:uint = 0 ; j < rowNum ; j++)
+				{
+					var checkCell:GridCell = cells[i][j] as GridCell;
+					if(checkCell.updated)
+					{
+						checkCell.updated = false;
+					}
+					else
+					{
+						this.removeChild(checkCell);
+						cells[i][j] = null;
+					}
+				}
+			}
+		}
+		
+		private function getCellWidth(index:uint):Number
+		{
+			return 0;
+		}
+		
+		private function getCellHeight(index:uint):Number
+		{
+			return 0;
 		}
 	}
 }
