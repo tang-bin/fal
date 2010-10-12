@@ -7,6 +7,7 @@ package org.finalbug.core.display
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.geom.Point;
 	
 	import org.finalbug.core.data.Position;
 	import org.finalbug.core.events.DisplayEvent;
@@ -39,6 +40,9 @@ package org.finalbug.core.display
 		private var moveMotion:MoveMotion;
 		private var sizeMotion:SizeMotion;
 		
+		private var _controlPoint:Point = new Point(0, 0);
+		private var _controlPointType:String = "";
+		
 		/****************************************
 		 * 
 		 * GETTER & SETTER
@@ -63,6 +67,35 @@ package org.finalbug.core.display
 		{
 			this.displayHeight = MathUtil.getNumArea(value, minHeight, maxHeight);
 			this.updateView();
+		}
+		
+		public function get controlPoint():Point
+		{
+			accountControlPoint();
+			return _controlPoint;
+		}
+		public function set controlPoint(value:Point):void
+		{
+			_controlPointType = "";
+			_controlPoint = value;
+		}
+		
+		public function get controlX():Number
+		{
+			return this.x + controlPoint.x;
+		}
+		public function set controlX(value:Number):void
+		{
+			this.x = value - controlPoint.x;
+		}
+		
+		public function get controlY():Number
+		{
+			return this.y + controlPoint.y;
+		}
+		public function set controlY(value:Number):void
+		{
+			this.y = value - controlPoint.y;
 		}
 		
 		public function get maxWidth():Number
@@ -296,6 +329,52 @@ package org.finalbug.core.display
 		/****************************************
 		 * PRIVATE
 		 ****************************************/
+		
+		private function accountControlPoint():void
+		{
+			switch(_controlPointType)
+			{
+				case Position.TOP_CENTER:
+					_controlPoint.x = displayWidth / 2;
+					_controlPoint.y = 0;
+					break;
+				case Position.TOP_LEFT:
+					_controlPoint.x = _controlPoint.y = 0;
+					break;
+				case Position.TOP_RIGHT:
+					_controlPoint.x = displayWidth;
+					_controlPoint.y = 0;
+					break;
+				case Position.LEFT_CENTER:
+					_controlPoint.x = 0;
+					_controlPoint.y = displayHeight / 2;
+					break;
+				case Position.CENTER:
+					_controlPoint.x = displayWidth / 2;
+					_controlPoint.y = displayHeight / 2;
+					break;
+				case Position.RIGHT_CENTER:
+					_controlPoint.x = displayWidth;
+					_controlPoint.y = displayHeight / 2;
+					break;
+				case Position.BOTTOM_LEFT:
+					_controlPoint.x = 0;
+					_controlPoint.y = displayHeight;
+					break;
+				case Position.BOTTOM_CENTER:
+					_controlPoint.x = displayWidth / 2;
+					_controlPoint.y = displayHeight;
+					break;
+				case Position.BOTTOM_RIGHT:
+					_controlPoint.x = displayWidth;
+					_controlPoint.y = displayHeight;
+					break;
+				default:
+					_controlPoint.x = _controlPoint.y = 0;
+					_controlPointType = "";
+					break;
+			}
+		}
 		
 		/****************************************
 		 * 

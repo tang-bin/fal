@@ -59,7 +59,7 @@ package org.finalbug.framework.layout
 			}
 			if(measureAfterRank)
 			{
-				measure();
+				measure(space, 0);
 			}
 		}
 		
@@ -95,13 +95,36 @@ package org.finalbug.framework.layout
 			}
 			if(measureAfterRank)
 			{
-				measure();
+				measure(0, space);
 			}
 		}
 		
-		public function measure():void
+		/**
+		 * 
+		 * @param xSpace
+		 * @param ySpace
+		 * @param updateViewAfterMeasure
+		 * 
+		 */		
+		public function measure(xSpace:Number = 0, ySpace:Number = 0, updateViewAfterMeasure:Boolean = false):void
 		{
-			
+			var maxWidth:Number = 0;
+			var maxHeight:Number = 0;
+			for(var i:uint = this.numChildren ; --i >= 0 ;)
+			{
+				var obj:DisplayObject = this.getChildAt(i);
+				maxWidth = Math.max(maxWidth, obj.x + obj.width);
+				maxHeight = Math.max(maxHeight, obj.y + obj.height);
+			}
+			maxWidth += xSpace;
+			maxHeight += ySpace;
+			this.displayWidth = maxWidth;
+			this.displayHeight = maxHeight;
+			//
+			if(updateViewAfterMeasure)
+			{
+				this.updateView();
+			}
 		}
 	}
 }
