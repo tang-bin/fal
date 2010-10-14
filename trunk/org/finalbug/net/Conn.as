@@ -8,9 +8,9 @@ package org.finalbug.net
 	import flash.utils.ByteArray;
 	
 	import org.finalbug.core.data.DataModel;
-	import org.finalbug.net.events.ConnEvent;
 	import org.finalbug.core.net.Protocol;
 	import org.finalbug.core.net.ProtocolList;
+	import org.finalbug.net.events.ConnEvent;
 	
 	[Event(name="ConnectError", type="fal.events.ConnEvent")]
 	[Event(name="connect", type="fal.events.ConnEvent")]
