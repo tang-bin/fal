@@ -6,9 +6,15 @@ package org.finalbug.faltester.tester
 {
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
+	import flash.ui.Mouse;
 	import flash.utils.getTimer;
 	
+	import org.finalbug.core.data.SetType;
 	import org.finalbug.core.display.Bin;
+	import org.finalbug.core.events.MotionEvent;
+	import org.finalbug.core.motion.FadeMotion;
+	import org.finalbug.core.motion.MotionQueue;
+	import org.finalbug.core.motion.MoveMotion;
 	import org.finalbug.debugger.Debug;
 	import org.finalbug.ui.control.Button;
 	import org.finalbug.ui.control.UIObject;
@@ -60,6 +66,20 @@ package org.finalbug.faltester.tester
 			this.addAll(btn);
 			btn.tooltip = "test";
 			btn.addEventListener(MouseEvent.CLICK, clickBtnHandler);
+			//
+			var mq:MotionQueue = new MotionQueue();
+			var m:MoveMotion = new MoveMotion(btn);
+			m.xTo = 200;
+			m.yTo = 300;
+			//
+			var f:FadeMotion = new FadeMotion(btn);
+			f.alphaTo = 0;
+			//
+			mq.addMotion(m);
+			mq.addMotion(f);
+			//
+			mq.start(SetType.CONCURRENT);
+			mq.addEventListener(MotionEvent.MOTION_STOP, stopHandler);
 		}
 		
 		/****************************************
@@ -87,11 +107,11 @@ package org.finalbug.faltester.tester
 			for(var i:uint = 0 ; i < total ; i++)
 			{
 				var bin:Bin = new Bin();
-				bin.graphics.beginFill(0, 0.5);
+				bin.graphics.beginFill(0, 0.8);
 				bin.graphics.drawRect(0, 0, 2, 2);
 				bin.graphics.endFill();
 				container.addAll(bin);
-				list["bin" + i] = {obj:bin, x:Math.random() * stage.stageWidth, y:Math.random() * stage.stageHeight}
+				bin.moveTo(Math.random() * stage.stageWidth, Math.random() * stage.stageHeight);
 			}
 			Debug.log(total, flash.utils.getTimer() - t);
 		}
@@ -113,7 +133,12 @@ package org.finalbug.faltester.tester
 			{
 				container.removeAll();
 			}
-			startTest(100);
+			startTest(1000);
+		}
+		
+		private function stopHandler(e:MotionEvent):void
+		{
+			trace("enddd");
 		}
 	}
 }

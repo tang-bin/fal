@@ -9,18 +9,20 @@ package org.finalbug.faltester
 	import org.finalbug.core.data.Position;
 	import org.finalbug.faltester.tester.MotionTester;
 	import org.finalbug.faltester.tester.TextAreaTester;
-	import org.finalbug.framework.app.FALApp;
+	import org.finalbug.framework.app.App;
 	import org.finalbug.framework.app.Tooltip;
 	import org.finalbug.ui.control.Button;
 	import org.finalbug.ui.control.ScrollBar;
 	import org.finalbug.ui.control.TextArea;
 	import org.finalbug.ui.control.UIObject;
 	
-	public class FALTester extends FALApp
+	public class FALTester extends App
 	{
 		public function FALTester()
 		{
-			var num:uint = 1;
+			super(true);
+			//
+			var num:uint = 0;
 			var tester:UIObject;
 			switch(num)
 			{

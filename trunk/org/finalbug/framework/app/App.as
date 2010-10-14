@@ -15,14 +15,14 @@ package org.finalbug.framework.app
 	import org.finalbug.ui.glazes.Flat;
 	
 	/**
-	 * org.finalbug.fal.app.FALApp
+	 * org.finalbug.fal.app.App
 	 * 
 	 * @author	Tang Bin (tangbin@finalbug.org)
 	 * @since	2010.08
 	 */	
-	public class FALApp extends Bin
+	public class App extends Bin
 	{
-		public static const DEBUG:Boolean = false;
+		public static var DEBUG:Boolean = false;
 		
 		override public function get width() : Number
 		{
@@ -40,9 +40,9 @@ package org.finalbug.framework.app
 			return Math.max(stage.stageHeight, minHeight);
 		}
 		
-		public static function get application():FALApp
+		public static function get application():App
 		{
-			return FALApp._app;
+			return App._app;
 		}
 		
 		private var bgLayer:Flat; // index 0
@@ -51,12 +51,13 @@ package org.finalbug.framework.app
 		private var tipLayer:Bin; // index 3
 		private var debugLayer:Bin; // index 4
 		
-		private static var _app:FALApp;
+		private static var _app:App;
 		
-		public function FALApp()
+		public function App(enableDebug:Boolean = false)
 		{
 			super();
-			FALApp._app = this;
+			App.DEBUG = enableDebug
+			App._app = this;
 			//
 			stage.scaleMode = "noScale";
 			stage.align = "TL";

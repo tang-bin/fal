@@ -2,6 +2,8 @@ package org.finalbug.core.events
 {
 	import flash.events.Event;
 	
+	import org.finalbug.core.motion.Motion;
+	
 	/**
 	 * Event class for Class Move.
 	 * 
@@ -31,6 +33,7 @@ package org.finalbug.core.events
 		* move object.
 		*/		
 		public var motionTarget:*;
+		public var motion:Motion;
 		
 		public function MotionEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false)
 		{

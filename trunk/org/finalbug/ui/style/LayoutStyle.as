@@ -30,7 +30,6 @@ package org.finalbug.ui.style
 		
 		public function get width():Number
 		{
-			trace(this.owner, "get width", _width);
 			var parentWidth:Number = (owner != null && owner.parent != null) ? owner.parent.width : 0;
 			if(validLayoutValue(_width))
 			{

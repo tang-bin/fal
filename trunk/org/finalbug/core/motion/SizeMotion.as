@@ -24,18 +24,22 @@ package org.finalbug.core.motion
 			super(target);
 		}
 		
-		override protected function account(target:Object):void
+		override protected function count(target:Object):void
 		{
 			if(times >= 0)
 			{
 				/* account values */
 				var w0:Number = isNaN(widthFrom) ? target["width"] : widthFrom;
 				var w1:Number = isNaN(widthTo) ? target["width"] : widthTo;
-				var wSteps:Array = getStepList(w0, w1);
 				//
 				var h0:Number = isNaN(heightFrom) ? target["height"] : heightFrom;
 				var h1:Number = isNaN(heightTo) ? target["height"] : heightTo;
-				var hSteps:Array = getStepList(h0, h1);
+				//
+				var startValues:Array = [w0, h0];
+				var endValues:Array = [w1, h1];
+				var steps:Array = counter.count(startValues, endValues, this.during);
+				var wSteps:Array = steps[0];
+				var hSteps:Array = steps[1];
 				// register moting to runner.
 				registeredMotions.push(MotionRunner.instance.register(target, "width", wSteps, this.times, this));
 				registeredMotions.push(MotionRunner.instance.register(target, "height", hSteps, this.times));

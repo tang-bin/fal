@@ -119,6 +119,7 @@ package org.finalbug.core.motion
 							d.motionClass._running = false;
 							var stopEvent:MotionEvent = new MotionEvent(MotionEvent.MOTION_STOP);
 							stopEvent.motionTarget = d.target;
+							stopEvent.motion = d.motionClass;
 							d.motionClass.dispatchEvent(stopEvent);
 						}
 						motionList[n] = null;

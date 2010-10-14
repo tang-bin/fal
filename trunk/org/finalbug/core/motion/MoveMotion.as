@@ -43,18 +43,22 @@ package org.finalbug.core.motion
 		 * 
 		 * @param target
 		 */		
-		override protected function account(target:Object):void
+		override protected function count(target:Object):void
 		{
 			if(times >= 0)
 			{
 				/* account x values */
 				var x0:Number = isNaN(xFrom) ? target["x"] : xFrom; // x from
 				var x1:Number = isNaN(xTo) ? target["x"] : xTo; // x to
-				var xSteps:Array = getStepList(x0, x1);
 				/* account y values */
 				var y0:Number = isNaN(yFrom) ? target["y"] : yFrom;
 				var y1:Number = isNaN(yTo) ? target["y"] : yTo;
-				var ySteps:Array = getStepList(y0, y1);
+				//
+				var startValues:Array = [x0, y0];
+				var endValues:Array = [x1, y1];
+				var steps:Array = counter.count(startValues, endValues, this.during);
+				var xSteps:Array = steps[0];
+				var ySteps:Array = steps[1];
 				// register moting to runner.
 				registeredMotions.push(MotionRunner.instance.register(target, "x", xSteps, this.times, this));
 				registeredMotions.push(MotionRunner.instance.register(target, "y", ySteps, this.times));

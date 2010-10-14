@@ -20,14 +20,14 @@ package org.finalbug.core.motion
 			super(target);
 		}
 		
-		override protected function account(target:Object):void
+		override protected function count(target:Object):void
 		{
 			if(times >= 0)
 			{
 				/* account x values */
 				var a0:Number = isNaN(alphaFrom) ? target["alpha"] : alphaFrom; // alpha from
 				var a1:Number = isNaN(alphaTo) ? target["alpha"] : alphaTo; // alpha to
-				var aSteps:Array = getStepList(a0, a1);
+				var aSteps:Array = repeatSteps(counter.count([a0], [a1], this.during)[0]);
 				// register moting to runner.
 				registeredMotions.push(MotionRunner.instance.register(target, "alpha", aSteps, this.times));
 			}
