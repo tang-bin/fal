@@ -6,7 +6,7 @@ package org.finalbug.ui.style
 {
 	import flash.filters.GlowFilter;
 	
-	import org.finalbug.core.utils.MathUtil;
+	import org.finalbug.utils.MathUtil;
 	
 	/**
 	 * org.finalbug.fal.css.styles.FillStyle

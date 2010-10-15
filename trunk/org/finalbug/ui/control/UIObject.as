@@ -7,13 +7,13 @@ package org.finalbug.ui.control
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
 	
-	import org.finalbug.core.data.SetType;
-	import org.finalbug.core.data.Status;
+	import org.finalbug.data.SetType;
+	import org.finalbug.data.Status;
 	import org.finalbug.core.display.Bin;
-	import org.finalbug.core.utils.DataUtil;
-	import org.finalbug.core.utils.MathUtil;
+	import org.finalbug.utils.DataUtil;
+	import org.finalbug.utils.MathUtil;
 	import org.finalbug.framework.app.Tooltip;
-	import org.finalbug.ui.errors.UIError;
+	import org.finalbug.errors.UIError;
 	import org.finalbug.ui.style.DisplayStyle;
 	import org.finalbug.ui.style.LayoutStyle;
 	

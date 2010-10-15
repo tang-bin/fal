@@ -4,8 +4,8 @@
  *****************************************/
 package org.finalbug.core.motion
 {
-	import org.finalbug.core.errors.FALError;
-	import org.finalbug.core.events.MotionEvent;
+	import org.finalbug.errors.FALError;
+	import org.finalbug.events.MotionEvent;
 	
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;

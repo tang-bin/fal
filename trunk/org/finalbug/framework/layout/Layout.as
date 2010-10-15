@@ -4,7 +4,7 @@
  ******************************************/
 package org.finalbug.framework.layout
 {
-	import org.finalbug.core.data.DataModel;
+	import org.finalbug.data.DataModel;
 	
 	public class Layout extends DataModel
 	{

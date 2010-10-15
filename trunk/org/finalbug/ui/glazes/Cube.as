@@ -5,7 +5,7 @@
 package org.finalbug.ui.glazes
 {
 	import org.finalbug.core.display.Glaze;
-	import org.finalbug.core.utils.ColorUtil;
+	import org.finalbug.utils.ColorUtil;
 
 	public class Cube extends Glaze
 	{

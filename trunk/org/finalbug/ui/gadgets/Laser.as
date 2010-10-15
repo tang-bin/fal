@@ -4,7 +4,7 @@
  *****************************************/
 package org.finalbug.ui.gadgets
 {
-	import org.finalbug.core.utils.ColorUtil;
+	import org.finalbug.utils.ColorUtil;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;

@@ -4,8 +4,8 @@
  *****************************************/
 package org.finalbug.core.motion
 {
-	import org.finalbug.core.errors.MotionError;
-	import org.finalbug.core.events.MotionEvent;
+	import org.finalbug.errors.MotionError;
+	import org.finalbug.events.MotionEvent;
 
 	public class MotionCounter
 	{

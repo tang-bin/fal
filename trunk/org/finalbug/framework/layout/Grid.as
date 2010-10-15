@@ -4,8 +4,8 @@
  ******************************************/
 package org.finalbug.framework.layout
 {
-	import org.finalbug.core.data.SetType;
-	import org.finalbug.core.utils.DataUtil;
+	import org.finalbug.data.SetType;
+	import org.finalbug.utils.DataUtil;
 
 	/**
 	 * @author Tang Bin (tangbin@finalbug.org)

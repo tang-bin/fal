@@ -4,7 +4,7 @@
  *****************************************/
 package org.finalbug.core.draw
 {
-	import org.finalbug.core.data.CubeData;
+	import org.finalbug.data.CubeData;
 	
 	import flash.display.DisplayObject;
 	import flash.display.GradientType;

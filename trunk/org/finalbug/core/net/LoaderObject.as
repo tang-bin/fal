@@ -5,7 +5,7 @@ package org.finalbug.core.net
 	import flash.events.IOErrorEvent;
 	import flash.events.ProgressEvent;
 	
-	import org.finalbug.core.events.LoadEvent;
+	import org.finalbug.events.LoadEvent;
 	
 	/**
 	 * This class is the super class for class which is used to load file(s).

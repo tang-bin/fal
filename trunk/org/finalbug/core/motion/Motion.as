@@ -7,8 +7,8 @@ package org.finalbug.core.motion
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
-	import org.finalbug.core.data.DataModel;
-	import org.finalbug.core.events.MotionEvent;
+	import org.finalbug.data.DataModel;
+	import org.finalbug.events.MotionEvent;
 	import org.osmf.events.TimeEvent;
 	
 	/**

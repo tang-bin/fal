@@ -10,7 +10,7 @@ package org.finalbug.framework.app
 	import org.finalbug.core.display.Bin;
 	import org.finalbug.debugger.Debug;
 	import org.finalbug.debugger.Debugger;
-	import org.finalbug.framework.errors.AppError;
+	import org.finalbug.errors.AppError;
 	import org.finalbug.framework.layout.Container;
 	import org.finalbug.ui.glazes.Flat;
 	

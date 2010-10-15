@@ -9,9 +9,9 @@ package org.finalbug.faltester.tester
 	import flash.ui.Mouse;
 	import flash.utils.getTimer;
 	
-	import org.finalbug.core.data.SetType;
+	import org.finalbug.data.SetType;
 	import org.finalbug.core.display.Bin;
-	import org.finalbug.core.events.MotionEvent;
+	import org.finalbug.events.MotionEvent;
 	import org.finalbug.core.motion.FadeMotion;
 	import org.finalbug.core.motion.MotionQueue;
 	import org.finalbug.core.motion.MoveMotion;

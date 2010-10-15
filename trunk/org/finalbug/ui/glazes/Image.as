@@ -5,7 +5,7 @@
 package org.finalbug.ui.glazes
 {
 	import org.finalbug.core.display.Glaze;
-	import org.finalbug.core.events.LoadEvent;
+	import org.finalbug.events.LoadEvent;
 	
 	import flash.display.Bitmap;
 	import flash.display.Loader;

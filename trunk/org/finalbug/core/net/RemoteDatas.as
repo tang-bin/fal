@@ -4,7 +4,7 @@
  *****************************************/
 package org.finalbug.core.net
 {
-	import org.finalbug.core.data.SharedData;
+	import org.finalbug.data.SharedData;
 
 	public class RemoteDatas
 	{

@@ -8,10 +8,10 @@ package org.finalbug.framework.layout
 	
 	import flashx.textLayout.formats.BaselineOffset;
 	
-	import org.finalbug.core.data.Position;
-	import org.finalbug.core.utils.DataUtil;
+	import org.finalbug.data.Position;
+	import org.finalbug.utils.DataUtil;
 	import org.finalbug.ui.control.UIObject;
-	import org.finalbug.ui.errors.UIError;
+	import org.finalbug.errors.UIError;
 	import org.finalbug.ui.style.LayoutStyle;
 	
 	/**

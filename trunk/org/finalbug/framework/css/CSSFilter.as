@@ -4,9 +4,9 @@
  *****************************************/
 package org.finalbug.framework.css
 {
-	import org.finalbug.core.data.DataModel;
-	import org.finalbug.core.utils.DataUtil;
-	import org.finalbug.ui.errors.StyleError;
+	import org.finalbug.data.DataModel;
+	import org.finalbug.utils.DataUtil;
+	import org.finalbug.errors.StyleError;
 	
 	/**
 	 * @author	Tang Bin (tangbin@finalbug.org)

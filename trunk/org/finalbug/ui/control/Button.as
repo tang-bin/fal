@@ -4,7 +4,7 @@
  *****************************************/
 package org.finalbug.ui.control
 {
-	import org.finalbug.core.data.Status;
+	import org.finalbug.data.Status;
 	import org.finalbug.ui.glazes.Flat;
 	import org.finalbug.ui.glazes.Image;
 	import org.finalbug.ui.style.stylefactory.ButtonStyleFactory;

@@ -6,7 +6,7 @@
  ****************************/
 package org.finalbug.faltester
 {
-	import org.finalbug.core.data.Position;
+	import org.finalbug.data.Position;
 	import org.finalbug.faltester.tester.MotionTester;
 	import org.finalbug.faltester.tester.TextAreaTester;
 	import org.finalbug.framework.app.App;

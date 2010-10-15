@@ -6,7 +6,7 @@ package org.finalbug.ui.style
 {
 	import flash.display.DisplayObject;
 	
-	import org.finalbug.core.data.DataModel;
+	import org.finalbug.data.DataModel;
 	
 	/**
 	 * org.finalbug.fal.css.styles.Style

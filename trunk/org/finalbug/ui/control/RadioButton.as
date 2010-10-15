@@ -8,10 +8,10 @@ package org.finalbug.ui.control
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	
-	import org.finalbug.core.data.Position;
-	import org.finalbug.core.data.Status;
+	import org.finalbug.data.Position;
+	import org.finalbug.data.Status;
 	import org.finalbug.core.draw.Graph;
-	import org.finalbug.core.events.DataEvent;
+	import org.finalbug.events.DataEvent;
 	import org.finalbug.ui.style.stylefactory.CheckBoxStyleFactory;
 	import org.finalbug.ui.style.FillStyle;
 	

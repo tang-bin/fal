@@ -4,11 +4,11 @@
  *****************************************/
 package org.finalbug.core.motion
 {
-	import org.finalbug.core.data.DataModel;
-	import org.finalbug.core.data.SetType;
-	import org.finalbug.core.errors.DataError;
-	import org.finalbug.core.events.MotionEvent;
-	import org.finalbug.core.utils.DataUtil;
+	import org.finalbug.data.DataModel;
+	import org.finalbug.data.SetType;
+	import org.finalbug.errors.DataError;
+	import org.finalbug.events.MotionEvent;
+	import org.finalbug.utils.DataUtil;
 
 	public class MotionQueue extends DataModel
 	{

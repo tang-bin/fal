@@ -10,10 +10,10 @@ package org.finalbug.framework.app
 	import flash.text.TextFormat;
 	
 	import org.finalbug.core.display.Bin;
-	import org.finalbug.framework.data.AlertData;
+	import org.finalbug.data.AlertData;
 	import org.finalbug.ui.control.Button;
 	import org.finalbug.ui.control.Label;
-	import org.finalbug.ui.errors.UIError;
+	import org.finalbug.errors.UIError;
 	
 	/**
 	 * org.finalbug.fal.app.Alert

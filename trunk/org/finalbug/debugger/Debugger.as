@@ -11,7 +11,7 @@ package org.finalbug.debugger
 	import flash.filters.GlowFilter;
 	
 	import org.finalbug.core.display.Bin;
-	import org.finalbug.core.utils.StringUtil;
+	import org.finalbug.utils.StringUtil;
 	import org.finalbug.ui.control.Label;
 	import org.finalbug.ui.control.TextArea;
 	

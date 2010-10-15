@@ -4,9 +4,9 @@
  *****************************************/
 package org.finalbug.ui.control
 {
-	import org.finalbug.core.data.Position;
-	import org.finalbug.core.data.Status;
-	import org.finalbug.ui.events.UIEvent;
+	import org.finalbug.data.Position;
+	import org.finalbug.data.Status;
+	import org.finalbug.events.UIEvent;
 	import org.finalbug.ui.glazes.Flat;
 	import org.finalbug.ui.style.stylefactory.ScrollBoxStyleFactory;
 	

@@ -9,7 +9,7 @@ package org.finalbug.ui.control
 	import flash.geom.Rectangle;
 	
 	import org.finalbug.core.draw.Graph;
-	import org.finalbug.ui.events.UIEvent;
+	import org.finalbug.events.UIEvent;
 	
 	/**
 	 * This class create a panel with scrollbar x and y.

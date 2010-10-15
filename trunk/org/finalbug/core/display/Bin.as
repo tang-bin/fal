@@ -9,12 +9,12 @@ package org.finalbug.core.display
 	import flash.events.Event;
 	import flash.geom.Point;
 	
-	import org.finalbug.core.data.Position;
-	import org.finalbug.core.events.DisplayEvent;
-	import org.finalbug.core.events.MotionEvent;
+	import org.finalbug.data.Position;
+	import org.finalbug.events.DisplayEvent;
+	import org.finalbug.events.MotionEvent;
 	import org.finalbug.core.motion.MoveMotion;
 	import org.finalbug.core.motion.SizeMotion;
-	import org.finalbug.core.utils.MathUtil;
+	import org.finalbug.utils.MathUtil;
 	
 	/**
 	 * org.finalbug.fal.display.Bin

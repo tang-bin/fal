@@ -9,8 +9,8 @@ package org.finalbug.framework.css
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
-	import org.finalbug.core.data.DataModel;
-	import org.finalbug.core.utils.StringUtil;
+	import org.finalbug.data.DataModel;
+	import org.finalbug.utils.StringUtil;
 	
 	/**
 	 * org.finalbug.fal.css.CSSFile

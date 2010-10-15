@@ -4,8 +4,8 @@
  ******************************************/
 package org.finalbug.core.net
 {
-	import org.finalbug.core.data.DataModel;
-	import org.finalbug.core.events.LoadEvent;
+	import org.finalbug.data.DataModel;
+	import org.finalbug.events.LoadEvent;
 	
 	import flash.display.Bitmap;
 	import flash.display.Loader;

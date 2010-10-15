@@ -8,9 +8,9 @@ package org.finalbug.ui.control
 	import flash.events.FocusEvent;
 	import flash.text.TextField;
 	
-	import org.finalbug.core.data.Status;
-	import org.finalbug.core.events.DataEvent;
-	import org.finalbug.ui.events.UIEvent;
+	import org.finalbug.data.Status;
+	import org.finalbug.events.DataEvent;
+	import org.finalbug.events.UIEvent;
 	import org.finalbug.ui.style.stylefactory.TextAreaStyleFactory;
 	
 	/**

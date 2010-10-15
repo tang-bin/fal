@@ -7,9 +7,9 @@ package org.finalbug.framework.css
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
-	import org.finalbug.core.data.DataModel;
-	import org.finalbug.core.events.LoadEvent;
-	import org.finalbug.ui.errors.StyleError;
+	import org.finalbug.data.DataModel;
+	import org.finalbug.events.LoadEvent;
+	import org.finalbug.errors.StyleError;
 	
 	/**
 	 * org.finalbug.fal.css.CSSManager

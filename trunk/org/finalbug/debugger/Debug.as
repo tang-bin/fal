@@ -4,7 +4,7 @@
 ******************************************/
 package org.finalbug.debugger
 {
-	import org.finalbug.core.utils.StringUtil;
+	import org.finalbug.utils.StringUtil;
 
 	public class Debug
 	{

@@ -10,13 +10,13 @@ package org.finalbug.ui.control
 	import flash.geom.Rectangle;
 	import flash.utils.Timer;
 	
-	import org.finalbug.core.data.Position;
-	import org.finalbug.core.data.Status;
+	import org.finalbug.data.Position;
+	import org.finalbug.data.Status;
 	import org.finalbug.core.draw.Track;
-	import org.finalbug.core.utils.MathUtil;
-	import org.finalbug.ui.errors.UIError;
-	import org.finalbug.ui.events.UIEvent;
-	import org.finalbug.ui.events.UIMouseEvent;
+	import org.finalbug.utils.MathUtil;
+	import org.finalbug.errors.UIError;
+	import org.finalbug.events.UIEvent;
+	import org.finalbug.events.UIMouseEvent;
 	import org.finalbug.ui.glazes.Flat;
 	import org.finalbug.ui.style.FillStyle;
 	import org.finalbug.ui.style.stylefactory.ScrollBarStyleFactory;
