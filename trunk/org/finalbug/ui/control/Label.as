@@ -83,6 +83,11 @@ package org.finalbug.ui.control
 			{
 				ft = textFormat;
 			}
+			createChildren();
+		}
+		
+		private function createChildren():void
+		{
 			createLabel();
 		}
 		

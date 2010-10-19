@@ -160,7 +160,7 @@ package org.finalbug.ui.control
 		
 		override protected function callAtAdded():void
 		{
-			updateView();
+			//updateView();
 		}
 		
 		override protected function updateView():void

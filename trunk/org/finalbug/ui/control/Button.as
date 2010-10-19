@@ -54,6 +54,7 @@ package org.finalbug.ui.control
 			super();
 			this.mouseChildren = false;
 			this._labelStr = text;
+			createChildren();
 		}
 		
 		/****************************************
@@ -61,20 +62,6 @@ package org.finalbug.ui.control
 		 * Whit out getter, setter and handler
 		 * include public, protected and private.
 		 ****************************************/
-		
-		override protected function callAtAdded():void
-		{
-			// create elements
-			bg = new Flat();
-			_label = new Label(this._labelStr);
-			icon = new Image();
-			this.addAll(bg, _label, icon);
-			//
-			this.registerStatus(Status.NORMAL, ButtonStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.MOUSE_OVER, ButtonStyleFactory.createOverStyle());
-			this.registerStatus(Status.MOUSE_DOWN, ButtonStyleFactory.createDownStyle());
-			this.registerStatus(Status.DISABLE, ButtonStyleFactory.createDisableStyle());
-		}
 		
 		override protected function updateView():void
 		{
@@ -99,6 +86,20 @@ package org.finalbug.ui.control
 		/****************************************
 		 * PRIVATE
 		 ****************************************/
+		
+		private function createChildren():void
+		{
+			// create elements
+			bg = new Flat();
+			_label = new Label(this._labelStr);
+			icon = new Image();
+			this.addAll(bg, _label, icon);
+			//
+			this.registerStatus(Status.NORMAL, ButtonStyleFactory.createNormalStyle(), true);
+			this.registerStatus(Status.MOUSE_OVER, ButtonStyleFactory.createOverStyle());
+			this.registerStatus(Status.MOUSE_DOWN, ButtonStyleFactory.createDownStyle());
+			this.registerStatus(Status.DISABLE, ButtonStyleFactory.createDisableStyle());
+		}
 		
 		/****************************************
 		 * HANDLER

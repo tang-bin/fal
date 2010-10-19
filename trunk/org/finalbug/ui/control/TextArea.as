@@ -92,23 +92,7 @@ package org.finalbug.ui.control
 		{
 			super(true, true);
 			this.autoResizeChildren = false;
-			//
-			txt = new TextField();
-			txt.wordWrap = !enableX;
-			txt.multiline = true;
-			this.addChild(txt);
-			txt.type = "input";
-			//
-			this.registerStatus(Status.NORMAL, TextAreaStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.ACTIVE, TextAreaStyleFactory.createActiveStyle());
-			this.registerStatus(Status.DISABLE, TextAreaStyleFactory.createDisableStyle());
-			//
-			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
-			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
-			txt.addEventListener(Event.CHANGE, changeTextHandler);
-			//
-			updateView();
-			setEvent();
+			this.createChildren();
 		}
 		
 		override protected function updateView():void
@@ -143,6 +127,26 @@ package org.finalbug.ui.control
 			scrollManual = true;
 			txt.scrollV = e.position * txt.maxScrollV;
 			scrollManual = false;
+		}
+		
+		private function createChildren():void
+		{
+			txt = new TextField();
+			txt.wordWrap = !enableX;
+			txt.multiline = true;
+			this.addChild(txt);
+			txt.type = "input";
+			//
+			this.registerStatus(Status.NORMAL, TextAreaStyleFactory.createNormalStyle(), true);
+			this.registerStatus(Status.ACTIVE, TextAreaStyleFactory.createActiveStyle());
+			this.registerStatus(Status.DISABLE, TextAreaStyleFactory.createDisableStyle());
+			//
+			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
+			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
+			txt.addEventListener(Event.CHANGE, changeTextHandler);
+			//
+			updateView();
+			setEvent();
 		}
 		
 		private function scrollTextHandler(e:Event):void

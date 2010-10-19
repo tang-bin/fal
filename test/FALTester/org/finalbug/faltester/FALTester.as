@@ -9,6 +9,7 @@ package org.finalbug.faltester
 	import org.finalbug.data.Position;
 	import org.finalbug.faltester.tester.MotionTester;
 	import org.finalbug.faltester.tester.TextAreaTester;
+	import org.finalbug.faltester.tester.UITester;
 	import org.finalbug.framework.app.App;
 	import org.finalbug.framework.app.Tooltip;
 	import org.finalbug.ui.control.Button;
@@ -20,14 +21,15 @@ package org.finalbug.faltester
 	{
 		public function FALTester()
 		{
-			super(true);
+			super(false);
 			//
 			var num:uint = 0;
 			var tester:UIObject;
 			switch(num)
 			{
-				case 0:tester = new MotionTester();break;
-				case 1:tester = new TextAreaTester();break;
+				case 0: tester = new UITester();break;
+				case 1: tester = new MotionTester();break;
+				case 2: tester = new TextAreaTester();break;
 			}
 			if(tester != null)
 			{

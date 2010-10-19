@@ -78,7 +78,7 @@ package org.finalbug.faltester.tester
 			mq.addMotion(m);
 			mq.addMotion(f);
 			//
-			mq.start(SetType.CONCURRENT);
+			//mq.start(SetType.CONCURRENT);
 			mq.addEventListener(MotionEvent.MOTION_STOP, stopHandler);
 		}
 		

@@ -115,23 +115,7 @@ package org.finalbug.ui.control
 				RadioButton.groupList[_group] = new Array();
 			}
 			RadioButton.groupList[_group].push(this);
-			//
-			outerBox = new Sprite();
-			innerBox = new Sprite();
-			txt = new Label(_label);
-			bg = new Shape();
-			//
-			Graph.drawLucidRectangle(bg);
-			innerBox.visible = false;
-			//
-			this.addAll(outerBox, innerBox, txt, bg);
-			//
-			this.registerStatus(Status.NORMAL, CheckBoxStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.MOUSE_OVER, CheckBoxStyleFactory.createOverStyle());
-			this.registerStatus(Status.MOUSE_DOWN, CheckBoxStyleFactory.createDownStyle());
-			this.registerStatus(Status.DISABLE, CheckBoxStyleFactory.createDisableStyle());
-			//
-			this.addEventListener(MouseEvent.CLICK, clickBoxHandler);
+			createChildren();
 		}
 		
 		override protected function updateView():void
@@ -164,6 +148,26 @@ package org.finalbug.ui.control
 				}
 			}
 			return null;
+		}
+		
+		private function createChildren():void
+		{
+			outerBox = new Sprite();
+			innerBox = new Sprite();
+			txt = new Label(_label);
+			bg = new Shape();
+			//
+			Graph.drawLucidRectangle(bg);
+			innerBox.visible = false;
+			//
+			this.addAll(outerBox, innerBox, txt, bg);
+			//
+			this.registerStatus(Status.NORMAL, CheckBoxStyleFactory.createNormalStyle(), true);
+			this.registerStatus(Status.MOUSE_OVER, CheckBoxStyleFactory.createOverStyle());
+			this.registerStatus(Status.MOUSE_DOWN, CheckBoxStyleFactory.createDownStyle());
+			this.registerStatus(Status.DISABLE, CheckBoxStyleFactory.createDisableStyle());
+			//
+			this.addEventListener(MouseEvent.CLICK, clickBoxHandler);
 		}
 		
 		private function setPosition():void

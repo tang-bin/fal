@@ -98,20 +98,7 @@ package org.finalbug.ui.control
 		public function TextInput()
 		{
 			super();
-			//
-			back = new Flat();
-			txt = new TextField();
-			this.addAll(back, txt);
-			//
-			setTextType();
-			//
-			this.registerStatus(Status.NORMAL, TextInputStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.ACTIVE, TextInputStyleFactory.createActiveStyle());
-			this.registerStatus(Status.DISABLE, TextInputStyleFactory.createDisableStyle());
-			//
-			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
-			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
-			txt.addEventListener(Event.CHANGE, changeTextHandler);
+			this.createChildren();
 		}
 		
 		public function focusIn():void
@@ -133,6 +120,23 @@ package org.finalbug.ui.control
 				txt.width = this.displayWidth - 2;
 				txt.height = this.displayHeight - 2;
 			}
+		}
+		
+		private function createChildren():void
+		{
+			back = new Flat();
+			txt = new TextField();
+			this.addAll(back, txt);
+			//
+			setTextType();
+			//
+			this.registerStatus(Status.NORMAL, TextInputStyleFactory.createNormalStyle(), true);
+			this.registerStatus(Status.ACTIVE, TextInputStyleFactory.createActiveStyle());
+			this.registerStatus(Status.DISABLE, TextInputStyleFactory.createDisableStyle());
+			//
+			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
+			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
+			txt.addEventListener(Event.CHANGE, changeTextHandler);
 		}
 		
 		private function setTextType():void

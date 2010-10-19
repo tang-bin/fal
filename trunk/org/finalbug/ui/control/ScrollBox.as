@@ -83,27 +83,7 @@ package org.finalbug.ui.control
 			/* save parameters */
 			enableX = xScroll;
 			enableY = yScroll;
-			//
-			/* create elements. */
-			/*
-			var bgFD:FillData = new FillData(false);
-			bgFD.borderColor = 0x990000;
-			bgFD.bodyColor = 0xFFFFFF;
-			bgFD.glowAlpha = 0;
-			*/
-			back = new Flat();
-			xBar = new ScrollBar(Position.HORIZONTAL);
-			yBar = new ScrollBar(Position.VERTICAL);
-			this.addAll(back, xBar, yBar);
-			//
-			xBar.enabled = xBar.visible = false;
-			yBar.enabled = yBar.visible = false;
-			//
-			this.registerStatus(Status.NORMAL, ScrollBoxStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.DISABLE, ScrollBoxStyleFactory.createDisableStyle());
-			//
-			xBar.addEventListener(UIEvent.SCROLL, xScrollHandler);
-			yBar.addEventListener(UIEvent.SCROLL, yScrollHandler);
+			createChildren();
 		}
 		
 		override protected function updateView():void
@@ -140,5 +120,22 @@ package org.finalbug.ui.control
 		
 		protected function xScrollHandler(e:UIEvent):void{}
 		protected function yScrollHandler(e:UIEvent):void{}
+		
+		private function createChildren():void
+		{
+			back = new Flat();
+			xBar = new ScrollBar(Position.HORIZONTAL);
+			yBar = new ScrollBar(Position.VERTICAL);
+			this.addAll(back, xBar, yBar);
+			//
+			xBar.enabled = xBar.visible = false;
+			yBar.enabled = yBar.visible = false;
+			//
+			this.registerStatus(Status.NORMAL, ScrollBoxStyleFactory.createNormalStyle(), true);
+			this.registerStatus(Status.DISABLE, ScrollBoxStyleFactory.createDisableStyle());
+			//
+			xBar.addEventListener(UIEvent.SCROLL, xScrollHandler);
+			yBar.addEventListener(UIEvent.SCROLL, yScrollHandler);
+		}
 	}
 }

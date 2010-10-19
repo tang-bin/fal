@@ -140,31 +140,7 @@ package org.finalbug.ui.control
 			_type = type;
 			this._thickness = DEFAULT_THICKNESS;
 			this._length = length;
-			//
-			if(_type == Position.HORIZONTAL)
-			{
-				createScrollBarX();
-			}
-			else
-			{
-				createScrollBarY();
-			}
-			//
-			this.registerStatus(Status.NORMAL, ScrollBarStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.DISABLE, ScrollBarStyleFactory.createDisableStyle());
-			//
-			if(_type == Position.HORIZONTAL)
-			{
-				leftBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
-				rightBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
-				slider.addEventListener(MouseEvent.MOUSE_DOWN, pressSliderHandler);
-			}
-			else
-			{
-				upBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
-				downBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
-				slider.addEventListener(MouseEvent.MOUSE_DOWN, pressSliderHandler);
-			}
+			createChildren();
 		}
 		
 		override protected function updateView():void
@@ -216,6 +192,34 @@ package org.finalbug.ui.control
 			_position = MathUtil.getNumArea(position, 0, 1);
 			_scale = MathUtil.getNumArea(scale, 0, 1);
 			this.setSlider();
+		}
+		
+		private function createChildren():void
+		{
+			if(_type == Position.HORIZONTAL)
+			{
+				createScrollBarX();
+			}
+			else
+			{
+				createScrollBarY();
+			}
+			//
+			this.registerStatus(Status.NORMAL, ScrollBarStyleFactory.createNormalStyle(), true);
+			this.registerStatus(Status.DISABLE, ScrollBarStyleFactory.createDisableStyle());
+			//
+			if(_type == Position.HORIZONTAL)
+			{
+				leftBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
+				rightBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
+				slider.addEventListener(MouseEvent.MOUSE_DOWN, pressSliderHandler);
+			}
+			else
+			{
+				upBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
+				downBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
+				slider.addEventListener(MouseEvent.MOUSE_DOWN, pressSliderHandler);
+			}
 		}
 		
 		/**

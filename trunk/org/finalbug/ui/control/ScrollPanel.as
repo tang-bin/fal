@@ -58,15 +58,7 @@ package org.finalbug.ui.control
 		public function ScrollPanel(xScroll:Boolean = true, yScroll:Boolean = true)
 		{
 			super(xScroll, yScroll);
-			//
-			masker = new Sprite();
-			masker.mouseChildren = masker.mouseChildren = false;
-			Graph.drawLucidRectangle(masker);
-			box = new Sprite();
-			box.mask = masker;
-			this.addAll(box, masker);
-			//
-			box.addEventListener(MouseEvent.MOUSE_DOWN, pressContainerHandler);
+			createChildren();
 		}
 		
 		override protected function updateView():void
@@ -95,6 +87,18 @@ package org.finalbug.ui.control
 			}
 			//
 			resetScroll();
+		}
+		
+		private function createChildren():void
+		{
+			masker = new Sprite();
+			masker.mouseChildren = masker.mouseChildren = false;
+			Graph.drawLucidRectangle(masker);
+			box = new Sprite();
+			box.mask = masker;
+			this.addAll(box, masker);
+			//
+			box.addEventListener(MouseEvent.MOUSE_DOWN, pressContainerHandler);
 		}
 		
 		private function resetScroll():void
