@@ -106,6 +106,11 @@ package org.finalbug.ui.style
 		
 		public function setValue(name:String, value:*):void
 		{
+			switch(name)
+			{
+				case "x": name = "left";break;
+				case "y": name = "top";break;
+			}
 			if(this["_" + name] != null)
 			{
 				this["_" + name] = String(value);

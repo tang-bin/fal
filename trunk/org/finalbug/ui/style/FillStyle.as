@@ -4,7 +4,12 @@
  *****************************************/
 package org.finalbug.ui.style
 {
+	import flash.display.DisplayObject;
+	import flash.display.GradientType;
+	import flash.display.Graphics;
+	import flash.filters.DropShadowFilter;
 	import flash.filters.GlowFilter;
+	import flash.geom.Matrix;
 	
 	import org.finalbug.utils.MathUtil;
 	
@@ -14,13 +19,13 @@ package org.finalbug.ui.style
 	 * @author	Tang Bin (tangbin@finalbug.org)
 	 * @since	2010.08
 	 */	
-	public class FillStyle extends org.finalbug.ui.style.Style
+	public class FillStyle extends Style
 	{
 		private var _borderSize:Number = 1;
 		private var _borderColor:Number = 0x999999;
-		private var _borderAlpha:Number = 0.1;
+		private var _borderAlpha:Number = 0;
 		private var _bgColor:Number = 0xFFFFFF;
-		private var _bgAlpha:Number = 0.1;
+		private var _bgAlpha:Number = 0;
 		
 		private var _topLeftRadius:Number = 0;
 		private var _topRightRadius:Number = 0;
@@ -36,7 +41,7 @@ package org.finalbug.ui.style
 		public var useGradient:Boolean = false;
 		
 		private var _glowColor:uint = 0;
-		private var _glowAlpha:Number = 0.5;
+		private var _glowAlpha:Number = 0;
 		private var _glowBlur:Number = 2;
 		private var _glowStrength:int = 3;
 		
@@ -342,6 +347,57 @@ package org.finalbug.ui.style
 			style.shadowBlur = this.shadowBlur;
 			//
 			return style;
+		}
+		
+		public function fill(target:DisplayObject, width:Number, height:Number):void
+		{
+			var g:Graphics = target["graphics"] as Graphics;
+			if(g != null)
+			{
+				g.clear();
+				if(width > 0 && height > 0)
+				{
+					// set border style
+					g.lineStyle(borderSize, borderColor, borderAlpha);
+					// set fill style
+					if(useGradient)
+					{
+						var fillType:String = GradientType.LINEAR;
+						var matr:Matrix = new Matrix();
+						matr.createGradientBox(width, height, Math.PI * bgRotation / 180, 0, 0);
+						g.beginGradientFill(fillType, bgColors, bgAlphas, bgRatios, matr);
+					}
+					else
+					{
+						g.beginFill(bgColor, bgAlpha);
+					}
+					//
+					g.drawRoundRectComplex(0, 0, width, height, 
+						topLeftRadius,
+						topRightRadius,
+						bottomLeftRadius,
+						bottomRightRadius);
+					g.endFill();
+					//
+					// set filter 
+					var fs:Array = new Array();
+					if(glowAlpha > 0 && glowBlur > 0)
+					{
+						var gf:GlowFilter = new GlowFilter(glowColor, glowAlpha,
+							glowBlur, glowBlur,
+							glowStrength, 3);
+						fs.push(gf);
+					}
+					if(shadowAlpha > 0 && shadowBlur > 0)
+					{
+						var sf:DropShadowFilter = new DropShadowFilter(shadowDistance, 45, 
+							shadowColor, shadowAlpha, 
+							shadowBlur, shadowBlur, shadowStrength);
+						fs.push(sf);
+					}
+					target.filters = fs.length == 0 ? null : fs;
+				}
+			}
 		}
 	}
 }

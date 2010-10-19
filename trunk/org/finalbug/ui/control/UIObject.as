@@ -7,15 +7,15 @@ package org.finalbug.ui.control
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
 	
+	import org.finalbug.core.display.Bin;
 	import org.finalbug.data.SetType;
 	import org.finalbug.data.Status;
-	import org.finalbug.core.display.Bin;
-	import org.finalbug.utils.DataUtil;
-	import org.finalbug.utils.MathUtil;
-	import org.finalbug.framework.app.Tooltip;
 	import org.finalbug.errors.UIError;
+	import org.finalbug.framework.app.Tooltip;
 	import org.finalbug.ui.style.DisplayStyle;
 	import org.finalbug.ui.style.LayoutStyle;
+	import org.finalbug.utils.DataUtil;
+	import org.finalbug.utils.MathUtil;
 	
 	/**
 	 * Class Control is the super class for all of the controls.
@@ -160,7 +160,7 @@ package org.finalbug.ui.control
 		
 		override protected function callAtAdded():void
 		{
-			//updateView();
+			updateView();
 		}
 		
 		override protected function updateView():void
@@ -197,7 +197,7 @@ package org.finalbug.ui.control
 			}
 		}
 		
-		public function setLayoutValue(name:String, value:*, allStatus:Boolean = true):void
+		public function setLayoutValue(name:String, value:*, allStatus:Boolean = true, update:Boolean = true):void
 		{
 			if(_layoutStyle != null)
 			{
@@ -217,7 +217,7 @@ package org.finalbug.ui.control
 					this.currentStyle.layoutStyle.setValue(name, value);
 				}
 			}
-			this.updateView();
+			if(update) this.updateView();
 		}
 		
 		public function registerStatus(name:String, style:DisplayStyle, enforce:Boolean = false):void

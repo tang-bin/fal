@@ -46,50 +46,7 @@ package org.finalbug.ui.glazes
 		
 		override protected function updateView():void
 		{
-			var s:FillStyle = _fillStyle;
-			this.graphics.clear();
-			if(displayWidth != 0 && displayHeight != 0)
-			{
-				// set border style
-				this.graphics.lineStyle(s.borderSize, s.borderColor, s.borderAlpha);
-				// set fill style
-				if(s.useGradient)
-				{
-					var fillType:String = GradientType.LINEAR;
-					var matr:Matrix = new Matrix();
-					matr.createGradientBox(displayWidth, displayHeight, Math.PI * s.bgRotation / 180, 0, 0);
-					this.graphics.beginGradientFill(fillType, s.bgColors, s.bgAlphas, s.bgRatios, matr);
-				}
-				else
-				{
-					this.graphics.beginFill(s.bgColor, s.bgAlpha);
-				}
-				//
-				this.graphics.drawRoundRectComplex(0, 0, displayWidth, displayHeight, 
-					s.topLeftRadius,
-					s.topRightRadius,
-					s.bottomLeftRadius,
-					s.bottomRightRadius);
-				this.graphics.endFill();
-				//
-				// set filter 
-				var fs:Array = new Array();
-				if(s.glowAlpha > 0 && s.glowBlur > 0)
-				{
-					var gf:GlowFilter = new GlowFilter(s.glowColor, s.glowAlpha,
-						s.glowBlur, s.glowBlur,
-						s.glowStrength, 3);
-					fs.push(gf);
-				}
-				if(s.shadowAlpha > 0 && s.shadowBlur > 0)
-				{
-					var sf:DropShadowFilter = new DropShadowFilter(s.shadowDistance, 45, 
-						s.shadowColor, s.shadowAlpha, 
-						s.shadowBlur, s.shadowBlur, s.shadowStrength);
-					fs.push(sf);
-				}
-				this.filters = fs.length == 0 ? null : fs;
-			}
+			_fillStyle.fill(this, displayWidth, displayHeight);
 		}
 	}
 }

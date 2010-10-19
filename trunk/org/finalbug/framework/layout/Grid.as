@@ -6,6 +6,7 @@ package org.finalbug.framework.layout
 {
 	import org.finalbug.data.SetType;
 	import org.finalbug.utils.DataUtil;
+	import org.finalbug.utils.MathUtil;
 
 	/**
 	 * @author Tang Bin (tangbin@finalbug.org)
@@ -13,22 +14,9 @@ package org.finalbug.framework.layout
 	 */	
 	public class Grid extends Container
 	{
-		private var _autoSize:Boolean = false;
 		private var cells:Array = new Array();
 		private var _rows:Array = new Array();
 		private var _columns:Array = new Array(); 
-		
-		public function get autoSize():Boolean
-		{
-			return _autoSize;
-		}
-		public function set autoSize(value:Boolean):void
-		{
-			if(_autoSize != value)
-			{
-				_autoSize = value;
-			}
-		}
 		
 		public function get rows():Array
 		{
@@ -55,7 +43,7 @@ package org.finalbug.framework.layout
 		
 		public function getCell(row:uint, column:uint):Container
 		{
-			return null;
+			return cells[row][column];
 		}
 		
 		public function rebuild():void
@@ -103,6 +91,7 @@ package org.finalbug.framework.layout
 				for(var j:uint = 0 ; j < rowNum ; j++)
 				{
 					var checkCell:GridCell = cells[i][j] as GridCell;
+					if(checkCell == null) continue;
 					if(checkCell.updated)
 					{
 						checkCell.updated = false;
@@ -114,16 +103,17 @@ package org.finalbug.framework.layout
 					}
 				}
 			}
+			this.measure();
 		}
 		
 		private function getCellWidth(index:uint):Number
 		{
-			return 0;
+			return Number(columns[index]);
 		}
 		
 		private function getCellHeight(index:uint):Number
 		{
-			return 0;
+			return Number(rows[index]);
 		}
 	}
 }

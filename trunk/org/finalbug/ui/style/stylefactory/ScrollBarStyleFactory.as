@@ -22,6 +22,7 @@ package org.finalbug.ui.style.stylefactory
 			//
 			ds.fillStyle.bgAlpha = 0.4;
 			ds.fillStyle.bgColor = 0xCCCCCC;
+			ds.fillStyle.glowAlpha = 0.5;
 			//
 			ds.textStyle.format.color = 0xEEEEEE;
 			return ds;

@@ -7,6 +7,7 @@
 package org.finalbug.faltester
 {
 	import org.finalbug.data.Position;
+	import org.finalbug.faltester.tester.GridTester;
 	import org.finalbug.faltester.tester.MotionTester;
 	import org.finalbug.faltester.tester.TextAreaTester;
 	import org.finalbug.faltester.tester.UITester;
@@ -30,6 +31,7 @@ package org.finalbug.faltester
 				case 0: tester = new UITester();break;
 				case 1: tester = new MotionTester();break;
 				case 2: tester = new TextAreaTester();break;
+				case 3: tester = new GridTester();break;
 			}
 			if(tester != null)
 			{

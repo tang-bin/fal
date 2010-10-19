@@ -22,6 +22,7 @@ package org.finalbug.ui.style.stylefactory
 			ds.fillStyle.bgRatios = [0, 0xFF];
 			ds.fillStyle.bgRotation = 90;
 			ds.fillStyle.radius = 3;
+			ds.fillStyle.glowAlpha = 0.3;
 			ds.textStyle.format.color = 0xEEEEEE;
 			return ds;
 		}

@@ -9,10 +9,12 @@ package org.finalbug.framework.layout
 	import flashx.textLayout.formats.BaselineOffset;
 	
 	import org.finalbug.data.Position;
-	import org.finalbug.utils.DataUtil;
-	import org.finalbug.ui.control.UIObject;
 	import org.finalbug.errors.UIError;
+	import org.finalbug.ui.control.UIObject;
+	import org.finalbug.ui.glazes.Flat;
+	import org.finalbug.ui.style.DisplayStyle;
 	import org.finalbug.ui.style.LayoutStyle;
+	import org.finalbug.utils.DataUtil;
 	
 	/**
 	 * @author Tang Bin (tangbin@finalbug.org)
@@ -20,10 +22,50 @@ package org.finalbug.framework.layout
 	 */	
 	public class Container extends UIObject
 	{
+		public function get backgroundColor():uint
+		{
+			return this.currentStyle.fillStyle.bgColor;
+		}
+		public function set backgroundColor(value:uint):void
+		{
+			this.currentStyle.fillStyle.bgColor = value;
+			this.updateView();
+		}
+		
+		public function get backgroundAlpha():Number
+		{
+			return this.currentStyle.fillStyle.bgAlpha;
+		}
+		public function set backgroundAlpha(value:Number):void
+		{
+			this.currentStyle.fillStyle.bgAlpha = value;
+			this.updateView();
+		}
+		
+		public function get borderColor():uint
+		{
+			return this.currentStyle.fillStyle.borderColor;
+		}
+		public function set borderColor(value:uint):void
+		{
+			this.currentStyle.fillStyle.borderColor = value;
+			this.updateView();
+		}
+		
+		public function get borderAlpha():Number
+		{
+			return this.currentStyle.fillStyle.borderAlpha;
+		}
+		public function set borderAlpha(value:Number):void
+		{
+			this.currentStyle.fillStyle.borderAlpha = value;
+			this.updateView();
+		}
+		
 		public function Container()
 		{
 			super();
-			this.setLayout(new LayoutStyle());
+			this.registerStatus("normal", new DisplayStyle(), true);
 			this.setLayoutValue("width", "100%");
 			this.setLayoutValue("height", "100%");
 		}
@@ -124,6 +166,15 @@ package org.finalbug.framework.layout
 			if(updateViewAfterMeasure)
 			{
 				this.updateView();
+			}
+		}
+		
+		override protected function updateView():void
+		{
+			super.updateView();
+			if(this.currentStyle != null && this.currentStyle.fillStyle != null)
+			{
+				this.currentStyle.fillStyle.fill(this, this.displayWidth, this.displayHeight);
 			}
 		}
 	}

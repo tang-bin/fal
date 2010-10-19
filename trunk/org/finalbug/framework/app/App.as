@@ -63,7 +63,7 @@ package org.finalbug.framework.app
 			stage.align = "TL";
 			if(this.stage == null || this.parent != stage)
 			{
-				throw new Error(AppError.APP_NOT_ROOT);
+				throw new AppError(AppError.APP_NOT_ROOT);
 			}
 			//
 			bgLayer = new Flat(this.width, this.height);
@@ -71,6 +71,8 @@ package org.finalbug.framework.app
 			stage.setChildIndex(bgLayer, 0);
 			//
 			container = new Container();
+			container.backgroundColor = 0xEDEDED;
+			container.backgroundAlpha = 1;
 			stage.addChild(container);
 			//
 			alertLayer = new Bin();
