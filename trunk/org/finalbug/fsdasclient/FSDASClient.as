@@ -51,6 +51,7 @@ package org.finalbug.fsdasclient
 		
 		public function FSDASClient()
 		{
+			
 		}
 		
 		//*********************************************************

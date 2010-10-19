@@ -5,7 +5,8 @@ package org.finalbug.events
 	/**
 	 * Class FOSUIEvent defined events which will be dispatched by FOS UI Components.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)n	 */	
+	 * @author	Tang Bin (tangbin@finalbug.org)
+	 */	
 	public class UIMouseEvent extends Event
 	{
 		public static const FE_CLICK:String = "feClick";
