@@ -1,14 +1,14 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.utils
 {
 	/**
 	 * This class offers some useful methods to deal with string.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 */	
 	public class StringUtil
 	{

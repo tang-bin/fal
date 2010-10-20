@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.framework.app
 {
@@ -15,15 +15,21 @@ package org.finalbug.framework.app
 	import org.finalbug.ui.glazes.Flat;
 	
 	/**
-	 * org.finalbug.fal.app.App
+	 * app.App
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @author Tang Bin
+	 * @since 2010.08
 	 */	
 	public class App extends Bin
 	{
+		/**
+		 * Use debug in Application or not.
+		 */		
 		public static var DEBUG:Boolean = false;
 		
+		/**
+		 * The width of application. Equal to stageWidth, Read-only.
+		 */		
 		override public function get width() : Number
 		{
 			return Math.max(stage.stageWidth, minWidth);
@@ -32,6 +38,9 @@ package org.finalbug.framework.app
 		{
 		}
 		
+		/**
+		 * The height of application. Equal to stageHeight, Read-only.
+		 */		
 		override public function set height(value:Number) : void
 		{
 		}
@@ -40,6 +49,9 @@ package org.finalbug.framework.app
 			return Math.max(stage.stageHeight, minHeight);
 		}
 		
+		/**
+		 * Current running application.
+		 */		
 		public static function get application():App
 		{
 			return App._app;

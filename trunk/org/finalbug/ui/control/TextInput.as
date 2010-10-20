@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.ui.control
 {
@@ -16,8 +16,8 @@ package org.finalbug.ui.control
 	/**
 	 * text input component
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 */
 	public class TextInput extends UIObject
 	{

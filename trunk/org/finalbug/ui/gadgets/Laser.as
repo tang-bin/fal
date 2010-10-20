@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.ui.gadgets
 {
@@ -14,10 +14,10 @@ package org.finalbug.ui.gadgets
 	import flash.utils.Timer;
 	
 	/**
-	 * org.finalbug.fal.gadgets.Laser
+	 * gadgets.Laser
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @author Tang Bin
+	 * @since 2010.08
 	 */	
 	public class Laser extends Sprite
 	{

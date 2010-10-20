@@ -1,15 +1,15 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.ui.style
 {
 	
 	/**
-	 * org.finalbug.fal.css.styles.LayoutStyle
+	 * css.styles.LayoutStyle
 	 *  
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @author Tang Bin
+	 * @since 2010.08
 	 */	
 	public class LayoutStyle extends Style
 	{
@@ -28,6 +28,9 @@ package org.finalbug.ui.style
 			super();
 		}
 		
+		/**
+		 * The width value count by current layout. 
+		 */		
 		public function get width():Number
 		{
 			var parentWidth:Number = (owner != null && owner.parent != null) ? owner.parent.width : 0;
@@ -104,6 +107,12 @@ package org.finalbug.ui.style
 			}
 		}
 		
+		/**
+		 * Set layout value.
+		 * 
+		 * @param name Name of the layout value.
+		 * @param value
+		 */		
 		public function setValue(name:String, value:*):void
 		{
 			switch(name)

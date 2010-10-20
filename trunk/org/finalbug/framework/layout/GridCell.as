@@ -1,9 +1,15 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  ******************************************/
 package org.finalbug.framework.layout
 {
+	/**
+	 * GridCell is the cell used in class Grid.
+	 *  
+	 * @author Tang Bin
+	 * @since 2010.10
+	 */	
 	public class GridCell extends Container
 	{
 		public var xIndex:uint = 0;

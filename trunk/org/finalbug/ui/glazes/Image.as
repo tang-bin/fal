@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.ui.glazes
 {
@@ -15,8 +15,8 @@ package org.finalbug.ui.glazes
 	import flash.net.URLRequest;
 	
 	/**
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 */
 	public class Image extends Glaze
 	{

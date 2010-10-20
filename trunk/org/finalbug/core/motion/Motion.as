@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.core.motion
 {
@@ -14,8 +14,8 @@ package org.finalbug.core.motion
 	/**
 	 * Class Motion is the superclass of all motion classes such as move and fade.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 */	
 	public class Motion extends DataModel
 	{

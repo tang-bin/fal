@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.ui.style.stylefactory
 {
@@ -8,8 +8,8 @@ package org.finalbug.ui.style.stylefactory
 	
 
 	/**
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.09
+	 * @author Tang Bin
+	 * @since 2010.09
 	 */	
 	public class ScrollBoxStyleFactory
 	{

@@ -1,15 +1,15 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  ******************************************/
 package org.finalbug.errors
 {
 	
 	/******************************************
-	 * org.finalbug.fal.errors.StyleError
+	 * errors.StyleError
 	 *
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @author Tang Bin
+	 * @since 2010.08
 	 *****************************************/
 	public class StyleError extends Error
 	{
@@ -24,13 +24,13 @@ package org.finalbug.errors
 		
 		/****************************************
 		 *
-		 * GETTER & SETTER
+		 * GETTER and SETTER
 		 *
 		 ****************************************/
 		
 		/****************************************
 		 *
-		 * org.finalbug.fal.errors.StyleError constructor.
+		 * errors.StyleError constructor.
 		 *
 		 ****************************************/
 		public function StyleError(message:*="", id:*=0)

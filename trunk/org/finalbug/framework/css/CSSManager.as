@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.framework.css
 {
@@ -12,10 +12,10 @@ package org.finalbug.framework.css
 	import org.finalbug.errors.StyleError;
 	
 	/**
-	 * org.finalbug.fal.css.CSSManager
+	 * css.CSSManager
 	 *  
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @author Tang Bin
+	 * @since 2010.08
 	 */	
 	public class CSSManager extends DataModel
 	{
@@ -39,7 +39,7 @@ package org.finalbug.framework.css
 		private var checked:Boolean = false;
 		
 		/****************************************
-		 * GETTER & SETTER
+		 * GETTER and SETTER
 		 ****************************************/
 		
 		public static function get instance():CSSManager
@@ -54,7 +54,7 @@ package org.finalbug.framework.css
 		}
 		
 		/****************************************
-		 * org.finalbug.fal.css.CSSCore constructor.
+		 * css.CSSCore constructor.
 		 ****************************************/
 		public function CSSManager()
 		{

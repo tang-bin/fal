@@ -1,11 +1,11 @@
 ﻿/******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.data
 {
 	/**
-	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @author Tang Bin
 	 */
 	public class Status
 	{

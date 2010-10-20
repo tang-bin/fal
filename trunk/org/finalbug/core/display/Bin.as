@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.core.display
 {
@@ -9,24 +9,25 @@ package org.finalbug.core.display
 	import flash.events.Event;
 	import flash.geom.Point;
 	
+	import org.finalbug.core.motion.MoveMotion;
+	import org.finalbug.core.motion.SizeMotion;
 	import org.finalbug.data.Position;
 	import org.finalbug.events.DisplayEvent;
 	import org.finalbug.events.MotionEvent;
-	import org.finalbug.core.motion.MoveMotion;
-	import org.finalbug.core.motion.SizeMotion;
 	import org.finalbug.utils.MathUtil;
 	
 	/**
-	 * org.finalbug.fal.display.Bin
+	 * Bin is the basic class for all other display object used in fb-aslib.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @author Tang Bin
+	 * @since 2010.08
 	 */	
 	public class Bin extends Sprite
 	{
-		/****************************************
-		 * DEFINE
-		 ****************************************/
+		//***************************************
+		// DEFINE
+		//***************************************/
+		
 		private const SMOOTH_DELAY:Number = 30;
 		
 		protected var displayWidth:Number = 0;
@@ -43,12 +44,13 @@ package org.finalbug.core.display
 		private var _controlPoint:Point = new Point(0, 0);
 		private var _controlPointType:String = "";
 		
-		/****************************************
-		 * 
-		 * GETTER & SETTER
-		 * 
-		 ****************************************/
+		//***************************************
+		// GETTER and SETTER
+		//***************************************
 		
+		/**
+		 * @default 0
+		 */		
 		override public function get width():Number
 		{
 			return displayWidth;
@@ -59,6 +61,9 @@ package org.finalbug.core.display
 			this.updateView();
 		}
 		
+		/**
+		 * @default 0
+		 */		
 		override public function get height():Number
 		{
 			return displayHeight;
@@ -154,11 +159,9 @@ package org.finalbug.core.display
 			}
 		}
 		
-		/****************************************
-		 * 
-		 * org.finalbug.fal.display.Bin Constructor
-		 * 
-		 ****************************************/
+		//***************************************
+		// Constructor
+		//***************************************/
 		
 		public function Bin()
 		{
@@ -166,13 +169,13 @@ package org.finalbug.core.display
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
 		
-		/****************************************
-		 * OVERRIDE
-		 ****************************************/
+		//***************************************
+		// OVERRIDE
+		//***************************************/
 		
-		/****************************************
-		 * PUBLIC
-		 ****************************************/
+		//***************************************
+		// PUBLIC
+		//***************************************/
 		
 		/**
 		 * Change Bin's size to target width and height immediately.
@@ -317,18 +320,16 @@ package org.finalbug.core.display
 			}
 		}
 		
-		/****************************************
-		 * 
-		 * PROTECTED
-		 * 
-		 ****************************************/
+		//***************************************
+		// PROTECTED
+		//***************************************/
 		protected function updateView():void{}
 		
 		protected function callAtAdded():void{}
 		
-		/****************************************
-		 * PRIVATE
-		 ****************************************/
+		//***************************************
+		// PRIVATE
+		//***************************************/
 		
 		private function accountControlPoint():void
 		{
@@ -376,11 +377,10 @@ package org.finalbug.core.display
 			}
 		}
 		
-		/****************************************
-		 * 
-		 * HANDLER
-		 * 
-		 ****************************************/
+		//***************************************
+		// HANDLER
+		//***************************************/
+		
 		private function stopZoomHandler(e:MotionEvent):void
 		{
 			this.dispatchEvent(new DisplayEvent(DisplayEvent.END_ZOOM));

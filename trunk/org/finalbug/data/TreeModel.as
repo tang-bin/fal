@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  ******************************************/
 package org.finalbug.data
 {
@@ -9,10 +9,10 @@ package org.finalbug.data
 	import flash.utils.Dictionary;
 	
 	/******************************************
-	 * org.finalbug.fal.data.TreeModel
+	 * data.TreeModel
 	 *
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.09
+	 * @author Tang Bin
+	 * @since 2010.09
 	 *****************************************/
 	public class TreeModel extends DataModel
 	{
@@ -27,7 +27,7 @@ package org.finalbug.data
 		
 		/****************************************
 		 *
-		 * GETTER & SETTER
+		 * GETTER and SETTER
 		 *
 		 ****************************************/
 		
@@ -42,7 +42,7 @@ package org.finalbug.data
 		
 		/****************************************
 		 *
-		 * org.finalbug.fal.data.TreeModel constructor.
+		 * data.TreeModel constructor.
 		 *
 		 ****************************************/
 		public function TreeModel()

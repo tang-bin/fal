@@ -7,7 +7,7 @@ package org.finalbug.events
 	/**
 	 * Event class for Class Move.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @author Tang Bin
 	 */	
 	public class MotionEvent extends Event
 	{

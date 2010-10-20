@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.ui.control
 {
@@ -15,7 +15,7 @@ package org.finalbug.ui.control
 	 * This class create a panel with scrollbar x and y.
 	 * 
 	 * @author	Finalbug
-	 * @since	old version
+	 * @since old version
 	 */
 	public class ScrollPanel extends ScrollBox
 	{
@@ -127,8 +127,9 @@ package org.finalbug.ui.control
 			}
 		}
 		
-		////////////////////////////////////////////////////////////////////////////////////
-		// event handlers.
+		//***************************************
+		// HANDLER
+		//***************************************
 		
 		/**
 		 * invoked when change x coordinate scroll.

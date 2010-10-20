@@ -5,8 +5,8 @@ package org.finalbug.events
 	/**
 	 * Event class for net operations. mostly are load files and connect to server.
 	 * 
-	 * @author Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 */
 	public class LoadEvent extends Event
 	{

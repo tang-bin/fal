@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.debugger
 {
@@ -16,10 +16,10 @@ package org.finalbug.debugger
 	import org.finalbug.ui.control.TextArea;
 	
 	/**
-	 * org.finalbug.fal.debugger.Debugger
+	 * debugger.Debugger
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @author Tang Bin
+	 * @since 2010.08
 	 */	
 	public class Debugger
 	{
@@ -47,7 +47,7 @@ package org.finalbug.debugger
 		
 		/****************************************
 		 * 
-		 * GETTER & SETTER
+		 * GETTER and SETTER
 		 * 
 		 ****************************************/
 		

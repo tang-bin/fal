@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.ui.control
 {
@@ -20,16 +20,14 @@ package org.finalbug.ui.control
 	/**
 	 * Class Control is the super class for all of the controls.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @author Tang Bin
+	 * @since 2010.08
 	 */	
 	public class UIObject extends Bin
 	{
-		/****************************************
-		 * 
-		 * DEFINE
-		 * 
-		 ****************************************/
+		//***************************************
+		// DEFINE
+		//***************************************
 		
 		public var tooltip:String = "";
 		public var autoResizeChildren:Boolean = true;
@@ -40,9 +38,9 @@ package org.finalbug.ui.control
 		private var _enabled:Boolean = true;
 		private var _layoutStyle:LayoutStyle;
 		
-		/****************************************
-		 * GETTER & SETTER
-		 ****************************************/
+		//***************************************
+		// GETTER and SETTER
+		//***************************************
 		
 		public function get statusName():String
 		{
@@ -138,11 +136,9 @@ package org.finalbug.ui.control
 			}
 		}
 		
-		/****************************************
-		 * 
-		 * constructor.
-		 * 
-		 ****************************************/
+		//***************************************
+		// constructor.
+		//***************************************
 		public function UIObject()
 		{
 			super();
@@ -152,11 +148,11 @@ package org.finalbug.ui.control
 			this.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 		}
 		
-		/****************************************
-		 * OVERRIDE METHODS
-		 * Whit out getter, setter and handler
-		 * include public, protected and private.
-		 ****************************************/
+		//***************************************
+		// OVERRIDE METHODS
+		// Whit out getter, setter and handler
+		// include public, protected and private.
+		//***************************************
 		
 		override protected function callAtAdded():void
 		{
@@ -177,9 +173,9 @@ package org.finalbug.ui.control
 			}
 		}
 		
-		/****************************************
-		 * PUBLIC
-		 ****************************************/
+		//***************************************
+		// PUBLIC
+		//***************************************
 		
 		public function refresh():void
 		{
@@ -310,22 +306,23 @@ package org.finalbug.ui.control
 			}
 		}
 		
-		/****************************************
-		 * PROTECTED
-		 ****************************************/
+		//***************************************
+		// PROTECTED
+		//***************************************
 		
 		protected function get currentStyle():DisplayStyle
 		{
 			return statusList[this.currentStatus];
 		}
 		
-		/****************************************
-		 * PRIVATE
-		 ****************************************/
+		//***************************************
+		// PRIVATE
+		//***************************************
 		
-		/****************************************
-		 * HANDLER
-		 ****************************************/
+		//***************************************
+		// HANDLER
+		//***************************************
+		
 		protected function rollOverHandler(e:MouseEvent):void
 		{
 			this.statusName = Status.MOUSE_OVER;

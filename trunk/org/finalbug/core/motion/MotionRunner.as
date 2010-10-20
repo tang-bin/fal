@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.core.motion
 {
@@ -15,8 +15,8 @@ package org.finalbug.core.motion
 	 * during runtime, MotionRunner will create only one timer to do the motion effect.
 	 * each motion will be register here to take effect. 
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 */
 	public class MotionRunner
 	{

@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  ******************************************/
 package org.finalbug.core.net
 {
@@ -15,8 +15,8 @@ package org.finalbug.core.net
 	/**
 	 * This class is used to load a image file.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 */	
 	public class BitmapLoader extends DataModel
 	{
@@ -83,7 +83,7 @@ package org.finalbug.core.net
 		 * 
 		 * @param URL
 		 * 
-		 * @throw org.finalbug.fal.errors.Errors Throw URLisEmpty error when URL parameter is "".
+		 * @throw errors.Errors Throw URLisEmpty error when URL parameter is "".
 		 */		
 		public function changeBitmap(URL:String):void
 		{

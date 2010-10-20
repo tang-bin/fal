@@ -5,7 +5,7 @@ package org.finalbug.events
 	/**
 	 * Class FOSUIEvent defined events which will be dispatched by FOS UI Components.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @author Tang Bin
 	 */	
 	public class UIMouseEvent extends Event
 	{

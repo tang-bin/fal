@@ -1,15 +1,15 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  ******************************************/
 package org.finalbug.data
 {
 	
 	/******************************************
-	 * org.finalbug.fal.data.MapData
+	 * data.MapData
 	 *
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.09
+	 * @author Tang Bin
+	 * @since 2010.09
 	 *****************************************/
 	public class GraphModel extends DataModel
 	{
@@ -21,7 +21,7 @@ package org.finalbug.data
 		
 		/****************************************
 		 *
-		 * GETTER & SETTER
+		 * GETTER and SETTER
 		 *
 		 ****************************************/
 		

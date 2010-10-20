@@ -1,14 +1,14 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.errors
 {
 	/****************************
-	 * org.finalbug.fal.errors.FALError
+	 * errors.FALError
 	 *
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @author Tang Bin
+	 * @since 2010.08
 	 ****************************/
 	public class AppError extends Error
 	{

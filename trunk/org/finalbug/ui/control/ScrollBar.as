@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.ui.control
 {
@@ -24,8 +24,8 @@ package org.finalbug.ui.control
 	/**
 	 * ScrollBar
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 */
 	public class ScrollBar extends UIObject
 	{

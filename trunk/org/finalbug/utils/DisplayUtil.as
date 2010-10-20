@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.utils
 {
@@ -11,8 +11,8 @@ package org.finalbug.utils
 	/**
 	 * This class offers some useful method to operate display object.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 */	
 	public class DisplayUtil
 	{

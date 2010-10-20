@@ -1,6 +1,6 @@
 /******************************************
 * [fb-aslib] Finalbug ActionScript Library
-* http://www.finalbug.org/
+* http://www.finalbug.org
 ******************************************/
 package org.finalbug.fsdasclient
 {
@@ -21,7 +21,7 @@ package org.finalbug.fsdasclient
 	/**
 	 * FSD(Finalbug Shared Data) ActionScript Client
 	 * 
-	 * @author Tang Bin (tangbin@finalbug.org)
+	 * @author Tang Bin
 	 * @since 2010.10
 	 */	
 	public class FSDASClient extends DataModel
@@ -39,7 +39,7 @@ package org.finalbug.fsdasclient
 		
 		//*********************************************************
 		//
-		// GETTER & SETTER
+		// GETTER and SETTER
 		//
 		//*********************************************************
 		

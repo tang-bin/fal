@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.ui.control
 {
@@ -18,8 +18,8 @@ package org.finalbug.ui.control
 	/**
 	 * CheckBox component.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 */
 	public class CheckBox extends UIObject
 	{
@@ -37,7 +37,7 @@ package org.finalbug.ui.control
 		private var back:Shape;
 		
 		/**
-		 * if is checked of not.
+		 * If is checked of not.
 		 */
 		public function get selected():Boolean
 		{
@@ -53,7 +53,7 @@ package org.finalbug.ui.control
 		}
 		
 		/**
-		 * label text beside box.
+		 * Label text beside box.
 		 */	
 		public function get label():String
 		{
@@ -174,8 +174,9 @@ package org.finalbug.ui.control
 			this.addEventListener(MouseEvent.CLICK, clickHandler);
 		}
 		
-		///////////////////////////////////////////////////////////////////////////////
-		// event handler
+		//***************************************
+		// HANDLER
+		//***************************************
 		
 		/**
 		 * invoked when click checkbox.

@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library 
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.data
 {
@@ -14,8 +14,8 @@ package org.finalbug.data
 	import org.finalbug.events.DataEvent;
 	
 	/**
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 */	
 	public class DataModel extends Proxy
 	{
@@ -27,7 +27,7 @@ package org.finalbug.data
 		private var data:Object = new Object();
 		
 		/****************************************
-		 * GETTER & SETTER
+		 * GETTER and SETTER
 		 ****************************************/
 		
 		public function get byteArray():ByteArray
@@ -40,7 +40,7 @@ package org.finalbug.data
 		}
 		
 		/****************************************
-		 * org.finalbug.fal.data.DataModel constructor.
+		 * data.DataModel constructor.
 		 ****************************************/
 		public function DataModel()
 		{

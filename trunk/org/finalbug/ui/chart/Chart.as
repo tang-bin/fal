@@ -1,16 +1,16 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.ui.chart
 {
 	import flash.display.Sprite;
 	
 	/**
-	 * org.finalbug.fal.chart.Chart
+	 * chart.Chart
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @author Tang Bin
+	 * @since 2010.08
 	 */	
 	public class Chart extends Sprite
 	{

@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  ******************************************/
 package org.finalbug.framework.layout
 {
@@ -17,7 +17,9 @@ package org.finalbug.framework.layout
 	import org.finalbug.utils.DataUtil;
 	
 	/**
-	 * @author Tang Bin (tangbin@finalbug.org)
+	 * Class Container is the basic class of the display object used to layout.
+	 * 
+	 * @author Tang Bin
 	 * @since 2010.10
 	 */	
 	public class Container extends UIObject

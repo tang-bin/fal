@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.ui.control
 {
@@ -12,14 +12,14 @@ package org.finalbug.ui.control
 	/******************************************
 	 * org.finalbug.ui.control.Button
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 *****************************************/
 	public class Button extends UIObject
 	{
-		/****************************************
-		 * DEFINE
-		 ****************************************/
+		//***************************************
+		// DEFINE
+		//***************************************
 		
 		private var _labelStr:String = "Button";
 		
@@ -27,9 +27,9 @@ package org.finalbug.ui.control
 		private var bg:Flat;
 		private var icon:Image;
 		
-		/****************************************
-		 * GETTER & SETTER
-		 ****************************************/
+		//***************************************
+		// GETTER and SETTER
+		//***************************************
 		
 		public function get label():String
 		{
@@ -44,11 +44,10 @@ package org.finalbug.ui.control
 			}
 		}
 		
-		/****************************************
-		 * 
-		 * org.finalbug.fal.controls.Button constructor.
-		 * 
-		 ****************************************/
+		//***************************************
+		// Constructor.
+		//***************************************
+		
 		public function Button(text:String = "Button")
 		{
 			super();
@@ -57,11 +56,11 @@ package org.finalbug.ui.control
 			createChildren();
 		}
 		
-		/****************************************
-		 * OVERRIDE METHODS
-		 * Whit out getter, setter and handler
-		 * include public, protected and private.
-		 ****************************************/
+		//***************************************
+		// OVERRIDE METHODS
+		// Whit out getter, setter and handler
+		// include public, protected and private.
+		//***************************************
 		
 		override protected function updateView():void
 		{
@@ -75,17 +74,17 @@ package org.finalbug.ui.control
 			}
 		}
 		
-		/****************************************
-		 * PUBLIC
-		 ****************************************/
+		//***************************************
+		// PUBLIC
+		//***************************************
 		
-		/****************************************
-		 * PROTECTED
-		 ****************************************/
+		//***************************************
+		// PROTECTED
+		//***************************************
 		
-		/****************************************
-		 * PRIVATE
-		 ****************************************/
+		//***************************************
+		// PRIVATE
+		//***************************************
 		
 		private function createChildren():void
 		{
@@ -101,8 +100,8 @@ package org.finalbug.ui.control
 			this.registerStatus(Status.DISABLE, ButtonStyleFactory.createDisableStyle());
 		}
 		
-		/****************************************
-		 * HANDLER
-		 ****************************************/
+		//***************************************
+		// HANDLER
+		//***************************************
 	}
 }

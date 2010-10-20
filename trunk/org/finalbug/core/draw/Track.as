@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.core.draw
 {
@@ -8,11 +8,12 @@ package org.finalbug.core.draw
 	import flash.geom.Point;
 	
 	/**
-	 * This class offers some methods to draw a track.
-	 * Draw track means no fill and line style will be set here, there are "lineTo" and "moveTo" only.
+	 * Class Track offers the methods to draw a track. 
+	 * Draw track means no fill and line style will be set here, 
+	 * there are "lineTo" and "moveTo" only.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 */	
 	public class Track
 	{

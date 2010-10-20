@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.framework.app
 {
@@ -16,10 +16,10 @@ package org.finalbug.framework.app
 	import org.finalbug.errors.UIError;
 	
 	/**
-	 * org.finalbug.fal.app.Alert
+	 * app.Alert
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 */
 	public class Alert
 	{

@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.ui.style
 {
@@ -14,10 +14,10 @@ package org.finalbug.ui.style
 	import org.finalbug.utils.MathUtil;
 	
 	/**
-	 * org.finalbug.fal.css.styles.FillStyle
+	 * css.styles.FillStyle
 	 *  
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @author Tang Bin
+	 * @since 2010.08
 	 */	
 	public class FillStyle extends Style
 	{
@@ -349,6 +349,13 @@ package org.finalbug.ui.style
 			return style;
 		}
 		
+		/**
+		 * Fill a display object with current style.
+		 * 
+		 * @param target The display object which will be filled in.
+		 * @param width Fill width
+		 * @param height Fill Height
+		 */		
 		public function fill(target:DisplayObject, width:Number, height:Number):void
 		{
 			var g:Graphics = target["graphics"] as Graphics;

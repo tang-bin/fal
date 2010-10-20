@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.ui.style
 {
@@ -9,17 +9,15 @@ package org.finalbug.ui.style
 	import org.finalbug.data.DataModel;
 	
 	/**
-	 * org.finalbug.fal.style.DisplayStyle
+	 * style.DisplayStyle
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.09
+	 * @author Tang Bin
+	 * @since 2010.09
 	 */	
 	public class DisplayStyle extends DataModel
 	{
 		//***************************************
-		//
 		// DEFINE
-		// 
 		//***************************************/
 		
 		private var _layoutStyle:LayoutStyle = new LayoutStyle();
@@ -35,9 +33,7 @@ package org.finalbug.ui.style
 		private var _owner:DisplayObject;
 		
 		//***************************************
-		// 
-		// GETTER & SETTER
-		// 
+		// GETTER and SETTER
 		//***************************************/
 		
 		public function get layoutStyle():LayoutStyle
@@ -90,9 +86,7 @@ package org.finalbug.ui.style
 		}
 		
 		//***************************************
-		// 
-		// constructor.
-		// 
+		// Constructor.
 		//***************************************/
 		public function DisplayStyle()
 		{
@@ -100,18 +94,13 @@ package org.finalbug.ui.style
 		}
 		
 		//***************************************
-		// 
 		// OVERRIDE METHODS
-		// 
 		// Whit out getter, setter and handler
 		// include public, protected and private.
-		// 
 		//***************************************/
 		
 		//***************************************
-		// 
 		// PUBLIC
-		// 
 		//***************************************/
 		
 		public function clone():DisplayStyle
@@ -124,21 +113,15 @@ package org.finalbug.ui.style
 		}
 		
 		//***************************************
-		// 
 		// PROTECTED
-		// 
 		//***************************************/
 		
 		//***************************************
-		// 
 		// PRIVATE
-		// 
 		//***************************************/
 		
 		//***************************************
-		// 
 		// HANDLER
-		// 
 		//***************************************/
 	}
 }

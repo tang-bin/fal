@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.ui.style
 {
@@ -9,10 +9,10 @@ package org.finalbug.ui.style
 	import org.finalbug.data.DataModel;
 	
 	/**
-	 * org.finalbug.fal.css.styles.Style
+	 * css.styles.Style
 	 *  
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @author Tang Bin
+	 * @since 2010.08
 	 */	
 	public class Style extends DataModel
 	{

@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.framework.css
 {
@@ -13,10 +13,10 @@ package org.finalbug.framework.css
 	import org.finalbug.utils.StringUtil;
 	
 	/**
-	 * org.finalbug.fal.css.CSSFile
+	 * css.CSSFile
 	 *  
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @author Tang Bin
+	 * @since 2010.08
 	 */	
 	public class CSSFile extends DataModel
 	{
@@ -34,7 +34,7 @@ package org.finalbug.framework.css
 		
 		//***************************************
 		// 
-		// GETTER & SETTER
+		// GETTER and SETTER
 		// 
 		//***************************************/
 		
@@ -55,7 +55,7 @@ package org.finalbug.framework.css
 		
 		//***************************************
 		// 
-		// org.finalbug.fal.css.CSSFile constructor.
+		// css.CSSFile constructor.
 		// 
 		//***************************************/
 		public function CSSFile(url:String = "")

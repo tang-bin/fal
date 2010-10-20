@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  ******************************************/
 package org.finalbug.framework.layout
 {
@@ -9,7 +9,7 @@ package org.finalbug.framework.layout
 	import org.finalbug.utils.MathUtil;
 
 	/**
-	 * @author Tang Bin (tangbin@finalbug.org)
+	 * @author Tang Bin
 	 * @since 2010.10
 	 */	
 	public class Grid extends Container

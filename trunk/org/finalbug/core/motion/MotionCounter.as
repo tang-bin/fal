@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.core.motion
 {
@@ -27,9 +27,9 @@ package org.finalbug.core.motion
 		/**
 		 * move speed type. can be speed up, speed down and even pace.
 		 * 
-		 * @see org.finalbug.fal.motion.Moting.SPEED_UP
-		 * @see org.finalbug.fal.motion.Moting.SPEED_DOWN
-		 * @see org.finalbug.fal.motion.Moting.EVEN_PACE
+		 * @see motion.Moting.SPEED_UP
+		 * @see motion.Moting.SPEED_DOWN
+		 * @see motion.Moting.EVEN_PACE
 		 */		
 		public var speedType:String = "speedDown";
 		

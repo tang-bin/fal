@@ -10,7 +10,7 @@ package org.finalbug.core.net
 	/**
 	 * This class is the super class for class which is used to load file(s).
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @author Tang Bin
 	 */
 	public class LoaderObject
 	{

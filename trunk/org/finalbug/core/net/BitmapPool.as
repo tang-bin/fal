@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  ******************************************/
 package org.finalbug.core.net
 {
@@ -18,8 +18,8 @@ package org.finalbug.core.net
 	 * All the images loaded will be changed to bitmap.
 	 * This class running in singleton mode.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 */
 	public class BitmapPool extends DataModel
 	{
@@ -114,7 +114,7 @@ package org.finalbug.core.net
 		}
 		
 		/**
-		 * @throw org.finalbug.fal.errors.Errors Throw canNotInstance error when try to instance this class.
+		 * @throw errors.Errors Throw canNotInstance error when try to instance this class.
 		 */		
 		public function BitmapPool()
 		{
@@ -137,10 +137,10 @@ package org.finalbug.core.net
 		 * @param bitmapName Name of bitmap.(not the image file)
 		 * @param bitmapURL Image file URL.
 		 * 
-		 * @throw org.finalbug.fal.errors.NameError Throw NAME_EXIST error when the bitmap name already exist.
-		 * @throw org.finalbug.fal.errors.NameError Throw NAME_INVALID_VAR_NAME when the bitmap name is not level 1 string.
+		 * @throw errors.NameError Throw NAME_EXIST error when the bitmap name already exist.
+		 * @throw errors.NameError Throw NAME_INVALID_VAR_NAME when the bitmap name is not level 1 string.
 		 * 
-		 * @see org.finalbug.fal.net.BitmapLoader
+		 * @see net.BitmapLoader
 		 */		
 		public function loadBitmap(bitmapName:String, bitmapURL:String):BitmapLoader
 		{
@@ -165,7 +165,7 @@ package org.finalbug.core.net
 		 * @param bitmapName Name of bitmap which need be changed.
 		 * @param bitmapURL New image file URL.
 		 * 
-		 * @throw org.finalbug.fal.errors.NameError Throw NAME_NOT_EXIST error when the bitmap name is not exist in container.
+		 * @throw errors.NameError Throw NAME_NOT_EXIST error when the bitmap name is not exist in container.
 		 */		
 		public function changeBitmap(bitmapName:String, bitmapURL:String):BitmapLoader
 		{
@@ -198,7 +198,7 @@ package org.finalbug.core.net
 		 * @param bitmapName
 		 * @return
 		 * 
-		 * @throw org.finalbug.fal.errors.NameError Throw NAME_NOT_EXIST error when bitmap name is not found in container.
+		 * @throw errors.NameError Throw NAME_NOT_EXIST error when bitmap name is not found in container.
 		 */		
 		public function getBitmap(bitmapName:String):Bitmap
 		{

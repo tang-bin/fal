@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.ui.control
 {
@@ -15,8 +15,8 @@ package org.finalbug.ui.control
 	 * In cage object, only create scrollBar, but not set scrollbar events.
 	 * Class cage is used as other components' super class.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 */
 	public class ScrollBox extends UIObject
 	{

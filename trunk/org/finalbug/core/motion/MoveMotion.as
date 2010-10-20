@@ -1,14 +1,14 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.core.motion
 {
 	/**
-	 * org.finalbug.fal.motion.MoveMotion
+	 * motion.MoveMotion
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 */	
 	public class MoveMotion extends Motion
 	{

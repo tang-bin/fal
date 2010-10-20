@@ -5,7 +5,7 @@ package org.finalbug.events
 	/**
 	 * Event class for UI component that is changing style.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
+	 * @author Tang Bin
 	 */
 	public class UIStyleEvent extends Event
 	{

@@ -1,6 +1,6 @@
 /******************************************
  * Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  ******************************************/
 package org.finalbug.faltester.tester
 {
@@ -23,8 +23,8 @@ package org.finalbug.faltester.tester
 	/******************************************
 	 * org.finalbug.faltester.tester.MotionTester
 	 *
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	2010.08
+	 * @author Tang Bin
+	 * @since 2010.08
 	 *****************************************/
 	public class MotionTester extends UIObject
 	{
@@ -38,7 +38,7 @@ package org.finalbug.faltester.tester
 		
 		/****************************************
 		 *
-		 * GETTER & SETTER
+		 * GETTER and SETTER
 		 *
 		 ****************************************/
 		

@@ -1,6 +1,6 @@
 /******************************************
  * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org/
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.ui.control
 {
@@ -14,15 +14,15 @@ package org.finalbug.ui.control
 	import org.finalbug.ui.style.stylefactory.TextAreaStyleFactory;
 	
 	/**
-	 * @eventType org.finalbug.fal.events.DataEvent.CHANGE_DATA
+	 * @eventType events.DataEvent.CHANGE_DATA
 	 */	
 	[Event(name="ChangeData", type="fal.events.DataEvent")]
 	
 	/**
 	 * Text area component.
 	 * 
-	 * @author	Tang Bin (tangbin@finalbug.org)
-	 * @since	old version
+	 * @author Tang Bin
+	 * @since old version
 	 */
 	public class TextArea extends ScrollBox
 	{
