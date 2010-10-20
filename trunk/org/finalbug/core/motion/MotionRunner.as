@@ -4,7 +4,7 @@
  *****************************************/
 package org.finalbug.core.motion
 {
-	import org.finalbug.errors.FALError;
+	import org.finalbug.errors.DataError;
 	import org.finalbug.events.MotionEvent;
 	
 	import flash.events.TimerEvent;
@@ -40,7 +40,7 @@ package org.finalbug.core.motion
 		{
 			if(!instanceable)
 			{
-				throw new FALError(FALError.SINGLETON);
+				throw new DataError(DataError.SINGLETON);
 			}
 			else
 			{

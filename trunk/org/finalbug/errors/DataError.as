@@ -6,6 +6,10 @@ package org.finalbug.errors
 {
 	public class DataError extends Error
 	{
+		public static const SINGLETON:String = "Class using singleton pattern cannot be instanced.";
+		public static const NAME_EXIST:String = "The name of this data already exist.";
+		public static const NAME_NOT_EXIST:String = "Object not exist.";
+		
 		public static const INDEX_FLOOD:String = "Data flood, not in valid area.";
 		public static const TYPE_ERROR:String = "Data type error.";
 		public static const NOT_POSITIVE_NUMBER:String = "This number must lager than 0.";

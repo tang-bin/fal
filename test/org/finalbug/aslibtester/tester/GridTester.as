@@ -1,4 +1,4 @@
-package org.finalbug.faltester.tester
+package org.finalbug.aslibtester.tester
 {
 	import org.finalbug.framework.layout.Container;
 	import org.finalbug.framework.layout.Grid;

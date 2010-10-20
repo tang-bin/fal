@@ -2,7 +2,7 @@
  * Finalbug ActionScript Library
  * http://www.finalbug.org
  ******************************************/
-package org.finalbug.faltester.tester
+package org.finalbug.aslibtester.tester
 {
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;

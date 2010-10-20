@@ -5,7 +5,7 @@
 package org.finalbug.core.net
 {
 	import org.finalbug.data.DataModel;
-	import org.finalbug.errors.FALError;
+	import org.finalbug.errors.DataError;
 	import org.finalbug.events.LoadEvent;
 	
 	import flash.display.Bitmap;
@@ -125,7 +125,7 @@ package org.finalbug.core.net
 			}
 			else
 			{
-				throw new FALError(FALError.SINGLETON);
+				throw new DataError(DataError.SINGLETON);
 			}
 		}
 				
@@ -146,12 +146,12 @@ package org.finalbug.core.net
 		{
 			if(bitmapList[bitmapName] != null)
 			{
-				throw new FALError(FALError.NAME_EXIST);
+				throw new DataError(DataError.NAME_EXIST);
 			}
 			/*
 			if(!Charset.checkCharIsNameAvailable(bitmapName))
 			{
-				throw new FALError(FALError.INVALID_VAR_NAME);
+				throw new DataError(DataError.INVALID_VAR_NAME);
 			}
 			*/
 			bitmapList[bitmapName] = new BitmapLoader(bitmapURL);
@@ -171,7 +171,7 @@ package org.finalbug.core.net
 		{
 			if(bitmapList[bitmapName] == null)
 			{
-				throw new FALError(FALError.NAME_NOT_EXIST);
+				throw new DataError(DataError.NAME_NOT_EXIST);
 			}
 			bitmapList[bitmapName].changeBitmap(bitmapURL);
 			return bitmapList[bitmapName];
@@ -204,7 +204,7 @@ package org.finalbug.core.net
 		{
 			if(bitmapList[bitmapName] == null)
 			{
-				throw new FALError(FALError.NAME_NOT_EXIST);
+				throw new DataError(DataError.NAME_NOT_EXIST);
 			}
 			if(bitmapList[bitmapName].loaded)
 			{
