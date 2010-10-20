@@ -6,7 +6,13 @@ package org.finalbug.core.motion
 {
 	import org.finalbug.errors.MotionError;
 	import org.finalbug.events.MotionEvent;
-
+	
+	/**
+	 * MotionCounter is the value counter for a motion.
+	 * 
+	 * @author Tang Bin
+	 * @since 2010.10
+	 */
 	public class MotionCounter
 	{
 		/**

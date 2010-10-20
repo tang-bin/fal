@@ -74,6 +74,11 @@ package org.finalbug.core.display
 			this.updateView();
 		}
 		
+		/**
+		 * controlPoint is the point used to control the Bin object.
+		 * You can set the position, rotate the object by it's controlPoint.
+		 * @default (0, 0)
+		 */
 		public function get controlPoint():Point
 		{
 			accountControlPoint();
@@ -85,6 +90,9 @@ package org.finalbug.core.display
 			_controlPoint = value;
 		}
 		
+		/**
+		 * The x coordition value of controlPoint from object's parent.
+		 */
 		public function get controlX():Number
 		{
 			return this.x + controlPoint.x;
@@ -94,6 +102,9 @@ package org.finalbug.core.display
 			this.x = value - controlPoint.x;
 		}
 		
+		/**
+		 * The y coordition value of controlPoint from object's parent.
+		 */
 		public function get controlY():Number
 		{
 			return this.y + controlPoint.y;
@@ -103,6 +114,10 @@ package org.finalbug.core.display
 			this.y = value - controlPoint.y;
 		}
 		
+		/**
+		 * The max width value of object.
+		 * @default 4000
+		 */
 		public function get maxWidth():Number
 		{
 			return _maxWidth;
@@ -117,6 +132,10 @@ package org.finalbug.core.display
 			}
 		}
 		
+		/**
+		 * The max height value of object.
+		 * @default 4000
+		 */
 		public function get maxHeight():Number
 		{
 			return _maxHeight;
@@ -131,6 +150,10 @@ package org.finalbug.core.display
 			}
 		}
 		
+		/**
+		 * The min width value of object.
+		 * @default 0
+		 */
 		public function get minWidth():Number
 		{
 			return _minWidth;
@@ -145,6 +168,10 @@ package org.finalbug.core.display
 			}
 		}
 		
+		/**
+		 * The min height value of object.
+		 * @default 0
+		 */
 		public function get minHeight():Number
 		{
 			return _minHeight;
@@ -189,7 +216,8 @@ package org.finalbug.core.display
 		}
 		
 		/**
-		 * Change Bin's size to target width and height smoothly.
+		 * Zoom object's size to target width and height smoothly.
+		 * Using Motion classes.
 		 * 
 		 * @param width Target width.
 		 * @param height Target height.
@@ -214,6 +242,14 @@ package org.finalbug.core.display
 			this.sizeMotion.start();
 		}
 		
+		/**
+		 * Move object to target position smoothly.
+		 * Using Motion classes.
+		 * 
+		 * @param x Target x coordition
+		 * @param y Target y coordition
+		 * @param during Move during time in millisecond.
+		 */
 		public function moveTo(x:Number, y:Number, during:uint = 500):void
 		{
 			if(this.moveMotion == null)
@@ -233,6 +269,9 @@ package org.finalbug.core.display
 			moveMotion.start();
 		}
 		
+		/**
+		 * Bring the object to the front of it's parent.
+		 */
 		public function toFront():void
 		{
 			if(this.parent != null)
@@ -241,6 +280,9 @@ package org.finalbug.core.display
 			}
 		}
 		
+		/**
+		 * Bring the object to the back of it's parent.
+		 */
 		public function toBack():void
 		{
 			if(this.parent != null)
@@ -249,6 +291,9 @@ package org.finalbug.core.display
 			}
 		}
 		
+		/**
+		 * Place the object to the center of it's parent.
+		 */
 		public function toCenter():void
 		{
 			if(this.parent != null)
@@ -258,6 +303,13 @@ package org.finalbug.core.display
 			}
 		}
 		
+		/**
+		 * Place the object to the specified position
+		 * 
+		 * @param pos Position string, see Class Position.
+		 * @param center Only effect when parameter pos is one of the following values:
+		 * 		Position.TOP, Position.LEFT, Position.RIGHT, Position.BOTTOM.
+		 */
 		public function toPosition(pos:String, center:Boolean = true):void
 		{
 			if(this.parent != null)

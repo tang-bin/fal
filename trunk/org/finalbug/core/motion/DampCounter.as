@@ -4,6 +4,10 @@
  *****************************************/
 package org.finalbug.core.motion
 {
+	/**
+	 * @author Tang Bin
+	 * @since 2010.10
+	 */
 	public class DampCounter extends MotionCounter
 	{
 		public function DampCounter()

@@ -9,7 +9,13 @@ package org.finalbug.core.motion
 	import org.finalbug.errors.DataError;
 	import org.finalbug.events.MotionEvent;
 	import org.finalbug.utils.DataUtil;
-
+	
+	/**
+	 * Motion queue list. Run more motions in the same time or one by one.
+	 *
+	 * @author Tang Bin
+	 * @since 2010.10
+	 */
 	public class MotionQueue extends DataModel
 	{
 		private var list:Array = new Array();

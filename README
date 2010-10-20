@@ -1,1 +1,7 @@
-Finalbug ActionScript Library, for short "fb-aslib".
+Finalbug ActionScript Library, for short "fb-aslib", is an open sources ActionScript Classes package which is written and managed by me (Tang Bin) from year 2006 to the present. This project is planed to contains following parts:
+
+1, Basic classes and methods for quick development using ActionScript;
+2, UI components and GUI widgets;
+3, Applications framework with using CSS to define style and layout;
+4, Debug tools;
+5, Finalbug SharedData (FSD) ActionScript Client connector.
