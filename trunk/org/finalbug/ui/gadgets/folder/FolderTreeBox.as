@@ -1,7 +1,7 @@
 /******************************************
  * Tang Bin
  *****************************************/
-package org.finalbug.ui.gadgets
+package org.finalbug.ui.gadgets.folder
 {
 	import org.finalbug.data.DirectoryData;
 	

@@ -1,17 +1,17 @@
 /******************************************
  * Tang Bin
  *****************************************/
-package org.finalbug.ui.gadgets
+package org.finalbug.ui.gadgets.folder
 {
 	import org.finalbug.data.DirectoryData;
-
+	
 	/**
-	 * FolderBox
+	 * FolderListBox
 	 * 
 	 * @author Tang Bin
-	 * @since 2010.10
+	 * @since 2010
 	 */	
-	public class FolderGridBox extends FolderBox
+	public class FolderListBox extends FolderBox
 	{
 		//***************************************
 		// DEFINE
@@ -25,7 +25,7 @@ package org.finalbug.ui.gadgets
 		// Constructor.
 		//***************************************/
 		
-		public function FolderGridBox(data:DirectoryData = null)
+		public function FolderListBox(data:DirectoryData = null)
 		{
 			super(data);
 		}

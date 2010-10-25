@@ -1,10 +1,10 @@
 /******************************************
  * Tang Bin
  *****************************************/
-package org.finalbug.ui.gadgets
+package org.finalbug.ui.gadgets.folder
 {
 	import org.finalbug.data.DirectoryData;
-	import org.finalbug.ui.control.ScrollBox;
+	import org.finalbug.ui.control.ScrollPanel;
 	
 	
 	/**
@@ -13,21 +13,21 @@ package org.finalbug.ui.gadgets
 	 * @author Tang Bin
 	 * @since 2010
 	 */	
-	public class FolderBox extends ScrollBox
+	public class FolderBox extends ScrollPanel
 	{
 		//***************************************
 		// DEFINE
-		//***************************************/
+		//***************************************
 		
 		protected var dd:DirectoryData;
 		
 		//***************************************
 		// GETTER and SETTER
-		//***************************************/
+		//***************************************
 		
 		//***************************************
 		// Constructor.
-		//***************************************/
+		//***************************************
 		
 		public function FolderBox(data:DirectoryData = null)
 		{
@@ -41,27 +41,28 @@ package org.finalbug.ui.gadgets
 		// OVERRIDE METHODS
 		// Whit out getter, setter and handler
 		// include public, protected and private.
-		//***************************************/
+		//***************************************
 		
 		//***************************************
 		// PUBLIC
-		//***************************************/
+		//***************************************
 		
 		public function showDirectory(data:DirectoryData):void
 		{
 			dd = data;
+			this.updateView();
 		}
 		
 		//***************************************
 		// PROTECTED
-		//***************************************/
+		//***************************************
 		
 		//***************************************
 		// PRIVATE
-		//***************************************/
+		//***************************************
 		
 		//***************************************
 		// HANDLER
-		//***************************************/
+		//***************************************
 	}
 }

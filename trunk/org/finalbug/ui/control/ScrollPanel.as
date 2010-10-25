@@ -65,28 +65,22 @@ package org.finalbug.ui.control
 		{
 			super.updateView();
 			//
-			masker.width = super.containerWidth;
-			masker.height = super.containerHeight;
-			//
-			if(box.x > 0)
+			if(masker != null)
 			{
-				box.x = 0;
-			}
-			else if(box.x < masker.width - box.width)
-			{
-				box.x = masker.width - box.width;
+				masker.width = super.containerWidth;
+				masker.height = super.containerHeight;
 			}
 			//
-			if(box.y > 0)
+			if(box != null)
 			{
-				box.y = 0;
+				if(box.x > 0) box.x = 0;
+				else if(box.x < masker.width - box.width) box.x = masker.width - box.width;
+				//
+				if(box.y > 0) box.y = 0;
+				else if (box.y < masker.height - box.height) box.y = masker.height - box.height;
+				//
+				resetScroll();
 			}
-			else if (box.y < masker.height - box.height)
-			{
-				box.y = masker.height - box.height;
-			}
-			//
-			resetScroll();
 		}
 		
 		private function createChildren():void

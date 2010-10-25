@@ -1,21 +1,24 @@
 /******************************************
  * Tang Bin
  *****************************************/
-package org.finalbug.ui.gadgets
+package org.finalbug.ui.gadgets.folder
 {
 	import org.finalbug.data.DirectoryData;
-	
+	import org.finalbug.framework.layout.Grid;
+
 	/**
-	 * FolderListBox
+	 * FolderBox
 	 * 
 	 * @author Tang Bin
-	 * @since 2010
+	 * @since 2010.10
 	 */	
-	public class FolderListBox extends FolderBox
+	public class FolderGridBox extends FolderBox
 	{
 		//***************************************
 		// DEFINE
 		//***************************************/
+		
+		private var grid:Grid;
 		
 		//***************************************
 		// GETTER and SETTER
@@ -25,31 +28,38 @@ package org.finalbug.ui.gadgets
 		// Constructor.
 		//***************************************/
 		
-		public function FolderListBox(data:DirectoryData = null)
+		public function FolderGridBox(data:DirectoryData = null)
 		{
 			super(data);
+			grid = new Grid();
+			this.container.addChild(grid);
 		}
 		
 		//***************************************
 		// OVERRIDE METHODS
 		// Whit out getter, setter and handler
 		// include public, protected and private.
-		//***************************************/
+		//***************************************
+		
+		override protected function updateView():void
+		{
+			super.updateView();
+		}
 		
 		//***************************************
 		// PUBLIC
-		//***************************************/
+		//***************************************
 		
 		//***************************************
 		// PROTECTED
-		//***************************************/
+		//***************************************
 		
 		//***************************************
 		// PRIVATE
-		//***************************************/
+		//***************************************
 		
 		//***************************************
 		// HANDLER
-		//***************************************/
+		//***************************************
 	}
 }

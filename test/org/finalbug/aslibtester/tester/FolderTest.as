@@ -4,7 +4,7 @@
 package org.finalbug.aslibtester.tester
 {
 	import org.finalbug.framework.layout.Container;
-	import org.finalbug.ui.gadgets.FolderGridBox;
+	import org.finalbug.ui.gadgets.folder.FolderGridBox;
 	
 	
 	/**
