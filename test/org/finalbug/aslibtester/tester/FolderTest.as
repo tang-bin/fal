@@ -3,10 +3,13 @@
  *****************************************/
 package org.finalbug.aslibtester.tester
 {
+	import org.finalbug.data.DirectoryFileData;
 	import org.finalbug.data.Icons;
 	import org.finalbug.framework.layout.Container;
 	import org.finalbug.ui.control.Icon;
+	import org.finalbug.ui.control.Label;
 	import org.finalbug.ui.gadgets.folder.FolderGridBox;
+	import org.finalbug.ui.gadgets.folder.FolderItem;
 	
 	
 	/**
@@ -42,9 +45,9 @@ package org.finalbug.aslibtester.tester
 			fb = new FolderGridBox();
 			container.addChild(fb);
 			//
-			var icon:Icon = Icons.instance.docIcon;
-			this.addChild(icon);
-			icon.width = icon.height = 50;
+			var fi:FolderItem = new FolderItem(new DirectoryFileData());
+			fi.width = fi.height = 64;
+			this.addAll(fi);
 		}
 		
 		//***************************************

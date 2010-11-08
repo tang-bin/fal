@@ -4,6 +4,8 @@
  *****************************************/
 package org.finalbug.ui.gadgets.folder
 {
+	import flash.text.TextFormat;
+	
 	import org.finalbug.data.DirectoryFileData;
 	import org.finalbug.data.FileType;
 	import org.finalbug.data.FileTypes;
@@ -13,6 +15,7 @@ package org.finalbug.ui.gadgets.folder
 	import org.finalbug.framework.layout.Container;
 	import org.finalbug.ui.control.Icon;
 	import org.finalbug.ui.control.Label;
+	import org.finalbug.ui.style.Style;
 	import org.finalbug.utils.DataUtil;
 	
 	
@@ -28,13 +31,22 @@ package org.finalbug.ui.gadgets.folder
 		// DEFINE
 		//***************************************/
 		
+		private static const HIDE_LABEL_HEIGHT:Number = 30;
+		private static const SPACE:Number = 2;
+		private static const LABEL_HEIGHT:Number = 20;
+		private static const LABEL_COLOR:uint = 0x333333;
+		private static const LABEL_SIZE:uint = 12;
+		
+		private static const SELECTED_COLOR:uint = 0xFF0000;
+		
 		private var data:DirectoryFileData;
 		private var icon:Icon;
 		private var txt:Label;
+		private var extra:Label;
 		
 		private var _position:String = Position.BOTTOM;
 		private var _extraLabel:String = "";
-		private var _showExtra:Boolean = false;
+		private var _selected:Boolean = false;
 		
 		//***************************************
 		// GETTER and SETTER
@@ -70,16 +82,16 @@ package org.finalbug.ui.gadgets.folder
 			}
 		}
 		
-		public function get showExtra():Boolean
+		public function get selected():Boolean
 		{
-			return _showExtra;
+			return this._selected;
 		}
-		public function set showExtra(value:Boolean):void
+		public function set selected(value:Boolean):void
 		{
-			if(_showExtra != value)
+			if(value != _selected)
 			{
-				_showExtra = value;
-				this.updateView();
+				_selected = value;
+				this.backgroundAlpha = _selected ? 1 : 0;
 			}
 		}
 		
@@ -112,6 +124,48 @@ package org.finalbug.ui.gadgets.folder
 		override protected function updateView():void
 		{
 			super.updateView();
+			if(icon == null && txt == null) return;
+			if(this.displayWidth >0 && this.displayHeight > 0)
+			{
+				if(icon != null)
+				{
+					icon.visible = true;
+					var iconSize:Number = 0;
+					if(_position == Position.TOP || _position == Position.BOTTOM)
+					{
+						if(this.displayHeight < HIDE_LABEL_HEIGHT)
+						{
+							// it is too small to display the labels
+							txt.visible = extra.visible = false;
+							iconSize = Math.min(this.displayHeight, this.displayWidth);
+							iconSize -= 2 * SPACE;
+							icon.resize(iconSize, iconSize);
+							icon.toCenter();
+						}
+						else
+						{
+							txt.visible = true;
+							extra.visible = false;
+							//
+							iconSize = Math.min(this.displayHeight - LABEL_HEIGHT, this.displayWidth);
+							iconSize -= 2 * SPACE;
+							icon.resize(iconSize, iconSize);
+							icon.x = (this.displayWidth - icon.width) / 2;
+							icon.y = (this.displayHeight - LABEL_HEIGHT - icon.height) / 2;
+							//
+							txt.width = this.displayWidth - 2 * SPACE;
+							txt.x = SPACE;
+							txt.y = this.displayHeight - txt.height - SPACE;
+						}
+					}
+				}
+			}
+			else
+			{
+				if(icon != null) icon.visible = false;
+				txt.visible = false;
+				extra.visible = false;
+			}
 		}
 		
 		//***************************************
@@ -129,9 +183,17 @@ package org.finalbug.ui.gadgets.folder
 			//
 			if(txt == null)
 			{
-				txt = new Label(data.name);
+				txt = new Label(data.name, new TextFormat(Style.DEFAULT_FONT, LABEL_SIZE, LABEL_COLOR, true));
 				this.addChild(txt);
 			}
+			//
+			if(extra == null)
+			{
+				extra = new Label("");
+				this.addAll(extra);
+			}
+			this.backgroundColor = SELECTED_COLOR;
+			this.backgroundAlpha = 0;
 		}
 		
 		private function getIcon():Icon

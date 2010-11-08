@@ -16,14 +16,14 @@ package org.finalbug.data
 		// DEFINE
 		//***************************************/
 		
-		private var _uid:String = "";
+		private var _uid:String = "0";
 		private var _isDir:Boolean = false;
-		private var _name:String = "";
-		private var _author:String = "";
+		private var _name:String = "Directory File Data";
+		private var _author:String = "Tang Bin";
 		private var _createDate:Date;
 		private var _lastModifyDate:Date;
 		private var _fileType:String = "";
-		private var _ext:String = "";
+		private var _ext:String = "txt";
 		
 		//***************************************
 		// GETTER and SETTER

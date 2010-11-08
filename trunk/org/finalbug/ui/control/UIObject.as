@@ -334,10 +334,10 @@ package org.finalbug.ui.control
 		
 		protected function rollOutHandler(e:MouseEvent):void
 		{
+			Tooltip.remove();
 			if(this.statusList[Status.MOUSE_OVER] != null)
 			{
 				this.statusName = Status.NORMAL;
-				Tooltip.remove();
 			}
 		}
 		

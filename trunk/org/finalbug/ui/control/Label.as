@@ -83,16 +83,12 @@ package org.finalbug.ui.control
 			{
 				ft = textFormat;
 			}
-			createChildren();
-		}
-		
-		private function createChildren():void
-		{
 			createLabel();
 		}
 		
 		private function createLabel():void
 		{
+			this.tooltip = "";
 			var t:TextField = new TextField();
 			t.multiline = true;
 			t.setTextFormat(ft);
@@ -111,6 +107,7 @@ package org.finalbug.ui.control
 				if(index < str.length)
 				{
 					t.appendText("...");
+					this.tooltip = str;
 				}
 			}
 			else
@@ -128,6 +125,15 @@ package org.finalbug.ui.control
 			}
 			img = new Bitmap(bd);
 			this.addChild(img);
+			//
+			if(this.textWidth > 0)
+			{
+				img.x = (this.textWidth - img.width) / 2;
+			}
+			else
+			{
+				img.x = 0;
+			}
 		}
 	}
 }
