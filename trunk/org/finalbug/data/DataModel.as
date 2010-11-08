@@ -100,6 +100,15 @@ package org.finalbug.data
 		 * PROTECTED
 		 ****************************************/
 		
+		protected function dispatchChangeData(name:String, oldValue:*, newValue:*):void
+		{
+			var ee:DataEvent = new DataEvent(DataEvent.CHANGE_DATA);
+			ee.oldData = oldValue;
+			ee.newData = newValue;
+			ee.dataName = name;
+			this.dispatchEvent(ee);
+		}
+		
 		/****************************************
 		 * PRIVATE
 		 ****************************************/

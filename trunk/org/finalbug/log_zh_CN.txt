@@ -1,0 +1,5 @@
+2010.11.08
+在添加FolderGridBox的时候需要用到Icon，今天添加了Icons和Icon等类。
+所有的folder内容提供一套默认的icon，embed到Icons类中。
+在使用的时候可以通过修改Icons类中的各种icon属性做到全局修改Icon图标，尚未完成。
+Icon图标用的是网上随便下载的，以后再另外制作。

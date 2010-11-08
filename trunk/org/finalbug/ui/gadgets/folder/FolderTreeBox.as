@@ -1,5 +1,6 @@
 /******************************************
- * Tang Bin
+ * [fb-aslib] Finalbug ActionScript Library
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.ui.gadgets.folder
 {

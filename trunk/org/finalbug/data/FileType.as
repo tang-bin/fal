@@ -1,11 +1,10 @@
 /******************************************
- * Tang Bin
+ * [fb-aslib] Finalbug ActionScript Library
+ * http://www.finalbug.org
  *****************************************/
 package org.finalbug.data
 {
-	import mx.controls.Image;
-	
-	import org.finalbug.errors.DataError;
+	import org.finalbug.ui.control.Icon;
 	
 	/**
 	 * FileType
@@ -16,46 +15,56 @@ package org.finalbug.data
 	public class FileType extends DataModel
 	{
 		//***************************************
-		// SINGLETON
-		//***************************************/
-		
-		private static var ft:FileType;
-		private static var instanceable:Boolean = false;
-		
-		public static function get instance():FileType
-		{
-			if(ft == null)
-			{
-				instanceable = true;
-				ft = new FileType();
-				instanceable = false;
-				//
-				
-			}
-			return ft;
-		}
-		
-		//***************************************
 		// DEFINE
 		//***************************************/
 		
-		private var list:Object = new Object();
+		public var description:String = "";
+		
+		private var _isDir:Boolean = false;
+		private var _ext:String = "";
+		private var _icon:Icon;
 		
 		//***************************************
 		// GETTER and SETTER
 		//***************************************/
 		
+		public function get isDir():Boolean
+		{
+			return _isDir;
+		}
+		public function set isDir(value:Boolean):void
+		{
+			if(value != _isDir)
+			{
+				_isDir = value;
+				// TODO, change view or data. and dispatch event.
+			}
+		}
+		
+		public function get ext():String
+		{
+			return _ext;
+		}
+		
+		public function get icon():Icon
+		{
+			return this.isDir ? Icons.instance.folderIcon : _icon;
+		}
+		public function set icon(value:Icon):void
+		{
+			this._icon = value;
+		}
+		
 		//***************************************
 		// Constructor.
 		//***************************************/
 		
-		public function FileType()
+		public function FileType(ext:String, des:String = "", icon:Icon = null)
 		{
 			super();
-			if(!instanceable)
-			{
-				throw new DataError(DataError.SINGLETON);
-			}
+			this._ext = ext.toLowerCase();
+			this.description = des;
+			this._icon = icon;
 		}
 		
 		//***************************************
@@ -67,57 +76,6 @@ package org.finalbug.data
 		//***************************************
 		// PUBLIC
 		//***************************************/
-		
-		public function registerType(ext:String, des:String, icon:Image = null):void
-		{
-			ext = ext.toLowerCase();
-			list[ext] = {des:des, icon:icon};
-		}
-		
-		public function removeType(ext:String):void
-		{
-			ext = ext.toLowerCase();
-			if(list[ext] != null)
-			{
-				list[ext] = null;
-				delete list[ext];
-			}
-			else
-			{
-				throw new DataError(DataError.CANNOT_REMOVE_NONEXISTENT_DATA);
-			}
-		}
-		
-		public function getDescription(ext:String):String
-		{
-			ext = ext.toLowerCase();
-			if(list[ext] != null)
-			{
-				return list[ext]["des"];
-			}
-			else
-			{
-				throw new DataError(DataError.DATA_NULL);
-			}
-		}
-		
-		public function getIcon(ext:String):Image
-		{
-			ext = ext.toLowerCase();
-			if(list[ext] != null)
-			{
-				return list[ext]["icon"];
-			}
-			else
-			{
-				throw new DataError(DataError.DATA_NULL);
-			}
-		}
-		
-		public function registered(ext:String):Boolean
-		{
-			return list[ext.toLowerCase()] != null;
-		}
 		
 		//***************************************
 		// PROTECTED
