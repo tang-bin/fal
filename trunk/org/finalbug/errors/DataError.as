@@ -15,6 +15,7 @@ package org.finalbug.errors
 		public static const SIZE_ERROR:String = "Size error.";
 		public static const NOT_POSITIVE_NUMBER:String = "This number must lager than 0.";
 		public static const DATA_NULL:String = "Data is null.";
+		public static const DATA_EXIST:String = "Data is exist.";
 		public static const SET_SHARED_DATA_ERROR:String = "To set data for SharedData, please use setData() method.";
 		
 		public static const CANNOT_REMOVE_NONEXISTENT_DATA:String = "Cannot remove nonexistent Data.";

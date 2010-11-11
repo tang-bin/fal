@@ -29,7 +29,7 @@ package org.finalbug.ui.gadgets.folder
 	{
 		//***************************************
 		// DEFINE
-		//***************************************/
+		//***************************************
 		
 		private static const HIDE_LABEL_HEIGHT:Number = 30;
 		private static const SPACE:Number = 2;
@@ -50,7 +50,7 @@ package org.finalbug.ui.gadgets.folder
 		
 		//***************************************
 		// GETTER and SETTER
-		//***************************************/
+		//***************************************
 		
 		public function get labelPosition():String
 		{
@@ -97,7 +97,7 @@ package org.finalbug.ui.gadgets.folder
 		
 		//***************************************
 		// Constructor.
-		//***************************************/
+		//***************************************
 		
 		public function FolderItem(data:DirectoryFileData)
 		{
@@ -111,15 +111,15 @@ package org.finalbug.ui.gadgets.folder
 		// OVERRIDE METHODS
 		// Whit out getter, setter and handler
 		// include public, protected and private.
-		//***************************************/
+		//***************************************
 		
 		//***************************************
 		// PUBLIC
-		//***************************************/
+		//***************************************
 		
 		//***************************************
 		// PROTECTED
-		//***************************************/
+		//***************************************
 		
 		override protected function updateView():void
 		{
@@ -170,7 +170,7 @@ package org.finalbug.ui.gadgets.folder
 		
 		//***************************************
 		// PRIVATE
-		//***************************************/
+		//***************************************
 		
 		private function createElements():void
 		{
@@ -211,6 +211,6 @@ package org.finalbug.ui.gadgets.folder
 		
 		//***************************************
 		// HANDLER
-		//***************************************/
+		//***************************************
 	}
 }

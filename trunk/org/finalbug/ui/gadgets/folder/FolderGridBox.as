@@ -5,6 +5,7 @@
 package org.finalbug.ui.gadgets.folder
 {
 	import org.finalbug.data.DirectoryData;
+	import org.finalbug.data.DirectoryFileData;
 	import org.finalbug.framework.layout.Grid;
 
 	/**
@@ -17,17 +18,17 @@ package org.finalbug.ui.gadgets.folder
 	{
 		//***************************************
 		// DEFINE
-		//***************************************/
+		//***************************************
 		
 		private var grid:Grid;
 		
 		//***************************************
 		// GETTER and SETTER
-		//***************************************/
+		//***************************************
 		
 		//***************************************
 		// Constructor.
-		//***************************************/
+		//***************************************
 		
 		public function FolderGridBox(data:DirectoryData = null)
 		{
@@ -42,9 +43,9 @@ package org.finalbug.ui.gadgets.folder
 		// include public, protected and private.
 		//***************************************
 		
-		override protected function updateView():void
+		override protected function createAndShowFiles(file:DirectoryFileData, index:uint, length:uint):void
 		{
-			super.updateView();
+			trace(file);
 		}
 		
 		//***************************************

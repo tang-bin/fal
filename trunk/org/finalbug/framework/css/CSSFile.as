@@ -24,7 +24,7 @@ package org.finalbug.framework.css
 		// 
 		// DEFINE
 		// 
-		//***************************************/
+		//***************************************
 		
 		private var _url:String = "";
 		private var loader:URLLoader;
@@ -36,7 +36,7 @@ package org.finalbug.framework.css
 		// 
 		// GETTER and SETTER
 		// 
-		//***************************************/
+		//***************************************
 		
 		public function get url():String
 		{
@@ -57,7 +57,7 @@ package org.finalbug.framework.css
 		// 
 		// css.CSSFile constructor.
 		// 
-		//***************************************/
+		//***************************************
 		public function CSSFile(url:String = "")
 		{
 			super();
@@ -74,13 +74,13 @@ package org.finalbug.framework.css
 		// Whit out getter, setter and handler
 		// include public, protected and private.
 		// 
-		//***************************************/
+		//***************************************
 		
 		//***************************************
 		// 
 		// PUBLIC
 		// 
-		//***************************************/
+		//***************************************
 		
 		public function loadFile(url:String):void
 		{
@@ -98,13 +98,13 @@ package org.finalbug.framework.css
 		// 
 		// PROTECTED
 		// 
-		//***************************************/
+		//***************************************
 		
 		//***************************************
 		// 
 		// PRIVATE
 		// 
-		//***************************************/
+		//***************************************
 		
 		/**
 		 * Parse CSS string to CSSStyle
@@ -162,7 +162,7 @@ package org.finalbug.framework.css
 		// 
 		// HANDLER
 		// 
-		//***************************************/
+		//***************************************
 		
 		private function fileLoadedHandler(e:Event):void
 		{

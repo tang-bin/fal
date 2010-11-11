@@ -5,6 +5,7 @@
 package org.finalbug.ui.gadgets.folder
 {
 	import org.finalbug.data.DirectoryData;
+	import org.finalbug.data.DirectoryFileData;
 	import org.finalbug.ui.control.ScrollPanel;
 	
 	
@@ -35,6 +36,7 @@ package org.finalbug.ui.gadgets.folder
 			super(false, true);
 			this.setLayoutValue("width", "100%");
 			this.setLayoutValue("height", "100%");
+			if(data == null) data = new DirectoryData();
 			showDirectory(data);
 		}
 		
@@ -43,6 +45,12 @@ package org.finalbug.ui.gadgets.folder
 		// Whit out getter, setter and handler
 		// include public, protected and private.
 		//***************************************
+		
+		override protected function updateView():void
+		{
+			super.updateView();
+			if(dd != null) dd.forEachFile(createAndShowFiles);
+		}
 		
 		//***************************************
 		// PUBLIC
@@ -57,6 +65,11 @@ package org.finalbug.ui.gadgets.folder
 		//***************************************
 		// PROTECTED
 		//***************************************
+		
+		protected function createAndShowFiles(file:DirectoryFileData, index:uint, length:uint):void
+		{
+			// should be overrided in grid/list/tree boxes
+		}
 		
 		//***************************************
 		// PRIVATE

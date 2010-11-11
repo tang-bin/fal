@@ -3,6 +3,9 @@
  *****************************************/
 package org.finalbug.data
 {
+	import flash.utils.Dictionary;
+	
+	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.glazes.Image;
 	
 	/**
@@ -15,7 +18,7 @@ package org.finalbug.data
 	{
 		//***************************************
 		// DEFINE
-		//***************************************/
+		//***************************************
 		
 		private var _folderName:String = "";
 		private var _folderPath:String = "";
@@ -26,11 +29,12 @@ package org.finalbug.data
 		private var _sortBy:String = "name";
 		private var _descOrder:Boolean = false;
 		
-		private var files:Array = new Array();
+		private var files:Dictionary = new Dictionary();
+		private var fileNames:Array = new Array();
 		
 		//***************************************
 		// GETTER and SETTER
-		//***************************************/
+		//***************************************
 		
 		public function get folderName():String
 		{
@@ -60,12 +64,12 @@ package org.finalbug.data
 		
 		public function length():uint
 		{
-			return files.length;
+			return fileNames.length;
 		}
 		
 		//***************************************
 		// Constructor.
-		//***************************************/
+		//***************************************
 		
 		public function DirectoryData()
 		{
@@ -76,47 +80,93 @@ package org.finalbug.data
 		// OVERRIDE METHODS
 		// Whit out getter, setter and handler
 		// include public, protected and private.
-		//***************************************/
+		//***************************************
 		
 		//***************************************
 		// PUBLIC
-		//***************************************/
+		//***************************************
 		
 		public function addFile(file:DirectoryFileData):void
 		{
-			
+			var fileName:String = file.name;
+			if(files[fileName] != null)
+			{
+				throw new DataError(DataError.DATA_EXIST);
+			}
+			files[fileName] = file;
+			fileNames.push(fileName);
+			fileNames.sort();
 		}
 		
-		public function removeFile(file:DirectoryData):void
+		public function removeFile(file:DirectoryFileData):void
 		{
-			
+			var fileName:String = file.name;
+			var thisFile:DirectoryFileData = files[fileName] as DirectoryFileData;
+			if(thisFile != null && thisFile == file)
+			{
+				files[fileName] = null;
+				delete files[fileName];
+				removeFileName(fileName);
+			}
+			else
+			{
+				throw new DataError(DataError.DATA_NULL);
+			}
 		}
 		
 		public function clear():void
 		{
-			
+			files = new Dictionary();
+			fileNames = new Array();
 		}
 		
 		public function hasFile(file:DirectoryFileData):Boolean
 		{
-			return false;
+			var thisFile:DirectoryFileData = files[file.name] as DirectoryFileData;
+			return thisFile != null && thisFile == file;
 		}
 		
 		public function getFileByName(name:String):DirectoryFileData
 		{
-			return null;
+			return files[name] as DirectoryFileData;;
+		}
+		
+		/**
+		 * function(file:DirectoryFileData, index:uint, length:uint):void
+		 * 
+		 * @param func
+		 */		
+		public function forEachFile(func:Function):void
+		{
+			var len:uint = fileNames.length;
+			for(var i:uint = 0 ; i < len ; i++)
+			{
+				func.call(this, files[fileNames[i]] as DirectoryFileData, i, len);
+			}
 		}
 		
 		//***************************************
 		// PROTECTED
-		//***************************************/
+		//***************************************
 		
 		//***************************************
 		// PRIVATE
-		//***************************************/
+		//***************************************
+		
+		private function removeFileName(fileName:String):void
+		{
+			for(var i:uint = fileNames.length ; --i >= 0 ; )
+			{
+				if(fileNames[i] == fileName)
+				{
+					fileNames.splice(i, 1);
+					break;
+				}
+			}
+		}
 		
 		//***************************************
 		// HANDLER
-		//***************************************/
+		//***************************************
 	}
 }
