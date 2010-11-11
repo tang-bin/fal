@@ -20,7 +20,7 @@ package org.finalbug.ui.gadgets.folder
 		// DEFINE
 		//***************************************
 		
-		private var grid:Grid;
+		private const DEFAULT_SIZE:Number = 64;
 		
 		//***************************************
 		// GETTER and SETTER
@@ -33,8 +33,7 @@ package org.finalbug.ui.gadgets.folder
 		public function FolderGridBox(data:DirectoryData = null)
 		{
 			super(data);
-			grid = new Grid();
-			this.container.addChild(grid);
+			this.item_width = this.item_height = DEFAULT_SIZE;
 		}
 		
 		//***************************************
@@ -45,7 +44,7 @@ package org.finalbug.ui.gadgets.folder
 		
 		override protected function createAndShowFiles(file:DirectoryFileData, index:uint, length:uint):void
 		{
-			trace(file);
+			super.createAndShowFiles(file, index, length);
 		}
 		
 		//***************************************

@@ -39,7 +39,7 @@ package org.finalbug.ui.gadgets.folder
 		
 		private static const SELECTED_COLOR:uint = 0xFF0000;
 		
-		private var data:DirectoryFileData;
+		private var _data:DirectoryFileData;
 		private var icon:Icon;
 		private var txt:Label;
 		private var extra:Label;
@@ -95,6 +95,11 @@ package org.finalbug.ui.gadgets.folder
 			}
 		}
 		
+		public function get data():DirectoryFileData
+		{
+			return _data;
+		}
+		
 		//***************************************
 		// Constructor.
 		//***************************************
@@ -102,7 +107,7 @@ package org.finalbug.ui.gadgets.folder
 		public function FolderItem(data:DirectoryFileData)
 		{
 			super();
-			this.data = data;
+			this._data = data;
 			createElements();
 			updateView();
 		}
@@ -183,7 +188,7 @@ package org.finalbug.ui.gadgets.folder
 			//
 			if(txt == null)
 			{
-				txt = new Label(data.name, new TextFormat(Style.DEFAULT_FONT, LABEL_SIZE, LABEL_COLOR, true));
+				txt = new Label(_data.name, new TextFormat(Style.DEFAULT_FONT, LABEL_SIZE, LABEL_COLOR, true));
 				this.addChild(txt);
 			}
 			//
@@ -198,9 +203,9 @@ package org.finalbug.ui.gadgets.folder
 		
 		private function getIcon():Icon
 		{
-			if(FileTypes.instance.registered(data.ext))
+			if(FileTypes.instance.registered(_data.ext))
 			{
-				var fileType:FileType = FileTypes.instance.getFileType(data.ext);
+				var fileType:FileType = FileTypes.instance.getFileType(_data.ext);
 				return fileType.icon;
 			}
 			else
