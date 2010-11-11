@@ -4,10 +4,12 @@
  *****************************************/
 package org.finalbug.ui.gadgets.folder
 {
+	import flash.events.MouseEvent;
 	import flash.utils.Dictionary;
 	
 	import org.finalbug.data.DirectoryData;
 	import org.finalbug.data.DirectoryFileData;
+	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.control.ScrollPanel;
 	
 	
@@ -29,6 +31,8 @@ package org.finalbug.ui.gadgets.folder
 		protected var dd:DirectoryData;
 		protected var items:Dictionary = new Dictionary();
 		
+		private var forEachItemFunc:Function;
+		
 		//***************************************
 		// GETTER and SETTER
 		//***************************************
@@ -40,6 +44,7 @@ package org.finalbug.ui.gadgets.folder
 		public function FolderBox(data:DirectoryData = null)
 		{
 			super(false, true);
+			this.dragable = false;
 			this.setLayoutValue("width", "100%");
 			this.setLayoutValue("height", "100%");
 			if(data == null) data = new DirectoryData();
@@ -54,25 +59,30 @@ package org.finalbug.ui.gadgets.folder
 		
 		override protected function updateView():void
 		{
-			super.updateView();
+			if(dd == null) return;
 			// step1, set all exist item is not updated
-			for each(var obj:Object in items)
+			for each(var itemData:Object in items)
 			{
-				items.update = false;
+				itemData.update = false;
 			}
 			// step2, update items
-			if(dd != null) dd.forEachFile(createAndShowFiles);
+			dd.forEachFile(createAndShowFiles);
 			// step3, after update items, the items whose update is false will be removed.
-			for each(var obj2:Object in items)
+			for each(var itemData2:Object in items)
 			{
-				var item:FolderItem = obj2.item as FolderItem;
-				if(!items.update)
+				var item:FolderItem = itemData2.item as FolderItem;
+				if(!itemData2.update)
 				{
 					items[item.data.name] = null;
 					delete items[item.data.name];
 					this.container.removeChild(item);
 				}
 			}
+			// step 4, set position
+			beforeSetItemPosition();
+			dd.forEachFile(doForEachItem);
+			// step 5, refresh scroll panel
+			super.updateView();
 		}
 		
 		//***************************************
@@ -91,22 +101,96 @@ package org.finalbug.ui.gadgets.folder
 		
 		protected function createAndShowFiles(file:DirectoryFileData, index:uint, length:uint):void
 		{
-			var item:FolderItem = items[file.name] as FolderItem;
-			if(item == null)
+			var itemData:ItemData = items[file.name] as ItemData;
+			if(itemData == null)
 			{
-				item = new FolderItem(file);
+				var item:FolderItem = new FolderItem(file);
 				this.container.addChild(item);
-				items[file.name] = {update:true, item:item};
+				itemData = new ItemData();
+				itemData.item = item;
+				items[file.name] = itemData;
+				//
+				item.addEventListener(MouseEvent.CLICK, clickItemHandler);
 			}
-			items[file.name].update = true;
+			itemData.update = true;
+		}
+		
+		protected function beforeSetItemPosition():void
+		{
+			// show be overrided in grid/list/tree boxes.
+		}
+		
+		protected function setItemPosition(item:FolderItem, index:uint, length:uint):void
+		{
+			// show be overrided in grid/list/tree boxes.
 		}
 		
 		//***************************************
 		// PRIVATE
 		//***************************************
 		
+		private function doForEachItem(file:DirectoryFileData, index:uint, length:uint):void
+		{
+			var item:FolderItem = items[file.name].item as FolderItem;
+			if(item == null)
+			{
+				throw new DataError(DataError.DATA_NULL);
+			}
+			else
+			{
+				setItemPosition(item, index, length);
+			}
+		}
+		
 		//***************************************
 		// HANDLER
 		//***************************************
+		
+		private function clickItemHandler(e:MouseEvent):void
+		{
+			var data:DirectoryFileData = (e.currentTarget as FolderItem).data;
+			if(e.ctrlKey)
+			{
+				// select more
+				if(dd.currentSelected[data.name] == null)
+				{
+					this.selectedItem(data, true);
+					dd.currentSelected[data.name] = data;
+				}
+				else
+				{
+					this.selectedItem(data, false);
+					dd.currentSelected[data.name] = null;
+					delete dd.currentSelected[data.name];
+				}
+			}
+			else
+			{
+				// select one
+				for each(var oldData:DirectoryFileData in dd.currentSelected)
+				{
+					this.selectedItem(oldData, false);
+				}
+				this.selectedItem(data, true);
+				dd.currentSelected = new Dictionary();
+				dd.currentSelected[data.name] = data;
+			}
+		}
+		
+		private function selectedItem(data:DirectoryFileData, selected:Boolean):void
+		{
+			var item:FolderItem = items[data.name].item as FolderItem;
+			if(item != null)
+			{
+				item.selected = selected;
+			}
+		}
 	}
+}
+import org.finalbug.ui.gadgets.folder.FolderItem;
+
+class ItemData
+{
+	public var update:Boolean = false;
+	public var item:FolderItem;
 }

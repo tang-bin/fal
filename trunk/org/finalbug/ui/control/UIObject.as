@@ -51,6 +51,7 @@ package org.finalbug.ui.control
 			if(value != currentStatus && value != "" && statusList[value] != null)
 			{
 				currentStatus = value;
+				this.countSizeAndPosition();
 				updateView();
 			}
 		}
@@ -87,6 +88,7 @@ package org.finalbug.ui.control
 			}
 			if(_layoutStyle != null) _layoutStyle.setValue("width", widthValue);
 			this.displayWidth = widthValue;
+			this.countSizeAndPosition();
 			this.updateView();
 		}
 		
@@ -99,6 +101,7 @@ package org.finalbug.ui.control
 			}
 			if(_layoutStyle != null) _layoutStyle.setValue("height", heightValue);
 			this.displayHeight = heightValue;
+			this.countSizeAndPosition();
 			this.updateView();
 		}
 		
@@ -115,6 +118,7 @@ package org.finalbug.ui.control
 			}
 			else
 			{
+				this.countSizeAndPosition();
 				this.updateView();
 			}
 		}
@@ -132,6 +136,7 @@ package org.finalbug.ui.control
 			}
 			else
 			{
+				this.countSizeAndPosition();
 				this.updateView();
 			}
 		}
@@ -156,12 +161,12 @@ package org.finalbug.ui.control
 		
 		override protected function callAtAdded():void
 		{
+			countSizeAndPosition();
 			updateView();
 		}
 		
-		override protected function updateView():void
+		override protected function countSizeAndPosition():void
 		{
-			super.updateView();
 			if(this.getLayout() != null)
 			{
 				this.displayWidth = this.getLayout().width;
@@ -179,6 +184,7 @@ package org.finalbug.ui.control
 		
 		public function refresh():void
 		{
+			this.countSizeAndPosition();
 			this.updateView();
 			if(this.autoResizeChildren)
 			{

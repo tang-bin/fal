@@ -89,6 +89,11 @@ package org.finalbug.ui.control
 			masker.mouseChildren = masker.mouseChildren = false;
 			Graph.drawLucidRectangle(masker);
 			box = new Sprite();
+			// draw a invisible point at (0, 0) to make box count size for (0, 0) point.
+			box.graphics.beginFill(0, 0);
+			box.graphics.drawRect(0, 0, 1, 1);
+			box.graphics.endFill();
+			//
 			box.mask = masker;
 			this.addAll(box, masker);
 			//

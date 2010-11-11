@@ -37,7 +37,8 @@ package org.finalbug.ui.gadgets.folder
 		private static const LABEL_COLOR:uint = 0x333333;
 		private static const LABEL_SIZE:uint = 12;
 		
-		private static const SELECTED_COLOR:uint = 0xFF0000;
+		private static const SELECTED_COLOR:uint = 0xDDDDDD;
+		private static const SELECTED_BORDER:uint = 0x999999;
 		
 		private var _data:DirectoryFileData;
 		private var icon:Icon;
@@ -92,6 +93,7 @@ package org.finalbug.ui.gadgets.folder
 			{
 				_selected = value;
 				this.backgroundAlpha = _selected ? 1 : 0;
+				this.borderAlpha = _selected ? 1 : 0;
 			}
 		}
 		
@@ -199,6 +201,8 @@ package org.finalbug.ui.gadgets.folder
 			}
 			this.backgroundColor = SELECTED_COLOR;
 			this.backgroundAlpha = 0;
+			this.borderColor = SELECTED_BORDER;
+			this.borderAlpha = 0;
 		}
 		
 		private function getIcon():Icon

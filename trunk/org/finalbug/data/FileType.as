@@ -48,7 +48,7 @@ package org.finalbug.data
 		
 		public function get icon():Icon
 		{
-			return this.isDir ? Icons.instance.folderIcon : _icon;
+			return this.isDir ? Icons.instance.folderIcon : _icon.clone();
 		}
 		public function set icon(value:Icon):void
 		{

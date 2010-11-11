@@ -379,6 +379,8 @@ package org.finalbug.core.display
 		
 		protected function callAtAdded():void{}
 		
+		protected function countSizeAndPosition():void{}
+		
 		//***************************************
 		// PRIVATE
 		//***************************************

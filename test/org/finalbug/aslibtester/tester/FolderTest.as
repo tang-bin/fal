@@ -44,7 +44,7 @@ package org.finalbug.aslibtester.tester
 			this.addChild(container);
 			//
 			var dd:DirectoryData = new DirectoryData();
-			for(var i:uint = 0 ; i < 30 ; i++)
+			for(var i:uint = 0 ; i < 100 ; i++)
 			{
 				var fd:DirectoryFileData = new DirectoryFileData();
 				fd.name += i.toString();

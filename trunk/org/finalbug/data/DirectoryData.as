@@ -32,6 +32,8 @@ package org.finalbug.data
 		private var files:Dictionary = new Dictionary();
 		private var fileNames:Array = new Array();
 		
+		public var currentSelected:Dictionary = new Dictionary();
+		
 		//***************************************
 		// GETTER and SETTER
 		//***************************************
@@ -118,6 +120,7 @@ package org.finalbug.data
 		{
 			files = new Dictionary();
 			fileNames = new Array();
+			currentSelected = new Dictionary();
 		}
 		
 		public function hasFile(file:DirectoryFileData):Boolean
