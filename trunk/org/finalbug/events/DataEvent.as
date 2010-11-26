@@ -18,6 +18,16 @@ package org.finalbug.events
 		public var oldData:*;
 		public var newData:*;
 		
+		// for tree model
+		public static const TREE_ADD:String = "treeAdd";
+		public static const TREE_REMOVE:String = "treeRemove";
+		public static const TREE_MOVE:String = "treeMove";
+		public static const TREE_CHANGE_PARENT:String = "treeChangeParent";
+		public static const TREE_CLEAN:String = "treeClean";
+		public static const TREE_CHANGE:String = "treeChange";
+		
+		public var treeNode:Object;
+		
 		public function DataEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);

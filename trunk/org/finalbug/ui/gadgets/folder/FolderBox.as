@@ -117,12 +117,12 @@ package org.finalbug.ui.gadgets.folder
 		
 		protected function beforeSetItemPosition():void
 		{
-			// show be overrided in grid/list/tree boxes.
+			// should be overrided in grid/list/tree boxes.
 		}
 		
 		protected function setItemPosition(item:FolderItem, index:uint, length:uint):void
 		{
-			// show be overrided in grid/list/tree boxes.
+			// should be overrided in grid/list/tree boxes.
 		}
 		
 		//***************************************

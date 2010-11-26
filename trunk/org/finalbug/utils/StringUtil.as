@@ -420,5 +420,15 @@ package org.finalbug.utils
 			if(showArea) str = "[" + str + "]";
 			return str;
 		}
+		
+		public static function getBlankSpace(len:uint = 0):String
+		{
+			var str:String = "";
+			for(var i:uint = len ; --i >= 0 ; )
+			{
+				str += " ";
+			}
+			return str;
+		}
 	}
 }

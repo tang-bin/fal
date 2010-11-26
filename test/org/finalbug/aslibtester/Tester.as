@@ -8,6 +8,7 @@ package org.finalbug.aslibtester
 	import org.finalbug.aslibtester.tester.GridTester;
 	import org.finalbug.aslibtester.tester.MotionTester;
 	import org.finalbug.aslibtester.tester.TextAreaTester;
+	import org.finalbug.aslibtester.tester.TreeModelTester;
 	import org.finalbug.aslibtester.tester.UITester;
 	import org.finalbug.data.Position;
 	import org.finalbug.framework.app.App;
@@ -23,7 +24,7 @@ package org.finalbug.aslibtester
 		{
 			super(false);
 			//
-			var num:uint = 4;
+			var num:uint = 5;
 			var tester:UIObject;
 			switch(num)
 			{
@@ -32,6 +33,7 @@ package org.finalbug.aslibtester
 				case 2: tester = new TextAreaTester();break;
 				case 3: tester = new GridTester();break;
 				case 4: tester = new FolderTest();break;
+				case 5: tester = new TreeModelTester();break;
 			}
 			if(tester != null)
 			{
