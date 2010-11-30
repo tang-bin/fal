@@ -58,12 +58,10 @@ package org.finalbug.utils
 		
 		public static function getRGB(color:Number):Array
 		{
-			var r:Number = Math.floor(color / 65536);
-			color = color - (r * 65536);
-			var g:Number = Math.floor(color / 256);
-			color = color - (g * 256);
-			var b:Number = color;
-			return [r, g, b];
+			var red:uint = color >> 16 & 0xFF;
+			var green:uint = color >> 8 & 0xFF;
+			var blue:uint = color & 0xFF;
+			return [red, green, blue];
 		}
 		
 		public static function gray(target:DisplayObject):void

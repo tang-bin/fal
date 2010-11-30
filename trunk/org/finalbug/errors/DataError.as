@@ -18,6 +18,8 @@ package org.finalbug.errors
 		public static const DATA_EXIST:String = "Data is exist.";
 		public static const SET_SHARED_DATA_ERROR:String = "To set data for SharedData, please use setData() method.";
 		
+		public static const SHARED_DATA_TYPE_ERROR:String = "Data type error, expect number, string, boolean, bytearray, treeModel and sharedData.";
+		
 		public static const CANNOT_REMOVE_NONEXISTENT_DATA:String = "Cannot remove nonexistent Data.";
 		
 		public function DataError(message:String = "", id:int = 0)

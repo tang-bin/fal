@@ -4,6 +4,7 @@
  ******************************************/
 package org.finalbug.data
 {
+	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	
 	import org.finalbug.errors.DataError;
@@ -23,6 +24,9 @@ package org.finalbug.data
 		 * DEFINE
 		 *
 		 ****************************************/
+		
+		public var nodeToStringFunction:Function;
+		public var stringToNodeFunction:Function;
 		
 		private var _root:NodeData;
 		private var nodes:Dictionary;
@@ -623,7 +627,27 @@ package org.finalbug.data
 		
 		private function getTempXML():XML
 		{
-			return new XML();
+			var str:String = "<t>";
+			str += getNextTempXML(_root);
+			str += "</t>"
+			return new XML(str);
+		}
+		
+		private function getNextTempXML(node:NodeData):String
+		{
+			var str:String = "";
+			var nodeStr:String = nodeToStringFunction != null ? nodeToStringFunction.call(node.data) : node.data.toString();
+			str += "<n v=\"" + escape(nodeStr) + "\"/>";
+			if(node.firstChild != null)
+			{
+				str += getNextTempXML(node.firstChild);
+			}
+			str += "</n>";
+			if(node.next != null)
+			{
+				str += getNextTempXML(node.next);
+			}
+			return str;
 		}
 		
 		private function addXMLDataToTree(parentData:NodeData, xmlData:XML):void

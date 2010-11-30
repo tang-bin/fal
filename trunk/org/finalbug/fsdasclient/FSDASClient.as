@@ -31,7 +31,7 @@ package org.finalbug.fsdasclient
 		// DEFINE
 		//
 		//*********************************************************
-		private var datas:Dictionary = new Dictionary();
+		private var datas:Object = new Object();
 		private var sk:Socket;
 		private var _host:String;
 		private var _port:uint;
@@ -86,9 +86,9 @@ package org.finalbug.fsdasclient
 			
 		}
 		
-		public function listenData(path:String, verification:Array = null):SharedData
+		public function listenData(name:String):SharedData
 		{
-			if(datas[path] != null)
+			if(datas[name] != null)
 			{
 				throw new FSDASClientError(FSDASClientError.ALREADY_LISTEN);
 			}
@@ -96,13 +96,13 @@ package org.finalbug.fsdasclient
 			{
 				var sd:SharedData = new SharedData();
 				// TODO: send request
-				datas[path] = sd;
+				datas[name] = sd;
 				sd.addEventListener(DataEvent.CHANGE_DATA, dataChangedHandler, false, 0, false, 0);
 				return sd;
 			}
 		}
 		
-		public function stopListenData(path:String):void
+		public function stopListenData(name:String):void
 		{
 			
 		}

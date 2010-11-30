@@ -7,6 +7,7 @@ package org.finalbug.data
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.utils.ByteArray;
+	import flash.utils.Dictionary;
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
 	
@@ -24,7 +25,7 @@ package org.finalbug.data
 		 ****************************************/
 		private var _parent:SharedData;
 		private var _name:String = "";
-		private var data:Object = new Object();
+		private var data:Dictionary = new Dictionary();
 		private var modifyLogs:Array = new Array();
 		private var dispatchers:Array = new Array();
 		
@@ -32,9 +33,40 @@ package org.finalbug.data
 		 * GETTER and SETTER
 		 ****************************************/
 		
+		public function get parent():SharedData
+		{
+			return _parent;
+		}
+		public function set parent(value:SharedData):void
+		{
+			_parent = value;
+		}
+		
+		public function get name():String
+		{
+			return _name;
+		}
+		public function set name(value:String):void
+		{
+			_name = value;
+		}
+		
+		public function get byteArray():ByteArray
+		{
+			var ba:ByteArray = new ByteArray();
+			// create byteArray by sharedData.
+			return ba;
+		}
+		
+		public function set byteArray(value:ByteArray):void
+		{
+			// TODO : set shareData by byteArray
+		}
+		
 		/****************************************
 		 * data.SharedData constructor.
 		 ****************************************/
+		
 		public function SharedData(){}
 		
 		/****************************************
@@ -47,6 +79,17 @@ package org.finalbug.data
 		 * PUBLIC
 		 ****************************************/
 		
+		/**
+		 * add new event listener to this shared data object.
+		 * 
+		 * @param type
+		 * @param listener
+		 * @param useCapture
+		 * @param priority
+		 * @param useWeakReference
+		 * @param level Define the level of the listener. One listener can be 
+		 * 				added to different level.
+		 */		
 		public function addEventListener(type:String,
 										 listener:Function,
 										 useCapture:Boolean = false,
@@ -58,6 +101,14 @@ package org.finalbug.data
 			(dispatchers[level] as EventDispatcher).addEventListener(type, listener, useCapture, priority, useWeakReference);
 		}
 		
+		/**
+		 * Remove a listener of the shared data object.
+		 * 
+		 * @param type
+		 * @param listener
+		 * @param useCapture
+		 * @param level Remove level.
+		 */		
 		public function removeEventListener(type:String,
 											listener:Function,
 											useCapture:Boolean = false,
@@ -69,18 +120,21 @@ package org.finalbug.data
 			}
 		}
 		
-		public function dispatchEvent(event:Event):void
-		{
-			this.dispatcher.dispatchEvent(event);
-			if(this._parent != null)
-			{
-				this._parent.dispatchEvent(event);
-			}
-		}
-		
+		/**
+		 * Set a data of shared data object.
+		 * name and value are limited to number, string, boolean, bytearray, treeModel and sharedData only.
+		 * 
+		 * @param name the name of 
+		 * @param value
+		 * @param level The setter's level, used with dispatchType.
+		 * @param dispatchType Can be DispatchType.ALL, DispatchType.SEFL and DispatchType.OTHERS.
+		 * 					For All, this change will be dispatched to listeners at all leve.
+		 * 					For SEFL, change will only be dispatched to the same level as parem "level".
+		 * 					For OTHERS, change will be dispatched to all listeners except level "level".
+		 */		
 		public function setData(name:*, value:*, level:uint = 1, dispatchType:String = "others"):void
 		{
-			if(checkData(value))
+			if(checkData(name) && checkData(value))
 			{
 				// create event first.
 				var ee:DataEvent = new DataEvent(DataEvent.CHANGE_DATA);
@@ -118,40 +172,23 @@ package org.finalbug.data
 			}
 			else
 			{
-				// error/
+				throw new DataError(DataError.SHARED_DATA_TYPE_ERROR);
 			}
 		}
 		
 		override flash_proxy function getProperty(name:*):*
 		{
-			switch(name.toString())
-			{
-				case "parent": return _parent;break;
-				case "name": return _name;break;
-				default: return data[name];
-			}
+			return data[name];
 		}
 		
 		override flash_proxy function setProperty(name:*, value:*):void
 		{
-			switch(name.toString())
-			{
-				case "parent": _parent = value; break;
-				case "name": _name = value.toString();break;
-				default:
-					throw new DataError(DataError.SET_SHARED_DATA_ERROR);
-					break;
-			}
+			throw new DataError(DataError.SET_SHARED_DATA_ERROR);
 		}
 		
 		override flash_proxy function callProperty(methodName:*, ... args):*
 		{
-			switch(methodName.toString())
-			{
-				default:
-					return "";
-					break;
-			}
+			// nothing need to be done here.
 		}
 		
 		public function toString():String
@@ -200,23 +237,6 @@ package org.finalbug.data
 			return null;
 		}
 		
-		public function createModifyByteArray(path:String, oldData:*, newData:*):ByteArray
-		{
-			var ba:ByteArray = new ByteArray();
-			return ba;
-		}
-		
-		public function appendModify(data:ByteArray):void
-		{
-			
-		}
-		
-		public function getByteArray():ByteArray
-		{
-			var ba:ByteArray = new ByteArray();
-			return ba;
-		}
-		
 		/****************************************
 		 * PROTECTED
 		 ****************************************/
@@ -225,14 +245,23 @@ package org.finalbug.data
 		 * PRIVATE
 		 ****************************************/
 		
+		private function dispatchEvent(event:Event):void
+		{
+			this.dispatcher.dispatchEvent(event);
+			if(this._parent != null)
+			{
+				this._parent.dispatchEvent(event);
+			}
+		}
+		
 		private function checkData(data:*):Boolean
 		{
-			if(data is uint ||
-				data is Number ||
+			if(data is Number ||
 				data is String ||
 				data is Boolean ||
 				data is ByteArray ||
-				data is SharedData)
+				data is SharedData ||
+				data is TreeModel)
 			{
 				return true;
 			}
