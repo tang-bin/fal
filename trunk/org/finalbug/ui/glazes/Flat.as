@@ -44,6 +44,11 @@ package org.finalbug.ui.glazes
 			updateView();
 		}
 		
+		public function refresh():void
+		{
+			this.updateView();
+		}
+		
 		override protected function updateView():void
 		{
 			_fillStyle.fill(this, displayWidth, displayHeight);
