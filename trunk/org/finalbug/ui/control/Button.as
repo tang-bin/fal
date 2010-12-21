@@ -1,20 +1,28 @@
-/******************************************
+/******************************************************
+ * ___________.__              .__ ___.                 
+ * \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____  
+ *  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\ 
+ *  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+ *  \__ |     |__|___|  (____  /____/___  /____/\___  / 
+ *     \/             \/     \/         \/     /_____/  
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.control
 {
 	import org.finalbug.data.Status;
 	import org.finalbug.ui.glazes.Flat;
 	import org.finalbug.ui.glazes.Image;
 	import org.finalbug.ui.style.stylefactory.ButtonStyleFactory;
+	import org.finalbug.ui.control.Label;
+	import org.finalbug.ui.control.UIObject;
 	
-	/******************************************
+	/******************************************************
 	 * org.finalbug.ui.control.Button
 	 * 
 	 * @author Tang Bin
 	 * @since old version
-	 *****************************************/
+	  *****************************************************/  
 	public class Button extends UIObject
 	{
 		//***************************************

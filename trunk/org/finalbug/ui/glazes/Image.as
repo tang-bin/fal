@@ -1,7 +1,7 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.glazes
 {
 	import flash.display.Bitmap;
@@ -13,7 +13,7 @@ package org.finalbug.ui.glazes
 	import flash.events.ProgressEvent;
 	import flash.net.URLRequest;
 	
-	import org.finalbug.core.display.Glaze;
+	import org.finalbug.ui.Glaze;
 	import org.finalbug.events.LoadEvent;
 	
 	/**

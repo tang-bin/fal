@@ -1,12 +1,14 @@
-/******************************************
+/******************************************************
  * Tang Bin
- *****************************************/
+  *****************************************************/  
 package org.finalbug.data
 {
 	import flash.utils.Dictionary;
 	
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.glazes.Image;
+	import org.finalbug.data.DataModel;
+	import org.finalbug.data.DirectoryFileData;
 	
 	/**
 	 * DirectoryData

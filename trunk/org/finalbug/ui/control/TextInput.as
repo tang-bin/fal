@@ -1,7 +1,7 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.control
 {
 	import flash.events.Event;
@@ -12,6 +12,7 @@ package org.finalbug.ui.control
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.ui.glazes.Flat;
 	import org.finalbug.ui.style.stylefactory.TextInputStyleFactory;
+	import org.finalbug.ui.control.UIObject;
 	
 	/**
 	 * text input component

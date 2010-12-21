@@ -1,7 +1,7 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.control
 {
 	import flash.events.Event;
@@ -12,6 +12,7 @@ package org.finalbug.ui.control
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.events.UIEvent;
 	import org.finalbug.ui.style.stylefactory.TextAreaStyleFactory;
+	import org.finalbug.ui.control.ScrollBox;
 	
 	/**
 	 * @eventType events.DataEvent.CHANGE_DATA

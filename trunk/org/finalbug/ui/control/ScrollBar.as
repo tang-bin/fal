@@ -1,7 +1,7 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.control
 {
 	import flash.events.MouseEvent;
@@ -12,14 +12,15 @@ package org.finalbug.ui.control
 	
 	import org.finalbug.data.Position;
 	import org.finalbug.data.Status;
-	import org.finalbug.core.draw.Track;
-	import org.finalbug.utils.MathUtil;
 	import org.finalbug.errors.UIError;
 	import org.finalbug.events.UIEvent;
 	import org.finalbug.events.UIMouseEvent;
+	import org.finalbug.ui.control.UIObject;
 	import org.finalbug.ui.glazes.Flat;
 	import org.finalbug.ui.style.FillStyle;
 	import org.finalbug.ui.style.stylefactory.ScrollBarStyleFactory;
+	import org.finalbug.utils.DrawUtil;
+	import org.finalbug.utils.MathUtil;
 	
 	/**
 	 * ScrollBar
@@ -483,7 +484,7 @@ package org.finalbug.ui.control
 			var color:Number = Number(currentStyle.textStyle.format.color);
 			var len:Number = _thickness / 2;
 			leftBtn.graphics.beginFill(color, 1);
-			Track.drawTriangle(leftBtn, new Point(len, len), len, len, "left");
+			DrawUtil.drawTriangle(leftBtn.graphics, new Point(len, len), len, len, "left");
 			leftBtn.graphics.endFill();
 		}
 		
@@ -492,7 +493,7 @@ package org.finalbug.ui.control
 			var color:Number = Number(currentStyle.textStyle.format.color);
 			var len:Number = _thickness / 2;
 			rightBtn.graphics.beginFill(color, 1);
-			Track.drawTriangle(rightBtn, new Point(len, len), len, len, "right");
+			DrawUtil.drawTriangle(rightBtn.graphics, new Point(len, len), len, len, "right");
 			rightBtn.graphics.endFill();
 		}
 		
@@ -501,7 +502,7 @@ package org.finalbug.ui.control
 			var color:Number = Number(currentStyle.textStyle.format.color);
 			var len:Number = _thickness / 2;
 			upBtn.graphics.beginFill(color, 1);
-			Track.drawTriangle(upBtn, new Point(len, len), len, len, "up");
+			DrawUtil.drawTriangle(upBtn.graphics, new Point(len, len), len, len, "up");
 			upBtn.graphics.endFill();
 		}
 		
@@ -510,7 +511,7 @@ package org.finalbug.ui.control
 			var color:Number = Number(currentStyle.textStyle.format.color);
 			var len:Number = _thickness / 2;
 			downBtn.graphics.beginFill(color, 1);
-			Track.drawTriangle(downBtn, new Point(len, len), len, len, "down");
+			DrawUtil.drawTriangle(downBtn.graphics, new Point(len, len), len, len, "down");
 			downBtn.graphics.endFill();
 		}
 	}

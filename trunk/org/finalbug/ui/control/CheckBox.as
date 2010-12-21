@@ -1,7 +1,7 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.control
 {
 	import flash.display.Shape;
@@ -14,6 +14,8 @@ package org.finalbug.ui.control
 	import org.finalbug.ui.glazes.Flat;
 	import org.finalbug.ui.style.stylefactory.CheckBoxStyleFactory;
 	import org.finalbug.ui.style.FillStyle;
+	import org.finalbug.ui.control.Label;
+	import org.finalbug.ui.control.UIObject;
 	
 	/**
 	 * CheckBox component.

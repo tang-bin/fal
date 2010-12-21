@@ -1,7 +1,7 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library 
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.data
 {
 	import flash.events.Event;
@@ -13,6 +13,9 @@ package org.finalbug.data
 	
 	import org.finalbug.errors.DataError;
 	import org.finalbug.events.DataEvent;
+	import org.finalbug.data.DispatchType;
+	import org.finalbug.data.SharedData;
+	import org.finalbug.data.TreeModel;
 	
 	/**
 	 * @author Tang Bin

@@ -1,16 +1,16 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.glazes
 {
-	import org.finalbug.core.display.Glaze;
-	import org.finalbug.core.draw.Track;
-	
 	import flash.display.Sprite;
 	import flash.events.TimerEvent;
 	import flash.filters.GlowFilter;
 	import flash.utils.Timer;
+	
+	import org.finalbug.ui.Glaze;
+	import org.finalbug.utils.DrawUtil;
 
 	public class ProgressRound extends Glaze
 	{
@@ -85,7 +85,7 @@ package org.finalbug.ui.glazes
 		{
 			front.graphics.clear();
 			front.graphics.beginFill(frontColor, 1);
-			Track.drawSector(front, -90, 360 * rate - 90, radius);
+			DrawUtil.drawSector(front.graphics, -90, 360 * rate - 90, radius);
 			front.graphics.endFill();
 			//
 			var blur:Number = 20 * (1 - Math.abs(rate - 0.5));

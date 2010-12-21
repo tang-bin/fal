@@ -1,7 +1,7 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library 
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.errors
 {
 	public class FSDASClientError extends Error

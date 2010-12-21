@@ -1,7 +1,7 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.control
 {
 	import flash.display.Shape;
@@ -10,10 +10,12 @@ package org.finalbug.ui.control
 	
 	import org.finalbug.data.Position;
 	import org.finalbug.data.Status;
-	import org.finalbug.core.draw.Graph;
 	import org.finalbug.events.DataEvent;
-	import org.finalbug.ui.style.stylefactory.CheckBoxStyleFactory;
+	import org.finalbug.ui.control.Label;
+	import org.finalbug.ui.control.UIObject;
 	import org.finalbug.ui.style.FillStyle;
+	import org.finalbug.ui.style.stylefactory.CheckBoxStyleFactory;
+	import org.finalbug.utils.DrawUtil;
 	
 	/**
 	 * radio button
@@ -157,7 +159,7 @@ package org.finalbug.ui.control
 			txt = new Label(_label);
 			bg = new Shape();
 			//
-			Graph.drawLucidRectangle(bg);
+			DrawUtil.drawBlock(bg.graphics);
 			innerBox.visible = false;
 			//
 			this.addAll(outerBox, innerBox, txt, bg);

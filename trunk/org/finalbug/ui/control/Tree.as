@@ -1,9 +1,10 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.control
 {
+	import org.finalbug.ui.control.ScrollBox;
 	
 	/**
 	 * Tree

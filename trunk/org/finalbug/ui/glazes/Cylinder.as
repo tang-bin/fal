@@ -1,12 +1,12 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.glazes
 {
 	import flash.display.GradientType;
 	
-	import org.finalbug.core.display.Glaze;
+	import org.finalbug.ui.Glaze;
 	import org.finalbug.utils.ColorUtil;
 
 	public class Cylinder extends Glaze

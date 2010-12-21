@@ -1,13 +1,15 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.data
 {
 	import flash.display.Bitmap;
 	
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.control.Icon;
+	import org.finalbug.data.DataModel;
+	import org.finalbug.data.Icons;
 	
 	/**
 	 * Icons

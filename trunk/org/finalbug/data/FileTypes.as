@@ -1,12 +1,16 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.data
 {
 	import mx.controls.Image;
 	
 	import org.finalbug.errors.DataError;
+	import org.finalbug.data.DataModel;
+	import org.finalbug.data.FileType;
+	import org.finalbug.data.FileTypes;
+	import org.finalbug.data.Icons;
 	
 	/**
 	 * FileType

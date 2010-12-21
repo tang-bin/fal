@@ -1,7 +1,7 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.style
 {
 	import flash.display.DisplayObject;
@@ -12,6 +12,7 @@ package org.finalbug.ui.style
 	import flash.geom.Matrix;
 	
 	import org.finalbug.utils.MathUtil;
+	import org.finalbug.ui.style.Style;
 	
 	/**
 	 * css.styles.FillStyle

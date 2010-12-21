@@ -1,12 +1,13 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.style
 {
 	import flash.display.DisplayObject;
 	
 	import org.finalbug.data.DataModel;
+	import org.finalbug.ui.style.Style;
 	
 	/**
 	 * css.styles.Style
@@ -52,7 +53,7 @@ package org.finalbug.ui.style
 		
 		public function validLayoutValue(str:String):Boolean
 		{
-			return (Style.NUM_REG.exec(str) || Style.PERCENT_REG.exec(str));
+			return (Style.NUM_REG.exec(str) || Style.PERCENT_REG.exec(str)) && str != "";
 		}
 		
 		public function getLayoutValue(valueStr:String, parentValue:Number = 0):Number

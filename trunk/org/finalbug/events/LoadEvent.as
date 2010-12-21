@@ -1,6 +1,7 @@
 package org.finalbug.events
 {
 	import flash.events.Event;
+	import org.finalbug.events.LoadEvent;
 	
 	/**
 	 * Event class for net operations. mostly are load files and connect to server.

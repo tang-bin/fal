@@ -1,4 +1,4 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
  ******************************************/
@@ -10,13 +10,14 @@ package org.finalbug.data
 	import org.finalbug.errors.DataError;
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.utils.StringUtil;
+	import org.finalbug.data.DataModel;
 	
-	/******************************************
+	/******************************************************
 	 * data.TreeModel
 	 *
 	 * @author Tang Bin
 	 * @since 2010.09
-	 *****************************************/
+	  *****************************************************/  
 	public class TreeModel extends DataModel
 	{
 		/****************************************

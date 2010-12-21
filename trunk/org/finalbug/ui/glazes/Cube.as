@@ -1,10 +1,10 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.glazes
 {
-	import org.finalbug.core.display.Glaze;
+	import org.finalbug.ui.Glaze;
 	import org.finalbug.utils.ColorUtil;
 
 	public class Cube extends Glaze

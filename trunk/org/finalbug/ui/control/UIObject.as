@@ -1,19 +1,25 @@
-/******************************************
+/******************************************************
+ * ___________.__              .__ ___.                 
+ * \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____  
+ *  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\ 
+ *  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+ *  \__ |     |__|___|  (____  /____/___  /____/\___  / 
+ *     \/             \/     \/         \/     /_____/  
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.control
 {
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
 	
-	import org.finalbug.core.display.Bin;
 	import org.finalbug.data.SetType;
 	import org.finalbug.data.Status;
 	import org.finalbug.errors.UIError;
-	import org.finalbug.framework.app.Tooltip;
+	import org.finalbug.ui.Bin;
 	import org.finalbug.ui.style.DisplayStyle;
 	import org.finalbug.ui.style.LayoutStyle;
+	import org.finalbug.ui.widgets.Tooltip;
 	import org.finalbug.utils.DataUtil;
 	import org.finalbug.utils.MathUtil;
 	
@@ -230,6 +236,11 @@ package org.finalbug.ui.control
 			{
 				this.statusName = name;
 			}
+		}
+		
+		public function setSkin(type:String):void
+		{
+			
 		}
 		
 		/**

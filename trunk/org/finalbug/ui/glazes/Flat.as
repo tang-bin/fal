@@ -1,7 +1,7 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.glazes
 {
 	import flash.display.GradientType;
@@ -9,7 +9,7 @@ package org.finalbug.ui.glazes
 	import flash.filters.GlowFilter;
 	import flash.geom.Matrix;
 	
-	import org.finalbug.core.display.Glaze;
+	import org.finalbug.ui.Glaze;
 	import org.finalbug.ui.style.FillStyle;
 	
 	/**

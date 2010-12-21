@@ -1,9 +1,12 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.utils
 {
+	import org.finalbug.utils.MathUtil;
+	import org.finalbug.utils.StringUtil;
+
 	/**
 	 * This class offers some useful methods to deal with string.
 	 * 
@@ -427,6 +430,16 @@ package org.finalbug.utils
 			for(var i:uint = len ; --i >= 0 ; )
 			{
 				str += " ";
+			}
+			return str;
+		}
+		
+		public static function fillString(str:String, len:uint, char:String = "0", prefix:Boolean = true):String
+		{
+			while(str.length < len)
+			{
+				if(prefix) str = char + str;
+				else str = str + char;
 			}
 			return str;
 		}

@@ -1,12 +1,17 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.style
 {
 	import flash.display.DisplayObject;
 	
 	import org.finalbug.data.DataModel;
+	import org.finalbug.ui.style.DisplayStyle;
+	import org.finalbug.ui.style.FillStyle;
+	import org.finalbug.ui.style.LayoutStyle;
+	import org.finalbug.ui.style.Style;
+	import org.finalbug.ui.style.TextStyle;
 	
 	/**
 	 * style.DisplayStyle

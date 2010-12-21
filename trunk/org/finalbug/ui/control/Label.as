@@ -1,13 +1,14 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.control
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
+	import org.finalbug.ui.control.UIObject;
 	
 	/**
 	 * controls.Label

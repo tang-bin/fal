@@ -1,15 +1,16 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.control
 {
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	
-	import org.finalbug.core.draw.Graph;
 	import org.finalbug.events.UIEvent;
+	import org.finalbug.ui.control.ScrollBox;
+	import org.finalbug.utils.DrawUtil;
 	
 	/**
 	 * This class create a panel with scrollbar x and y.
@@ -87,7 +88,7 @@ package org.finalbug.ui.control
 		{
 			masker = new Sprite();
 			masker.mouseChildren = masker.mouseChildren = false;
-			Graph.drawLucidRectangle(masker);
+			DrawUtil.drawBlock(masker.graphics);
 			box = new Sprite();
 			// draw a invisible point at (0, 0) to make box count size for (0, 0) point.
 			box.graphics.beginFill(0, 0);

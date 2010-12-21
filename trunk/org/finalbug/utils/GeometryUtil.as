@@ -1,4 +1,4 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
  ******************************************/
@@ -6,13 +6,14 @@ package org.finalbug.utils
 {
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import org.finalbug.utils.MathUtil;
 	
-	/******************************************
+	/******************************************************
 	 * utils.GeometryUtil
 	 *
 	 * @author Tang Bin
 	 * @since old version
-	 *****************************************/
+	  *****************************************************/  
 	public class GeometryUtil
 	{
 		/**

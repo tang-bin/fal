@@ -1,7 +1,7 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.control
 {
 	import org.finalbug.data.Position;
@@ -9,6 +9,8 @@ package org.finalbug.ui.control
 	import org.finalbug.events.UIEvent;
 	import org.finalbug.ui.glazes.Flat;
 	import org.finalbug.ui.style.stylefactory.ScrollBoxStyleFactory;
+	import org.finalbug.ui.control.ScrollBar;
+	import org.finalbug.ui.control.UIObject;
 	
 	/**
 	 * This class is a container with scroll bar.

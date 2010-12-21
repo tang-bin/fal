@@ -2,7 +2,7 @@ package org.finalbug.events
 {
 	import flash.events.Event;
 	
-	import org.finalbug.core.motion.Motion;
+	import org.finalbug.utils.motion.Motion;
 	
 	/**
 	 * Event class for Class Move.

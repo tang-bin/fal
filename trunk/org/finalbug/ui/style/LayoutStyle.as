@@ -1,9 +1,10 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.style
 {
+	import org.finalbug.ui.style.Style;
 	
 	/**
 	 * css.styles.LayoutStyle
@@ -139,6 +140,11 @@ package org.finalbug.ui.style
 			ls._horizontal = this._horizontal;
 			ls._vertical = this._vertical;
 			return ls;
+		}
+		
+		override public function toString():String
+		{
+			return "[x = " + this.x + ", y = " + this.y + ", width = " + this.width + ", height = " + this.height + "]";
 		}
 	}
 }

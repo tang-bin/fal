@@ -1,13 +1,15 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- *****************************************/
+  *****************************************************/  
 package org.finalbug.ui.style
 {
 	import flash.text.TextFormat;
 	
+	import org.finalbug.ui.style.TextStyle;
 	
-	public class TextStyle extends org.finalbug.ui.style.Style
+	
+	public class TextStyle extends Style
 	{
 		private var _format:TextFormat
 		

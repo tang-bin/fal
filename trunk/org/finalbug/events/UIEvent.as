@@ -1,4 +1,4 @@
-/******************************************
+/******************************************************
  * [fb-aslib] Finalbug ActionScript Library ( http://www.finalbug.org )
  * 
  * events.UIEvent
@@ -6,7 +6,7 @@
  * @author Tang Bin
  * @since Jul 12, 2010 7:24:08 PM
  *
- *****************************************/
+  *****************************************************/  
 package org.finalbug.events
 {
 	import flash.events.Event;
