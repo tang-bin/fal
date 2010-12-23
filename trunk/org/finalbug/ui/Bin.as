@@ -322,6 +322,8 @@ package org.finalbug.ui
 			{
 				switch(pos)
 				{
+					case Position.TOP_CENTER:
+						center = true;
 					case Position.TOP:
 						if(center) this.x = (this.parent.width - this.width) / 2;
 						this.y = 0;
@@ -333,14 +335,20 @@ package org.finalbug.ui
 						this.x = this.parent.width - this.width;
 						this.y = 0;
 						break;
+					case Position.LEFT_CENTER:
+						center = true;
 					case Position.LEFT:
 						if(center) this.y = (this.parent.height - this.height) / 2;
 						this.x = 0;
 						break;
+					case Position.RIGHT_CENTER:
+						center = true;
 					case Position.RIGHT:
 						if(center) this.y = (this.parent.height - this.height) / 2;
 						this.x = this.parent.width - this.width;
 						break;
+					case Position.BOTTOM_CENTER:
+						center = true;
 					case Position.BOTTOM:
 						if(center) this.x = (this.parent.width - this.width) / 2;
 						this.y = this.parent.height - this.height;
