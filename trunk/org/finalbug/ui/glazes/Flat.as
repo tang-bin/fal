@@ -20,21 +20,6 @@ package org.finalbug.ui.glazes
 	 */	
 	public class Flat extends Glaze
 	{
-		private var _fillStyle:FillStyle;
-		
-		public function get fillStyle():FillStyle
-		{
-			return _fillStyle;
-		}
-		public function set fillStyle(value:FillStyle):void
-		{
-			if(_fillStyle != value)
-			{
-				_fillStyle = value;
-				this.updateView();
-			}
-		}
-		
 		public function Flat(width:Number = 10, height:Number = 10, style:FillStyle = null)
 		{
 			super();
@@ -47,11 +32,6 @@ package org.finalbug.ui.glazes
 		public function refresh():void
 		{
 			this.updateView();
-		}
-		
-		override protected function updateView():void
-		{
-			_fillStyle.fill(this, displayWidth, displayHeight);
 		}
 	}
 }

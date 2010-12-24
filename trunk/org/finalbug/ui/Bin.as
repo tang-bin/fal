@@ -18,6 +18,7 @@ package org.finalbug.ui
 	import org.finalbug.data.Position;
 	import org.finalbug.events.DisplayEvent;
 	import org.finalbug.events.MotionEvent;
+	import org.finalbug.ui.style.FillStyle;
 	import org.finalbug.utils.MathUtil;
 	import org.finalbug.utils.motion.MoveMotion;
 	import org.finalbug.utils.motion.SizeMotion;
@@ -39,6 +40,8 @@ package org.finalbug.ui
 		protected var displayWidth:Number = 0;
 		protected var displayHeight:Number = 0;
 		
+		protected var _fillStyle:FillStyle = null;
+		
 		private var _maxWidth:Number = 4000;
 		private var _maxHeight:Number = 4000;
 		private var _minWidth:Number = 0;
@@ -53,6 +56,19 @@ package org.finalbug.ui
 		//***************************************
 		// GETTER and SETTER
 		//***************************************
+		
+		public function get fillStyle():FillStyle
+		{
+			return _fillStyle;
+		}
+		public function set fillStyle(value:FillStyle):void
+		{
+			if(_fillStyle != value)
+			{
+				_fillStyle = value;
+				drawBg();
+			}
+		}
 		
 		/**
 		 * @default 0
@@ -389,7 +405,10 @@ package org.finalbug.ui
 		//***************************************
 		// PROTECTED
 		//***************************************
-		protected function updateView():void{}
+		protected function updateView():void
+		{
+			drawBg();
+		}
 		
 		protected function callAtAdded():void{}
 		
@@ -442,6 +461,18 @@ package org.finalbug.ui
 					_controlPoint.x = _controlPoint.y = 0;
 					_controlPointType = "";
 					break;
+			}
+		}
+		
+		private function drawBg():void
+		{
+			if(_fillStyle != null)
+			{
+				_fillStyle.fill(this, this.displayWidth, this.displayHeight);
+			}
+			else
+			{
+				this.graphics.clear();
 			}
 		}
 		
