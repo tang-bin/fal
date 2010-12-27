@@ -10,21 +10,18 @@ package org.finalbug.aslibtester
 	import org.finalbug.aslibtester.tester.TextAreaTester;
 	import org.finalbug.aslibtester.tester.TreeModelTester;
 	import org.finalbug.aslibtester.tester.UITester;
-	import org.finalbug.data.Position;
-	import org.finalbug.framework.app.App;
-	import org.finalbug.framework.app.Tooltip;
-	import org.finalbug.ui.control.Button;
-	import org.finalbug.ui.control.ScrollBar;
-	import org.finalbug.ui.control.TextArea;
+	import org.finalbug.ui.Bin;
 	import org.finalbug.ui.control.UIObject;
 	
-	public class Tester extends App
+	public class Tester extends Bin
 	{
 		public function Tester()
 		{
-			super(false);
+			super();
+			stage.scaleMode = "noScale";
+			stage.align = "TL";
 			//
-			var num:uint = 5;
+			var num:uint = 0;
 			var tester:UIObject;
 			switch(num)
 			{

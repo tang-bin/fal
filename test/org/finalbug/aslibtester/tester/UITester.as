@@ -1,7 +1,7 @@
 package org.finalbug.aslibtester.tester
 {
-	import org.finalbug.framework.layout.Container;
 	import org.finalbug.ui.control.Button;
+	import org.finalbug.ui.control.Container;
 	import org.finalbug.ui.control.TextArea;
 	
 	public class UITester extends Container
@@ -16,11 +16,13 @@ package org.finalbug.aslibtester.tester
 			btn = new Button("button");
 			btn.x = btn.y = 10;
 			//
+			/*
 			ta = new TextArea();
 			ta.x = 10;
 			ta.y = 50;
+			*/
 			//
-			this.addAll(btn, ta);
+			this.addAll(btn);
 		}
 	}
 }

@@ -44,12 +44,12 @@ package org.finalbug.events
 		/**
 		* total bytes that will be loaded.
 		*/		
-		public var totalBytes:Number = 0;
+		public var bytesTotal:Number = 0;
 		
 		/**
 		 * bytes thet is loaded.
 		 */		
-		public var loadedBytes:Number = 0;
+		public var bytesLoaded:Number = 0;
 		
 		/**
 		 * current percent of loaded bytes in total bytes.
@@ -76,8 +76,8 @@ package org.finalbug.events
 		{
 			var newEvent:LoadEvent = new LoadEvent(this.type, this.bubbles, this.cancelable);
 			newEvent.name = this.name;
-			newEvent.totalBytes = this.totalBytes;
-			newEvent.loadedBytes = this.loadedBytes;
+			newEvent.bytesTotal = this.bytesTotal;
+			newEvent.bytesLoaded = this.bytesLoaded;
 			newEvent.loadedRate = this.loadedRate;
 			newEvent.data = this.data;
 			return newEvent;

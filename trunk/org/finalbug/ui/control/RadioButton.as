@@ -122,11 +122,11 @@ package org.finalbug.ui.control
 		
 		override protected function updateView():void
 		{
-			if(currentStyle != null)
+			if(currentSkin != null)
 			{
 				drawOuterBox();
 				drawInnerBox();
-				txt.textFormat = currentStyle.textStyle.format;
+				txt.textFormat = currentSkin.textStyle.format;
 				setPosition();
 			}
 		}
@@ -164,10 +164,10 @@ package org.finalbug.ui.control
 			//
 			this.addAll(outerBox, innerBox, txt, bg);
 			//
-			this.registerStatus(Status.NORMAL, CheckBoxStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.MOUSE_OVER, CheckBoxStyleFactory.createOverStyle());
-			this.registerStatus(Status.MOUSE_DOWN, CheckBoxStyleFactory.createDownStyle());
-			this.registerStatus(Status.DISABLE, CheckBoxStyleFactory.createDisableStyle());
+			this.setSkin(Status.NORMAL, CheckBoxStyleFactory.createNormalStyle(), true);
+			this.setSkin(Status.MOUSE_OVER, CheckBoxStyleFactory.createOverStyle());
+			this.setSkin(Status.MOUSE_DOWN, CheckBoxStyleFactory.createDownStyle());
+			this.setSkin(Status.DISABLE, CheckBoxStyleFactory.createDisableStyle());
 			//
 			this.addEventListener(MouseEvent.CLICK, clickBoxHandler);
 		}
@@ -244,7 +244,7 @@ package org.finalbug.ui.control
 		
 		private function drawOuterBox():void
 		{
-			var fs:FillStyle = currentStyle.fillStyle;
+			var fs:FillStyle = currentSkin.fillStyle;
 			outerBox.graphics.clear();
 			outerBox.graphics.beginFill(fs.bgColor, 1);
 			outerBox.graphics.drawCircle(0, 0, BOX_SIZE / 2);
@@ -254,7 +254,7 @@ package org.finalbug.ui.control
 		
 		private function drawInnerBox():void
 		{
-			var fs:FillStyle = currentStyle.fillStyle;
+			var fs:FillStyle = currentSkin.fillStyle;
 			innerBox.graphics.clear();
 			innerBox.graphics.beginFill(fs.borderColor, 1);
 			innerBox.graphics.drawCircle(0, 0, BOX_SIZE / 2 - OUTERBOX_SIZE - OUTER_INNER_OFFSET);

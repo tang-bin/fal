@@ -190,7 +190,7 @@ package org.finalbug.ui.widgets.folder
 			//
 			if(txt == null)
 			{
-				txt = new Label(_data.name, new TextFormat(Style.DEFAULT_FONT, LABEL_SIZE, LABEL_COLOR, true));
+				txt = new Label(_data.name, new TextFormat(Style.defaultFont, LABEL_SIZE, LABEL_COLOR, true));
 				this.addChild(txt);
 			}
 			//

@@ -10,15 +10,15 @@
   *****************************************************/  
 package org.finalbug.ui.control
 {
+	import flash.display.Bitmap;
+	
 	import org.finalbug.data.Status;
 	import org.finalbug.ui.glazes.Flat;
 	import org.finalbug.ui.glazes.Image;
 	import org.finalbug.ui.style.stylefactory.ButtonStyleFactory;
-	import org.finalbug.ui.control.Label;
-	import org.finalbug.ui.control.UIObject;
 	
 	/******************************************************
-	 * org.finalbug.ui.control.Button
+	 * Button
 	 * 
 	 * @author Tang Bin
 	 * @since old version
@@ -33,6 +33,7 @@ package org.finalbug.ui.control
 		
 		private var _label:Label;
 		private var bg:Flat;
+		private var imgBg:Bitmap;
 		private var icon:Image;
 		
 		//***************************************
@@ -61,6 +62,7 @@ package org.finalbug.ui.control
 			super();
 			this.mouseChildren = false;
 			this._labelStr = text;
+			this.initSize(80, 20);
 			createChildren();
 		}
 		
@@ -73,12 +75,29 @@ package org.finalbug.ui.control
 		override protected function updateView():void
 		{
 			super.updateView();
-			if(currentStyle != null)
+			if(currentSkin != null)
 			{
-				bg.fillStyle = currentStyle.fillStyle;
-				_label.textFormat = currentStyle.textStyle.format;
-				bg.resize(displayWidth, displayHeight);
+				if(imgBg != null && this.contains(imgBg))
+				{
+					this.removeChild(imgBg);
+				}
+				if(currentSkin.bitmapSkin != null)
+				{
+					imgBg = currentSkin.bitmapSkin;
+					imgBg.width = this.displayWidth;
+					imgBg.height = this.displayHeight;
+					this.addChild(imgBg);
+					bg.visible = false;
+				}
+				else
+				{
+					bg.fillStyle = currentSkin.fillStyle;
+					bg.resize(displayWidth, displayHeight);
+					bg.visible = true;
+				}
+				_label.textFormat = currentSkin.textStyle.format;
 				_label.toCenter();
+				_label.toFront();
 			}
 		}
 		
@@ -102,10 +121,10 @@ package org.finalbug.ui.control
 			icon = new Image();
 			this.addAll(bg, _label, icon);
 			//
-			this.registerStatus(Status.NORMAL, ButtonStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.MOUSE_OVER, ButtonStyleFactory.createOverStyle());
-			this.registerStatus(Status.MOUSE_DOWN, ButtonStyleFactory.createDownStyle());
-			this.registerStatus(Status.DISABLE, ButtonStyleFactory.createDisableStyle());
+			this.setSkin(Status.NORMAL, ButtonStyleFactory.createNormalStyle(), true);
+			this.setSkin(Status.MOUSE_OVER, ButtonStyleFactory.createOverStyle());
+			this.setSkin(Status.MOUSE_DOWN, ButtonStyleFactory.createDownStyle());
+			this.setSkin(Status.DISABLE, ButtonStyleFactory.createDisableStyle());
 		}
 		
 		//***************************************

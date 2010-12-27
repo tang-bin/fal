@@ -1,55 +1,47 @@
 /******************************************************
+ * ___________.__              .__ ___.                 
+ * \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____  
+ *  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\ 
+ *  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+ *  \__ |     |__|___|  (____  /____/___  /____/\___  / 
+ *     \/             \/     \/         \/     /_____/  
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
-  *****************************************************/  
+  *****************************************************/ 
 package org.finalbug.ui.style
 {
+	import flash.display.Bitmap;
 	import flash.display.DisplayObject;
+	import flash.geom.Rectangle;
 	
 	import org.finalbug.data.DataModel;
-	import org.finalbug.ui.style.DisplayStyle;
-	import org.finalbug.ui.style.FillStyle;
-	import org.finalbug.ui.style.LayoutStyle;
-	import org.finalbug.ui.style.Style;
-	import org.finalbug.ui.style.TextStyle;
+	import org.finalbug.ui.glazes.Image;
+	import org.finalbug.ui.glazes.Scale9Bitmap;
 	
 	/**
-	 * style.DisplayStyle
+	 * UISkin
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.09
 	 */	
-	public class DisplayStyle extends DataModel
+	public class UISkin extends DataModel
 	{
 		//***************************************
 		// DEFINE
 		//***************************************
 		
-		private var _layoutStyle:LayoutStyle = new LayoutStyle();
 		private var _fillStyle:FillStyle = new FillStyle();
 		private var _textStyle:TextStyle = new TextStyle();
 		
-		private var styleList:Array = [
-			_layoutStyle,
-			_fillStyle,
-			_textStyle
-		];
+		private var styleList:Array = [_fillStyle, _textStyle];
+		
+		private var _bitmapSkin:Bitmap
 		
 		private var _owner:DisplayObject;
 		
 		//***************************************
 		// GETTER and SETTER
 		//***************************************
-		
-		public function get layoutStyle():LayoutStyle
-		{
-			return _layoutStyle;
-		}
-		public function set layoutStyle(value:LayoutStyle):void
-		{
-			_layoutStyle = value;
-			// TODO : dispatch style changed.
-		}
 		
 		public function get fillStyle():FillStyle
 		{
@@ -90,10 +82,15 @@ package org.finalbug.ui.style
 			}
 		}
 		
+		public function get bitmapSkin():Bitmap
+		{
+			return this._bitmapSkin;
+		}
+		
 		//***************************************
 		// Constructor.
 		//***************************************
-		public function DisplayStyle()
+		public function UISkin()
 		{
 			super();
 		}
@@ -108,11 +105,16 @@ package org.finalbug.ui.style
 		// PUBLIC
 		//***************************************
 		
-		public function clone():DisplayStyle
+		public function setBitmapSkin(bitmap:Bitmap, scale9:Rectangle = null):void
 		{
-			var ds:DisplayStyle = new DisplayStyle();
+			this._bitmapSkin = bitmap;
+			_bitmapSkin.scale9Grid = scale9;
+		}
+		
+		public function clone():UISkin
+		{
+			var ds:UISkin = new UISkin();
 			ds.fillStyle = this._fillStyle.clone();
-			ds.layoutStyle = this._layoutStyle.clone();
 			ds.textStyle = this._textStyle.clone();
 			return ds;
 		}

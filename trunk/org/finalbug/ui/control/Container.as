@@ -12,7 +12,7 @@ package org.finalbug.ui.control
 	import org.finalbug.errors.UIError;
 	import org.finalbug.ui.control.UIObject;
 	import org.finalbug.ui.glazes.Flat;
-	import org.finalbug.ui.style.DisplayStyle;
+	import org.finalbug.ui.style.UISkin;
 	import org.finalbug.ui.style.LayoutStyle;
 	import org.finalbug.utils.DataUtil;
 	
@@ -26,50 +26,50 @@ package org.finalbug.ui.control
 	{
 		public function get backgroundColor():uint
 		{
-			return this.currentStyle.fillStyle.bgColor;
+			return this.currentSkin.fillStyle.bgColor;
 		}
 		public function set backgroundColor(value:uint):void
 		{
-			this.currentStyle.fillStyle.bgColor = value;
+			this.currentSkin.fillStyle.bgColor = value;
 			this.updateView();
 		}
 		
 		public function get backgroundAlpha():Number
 		{
-			return this.currentStyle.fillStyle.bgAlpha;
+			return this.currentSkin.fillStyle.bgAlpha;
 		}
 		public function set backgroundAlpha(value:Number):void
 		{
-			this.currentStyle.fillStyle.bgAlpha = value;
+			this.currentSkin.fillStyle.bgAlpha = value;
 			this.updateView();
 		}
 		
 		public function get borderColor():uint
 		{
-			return this.currentStyle.fillStyle.borderColor;
+			return this.currentSkin.fillStyle.borderColor;
 		}
 		public function set borderColor(value:uint):void
 		{
-			this.currentStyle.fillStyle.borderColor = value;
+			this.currentSkin.fillStyle.borderColor = value;
 			this.updateView();
 		}
 		
 		public function get borderAlpha():Number
 		{
-			return this.currentStyle.fillStyle.borderAlpha;
+			return this.currentSkin.fillStyle.borderAlpha;
 		}
 		public function set borderAlpha(value:Number):void
 		{
-			this.currentStyle.fillStyle.borderAlpha = value;
+			this.currentSkin.fillStyle.borderAlpha = value;
 			this.updateView();
 		}
 		
 		public function Container()
 		{
 			super();
-			this.registerStatus("normal", new DisplayStyle(), true);
-			this.setLayoutValue("width", "100%");
-			this.setLayoutValue("height", "100%");
+			this.setSkin("normal", new UISkin(), true);
+			this.layoutStyle.setValue("width", "100%");
+			this.layoutStyle.setValue("height", "100%");
 		}
 		
 		/**
@@ -174,9 +174,9 @@ package org.finalbug.ui.control
 		override protected function updateView():void
 		{
 			super.updateView();
-			if(this.currentStyle != null && this.currentStyle.fillStyle != null)
+			if(this.currentSkin != null && this.currentSkin.fillStyle != null)
 			{
-				this.currentStyle.fillStyle.fill(this, this.displayWidth, this.displayHeight);
+				this.currentSkin.fillStyle.fill(this, this.displayWidth, this.displayHeight);
 			}
 		}
 	}

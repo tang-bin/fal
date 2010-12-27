@@ -4,14 +4,14 @@
   *****************************************************/  
 package org.finalbug.ui.style.stylefactory
 {
-	import org.finalbug.ui.style.DisplayStyle;
+	import org.finalbug.ui.style.UISkin;
 	
 
 	public class ScrollBarStyleFactory
 	{
-		public static function createNormalStyle():DisplayStyle
+		public static function createNormalStyle():UISkin
 		{
-			var ds:DisplayStyle = new DisplayStyle();
+			var ds:UISkin = new UISkin();
 			ds.fillStyle.useGradient = true;
 			ds.fillStyle.bgColors = [0x999999, 0xCCCCCC];
 			ds.fillStyle.bgAlphas = [0.8, 0.8];
@@ -28,9 +28,9 @@ package org.finalbug.ui.style.stylefactory
 			return ds;
 		}
 		
-		public static function createDisableStyle():DisplayStyle
+		public static function createDisableStyle():UISkin
 		{
-			var ds:DisplayStyle = createNormalStyle();
+			var ds:UISkin = createNormalStyle();
 			ds.fillStyle.useGradient = false;
 			ds.fillStyle.bgColor = 0xEEEEEE;
 			ds.fillStyle.bgAlpha = 0.8;

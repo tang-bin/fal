@@ -4,20 +4,16 @@
  ******************************************/
 package org.finalbug.aslibtester.tester
 {
-	import flash.display.Sprite;
 	import flash.events.MouseEvent;
-	import flash.ui.Mouse;
 	import flash.utils.getTimer;
 	
-	import org.finalbug.data.SetType;
-	import org.finalbug.core.display.Bin;
 	import org.finalbug.events.MotionEvent;
-	import org.finalbug.core.motion.FadeMotion;
-	import org.finalbug.core.motion.MotionQueue;
-	import org.finalbug.core.motion.MoveMotion;
-	import org.finalbug.debugger.Debug;
+	import org.finalbug.ui.Bin;
 	import org.finalbug.ui.control.Button;
 	import org.finalbug.ui.control.UIObject;
+	import org.finalbug.utils.motion.FadeMotion;
+	import org.finalbug.utils.motion.MotionQueue;
+	import org.finalbug.utils.motion.MoveMotion;
 	
 	
 	/******************************************
@@ -113,7 +109,6 @@ package org.finalbug.aslibtester.tester
 				container.addAll(bin);
 				bin.moveTo(Math.random() * stage.stageWidth, Math.random() * stage.stageHeight);
 			}
-			Debug.log(total, flash.utils.getTimer() - t);
 		}
 		
 		/****************************************

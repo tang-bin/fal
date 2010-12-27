@@ -51,8 +51,6 @@ package org.finalbug.ui.widgets.folder
 		{
 			super(false, true);
 			this.dragable = false;
-			this.setLayoutValue("width", "100%");
-			this.setLayoutValue("height", "100%");
 			if(data == null) data = new DirectoryData();
 			showDirectory(data);
 		}

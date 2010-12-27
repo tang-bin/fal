@@ -147,7 +147,7 @@ package org.finalbug.ui.control
 		override protected function updateView():void
 		{
 			super.updateView();
-			var fs:FillStyle = currentStyle.fillStyle;
+			var fs:FillStyle = currentSkin.fillStyle;
 			if(_type == Position.HORIZONTAL)
 			{
 				leftBtn.fillStyle = fs;
@@ -206,8 +206,8 @@ package org.finalbug.ui.control
 				createScrollBarY();
 			}
 			//
-			this.registerStatus(Status.NORMAL, ScrollBarStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.DISABLE, ScrollBarStyleFactory.createDisableStyle());
+			this.setSkin(Status.NORMAL, ScrollBarStyleFactory.createNormalStyle(), true);
+			this.setSkin(Status.DISABLE, ScrollBarStyleFactory.createDisableStyle());
 			//
 			if(_type == Position.HORIZONTAL)
 			{
@@ -481,7 +481,7 @@ package org.finalbug.ui.control
 		
 		private function drawLeftBtnAddon():void
 		{
-			var color:Number = Number(currentStyle.textStyle.format.color);
+			var color:Number = Number(currentSkin.textStyle.format.color);
 			var len:Number = _thickness / 2;
 			leftBtn.graphics.beginFill(color, 1);
 			DrawUtil.drawTriangle(leftBtn.graphics, new Point(len, len), len, len, "left");
@@ -490,7 +490,7 @@ package org.finalbug.ui.control
 		
 		private function drawRightBtnAddon():void
 		{
-			var color:Number = Number(currentStyle.textStyle.format.color);
+			var color:Number = Number(currentSkin.textStyle.format.color);
 			var len:Number = _thickness / 2;
 			rightBtn.graphics.beginFill(color, 1);
 			DrawUtil.drawTriangle(rightBtn.graphics, new Point(len, len), len, len, "right");
@@ -499,7 +499,7 @@ package org.finalbug.ui.control
 		
 		private function drawUpBtnAddon():void
 		{
-			var color:Number = Number(currentStyle.textStyle.format.color);
+			var color:Number = Number(currentSkin.textStyle.format.color);
 			var len:Number = _thickness / 2;
 			upBtn.graphics.beginFill(color, 1);
 			DrawUtil.drawTriangle(upBtn.graphics, new Point(len, len), len, len, "up");
@@ -508,7 +508,7 @@ package org.finalbug.ui.control
 		
 		private function drawDownBtnAddon():void
 		{
-			var color:Number = Number(currentStyle.textStyle.format.color);
+			var color:Number = Number(currentSkin.textStyle.format.color);
 			var len:Number = _thickness / 2;
 			downBtn.graphics.beginFill(color, 1);
 			DrawUtil.drawTriangle(downBtn.graphics, new Point(len, len), len, len, "down");

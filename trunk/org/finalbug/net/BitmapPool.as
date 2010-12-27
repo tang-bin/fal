@@ -1,17 +1,23 @@
 /******************************************************
+ * ___________.__              .__ ___.                 
+ * \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____  
+ *  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\ 
+ *  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+ *  \__ |     |__|___|  (____  /____/___  /____/\___  / 
+ *     \/             \/     \/         \/     /_____/  
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- ******************************************/
+ *****************************************************/ 
 package org.finalbug.net
 {
+	import flash.display.Bitmap;
+	import flash.events.TimerEvent;
+	import flash.utils.Dictionary;
+	import flash.utils.Timer;
+	
 	import org.finalbug.data.DataModel;
 	import org.finalbug.errors.DataError;
 	import org.finalbug.events.LoadEvent;
-	
-	import flash.display.Bitmap;
-	import flash.events.EventDispatcher;
-	import flash.events.TimerEvent;
-	import flash.utils.Timer;
 	
 	/**
 	 * This class is used to keep images which are loaded from outside of .swf file.
@@ -23,13 +29,31 @@ package org.finalbug.net
 	 */
 	public class BitmapPool extends DataModel
 	{
-		private const checkTimeSpace:Number = 100;
+		//***************************************
+		// SINGELTON
+		//***************************************
 		
 		private static var bc:BitmapPool;
-
 		private static var instanceable:Boolean = false;
-
-		private var bitmapList:Object;
+		
+		public static function get instance():BitmapPool
+		{
+			if(bc == null)
+			{
+				instanceable = true;
+				bc = new BitmapPool();
+				instanceable = false;
+			}
+			return bc;
+		}
+		
+		//***************************************
+		// DEFINE
+		//***************************************
+		
+		private const checkTimeSpace:Number = 100;
+		
+		private var bitmapList:Dictionary;
 		//	bitmapList[bitmap name] = BitmapLoader
 
 		private var checkTimer:Timer;
@@ -102,16 +126,9 @@ package org.finalbug.net
 			return loaded / count;
 		}
 		
-		public static function get instance():BitmapPool
-		{
-			if(bc == null)
-			{
-				instanceable = true;
-				bc = new BitmapPool();
-				instanceable = false;
-			}
-			return bc;
-		}
+		//***************************************
+		// Constructor.
+		//***************************************
 		
 		/**
 		 * @throw errors.Errors Throw canNotInstance error when try to instance this class.
@@ -120,15 +137,18 @@ package org.finalbug.net
 		{
 			if(instanceable)
 			{
-				bitmapList = new Object();
-				return;
+				bitmapList = new Dictionary();
 			}
 			else
 			{
 				throw new DataError(DataError.SINGLETON);
 			}
 		}
-				
+		
+		//***************************************
+		// PUBLIC
+		//***************************************
+		
 		/**
 		 * Add a new image file to load
 		 * Image file must be .gif, .jpeg, .jpg, .swf.
@@ -142,19 +162,13 @@ package org.finalbug.net
 		 * 
 		 * @see net.BitmapLoader
 		 */		
-		public function loadBitmap(bitmapName:String, bitmapURL:String):BitmapLoader
+		public function addBitmap(bitmapName:String, bitmapURL:String):BitmapLoader
 		{
 			if(bitmapList[bitmapName] != null)
 			{
 				throw new DataError(DataError.NAME_EXIST);
 			}
-			/*
-			if(!Charset.checkCharIsNameAvailable(bitmapName))
-			{
-				throw new DataError(DataError.INVALID_VAR_NAME);
-			}
-			*/
-			bitmapList[bitmapName] = new BitmapLoader(bitmapURL);
+			bitmapList[bitmapName] = new BitmapLoader(bitmapURL, false);
 			return bitmapList[bitmapName];
 		}
 		
@@ -222,7 +236,7 @@ package org.finalbug.net
 		 * @param timeout If container cannot load all files in this time(sec.), 
 		 * a new Event will be dispathed to broadcast loading timeou.
 		 */		
-		public function startCheck(timeout:Number = 300):void
+		public function startLoad(timeout:Number = 300):void
 		{
 			var totalTime:Number = timeout * 1000;
 			var cycCount:Number = Math.floor(totalTime / checkTimeSpace);
@@ -230,6 +244,11 @@ package org.finalbug.net
 			checkTimer.addEventListener(TimerEvent.TIMER, onCheck);
 			checkTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onTimeout);
 			checkTimer.start();
+			//
+			for each(var loader:BitmapLoader in bitmapList)
+			{
+				loader.load();
+			}
 		}
 		
 		/**
@@ -245,6 +264,14 @@ package org.finalbug.net
 				}
 			}
 		}
+		
+		//***************************************
+		// PROTECTED
+		//***************************************
+		
+		//***************************************
+		// PRIVATE
+		//***************************************
 		
 		private function onCheck(e:TimerEvent):void
 		{

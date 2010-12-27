@@ -4,7 +4,7 @@
   *****************************************************/  
 package org.finalbug.ui.style.stylefactory
 {
-	import org.finalbug.ui.style.DisplayStyle;
+	import org.finalbug.ui.style.UISkin;
 	
 	/**
 	 * @author Tang Bin
@@ -12,11 +12,9 @@ package org.finalbug.ui.style.stylefactory
 	 */	
 	public class TextInputStyleFactory
 	{
-		public static function createNormalStyle():DisplayStyle
+		public static function createNormalStyle():UISkin
 		{
-			var ds:DisplayStyle = new DisplayStyle();
-			ds.layoutStyle.setValue("width", 160);
-			ds.layoutStyle.setValue("height", 20);
+			var ds:UISkin = new UISkin();
 			ds.fillStyle.useGradient = false;
 			ds.fillStyle.bgColor = 0xEEEEEE;
 			ds.fillStyle.bgAlpha = 0.8;
@@ -25,9 +23,9 @@ package org.finalbug.ui.style.stylefactory
 			return ds;
 		}
 		
-		public static function createActiveStyle():DisplayStyle
+		public static function createActiveStyle():UISkin
 		{
-			var ds:DisplayStyle = createNormalStyle();
+			var ds:UISkin = createNormalStyle();
 			ds.fillStyle.useGradient = true;
 			ds.fillStyle.bgColors = [0xCCCCCC, 0xFFFFFF];
 			ds.fillStyle.bgAlphas = [0.8, 0.8];
@@ -36,9 +34,9 @@ package org.finalbug.ui.style.stylefactory
 			return ds;
 		}
 		
-		public static function createDisableStyle():DisplayStyle
+		public static function createDisableStyle():UISkin
 		{
-			var ds:DisplayStyle = createNormalStyle();
+			var ds:UISkin = createNormalStyle();
 			return ds;
 		}
 	}

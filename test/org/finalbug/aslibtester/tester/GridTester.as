@@ -1,7 +1,7 @@
 package org.finalbug.aslibtester.tester
 {
-	import org.finalbug.framework.layout.Container;
-	import org.finalbug.framework.layout.Grid;
+	import org.finalbug.ui.control.Container;
+	import org.finalbug.ui.layout.Grid;
 	
 	public class GridTester extends Container
 	{

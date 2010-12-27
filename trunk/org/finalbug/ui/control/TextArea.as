@@ -103,8 +103,8 @@ package org.finalbug.ui.control
 				super.updateView();
 				txt.width = containerWidth;
 				txt.height = containerHeight;
-				txt.defaultTextFormat = currentStyle.textStyle.format;
-				txt.setTextFormat(currentStyle.textStyle.format);
+				txt.defaultTextFormat = currentSkin.textStyle.format;
+				txt.setTextFormat(currentSkin.textStyle.format);
 			}
 		}
 		
@@ -138,9 +138,9 @@ package org.finalbug.ui.control
 			this.addChild(txt);
 			txt.type = "input";
 			//
-			this.registerStatus(Status.NORMAL, TextAreaStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.ACTIVE, TextAreaStyleFactory.createActiveStyle());
-			this.registerStatus(Status.DISABLE, TextAreaStyleFactory.createDisableStyle());
+			this.setSkin(Status.NORMAL, TextAreaStyleFactory.createNormalStyle(), true);
+			this.setSkin(Status.ACTIVE, TextAreaStyleFactory.createActiveStyle());
+			this.setSkin(Status.DISABLE, TextAreaStyleFactory.createDisableStyle());
 			//
 			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
 			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
@@ -208,12 +208,12 @@ package org.finalbug.ui.control
 		
 		private function txtFocusInHandler(e:FocusEvent):void
 		{
-			this.statusName = Status.ACTIVE;
+			this.status = Status.ACTIVE;
 		}
 		
 		private function txtFocusOutHandler(e:FocusEvent):void
 		{
-			this.statusName = Status.NORMAL;
+			this.status = Status.NORMAL;
 		}
 		
 		private function changeTextHandler(e:Event):void

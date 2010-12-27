@@ -6,8 +6,8 @@ package org.finalbug.aslibtester.tester
 {
 	import flash.events.MouseEvent;
 	
-	import org.finalbug.framework.layout.Container;
 	import org.finalbug.ui.control.Button;
+	import org.finalbug.ui.control.Container;
 	import org.finalbug.ui.control.TextArea;
 	
 	
@@ -97,9 +97,8 @@ package org.finalbug.aslibtester.tester
 		
 		private function clickBtnHandler(e:MouseEvent):void
 		{
-			txt.setLayoutValue("width", "50%");
-			txt.setLayoutValue("height", "50%");
-			trace(txt.width, txt.height);
+			txt.layoutStyle.setValue("width", "50%");
+			txt.layoutStyle.setValue("height", "50%");
 		}
 	}
 }

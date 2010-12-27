@@ -1,7 +1,13 @@
 /******************************************************
+ * ___________.__              .__ ___.                 
+ * \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____  
+ *  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\ 
+ *  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+ *  \__ |     |__|___|  (____  /____/___  /____/\___  / 
+ *     \/             \/     \/         \/     /_____/  
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
-  *****************************************************/  
+  *****************************************************/ 
 package org.finalbug.ui.glazes
 {
 	import flash.display.Bitmap;
@@ -11,10 +17,13 @@ package org.finalbug.ui.glazes
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.events.ProgressEvent;
+	import flash.geom.Matrix;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	import flash.net.URLRequest;
 	
-	import org.finalbug.ui.Glaze;
 	import org.finalbug.events.LoadEvent;
+	import org.finalbug.ui.Glaze;
 	
 	/**
 	 * @author Tang Bin
@@ -26,12 +35,15 @@ package org.finalbug.ui.glazes
 		// DEFINE
 		//***************************************
 		
+		public var useFixedSize:Boolean = false;
+		
 		private var loader:Loader;
-		private var url:String;
-		private var setSizeAfterLoaded:Boolean = false;
-		private var img:Bitmap;
+		private var _url:String;
+		private var bitmapData:BitmapData;
+		private var img:Scale9Bitmap;
 		private var orgw:Number = 0;
 		private var orgh:Number = 0;
+		private var scale9:Rectangle;
 		
 		//***************************************
 		// GETTER and SETTER
@@ -54,11 +66,36 @@ package org.finalbug.ui.glazes
 		
 		public function set bitmap(data:Bitmap):void
 		{
-			if(data != img)
+			var newBD:BitmapData = data.bitmapData;
+			if(newBD != bitmapData)
 			{
-				img = data;
-				setSizeAfterLoaded = true;
+				bitmapData = newBD.clone();
 				this.addImg();
+			}
+		}
+		
+		override public function set width(value:Number):void
+		{
+			this.useFixedSize = true;
+			super.width = value;
+		}
+		
+		override public function set height(value:Number):void
+		{
+			this.useFixedSize = true;
+			super.height = value;
+		}
+		
+		override public function get scale9Grid():Rectangle
+		{
+			return scale9;
+		}
+		override public function set scale9Grid(innerRectangle:Rectangle):void
+		{
+			scale9 = innerRectangle;
+			if(img != null && this.contains(img))
+			{
+				img.scale9Grid = scale9;
 			}
 		}
 		
@@ -69,8 +106,7 @@ package org.finalbug.ui.glazes
 		public function Image(url:String = "")
 		{
 			super();
-			this.url = url;
-			loadImg();
+			loadImg(url);
 		}
 		
 		//***************************************
@@ -81,15 +117,17 @@ package org.finalbug.ui.glazes
 		
 		override protected function updateView():void
 		{
-			if(img == null)
-			{
-				setSizeAfterLoaded = true;
-			}
-			else
+			if(img != null && this.contains(img))
 			{
 				img.width = this.displayWidth;
 				img.height = this.displayHeight;
 			}
+		}
+		
+		override public function resize(width:Number, height:Number):void
+		{
+			this.useFixedSize = true;
+			super.resize(width, height);
 		}
 		
 		//***************************************
@@ -98,36 +136,19 @@ package org.finalbug.ui.glazes
 		
 		public function setImage(obj:DisplayObject):void
 		{
+			_url = "";
+			//
 			var bd:BitmapData = new BitmapData(obj.width, obj.height, true, 0x00FFFFFF);
 			bd.draw(obj, null, null, null, null, true);
 			this.bitmap = new Bitmap(bd);
 		}
 		
-		public function clone():Image
+		public function loadImg(url:String = ""):void
 		{
-			var newImg:Image = new Image();
-			if(this.bitmap != null)
+			_url = url;
+			if(_url == "" || _url == null)
 			{
-				newImg.bitmap = new Bitmap(this.bitmap.bitmapData.clone());
-			}
-			newImg.width = this.displayWidth;
-			newImg.height = this.displayHeight;
-			return newImg;
-		}
-		
-		//***************************************
-		// PROTECTED
-		//***************************************
-		
-		//***************************************
-		// PRIVATE
-		//***************************************
-		
-		private function loadImg():void
-		{
-			if(url == "" || url == null)
-			{
-				url = "";
+				_url = "";
 				if(img != null && this.contains(img))
 				{
 					this.removeChild(img);
@@ -141,10 +162,29 @@ package org.finalbug.ui.glazes
 					removeLoaderEvent();
 				}
 				loader = new Loader();
-				loader.load(new URLRequest(url));
+				loader.load(new URLRequest(_url));
 				addLoaderEvent();
 			}
 		}
+		
+		public function clone():Image
+		{
+			var newImg:Image = new Image();
+			newImg._url = this._url;
+			newImg.bitmapData = this.bitmapData;
+			newImg.displayWidth = this.displayWidth;
+			newImg.displayHeight = this.displayHeight;
+			newImg.addImg();
+			return newImg;
+		}
+		
+		//***************************************
+		// PROTECTED
+		//***************************************
+		
+		//***************************************
+		// PRIVATE
+		//***************************************
 		
 		private function removeLoaderEvent():void
 		{
@@ -162,14 +202,24 @@ package org.finalbug.ui.glazes
 		
 		private function addImg():void
 		{
-			orgw = img.width;
-			orgh = img.height;
-			if(setSizeAfterLoaded)
+			orgw = bitmapData.width;
+			orgh = bitmapData.height;
+			if(!useFixedSize)
 			{
-				this.updateView();
+				this.displayWidth = orgw;
+				this.displayHeight = orgh;
 			}
+			//
+			if(img != null && this.contains(img))
+			{
+				this.removeChild(img);
+			}
+			//
+			if(scale9 == null) scale9 = new Rectangle(0, 0, orgw, orgh);
+			img = new Scale9Bitmap(new Bitmap(this.bitmapData), scale9);
 			this.addChild(img);
-			setSizeAfterLoaded = false;
+			//
+			this.updateView();
 		}
 		
 		//***************************************
@@ -178,18 +228,25 @@ package org.finalbug.ui.glazes
 		
 		private function loadedHandler(e:Event):void
 		{
-			img = loader.content as Bitmap;
+			this.bitmapData = (loader.content as Bitmap).bitmapData;
 			addImg();
+			var ee:LoadEvent = new LoadEvent(LoadEvent.LOAD_SUCCESS);
+			this.dispatchEvent(ee);
 		}
 		
 		private function loadErrorHandler(e:IOErrorEvent):void
 		{
-			trace("load img error");
+			var ee:LoadEvent = new LoadEvent(LoadEvent.LOAD_FAILED);
+			this.dispatchEvent(ee);
 		}
 		
 		private function loadingHandler(e:ProgressEvent):void
 		{
-			
+			var ee:LoadEvent = new LoadEvent(LoadEvent.LOADING);
+			ee.bytesLoaded = e.bytesLoaded;
+			ee.bytesTotal = e.bytesTotal;
+			ee.loadedRate = ee.bytesLoaded / ee.bytesTotal;
+			this.dispatchEvent(ee);
 		}
 	}
 }

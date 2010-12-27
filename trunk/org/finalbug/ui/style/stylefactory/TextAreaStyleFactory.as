@@ -4,15 +4,13 @@
   *****************************************************/  
 package org.finalbug.ui.style.stylefactory
 {
-	import org.finalbug.ui.style.DisplayStyle;
+	import org.finalbug.ui.style.UISkin;
 	
 	public class TextAreaStyleFactory
 	{
-		public static function createNormalStyle():DisplayStyle
+		public static function createNormalStyle():UISkin
 		{
-			var ds:DisplayStyle = new DisplayStyle();
-			ds.layoutStyle.setValue("width", 400);
-			ds.layoutStyle.setValue("height", 300);
+			var ds:UISkin = new UISkin();
 			ds.fillStyle.useGradient = false;
 			ds.fillStyle.borderColor = 0xCCCCCC;
 			ds.fillStyle.borderAlpha = 1;
@@ -24,9 +22,9 @@ package org.finalbug.ui.style.stylefactory
 			return ds;
 		}
 		
-		public static function createActiveStyle():DisplayStyle
+		public static function createActiveStyle():UISkin
 		{
-			var ds:DisplayStyle = createNormalStyle();
+			var ds:UISkin = createNormalStyle();
 			ds.fillStyle.useGradient = false;
 			ds.fillStyle.bgColor = 0xEEEEEE;
 			ds.fillStyle.bgAlpha = 1;
@@ -34,9 +32,9 @@ package org.finalbug.ui.style.stylefactory
 			return ds;
 		}
 		
-		public static function createDisableStyle():DisplayStyle
+		public static function createDisableStyle():UISkin
 		{
-			var ds:DisplayStyle = createNormalStyle();
+			var ds:UISkin = createNormalStyle();
 			return ds;
 		}
 	}

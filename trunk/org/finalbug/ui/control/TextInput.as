@@ -12,7 +12,6 @@ package org.finalbug.ui.control
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.ui.glazes.Flat;
 	import org.finalbug.ui.style.stylefactory.TextInputStyleFactory;
-	import org.finalbug.ui.control.UIObject;
 	
 	/**
 	 * text input component
@@ -110,13 +109,13 @@ package org.finalbug.ui.control
 		override protected function updateView():void
 		{
 			super.updateView();
-			if(currentStyle != null)
+			if(currentSkin != null)
 			{
-				back.fillStyle = currentStyle.fillStyle;
+				back.fillStyle = currentSkin.fillStyle;
 				back.width = this.displayWidth;
 				back.height = this.displayHeight;
-				txt.defaultTextFormat = currentStyle.textStyle.format;
-				txt.setTextFormat(currentStyle.textStyle.format);
+				txt.defaultTextFormat = currentSkin.textStyle.format;
+				txt.setTextFormat(currentSkin.textStyle.format);
 				txt.x = txt.y = 1;
 				txt.width = this.displayWidth - 2;
 				txt.height = this.displayHeight - 2;
@@ -131,9 +130,9 @@ package org.finalbug.ui.control
 			//
 			setTextType();
 			//
-			this.registerStatus(Status.NORMAL, TextInputStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.ACTIVE, TextInputStyleFactory.createActiveStyle());
-			this.registerStatus(Status.DISABLE, TextInputStyleFactory.createDisableStyle());
+			this.setSkin(Status.NORMAL, TextInputStyleFactory.createNormalStyle(), true);
+			this.setSkin(Status.ACTIVE, TextInputStyleFactory.createActiveStyle());
+			this.setSkin(Status.DISABLE, TextInputStyleFactory.createDisableStyle());
 			//
 			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
 			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
@@ -158,12 +157,12 @@ package org.finalbug.ui.control
 		
 		private function txtFocusInHandler(e:FocusEvent):void
 		{
-			this.statusName = Status.ACTIVE;
+			this.status = Status.ACTIVE;
 		}
 		
 		private function txtFocusOutHandler(e:FocusEvent):void
 		{
-			this.statusName = Status.NORMAL;
+			this.status = Status.NORMAL;
 		}
 		
 		private function changeTextHandler(e:Event):void

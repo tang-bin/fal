@@ -1,7 +1,13 @@
 /******************************************************
+ * ___________.__              .__ ___.                 
+ * \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____  
+ *  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\ 
+ *  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+ *  \__ |     |__|___|  (____  /____/___  /____/\___  / 
+ *     \/             \/     \/         \/     /_____/  
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
-  *****************************************************/  
+  *****************************************************/ 
 package org.finalbug.ui.style
 {
 	import flash.display.DisplayObject;
@@ -20,7 +26,7 @@ package org.finalbug.ui.style
 		public static const NUM_REG:RegExp = /^(-?\d*\.?\d*)$/;
 		public static const PERCENT_REG:RegExp = /^(-?\d*\.?\d*)%$/;
 		
-		public static const DEFAULT_FONT:String = "Verdana";
+		public static const defaultFont:String = "Verdana";
 		
 		public static const SMALLEST_TEXT_SIZE:Number = 4;
 		public static const SMALLER_TEXT_SIZE:Number = 8;

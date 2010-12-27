@@ -92,7 +92,7 @@ package org.finalbug.ui.control
 		{
 			super.updateView();
 			//
-			back.fillStyle = currentStyle.fillStyle;
+			back.fillStyle = currentSkin.fillStyle;
 			back.width = this.displayWidth;
 			back.height = this.displayHeight;
 			//
@@ -133,8 +133,8 @@ package org.finalbug.ui.control
 			xBar.enabled = xBar.visible = false;
 			yBar.enabled = yBar.visible = false;
 			//
-			this.registerStatus(Status.NORMAL, ScrollBoxStyleFactory.createNormalStyle(), true);
-			this.registerStatus(Status.DISABLE, ScrollBoxStyleFactory.createDisableStyle());
+			this.setSkin(Status.NORMAL, ScrollBoxStyleFactory.createNormalStyle(), true);
+			this.setSkin(Status.DISABLE, ScrollBoxStyleFactory.createDisableStyle());
 			//
 			xBar.addEventListener(UIEvent.SCROLL, xScrollHandler);
 			yBar.addEventListener(UIEvent.SCROLL, yScrollHandler);

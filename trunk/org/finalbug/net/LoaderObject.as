@@ -60,9 +60,9 @@ package org.finalbug.net
 			_loaded = false;
 			_failed = false;
 			var ee:LoadEvent = new LoadEvent(LoadEvent.LOADING);
-			ee.loadedBytes = e.bytesLoaded;
-			ee.totalBytes = e.bytesTotal;
-			ee.loadedRate = ee.loadedBytes / ee.totalBytes;
+			ee.bytesLoaded = e.bytesLoaded;
+			ee.bytesTotal = e.bytesTotal;
+			ee.loadedRate = ee.bytesLoaded / ee.bytesTotal;
 			_loadrate = ee.loadedRate;
 			dispatcher.dispatchEvent(ee);
 		}

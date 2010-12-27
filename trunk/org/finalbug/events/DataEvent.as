@@ -12,11 +12,13 @@ package org.finalbug.events
 		 * @eventType ChangeData
 		 */		
 		public static const CHANGE_DATA:String = "ChangeData";
+		public static const INIT_END:String = "initEnd";
 		
 		public var dataPath:String = "";
 		public var dataName:String = "";
 		public var oldData:*;
 		public var newData:*;
+		public var dataStatus:String = "";
 		
 		// for tree model
 		public static const TREE_ADD:String = "treeAdd";

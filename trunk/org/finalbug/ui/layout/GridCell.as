@@ -30,10 +30,10 @@ package org.finalbug.ui.layout
 		
 		public function resetPosition(x:Number, y:Number, width:Number, height:Number):void
 		{
-			this.setLayoutValue("x", x, true, false);
-			this.setLayoutValue("y", y, true, false);
-			this.setLayoutValue("width", width, true, false);
-			this.setLayoutValue("height", height, true, true);
+			this.layoutStyle.setValue("x", x);
+			this.layoutStyle.setValue("y", y);
+			this.layoutStyle.setValue("width", width);
+			this.layoutStyle.setValue("height", height);
 		}
 	}
 }
