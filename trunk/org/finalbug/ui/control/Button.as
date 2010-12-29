@@ -15,6 +15,9 @@ package org.finalbug.ui.control
 	import org.finalbug.data.Status;
 	import org.finalbug.ui.glazes.Flat;
 	import org.finalbug.ui.glazes.Image;
+	import org.finalbug.ui.skin.SkinElement;
+	import org.finalbug.ui.skin.ButtonSkin;
+	import org.finalbug.ui.skin.UISkinModel;
 	import org.finalbug.ui.style.stylefactory.ButtonStyleFactory;
 	
 	/******************************************************
@@ -32,7 +35,7 @@ package org.finalbug.ui.control
 		private var _labelStr:String = "Button";
 		
 		private var _label:Label;
-		private var bg:Flat;
+		private var bg:SkinElement;
 		private var imgBg:Bitmap;
 		private var icon:Image;
 		
@@ -75,27 +78,13 @@ package org.finalbug.ui.control
 		override protected function updateView():void
 		{
 			super.updateView();
-			if(currentSkin != null)
+			if(bg != null)
 			{
-				if(imgBg != null && this.contains(imgBg))
-				{
-					this.removeChild(imgBg);
-				}
-				if(currentSkin.bitmapSkin != null)
-				{
-					imgBg = currentSkin.bitmapSkin;
-					imgBg.width = this.displayWidth;
-					imgBg.height = this.displayHeight;
-					this.addChild(imgBg);
-					bg.visible = false;
-				}
-				else
-				{
-					bg.fillStyle = currentSkin.fillStyle;
-					bg.resize(displayWidth, displayHeight);
-					bg.visible = true;
-				}
-				_label.textFormat = currentSkin.textStyle.format;
+				bg.status = this.currentStatus;
+			}
+			if(_label != null)
+			{
+				//_label.textFormat = currentSkin.textStyle.format;
 				_label.toCenter();
 				_label.toFront();
 			}
@@ -116,15 +105,13 @@ package org.finalbug.ui.control
 		private function createChildren():void
 		{
 			// create elements
-			bg = new Flat();
+			bg = new SkinElement();
 			_label = new Label(this._labelStr);
 			icon = new Image();
 			this.addAll(bg, _label, icon);
 			//
-			this.setSkin(Status.NORMAL, ButtonStyleFactory.createNormalStyle(), true);
-			this.setSkin(Status.MOUSE_OVER, ButtonStyleFactory.createOverStyle());
-			this.setSkin(Status.MOUSE_DOWN, ButtonStyleFactory.createDownStyle());
-			this.setSkin(Status.DISABLE, ButtonStyleFactory.createDisableStyle());
+			var uiSkin:ButtonSkin = UISkinModel.instance.buttonSkin;
+			uiSkin.setSkin(bg);
 		}
 		
 		//***************************************

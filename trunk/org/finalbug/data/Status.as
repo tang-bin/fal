@@ -4,6 +4,8 @@
   *****************************************************/  
 package org.finalbug.data
 {
+	import org.finalbug.utils.DataUtil;
+
 	/**
 	 * @author Tang Bin
 	 */
@@ -22,8 +24,20 @@ package org.finalbug.data
 		public static const MOUSE_OVER:String = "mouseOverStatus";
 		public static const MOUSE_DOWN:String = "mouseDownStatus";
 		public static const HOLD:String = "holdStatus";
+		public static const SELECTED:String = "selectedStatus";
 		public static const DISABLE:String = "disableStatus";
 		
 		public static const ACTIVE:String = "activeStatus";
+		
+		public static function isValidUISkinStatus(status:String):Boolean
+		{
+			return DataUtil.included(status,
+				NORMAL,
+				MOUSE_OVER,
+				MOUSE_DOWN,
+				HOLD,
+				SELECTED,
+				DISABLE);
+		}
 	}
 }

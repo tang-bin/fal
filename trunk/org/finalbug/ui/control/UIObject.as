@@ -18,7 +18,7 @@ package org.finalbug.ui.control
 	import org.finalbug.errors.UIError;
 	import org.finalbug.ui.Bin;
 	import org.finalbug.ui.style.LayoutStyle;
-	import org.finalbug.ui.style.UISkin;
+	import org.finalbug.ui.style.UISkin2;
 	import org.finalbug.ui.widgets.Tooltip;
 	import org.finalbug.utils.LayoutManager;
 	import org.finalbug.utils.MathUtil;
@@ -54,7 +54,7 @@ package org.finalbug.ui.control
 		}
 		public function set status(value:String):void
 		{
-			if(value != currentStatus && value != "" && skinList[value] != null)
+			if(value != currentStatus && value != "")
 			{
 				currentStatus = value;
 				this.countSizeAndPosition();
@@ -191,7 +191,7 @@ package org.finalbug.ui.control
 			}
 		}
 		
-		public function setSkin(status:String, style:UISkin, asDefualt:Boolean = false):void
+		public function setSkin(status:String, style:UISkin2, asDefualt:Boolean = false):void
 		{
 			if(style != null)
 			{
@@ -209,7 +209,7 @@ package org.finalbug.ui.control
 			}
 		}
 		
-		public function getSkin(status:String):UISkin
+		public function getSkin(status:String):UISkin2
 		{
 			if(skinList[status] != null)
 			{
@@ -225,7 +225,7 @@ package org.finalbug.ui.control
 		// PROTECTED
 		//***************************************
 		
-		protected function get currentSkin():UISkin
+		protected function get currentSkin():UISkin2
 		{
 			return skinList[this.currentStatus];
 		}
@@ -258,10 +258,7 @@ package org.finalbug.ui.control
 		protected function rollOutHandler(e:MouseEvent):void
 		{
 			Tooltip.remove();
-			if(this.skinList[Status.MOUSE_OVER] != null)
-			{
-				this.status = Status.NORMAL;
-			}
+			this.status = Status.NORMAL;
 		}
 		
 		protected function mouseDownHandler(e:MouseEvent):void

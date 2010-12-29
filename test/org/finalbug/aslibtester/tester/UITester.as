@@ -6,14 +6,14 @@ package org.finalbug.aslibtester.tester
 	
 	public class UITester extends Container
 	{
-		private var btn:Button;
+		private var btn:ButtonOld;
 		private var ta:TextArea;
 		
 		public function UITester()
 		{
 			super();
 			//
-			btn = new Button("button");
+			btn = new ButtonOld("button");
 			btn.x = btn.y = 10;
 			//
 			/*

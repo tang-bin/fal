@@ -12,7 +12,7 @@ package org.finalbug.ui.control
 	import org.finalbug.errors.UIError;
 	import org.finalbug.ui.control.UIObject;
 	import org.finalbug.ui.glazes.Flat;
-	import org.finalbug.ui.style.UISkin;
+	import org.finalbug.ui.style.UISkin2;
 	import org.finalbug.ui.style.LayoutStyle;
 	import org.finalbug.utils.DataUtil;
 	
@@ -67,7 +67,7 @@ package org.finalbug.ui.control
 		public function Container()
 		{
 			super();
-			this.setSkin("normal", new UISkin(), true);
+			this.setSkin("normal", new UISkin2(), true);
 			this.layoutStyle.setValue("width", "100%");
 			this.layoutStyle.setValue("height", "100%");
 		}

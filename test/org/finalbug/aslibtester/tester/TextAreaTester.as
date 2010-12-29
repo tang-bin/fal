@@ -26,7 +26,7 @@ package org.finalbug.aslibtester.tester
 		 ****************************************/
 		
 		private var txt:TextArea;
-		private var btn:Button;
+		private var btn:ButtonOld;
 		
 		/****************************************
 		 *
@@ -62,7 +62,7 @@ package org.finalbug.aslibtester.tester
 				txt.x = txt.y = 100;
 				//txt.layoutStyle = new LayoutStyle();
 				//
-				btn = new Button("CLICK");
+				btn = new ButtonOld("CLICK");
 				btn.x = btn.y = 20;
 				btn.addEventListener(MouseEvent.CLICK, clickBtnHandler);
 				//

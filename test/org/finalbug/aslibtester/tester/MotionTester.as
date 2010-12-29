@@ -58,7 +58,7 @@ package org.finalbug.aslibtester.tester
 		
 		override protected function callAtAdded():void
 		{
-			var btn:Button = new Button("start");
+			var btn:ButtonOld = new ButtonOld("start");
 			this.addAll(btn);
 			btn.tooltip = "test";
 			btn.addEventListener(MouseEvent.CLICK, clickBtnHandler);

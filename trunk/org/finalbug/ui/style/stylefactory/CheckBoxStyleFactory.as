@@ -4,14 +4,14 @@
   *****************************************************/  
 package org.finalbug.ui.style.stylefactory
 {
-	import org.finalbug.ui.style.UISkin;
+	import org.finalbug.ui.style.UISkin2;
 	
 
 	public class CheckBoxStyleFactory
 	{
-		public static function createNormalStyle():UISkin
+		public static function createNormalStyle():UISkin2
 		{
-			var ds:UISkin = new UISkin();
+			var ds:UISkin2 = new UISkin2();
 			ds.fillStyle.bgAlpha = 1;
 			ds.fillStyle.bgColor = 0x333333;
 			ds.fillStyle.glowAlpha = 0.5;
@@ -20,23 +20,23 @@ package org.finalbug.ui.style.stylefactory
 			return ds;
 		}
 		
-		public static function createOverStyle():UISkin
+		public static function createOverStyle():UISkin2
 		{
-			var ds:UISkin = createNormalStyle();
+			var ds:UISkin2 = createNormalStyle();
 			ds.fillStyle.bgColor = 0x990000;
 			ds.textStyle.format.color = 0x990000;
 			return ds;
 		}
 		
-		public static function createDownStyle():UISkin
+		public static function createDownStyle():UISkin2
 		{
-			var ds:UISkin = createNormalStyle();
+			var ds:UISkin2 = createNormalStyle();
 			return ds;
 		}
 		
-		public static function createDisableStyle():UISkin
+		public static function createDisableStyle():UISkin2
 		{
-			var ds:UISkin = createNormalStyle();
+			var ds:UISkin2 = createNormalStyle();
 			return ds;
 		}
 	}

@@ -19,7 +19,7 @@ package org.finalbug.ui.widgets
 	import org.finalbug.data.AlertData;
 	import org.finalbug.errors.UIError;
 	import org.finalbug.ui.Bin;
-	import org.finalbug.ui.control.Button;
+	import org.finalbug.ui.control.ButtonOld;
 	import org.finalbug.ui.control.Label;
 	
 	/**
@@ -36,9 +36,9 @@ package org.finalbug.ui.widgets
 		private static var alertSP:Sprite;
 		private static var bg:Sprite;
 		private static var txt:Label;
-		private static var yesBtn:Button;
-		private static var noBtn:Button;
-		private static var cancelBtn:Button;
+		private static var yesBtn:ButtonOld;
+		private static var noBtn:ButtonOld;
+		private static var cancelBtn:ButtonOld;
 		
 		private static var currentData:AlertData;
 		
@@ -109,15 +109,15 @@ package org.finalbug.ui.widgets
 			txt = new Label("", tf);
 			alertSP.addChild(txt);
 			//
-			yesBtn = new Button();
+			yesBtn = new ButtonOld();
 			alertSP.addChild(yesBtn);
 			yesBtn.addEventListener(MouseEvent.CLICK, removeHandler);
 			//
-			noBtn = new Button();
+			noBtn = new ButtonOld();
 			alertSP.addChild(noBtn);
 			noBtn.addEventListener(MouseEvent.CLICK, removeHandler);
 			//
-			cancelBtn = new Button();
+			cancelBtn = new ButtonOld();
 			alertSP.addChild(cancelBtn);
 			cancelBtn.addEventListener(MouseEvent.CLICK, removeHandler);
 			//
@@ -192,7 +192,7 @@ package org.finalbug.ui.widgets
 			var startX:Number = (bg.width - totalWidth) / 2;
 			for(var i:int = 0 ; i < showBtns.length ; i++)
 			{
-				var btn:Button = showBtns[i] as Button;
+				var btn:ButtonOld = showBtns[i] as ButtonOld;
 				btn.x = startX;
 				startX += btn.width + 20;
 				btn.y = txt.y + txt.height + 20;

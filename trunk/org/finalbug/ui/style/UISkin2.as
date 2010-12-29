@@ -24,7 +24,7 @@ package org.finalbug.ui.style
 	 * @author Tang Bin
 	 * @since 2010.09
 	 */	
-	public class UISkin extends DataModel
+	public class UISkin2 extends DataModel
 	{
 		//***************************************
 		// DEFINE
@@ -90,7 +90,7 @@ package org.finalbug.ui.style
 		//***************************************
 		// Constructor.
 		//***************************************
-		public function UISkin()
+		public function UISkin2()
 		{
 			super();
 		}
@@ -111,9 +111,9 @@ package org.finalbug.ui.style
 			_bitmapSkin.scale9Grid = scale9;
 		}
 		
-		public function clone():UISkin
+		public function clone():UISkin2
 		{
-			var ds:UISkin = new UISkin();
+			var ds:UISkin2 = new UISkin2();
 			ds.fillStyle = this._fillStyle.clone();
 			ds.textStyle = this._textStyle.clone();
 			return ds;
