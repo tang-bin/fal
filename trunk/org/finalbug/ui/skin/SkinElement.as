@@ -6,16 +6,18 @@ package org.finalbug.ui.skin
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
+	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
 	
+	import org.finalbug.data.Status;
 	import org.finalbug.ui.Glaze;
-	import org.finalbug.ui.style.FillStyle;
 	import org.finalbug.ui.glazes.Scale9Bitmap;
+	import org.finalbug.ui.style.FillStyle;
 	
 	
 	/**
-	 * SkinBox
+	 * SkinElement is a display element to show skin.
 	 * 
 	 * @author Tang Bin
 	 * @since 2010
@@ -32,6 +34,8 @@ package org.finalbug.ui.skin
 		
 		private var skinChanged:Boolean = false;
 		
+		private var _autoMouseEvent:Boolean = false;
+		
 		//***************************************
 		// GETTER and SETTER
 		//***************************************/
@@ -47,6 +51,26 @@ package org.finalbug.ui.skin
 				currentStatus = value;
 				skinChanged = true;
 				updateView();
+			}
+		}
+		
+		public function get autoMouseEvent():Boolean
+		{
+			return _autoMouseEvent;
+		}
+		public function set autoMouseEvent(value:Boolean):void
+		{
+			if(value != _autoMouseEvent)
+			{
+				_autoMouseEvent = value;
+				if(_autoMouseEvent)
+				{
+					setMouseEvent();
+				}
+				else
+				{
+					removeMouseEvent();
+				}
 			}
 		}
 		
@@ -71,22 +95,29 @@ package org.finalbug.ui.skin
 			// remove skin if is changed.
 			if(skinChanged) this.removeAll();
 			//
-			var data:SkinData = skinList[currentStatus] as SkinData;
-			if(data.type == SkinData.FILL_TYPE)
+			var data:SkinElementData = skinList[currentStatus] as SkinElementData;
+			var rect:Rectangle = data.scale9;
+			// set view start
+			if(data.type == SkinElementData.FILL_TYPE)
 			{
+				// fill type, just fill it!
 				this.fillStyle = data.data as FillStyle;
 			}
-			else if(data.type == SkinData.VECTORIAL_TYPE)
+			else if(data.type == SkinElementData.VECTORIAL_TYPE)
 			{
-				// add skin if is changed.
+				// vectogram type, use displayobject directly.
 				var obj:DisplayObject;
 				if(skinChanged)
 				{
+					// add skin if is changed.
 					obj = data.data as DisplayObject
 					if(obj != null)
 					{
-						var objRect:Rectangle = new Rectangle(obj.width / 2 - 1, obj.height / 2 - 1, 2, 2);
-						obj.scale9Grid = objRect;
+						if(rect == null)
+						{
+							rect = new Rectangle(0, 0, obj.width, obj.height);
+						}
+						obj.scale9Grid = rect;
 						obj.name = "skin";
 						this.addChild(obj);
 						obj.width = this.displayWidth;
@@ -95,6 +126,7 @@ package org.finalbug.ui.skin
 				}
 				else
 				{
+					// if skin not changed, just resize skin's size.
 					obj = this.getChildByName("skin") as DisplayObject;
 					if(obj != null)
 					{
@@ -103,22 +135,28 @@ package org.finalbug.ui.skin
 					}
 				}
 			}
-			else if(data.type == SkinData.BITMAP_TYPE)
+			else if(data.type == SkinElementData.BITMAP_TYPE)
 			{
+				// bitmap type, use scale9grid bitmap.
 				var img:Scale9Bitmap;
 				if(skinChanged)
 				{
+					// if skin is changed. reset bitmap
 					var bm:Bitmap;
 					if(data.data is Bitmap)
 					{
+						// if the data is bitmap, can be used as bitmap directly.
 						bm = data.data as Bitmap;
 					}
 					else if(data.data is BitmapData)
 					{
+						// if the data is bitmapData, create new bitmap using it.
 						bm = new Bitmap(data.data as BitmapData);
 					}
 					else if(data.data is DisplayObject)
 					{
+						// if the data is not bitmap/bitmapdata, but still a displayobject.
+						// create new bitmap using it.
 						var bdObj:DisplayObject = data.data as DisplayObject;
 						var bd:BitmapData = new BitmapData(bdObj.width, bdObj.height, true, 0xFFFFFFFF);
 						bd.draw(bdObj, null, null, null, null, true);
@@ -126,8 +164,12 @@ package org.finalbug.ui.skin
 					}
 					if(bm != null)
 					{
-						var bmRect:Rectangle = new Rectangle(bm.width / 2 - 1, bm.height / 2 - 1, 2, 2);
-						img = new Scale9Bitmap(bm, bmRect);
+						// if bitmap is created.
+						if(rect == null)
+						{
+							rect = new Rectangle(0, 0, bm.width, bm.height);
+						}
+						img = new Scale9Bitmap(bm, rect);
 						img.name = "skin";
 						this.addChild(img);
 						img.width = this.displayWidth;
@@ -136,6 +178,7 @@ package org.finalbug.ui.skin
 				}
 				else
 				{
+					// if skin is not changed, just resize skin.
 					img = this.getChildByName("skin") as Scale9Bitmap;
 					if(img != null)
 					{
@@ -152,7 +195,7 @@ package org.finalbug.ui.skin
 		// PUBLIC
 		//***************************************/
 		
-		public function setSkin(data:SkinData):void
+		public function setSkin(data:SkinElementData):void
 		{
 			skinList[data.status] = data;
 			if(data.asDefault)
@@ -178,8 +221,61 @@ package org.finalbug.ui.skin
 		// PRIVATE
 		//***************************************/
 		
+		private function setMouseEvent():void
+		{
+			this.mouseEnabled = true;
+			this.mouseChildren = false;
+			this.addEventListener(MouseEvent.ROLL_OVER, overHandler);
+			this.addEventListener(MouseEvent.ROLL_OUT, outHandler);
+			this.addEventListener(MouseEvent.MOUSE_DOWN, downHandler);
+			this.addEventListener(MouseEvent.MOUSE_UP, upHandler);
+		}
+		
+		private function removeMouseEvent():void
+		{
+			this.mouseEnabled = false;
+			this.mouseChildren = false;
+			this.removeEventListener(MouseEvent.ROLL_OVER, overHandler);
+			this.removeEventListener(MouseEvent.ROLL_OUT, outHandler);
+			this.removeEventListener(MouseEvent.MOUSE_DOWN, downHandler);
+			this.removeEventListener(MouseEvent.MOUSE_UP, upHandler);
+		}
+		
 		//***************************************
 		// HANDLER
 		//***************************************/
+		
+		private function overHandler(e:MouseEvent):void
+		{
+			trace("xxxxxxxxxxxxxxxxxx", this.status);
+			if(status != Status.DISABLE)
+			{
+				this.status = Status.MOUSE_OVER;
+			}
+		}
+		
+		private function outHandler(e:MouseEvent):void
+		{
+			if(status != Status.DISABLE)
+			{
+				this.status = Status.NORMAL;
+			}
+		}
+		
+		private function downHandler(e:MouseEvent):void
+		{
+			if(status != Status.DISABLE)
+			{
+				this.status = Status.MOUSE_DOWN;
+			}
+		}
+		
+		private function upHandler(e:MouseEvent):void
+		{
+			if(status != Status.DISABLE)
+			{
+				this.status = Status.MOUSE_OVER;
+			}
+		}
 	}
 }

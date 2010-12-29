@@ -414,6 +414,18 @@ package org.finalbug.ui
 		
 		protected function countSizeAndPosition():void{}
 		
+		protected function drawBg():void
+		{
+			if(_fillStyle != null)
+			{
+				_fillStyle.fill(this, this.displayWidth, this.displayHeight);
+			}
+			else
+			{
+				this.graphics.clear();
+			}
+		}
+		
 		//***************************************
 		// PRIVATE
 		//***************************************
@@ -461,18 +473,6 @@ package org.finalbug.ui
 					_controlPoint.x = _controlPoint.y = 0;
 					_controlPointType = "";
 					break;
-			}
-		}
-		
-		private function drawBg():void
-		{
-			if(_fillStyle != null)
-			{
-				_fillStyle.fill(this, this.displayWidth, this.displayHeight);
-			}
-			else
-			{
-				this.graphics.clear();
 			}
 		}
 		

@@ -3,51 +3,67 @@
  *****************************************/
 package org.finalbug.ui.skin
 {
-	import flash.utils.Dictionary;
-	
-	import org.finalbug.data.Status;
+	import flash.geom.Rectangle;
 	
 	/**
-	 * ButtonSkin
+	 * SkinElementData
 	 * 
 	 * @author Tang Bin
 	 * @since 2010
 	 */	
-	public class ButtonSkin extends UISkinBase
+	public class SkinElementData
 	{
 		//***************************************
 		// DEFINE
 		//***************************************/
 		
-		[Embed(source="/resources/skins/btnSkin_normal.png")]
-		private var normalSkinCls:Class
+		public static const FILL_TYPE:String = "fillType";
+		public static const VECTORIAL_TYPE:String = "vectorialType";
+		public static const BITMAP_TYPE:String = "bitmapType";
 		
-		[Embed(source="/resources/skins/btnSkin_over.png")]
-		private var overSkinCls:Class
+		private var _status:String;
+		private var _type:String;
+		private var _data:*;
+		private var _asDefalut:Boolean = false;
 		
-		[Embed(source="/resources/skins/btnSkin_down.png")]
-		private var downSkinCls:Class
-		
-		[Embed(source="/resources/skins/btnSkin_disable.png")]
-		private var disableSkinCls:Class
+		// used for scale9Grid for vectorial and bitmap type.
+		// if null, it will be set as from topLeft to bottomRight.
+		public var scale9:Rectangle;
 		
 		//***************************************
 		// GETTER and SETTER
 		//***************************************/
 		
+		public function get status():String
+		{
+			return _status;
+		}
+		
+		public function get type():String
+		{
+			return _type;
+		}
+		
+		public function get data():*
+		{
+			return _data;
+		}
+		
+		public function get asDefault():Boolean
+		{
+			return _asDefalut;
+		}
+		
 		//***************************************
 		// Constructor.
 		//***************************************/
 		
-		public function ButtonSkin()
+		public function SkinElementData(status:String, type:String, data:*, asDefault:Boolean = false)
 		{
-			super();
-			skinList = new Dictionary();
-			// skin
-			skinList[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new normalSkinCls(), true);;
-			skinList[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new overSkinCls(), true);;
-			skinList[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new downSkinCls(), true);;
-			skinList[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new disableSkinCls(), true);;
+			this._status = status;
+			this._type = type;
+			this._data = data;
+			this._asDefalut = asDefault;
 		}
 		
 		//***************************************

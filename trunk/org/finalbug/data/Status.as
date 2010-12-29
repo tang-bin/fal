@@ -25,6 +25,9 @@ package org.finalbug.data
 		public static const MOUSE_DOWN:String = "mouseDownStatus";
 		public static const HOLD:String = "holdStatus";
 		public static const SELECTED:String = "selectedStatus";
+		public static const SELECTED_MOUSE_OVER:String = "selectedMouseOverStatus";
+		public static const SELECTED_MOUSE_DOWN:String = "selectedMOuseDownStatus";
+		public static const SELECTED_DISABLE:String = "selectedDisableStatus";
 		public static const DISABLE:String = "disableStatus";
 		
 		public static const ACTIVE:String = "activeStatus";

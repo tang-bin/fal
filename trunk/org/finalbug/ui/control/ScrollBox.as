@@ -8,9 +8,8 @@ package org.finalbug.ui.control
 	import org.finalbug.data.Status;
 	import org.finalbug.events.UIEvent;
 	import org.finalbug.ui.glazes.Flat;
+	import org.finalbug.ui.style.FillStyle;
 	import org.finalbug.ui.style.stylefactory.ScrollBoxStyleFactory;
-	import org.finalbug.ui.control.ScrollBar;
-	import org.finalbug.ui.control.UIObject;
 	
 	/**
 	 * This class is a container with scroll bar.
@@ -22,7 +21,6 @@ package org.finalbug.ui.control
 	 */
 	public class ScrollBox extends UIObject
 	{
-		protected var back:Flat; // background
 		protected var xBar:ScrollBar; // scroll bar X
 		protected var yBar:ScrollBar; // scroll bar Y
 		protected var enableX:Boolean; // enable scrollbar x or not
@@ -85,16 +83,20 @@ package org.finalbug.ui.control
 			/* save parameters */
 			enableX = xScroll;
 			enableY = yScroll;
+			//
+			var defaultFillStyle:FillStyle = new FillStyle();
+			defaultFillStyle.bgAlpha = 1;
+			defaultFillStyle.bgColor = 0xFFFFFF;
+			defaultFillStyle.borderAlpha = 1;
+			defaultFillStyle.borderColor = 0xCCCCCC;
+			this.fillStyle = defaultFillStyle;
+			//
 			createChildren();
 		}
 		
 		override protected function updateView():void
 		{
 			super.updateView();
-			//
-			back.fillStyle = currentSkin.fillStyle;
-			back.width = this.displayWidth;
-			back.height = this.displayHeight;
 			//
 			if(enableX)
 			{
@@ -125,16 +127,12 @@ package org.finalbug.ui.control
 		
 		private function createChildren():void
 		{
-			back = new Flat();
 			xBar = new ScrollBar(Position.HORIZONTAL);
 			yBar = new ScrollBar(Position.VERTICAL);
-			this.addAll(back, xBar, yBar);
+			this.addAll(xBar, yBar);
 			//
 			xBar.enabled = xBar.visible = false;
 			yBar.enabled = yBar.visible = false;
-			//
-			this.setSkin(Status.NORMAL, ScrollBoxStyleFactory.createNormalStyle(), true);
-			this.setSkin(Status.DISABLE, ScrollBoxStyleFactory.createDisableStyle());
 			//
 			xBar.addEventListener(UIEvent.SCROLL, xScrollHandler);
 			yBar.addEventListener(UIEvent.SCROLL, yScrollHandler);

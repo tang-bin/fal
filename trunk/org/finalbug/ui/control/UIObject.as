@@ -7,18 +7,16 @@
  *     \/             \/     \/         \/     /_____/  
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
-  *****************************************************/  
+  *****************************************************/
 package org.finalbug.ui.control
 {
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
 	
-	import org.finalbug.data.SetType;
 	import org.finalbug.data.Status;
-	import org.finalbug.errors.UIError;
 	import org.finalbug.ui.Bin;
+	import org.finalbug.ui.skin.UISkinDataBase;
 	import org.finalbug.ui.style.LayoutStyle;
-	import org.finalbug.ui.style.UISkin2;
 	import org.finalbug.ui.widgets.Tooltip;
 	import org.finalbug.utils.LayoutManager;
 	import org.finalbug.utils.MathUtil;
@@ -38,7 +36,7 @@ package org.finalbug.ui.control
 		public var tooltip:String = "";
 		public var autoResizeChildren:Boolean = true;
 		
-		protected var skinList:Object = new Object();
+		protected var uiSkinData:UISkinDataBase;
 		protected var currentStatus:String;
 		
 		private var _enabled:Boolean = true;
@@ -58,6 +56,10 @@ package org.finalbug.ui.control
 			{
 				currentStatus = value;
 				this.countSizeAndPosition();
+				if(uiSkinData != null)
+				{
+					uiSkinData.setStatus(this.currentStatus);
+				}
 				updateView();
 			}
 		}
@@ -191,51 +193,16 @@ package org.finalbug.ui.control
 			}
 		}
 		
-		public function setSkin(status:String, style:UISkin2, asDefualt:Boolean = false):void
-		{
-			if(style != null)
-			{
-				style.owner = this;
-				skinList[status] = style;
-				if(asDefualt)
-				{
-					this.status = status;
-				}
-			}
-			else
-			{
-				skinList[status] = null;
-				delete skinList[status];
-			}
-		}
-		
-		public function getSkin(status:String):UISkin2
-		{
-			if(skinList[status] != null)
-			{
-				return skinList[status];
-			}
-			else
-			{
-				return null;
-			}
-		}
-		
 		//***************************************
 		// PROTECTED
 		//***************************************
 		
-		protected function get currentSkin():UISkin2
+		protected function initSize(width:*, height:*):void
 		{
-			return skinList[this.currentStatus];
-		}
-		
-		protected function initSize(width:Number, height:Number):void
-		{
-			this.displayWidth = width;
 			this.layoutStyle.setValue("width", width);
-			this.displayHeight = height;
 			this.layoutStyle.setValue("height", height);
+			this.displayWidth = this.layoutStyle.width;
+			this.displayHeight = this.layoutStyle.height;
 		}
 		
 		//***************************************

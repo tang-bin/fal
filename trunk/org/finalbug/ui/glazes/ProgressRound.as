@@ -33,7 +33,7 @@ package org.finalbug.ui.glazes
 			this.addChild(bg);
 			front = new Sprite();
 			this.addChild(front);
-			drawBg();
+			drawRound();
 		}
 		
 		public function setRoundStyle(radius:Number, backColor:Number, frontColor:Number, glowColor:Number):void
@@ -42,7 +42,7 @@ package org.finalbug.ui.glazes
 			this.backColor = backColor;
 			this.frontColor = frontColor;
 			this.glowColor = glowColor;
-			drawBg();
+			drawRound();
 		}
 		
 		public function showProgress(rate:Number):void
@@ -63,7 +63,7 @@ package org.finalbug.ui.glazes
 			runTimer = new Timer(20);
 			runTimer.addEventListener(TimerEvent.TIMER, runTimerHandler);
 			runTimer.start();
-			drawBg();
+			drawRound();
 		}
 		
 		private function runTimerHandler(e:TimerEvent):void
@@ -76,7 +76,7 @@ package org.finalbug.ui.glazes
 				backColor = frontColor;
 				frontColor = tmp;
 				rate = 0;
-				drawBg();
+				drawRound();
 			}
 			e.updateAfterEvent();
 		}
@@ -93,7 +93,7 @@ package org.finalbug.ui.glazes
 			bg.filters = [gf];
 		}
 		
-		private function drawBg():void
+		private function drawRound():void
 		{
 			bg.graphics.clear();
 			bg.graphics.beginFill(backColor, 1);

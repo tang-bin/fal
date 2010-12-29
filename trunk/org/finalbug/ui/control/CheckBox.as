@@ -1,7 +1,13 @@
 /******************************************************
+ * ___________.__              .__ ___.                 
+ * \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____  
+ *  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\ 
+ *  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+ *  \__ |     |__|___|  (____  /____/___  /____/\___  / 
+ *     \/             \/     \/         \/     /_____/  
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
-  *****************************************************/  
+  *****************************************************/ 
 package org.finalbug.ui.control
 {
 	import flash.display.Shape;
@@ -12,10 +18,8 @@ package org.finalbug.ui.control
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.ui.glazes.Flat;
-	import org.finalbug.ui.style.stylefactory.CheckBoxStyleFactory;
 	import org.finalbug.ui.style.FillStyle;
-	import org.finalbug.ui.control.Label;
-	import org.finalbug.ui.control.UIObject;
+	import org.finalbug.ui.style.stylefactory.CheckBoxStyleFactory;
 	
 	/**
 	 * CheckBox component.

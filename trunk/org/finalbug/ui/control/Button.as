@@ -7,7 +7,7 @@
  *     \/             \/     \/         \/     /_____/  
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
-  *****************************************************/  
+  *****************************************************/
 package org.finalbug.ui.control
 {
 	import flash.display.Bitmap;
@@ -16,7 +16,7 @@ package org.finalbug.ui.control
 	import org.finalbug.ui.glazes.Flat;
 	import org.finalbug.ui.glazes.Image;
 	import org.finalbug.ui.skin.SkinElement;
-	import org.finalbug.ui.skin.ButtonSkin;
+	import org.finalbug.ui.skin.ButtonSkinData;
 	import org.finalbug.ui.skin.UISkinModel;
 	import org.finalbug.ui.style.stylefactory.ButtonStyleFactory;
 	
@@ -65,7 +65,7 @@ package org.finalbug.ui.control
 			super();
 			this.mouseChildren = false;
 			this._labelStr = text;
-			this.initSize(80, 20);
+			this.initSize(80, 24);
 			createChildren();
 		}
 		
@@ -80,13 +80,12 @@ package org.finalbug.ui.control
 			super.updateView();
 			if(bg != null)
 			{
-				bg.status = this.currentStatus;
+				bg.width = this.displayWidth;
+				bg.height = this.displayHeight;
 			}
 			if(_label != null)
 			{
-				//_label.textFormat = currentSkin.textStyle.format;
 				_label.toCenter();
-				_label.toFront();
 			}
 		}
 		
@@ -110,8 +109,8 @@ package org.finalbug.ui.control
 			icon = new Image();
 			this.addAll(bg, _label, icon);
 			//
-			var uiSkin:ButtonSkin = UISkinModel.instance.buttonSkin;
-			uiSkin.setSkin(bg);
+			uiSkinData = UISkinModel.instance.buttonSkinData;
+			uiSkinData.setSkin(bg, _label);
 		}
 		
 		//***************************************

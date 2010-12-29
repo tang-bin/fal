@@ -45,10 +45,16 @@ package org.finalbug.ui.skin
 		// GETTER and SETTER
 		//***************************************/
 		
-		public function get buttonSkin():ButtonSkin
+		public function get buttonSkinData():ButtonSkinData
 		{
-			if(UISkins["buttonSkin"] == null) UISkins["buttonSkin"] = new ButtonSkin();
-			return UISkins["buttonSkin"];
+			if(UISkins["buttonSkinData"] == null) UISkins["buttonSkinData"] = new ButtonSkinData();
+			return UISkins["buttonSkinData"];
+		}
+		
+		public function get scrollBarSkinData():ScrollBarSkinData
+		{
+			if(UISkins["scrollBarSkinData"] == null) UISkins["scrollBarSkinData"] = new ScrollBarSkinData();
+			return UISkins["scrollBarSkinData"];
 		}
 		
 		//***************************************

@@ -9,7 +9,6 @@ package org.finalbug.ui.control
 	import flash.geom.Rectangle;
 	
 	import org.finalbug.events.UIEvent;
-	import org.finalbug.ui.control.ScrollBox;
 	import org.finalbug.utils.DrawUtil;
 	
 	/**

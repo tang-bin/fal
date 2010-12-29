@@ -14,13 +14,11 @@ package org.finalbug.ui.skin
 	 * @author Tang Bin
 	 * @since 2010
 	 */	
-	public class UISkinBase extends DataModel
+	public class UISkinDataBase extends DataModel
 	{
 		//***************************************
 		// DEFINE
 		//***************************************/
-		
-		protected var skinList:Dictionary = new Dictionary();
 		
 		//***************************************
 		// GETTER and SETTER
@@ -30,7 +28,7 @@ package org.finalbug.ui.skin
 		// Constructor.
 		//***************************************/
 		
-		public function UISkinBase()
+		public function UISkinDataBase()
 		{
 			super();
 		}
@@ -45,12 +43,14 @@ package org.finalbug.ui.skin
 		// PUBLIC
 		//***************************************/
 		
-		public function setSkin(skin:SkinElement):void
+		public function setSkin(...args):void
 		{
-			if(skin != null)
-			{
-				setStatusSkinByList(skin, skinList);
-			}
+			// this method should be overrided in sub classes.
+		}
+		
+		public function setStatus(status:String):void
+		{
+			// this method should be overrided in sub classes.
 		}
 		
 		//***************************************
@@ -59,7 +59,7 @@ package org.finalbug.ui.skin
 		
 		protected function setStatusSkinByList(skinElement:SkinElement, list:Dictionary):void
 		{
-			for each(var skinData:SkinData in list)
+			for each(var skinData:SkinElementData in list)
 			{
 				if(skinData != null)
 				{

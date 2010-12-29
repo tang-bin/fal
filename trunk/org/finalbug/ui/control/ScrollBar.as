@@ -1,12 +1,17 @@
 /******************************************************
+ * ___________.__              .__ ___.                 
+ * \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____  
+ *  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\ 
+ *  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+ *  \__ |     |__|___|  (____  /____/___  /____/\___  / 
+ *     \/             \/     \/         \/     /_____/  
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
-  *****************************************************/  
+  *****************************************************/
 package org.finalbug.ui.control
 {
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
-	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.utils.Timer;
 	
@@ -15,11 +20,9 @@ package org.finalbug.ui.control
 	import org.finalbug.errors.UIError;
 	import org.finalbug.events.UIEvent;
 	import org.finalbug.events.UIMouseEvent;
-	import org.finalbug.ui.control.UIObject;
-	import org.finalbug.ui.glazes.Flat;
-	import org.finalbug.ui.style.FillStyle;
-	import org.finalbug.ui.style.stylefactory.ScrollBarStyleFactory;
-	import org.finalbug.utils.DrawUtil;
+	import org.finalbug.ui.skin.ScrollBarSkinData;
+	import org.finalbug.ui.skin.SkinElement;
+	import org.finalbug.ui.skin.UISkinModel;
 	import org.finalbug.utils.MathUtil;
 	
 	/**
@@ -30,7 +33,7 @@ package org.finalbug.ui.control
 	 */
 	public class ScrollBar extends UIObject
 	{
-		public static const DEFAULT_THICKNESS:Number = 14;
+		public static const DEFAULT_THICKNESS:Number = 16;
 		
 		/* variates */
 		private var moveStep:Number;
@@ -47,12 +50,12 @@ package org.finalbug.ui.control
 		private var _length:Number = 100;
 		
 		/* display containers */
-		private var leftBtn:Flat;
-		private var rightBtn:Flat;
-		private var upBtn:Flat;
-		private var downBtn:Flat;
-		private var back:Flat;
-		private var slider:Flat;
+		private var leftBtn:SkinElement;
+		private var rightBtn:SkinElement;
+		private var upBtn:SkinElement;
+		private var downBtn:SkinElement;
+		private var back:SkinElement;
+		private var slider:SkinElement;
 		
 		private var _enabled:Boolean = true;
 		
@@ -147,44 +150,28 @@ package org.finalbug.ui.control
 		override protected function updateView():void
 		{
 			super.updateView();
-			var fs:FillStyle = currentSkin.fillStyle;
 			if(_type == Position.HORIZONTAL)
 			{
-				leftBtn.fillStyle = fs;
 				leftBtn.width = leftBtn.height = _thickness;
-				drawLeftBtnAddon();
 				//
-				rightBtn.fillStyle = fs;
 				rightBtn.x = _length - _thickness;
 				rightBtn.width = rightBtn.height = _thickness;
-				drawRightBtnAddon();
 				//
-				back.fillStyle = fs;
-				back.alpha = 0.5;
 				back.width = availLength;
 				back.height = _thickness;
 				back.x = _thickness;
 			}
 			else
 			{
-				upBtn.fillStyle = fs;
 				upBtn.width = upBtn.height = _thickness;
-				drawUpBtnAddon();
 				//
-				downBtn.fillStyle = fs;
 				downBtn.y = _length - _thickness;
 				downBtn.width = downBtn.height = _thickness;
-				drawDownBtnAddon();
 				//
-				back.fillStyle = fs;
-				back.alpha = 0.5;
 				back.y = _thickness;
 				back.width = _thickness;
 				back.height = availLength;
 			}
-			fs = fs.clone();
-			fs.useGradient = false;
-			slider.fillStyle = fs;
 			this.setSlider();
 		}
 		
@@ -205,9 +192,6 @@ package org.finalbug.ui.control
 			{
 				createScrollBarY();
 			}
-			//
-			this.setSkin(Status.NORMAL, ScrollBarStyleFactory.createNormalStyle(), true);
-			this.setSkin(Status.DISABLE, ScrollBarStyleFactory.createDisableStyle());
 			//
 			if(_type == Position.HORIZONTAL)
 			{
@@ -250,30 +234,40 @@ package org.finalbug.ui.control
 		
 		private function createScrollBarX():void
 		{
-			leftBtn = new Flat();
-			rightBtn = new Flat();
-			back = new Flat();
-			slider = new Flat();
+			leftBtn = new SkinElement();
+			rightBtn = new SkinElement();
+			back = new SkinElement();
+			slider = new SkinElement();
 			leftBtn.name = "leftBtn";
 			rightBtn.name = "rightBtn";
+			leftBtn.autoMouseEvent = true;
+			rightBtn.autoMouseEvent = true;
 			//
 			leftBtn.mouseEnabled = rightBtn.mouseEnabled = slider.mouseEnabled = true;
 			//
 			this.addAll(back, leftBtn, rightBtn, slider);
+			//
+			var uiSkinData:ScrollBarSkinData = UISkinModel.instance.scrollBarSkinData;
+			uiSkinData.setSkin(leftBtn, rightBtn, null, null, back, slider);
 		}
 		
 		private function createScrollBarY():void
 		{
-			upBtn = new Flat();
-			downBtn = new Flat();
-			back = new Flat();
-			slider = new Flat();
+			upBtn = new SkinElement();
+			downBtn = new SkinElement();
+			back = new SkinElement();
+			slider = new SkinElement();
 			upBtn.name = "upBtn";
 			downBtn.name = "downBtn";
+			upBtn.autoMouseEvent = true;
+			downBtn.autoMouseEvent = true;
 			//
 			upBtn.mouseEnabled = downBtn.mouseEnabled = slider.mouseEnabled = true;
 			//
 			this.addAll(back, upBtn, downBtn, slider);
+			//
+			var uiSkinData:ScrollBarSkinData = UISkinModel.instance.scrollBarSkinData;
+			uiSkinData.setSkin(null, null, upBtn, downBtn, back, slider);
 		}
 		
 		private function stopMove():void
@@ -474,45 +468,6 @@ package org.finalbug.ui.control
 			}
 			accountSlider();
 			evt.updateAfterEvent();
-		}
-		
-		/* ****************************************************** */
-		/* builder */
-		
-		private function drawLeftBtnAddon():void
-		{
-			var color:Number = Number(currentSkin.textStyle.format.color);
-			var len:Number = _thickness / 2;
-			leftBtn.graphics.beginFill(color, 1);
-			DrawUtil.drawTriangle(leftBtn.graphics, new Point(len, len), len, len, "left");
-			leftBtn.graphics.endFill();
-		}
-		
-		private function drawRightBtnAddon():void
-		{
-			var color:Number = Number(currentSkin.textStyle.format.color);
-			var len:Number = _thickness / 2;
-			rightBtn.graphics.beginFill(color, 1);
-			DrawUtil.drawTriangle(rightBtn.graphics, new Point(len, len), len, len, "right");
-			rightBtn.graphics.endFill();
-		}
-		
-		private function drawUpBtnAddon():void
-		{
-			var color:Number = Number(currentSkin.textStyle.format.color);
-			var len:Number = _thickness / 2;
-			upBtn.graphics.beginFill(color, 1);
-			DrawUtil.drawTriangle(upBtn.graphics, new Point(len, len), len, len, "up");
-			upBtn.graphics.endFill();
-		}
-		
-		private function drawDownBtnAddon():void
-		{
-			var color:Number = Number(currentSkin.textStyle.format.color);
-			var len:Number = _thickness / 2;
-			downBtn.graphics.beginFill(color, 1);
-			DrawUtil.drawTriangle(downBtn.graphics, new Point(len, len), len, len, "down");
-			downBtn.graphics.endFill();
 		}
 	}
 }
