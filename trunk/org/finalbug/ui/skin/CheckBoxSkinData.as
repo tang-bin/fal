@@ -10,9 +10,11 @@
   *****************************************************/
 package org.finalbug.ui.skin
 {
+	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
 	
 	import org.finalbug.data.Status;
+	import org.finalbug.ui.control.Label;
 	
 	/**
 	 * CheckBoxSkinData
@@ -45,7 +47,10 @@ package org.finalbug.ui.skin
 		private var checkBoxSelectDisableCls:Class;
 		
 		private var box:SkinElement;
+		private var label:Label;
+		
 		private var boxSkins:Dictionary;
+		private var textFormats:Dictionary;
 		
 		//***************************************
 		// GETTER and SETTER
@@ -68,6 +73,9 @@ package org.finalbug.ui.skin
 			boxSkins[Status.SELECTED_MOUSE_OVER] = new SkinElementData(Status.SELECTED_MOUSE_OVER, SkinElementData.BITMAP_TYPE, new checkBoxSelectOverCls());
 			boxSkins[Status.SELECTED_MOUSE_DOWN] = new SkinElementData(Status.SELECTED_MOUSE_DOWN, SkinElementData.BITMAP_TYPE, new checkBoxSelectDownCls());
 			boxSkins[Status.SELECTED_DISABLE] = new SkinElementData(Status.SELECTED_DISABLE, SkinElementData.BITMAP_TYPE, new checkBoxSelectDisableCls());
+			//
+			textFormats = new Dictionary();
+			textFormats[Status.NORMAL] = new TextFormat("Arial", 12, 0);
 		}
 		
 		//***************************************
@@ -75,6 +83,29 @@ package org.finalbug.ui.skin
 		// Whit out getter, setter and handler
 		// include public, protected and private.
 		//***************************************/
+		
+		override public function setSkin(...args):void
+		{
+			box = args[0] as SkinElement;
+			if(box != null)
+			{
+				this.setStatusSkinByList(box, boxSkins);
+			}
+			label = args[1] as Label;
+			label.textFormat = textFormats[Status.NORMAL];
+		}
+		
+		override public function setStatus(status:String):void
+		{
+			if(box != null)
+			{
+				box.status = status;
+			}
+			if(label != null && textFormats[status] != null)
+			{
+				label.textFormat = textFormats[status];
+			}
+		}
 		
 		//***************************************
 		// PUBLIC

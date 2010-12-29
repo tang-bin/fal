@@ -103,8 +103,6 @@ package org.finalbug.ui.control
 				super.updateView();
 				txt.width = containerWidth;
 				txt.height = containerHeight;
-				txt.defaultTextFormat = currentSkin.textStyle.format;
-				txt.setTextFormat(currentSkin.textStyle.format);
 			}
 		}
 		
@@ -138,16 +136,10 @@ package org.finalbug.ui.control
 			this.addChild(txt);
 			txt.type = "input";
 			//
-			this.setSkin(Status.NORMAL, TextAreaStyleFactory.createNormalStyle(), true);
-			this.setSkin(Status.ACTIVE, TextAreaStyleFactory.createActiveStyle());
-			this.setSkin(Status.DISABLE, TextAreaStyleFactory.createDisableStyle());
-			//
-			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
-			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
-			txt.addEventListener(Event.CHANGE, changeTextHandler);
+			setEvent();
 			//
 			updateView();
-			setEvent();
+			
 		}
 		
 		private function scrollTextHandler(e:Event):void

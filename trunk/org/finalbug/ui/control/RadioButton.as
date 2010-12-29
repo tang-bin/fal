@@ -13,6 +13,8 @@ package org.finalbug.ui.control
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.ui.control.Label;
 	import org.finalbug.ui.control.UIObject;
+	import org.finalbug.ui.skin.SkinElement;
+	import org.finalbug.ui.skin.UISkinModel;
 	import org.finalbug.ui.style.FillStyle;
 	import org.finalbug.ui.style.stylefactory.CheckBoxStyleFactory;
 	import org.finalbug.utils.DrawUtil;
@@ -27,18 +29,14 @@ package org.finalbug.ui.control
 	{
 		protected static var groupList:Object = new Object();
 		
-		private const BOX_SIZE:Number = 12;
 		private const OFFSET:Number = 3;
-		private const OUTERBOX_SIZE:Number = 2;
-		private const OUTER_INNER_OFFSET:Number = 1;
 		
 		private var _label:String;
 		private var _selected:Boolean = false;
 		private var _group:String = "";
 		private var _labelPosition:String;
 		
-		private var outerBox:Sprite;
-		private var innerBox:Sprite;
+		private var box:SkinElement;
 		private var txt:Label;
 		private var bg:Shape;
 		
@@ -68,7 +66,7 @@ package org.finalbug.ui.control
 			if(_selected != v)
 			{
 				_selected = v;
-				innerBox.visible = v;
+				this.status = this.enabled ? Status.SELECTED : Status.SELECTED_DISABLE;
 			}
 		}
 		
@@ -122,13 +120,8 @@ package org.finalbug.ui.control
 		
 		override protected function updateView():void
 		{
-			if(currentSkin != null)
-			{
-				drawOuterBox();
-				drawInnerBox();
-				txt.textFormat = currentSkin.textStyle.format;
-				setPosition();
-			}
+			super.updateView();
+			setPosition();
 		}
 		
 		/**
@@ -154,63 +147,59 @@ package org.finalbug.ui.control
 		
 		private function createChildren():void
 		{
-			outerBox = new Sprite();
-			innerBox = new Sprite();
+			box = new SkinElement();
 			txt = new Label(_label);
 			bg = new Shape();
 			//
 			DrawUtil.drawBlock(bg.graphics);
-			innerBox.visible = false;
 			//
-			this.addAll(outerBox, innerBox, txt, bg);
-			//
-			this.setSkin(Status.NORMAL, CheckBoxStyleFactory.createNormalStyle(), true);
-			this.setSkin(Status.MOUSE_OVER, CheckBoxStyleFactory.createOverStyle());
-			this.setSkin(Status.MOUSE_DOWN, CheckBoxStyleFactory.createDownStyle());
-			this.setSkin(Status.DISABLE, CheckBoxStyleFactory.createDisableStyle());
+			this.addAll(box, txt, bg);
 			//
 			this.addEventListener(MouseEvent.CLICK, clickBoxHandler);
+			//
+			uiSkinData = UISkinModel.instance.radioSkinData;
+			uiSkinData.setSkin(box, txt);
 		}
 		
 		private function setPosition():void
 		{
-			var ww:Number = Math.max(BOX_SIZE, txt.width);
-			var hh:Number = Math.max(BOX_SIZE, txt.height);
+			var ww:Number = Math.max(box.width, txt.width);
+			var hh:Number = Math.max(box.height, txt.height);
 			//
 			if(_labelPosition == Position.LEFT)
 			{
 				txt.x = 0;
 				txt.y = (hh - txt.height) / 2;
-				innerBox.x = outerBox.x = txt.width + OFFSET + BOX_SIZE / 2;
-				innerBox.y = outerBox.y = hh / 2;
-				bg.width = BOX_SIZE + OFFSET + txt.width;
+				box.x = txt.width + OFFSET + box.width / 2;
+				box.y = hh / 2;
+				bg.width = box.width + OFFSET + txt.width;
 				bg.height = hh;
 			}
 			else if(_labelPosition == Position.TOP)
 			{
-				innerBox.y = outerBox.y = BOX_SIZE / 2;
-				innerBox.x = outerBox.x = ww / 2;
+				box.y = box.height / 2;
+				box.x = ww / 2;
 				txt.x = (ww - txt.width) / 2;
-				txt.y = BOX_SIZE + OFFSET;
+				txt.y = box.height + OFFSET;
 				bg.width = ww;
-				bg.height = BOX_SIZE + OFFSET + txt.height;
+				bg.height = box.height + OFFSET + txt.height;
 			}
 			else if(_labelPosition == Position.BOTTOM)
 			{
 				txt.x = (ww - txt.width) / 2;
 				txt.y = 0;
-				innerBox.x = outerBox.x = ww / 2;
-				innerBox.y = txt.height + OFFSET + BOX_SIZE;
+				box.x = ww / 2;
+				txt.height + OFFSET + box.height;
 				bg.width = ww;
-				bg.height = BOX_SIZE + OFFSET + txt.height;
+				bg.height = box.height + OFFSET + txt.height;
 			}
 			else
 			{
-				innerBox.x = outerBox.x = BOX_SIZE / 2;
-				innerBox.y = outerBox.y = hh / 2;
-				txt.x = BOX_SIZE + OFFSET;
+				box.x = box.width / 2;
+				box.y = hh / 2;
+				txt.x = box.width + OFFSET;
 				txt.y = (hh - txt.height) / 2;
-				bg.width = BOX_SIZE + OFFSET + txt.width;
+				bg.width = box.width + OFFSET + txt.width;
 				bg.height = hh;
 			}
 		}
@@ -220,8 +209,7 @@ package org.finalbug.ui.control
 			if(!_selected)
 			{
 				unselectedGroup();
-				_selected = true;
-				innerBox.visible = true;
+				this.selected = true;
 				//
 				var ee:DataEvent = new DataEvent(DataEvent.CHANGE_DATA);
 				ee.dataName = "selected";
@@ -240,25 +228,6 @@ package org.finalbug.ui.control
 					v.selected = false;
 				}
 			}
-		}
-		
-		private function drawOuterBox():void
-		{
-			var fs:FillStyle = currentSkin.fillStyle;
-			outerBox.graphics.clear();
-			outerBox.graphics.beginFill(fs.bgColor, 1);
-			outerBox.graphics.drawCircle(0, 0, BOX_SIZE / 2);
-			outerBox.graphics.endFill();
-			outerBox.filters = [fs.createGlowFilter()];
-		}
-		
-		private function drawInnerBox():void
-		{
-			var fs:FillStyle = currentSkin.fillStyle;
-			innerBox.graphics.clear();
-			innerBox.graphics.beginFill(fs.borderColor, 1);
-			innerBox.graphics.drawCircle(0, 0, BOX_SIZE / 2 - OUTERBOX_SIZE - OUTER_INNER_OFFSET);
-			innerBox.graphics.endFill();
 		}
 	}
 }

@@ -18,6 +18,8 @@ package org.finalbug.ui.control
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.ui.glazes.Flat;
+	import org.finalbug.ui.skin.SkinElement;
+	import org.finalbug.ui.skin.UISkinModel;
 	import org.finalbug.ui.style.FillStyle;
 	import org.finalbug.ui.style.stylefactory.CheckBoxStyleFactory;
 	
@@ -29,16 +31,13 @@ package org.finalbug.ui.control
 	 */
 	public class CheckBox extends UIObject
 	{
-		private const BOX_SIZE:Number = 12;
-		private const THICKNESS:Number = 2;
 		private const OFFSET:Number = 3;
 		
 		private var _selected:Boolean = false;
 		private var _label:String = "CheckBox";	
 		private var _labelPosition:String;
 		
-		private var innerBox:Sprite;
-		private var outerBox:Flat
+		private var box:SkinElement;
 		private var txt:Label;
 		private var back:Shape;
 		
@@ -54,7 +53,7 @@ package org.finalbug.ui.control
 			if(value != _selected)
 			{
 				_selected = value;
-				innerBox.visible = value;
+				this.status = this.enabled ? Status.SELECTED : Status.SELECTED_DISABLE;
 			}
 		}
 		
@@ -94,6 +93,21 @@ package org.finalbug.ui.control
 			return txt.textColor;
 		}
 		
+		override public function set status(value:String):void
+		{
+			if(this.selected)
+			{
+				switch(value)
+				{
+					case Status.NORMAL: value = Status.SELECTED; break;
+					case Status.MOUSE_OVER: value = Status.SELECTED_MOUSE_OVER; break;
+					case Status.MOUSE_DOWN: value = Status.SELECTED_MOUSE_DOWN; break;
+					case Status.DISABLE: value = Status.SELECTED_DISABLE; break;
+				}
+			}
+			super.status = value;
+		}
+		
 		/**
 		 * Create a new CheckBox object.
 		 * 
@@ -108,10 +122,7 @@ package org.finalbug.ui.control
 		
 		override protected function updateView():void
 		{
-			drawOuterBox();
-			drawInnerBox();
-			txt.textFormat = currentSkin.textStyle.format;
-			innerBox.visible = _selected;
+			super.updateView();
 			resetPosition();
 		}
 		
@@ -120,64 +131,61 @@ package org.finalbug.ui.control
 		 */		
 		private function resetPosition():void
 		{
-			var ww:Number = Math.max(txt.width, BOX_SIZE);
-			var hh:Number = Math.max(txt.height, BOX_SIZE);
+			var ww:Number = Math.max(txt.width, box.width);
+			var hh:Number = Math.max(txt.height, box.height);
 			//
 			if(_labelPosition == Position.LEFT)
 			{
 				txt.x = 0;
 				txt.y = (hh - txt.height) / 2;
-				outerBox.x = txt.width + OFFSET;
-				outerBox.y = (hh - outerBox.height) / 2;
-				back.width = ww + OFFSET + outerBox.width;
+				box.x = txt.width + OFFSET;
+				box.y = (hh - box.height) / 2;
+				back.width = ww + OFFSET + box.width;
 				back.height = hh;
 			}
 			else if(_labelPosition == Position.TOP)
 			{
 				txt.x = (ww - txt.width) / 2;
 				txt.y = 0;
-				outerBox.x = (ww - outerBox.width) / 2;
-				outerBox.y = txt.height + OFFSET;
+				box.x = (ww - box.width) / 2;
+				box.y = txt.height + OFFSET;
 				back.width = ww;
-				back.height = hh + OFFSET + outerBox.height;
+				back.height = hh + OFFSET + box.height;
 			}
 			else if(_labelPosition == Position.BOTTOM)
 			{
-				outerBox.x = (ww - outerBox.width) / 2;
-				outerBox.y = 0;
+				box.x = (ww - box.width) / 2;
+				box.y = 0;
 				txt.x = (ww - txt.height) / 2;
-				txt.y = outerBox.height + OFFSET;
+				txt.y = box.height + OFFSET;
 				back.width = ww;
-				back.height = hh + OFFSET + outerBox.height;
+				back.height = hh + OFFSET + box.height;
 			}
 			else
 			{
-				outerBox.x = 0;
-				outerBox.y = (hh - outerBox.height) / 2;
-				txt.x = outerBox.width + OFFSET;
+				box.x = 0;
+				box.y = (hh - box.height) / 2;
+				txt.x = box.width + OFFSET;
 				txt.y = (hh - txt.height) / 2;
-				back.width = ww + OFFSET + outerBox.width;
+				back.width = ww + OFFSET + box.width;
 				back.height = hh;
 			}
-			innerBox.x = outerBox.x;
-			innerBox.y = outerBox.y;
 		}
 		
 		private function createChildren():void
 		{
 			// outer box
-			outerBox = new Flat();
-			innerBox = new Sprite();
+			box = new SkinElement();
 			txt = new Label(_label);
 			back = new Shape();
-			this.addAll(outerBox, innerBox, txt, back);
-			//
-			this.setSkin(Status.NORMAL, CheckBoxStyleFactory.createNormalStyle(), true);
-			this.setSkin(Status.MOUSE_OVER, CheckBoxStyleFactory.createOverStyle());
-			this.setSkin(Status.MOUSE_DOWN, CheckBoxStyleFactory.createDownStyle());
-			this.setSkin(Status.DISABLE, CheckBoxStyleFactory.createDisableStyle());
+			this.addAll(box, txt, back);
 			//
 			this.addEventListener(MouseEvent.CLICK, clickHandler);
+			//
+			uiSkinData = UISkinModel.instance.checkBoxSkinData;
+			uiSkinData.setSkin(box, txt);
+			//
+			updateView();
 		}
 		
 		//***************************************
@@ -191,33 +199,8 @@ package org.finalbug.ui.control
 		 */		
 		private function clickHandler(e:MouseEvent):void
 		{
-			_selected = !_selected;
-			innerBox.visible = _selected;
+			this.selected = !this.selected;
 			this.dispatchEvent(new DataEvent(DataEvent.CHANGE_DATA));
-		}
-		
-		/**
-		 * create and draw outer box.
-		 * @return 
-		 */	
-		private function drawOuterBox():void
-		{
-			outerBox.fillStyle = currentSkin.fillStyle;
-		}
-		
-		/**
-		 * create and draw inner box.
-		 * @return 
-		 */	
-		private function drawInnerBox():void
-		{
-			var fs:FillStyle = currentSkin.fillStyle;
-			//
-			innerBox.graphics.clear();
-			innerBox.graphics.lineStyle(3, fs.borderColor, 1);
-			innerBox.graphics.moveTo(THICKNESS, BOX_SIZE / 2);
-			innerBox.graphics.lineTo(BOX_SIZE / 2, BOX_SIZE - THICKNESS - 2);
-			innerBox.graphics.lineTo(BOX_SIZE, 0);
 		}
 	}
 }

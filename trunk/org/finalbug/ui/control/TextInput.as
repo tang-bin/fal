@@ -11,6 +11,8 @@ package org.finalbug.ui.control
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.ui.glazes.Flat;
+	import org.finalbug.ui.skin.SkinElement;
+	import org.finalbug.ui.skin.UISkinModel;
 	import org.finalbug.ui.style.stylefactory.TextInputStyleFactory;
 	
 	/**
@@ -24,11 +26,7 @@ package org.finalbug.ui.control
 		private var _textType:String = "input";
 		private var oldText:String ="";
 		
-		private var normalColor:Number;
-		private var activeColor:Number;
-		private var disableColor:Number;
-		
-		private var back:Flat;
+		private var back:SkinElement;
 		private var txt:TextField;
 		
 		/**
@@ -109,34 +107,27 @@ package org.finalbug.ui.control
 		override protected function updateView():void
 		{
 			super.updateView();
-			if(currentSkin != null)
-			{
-				back.fillStyle = currentSkin.fillStyle;
-				back.width = this.displayWidth;
-				back.height = this.displayHeight;
-				txt.defaultTextFormat = currentSkin.textStyle.format;
-				txt.setTextFormat(currentSkin.textStyle.format);
-				txt.x = txt.y = 1;
-				txt.width = this.displayWidth - 2;
-				txt.height = this.displayHeight - 2;
-			}
+			back.width = this.displayWidth;
+			back.height = this.displayHeight;
+			txt.x = txt.y = 1;
+			txt.width = this.displayWidth - 2;
+			txt.height = this.displayHeight - 2;
 		}
 		
 		private function createChildren():void
 		{
-			back = new Flat();
+			back = new SkinElement();
 			txt = new TextField();
 			this.addAll(back, txt);
 			//
 			setTextType();
 			//
-			this.setSkin(Status.NORMAL, TextInputStyleFactory.createNormalStyle(), true);
-			this.setSkin(Status.ACTIVE, TextInputStyleFactory.createActiveStyle());
-			this.setSkin(Status.DISABLE, TextInputStyleFactory.createDisableStyle());
-			//
 			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
 			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
 			txt.addEventListener(Event.CHANGE, changeTextHandler);
+			//
+			uiSkinData = UISkinModel.instance.textSkinData;
+			uiSkinData.setSkin(back, txt);
 		}
 		
 		private function setTextType():void

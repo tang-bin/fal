@@ -247,7 +247,6 @@ package org.finalbug.ui.skin
 		
 		private function overHandler(e:MouseEvent):void
 		{
-			trace("xxxxxxxxxxxxxxxxxx", this.status);
 			if(status != Status.DISABLE)
 			{
 				this.status = Status.MOUSE_OVER;

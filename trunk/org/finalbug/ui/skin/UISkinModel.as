@@ -57,6 +57,24 @@ package org.finalbug.ui.skin
 			return UISkins["scrollBarSkinData"];
 		}
 		
+		public function get checkBoxSkinData():CheckBoxSkinData
+		{
+			if(UISkins["checkBoxSkinData"] == null) UISkins["checkBoxSkinData"] = new CheckBoxSkinData();
+			return UISkins["checkBoxSkinData"];
+		}
+		
+		public function get radioSkinData():RadioSkinData
+		{
+			if(UISkins["radioSkinData"] == null) UISkins["radioSkinData"] = new RadioSkinData();
+			return UISkins["radioSkinData"];
+		}
+		
+		public function get textSkinData():TextSkinData
+		{
+			if(UISkins["textSkinData"] == null) UISkins["textSkinData"] = new TextSkinData();
+			return UISkins["textSkinData"];
+		}
+		
 		//***************************************
 		// Constructor.
 		//***************************************/
