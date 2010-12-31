@@ -1,28 +1,94 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.utils
 {
 	import flash.display.DisplayObject;
 	import flash.filters.ColorMatrixFilter;
 	import flash.geom.ColorTransform;
 
+	/**
+	 * 
+	 * @author lenovo
+	 */
 	public class ColorUtil
 	{
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const RED:uint = 0xFF0000;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const WHITE:uint = 0xFFFFFF;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const BLACK:uint = 0x000000;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const BLUE:uint = 0x0000FF;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const GREEN:uint = 0x00FF00;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const SILVER:uint = 0xEEEEEE;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const GOLD:uint = 0xFED336;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const YELLOW:uint = 0xFFFF00;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const CYAN:uint = 0x00FFFF;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const PURPLE:uint = 0xFF00FF;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const ORANGE:uint = 0xFF9900;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const GRAY:uint = 0xDBDBDB;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const DARK:uint = 0x333333;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const DARK_RED:uint = 0x990000;
 		
 		/**
@@ -49,6 +115,11 @@ package org.finalbug.utils
 			return Number(str);
 		}
 		
+		/**
+		 * 
+		 * @param target
+		 * @param color
+		 */
 		public static function setColor(target:DisplayObject, color:Number):void
 		{
 			var ct:ColorTransform = new ColorTransform();
@@ -56,6 +127,11 @@ package org.finalbug.utils
 			target.transform.colorTransform = ct;
 		}
 		
+		/**
+		 * 
+		 * @param color
+		 * @return 
+		 */
 		public static function getRGB(color:Number):Array
 		{
 			var red:uint = color >> 16 & 0xFF;
@@ -64,6 +140,10 @@ package org.finalbug.utils
 			return [red, green, blue];
 		}
 		
+		/**
+		 * 
+		 * @param target
+		 */
 		public static function gray(target:DisplayObject):void
 		{
 			var m:Array = [0.3086,0.6094,0.082,0,30,0.3086,0.6094,0.082,0,30,0.3086,0.6094,0.082,0,30,0,0,0,1,0];
@@ -71,11 +151,21 @@ package org.finalbug.utils
 			target.filters = [cf];
 		}
 		
+		/**
+		 * 
+		 * @param color
+		 * @return 
+		 */
 		public static function color2String(color:uint):String
 		{
 			return "#" + color.toString(16);
 		}
 		
+		/**
+		 * 
+		 * @param str
+		 * @return 
+		 */
 		public static function string2Color(str:String):Number
 		{
 			if(str.charAt(0) == "#")
@@ -87,6 +177,12 @@ package org.finalbug.utils
 			else return value;
 		}
 		
+		/**
+		 * 
+		 * @param color
+		 * @param offset
+		 * @return 
+		 */
 		public static function offsetColor(color:Number, offset:Number):Number
 		{
 			var colorArray:Array = new Array();

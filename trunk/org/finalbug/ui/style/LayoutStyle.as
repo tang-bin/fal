@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.style
 {
 	import org.finalbug.ui.style.Style;
@@ -24,6 +30,9 @@ package org.finalbug.ui.style
 		private var _horizontal:String = "";
 		private var _vertical:String = "";
 		
+		/**
+		 * 
+		 */
 		public function LayoutStyle()
 		{
 			super();
@@ -49,6 +58,10 @@ package org.finalbug.ui.style
 			}
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get height():Number
 		{
 			var parentHeight:Number = (owner != null && owner.parent != null) ? owner.parent.height : 0;
@@ -66,6 +79,10 @@ package org.finalbug.ui.style
 			}
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get x():Number
 		{
 			var parentWidth:Number = (owner != null && owner.parent != null) ? owner.parent.width : 0;
@@ -87,6 +104,10 @@ package org.finalbug.ui.style
 			}
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get y():Number
 		{
 			var parentHeight:Number = (owner != null && owner.parent != null) ? owner.parent.height : 0;
@@ -127,6 +148,10 @@ package org.finalbug.ui.style
 			}
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function clone():LayoutStyle
 		{
 			var ls:LayoutStyle = new LayoutStyle();

@@ -1,6 +1,13 @@
-/******************************************
- * Tang Bin
- *****************************************/
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.skin
 {
 	import flash.text.TextField;
@@ -19,9 +26,9 @@ package org.finalbug.ui.skin
 	 */	
 	public class TextSkinData extends UISkinDataBase
 	{
-		//***************************************
+		//#######################################
 		// DEFINE
-		//***************************************/
+		//#######################################
 		
 		[Embed(source="/resources/skins/text_normal.png")]
 		private var textNormalCls:Class;
@@ -33,17 +40,33 @@ package org.finalbug.ui.skin
 		private var box:SkinElement;
 		private var text:TextField;
 		
-		private var boxSkins:Dictionary;
-		private var textFormats:Dictionary;
+		/**
+		 * 
+		 * @default 
+		 */
+		protected var boxSkins:Dictionary;
+		/**
+		 * 
+		 * @default 
+		 */
+		protected var textFormats:Dictionary;
+		/**
+		 * 
+		 * @default 
+		 */
+		protected var scrollBarSkinData:ScrollBarSkinData;
 		
-		//***************************************
+		//#######################################
 		// GETTER and SETTER
-		//***************************************/
+		//#######################################
 		
-		//***************************************
-		// Constructor.
-		//***************************************/
+		//#######################################
+		// CONSTRUCTOR.
+		//#######################################
 		
+		/**
+		 * 
+		 */
 		public function TextSkinData()
 		{
 			super();
@@ -54,13 +77,15 @@ package org.finalbug.ui.skin
 			//
 			textFormats = new Dictionary();
 			textFormats[Status.NORMAL] = new TextFormat("Arial", 12, 0);
+			//
+			scrollBarSkinData = new ScrollBarSkinData();
 		}
 		
-		//***************************************
-		// OVERRIDE METHODS
+		//#######################################
+		// OVERRIDE
 		// Whit out getter, setter and handler
 		// include public, protected and private.
-		//***************************************/
+		//#######################################
 		
 		override public function setSkin(...args):void
 		{
@@ -90,20 +115,20 @@ package org.finalbug.ui.skin
 			}
 		}
 		
-		//***************************************
+		//#######################################
 		// PUBLIC
-		//***************************************/
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// PROTECTED
-		//***************************************/
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// PRIVATE
-		//***************************************/
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// HANDLER
-		//***************************************/
+		//#######################################
 	}
 }

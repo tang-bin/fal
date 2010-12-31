@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.utils
 {
 	import org.finalbug.utils.MathUtil;
@@ -365,6 +371,10 @@ package org.finalbug.utils
 			return re == null ? false : true;
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public static function getTimeStampString():String
 		{
 			var d:Date = new Date();
@@ -379,12 +389,22 @@ package org.finalbug.utils
 			return str;
 		}
 		
+		/**
+		 * 
+		 * @param str
+		 * @return 
+		 */
 		public static function isPercnet(str:String):Boolean
 		{
 			var r1:RegExp = /\d+%/;
 			return r1.test(str);
 		} 
 		
+		/**
+		 * 
+		 * @param str
+		 * @return 
+		 */
 		public static function getLayoutNum(str:String):Number
 		{
 			var r1:RegExp = /\d+%/;
@@ -404,6 +424,12 @@ package org.finalbug.utils
 			}
 		}
 		
+		/**
+		 * 
+		 * @param arr
+		 * @param showArea
+		 * @return 
+		 */
 		public static function getLogStringFromArray(arr:Array, showArea:Boolean = false):String
 		{
 			var str:String = "";
@@ -424,6 +450,11 @@ package org.finalbug.utils
 			return str;
 		}
 		
+		/**
+		 * 
+		 * @param len
+		 * @return 
+		 */
 		public static function getBlankSpace(len:uint = 0):String
 		{
 			var str:String = "";
@@ -434,6 +465,14 @@ package org.finalbug.utils
 			return str;
 		}
 		
+		/**
+		 * 
+		 * @param str
+		 * @param len
+		 * @param char
+		 * @param prefix
+		 * @return 
+		 */
 		public static function fillString(str:String, len:uint, char:String = "0", prefix:Boolean = true):String
 		{
 			while(str.length < len)

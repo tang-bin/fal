@@ -1,3 +1,13 @@
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.events
 {
 	import flash.events.Event;
@@ -8,6 +18,7 @@ package org.finalbug.events
 	 * Event class for Class Move.
 	 * 
 	 * @author Tang Bin
+	 * @since old version
 	 */	
 	public class MotionEvent extends Event
 	{
@@ -34,8 +45,18 @@ package org.finalbug.events
 		* move object.
 		*/		
 		public var motionTarget:*;
+		/**
+		 * 
+		 * @default 
+		 */
 		public var motion:Motion;
 		
+		/**
+		 * 
+		 * @param type
+		 * @param bubbles
+		 * @param cancelable
+		 */
 		public function MotionEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false)
 		{
 			super(type, bubbles, cancelable);

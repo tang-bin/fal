@@ -1,13 +1,13 @@
-/******************************************************
- * ___________.__              .__ ___.                 
- * \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____  
- *  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\ 
- *  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
- *  \__ |     |__|___|  (____  /____/___  /____/\___  / 
- *     \/             \/     \/         \/     /_____/  
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
- *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.glazes
 {
 	import flash.display.Bitmap;
@@ -23,17 +23,22 @@ package org.finalbug.ui.glazes
 	 */	
 	public class Scale9Bitmap extends Bitmap
 	{
-		//***************************************
+		//#######################################
 		// DEFINE
-		//***************************************
+		//#######################################
 		
 		private var sourceData:BitmapData;
 		private var scale9:Rectangle;
 		
-		//***************************************
-		// Constructor.
-		//***************************************
+		//#######################################
+		// CONSTRUCTOR.
+		//#######################################
 		
+		/**
+		 * 
+		 * @param source
+		 * @param scale9
+		 */
 		public function Scale9Bitmap(source:Bitmap, scale9:Rectangle)
 		{
 			this.scale9 = scale9;
@@ -41,9 +46,9 @@ package org.finalbug.ui.glazes
 			super(source.bitmapData.clone(), source.pixelSnapping, source.smoothing);
 		}
 		
-		//***************************************
+		//#######################################
 		// GETTER and SETTER
-		//***************************************
+		//#######################################
 		
 		override public function set width(value:Number):void
 		{
@@ -65,9 +70,9 @@ package org.finalbug.ui.glazes
 			this.apply9Scale(this.width, this.height);
 		}
 		
-		//***************************************
+		//#######################################
 		// PRIVATE
-		//***************************************
+		//#######################################
 		
 		private function apply9Scale(width:Number, height:Number):void
 		{

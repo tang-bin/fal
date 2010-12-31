@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
- ******************************************/
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.layout
 {
 	import org.finalbug.data.SetType;
@@ -19,34 +25,62 @@ package org.finalbug.ui.layout
 		private var _rows:Array = new Array();
 		private var _columns:Array = new Array(); 
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get rows():Array
 		{
 			return _rows;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set rows(value:Array):void
 		{
 			_rows = value;
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get columns():Array
 		{
 			return _columns;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set columns(value:Array):void
 		{
 			_columns = value;
 		}
 		
+		/**
+		 * 
+		 */
 		public function Grid()
 		{
 			super();
 		}
 		
+		/**
+		 * 
+		 * @param row
+		 * @param column
+		 * @return 
+		 */
 		public function getCell(row:uint, column:uint):Container
 		{
 			return cells[row][column];
 		}
 		
+		/**
+		 * 
+		 */
 		public function rebuild():void
 		{
 			var currentX:Number = 0;

@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.glazes
 {
 	import flash.display.GradientType;
@@ -9,6 +15,10 @@ package org.finalbug.ui.glazes
 	import org.finalbug.ui.Glaze;
 	import org.finalbug.utils.ColorUtil;
 
+	/**
+	 * 
+	 * @author lenovo
+	 */
 	public class Cylinder extends Glaze
 	{
 		private var ww:Number;
@@ -16,6 +26,13 @@ package org.finalbug.ui.glazes
 		private var rr:Number;
 		private var cc:uint;
 		
+		/**
+		 * 
+		 * @param width
+		 * @param height
+		 * @param radius
+		 * @param color
+		 */
 		public function Cylinder(width:Number, height:Number, radius:Number, color:uint)
 		{
 			super();

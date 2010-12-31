@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.control
 {
 	import flash.events.Event;
@@ -10,10 +16,9 @@ package org.finalbug.ui.control
 	
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
-	import org.finalbug.ui.glazes.Flat;
 	import org.finalbug.ui.skin.SkinElement;
-	import org.finalbug.ui.skin.UISkinModel;
-	import org.finalbug.ui.style.stylefactory.TextInputStyleFactory;
+	import org.finalbug.ui.skin.TextSkinData;
+	import org.finalbug.ui.skin.UISkinDataBase;
 	
 	/**
 	 * text input component
@@ -40,6 +45,10 @@ package org.finalbug.ui.control
 			}
 			return false;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set password(value:Boolean):void
 		{
 			if(txt != null)
@@ -48,10 +57,18 @@ package org.finalbug.ui.control
 			}
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get maxChars():Number
 		{
 			return txt.maxChars;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set maxChars(value:Number):void
 		{
 			txt.maxChars = value;
@@ -68,6 +85,10 @@ package org.finalbug.ui.control
 			}
 			return "";
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set text(value:String):void
 		{
 			if(txt != null)
@@ -77,10 +98,18 @@ package org.finalbug.ui.control
 			}
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get textType():String
 		{
 			return _textType;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set textType(value:String):void
 		{
 			_textType = value;
@@ -93,15 +122,57 @@ package org.finalbug.ui.control
 		 * @param size Size of 
 		 * @param style Display style
 		 */			
-		public function TextInput()
+		public function TextInput(skin:UISkinDataBase = null)
 		{
-			super();
-			this.createChildren();
+			super(skin);
+			this.initSize(100, 22);
+			//
+			// create children.
+			back = new SkinElement();
+			back.resize(this.displayWidth, this.displayHeight);
+			txt = new TextField();
+			setTextType();
+			this.addAll(back, txt);
+			//
+			// set events
+			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
+			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
+			txt.addEventListener(Event.CHANGE, changeTextHandler);
+			//
+			// set skin data.
+			if(uiSkinData == null)
+			{
+				uiSkinData = new TextSkinData();
+			}
+			uiSkinData.setSkin(back, txt);
 		}
 		
+		/**
+		 * 
+		 */
 		public function focusIn():void
 		{
 			stage.focus = txt;
+		}
+		
+		override public function set status(value:String):void
+		{
+			if(this.enabled)
+			{
+				if(stage.focus == txt)
+				{
+					value = Status.ACTIVE;
+				}
+				else
+				{
+					value = Status.NORMAL;
+				}
+			}
+			else
+			{
+				value = Status.DISABLE;
+			}
+			if(value != this.status) super.status = value;
 		}
 		
 		override protected function updateView():void
@@ -112,22 +183,6 @@ package org.finalbug.ui.control
 			txt.x = txt.y = 1;
 			txt.width = this.displayWidth - 2;
 			txt.height = this.displayHeight - 2;
-		}
-		
-		private function createChildren():void
-		{
-			back = new SkinElement();
-			txt = new TextField();
-			this.addAll(back, txt);
-			//
-			setTextType();
-			//
-			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
-			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
-			txt.addEventListener(Event.CHANGE, changeTextHandler);
-			//
-			uiSkinData = UISkinModel.instance.textSkinData;
-			uiSkinData.setSkin(back, txt);
 		}
 		
 		private function setTextType():void

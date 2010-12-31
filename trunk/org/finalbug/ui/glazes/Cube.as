@@ -1,12 +1,22 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.glazes
 {
 	import org.finalbug.ui.Glaze;
 	import org.finalbug.utils.ColorUtil;
 
+	/**
+	 * 
+	 * @author lenovo
+	 */
 	public class Cube extends Glaze
 	{
 		private var _width:Number;
@@ -15,10 +25,18 @@ package org.finalbug.ui.glazes
 		private var _color:uint;
 		private var _inner:Boolean = false;
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get sideHeight():Number
 		{
 			return _height;
 		}
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get sideWidth():Number
 		{
 			return _width;
@@ -44,6 +62,14 @@ package org.finalbug.ui.glazes
 			drawCube();
 		}
 		
+		/**
+		 * 
+		 * @param width
+		 * @param height
+		 * @param depth
+		 * @param color
+		 * @param inner
+		 */
 		public function Cube(width:Number, height:Number, depth:Number, color:uint, inner:Boolean = false)
 		{
 			super();

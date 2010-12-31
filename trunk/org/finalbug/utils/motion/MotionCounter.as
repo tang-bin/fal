@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.utils.motion
 {
 	import org.finalbug.errors.MotionError;
@@ -39,18 +45,49 @@ package org.finalbug.utils.motion
 		 */		
 		public var speedType:String = "speedDown";
 		
+		/**
+		 * 
+		 * @default 
+		 */
 		public var countFunction:Function = getStepList;
 		
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var startValues:Array;
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var endValues:Array;
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var during:uint = 0;
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var stepList:Array;
 		
+		/**
+		 * 
+		 */
 		public function MotionCounter()
 		{
 			
 		}
 		
+		/**
+		 * 
+		 * @param startValues
+		 * @param endValues
+		 * @param during
+		 * @return 
+		 * @throws MotionError
+		 */
 		public function count(startValues:Array, endValues:Array, during:uint):Array
 		{
 			if(startValues.length != endValues.length)
@@ -72,6 +109,10 @@ package org.finalbug.utils.motion
 			}
 		}
 		
+		/**
+		 * 
+		 * @throws MotionEvent
+		 */
 		protected function getStepList():void
 		{
 			var len:uint = startValues.length;

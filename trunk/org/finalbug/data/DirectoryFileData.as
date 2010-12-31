@@ -1,6 +1,13 @@
-/******************************************************
- * Tang Bin
-  *****************************************************/  
+//##########################################################
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.data
 {
 	import org.finalbug.data.DataModel;
@@ -13,53 +20,9 @@ package org.finalbug.data
 	 */	
 	public class DirectoryFileData extends DataModel
 	{
-		//***************************************
-		// DEFINE
-		//***************************************
-		
-		private var _uid:String = "0";
-		private var _isDir:Boolean = false;
-		private var _name:String = "Directory File Data";
-		private var _author:String = "Tang Bin";
-		private var _createDate:Date;
-		private var _lastModifyDate:Date;
-		private var _fileType:String = "";
-		private var _ext:String = "txt";
-		
-		//***************************************
-		// GETTER and SETTER
-		//***************************************
-		
-		public function get ext():String
-		{
-			return this._ext;
-		}
-		public function set ext(value:String):void
-		{
-			var oldValue:String = this._ext;
-			this._ext = value;
-			this.dispatchChangeData("ext", oldValue, value);
-		}
-		
-		public function get name():String
-		{
-			return this._name;
-		}
-		public function set name(value:String):void
-		{
-			var oldValue:String = this._name;
-			this._name = value;
-			this.dispatchChangeData("name", oldValue, value);
-		}
-		
-		//***************************************
-		// Constructor.
-		//***************************************
-		
-		public function DirectoryFileData()
-		{
-			super();
-		}
+		//#######################################
+		// OVERRIDE
+		//#######################################
 		
 		override public function toString():String
 		{
@@ -71,26 +34,87 @@ package org.finalbug.data
 			return str;
 		}
 		
-		//***************************************
-		// OVERRIDE METHODS
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//***************************************
+		//#######################################
+		// DEFINE
+		//#######################################
 		
-		//***************************************
+		private var _uid:String = "0";
+		private var _isDir:Boolean = false;
+		private var _name:String = "Directory File Data";
+		private var _author:String = "Tang Bin";
+		private var _createDate:Date;
+		private var _lastModifyDate:Date;
+		private var _fileType:String = "";
+		private var _ext:String = "txt";
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
+		
+		/**
+		 * 
+		 * @return 
+		 */
+		public function get ext():String
+		{
+			return this._ext;
+		}
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set ext(value:String):void
+		{
+			var oldValue:String = this._ext;
+			this._ext = value;
+			this.dispatchChangeData("ext", oldValue, value);
+		}
+		
+		/**
+		 * 
+		 * @return 
+		 */
+		public function get name():String
+		{
+			return this._name;
+		}
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set name(value:String):void
+		{
+			var oldValue:String = this._name;
+			this._name = value;
+			this.dispatchChangeData("name", oldValue, value);
+		}
+		
+		//#######################################
+		// CONSTRUCTOR.
+		//#######################################
+		
+		/**
+		 * 
+		 */
+		public function DirectoryFileData()
+		{
+			super();
+		}
+		
+		//#######################################
 		// PUBLIC
-		//***************************************
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// PROTECTED
-		//***************************************
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// PRIVATE
-		//***************************************
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// HANDLER
-		//***************************************
+		//#######################################
 	}
 }

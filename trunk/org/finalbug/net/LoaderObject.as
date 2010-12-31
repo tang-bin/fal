@@ -1,3 +1,13 @@
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.net
 {
 	import flash.events.Event;
@@ -14,31 +24,71 @@ package org.finalbug.net
 	 */
 	public class LoaderObject
 	{
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var _loaded:Boolean = false;
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var _failed:Boolean = false;
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var _loadrate:Number = 0;
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var dispatcher:EventDispatcher = new EventDispatcher();
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get loaded():Boolean
 		{
 			return _loaded;
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get failed():Boolean
 		{
 			return _failed;
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get rate():Number
 		{
 			return _loadrate;
 		}
 		
+		/**
+		 * 
+		 * @param type
+		 * @param listener
+		 * @param useCapture
+		 * @param priority
+		 * @param useWeakReference
+		 */
 		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
 		{
 			dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
 		}
 		
+		/**
+		 * 
+		 * @param target
+		 */
 		protected function dispatchEvent(target:*):void
 		{
 			target.addEventListener(Event.COMPLETE, onLoadSuccess);
@@ -46,6 +96,10 @@ package org.finalbug.net
 			target.addEventListener(IOErrorEvent.IO_ERROR, onLoadFailed);
 		}
 		
+		/**
+		 * 
+		 * @param e
+		 */
 		protected function onLoadSuccess(e:Event):void
 		{
 			_loaded = true;
@@ -55,6 +109,10 @@ package org.finalbug.net
 			dispatcher.dispatchEvent(ee);
 		}
 		
+		/**
+		 * 
+		 * @param e
+		 */
 		protected function onLoading(e:ProgressEvent):void
 		{
 			_loaded = false;
@@ -67,6 +125,10 @@ package org.finalbug.net
 			dispatcher.dispatchEvent(ee);
 		}
 		
+		/**
+		 * 
+		 * @param e
+		 */
 		protected function onLoadFailed(e:IOErrorEvent):void
 		{
 			_loaded = false;

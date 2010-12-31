@@ -1,43 +1,55 @@
 /******************************************************
+ * ___________.__              .__ ___.                 
+ * \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____  
+ *  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\ 
+ *  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+ *  \__ |     |__|___|  (____  /____/___  /____/\___  / 
+ *     \/             \/     \/         \/     /_____/  
  * [fb-aslib] Finalbug ActionScript Library
  * http://www.finalbug.org
- ******************************************/
+  *****************************************************/  
 package org.finalbug.data
 {
-	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	
 	import org.finalbug.errors.DataError;
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.utils.StringUtil;
-	import org.finalbug.data.DataModel;
 	
 	/******************************************************
 	 * data.TreeModel
 	 *
 	 * @author Tang Bin
 	 * @since 2010.09
-	  *****************************************************/  
+	 ******************************************************/  
 	public class TreeModel extends DataModel
 	{
-		/****************************************
-		 *
-		 * DEFINE
-		 *
-		 ****************************************/
+		//#######################################
+		// OVERRIDE
+		//#######################################
 		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
+		/**
+		 * 
+		 * @default 
+		 */
 		public var nodeToStringFunction:Function;
+		/**
+		 * 
+		 * @default 
+		 */
 		public var stringToNodeFunction:Function;
 		
 		private var _root:NodeData;
 		private var nodes:Dictionary;
 		private var _xml:XML;
 		
-		/****************************************
-		 *
-		 * GETTER and SETTER
-		 *
-		 ****************************************/
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
 		
 		/**
 		 * Root data object
@@ -46,6 +58,10 @@ package org.finalbug.data
 		{
 			return _root.data;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set root(value:Object):void
 		{
 			_root.data = value;
@@ -69,6 +85,10 @@ package org.finalbug.data
 				return _xml;
 			}
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set xml(value:XML):void
 		{
 			_xml = value;
@@ -83,30 +103,22 @@ package org.finalbug.data
 			}
 		}
 		
-		/****************************************
-		 *
-		 * data.TreeModel constructor.
-		 *
-		 ****************************************/
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
+		
+		/**
+		 * 
+		 */
 		public function TreeModel()
 		{
 			super();
 			clean();
 		}
 		
-		/****************************************
-		 *
-		 * OVERRIDE METHODS
-		 * Whit out getter, setter and handler
-		 * include public, protected and private.
-		 *
-		 ****************************************/
-		
-		/****************************************
-		 *
-		 * PUBLIC
-		 *
-		 ****************************************/
+		//#######################################
+		// PUBLIC
+		//#######################################
 		
 		/**
 		 * add an new node to tree.
@@ -515,22 +527,23 @@ package org.finalbug.data
 			this.dispatchEvent(ee);
 		}
 		
-		/****************************************
-		 *
-		 * PROTECTED
-		 *
-		 ****************************************/
+		//#######################################
+		// PROTECTED
+		//#######################################
 		
+		/**
+		 * 
+		 * @param node
+		 * @return 
+		 */
 		protected function hasNode(node:Object):Boolean
 		{
 			return nodes[node] || node == _root.data;
 		}
 		
-		/****************************************
-		 *
-		 * PRIVATE
-		 *
-		 ****************************************/
+		//#######################################
+		// PRIVATE
+		//#######################################
 		
 		private function getNodeByData(data:Object):NodeData
 		{
@@ -693,19 +706,41 @@ package org.finalbug.data
 			}
 		}
 		
-		/****************************************
-		 *
-		 * HANDLER
-		 *
-		 ****************************************/
+		//#######################################
+		// HANDLER
+		//#######################################
 	}
 }
 class NodeData
 {
+	/**
+	 * 
+	 * @default 
+	 */
 	public var data:Object;
+	/**
+	 * 
+	 * @default 
+	 */
 	public var prev:NodeData;
+	/**
+	 * 
+	 * @default 
+	 */
 	public var next:NodeData;
+	/**
+	 * 
+	 * @default 
+	 */
 	public var parent:NodeData;
+	/**
+	 * 
+	 * @default 
+	 */
 	public var firstChild:NodeData;
+	/**
+	 * 
+	 * @default 
+	 */
 	public var numChildren:uint = 0;
 }

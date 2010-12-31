@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.control
 {
 	import flash.events.Event;
@@ -11,8 +17,9 @@ package org.finalbug.ui.control
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.events.UIEvent;
-	import org.finalbug.ui.style.stylefactory.TextAreaStyleFactory;
-	import org.finalbug.ui.control.ScrollBox;
+	import org.finalbug.ui.skin.SkinElement;
+	import org.finalbug.ui.skin.TextSkinData;
+	import org.finalbug.ui.skin.UISkinDataBase;
 	
 	/**
 	 * @eventType events.DataEvent.CHANGE_DATA
@@ -27,6 +34,7 @@ package org.finalbug.ui.control
 	 */
 	public class TextArea extends ScrollBox
 	{
+		private var bg:SkinElement;
 		private var txt:TextField;
 		private var _embed:Boolean = false;
 		private var scrollManual:Boolean = false;
@@ -39,6 +47,10 @@ package org.finalbug.ui.control
 		{
 			return this._editable;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set editable(value:Boolean):void
 		{
 			if(value != this._editable)
@@ -55,6 +67,10 @@ package org.finalbug.ui.control
 		{
 			return txt.text;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set text(value:String):void
 		{
 			txt.text = value;
@@ -67,6 +83,10 @@ package org.finalbug.ui.control
 		{
 			return _embed;
 		}
+		/**
+		 * 
+		 * @param b
+		 */
 		public function set embed(b:Boolean):void
 		{
 			_embed=b;
@@ -82,6 +102,26 @@ package org.finalbug.ui.control
 			txt.wordWrap = !value;
 		}
 		
+		override public function set status(value:String):void
+		{
+			if(this.enabled)
+			{
+				if(stage.focus == txt)
+				{
+					value = Status.ACTIVE;
+				}
+				else
+				{
+					value = Status.NORMAL;
+				}
+			}
+			else
+			{
+				value = Status.DISABLE;
+			}
+			if(value != this.status) super.status = value;
+		}
+		
 		/**
 		 * create a new TextArea.
 		 * 
@@ -89,18 +129,42 @@ package org.finalbug.ui.control
 		 * @param wordwrap wrap word
 		 * @param style DipslayStyle
 		 */		
-		public function TextArea()
+		public function TextArea(skin:UISkinDataBase = null)
 		{
-			super(true, true);
+			super(true, true, skin);
+			this.initSize(200, 200);
 			this.autoResizeChildren = false;
-			this.createChildren();
+			this.fillStyle = null;
+			//
+			// create children.
+			bg = new SkinElement();
+			bg.resize(this.displayWidth, this.displayHeight);
+			txt = new TextField();
+			txt.wordWrap = !enableX;
+			txt.multiline = true;
+			this.addAll(bg, txt);
+			bg.toBack(); // move bg to the back of all children.
+			txt.type = "input";
+			setEvent();
+			//
+			// set skin data.
+			if(uiSkinData == null)
+			{
+				uiSkinData = new TextSkinData();
+			}
+			uiSkinData.setSkin(bg, txt);
 		}
 		
 		override protected function updateView():void
 		{
+			super.updateView();
+			if(bg != null)
+			{
+				bg.width = this.displayWidth;
+				bg.height = this.displayHeight;
+			}
 			if(txt != null)
 			{
-				super.updateView();
 				txt.width = containerWidth;
 				txt.height = containerHeight;
 			}
@@ -108,8 +172,8 @@ package org.finalbug.ui.control
 		
 		private function setEvent():void
 		{
-			txt.addEventListener(FocusEvent.FOCUS_IN, getFocusHandler);
-			txt.addEventListener(FocusEvent.FOCUS_OUT, killFocusHandler);
+			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
+			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
 			txt.addEventListener(Event.CHANGE, changeTextHandler);
 			txt.addEventListener(Event.SCROLL, scrollTextHandler);
 		}
@@ -128,43 +192,11 @@ package org.finalbug.ui.control
 			scrollManual = false;
 		}
 		
-		private function createChildren():void
-		{
-			txt = new TextField();
-			txt.wordWrap = !enableX;
-			txt.multiline = true;
-			this.addChild(txt);
-			txt.type = "input";
-			//
-			setEvent();
-			//
-			updateView();
-			
-		}
-		
 		private function scrollTextHandler(e:Event):void
 		{
 			if(!scrollManual)
 			{
 				setScrollView();
-			}
-		}
-		
-		private function getFocusHandler(e:FocusEvent):void
-		{
-			if(enabled)
-			{
-				currentStatus = Status.ACTIVE;
-				updateView();
-			}
-		}
-		
-		private function killFocusHandler(e:FocusEvent):void
-		{
-			if(enabled)
-			{
-				currentStatus = Status.NORMAL;
-				updateView();
 			}
 		}
 		

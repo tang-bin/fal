@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.utils.motion
 {
 	import org.finalbug.errors.DataError;
@@ -25,6 +31,10 @@ package org.finalbug.utils.motion
 		
 		private var motionList:Object = new Object();
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public static function get instance():MotionRunner
 		{
 			if(mr == null)
@@ -36,6 +46,10 @@ package org.finalbug.utils.motion
 			return mr;
 		}
 		
+		/**
+		 * 
+		 * @throws DataError
+		 */
 		public function MotionRunner()
 		{
 			if(!instanceable)
@@ -69,6 +83,10 @@ package org.finalbug.utils.motion
 			return data.name;
 		}
 		
+		/**
+		 * 
+		 * @param motionName
+		 */
 		public function stopAndRemoveMotion(motionName:String):void
 		{
 			if(motionList[motionName] != null)
@@ -136,17 +154,57 @@ package org.finalbug.utils.motion
 	
 class MotionData
 {
+	/**
+	 * 
+	 * @default 
+	 */
 	public static var nameCount:uint = 0;
 	
+	/**
+	 * 
+	 * @default 
+	 */
 	public var name:String;
+	/**
+	 * 
+	 * @default 
+	 */
 	public var target:*;
+	/**
+	 * 
+	 * @default 
+	 */
 	public var value:String;
+	/**
+	 * 
+	 * @default 
+	 */
 	public var steps:Array;
+	/**
+	 * 
+	 * @default 
+	 */
 	public var copySteps:Array;
+	/**
+	 * 
+	 * @default 
+	 */
 	public var times:uint;
 	
+	/**
+	 * 
+	 * @default 
+	 */
 	public var motionClass:Motion;
 	
+	/**
+	 * 
+	 * @param target
+	 * @param value
+	 * @param steps
+	 * @param times
+	 * @param cls
+	 */
 	public function MotionData(target:*, value:String, steps:Array, times:uint = 1, cls:Motion = null)
 	{
 		this.target = target;

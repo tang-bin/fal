@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.utils.motion
 {
 
@@ -13,9 +19,21 @@ package org.finalbug.utils.motion
 	 */	
 	public class FadeMotion extends Motion
 	{
+		/**
+		 * 
+		 * @default 
+		 */
 		public var alphaFrom:Number;
+		/**
+		 * 
+		 * @default 
+		 */
 		public var alphaTo:Number;
 		
+		/**
+		 * 
+		 * @param target
+		 */
 		public function FadeMotion(target:Object = null)
 		{
 			super(target);

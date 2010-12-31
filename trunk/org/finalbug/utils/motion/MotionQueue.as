@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.utils.motion
 {
 	import org.finalbug.data.DataModel;
@@ -23,11 +29,18 @@ package org.finalbug.utils.motion
 		private var _type:String = "orderly";
 		private var _running:Boolean = false;
 		
+		/**
+		 * 
+		 */
 		public function MotionQueue()
 		{
 			super();
 		}
 		
+		/**
+		 * 
+		 * @param motion
+		 */
 		public function addMotion(motion:Motion):void
 		{
 			if(motion != null)
@@ -36,6 +49,11 @@ package org.finalbug.utils.motion
 			}
 		}
 		
+		/**
+		 * 
+		 * @param motion
+		 * @throws Error
+		 */
 		public function removeMotion(motion:Motion):void
 		{
 			if(_running)
@@ -54,6 +72,9 @@ package org.finalbug.utils.motion
 			}
 		}
 		
+		/**
+		 * 
+		 */
 		public function clear():void
 		{
 			stop();
@@ -61,6 +82,11 @@ package org.finalbug.utils.motion
 			this.currentIndex = 0;
 		}
 		
+		/**
+		 * 
+		 * @param type
+		 * @throws DataError
+		 */
 		public function start(type:String = "orderly"):void
 		{
 			if(!DataUtil.included(type, SetType.ORDERLY, SetType.CONCURRENT))
@@ -80,6 +106,9 @@ package org.finalbug.utils.motion
 			}
 		}
 		
+		/**
+		 * 
+		 */
 		public function stop():void
 		{
 			if(_running)

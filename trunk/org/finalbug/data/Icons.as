@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.data
 {
 	import flash.display.Bitmap;
@@ -19,13 +25,21 @@ package org.finalbug.data
 	 */	
 	public class Icons extends DataModel
 	{
-		//***************************************
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		//#######################################
 		// SINGTON
-		//***************************************
+		//#######################################
 		
 		private static var icons:Icons;
 		private static var instanceable:Boolean = false;
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public static function get instance():Icons
 		{
 			if(icons == null)
@@ -37,9 +51,9 @@ package org.finalbug.data
 			return icons;
 		}
 		
-		//***************************************
+		//#######################################
 		// DEFINE
-		//***************************************
+		//#######################################
 		
 		[Embed(source="/resources/icons/folder_128.png")] private var folder128:Class;
 		[Embed(source="/resources/icons/folder_48.png")] private var folder48:Class;
@@ -67,14 +81,22 @@ package org.finalbug.data
 		private var _videoIcon:Icon;
 		private var _unknowIcon:Icon;
 		
-		//***************************************
+		//#######################################
 		// GETTER and SETTER
-		//***************************************
+		//#######################################
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get folderIcon():Icon
 		{
 			return _folderIcon.clone();
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set folderIcon(value:Icon):void
 		{
 			if(_folderIcon != value)
@@ -84,10 +106,18 @@ package org.finalbug.data
 			}
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get docIcon():Icon
 		{
 			return _docIcon.clone();
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set docIcon(value:Icon):void
 		{
 			if(_docIcon != value)
@@ -97,10 +127,18 @@ package org.finalbug.data
 			}
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get imgIcon():Icon
 		{
 			return _imgIcon.clone();
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set imgIcon(value:Icon):void
 		{
 			if(_imgIcon != value)
@@ -110,10 +148,18 @@ package org.finalbug.data
 			}
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get videoIcon():Icon
 		{
 			return _videoIcon.clone();
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set videoIcon(value:Icon):void
 		{
 			if(_videoIcon != value)
@@ -123,10 +169,18 @@ package org.finalbug.data
 			}
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get unknowIcon():Icon
 		{
 			return _unknowIcon.clone();
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set unknowIcon(value:Icon):void
 		{
 			if(_unknowIcon != value)
@@ -136,10 +190,14 @@ package org.finalbug.data
 			}
 		}
 		
-		//***************************************
-		// Constructor.
-		//***************************************
+		//#######################################
+		// CONSTRUCTOR.
+		//#######################################
 		
+		/**
+		 * 
+		 * @throws DataError
+		 */
 		public function Icons()
 		{
 			super();
@@ -153,23 +211,17 @@ package org.finalbug.data
 			}
 		}
 		
-		//***************************************
-		// OVERRIDE METHODS
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//***************************************
-		
-		//***************************************
+		//#######################################
 		// PUBLIC
-		//***************************************
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// PROTECTED
-		//***************************************
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// PRIVATE
-		//***************************************
+		//#######################################
 		
 		private function setDefaultIcons():void
 		{
@@ -198,8 +250,8 @@ package org.finalbug.data
 			_videoIcon.addImage(new video16(), Icon.ICON_16);
 		}
 		
-		//***************************************
+		//#######################################
 		// HANDLER
-		//***************************************
+		//#######################################
 	}
 }

@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
- ******************************************/
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.layout
 {
 	import org.finalbug.ui.control.Container;
@@ -14,11 +20,26 @@ package org.finalbug.ui.layout
 	 */	
 	public class GridCell extends Container
 	{
+		/**
+		 * 
+		 * @default 
+		 */
 		public var xIndex:uint = 0;
+		/**
+		 * 
+		 * @default 
+		 */
 		public var yIndex:uint = 0;
 		
+		/**
+		 * 
+		 * @default 
+		 */
 		public var updated:Boolean = false;
 		
+		/**
+		 * 
+		 */
 		public function GridCell()
 		{
 			super();
@@ -28,6 +49,13 @@ package org.finalbug.ui.layout
 			this.borderAlpha = 1;
 		}
 		
+		/**
+		 * 
+		 * @param x
+		 * @param y
+		 * @param width
+		 * @param height
+		 */
 		public function resetPosition(x:Number, y:Number, width:Number, height:Number):void
 		{
 			this.layoutStyle.setValue("x", x);

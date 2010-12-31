@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.widgets
 {
 	import flash.display.Sprite;
@@ -21,14 +27,30 @@ package org.finalbug.ui.widgets
 	 */	
 	public class Tooltip
 	{
+		/**
+		 * 
+		 * @default 
+		 */
 		public static var showDelay:Number = 500;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static var removeDelay:Number = 0;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static var container:Bin
 
 		private static var box:Sprite;
 		private static var bg:Flat;
 		private static var txt:Label;
 		
+		/**
+		 * 
+		 * @param str
+		 */
 		public static function show(str:String):void
 		{
 			if(box == null)
@@ -38,6 +60,9 @@ package org.finalbug.ui.widgets
 			showTip(str);
 		}
 		
+		/**
+		 * 
+		 */
 		public static function remove():void
 		{
 			if(box != null)

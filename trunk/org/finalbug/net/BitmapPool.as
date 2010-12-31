@@ -29,13 +29,17 @@ package org.finalbug.net
 	 */
 	public class BitmapPool extends DataModel
 	{
-		//***************************************
+		//#######################################
 		// SINGELTON
-		//***************************************
+		//#######################################
 		
 		private static var bc:BitmapPool;
 		private static var instanceable:Boolean = false;
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public static function get instance():BitmapPool
 		{
 			if(bc == null)
@@ -47,9 +51,9 @@ package org.finalbug.net
 			return bc;
 		}
 		
-		//***************************************
+		//#######################################
 		// DEFINE
-		//***************************************
+		//#######################################
 		
 		private const checkTimeSpace:Number = 100;
 		
@@ -126,9 +130,9 @@ package org.finalbug.net
 			return loaded / count;
 		}
 		
-		//***************************************
-		// Constructor.
-		//***************************************
+		//#######################################
+		// CONSTRUCTOR.
+		//#######################################
 		
 		/**
 		 * @throw errors.Errors Throw canNotInstance error when try to instance this class.
@@ -145,9 +149,9 @@ package org.finalbug.net
 			}
 		}
 		
-		//***************************************
+		//#######################################
 		// PUBLIC
-		//***************************************
+		//#######################################
 		
 		/**
 		 * Add a new image file to load
@@ -265,13 +269,13 @@ package org.finalbug.net
 			}
 		}
 		
-		//***************************************
+		//#######################################
 		// PROTECTED
-		//***************************************
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// PRIVATE
-		//***************************************
+		//#######################################
 		
 		private function onCheck(e:TimerEvent):void
 		{

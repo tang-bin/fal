@@ -1,16 +1,16 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.data
 {
-	import mx.controls.Image;
-	
 	import org.finalbug.errors.DataError;
-	import org.finalbug.data.DataModel;
-	import org.finalbug.data.FileType;
-	import org.finalbug.data.FileTypes;
-	import org.finalbug.data.Icons;
 	
 	/**
 	 * FileType
@@ -20,13 +20,21 @@ package org.finalbug.data
 	 */	
 	public class FileTypes extends DataModel
 	{
-		//***************************************
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		//#######################################
 		// SINGLETON
-		//***************************************
+		//#######################################
 		
 		private static var ft:FileTypes;
 		private static var instanceable:Boolean = false;
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public static function get instance():FileTypes
 		{
 			if(ft == null)
@@ -38,20 +46,24 @@ package org.finalbug.data
 			return ft;
 		}
 		
-		//***************************************
+		//#######################################
 		// DEFINE
-		//***************************************
+		//#######################################
 		
 		private var list:Object = new Object();
 		
-		//***************************************
+		//#######################################
 		// GETTER and SETTER
-		//***************************************
+		//#######################################
 		
-		//***************************************
-		// Constructor.
-		//***************************************
+		//#######################################
+		// CONSTRUCTOR.
+		//#######################################
 		
+		/**
+		 * 
+		 * @throws DataError
+		 */
 		public function FileTypes()
 		{
 			super();
@@ -65,21 +77,24 @@ package org.finalbug.data
 			}
 		}
 		
-		//***************************************
-		// OVERRIDE METHODS
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//***************************************
-		
-		//***************************************
+		//#######################################
 		// PUBLIC
-		//***************************************
+		//#######################################
 		
+		/**
+		 * 
+		 * @param type
+		 */
 		public function registerType(type:FileType):void
 		{
 			list[type.ext] = type;
 		}
 		
+		/**
+		 * 
+		 * @param type
+		 * @throws DataError
+		 */
 		public function removeType(type:FileType):void
 		{
 			var ext:String = type.ext;
@@ -94,6 +109,12 @@ package org.finalbug.data
 			}
 		}
 		
+		/**
+		 * 
+		 * @param ext
+		 * @return 
+		 * @throws DataError
+		 */
 		public function getFileType(ext:String):FileType
 		{
 			ext = ext.toLowerCase();
@@ -107,18 +128,23 @@ package org.finalbug.data
 			}
 		}
 		
+		/**
+		 * 
+		 * @param ext
+		 * @return 
+		 */
 		public function registered(ext:String):Boolean
 		{
 			return list[ext.toLowerCase()] != null;
 		}
 		
-		//***************************************
+		//#######################################
 		// PROTECTED
-		//***************************************
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// PRIVATE
-		//***************************************
+		//#######################################
 		
 		private function registerDefaultTypes():void
 		{
@@ -132,8 +158,8 @@ package org.finalbug.data
 			this.registerType(new FileType("mpg", "", Icons.instance.videoIcon));
 		}
 		
-		//***************************************
+		//#######################################
 		// HANDLER
-		//***************************************
+		//#######################################
 	}
 }

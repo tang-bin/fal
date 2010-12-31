@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library 
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.data
 {
 	import flash.events.Event;
@@ -13,9 +19,6 @@ package org.finalbug.data
 	
 	import org.finalbug.errors.DataError;
 	import org.finalbug.events.DataEvent;
-	import org.finalbug.data.DispatchType;
-	import org.finalbug.data.SharedData;
-	import org.finalbug.data.TreeModel;
 	
 	/**
 	 * @author Tang Bin
@@ -23,37 +26,77 @@ package org.finalbug.data
 	 */	
 	dynamic public class SharedData extends Proxy
 	{
-		/****************************************
-		 * DEFINE
-		 ****************************************/
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		override flash_proxy function getProperty(name:*):*
+		{
+			return data[name];
+		}
+		
+		override flash_proxy function setProperty(name:*, value:*):void
+		{
+			throw new DataError(DataError.SET_SHARED_DATA_ERROR);
+		}
+		
+		override flash_proxy function callProperty(methodName:*, ... args):*
+		{
+			// nothing need to be done here.
+		}
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
 		private var _parent:SharedData;
 		private var _name:String = "";
 		private var data:Dictionary = new Dictionary();
 		private var modifyLogs:Array = new Array();
 		private var dispatchers:Array = new Array();
 		
-		/****************************************
-		 * GETTER and SETTER
-		 ****************************************/
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get parent():SharedData
 		{
 			return _parent;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set parent(value:SharedData):void
 		{
 			_parent = value;
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get name():String
 		{
 			return _name;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set name(value:String):void
 		{
 			_name = value;
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get byteArray():ByteArray
 		{
 			var ba:ByteArray = new ByteArray();
@@ -61,26 +104,27 @@ package org.finalbug.data
 			return ba;
 		}
 		
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set byteArray(value:ByteArray):void
 		{
 			// TODO : set shareData by byteArray
 		}
 		
-		/****************************************
-		 * data.SharedData constructor.
-		 ****************************************/
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
 		
+		/**
+		 * 
+		 */
 		public function SharedData(){}
 		
-		/****************************************
-		 * OVERRIDE METHODS
-		 * Whit out getter, setter and handler
-		 * include public, protected and private.
-		 ****************************************/
-		
-		/****************************************
-		 * PUBLIC
-		 ****************************************/
+		//#######################################
+		// PUBLIC
+		//#######################################
 		
 		/**
 		 * add new event listener to this shared data object.
@@ -179,26 +223,19 @@ package org.finalbug.data
 			}
 		}
 		
-		override flash_proxy function getProperty(name:*):*
-		{
-			return data[name];
-		}
-		
-		override flash_proxy function setProperty(name:*, value:*):void
-		{
-			throw new DataError(DataError.SET_SHARED_DATA_ERROR);
-		}
-		
-		override flash_proxy function callProperty(methodName:*, ... args):*
-		{
-			// nothing need to be done here.
-		}
-		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function toString():String
 		{
 			return "[SharedData " + _name + "]";
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function getPath():String
 		{
 			var sd:SharedData = this;
@@ -211,6 +248,11 @@ package org.finalbug.data
 			return path;
 		}
 		
+		/**
+		 * 
+		 * @param path
+		 * @return 
+		 */
 		public function getData(path:String):*
 		{
 			var getArr:Array = path.split("/");
@@ -240,13 +282,13 @@ package org.finalbug.data
 			return null;
 		}
 		
-		/****************************************
-		 * PROTECTED
-		 ****************************************/
+		//#######################################
+		// PROTECTED
+		//#######################################
 		
-		/****************************************
-		 * PRIVATE
-		 ****************************************/
+		//#######################################
+		// PRIVATE
+		//#######################################
 		
 		private function dispatchEvent(event:Event):void
 		{
@@ -274,8 +316,8 @@ package org.finalbug.data
 			}
 		}
 		
-		/****************************************
-		 * HANDLER
-		 ****************************************/
+		//#######################################
+		// HANDLER
+		//#######################################
 	}
 }

@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.utils.motion
 {
 	import flash.events.TimerEvent;
@@ -19,24 +25,64 @@ package org.finalbug.utils.motion
 	 */	
 	public class Motion extends DataModel
 	{
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const INTERVAL:Number = 30;
 		
+		/**
+		 * 
+		 * @default 
+		 */
 		public var during:uint = 300; // motion will be done during this time, in millisecond.
+		/**
+		 * 
+		 * @default 
+		 */
 		public var delayTime:Number = 0;
 		
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var targetList:Array; // list of display objects
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var times:uint = 1;
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var getBack:Boolean = false;
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var registeredMotions:Array;
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var counter:MotionCounter;
 		
 		internal var _running:Boolean = false;
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get running():Boolean
 		{
 			return _running;
 		}
 		
+		/**
+		 * 
+		 * @param target
+		 */
 		public function Motion(target:Object = null)
 		{
 			if(target != null)
@@ -110,6 +156,11 @@ package org.finalbug.utils.motion
 		 */		
 		protected function count(target:Object):void{}
 		
+		/**
+		 * 
+		 * @param steps
+		 * @return 
+		 */
 		protected function repeatSteps(steps:Array):Array
 		{
 			if(times != 1)

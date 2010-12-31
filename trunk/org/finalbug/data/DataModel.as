@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library 
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.data
 {
 	import flash.events.Event;
@@ -47,7 +53,7 @@ package org.finalbug.data
 		}
 		
 		/****************************************
-		 * OVERRIDE METHODS
+		 * OVERRIDE
 		 * Whit out getter, setter and handler
 		 * include public, protected and private.
 		 ****************************************/

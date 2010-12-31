@@ -1,6 +1,13 @@
-/******************************************************
- * Tang Bin
-  *****************************************************/  
+//##########################################################
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.data
 {
 	import flash.utils.Dictionary;
@@ -18,9 +25,13 @@ package org.finalbug.data
 	 */	
 	public class DirectoryData extends DataModel
 	{
-		//***************************************
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		//#######################################
 		// DEFINE
-		//***************************************
+		//#######################################
 		
 		private var _folderName:String = "";
 		private var _folderPath:String = "";
@@ -34,62 +45,96 @@ package org.finalbug.data
 		private var files:Dictionary = new Dictionary();
 		private var fileNames:Array = new Array();
 		
+		/**
+		 * 
+		 * @default 
+		 */
 		public var currentSelected:Dictionary = new Dictionary();
 		
-		//***************************************
+		//#######################################
 		// GETTER and SETTER
-		//***************************************
+		//#######################################
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get folderName():String
 		{
 			return _folderName;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set folderName(value:String):void
 		{
 			// TODO
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get folderPath():String
 		{
 			return _folderPath;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set folderPath(value:String):void
 		{
 			// TODO
 		}
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get folderIcon():Image
 		{
 			return _folderIcon;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set folderIcon(value:Image):void
 		{
 			// TODO
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function length():uint
 		{
 			return fileNames.length;
 		}
 		
-		//***************************************
-		// Constructor.
-		//***************************************
+		//#######################################
+		// CONSTRUCTOR.
+		//#######################################
 		
+		/**
+		 * 
+		 */
 		public function DirectoryData()
 		{
 			super();
 		}
 		
-		//***************************************
-		// OVERRIDE METHODS
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//***************************************
-		
-		//***************************************
+		//#######################################
 		// PUBLIC
-		//***************************************
+		//#######################################
 		
+		/**
+		 * 
+		 * @param file
+		 * @throws DataError
+		 */
 		public function addFile(file:DirectoryFileData):void
 		{
 			var fileName:String = file.name;
@@ -102,6 +147,11 @@ package org.finalbug.data
 			fileNames.sort();
 		}
 		
+		/**
+		 * 
+		 * @param file
+		 * @throws DataError
+		 */
 		public function removeFile(file:DirectoryFileData):void
 		{
 			var fileName:String = file.name;
@@ -118,6 +168,9 @@ package org.finalbug.data
 			}
 		}
 		
+		/**
+		 * 
+		 */
 		public function clear():void
 		{
 			files = new Dictionary();
@@ -125,12 +178,22 @@ package org.finalbug.data
 			currentSelected = new Dictionary();
 		}
 		
+		/**
+		 * 
+		 * @param file
+		 * @return 
+		 */
 		public function hasFile(file:DirectoryFileData):Boolean
 		{
 			var thisFile:DirectoryFileData = files[file.name] as DirectoryFileData;
 			return thisFile != null && thisFile == file;
 		}
 		
+		/**
+		 * 
+		 * @param name
+		 * @return 
+		 */
 		public function getFileByName(name:String):DirectoryFileData
 		{
 			return files[name] as DirectoryFileData;;
@@ -150,13 +213,13 @@ package org.finalbug.data
 			}
 		}
 		
-		//***************************************
+		//#######################################
 		// PROTECTED
-		//***************************************
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// PRIVATE
-		//***************************************
+		//#######################################
 		
 		private function removeFileName(fileName:String):void
 		{
@@ -170,8 +233,8 @@ package org.finalbug.data
 			}
 		}
 		
-		//***************************************
+		//#######################################
 		// HANDLER
-		//***************************************
+		//#######################################
 	}
 }

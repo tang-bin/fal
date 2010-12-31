@@ -1,27 +1,28 @@
-/******************************************************
- * ___________.__              .__ ___.                 
- * \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____  
- *  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\ 
- *  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
- *  \__ |     |__|___|  (____  /____/___  /____/\___  / 
- *     \/             \/     \/         \/     /_____/  
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.widgets
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import flash.display.Stage;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.text.TextFormat;
 	
-	import mx.controls.Button;
-	
 	import org.finalbug.data.AlertData;
+	import org.finalbug.data.Language;
 	import org.finalbug.errors.UIError;
-	import org.finalbug.ui.Bin;
+	import org.finalbug.ui.control.Button;
 	import org.finalbug.ui.control.Label;
+	import org.finalbug.utils.DrawUtil;
 	
 	/**
 	 * Alert
@@ -31,24 +32,35 @@ package org.finalbug.ui.widgets
 	 */
 	public class Alert
 	{
+		/**
+		 * 
+		 * @default 
+		 */
 		public static var alertList:Array = new Array();
-		public static var container:Bin
 		
-		private static var alertSP:Sprite;
+		private static var alertContainer:Sprite;
 		private static var bg:Sprite;
 		private static var txt:Label;
 		private static var yesBtn:Button;
 		private static var noBtn:Button;
 		private static var cancelBtn:Button;
+		private static var stage:Stage;
 		
 		private static var currentData:AlertData;
 		
+		/**
+		 * 
+		 * @param owner
+		 * @param data
+		 * @throws UIError
+		 */
 		public static function show(owner:DisplayObject, data:AlertData):void
 		{
-			if(container == null)
+			if(owner == null || owner.stage == null)
 			{
 				throw new UIError(UIError.DISPLAY_OBJECT_NULL);
 			}
+			stage = owner.stage;
 			//
 			if(currentData != null)
 			{
@@ -57,7 +69,7 @@ package org.finalbug.ui.widgets
 			else
 			{
 				currentData = data;
-				if(alertSP != null && container.contains(alertSP))
+				if(alertExist())
 				{
 					Alert.setAlertView();
 				}
@@ -68,61 +80,126 @@ package org.finalbug.ui.widgets
 			}
 		}
 		
+		/**
+		 * 
+		 * @param owner
+		 * @param text
+		 */
+		public static function showAlert(owner:DisplayObject, text:String):void
+		{
+			var ad:AlertData = new AlertData();
+			ad.label = text;
+			ad.yesLabel = Language.Yes;
+			Alert.show(owner, ad);
+		}
+		
+		/**
+		 * 
+		 * @param owner
+		 * @param text
+		 * @param yesHandler
+		 * @param noHandler
+		 */
+		public static function show2Confirm(owner:DisplayObject, 
+										   text:String, 
+										   yesHandler:Function = null, 
+										   noHandler:Function = null):void
+		{
+			var ad:AlertData = new AlertData();
+			ad.label = text;
+			ad.yesFunction = yesHandler;
+			ad.noFunction = noHandler;
+			ad.showNo = true;
+			ad.yesLabel = Language.Yes;
+			ad.noLabel = Language.No;
+			Alert.show(owner, ad);
+		}
+		
+		/**
+		 * 
+		 * @param owner
+		 * @param text
+		 * @param yesHandler
+		 * @param noHandler
+		 * @param cancelHandler
+		 */
+		public static function show3Confirm(owner:DisplayObject, 
+											text:String, 
+											yesHandler:Function = null, 
+											noHandler:Function = null, 
+											cancelHandler:Function = null):void
+		{
+			var ad:AlertData = new AlertData();
+			ad.label = text;
+			ad.yesFunction = yesHandler;
+			ad.noFunction = noHandler;
+			ad.cancelFunction = cancelHandler;
+			ad.showNo = ad.showCancel = true;
+			ad.yesLabel = Language.Yes;
+			ad.noLabel = Language.No;
+			ad.cancelLabel = Language.cancel;
+			Alert.show(owner, ad);
+		}
+		
+		/**
+		 * 
+		 */
 		public static function remove():void
 		{
-			if(currentData.yesFunction != null)
+			if(alertExist())
 			{
-				yesBtn.removeEventListener(MouseEvent.CLICK, currentData.yesFunction);
-			}
-			if(currentData.noFunction != null)
-			{
-				noBtn.removeEventListener(MouseEvent.CLICK, currentData.noFunction);
-			}
-			if(currentData.cancelFunction != null)
-			{
-				cancelBtn.removeEventListener(MouseEvent.CLICK, currentData.cancelFunction);
-			}
-			//
-			if(alertList.length > 0)
-			{
-				currentData = alertList.shift();
-				Alert.setAlertView();
-			}
-			else
-			{
-				alertSP.visible = false;
-				currentData = null;
+				if(currentData.yesFunction != null)
+				{
+					yesBtn.removeEventListener(MouseEvent.CLICK, currentData.yesFunction);
+				}
+				if(currentData.noFunction != null)
+				{
+					noBtn.removeEventListener(MouseEvent.CLICK, currentData.noFunction);
+				}
+				if(currentData.cancelFunction != null)
+				{
+					cancelBtn.removeEventListener(MouseEvent.CLICK, currentData.cancelFunction);
+				}
+				//
+				if(alertList.length > 0)
+				{
+					currentData = alertList.shift();
+					Alert.setAlertView();
+				}
+				else
+				{
+					stage.removeChild(alertContainer);
+					currentData = null;
+				}
 			}
 		}
 		
 		private static function createAlert():void
 		{
-			alertSP = new Sprite;
-			container.addChild(alertSP);
+			alertContainer = new Sprite;
+			stage.addChild(alertContainer);
 			//
 			bg = new Sprite();
-			alertSP.addChild(bg);
-			bg.graphics.beginFill(0, 0.8);
-			bg.graphics.drawRect(0, 0, 100, 100);
-			bg.graphics.endFill();
+			alertContainer.addChild(bg);
+			DrawUtil.drawBlock(bg.graphics, 10, 0, 0.6);
 			//
 			var tf:TextFormat = new TextFormat("Arial", 14, 0xFFFFFF, true);
 			txt = new Label("", tf);
-			alertSP.addChild(txt);
+			alertContainer.addChild(txt);
 			//
 			yesBtn = new Button();
-			alertSP.addChild(yesBtn);
+			alertContainer.addChild(yesBtn);
 			yesBtn.addEventListener(MouseEvent.CLICK, removeHandler);
 			//
 			noBtn = new Button();
-			alertSP.addChild(noBtn);
+			alertContainer.addChild(noBtn);
 			noBtn.addEventListener(MouseEvent.CLICK, removeHandler);
 			//
 			cancelBtn = new Button();
-			alertSP.addChild(cancelBtn);
+			alertContainer.addChild(cancelBtn);
 			cancelBtn.addEventListener(MouseEvent.CLICK, removeHandler);
 			//
-			container.addEventListener(Event.RESIZE, resizeHandler);
+			stage.addEventListener(Event.RESIZE, resizeHandler);
 			//
 			setAlertView();
 		}
@@ -134,8 +211,10 @@ package org.finalbug.ui.widgets
 		
 		private static function setAlertView():void
 		{
-			bg.width = container.stage.stageWidth;
-			bg.height = container.stage.stageHeight;
+			stage.setChildIndex(alertContainer, stage.numChildren - 1);
+			//
+			bg.width = stage.stageWidth;
+			bg.height = stage.stageHeight;
 			//
 			txt.text = currentData.label;
 			txt.x = (bg.width - txt.width) / 2;
@@ -198,17 +277,19 @@ package org.finalbug.ui.widgets
 				startX += btn.width + 20;
 				btn.y = txt.y + txt.height + 20;
 			}
-			//
-			alertSP.visible = true;
-			//container.toFront();
 		}
 		
 		private static function resizeHandler(e:Event):void
 		{
-			if(alertSP != null && container.contains(alertSP))
+			if(alertExist())
 			{
 				setAlertView();
 			}
+		}
+		
+		private static function alertExist():Boolean
+		{
+			return alertContainer != null && stage != null && stage.contains(alertContainer);
 		}
 	}
 }

@@ -1,13 +1,13 @@
-/******************************************************
- * ___________.__              .__ ___.                 
- * \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____  
- *  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\ 
- *  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
- *  \__ |     |__|___|  (____  /____/___  /____/\___  / 
- *     \/             \/     \/         \/     /_____/  
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui
 {
 	import flash.display.DisplayObject;
@@ -31,15 +31,27 @@ package org.finalbug.ui
 	 */	
 	public class Bin extends Sprite
 	{
-		//***************************************
+		//#######################################
 		// DEFINE
-		//***************************************
+		//#######################################
 		
 		private const SMOOTH_DELAY:Number = 30;
 		
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var displayWidth:Number = 0;
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var displayHeight:Number = 0;
 		
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var _fillStyle:FillStyle = null;
 		
 		private var _maxWidth:Number = 4000;
@@ -53,14 +65,22 @@ package org.finalbug.ui
 		private var _controlPoint:Point = new Point(0, 0);
 		private var _controlPointType:String = "";
 		
-		//***************************************
+		//#######################################
 		// GETTER and SETTER
-		//***************************************
+		//#######################################
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get fillStyle():FillStyle
 		{
 			return _fillStyle;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set fillStyle(value:FillStyle):void
 		{
 			if(_fillStyle != value)
@@ -106,6 +126,10 @@ package org.finalbug.ui
 			accountControlPoint();
 			return _controlPoint;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set controlPoint(value:Point):void
 		{
 			_controlPointType = "";
@@ -119,6 +143,10 @@ package org.finalbug.ui
 		{
 			return this.x + controlPoint.x;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set controlX(value:Number):void
 		{
 			this.x = value - controlPoint.x;
@@ -131,6 +159,10 @@ package org.finalbug.ui
 		{
 			return this.y + controlPoint.y;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set controlY(value:Number):void
 		{
 			this.y = value - controlPoint.y;
@@ -144,6 +176,10 @@ package org.finalbug.ui
 		{
 			return _maxWidth;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set maxWidth(value:Number):void
 		{
 			_maxWidth = value;
@@ -162,6 +198,10 @@ package org.finalbug.ui
 		{
 			return _maxHeight;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set maxHeight(value:Number):void
 		{
 			_maxHeight = value;
@@ -180,6 +220,10 @@ package org.finalbug.ui
 		{
 			return _minWidth;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set minWidth(value:Number):void
 		{
 			_minWidth = Math.max(value, 0);
@@ -198,6 +242,10 @@ package org.finalbug.ui
 		{
 			return _minHeight;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set minHeight(value:Number):void
 		{
 			_minHeight = Math.max(value, 0);
@@ -208,23 +256,26 @@ package org.finalbug.ui
 			}
 		}
 		
-		//***************************************
-		// Constructor
-		//***************************************
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
 		
+		/**
+		 * 
+		 */
 		public function Bin()
 		{
 			super();
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
 		
-		//***************************************
+		//#######################################
 		// OVERRIDE
-		//***************************************
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// PUBLIC
-		//***************************************
+		//#######################################
 		
 		/**
 		 * Change Bin's size to target width and height immediately.
@@ -381,6 +432,10 @@ package org.finalbug.ui
 			}
 		}
 		
+		/**
+		 * 
+		 * @param args
+		 */
 		public function addAll(...args):void
 		{
 			var len:uint = args.length;
@@ -393,6 +448,9 @@ package org.finalbug.ui
 			}
 		}
 		
+		/**
+		 * 
+		 */
 		public function removeAll():void
 		{
 			this.graphics.clear();
@@ -402,18 +460,30 @@ package org.finalbug.ui
 			}
 		}
 		
-		//***************************************
+		//#######################################
 		// PROTECTED
-		//***************************************
+		//#######################################
+		/**
+		 * 
+		 */
 		protected function updateView():void
 		{
 			drawBg();
 		}
 		
+		/**
+		 * 
+		 */
 		protected function callAtAdded():void{}
 		
+		/**
+		 * 
+		 */
 		protected function countSizeAndPosition():void{}
 		
+		/**
+		 * 
+		 */
 		protected function drawBg():void
 		{
 			if(_fillStyle != null)
@@ -426,9 +496,9 @@ package org.finalbug.ui
 			}
 		}
 		
-		//***************************************
+		//#######################################
 		// PRIVATE
-		//***************************************
+		//#######################################
 		
 		private function accountControlPoint():void
 		{
@@ -476,9 +546,9 @@ package org.finalbug.ui
 			}
 		}
 		
-		//***************************************
+		//#######################################
 		// HANDLER
-		//***************************************
+		//#######################################
 		
 		private function stopZoomHandler(e:MotionEvent):void
 		{

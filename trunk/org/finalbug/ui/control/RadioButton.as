@@ -1,22 +1,24 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.control
 {
 	import flash.display.Shape;
-	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	
 	import org.finalbug.data.Position;
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
-	import org.finalbug.ui.control.Label;
-	import org.finalbug.ui.control.UIObject;
+	import org.finalbug.ui.skin.RadioSkinData;
 	import org.finalbug.ui.skin.SkinElement;
-	import org.finalbug.ui.skin.UISkinModel;
-	import org.finalbug.ui.style.FillStyle;
-	import org.finalbug.ui.style.stylefactory.CheckBoxStyleFactory;
+	import org.finalbug.ui.skin.UISkinDataBase;
 	import org.finalbug.utils.DrawUtil;
 	
 	/**
@@ -27,8 +29,13 @@ package org.finalbug.ui.control
 	 */
 	public class RadioButton extends UIObject
 	{
+		/**
+		 * 
+		 * @default 
+		 */
 		protected static var groupList:Object = new Object();
 		
+		private const BOX_SIZE:Number = 16;
 		private const OFFSET:Number = 3;
 		
 		private var _label:String;
@@ -47,6 +54,10 @@ package org.finalbug.ui.control
 		{
 			return _label;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set label(value:String):void
 		{
 			_label = value == "" ? "RadioButton" : value;
@@ -61,13 +72,32 @@ package org.finalbug.ui.control
 		{
 			return _selected;
 		}
-		public function set selected(v:Boolean):void
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set selected(value:Boolean):void
 		{
-			if(_selected != v)
+			if(_selected != value)
 			{
-				_selected = v;
-				this.status = this.enabled ? Status.SELECTED : Status.SELECTED_DISABLE;
+				_selected = value;
+				// set any value to update status.
+				// real status will be check in set status method.
+				this.status = "";
 			}
+		}
+		
+		override public function set status(value:String):void
+		{
+			if(this.selected)
+			{
+				value = this.enabled ? Status.SELECTED : Status.SELECTED_DISABLE;
+			}
+			else
+			{
+				value = this.enabled ? Status.NORMAL : Status.DISABLE;
+			}
+			if(this.status != value) super.status = value;
 		}
 		
 		/**
@@ -77,6 +107,10 @@ package org.finalbug.ui.control
 		{
 			return _group;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set groupName(value:String):void
 		{
 			if(value != _group && RadioButton.groupList[groupName] != null)
@@ -106,8 +140,11 @@ package org.finalbug.ui.control
 		 * @param label Label field
 		 * @param style Display style
 		 */		
-		public function RadioButton(label:String = "RadioButton", groupName:String = "ungrouped")
+		public function RadioButton(label:String = "RadioButton", groupName:String = "ungrouped", skin:UISkinDataBase = null)
 		{
+			super(skin);
+			//
+			// save datas.
 			_group = groupName;
 			_label = label == "" ? "RadioButton" : label;
 			if(RadioButton.groupList[_group] == null)
@@ -115,7 +152,27 @@ package org.finalbug.ui.control
 				RadioButton.groupList[_group] = new Array();
 			}
 			RadioButton.groupList[_group].push(this);
-			createChildren();
+			//
+			// create children.
+			box = new SkinElement();
+			box.resize(BOX_SIZE, BOX_SIZE);
+			//
+			txt = new Label(_label);
+			//
+			bg = new Shape();
+			DrawUtil.drawBlock(bg.graphics);
+			//
+			this.addAll(bg, box, txt);
+			//
+			// set event
+			this.addEventListener(MouseEvent.CLICK, clickBoxHandler);
+			//
+			// set skin data.
+			if(uiSkinData == null)
+			{
+				uiSkinData = new RadioSkinData();
+			}
+			uiSkinData.setSkin(box, txt);
 		}
 		
 		override protected function updateView():void
@@ -145,61 +202,45 @@ package org.finalbug.ui.control
 			return null;
 		}
 		
-		private function createChildren():void
-		{
-			box = new SkinElement();
-			txt = new Label(_label);
-			bg = new Shape();
-			//
-			DrawUtil.drawBlock(bg.graphics);
-			//
-			this.addAll(box, txt, bg);
-			//
-			this.addEventListener(MouseEvent.CLICK, clickBoxHandler);
-			//
-			uiSkinData = UISkinModel.instance.radioSkinData;
-			uiSkinData.setSkin(box, txt);
-		}
-		
 		private function setPosition():void
 		{
-			var ww:Number = Math.max(box.width, txt.width);
-			var hh:Number = Math.max(box.height, txt.height);
+			var ww:Number = Math.max(BOX_SIZE, txt.width);
+			var hh:Number = Math.max(BOX_SIZE, txt.height);
 			//
 			if(_labelPosition == Position.LEFT)
 			{
 				txt.x = 0;
 				txt.y = (hh - txt.height) / 2;
-				box.x = txt.width + OFFSET + box.width / 2;
-				box.y = hh / 2;
-				bg.width = box.width + OFFSET + txt.width;
+				box.x = txt.width + OFFSET;
+				box.y = (hh - BOX_SIZE) / 2;
+				bg.width = BOX_SIZE + OFFSET + txt.width;
 				bg.height = hh;
-			}
-			else if(_labelPosition == Position.TOP)
-			{
-				box.y = box.height / 2;
-				box.x = ww / 2;
-				txt.x = (ww - txt.width) / 2;
-				txt.y = box.height + OFFSET;
-				bg.width = ww;
-				bg.height = box.height + OFFSET + txt.height;
 			}
 			else if(_labelPosition == Position.BOTTOM)
 			{
+				box.y = 0;
+				box.x = (ww - BOX_SIZE) / 2;
+				txt.x = (ww - txt.width) / 2;
+				txt.y = BOX_SIZE + OFFSET;
+				bg.width = ww;
+				bg.height = BOX_SIZE + OFFSET + txt.height;
+			}
+			else if(_labelPosition == Position.TOP)
+			{
 				txt.x = (ww - txt.width) / 2;
 				txt.y = 0;
-				box.x = ww / 2;
-				txt.height + OFFSET + box.height;
+				box.x = (ww - BOX_SIZE) / 2;
+				box.y = txt.height + OFFSET;
 				bg.width = ww;
-				bg.height = box.height + OFFSET + txt.height;
+				bg.height = BOX_SIZE + OFFSET + txt.height;
 			}
 			else
 			{
-				box.x = box.width / 2;
-				box.y = hh / 2;
-				txt.x = box.width + OFFSET;
+				box.x = 0;
+				box.y = (hh - BOX_SIZE) / 2;
+				txt.x = BOX_SIZE + OFFSET;
 				txt.y = (hh - txt.height) / 2;
-				bg.width = box.width + OFFSET + txt.width;
+				bg.width = BOX_SIZE + OFFSET + txt.width;
 				bg.height = hh;
 			}
 		}
@@ -221,11 +262,11 @@ package org.finalbug.ui.control
 		
 		private function unselectedGroup():void
 		{
-			for each(var v:RadioButton in RadioButton.groupList[_group])
+			for each(var btn:RadioButton in RadioButton.groupList[_group])
 			{
-				if(v != null)
+				if(btn != null)
 				{
-					v.selected = false;
+					btn.selected = false;
 				}
 			}
 		}

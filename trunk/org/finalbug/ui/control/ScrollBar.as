@@ -1,13 +1,13 @@
-/******************************************************
- * ___________.__              .__ ___.                 
- * \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____  
- *  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\ 
- *  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
- *  \__ |     |__|___|  (____  /____/___  /____/\___  / 
- *     \/             \/     \/         \/     /_____/  
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.control
 {
 	import flash.events.MouseEvent;
@@ -22,7 +22,7 @@ package org.finalbug.ui.control
 	import org.finalbug.events.UIMouseEvent;
 	import org.finalbug.ui.skin.ScrollBarSkinData;
 	import org.finalbug.ui.skin.SkinElement;
-	import org.finalbug.ui.skin.UISkinModel;
+	import org.finalbug.ui.skin.UISkinDataBase;
 	import org.finalbug.utils.MathUtil;
 	
 	/**
@@ -33,6 +33,10 @@ package org.finalbug.ui.control
 	 */
 	public class ScrollBar extends UIObject
 	{
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const DEFAULT_THICKNESS:Number = 16;
 		
 		/* variates */
@@ -78,6 +82,10 @@ package org.finalbug.ui.control
 		{
 			return _scale;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set scale(value:Number):void
 		{
 			_scale = value;
@@ -92,6 +100,10 @@ package org.finalbug.ui.control
 		{
 			return _position;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set position(value:Number):void
 		{
 			_position = value;
@@ -99,21 +111,37 @@ package org.finalbug.ui.control
 			this.setSlider();
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get length():Number
 		{
 			return this._length;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set length(value:Number):void
 		{
 			this._length = value;
 			this.updateView();
 		}	
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get thickness():Number
 		{
 			return this._thickness;
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get availLength():Number
 		{
 			return _length - 2 * _thickness;
@@ -134,9 +162,9 @@ package org.finalbug.ui.control
 		 * @param length Length of ScrollBar, in pixel.
 		 * @param style Display style.
 		 */		
-		public function ScrollBar(type:String, length:Number = 100)
+		public function ScrollBar(type:String, length:Number = 100, skin:UISkinDataBase = null)
 		{
-			super();
+			super(skin);
 			if(type != Position.HORIZONTAL && type != Position.VERTICAL)
 			{
 				throw new UIError(UIError.WRONG_SCROLLBAR_TYPE);
@@ -144,7 +172,22 @@ package org.finalbug.ui.control
 			_type = type;
 			this._thickness = DEFAULT_THICKNESS;
 			this._length = length;
-			createChildren();
+			//
+			// create children and set events.
+			if(_type == Position.HORIZONTAL)
+			{
+				createScrollBarX();
+				leftBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
+				rightBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
+				slider.addEventListener(MouseEvent.MOUSE_DOWN, pressSliderHandler);
+			}
+			else
+			{
+				createScrollBarY();
+				upBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
+				downBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
+				slider.addEventListener(MouseEvent.MOUSE_DOWN, pressSliderHandler);
+			}
 		}
 		
 		override protected function updateView():void
@@ -175,36 +218,16 @@ package org.finalbug.ui.control
 			this.setSlider();
 		}
 		
+		/**
+		 * 
+		 * @param position
+		 * @param scale
+		 */
 		public function changeSlider(position:Number, scale:Number):void
 		{
 			_position = MathUtil.getNumArea(position, 0, 1);
 			_scale = MathUtil.getNumArea(scale, 0, 1);
 			this.setSlider();
-		}
-		
-		private function createChildren():void
-		{
-			if(_type == Position.HORIZONTAL)
-			{
-				createScrollBarX();
-			}
-			else
-			{
-				createScrollBarY();
-			}
-			//
-			if(_type == Position.HORIZONTAL)
-			{
-				leftBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
-				rightBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
-				slider.addEventListener(MouseEvent.MOUSE_DOWN, pressSliderHandler);
-			}
-			else
-			{
-				upBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
-				downBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
-				slider.addEventListener(MouseEvent.MOUSE_DOWN, pressSliderHandler);
-			}
 		}
 		
 		/**
@@ -247,7 +270,10 @@ package org.finalbug.ui.control
 			//
 			this.addAll(back, leftBtn, rightBtn, slider);
 			//
-			var uiSkinData:ScrollBarSkinData = UISkinModel.instance.scrollBarSkinData;
+			if(uiSkinData == null)
+			{
+				uiSkinData = new ScrollBarSkinData();
+			}
 			uiSkinData.setSkin(leftBtn, rightBtn, null, null, back, slider);
 		}
 		
@@ -266,7 +292,10 @@ package org.finalbug.ui.control
 			//
 			this.addAll(back, upBtn, downBtn, slider);
 			//
-			var uiSkinData:ScrollBarSkinData = UISkinModel.instance.scrollBarSkinData;
+			if(uiSkinData == null)
+			{
+				uiSkinData = new ScrollBarSkinData();
+			}
 			uiSkinData.setSkin(null, null, upBtn, downBtn, back, slider);
 		}
 		

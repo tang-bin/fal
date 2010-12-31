@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.control
 {
 	import flash.display.DisplayObject;
@@ -20,22 +26,38 @@ package org.finalbug.ui.control
 	 */	
 	public class Icon extends Bin
 	{
-		//***************************************
+		//#######################################
 		// DEFINE
-		//***************************************
+		//#######################################
 		
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const ICON_16:String = "icon16";
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const ICON_32:String = "icon32";
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const ICON_48:String = "icon48";
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const ICON_128:String = "icon128";
 		
 		private var defaultImg:Image;
 		private var imgs:Object = new Object();
 		private var img:Image;
 		
-		//***************************************
+		//#######################################
 		// GETTER and SETTER
-		//***************************************
+		//#######################################
 		
 		private function get icon16():Image
 		{
@@ -57,20 +79,23 @@ package org.finalbug.ui.control
 			return imgs[ICON_128] as Image;
 		}
 		
-		//***************************************
-		// Constructor.
-		//***************************************
+		//#######################################
+		// CONSTRUCTOR.
+		//#######################################
 		
+		/**
+		 * 
+		 */
 		public function Icon()
 		{
 			super();
 		}
 		
-		//***************************************
-		// OVERRIDE METHODS
+		//#######################################
+		// OVERRIDE
 		// Whit out getter, setter and handler
 		// include public, protected and private.
-		//***************************************
+		//#######################################
 		
 		override protected function updateView():void
 		{
@@ -98,10 +123,17 @@ package org.finalbug.ui.control
 			}
 		}
 		
-		//***************************************
+		//#######################################
 		// PUBLIC
-		//***************************************
+		//#######################################
 		
+		/**
+		 * 
+		 * @param img
+		 * @param type
+		 * @throws DataError
+		 * @throws DataError
+		 */
 		public function addImage(img:DisplayObject, type:String):void
 		{
 			if(DataUtil.included(type, ICON_16, ICON_32, ICON_48, ICON_128))
@@ -128,6 +160,12 @@ package org.finalbug.ui.control
 			}
 		}
 		
+		/**
+		 * 
+		 * @param path
+		 * @param type
+		 * @throws DataError
+		 */
 		public function addImagePath(path:String, type:String):void
 		{
 			if(DataUtil.included(type, ICON_16, ICON_32, ICON_48, ICON_128))
@@ -142,6 +180,10 @@ package org.finalbug.ui.control
 			}
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function clone():Icon
 		{
 			var newIcon:Icon = new Icon();
@@ -154,13 +196,13 @@ package org.finalbug.ui.control
 			return newIcon;
 		}
 		
-		//***************************************
+		//#######################################
 		// PROTECTED
-		//***************************************
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// PRIVATE
-		//***************************************
+		//#######################################
 		
 		private function setDefaultImg():void
 		{
@@ -171,8 +213,8 @@ package org.finalbug.ui.control
 			else defaultImg = null;
 		}
 		
-		//***************************************
+		//#######################################
 		// HANDLER
-		//***************************************
+		//#######################################
 	}
 }

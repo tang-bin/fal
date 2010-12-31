@@ -1,6 +1,13 @@
-/******************************************
- * Tang Bin
- *****************************************/
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.utils
 {
 	import flash.display.DisplayObject;
@@ -19,13 +26,17 @@ package org.finalbug.utils
 	 */	
 	public class LayoutManager
 	{
-		//***************************************
+		//#######################################
 		// SINGLETON
-		//***************************************/
+		//#######################################
 		
 		private static var instanceable:Boolean = false;
 		private static var lm:LayoutManager;
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public static function get instance():LayoutManager
 		{
 			if(lm == null)
@@ -37,20 +48,24 @@ package org.finalbug.utils
 			return lm;
 		}
 		
-		//***************************************
+		//#######################################
 		// DEFINE
-		//***************************************/
+		//#######################################
 		
 		private var list:Dictionary = new Dictionary();
 		
-		//***************************************
+		//#######################################
 		// GETTER and SETTER
-		//***************************************/
+		//#######################################
 		
-		//***************************************
-		// Constructor.
-		//***************************************/
+		//#######################################
+		// CONSTRUCTOR.
+		//#######################################
 		
+		/**
+		 * 
+		 * @throws DataError
+		 */
 		public function LayoutManager()
 		{
 			if(!instanceable)
@@ -59,22 +74,32 @@ package org.finalbug.utils
 			}
 		}
 		
-		//***************************************
-		// OVERRIDE METHODS
+		//#######################################
+		// OVERRIDE
 		// Whit out getter, setter and handler
 		// include public, protected and private.
-		//***************************************/
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// PUBLIC
-		//***************************************/
+		//#######################################
 		
+		/**
+		 * 
+		 * @param target
+		 * @param data
+		 */
 		public function addLayout(target:DisplayObject, data:LayoutStyle):void
 		{
 			list[target] = data;
 			data.owner = target;
 		}
 		
+		/**
+		 * 
+		 * @param target
+		 * @throws DataError
+		 */
 		public function removeLayout(target:DisplayObject):void
 		{
 			if(list[target] == null)
@@ -85,6 +110,10 @@ package org.finalbug.utils
 			delete list[target];
 		}
 		
+		/**
+		 * 
+		 * @param root
+		 */
 		public function update(root:DisplayObject):void
 		{
 			if(root != null)
@@ -105,13 +134,13 @@ package org.finalbug.utils
 			}
 		}
 		
-		//***************************************
+		//#######################################
 		// PROTECTED
-		//***************************************/
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// PRIVATE
-		//***************************************/
+		//#######################################
 		
 		private function updateLayout(target:DisplayObject):void
 		{
@@ -122,8 +151,8 @@ package org.finalbug.utils
 			target.y = data.y;
 		}
 		
-		//***************************************
+		//#######################################
 		// HANDLER
-		//***************************************/
+		//#######################################
 	}
 }

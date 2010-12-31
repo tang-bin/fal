@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.glazes
 {
 	import flash.display.Sprite;
@@ -12,6 +18,10 @@ package org.finalbug.ui.glazes
 	import org.finalbug.ui.Glaze;
 	import org.finalbug.utils.DrawUtil;
 
+	/**
+	 * 
+	 * @author lenovo
+	 */
 	public class ProgressRound extends Glaze
 	{
 		private var radius:Number = 20;
@@ -26,6 +36,9 @@ package org.finalbug.ui.glazes
 		private var bg:Sprite;
 		private var front:Sprite;
 		
+		/**
+		 * 
+		 */
 		public function ProgressRound()
 		{
 			super();
@@ -36,6 +49,13 @@ package org.finalbug.ui.glazes
 			drawRound();
 		}
 		
+		/**
+		 * 
+		 * @param radius
+		 * @param backColor
+		 * @param frontColor
+		 * @param glowColor
+		 */
 		public function setRoundStyle(radius:Number, backColor:Number, frontColor:Number, glowColor:Number):void
 		{
 			this.radius = radius;
@@ -45,6 +65,10 @@ package org.finalbug.ui.glazes
 			drawRound();
 		}
 		
+		/**
+		 * 
+		 * @param rate
+		 */
 		public function showProgress(rate:Number):void
 		{
 			whitRate = true;
@@ -52,6 +76,9 @@ package org.finalbug.ui.glazes
 			setRate();
 		}
 		
+		/**
+		 * 
+		 */
 		public function showRun():void
 		{
 			whitRate = false;

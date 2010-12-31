@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.utils.motion
 {
 	
@@ -13,11 +19,31 @@ package org.finalbug.utils.motion
 	 */	
 	public class SizeMotion extends Motion
 	{
+		/**
+		 * 
+		 * @default 
+		 */
 		public var widthFrom:Number;
+		/**
+		 * 
+		 * @default 
+		 */
 		public var heightFrom:Number;
+		/**
+		 * 
+		 * @default 
+		 */
 		public var widthTo:Number;
+		/**
+		 * 
+		 * @default 
+		 */
 		public var heightTo:Number;
 		
+		/**
+		 * 
+		 * @param target
+		 */
 		public function SizeMotion(target:Object = null)
 		{
 			super(target);

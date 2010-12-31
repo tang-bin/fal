@@ -1,6 +1,13 @@
-/******************************************************
- * Tang Bin
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.utils
 {
 	import flash.display.Graphics;
@@ -88,6 +95,13 @@ package org.finalbug.utils
 			}
 		}
 		
+		/**
+		 * 
+		 * @param g
+		 * @param size
+		 * @param color
+		 * @param alpha
+		 */
 		public static function drawBlock(g:Graphics,
 										 size:Number = 10,
 										 color:uint = 0,
@@ -229,6 +243,13 @@ package org.finalbug.utils
 			g.lineTo(width / 2 - height, - height / 4);
 		}
 		
+		/**
+		 * 
+		 * @param g
+		 * @param fromAngle
+		 * @param toAngle
+		 * @param radius
+		 */
 		public static function drawSector(g:Graphics, fromAngle:Number, toAngle:Number, radius:Number):void
 		{
 			if(fromAngle > toAngle)

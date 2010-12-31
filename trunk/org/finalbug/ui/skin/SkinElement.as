@@ -1,6 +1,13 @@
-/******************************************
- * Tang Bin
- *****************************************/
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.skin
 {
 	import flash.display.Bitmap;
@@ -24,9 +31,9 @@ package org.finalbug.ui.skin
 	 */	
 	public class SkinElement extends Glaze
 	{
-		//***************************************
+		//#######################################
 		// DEFINE
-		//***************************************/
+		//#######################################
 		
 		private var skinList:Dictionary = new Dictionary();
 		
@@ -36,14 +43,22 @@ package org.finalbug.ui.skin
 		
 		private var _autoMouseEvent:Boolean = false;
 		
-		//***************************************
+		//#######################################
 		// GETTER and SETTER
-		//***************************************/
+		//#######################################
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get status():String
 		{
 			return currentStatus;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set status(value:String):void
 		{
 			if(value != "" && value != currentStatus && skinList[value] != null)
@@ -54,10 +69,18 @@ package org.finalbug.ui.skin
 			}
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get autoMouseEvent():Boolean
 		{
 			return _autoMouseEvent;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set autoMouseEvent(value:Boolean):void
 		{
 			if(value != _autoMouseEvent)
@@ -74,20 +97,23 @@ package org.finalbug.ui.skin
 			}
 		}
 		
-		//***************************************
-		// Constructor.
-		//***************************************/
+		//#######################################
+		// CONSTRUCTOR.
+		//#######################################
 		
+		/**
+		 * 
+		 */
 		public function SkinElement()
 		{
 			super();
 		}
 		
-		//***************************************
-		// OVERRIDE METHODS
+		//#######################################
+		// OVERRIDE
 		// Whit out getter, setter and handler
 		// include public, protected and private.
-		//***************************************/
+		//#######################################
 		
 		override protected function updateView():void
 		{
@@ -96,105 +122,112 @@ package org.finalbug.ui.skin
 			if(skinChanged) this.removeAll();
 			//
 			var data:SkinElementData = skinList[currentStatus] as SkinElementData;
-			var rect:Rectangle = data.scale9;
-			// set view start
-			if(data.type == SkinElementData.FILL_TYPE)
+			if(data != null)
 			{
-				// fill type, just fill it!
-				this.fillStyle = data.data as FillStyle;
-			}
-			else if(data.type == SkinElementData.VECTORIAL_TYPE)
-			{
-				// vectogram type, use displayobject directly.
-				var obj:DisplayObject;
-				if(skinChanged)
+				var rect:Rectangle = data.scale9;
+				// set view start
+				if(data.type == SkinElementData.FILL_TYPE)
 				{
-					// add skin if is changed.
-					obj = data.data as DisplayObject
-					if(obj != null)
+					// fill type, just fill it!
+					this.fillStyle = data.data as FillStyle;
+				}
+				else if(data.type == SkinElementData.VECTORIAL_TYPE)
+				{
+					// vectogram type, use displayobject directly.
+					var obj:DisplayObject;
+					if(skinChanged)
 					{
-						if(rect == null)
+						// add skin if is changed.
+						obj = data.data as DisplayObject
+						if(obj != null)
 						{
-							rect = new Rectangle(0, 0, obj.width, obj.height);
+							if(rect == null)
+							{
+								rect = new Rectangle(0, 0, obj.width, obj.height);
+							}
+							obj.scale9Grid = rect;
+							obj.name = "skin";
+							this.addChild(obj);
+							obj.width = this.displayWidth;
+							obj.height = this.displayHeight;
 						}
-						obj.scale9Grid = rect;
-						obj.name = "skin";
-						this.addChild(obj);
-						obj.width = this.displayWidth;
-						obj.height = this.displayHeight;
 					}
-				}
-				else
-				{
-					// if skin not changed, just resize skin's size.
-					obj = this.getChildByName("skin") as DisplayObject;
-					if(obj != null)
+					else
 					{
-						obj.width = this.displayWidth;
-						obj.height = this.displayHeight;
-					}
-				}
-			}
-			else if(data.type == SkinElementData.BITMAP_TYPE)
-			{
-				// bitmap type, use scale9grid bitmap.
-				var img:Scale9Bitmap;
-				if(skinChanged)
-				{
-					// if skin is changed. reset bitmap
-					var bm:Bitmap;
-					if(data.data is Bitmap)
-					{
-						// if the data is bitmap, can be used as bitmap directly.
-						bm = data.data as Bitmap;
-					}
-					else if(data.data is BitmapData)
-					{
-						// if the data is bitmapData, create new bitmap using it.
-						bm = new Bitmap(data.data as BitmapData);
-					}
-					else if(data.data is DisplayObject)
-					{
-						// if the data is not bitmap/bitmapdata, but still a displayobject.
-						// create new bitmap using it.
-						var bdObj:DisplayObject = data.data as DisplayObject;
-						var bd:BitmapData = new BitmapData(bdObj.width, bdObj.height, true, 0xFFFFFFFF);
-						bd.draw(bdObj, null, null, null, null, true);
-						bm = new Bitmap(bd);
-					}
-					if(bm != null)
-					{
-						// if bitmap is created.
-						if(rect == null)
+						// if skin not changed, just resize skin's size.
+						obj = this.getChildByName("skin") as DisplayObject;
+						if(obj != null)
 						{
-							rect = new Rectangle(0, 0, bm.width, bm.height);
+							obj.width = this.displayWidth;
+							obj.height = this.displayHeight;
 						}
-						img = new Scale9Bitmap(bm, rect);
-						img.name = "skin";
-						this.addChild(img);
-						img.width = this.displayWidth;
-						img.height = this.displayHeight;
 					}
 				}
-				else
+				else if(data.type == SkinElementData.BITMAP_TYPE)
 				{
-					// if skin is not changed, just resize skin.
-					img = this.getChildByName("skin") as Scale9Bitmap;
-					if(img != null)
+					// bitmap type, use scale9grid bitmap.
+					var img:Scale9Bitmap;
+					if(skinChanged)
 					{
-						img.width = this.displayWidth;
-						img.height = this.displayHeight;
+						// if skin is changed. reset bitmap
+						var bm:Bitmap;
+						if(data.data is Bitmap)
+						{
+							// if the data is bitmap, can be used as bitmap directly.
+							bm = data.data as Bitmap;
+						}
+						else if(data.data is BitmapData)
+						{
+							// if the data is bitmapData, create new bitmap using it.
+							bm = new Bitmap(data.data as BitmapData);
+						}
+						else if(data.data is DisplayObject)
+						{
+							// if the data is not bitmap/bitmapdata, but still a displayobject.
+							// create new bitmap using it.
+							var bdObj:DisplayObject = data.data as DisplayObject;
+							var bd:BitmapData = new BitmapData(bdObj.width, bdObj.height, true, 0xFFFFFFFF);
+							bd.draw(bdObj, null, null, null, null, true);
+							bm = new Bitmap(bd);
+						}
+						if(bm != null)
+						{
+							// if bitmap is created.
+							if(rect == null)
+							{
+								rect = new Rectangle(0, 0, bm.width, bm.height);
+							}
+							img = new Scale9Bitmap(bm, rect);
+							img.name = "skin";
+							this.addChild(img);
+							img.width = this.displayWidth;
+							img.height = this.displayHeight;
+						}
+					}
+					else
+					{
+						// if skin is not changed, just resize skin.
+						img = this.getChildByName("skin") as Scale9Bitmap;
+						if(img != null)
+						{
+							img.width = this.displayWidth;
+							img.height = this.displayHeight;
+						}
 					}
 				}
+				this.skinChanged = false;
+				super.updateView();
 			}
-			this.skinChanged = false;
-			super.updateView();
 		}
 		
-		//***************************************
+		//#######################################
 		// PUBLIC
-		//***************************************/
+		//#######################################
 		
+		/**
+		 * 
+		 * @param data
+		 */
 		public function setSkin(data:SkinElementData):void
 		{
 			skinList[data.status] = data;
@@ -204,6 +237,10 @@ package org.finalbug.ui.skin
 			}
 		}
 		
+		/**
+		 * 
+		 * @param status
+		 */
 		public function removeSkin(status:String):void
 		{
 			if(skinList[status] != null)
@@ -213,13 +250,13 @@ package org.finalbug.ui.skin
 			}
 		}
 		
-		//***************************************
+		//#######################################
 		// PROTECTED
-		//***************************************/
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// PRIVATE
-		//***************************************/
+		//#######################################
 		
 		private function setMouseEvent():void
 		{
@@ -241,9 +278,9 @@ package org.finalbug.ui.skin
 			this.removeEventListener(MouseEvent.MOUSE_UP, upHandler);
 		}
 		
-		//***************************************
+		//#######################################
 		// HANDLER
-		//***************************************/
+		//#######################################
 		
 		private function overHandler(e:MouseEvent):void
 		{

@@ -1,12 +1,16 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.data
 {
 	import org.finalbug.ui.control.Icon;
-	import org.finalbug.data.DataModel;
-	import org.finalbug.data.Icons;
 	
 	/**
 	 * FileType
@@ -16,24 +20,40 @@ package org.finalbug.data
 	 */	
 	public class FileType extends DataModel
 	{
-		//***************************************
-		// DEFINE
-		//***************************************
+		//#######################################
+		// OVERRIDE
+		//#######################################
 		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
+		/**
+		 * 
+		 * @default 
+		 */
 		public var description:String = "";
 		
 		private var _isDir:Boolean = false;
 		private var _ext:String = "";
 		private var _icon:Icon;
 		
-		//***************************************
+		//#######################################
 		// GETTER and SETTER
-		//***************************************
+		//#######################################
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get isDir():Boolean
 		{
 			return _isDir;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set isDir(value:Boolean):void
 		{
 			if(value != _isDir)
@@ -43,24 +63,42 @@ package org.finalbug.data
 			}
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get ext():String
 		{
 			return _ext;
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get icon():Icon
 		{
 			return this.isDir ? Icons.instance.folderIcon : _icon.clone();
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set icon(value:Icon):void
 		{
 			this._icon = value;
 		}
 		
-		//***************************************
-		// Constructor.
-		//***************************************
+		//#######################################
+		// CONSTRUCTOR.
+		//#######################################
 		
+		/**
+		 * 
+		 * @param ext
+		 * @param des
+		 * @param icon
+		 */
 		public function FileType(ext:String, des:String = "", icon:Icon = null)
 		{
 			super();
@@ -69,26 +107,20 @@ package org.finalbug.data
 			this._icon = icon;
 		}
 		
-		//***************************************
-		// OVERRIDE METHODS
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//***************************************
-		
-		//***************************************
+		//#######################################
 		// PUBLIC
-		//***************************************
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// PROTECTED
-		//***************************************
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// PRIVATE
-		//***************************************
+		//#######################################
 		
-		//***************************************
+		//#######################################
 		// HANDLER
-		//***************************************
+		//#######################################
 	}
 }

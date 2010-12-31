@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
- ******************************************/
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.control
 {
 	import flash.display.DisplayObject;
@@ -14,46 +20,81 @@ package org.finalbug.ui.control
 	 */	
 	public class Container extends UIObject
 	{
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get backgroundColor():uint
 		{
 			return this.fillStyle.bgColor;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set backgroundColor(value:uint):void
 		{
 			this.fillStyle.bgColor = value;
 			this.drawBg();
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get backgroundAlpha():Number
 		{
 			return this.fillStyle.bgAlpha;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set backgroundAlpha(value:Number):void
 		{
 			this.fillStyle.bgAlpha = value;
 			this.drawBg();
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get borderColor():uint
 		{
 			return this.fillStyle.borderColor;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set borderColor(value:uint):void
 		{
 			this.fillStyle.borderColor = value;
 			this.drawBg();
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get borderAlpha():Number
 		{
 			return this.fillStyle.borderAlpha;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set borderAlpha(value:Number):void
 		{
 			this.fillStyle.borderAlpha = value;
 			this.drawBg();
 		}
 		
+		/**
+		 * 
+		 */
 		public function Container()
 		{
 			super();

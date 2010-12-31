@@ -1,13 +1,21 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.control
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
+	
+	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.control.UIObject;
 	
 	/**
@@ -23,30 +31,54 @@ package org.finalbug.ui.control
 		private var img:Bitmap;
 		private var textWidth:Number = 0;
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get text():String
 		{
 			return str;
 		}
+		/**
+		 * 
+		 * @param v
+		 */
 		public function set text(v:String):void
 		{
 			str = v;
 			createLabel();
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get textColor():uint
 		{
 			return uint(ft.color);
 		}
+		/**
+		 * 
+		 * @param v
+		 */
 		public function set textColor(v:uint):void
 		{
 			ft.color = v;
 			createLabel();
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get textFormat():TextFormat
 		{
 			return ft;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set textFormat(value:TextFormat):void
 		{
 			ft = value;
@@ -72,6 +104,11 @@ package org.finalbug.ui.control
 			return img.height;
 		}
 		
+		/**
+		 * 
+		 * @param text
+		 * @param textFormat
+		 */
 		public function Label(text:String, textFormat:TextFormat = null)
 		{
 			super();
@@ -117,8 +154,15 @@ package org.finalbug.ui.control
 			}
 			t.width = t.textWidth + 4;
 			t.height = t.textHeight + 4;
-			var bd:BitmapData = new BitmapData(t.width, t.height, true, 0x00000000);
-			bd.draw(t);
+			try
+			{
+				var bd:BitmapData = new BitmapData(t.width, t.height, true, 0x00000000);
+				bd.draw(t);
+			}
+			catch(e:Error)
+			{
+				throw new DataError(DataError.LABEL_TEXT_TOO_LARGE);
+			}
 			//
 			if(img != null)
 			{

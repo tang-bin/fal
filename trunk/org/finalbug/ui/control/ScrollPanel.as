@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.control
 {
 	import flash.display.Sprite;
@@ -9,6 +15,7 @@ package org.finalbug.ui.control
 	import flash.geom.Rectangle;
 	
 	import org.finalbug.events.UIEvent;
+	import org.finalbug.ui.skin.UISkinDataBase;
 	import org.finalbug.utils.DrawUtil;
 	
 	/**
@@ -30,11 +37,19 @@ package org.finalbug.ui.control
 		{
 			return _dragable;
 		}
+		/**
+		 * 
+		 * @param val
+		 */
 		public function set dragable(val:Boolean):void
 		{
 			_dragable = val;
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get container():Sprite
 		{
 			return box;
@@ -55,10 +70,22 @@ package org.finalbug.ui.control
 		/**
 		 * Create a new ScrollPanel object.
 		 */
-		public function ScrollPanel(xScroll:Boolean = true, yScroll:Boolean = true)
+		public function ScrollPanel(xScroll:Boolean = true, yScroll:Boolean = true, skin:UISkinDataBase = null)
 		{
-			super(xScroll, yScroll);
-			createChildren();
+			super(xScroll, yScroll, skin);
+			masker = new Sprite();
+			masker.mouseChildren = masker.mouseChildren = false;
+			DrawUtil.drawBlock(masker.graphics);
+			box = new Sprite();
+			// draw a invisible point at (0, 0) to make box count size for (0, 0) point.
+			box.graphics.beginFill(0, 0);
+			box.graphics.drawRect(0, 0, 1, 1);
+			box.graphics.endFill();
+			//
+			box.mask = masker;
+			this.addAll(box, masker);
+			//
+			box.addEventListener(MouseEvent.MOUSE_DOWN, pressContainerHandler);
 		}
 		
 		override protected function updateView():void
@@ -81,23 +108,6 @@ package org.finalbug.ui.control
 				//
 				resetScroll();
 			}
-		}
-		
-		private function createChildren():void
-		{
-			masker = new Sprite();
-			masker.mouseChildren = masker.mouseChildren = false;
-			DrawUtil.drawBlock(masker.graphics);
-			box = new Sprite();
-			// draw a invisible point at (0, 0) to make box count size for (0, 0) point.
-			box.graphics.beginFill(0, 0);
-			box.graphics.drawRect(0, 0, 1, 1);
-			box.graphics.endFill();
-			//
-			box.mask = masker;
-			this.addAll(box, masker);
-			//
-			box.addEventListener(MouseEvent.MOUSE_DOWN, pressContainerHandler);
 		}
 		
 		private function resetScroll():void
@@ -126,9 +136,9 @@ package org.finalbug.ui.control
 			}
 		}
 		
-		//***************************************
+		//#######################################
 		// HANDLER
-		//***************************************
+		//#######################################
 		
 		/**
 		 * invoked when change x coordinate scroll.

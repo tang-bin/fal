@@ -1,19 +1,18 @@
-/******************************************************
- * ___________.__              .__ ___.                 
- * \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____  
- *  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\ 
- *  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
- *  \__ |     |__|___|  (____  /____/___  /____/\___  / 
- *     \/             \/     \/         \/     /_____/  
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/ 
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.style
 {
 	import flash.display.DisplayObject;
 	
 	import org.finalbug.data.DataModel;
-	import org.finalbug.ui.style.Style;
 	
 	/**
 	 * css.styles.Style
@@ -23,32 +22,87 @@ package org.finalbug.ui.style
 	 */	
 	public class Style extends DataModel
 	{
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const NUM_REG:RegExp = /^(-?\d*\.?\d*)$/;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const PERCENT_REG:RegExp = /^(-?\d*\.?\d*)%$/;
 		
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const defaultFont:String = "Verdana";
 		
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const SMALLEST_TEXT_SIZE:Number = 4;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const SMALLER_TEXT_SIZE:Number = 8;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const SMALL_TEXT_SIZE:Number = 10
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const NORMAL_TEXT_SIZE:Number = 12;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const LARGE_TEXT_SIZE:Number = 14;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const LARGER_TEXT_SIZE:Number = 16;
+		/**
+		 * 
+		 * @default 
+		 */
 		public static const LARGEST_TEXT_SIZE:Number = 20;
 		
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var filters:Array = new Array();
 		
 		private var _owner:DisplayObject;
 		
+		/**
+		 * 
+		 */
 		public function Style()
 		{
 			super();
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get owner():DisplayObject
 		{
 			return _owner;
 		}
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set owner(value:DisplayObject):void
 		{
 			if(_owner != value)
@@ -57,11 +111,22 @@ package org.finalbug.ui.style
 			}
 		}
 		
+		/**
+		 * 
+		 * @param str
+		 * @return 
+		 */
 		public function validLayoutValue(str:String):Boolean
 		{
 			return (Style.NUM_REG.exec(str) || Style.PERCENT_REG.exec(str)) && str != "";
 		}
 		
+		/**
+		 * 
+		 * @param valueStr
+		 * @param parentValue
+		 * @return 
+		 */
 		public function getLayoutValue(valueStr:String, parentValue:Number = 0):Number
 		{
 			if(Style.NUM_REG.exec(valueStr))

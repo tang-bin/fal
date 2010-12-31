@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.ui.glazes
 {
 	import flash.display.GradientType;
@@ -20,6 +26,12 @@ package org.finalbug.ui.glazes
 	 */	
 	public class Flat extends Glaze
 	{
+		/**
+		 * 
+		 * @param width
+		 * @param height
+		 * @param style
+		 */
 		public function Flat(width:Number = 10, height:Number = 10, style:FillStyle = null)
 		{
 			super();
@@ -29,6 +41,9 @@ package org.finalbug.ui.glazes
 			updateView();
 		}
 		
+		/**
+		 * 
+		 */
 		public function refresh():void
 		{
 			this.updateView();
