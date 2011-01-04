@@ -1,10 +1,10 @@
 //##########################################################
-// ___________.__              .__ ___.
-// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__ |     |__|___|  (____  /____/___  /____/\___  /
-//     \/             \/     \/         \/     /_____/
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
 //##########################################################
@@ -15,15 +15,15 @@ package org.finalbug.data
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.control.Icon;
 	import org.finalbug.data.DataModel;
-	import org.finalbug.data.Icons;
+	import org.finalbug.data.IconModel;
 	
 	/**
-	 * Icons
+	 * IconModel defines default icons used in this library.
 	 * 
 	 * @author Tang Bin
-	 * @since 2010
+	 * @since 2010.12
 	 */	
-	public class Icons extends DataModel
+	public class IconModel extends DataModel
 	{
 		//#######################################
 		// OVERRIDE
@@ -33,19 +33,19 @@ package org.finalbug.data
 		// SINGTON
 		//#######################################
 		
-		private static var icons:Icons;
+		private static var icons:IconModel;
 		private static var instanceable:Boolean = false;
 		
 		/**
 		 * 
 		 * @return 
 		 */
-		public static function get instance():Icons
+		public static function get instance():IconModel
 		{
 			if(icons == null)
 			{
 				instanceable = true;
-				icons = new Icons();
+				icons = new IconModel();
 				instanceable = false;
 			}
 			return icons;
@@ -55,25 +55,41 @@ package org.finalbug.data
 		// DEFINE
 		//#######################################
 		
-		[Embed(source="/resources/icons/folder_128.png")] private var folder128:Class;
-		[Embed(source="/resources/icons/folder_48.png")] private var folder48:Class;
-		[Embed(source="/resources/icons/folder_32.png")] private var folder32:Class;
-		[Embed(source="/resources/icons/folder_16.png")] private var folder16:Class;
+		[Embed(source="/resources/icons/folder_128.png")]
+		private var folder128:Class;
+		[Embed(source="/resources/icons/folder_48.png")]
+		private var folder48:Class;
+		[Embed(source="/resources/icons/folder_32.png")]
+		private var folder32:Class;
+		[Embed(source="/resources/icons/folder_16.png")]
+		private var folder16:Class;
 		
-		[Embed(source="/resources/icons/doc_128.png")] private var doc128:Class;
-		[Embed(source="/resources/icons/doc_48.png")] private var doc48:Class;
-		[Embed(source="/resources/icons/doc_32.png")] private var doc32:Class;
-		[Embed(source="/resources/icons/doc_16.png")] private var doc16:Class;
+		[Embed(source="/resources/icons/doc_128.png")]
+		private var doc128:Class;
+		[Embed(source="/resources/icons/doc_48.png")]
+		private var doc48:Class;
+		[Embed(source="/resources/icons/doc_32.png")]
+		private var doc32:Class;
+		[Embed(source="/resources/icons/doc_16.png")]
+		private var doc16:Class;
 		
-		[Embed(source="/resources/icons/img_128.png")] private var img128:Class;
-		[Embed(source="/resources/icons/img_48.png")] private var img48:Class;
-		[Embed(source="/resources/icons/img_32.png")] private var img32:Class;
-		[Embed(source="/resources/icons/img_16.png")] private var img16:Class;
+		[Embed(source="/resources/icons/img_128.png")]
+		private var img128:Class;
+		[Embed(source="/resources/icons/img_48.png")]
+		private var img48:Class;
+		[Embed(source="/resources/icons/img_32.png")]
+		private var img32:Class;
+		[Embed(source="/resources/icons/img_16.png")]
+		private var img16:Class;
 		
-		[Embed(source="/resources/icons/video_128.png")] private var video128:Class;
-		[Embed(source="/resources/icons/video_48.png")] private var video48:Class;
-		[Embed(source="/resources/icons/video_32.png")] private var video32:Class;
-		[Embed(source="/resources/icons/video_16.png")] private var video16:Class;
+		[Embed(source="/resources/icons/video_128.png")]
+		private var video128:Class;
+		[Embed(source="/resources/icons/video_48.png")]
+		private var video48:Class;
+		[Embed(source="/resources/icons/video_32.png")]
+		private var video32:Class;
+		[Embed(source="/resources/icons/video_16.png")]
+		private var video16:Class;
 		
 		private var _folderIcon:Icon;
 		private var _docIcon:Icon;
@@ -195,10 +211,9 @@ package org.finalbug.data
 		//#######################################
 		
 		/**
-		 * 
 		 * @throws DataError
 		 */
-		public function Icons()
+		public function IconModel()
 		{
 			super();
 			if(!instanceable)

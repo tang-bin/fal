@@ -1,10 +1,10 @@
 //##########################################################
-// ___________.__              .__ ___.
-// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__ |     |__|___|  (____  /____/___  /____/\___  /
-//     \/             \/     \/         \/     /_____/
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
 //##########################################################
@@ -423,7 +423,7 @@ package org.finalbug.ui.control
 		
 		private function holdBtnHandler(e:TimerEvent):void
 		{
-			var ee:UIMouseEvent = new UIMouseEvent(UIMouseEvent.FE_CLICK);
+			var ee:UIMouseEvent = new UIMouseEvent(UIMouseEvent.MOUSE_CLICK);
 			switch(currentMoveType)
 			{
 				case "up":

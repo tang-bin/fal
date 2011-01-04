@@ -25,8 +25,7 @@ package org.finalbug.events
 		 */		
 		public static const CHANGE_DATA:String = "ChangeData";
 		/**
-		 * 
-		 * @default 
+		 * @eventType initEnd
 		 */
 		public static const INIT_END:String = "initEnd";
 		
@@ -59,32 +58,32 @@ package org.finalbug.events
 		// for tree model
 		/**
 		 * 
-		 * @default 
+		 * @eventType treeAdd 
 		 */
 		public static const TREE_ADD:String = "treeAdd";
 		/**
 		 * 
-		 * @default 
+		 * @eventType treeRemove
 		 */
 		public static const TREE_REMOVE:String = "treeRemove";
 		/**
 		 * 
-		 * @default 
+		 * @eventType treeMove
 		 */
 		public static const TREE_MOVE:String = "treeMove";
 		/**
 		 * 
-		 * @default 
+		 * @eventType treeChangeParent
 		 */
 		public static const TREE_CHANGE_PARENT:String = "treeChangeParent";
 		/**
 		 * 
-		 * @default 
+		 * @eventType treeClean
 		 */
 		public static const TREE_CLEAN:String = "treeClean";
 		/**
 		 * 
-		 * @default 
+		 * @eventType treeChange
 		 */
 		public static const TREE_CHANGE:String = "treeChange";
 		

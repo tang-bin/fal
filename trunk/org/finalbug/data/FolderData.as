@@ -12,18 +12,18 @@ package org.finalbug.data
 {
 	import flash.utils.Dictionary;
 	
+	import org.finalbug.data.DataModel;
+	import org.finalbug.data.FileData;
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.glazes.Image;
-	import org.finalbug.data.DataModel;
-	import org.finalbug.data.DirectoryFileData;
 	
 	/**
-	 * DirectoryData
+	 * FolderData defines the data for one folder.
 	 * 
 	 * @author Tang Bin
-	 * @since 2010
+	 * @since 2010.12
 	 */	
-	public class DirectoryData extends DataModel
+	public class FolderData extends DataModel
 	{
 		//#######################################
 		// OVERRIDE
@@ -33,9 +33,9 @@ package org.finalbug.data
 		// DEFINE
 		//#######################################
 		
-		private var _folderName:String = "";
-		private var _folderPath:String = "";
-		private var _folderIcon:Image;
+		private var _name:String = "";
+		private var _path:String = "";
+		private var _icon:Image;
 		
 		private var _dirFirst:Boolean = true;
 		private var _showHide:Boolean = false;
@@ -45,11 +45,7 @@ package org.finalbug.data
 		private var files:Dictionary = new Dictionary();
 		private var fileNames:Array = new Array();
 		
-		/**
-		 * 
-		 * @default 
-		 */
-		public var currentSelected:Dictionary = new Dictionary();
+		private var _currentSelected:Dictionary = new Dictionary();
 		
 		//#######################################
 		// GETTER and SETTER
@@ -57,17 +53,17 @@ package org.finalbug.data
 		
 		/**
 		 * 
-		 * @return 
+		 * @return folder's name
 		 */
-		public function get folderName():String
+		public function get name():String
 		{
-			return _folderName;
+			return _name;
 		}
 		/**
 		 * 
 		 * @param value
 		 */
-		public function set folderName(value:String):void
+		public function set name(value:String):void
 		{
 			// TODO
 		}
@@ -76,15 +72,15 @@ package org.finalbug.data
 		 * 
 		 * @return 
 		 */
-		public function get folderPath():String
+		public function get path():String
 		{
-			return _folderPath;
+			return _path;
 		}
 		/**
 		 * 
 		 * @param value
 		 */
-		public function set folderPath(value:String):void
+		public function set path(value:String):void
 		{
 			// TODO
 		}
@@ -92,26 +88,44 @@ package org.finalbug.data
 		 * 
 		 * @return 
 		 */
-		public function get folderIcon():Image
+		public function get icon():Image
 		{
-			return _folderIcon;
+			return _icon;
 		}
 		/**
 		 * 
 		 * @param value
 		 */
-		public function set folderIcon(value:Image):void
+		public function set icon(value:Image):void
 		{
 			// TODO
 		}
 		
 		/**
+		 * Number of files in folder.
 		 * 
 		 * @return 
 		 */
-		public function length():uint
+		public function get numFiles():uint
 		{
 			return fileNames.length;
+		}
+		
+		/**
+		 * @return Selected files in folder.
+		 */
+		public function get currentSelected():Dictionary
+		{
+			return _currentSelected;
+		}
+		
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set currentSelected(value:Dictionary):void
+		{
+			// TODO:
 		}
 		
 		//#######################################
@@ -119,9 +133,9 @@ package org.finalbug.data
 		//#######################################
 		
 		/**
-		 * 
+		 * Create an new FolderData.
 		 */
-		public function DirectoryData()
+		public function FolderData()
 		{
 			super();
 		}
@@ -131,11 +145,12 @@ package org.finalbug.data
 		//#######################################
 		
 		/**
+		 * Add a file into folder.(data operate)
 		 * 
-		 * @param file
-		 * @throws DataError
+		 * @param file Data of added file.
+		 * @throws DataError Throw DataError.Data_EXIST error if file exist.
 		 */
-		public function addFile(file:DirectoryFileData):void
+		public function addFile(file:FileData):void
 		{
 			var fileName:String = file.name;
 			if(files[fileName] != null)
@@ -152,10 +167,10 @@ package org.finalbug.data
 		 * @param file
 		 * @throws DataError
 		 */
-		public function removeFile(file:DirectoryFileData):void
+		public function removeFile(file:FileData):void
 		{
 			var fileName:String = file.name;
-			var thisFile:DirectoryFileData = files[fileName] as DirectoryFileData;
+			var thisFile:FileData = files[fileName] as FileData;
 			if(thisFile != null && thisFile == file)
 			{
 				files[fileName] = null;
@@ -169,7 +184,7 @@ package org.finalbug.data
 		}
 		
 		/**
-		 * 
+		 * Remove all files in folder.(data operate)
 		 */
 		public function clear():void
 		{
@@ -179,37 +194,39 @@ package org.finalbug.data
 		}
 		
 		/**
+		 * Check if one file is include in folder.
 		 * 
 		 * @param file
 		 * @return 
 		 */
-		public function hasFile(file:DirectoryFileData):Boolean
+		public function hasFile(file:FileData):Boolean
 		{
-			var thisFile:DirectoryFileData = files[file.name] as DirectoryFileData;
+			var thisFile:FileData = files[file.name] as FileData;
 			return thisFile != null && thisFile == file;
 		}
 		
 		/**
+		 * Get file data by file's name.
 		 * 
-		 * @param name
-		 * @return 
+		 * @param name File's name
+		 * @return File data. If file not exist, return null.
 		 */
-		public function getFileByName(name:String):DirectoryFileData
+		public function getFileByName(name:String):FileData
 		{
-			return files[name] as DirectoryFileData;;
+			return files[name] as FileData;;
 		}
 		
 		/**
-		 * function(file:DirectoryFileData, index:uint, length:uint):void
+		 * Looping run the function for each files in folder.
 		 * 
-		 * @param func
+		 * @param func Function(file:DirectoryFileData, index:uint, length:uint):void
 		 */		
 		public function forEachFile(func:Function):void
 		{
 			var len:uint = fileNames.length;
 			for(var i:uint = 0 ; i < len ; i++)
 			{
-				func.call(this, files[fileNames[i]] as DirectoryFileData, i, len);
+				func.call(this, files[fileNames[i]] as FileData, i, len);
 			}
 		}
 		

@@ -1,10 +1,10 @@
 //##########################################################
-// ___________.__              .__ ___.
-// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__ |     |__|___|  (____  /____/___  /____/\___  /
-//     \/             \/     \/         \/     /_____/
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
 //##########################################################
@@ -25,19 +25,19 @@ package org.finalbug.events
 		/**
 		* Trigger handler when moving object.
 		 * 
-		 * @eventType moving
+		 * @eventType motionRunning
 		*/		
 		public static const MOTION_RUNNING:String = "motionRunning";
 		/**
 		* Trigger handler when a move is done.
 		 * 
-		 * @eventType stopMove
+		 * @eventType motionStop
 		*/		
 		public static const MOTION_STOP:String = "motionStop";
 		/**
 		* Trigger handler when start a move.
 		 * 
-		 * @eventType startMove
+		 * @eventType motionStart
 		*/		
 		public static const MOTION_START:String = "motionStart";
 		

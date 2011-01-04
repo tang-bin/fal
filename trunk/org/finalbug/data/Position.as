@@ -1,17 +1,17 @@
 ﻿//##########################################################
-// ___________.__              .__ ___.
-// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__ |     |__|___|  (____  /____/___  /____/\___  /
-//     \/             \/     \/         \/     /_____/
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
 //##########################################################
 package org.finalbug.data 
 {
 	/**
-	 * Class Position define .
+	 * Position defines position values.
 	 * 
 	 * @author Tang Bin
 	 * @since old version
@@ -20,90 +20,90 @@ package org.finalbug.data
 	{
 		/**
 		 * 
-		 * @default 
+		 * @default left
 		 */
 		public static const LEFT:String = "left";
 		/**
 		 * 
-		 * @default 
+		 * @default right
 		 */
 		public static const RIGHT:String = "right";
 		/**
 		 * 
-		 * @default 
+		 * @default top
 		 */
 		public static const TOP:String = "top";
 		/**
 		 * 
-		 * @default 
+		 * @default bottom
 		 */
 		public static const BOTTOM:String = "bottom";
 		/**
 		 * 
-		 * @default 
+		 * @default up
 		 */
 		public static const UP:String = "up";
 		/**
 		 * 
-		 * @default 
+		 * @default down
 		 */
 		public static const DOWN:String = "down";
 		
 		/**
 		 * 
-		 * @default 
+		 * @default topLeft
 		 */
 		public static const TOP_LEFT:String = "topLeft";
 		/**
 		 * 
-		 * @default 
+		 * @default topRight
 		 */
 		public static const TOP_RIGHT:String = "topRight";
 		/**
 		 * 
-		 * @default 
+		 * @default bottomLeft
 		 */
 		public static const BOTTOM_LEFT:String = "bottomLeft";
 		/**
 		 * 
-		 * @default 
+		 * @default bottomRight
 		 */
 		public static const BOTTOM_RIGHT:String = "bottomRight";
 		
 		/**
 		 * 
-		 * @default 
+		 * @default topCenter
 		 */
 		public static const TOP_CENTER:String = "topCenter";
 		/**
 		 * 
-		 * @default 
+		 * @default leftCenter
 		 */
 		public static const LEFT_CENTER:String = "leftCenter";
 		/**
 		 * 
-		 * @default 
+		 * @default bottomCenter
 		 */
 		public static const BOTTOM_CENTER:String = "bottomCenter";
 		/**
 		 * 
-		 * @default 
+		 * @default rightCenter
 		 */
 		public static const RIGHT_CENTER:String = "rightCenter";
 		/**
 		 * 
-		 * @default 
+		 * @default center
 		 */
 		public static const CENTER:String = "center";
 		
 		/**
 		 * 
-		 * @default 
+		 * @default horizontal
 		 */
 		public static const HORIZONTAL:String = "horizontal";
 		/**
 		 * 
-		 * @default 
+		 * @default vertical
 		 */
 		public static const VERTICAL:String = "vertical";
 	}

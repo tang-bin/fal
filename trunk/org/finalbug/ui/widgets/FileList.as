@@ -1,10 +1,10 @@
 //##########################################################
-// ___________.__              .__ ___.
-// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__ |     |__|___|  (____  /____/___  /____/\___  /
-//     \/             \/     \/         \/     /_____/
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
 //##########################################################
@@ -13,8 +13,8 @@ package org.finalbug.ui.widgets
 	import flash.events.MouseEvent;
 	import flash.utils.Dictionary;
 	
-	import org.finalbug.data.DirectoryData;
-	import org.finalbug.data.DirectoryFileData;
+	import org.finalbug.data.FolderData;
+	import org.finalbug.data.FileData;
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.control.ScrollPanel;
 	
@@ -72,7 +72,7 @@ package org.finalbug.ui.widgets
 		 * 
 		 * @default 
 		 */
-		protected var dd:DirectoryData;
+		protected var dd:FolderData;
 		/**
 		 * 
 		 * @default 
@@ -93,11 +93,11 @@ package org.finalbug.ui.widgets
 		 * 
 		 * @param data
 		 */
-		public function FileList(data:DirectoryData = null)
+		public function FileList(data:FolderData = null)
 		{
 			super(false, true);
 			this.dragable = false;
-			if(data == null) data = new DirectoryData();
+			if(data == null) data = new FolderData();
 			showDirectory(data);
 		}
 		
@@ -109,7 +109,7 @@ package org.finalbug.ui.widgets
 		 * 
 		 * @param data
 		 */
-		public function showDirectory(data:DirectoryData):void
+		public function showDirectory(data:FolderData):void
 		{
 			dd = data;
 			this.updateView();
@@ -125,7 +125,7 @@ package org.finalbug.ui.widgets
 		 * @param index
 		 * @param length
 		 */
-		protected function createAndShowFiles(file:DirectoryFileData, index:uint, length:uint):void
+		protected function createAndShowFiles(file:FileData, index:uint, length:uint):void
 		{
 			var itemData:ItemData = items[file.name] as ItemData;
 			if(itemData == null)
@@ -164,7 +164,7 @@ package org.finalbug.ui.widgets
 		// PRIVATE
 		//#######################################
 		
-		private function doForEachItem(file:DirectoryFileData, index:uint, length:uint):void
+		private function doForEachItem(file:FileData, index:uint, length:uint):void
 		{
 			var item:FileListItem = items[file.name].item as FileListItem;
 			if(item == null)
@@ -183,7 +183,7 @@ package org.finalbug.ui.widgets
 		
 		private function clickItemHandler(e:MouseEvent):void
 		{
-			var data:DirectoryFileData = (e.currentTarget as FileListItem).data;
+			var data:FileData = (e.currentTarget as FileListItem).data;
 			if(e.ctrlKey)
 			{
 				// select more
@@ -202,7 +202,7 @@ package org.finalbug.ui.widgets
 			else
 			{
 				// select one
-				for each(var oldData:DirectoryFileData in dd.currentSelected)
+				for each(var oldData:FileData in dd.currentSelected)
 				{
 					this.selectedItem(oldData, false);
 				}
@@ -212,7 +212,7 @@ package org.finalbug.ui.widgets
 			}
 		}
 		
-		private function selectedItem(data:DirectoryFileData, selected:Boolean):void
+		private function selectedItem(data:FileData, selected:Boolean):void
 		{
 			var item:FileListItem = items[data.name].item as FileListItem;
 			if(item != null)

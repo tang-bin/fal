@@ -1,24 +1,26 @@
 //##########################################################
-// ___________.__              .__ ___.
-// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__ |     |__|___|  (____  /____/___  /____/\___  /
-//     \/             \/     \/         \/     /_____/
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
 //##########################################################
 package org.finalbug.data
 {
+	import flash.utils.Dictionary;
+	
 	import org.finalbug.errors.DataError;
 	
 	/**
-	 * FileType
+	 * FileTypeModel use singleton model, defines all file types used in this library.
 	 * 
 	 * @author Tang Bin
-	 * @since 2010
+	 * @since 2010.12
 	 */	
-	public class FileTypes extends DataModel
+	public class FileTypeModel extends DataModel
 	{
 		//#######################################
 		// OVERRIDE
@@ -28,19 +30,19 @@ package org.finalbug.data
 		// SINGLETON
 		//#######################################
 		
-		private static var ft:FileTypes;
+		private static var ft:FileTypeModel;
 		private static var instanceable:Boolean = false;
 		
 		/**
 		 * 
 		 * @return 
 		 */
-		public static function get instance():FileTypes
+		public static function get instance():FileTypeModel
 		{
 			if(ft == null)
 			{
 				instanceable = true;
-				ft = new FileTypes();
+				ft = new FileTypeModel();
 				instanceable = false;
 			}
 			return ft;
@@ -50,7 +52,7 @@ package org.finalbug.data
 		// DEFINE
 		//#######################################
 		
-		private var list:Object = new Object();
+		private var list:Dictionary = new Dictionary();
 		
 		//#######################################
 		// GETTER and SETTER
@@ -64,7 +66,7 @@ package org.finalbug.data
 		 * 
 		 * @throws DataError
 		 */
-		public function FileTypes()
+		public function FileTypeModel()
 		{
 			super();
 			if(!instanceable)
@@ -148,14 +150,14 @@ package org.finalbug.data
 		
 		private function registerDefaultTypes():void
 		{
-			this.registerType(new FileType("txt", "", Icons.instance.docIcon));
-			this.registerType(new FileType("doc", "", Icons.instance.docIcon));
-			this.registerType(new FileType("png", "", Icons.instance.imgIcon));
-			this.registerType(new FileType("jpg", "", Icons.instance.imgIcon));
-			this.registerType(new FileType("gif", "", Icons.instance.imgIcon));
-			this.registerType(new FileType("mov", "", Icons.instance.videoIcon));
-			this.registerType(new FileType("avi", "", Icons.instance.videoIcon));
-			this.registerType(new FileType("mpg", "", Icons.instance.videoIcon));
+			this.registerType(new FileType("txt", "", IconModel.instance.docIcon));
+			this.registerType(new FileType("doc", "", IconModel.instance.docIcon));
+			this.registerType(new FileType("png", "", IconModel.instance.imgIcon));
+			this.registerType(new FileType("jpg", "", IconModel.instance.imgIcon));
+			this.registerType(new FileType("gif", "", IconModel.instance.imgIcon));
+			this.registerType(new FileType("mov", "", IconModel.instance.videoIcon));
+			this.registerType(new FileType("avi", "", IconModel.instance.videoIcon));
+			this.registerType(new FileType("mpg", "", IconModel.instance.videoIcon));
 		}
 		
 		//#######################################

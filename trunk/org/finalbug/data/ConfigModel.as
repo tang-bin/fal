@@ -20,19 +20,66 @@ package org.finalbug.data
 	import org.finalbug.events.LoadEvent;
 	import org.finalbug.utils.StringUtil;
 	
+	/**
+	 * Dispatched when load config file success.
+	 * 
+	 * @eventType org.finalbug.event.LoadEvent.LOAD_SUCCESS
+	 */	
+	[Event(name="loadSuccess", type="org.finalbug.event.LoadEvent")]
 	
 	/**
-	 * ConfigModel
-	 * Config fomat
+	 * Dispatched when load config file failed.
 	 * 
-	 * #comment
-	 * attrName=attrValue # will be saved in ConfigModel
-	 * loadImage=imageName:imageURL # will be saved in BitmapPool
-	 * loadRes=resName:resURL # use Loader to load, saved in ConfigModel's res
-	 * loadTxt=txtName:txtURL # use URLLoader to load, saved in ConfigModel's txt
+	 * @eventType org.finalbug.event.LoadEvent.LOAD_FAILED
+	 */	
+	[Event(name="loadFailed", type="org.finalbug.event.LoadEvent")]
+	
+	/**
+	 * Dispatched when loading config file.
+	 * 
+	 * @eventType org.finalbug.event.LoadEvent.LOADING
+	 */	
+	[Event(name="loading", type="org.finalbug.event.LoadEvent")]
+	
+	/**
+	 * <p>ConfigModel (as singleton) is used to load and keep config attributes.
+	 * Config file should be a text file, each line is one attribute.
+	 * The line format should like this:</p>
+	 * 
+	 * <table>
+	 * <tr>
+	 * <td>#comment</td>
+	 * <td>line start with # is a comment line</td>
+	 * </tr>
+	 * <tr>
+	 * <td><em>attrName</em>=<em>attrValue</em></td>
+	 * <td>will be saved in ConfigModel as name is attrName and value is attrValue</td>
+	 * </tr>
+	 * <tr>
+	 * <td><strong>include</strong>=<em>other config file URL</em></td>
+	 * <td>include other config files which will be loaded too.</td>
+	 * </tr>
+	 * <tr>
+	 * <td><strong>loadImage</strong>=<em>imageName:imageURL</em></td>
+	 * <td>will be loaded and saved in BitmapPool, 
+	 * imageName is the name of the bitmap object.
+	 * To load images automatically, please use AppInit object.</td>
+	 * </tr>
+	 * <tr>
+	 * <td><strong>loadRes</strong>=<em>resName:resURL</em></td>
+	 * <td>use Loader to load, saved in ConfigModel's res dictionary.
+	 * To load res files automatically, please use AppInit object.</td>
+	 * </tr>
+	 * <tr>
+	 * <td><strong>loadTxt</strong>=<em>txtName:txtURL</em></td>
+	 * <td>Use URLLoader to load, saved in ConfigModel's txt dictionary.
+	 * To load text files automatically, please use AppInit object.</td>
+	 * </tr></table>
 	 * 
 	 * @author Tang Bin
-	 * @since 2010
+	 * @since 2010.12
+	 * @see org.finalbug.net.BitmapPool
+	 * @see org.finalbug.data.AppInit
 	 */	
 	public class ConfigModel extends DataModel
 	{

@@ -161,10 +161,9 @@ package org.finalbug.net
 		 * @param bitmapName Name of bitmap.(not the image file)
 		 * @param bitmapURL Image file URL.
 		 * 
-		 * @throw errors.NameError Throw NAME_EXIST error when the bitmap name already exist.
-		 * @throw errors.NameError Throw NAME_INVALID_VAR_NAME when the bitmap name is not level 1 string.
+		 * @throws DataError Throw NAME_EXIST error when the bitmap name already exist.
 		 * 
-		 * @see net.BitmapLoader
+		 * @see org.finalbug.net.BitmapLoader
 		 */		
 		public function addBitmap(bitmapName:String, bitmapURL:String):BitmapLoader
 		{
@@ -178,7 +177,7 @@ package org.finalbug.net
 		
 		/**
 		 * Change a exist bitmap in this container.
-		 * NOTICE, this change will not take effect on the bitmap datas that is cloned before change.
+		 * NOTICE, this change will not take effect on the bitmap data that is cloned before change.
 		 * 
 		 * @param bitmapName Name of bitmap which need be changed.
 		 * @param bitmapURL New image file URL.
@@ -245,8 +244,8 @@ package org.finalbug.net
 			var totalTime:Number = timeout * 1000;
 			var cycCount:Number = Math.floor(totalTime / checkTimeSpace);
 			checkTimer = new Timer(checkTimeSpace, cycCount);
-			checkTimer.addEventListener(TimerEvent.TIMER, onCheck);
-			checkTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onTimeout);
+			checkTimer.addEventListener(TimerEvent.TIMER, checkHandler);
+			checkTimer.addEventListener(TimerEvent.TIMER_COMPLETE, timeoutHandler);
 			checkTimer.start();
 			//
 			for each(var loader:BitmapLoader in bitmapList)
@@ -277,7 +276,7 @@ package org.finalbug.net
 		// PRIVATE
 		//#######################################
 		
-		private function onCheck(e:TimerEvent):void
+		private function checkHandler(e:TimerEvent):void
 		{
 			for each(var v:* in bitmapList)
 			{
@@ -292,7 +291,7 @@ package org.finalbug.net
 			this.dispatchEvent(newEvent);
 		}
 		
-		private function onTimeout(e:TimerEvent):void
+		private function timeoutHandler(e:TimerEvent):void
 		{
 			checkTimer.stop();
 			checkTimer = null;

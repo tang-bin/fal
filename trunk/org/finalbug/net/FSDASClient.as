@@ -1,10 +1,10 @@
 //##########################################################
-// ___________.__              .__ ___.
-// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__ |     |__|___|  (____  /____/___  /____/\___  /
-//     \/             \/     \/         \/     /_____/
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
 //##########################################################
@@ -40,7 +40,7 @@ package org.finalbug.net
 		// DEFINE
 		//#######################################
 		
-		private var datas:Object = new Object();
+		private var data:Object = new Object();
 		private var sk:Socket;
 		private var _host:String;
 		private var _port:uint;
@@ -108,7 +108,7 @@ package org.finalbug.net
 		 */
 		public function listenData(name:String):SharedData
 		{
-			if(datas[name] != null)
+			if(data[name] != null)
 			{
 				throw new FSDASClientError(FSDASClientError.ALREADY_LISTEN);
 			}
@@ -116,7 +116,7 @@ package org.finalbug.net
 			{
 				var sd:SharedData = new SharedData();
 				// TODO: send request
-				datas[name] = sd;
+				data[name] = sd;
 				sd.addEventListener(DataEvent.CHANGE_DATA, dataChangedHandler, false, 0, false, 0);
 				return sd;
 			}

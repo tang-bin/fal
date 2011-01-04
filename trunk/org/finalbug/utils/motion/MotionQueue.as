@@ -1,17 +1,17 @@
 //##########################################################
-// ___________.__              .__ ___.
-// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__ |     |__|___|  (____  /____/___  /____/\___  /
-//     \/             \/     \/         \/     /_____/
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
 //##########################################################
 package org.finalbug.utils.motion
 {
 	import org.finalbug.data.DataModel;
-	import org.finalbug.data.SetType;
+	import org.finalbug.data.SettingType;
 	import org.finalbug.errors.DataError;
 	import org.finalbug.events.MotionEvent;
 	import org.finalbug.utils.DataUtil;
@@ -109,14 +109,14 @@ package org.finalbug.utils.motion
 		 */
 		public function start(type:String = "orderly"):void
 		{
-			if(!DataUtil.included(type, SetType.ORDERLY, SetType.CONCURRENT))
+			if(!DataUtil.included(type, SettingType.ORDERLY, SettingType.CONCURRENT))
 			{
 				throw new DataError(DataError.TYPE_ERROR);
 			}
 			currentIndex = 0;
 			_running = true;
 			_type = type;
-			if(type == SetType.ORDERLY)
+			if(type == SettingType.ORDERLY)
 			{
 				startMotion();
 			}
@@ -133,7 +133,7 @@ package org.finalbug.utils.motion
 		{
 			if(_running)
 			{
-				if(_type == SetType.ORDERLY)
+				if(_type == SettingType.ORDERLY)
 				{
 					var motion:Motion = list[currentIndex] as Motion;
 					if(motion != null) motion.stop();
@@ -204,7 +204,7 @@ package org.finalbug.utils.motion
 		
 		private function motionStopHandler(e:MotionEvent):void
 		{
-			if(_type == SetType.ORDERLY)
+			if(_type == SettingType.ORDERLY)
 			{
 				e.motion.removeEventListener(MotionEvent.MOTION_STOP, motionStopHandler);
 				nextMotion();

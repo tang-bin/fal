@@ -13,23 +13,27 @@ package org.finalbug.data
 	import org.finalbug.data.DataModel;
 	
 	/**
-	 * DirectoryFileData
+	 * FileData defines the data for on file.
 	 * 
 	 * @author Tang Bin
-	 * @since 2010
+	 * @since 2010.12
 	 */	
-	public class DirectoryFileData extends DataModel
+	public class FileData extends DataModel
 	{
 		//#######################################
 		// OVERRIDE
 		//#######################################
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		override public function toString():String
 		{
 			var str:String = "[Dir File :: " +
 				"UID:" + this._uid +
 				", Name:" + this._name +
-				", Ext:" + this._ext + 
+				", Ext:" + this.ext + 
 				"]";
 			return str;
 		}
@@ -45,7 +49,7 @@ package org.finalbug.data
 		private var _createDate:Date;
 		private var _lastModifyDate:Date;
 		private var _fileType:String = "";
-		private var _ext:String = "txt";
+		private var _type:FileType;
 		
 		//#######################################
 		// GETTER and SETTER
@@ -53,26 +57,16 @@ package org.finalbug.data
 		
 		/**
 		 * 
-		 * @return 
+		 * @return File's extension.
 		 */
 		public function get ext():String
 		{
-			return this._ext;
-		}
-		/**
-		 * 
-		 * @param value
-		 */
-		public function set ext(value:String):void
-		{
-			var oldValue:String = this._ext;
-			this._ext = value;
-			this.dispatchChangeData("ext", oldValue, value);
+			return this._type.ext;
 		}
 		
 		/**
 		 * 
-		 * @return 
+		 * @return File's name
 		 */
 		public function get name():String
 		{
@@ -94,11 +88,14 @@ package org.finalbug.data
 		//#######################################
 		
 		/**
+		 * Create an new FileData.
 		 * 
-		 */
-		public function DirectoryFileData()
+		 * @param type File's type.
+		 */		
+		public function FileData(type:FileType)
 		{
 			super();
+			this._type = type;
 		}
 		
 		//#######################################

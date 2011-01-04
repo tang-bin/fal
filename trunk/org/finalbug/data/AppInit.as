@@ -21,10 +21,42 @@ package org.finalbug.data
 	import org.finalbug.net.BitmapPool;
 	
 	/**
-	 * AppInit
+	 * Dispatched when loading status is changed.
+	 * Current loading status is contains in DataEvent.status.
+	 * 
+	 * @eventType org.finalbug.events.DataEvent.CHANGE_DATA
+	 */	
+	[Event(name="changeData", type="org.finalbug.event.DataEvent")]
+	
+	/**
+	 * Dispatched when init success.
+	 * After initialize success, AppInit object not longer useful, you can remove
+	 * and delete it. All attributes and loaded objects are in the ConfigModel and 
+	 * BitmapPool.
+	 * 
+	 * @eventType org.finalbug.event.DataEvent.INIT_END 
+	 */	
+	[Event(name="initEnd", type="org.finalbug.event.DataEvent")]
+	
+	/**
+	 * <p>AppInit is used to initialize an appliction, such as load config files and 
+	 * images, swf files and text files. 
+	 * To use this class, you must define at least one config files.</p>
+	 * 
+	 * <p>AppInit does following items in order:</p>
+	 * <ul>
+	 * <li>1, load config files and save attributes into <code>ConfigModel</code> (as singleton). 
+	 * if config files include other config files, load them too.</li>
+	 * <li>2, If config contains images, load all images and save into <code>BitmapPool</code> (as singleton).</li>
+	 * <li>3, If config contains swf files, load them all and save into <code>ConfigModel</code>'s res object.</li>
+	 * <li>4, If config contains text files, load them all and save into <code>ConfigModel</code>'s txt object.</li>
+	 * </ul>
+	 * <p>Please check <code>ConfigModel</code> for the format of config file.</p>
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.12
+	 * @see org.finalbug.data.ConfigModel
+	 * @see org.finalbug.net.BitmapPool
 	 */	
 	public class AppInit extends DataModel
 	{
@@ -55,7 +87,7 @@ package org.finalbug.data
 		//#######################################
 		
 		/**
-		 * 
+		 * Create an new AppInit object.
 		 */
 		public function AppInit()
 		{
@@ -66,6 +98,11 @@ package org.finalbug.data
 		// PUBLIC
 		//#######################################
 		
+		/**
+		 * Start load confile file.
+		 * 
+		 * @param configURL URL of config file.
+		 */
 		public function start(configURL:String):void
 		{
 			dispatchChange("Loading Config...");

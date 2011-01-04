@@ -1,10 +1,10 @@
 //##########################################################
-// ___________.__              .__ ___.
-// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__ |     |__|___|  (____  /____/___  /____/\___  /
-//     \/             \/     \/         \/     /_____/
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
 //##########################################################
@@ -21,6 +21,9 @@ package org.finalbug.data
 	import org.finalbug.events.DataEvent;
 	
 	/**
+	 * SharedData is a collection of data which type is one of number, string, boolean,
+	 * SharedData, byteArray and TreeModel.
+	 * 
 	 * @author Tang Bin
 	 * @since old version
 	 */	
@@ -171,8 +174,8 @@ package org.finalbug.data
 		 * Set a data of shared data object.
 		 * name and value are limited to number, string, boolean, bytearray, treeModel and sharedData only.
 		 * 
-		 * @param name the name of 
-		 * @param value
+		 * @param name The name of shared data.
+		 * @param value Value of shared data.
 		 * @param level The setter's level, used with dispatchType.
 		 * @param dispatchType Can be DispatchType.ALL, DispatchType.SEFL and DispatchType.OTHERS.
 		 * 					For All, this change will be dispatched to listeners at all leve.
@@ -306,7 +309,7 @@ package org.finalbug.data
 				data is Boolean ||
 				data is ByteArray ||
 				data is SharedData ||
-				data is TreeModel)
+				data is TreeData)
 			{
 				return true;
 			}

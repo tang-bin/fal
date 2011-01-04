@@ -1,10 +1,10 @@
 //##########################################################
-// ___________.__              .__ ___.
-// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__ |     |__|___|  (____  /____/___  /____/\___  /
-//     \/             \/     \/         \/     /_____/
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
 //##########################################################
@@ -23,35 +23,35 @@ package org.finalbug.events
 	{
 		/**
 		 * 
-		 * @default 
+		 * @eventType mouseClick 
 		 */
-		public static const FE_CLICK:String = "feClick";
+		public static const MOUSE_CLICK:String = "mouseClick";
 		/**
 		 * 
-		 * @default 
+		 * @eventType mousePress
 		 */
-		public static const FE_PRESS:String = "fePress";
+		public static const MOUSE_PRESS:String = "mousePress";
 		/**
 		 * 
-		 * @default 
+		 * @eventType mouseReleaseOutside
 		 */
-		public static const FE_RELEASE_OUTSIDE:String = "feReleaseOutside";
+		public static const MOUSE_RELEASE_OUTSIDE:String = "mouseReleaseOutside";
 		
 		/**
 		 * 
-		 * @default 
+		 * @eventType mouseStartDrag
 		 */
-		public static const FE_START_DRAG:String = "feStartDrag";
+		public static const MOUSE_START_DRAG:String = "mouseStartDrag";
 		/**
 		 * 
-		 * @default 
+		 * @eventType mouseDraging
 		 */
-		public static const FE_DRAGING:String = "feDraging";
+		public static const MOUSE_DRAGING:String = "mouseDraging";
 		/**
 		 * 
-		 * @default 
+		 * @eventType mouseStopDrag
 		 */
-		public static const FE_STOP_DRAG:String = "feStopDrag";
+		public static const MOUSE_STOP_DRAG:String = "mouseStopDrag";
 		
 		/**
 		 * 

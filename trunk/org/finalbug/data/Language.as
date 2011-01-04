@@ -1,10 +1,10 @@
 //##########################################################
-// ___________.__              .__ ___.
-// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__ |     |__|___|  (____  /____/___  /____/\___  /
-//     \/             \/     \/         \/     /_____/
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
 //##########################################################
@@ -13,14 +13,19 @@ package org.finalbug.data
 {
 	import flash.system.Capabilities;
 	
+	import org.finalbug.errors.DataError;
 	import org.finalbug.utils.DataUtil;
 	
 	/**
-	 * Language
+	 * Language defines usual language strings and language type.
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.12
 	 */	
+	/**
+	 * 
+	 * @author lenovo
+	 */
 	public class Language extends DataModel
 	{
 		//#######################################
@@ -33,22 +38,22 @@ package org.finalbug.data
 		
 		/**
 		 * 
-		 * @default 
+		 * @default OK
 		 */
 		public static var OK:String = "OK";
 		/**
 		 * 
-		 * @default 
+		 * @default Yes
 		 */
 		public static var Yes:String = "Yes";
 		/**
 		 * 
-		 * @default 
+		 * @default No
 		 */
 		public static var No:String = "No";
 		/**
 		 * 
-		 * @default 
+		 * @default Cancel
 		 */
 		public static var cancel:String = "Cancel";
 		
@@ -103,10 +108,12 @@ package org.finalbug.data
 		
 		/**
 		 * 
+		 * @throws DataError Throw DataError.STATIC_CLASS error when try to instance Language object.
+		 * Language is static class, cannot be instanced.
 		 */
 		public function Language()
 		{
-			super();
+			throw new DataError(DataError.STATIC_CLASS);
 		}
 		
 		//#######################################

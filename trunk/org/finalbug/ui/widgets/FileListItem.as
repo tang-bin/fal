@@ -1,10 +1,10 @@
 //##########################################################
-// ___________.__              .__ ___.
-// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__ |     |__|___|  (____  /____/___  /____/\___  /
-//     \/             \/     \/         \/     /_____/
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
 //##########################################################
@@ -12,10 +12,10 @@ package org.finalbug.ui.widgets
 {
 	import flash.text.TextFormat;
 	
-	import org.finalbug.data.DirectoryFileData;
+	import org.finalbug.data.FileData;
 	import org.finalbug.data.FileType;
-	import org.finalbug.data.FileTypes;
-	import org.finalbug.data.Icons;
+	import org.finalbug.data.FileTypeModel;
+	import org.finalbug.data.IconModel;
 	import org.finalbug.data.Position;
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.control.Container;
@@ -50,7 +50,7 @@ package org.finalbug.ui.widgets
 		private static const SELECTED_COLOR:uint = 0xDDDDDD;
 		private static const SELECTED_BORDER:uint = 0x999999;
 		
-		private var _data:DirectoryFileData;
+		private var _data:FileData;
 		private var icon:Icon;
 		private var txt:Label;
 		private var extra:Label;
@@ -136,7 +136,7 @@ package org.finalbug.ui.widgets
 		 * 
 		 * @return 
 		 */
-		public function get data():DirectoryFileData
+		public function get data():FileData
 		{
 			return _data;
 		}
@@ -149,7 +149,7 @@ package org.finalbug.ui.widgets
 		 * 
 		 * @param data
 		 */
-		public function FileListItem(data:DirectoryFileData)
+		public function FileListItem(data:FileData)
 		{
 			super();
 			this._data = data;
@@ -244,14 +244,14 @@ package org.finalbug.ui.widgets
 		
 		private function getIcon():Icon
 		{
-			if(FileTypes.instance.registered(_data.ext))
+			if(FileTypeModel.instance.registered(_data.ext))
 			{
-				var fileType:FileType = FileTypes.instance.getFileType(_data.ext);
+				var fileType:FileType = FileTypeModel.instance.getFileType(_data.ext);
 				return fileType.icon;
 			}
 			else
 			{
-				return Icons.instance.unknowIcon;
+				return IconModel.instance.unknowIcon;
 			}
 		}
 		

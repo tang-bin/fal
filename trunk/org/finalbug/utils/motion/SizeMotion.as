@@ -1,10 +1,10 @@
 //##########################################################
-// ___________.__              .__ ___.
-// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__ |     |__|___|  (____  /____/___  /____/\___  /
-//     \/             \/     \/         \/     /_____/
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
 //##########################################################
@@ -50,23 +50,27 @@ package org.finalbug.utils.motion
 		//#######################################
 		
 		/**
+		 * If widthFrom is not set, target's current width will be set as default. 
 		 * 
-		 * @default 
+		 * @default NaN
 		 */
 		public var widthFrom:Number;
 		/**
+		 * If heightFrom is not set, target's current height will be set as default.
 		 * 
-		 * @default 
+		 * @default NaN
 		 */
 		public var heightFrom:Number;
 		/**
+		 * If widthTo is not set, target's current width will be set as default
 		 * 
-		 * @default 
+		 * @default NaN
 		 */
 		public var widthTo:Number;
 		/**
+		 * If heightTo is not set, target's current height will be set as default.
 		 * 
-		 * @default 
+		 * @default NaN
 		 */
 		public var heightTo:Number;
 		
@@ -79,8 +83,9 @@ package org.finalbug.utils.motion
 		//#######################################
 		
 		/**
+		 * Create an new SizeMotion.
 		 * 
-		 * @param target
+		 * @param target The target object which will be resized.
 		 */
 		public function SizeMotion(target:Object = null)
 		{

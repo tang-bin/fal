@@ -1,10 +1,10 @@
 //##########################################################
-// ___________.__              .__ ___.
-// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__ |     |__|___|  (____  /____/___  /____/\___  /
-//     \/             \/     \/         \/     /_____/
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
 //##########################################################
@@ -13,10 +13,10 @@ package org.finalbug.data
 	import org.finalbug.ui.control.Icon;
 	
 	/**
-	 * FileType
+	 * FileType defines file's type.
 	 * 
 	 * @author Tang Bin
-	 * @since 2010
+	 * @since 2010.12
 	 */	
 	public class FileType extends DataModel
 	{
@@ -29,6 +29,7 @@ package org.finalbug.data
 		//#######################################
 		
 		/**
+		 * FileType's description.
 		 * 
 		 * @default 
 		 */
@@ -78,7 +79,7 @@ package org.finalbug.data
 		 */
 		public function get icon():Icon
 		{
-			return this.isDir ? Icons.instance.folderIcon : _icon.clone();
+			return this.isDir ? IconModel.instance.folderIcon : _icon.clone();
 		}
 		/**
 		 * 
@@ -94,10 +95,11 @@ package org.finalbug.data
 		//#######################################
 		
 		/**
+		 * Create an new FileType.
 		 * 
-		 * @param ext
-		 * @param des
-		 * @param icon
+		 * @param ext File's extantion.
+		 * @param des File's type description.
+		 * @param icon File's type icon
 		 */
 		public function FileType(ext:String, des:String = "", icon:Icon = null)
 		{

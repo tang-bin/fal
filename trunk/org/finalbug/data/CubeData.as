@@ -13,7 +13,7 @@ package org.finalbug.data
 	import org.finalbug.utils.ColorUtil;
 
 	/**
-	 * This class defines datas for cube.
+	 * This class defines the display data for a cube.
 	 *
 	 * @author Tang Bin
 	 * @since old version
@@ -31,11 +31,11 @@ package org.finalbug.data
 		/**
 		 * cube's shadow lean to left.
 		 */
-		public static const LEAN_LEFT:String="leanLeft";
+		public static const LEAN_LEFT:String = "leanLeft";
 		/**
 		 * cube's shadow lean to right.
 		 */
-		public static const LEAN_RIGHT:String="leanRight";
+		public static const LEAN_RIGHT:String = "leanRight";
 		/**
 		 * width of cube
 		 */
@@ -55,7 +55,7 @@ package org.finalbug.data
 		/**
 		 * show cube's border or not.
 		 */
-		public var border:Boolean=false;
+		public var border:Boolean = false;
 
 		private var _color:uint;
 		private var _topColor:uint;
@@ -67,18 +67,22 @@ package org.finalbug.data
 		//#######################################
 		
 		/**
-		 * color or cube.<br/>
-		 * once cubu's color is set, the color value will changes to 3 values:
-		 * topColor, sideColor and frontColor.
+		 * @default 0xFF0000
 		 */
 		public function get color():uint
 		{
 			return _color;
 		}
 
-		public function set color(v:uint):void
+		/**
+		 * Once cubu's color is set, the color value will changes to 3 values:
+		 * topColor, sideColor and frontColor.
+		 * 
+		 * @param value
+		 */
+		public function set color(value:uint):void
 		{
-			_color=v;
+			_color = value;
 			accountColor();
 		}
 
@@ -118,7 +122,7 @@ package org.finalbug.data
 		 * @param height Cube's height
 		 * @param thickness Cube's thickness
 		 * @param lean Cube's lean type. default value CubeData.LEAN_LEFT
-		 * @param border If show Cube's border or not.
+		 * @param border Show Cube's border or not.
 		 */
 		public function CubeData(color:uint=0xFF0000, width:Number=300, height:Number=400, thickness:Number=30, lean:String="", border:Boolean=false)
 		{
@@ -126,7 +130,7 @@ package org.finalbug.data
 			this.width=width;
 			this.height=height;
 			this.thickness=thickness;
-			this.lean=lean == LEAN_RIGHT ? LEAN_RIGHT : LEAN_LEFT;
+			this.lean = lean == LEAN_RIGHT ? LEAN_RIGHT : LEAN_LEFT;
 			this.border=border;
 			//
 			accountColor();

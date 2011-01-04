@@ -1,13 +1,13 @@
-/******************************************************
- * ___________.__              .__ ___.                 
- * \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____  
- *  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\ 
- *  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
- *  \__ |     |__|___|  (____  /____/___  /____/\___  / 
- *     \/             \/     \/         \/     /_____/  
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.data
 {
 	import flash.utils.Dictionary;
@@ -16,13 +16,13 @@ package org.finalbug.data
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.utils.StringUtil;
 	
-	/******************************************************
-	 * data.TreeModel
+	/**
+	 * TreeData defines the data model for a tree or list.
 	 *
 	 * @author Tang Bin
 	 * @since 2010.09
-	 ******************************************************/  
-	public class TreeModel extends DataModel
+	 */  
+	public class TreeData extends DataModel
 	{
 		//#######################################
 		// OVERRIDE
@@ -60,11 +60,14 @@ package org.finalbug.data
 		}
 		/**
 		 * 
-		 * @param value
+		 * @param value Tree's root node object, cannot be null.
 		 */
 		public function set root(value:Object):void
 		{
-			_root.data = value;
+			if(value != null)
+			{
+				_root.data = value;
+			}
 		}
 		
 		/**
@@ -108,9 +111,9 @@ package org.finalbug.data
 		//#######################################
 		
 		/**
-		 * 
+		 * Create an new TreeData object.
 		 */
-		public function TreeModel()
+		public function TreeData()
 		{
 			super();
 			clean();
@@ -125,6 +128,7 @@ package org.finalbug.data
 		 * 
 		 * @param parent Node's parent node.
 		 * @param node Node object
+		 * @throws DataError Throw out DataError.DATA_NULL error if parent node is not exist. 
 		 */		
 		public function addNode(parent:Object, node:Object):void
 		{
@@ -156,8 +160,8 @@ package org.finalbug.data
 		
 		/**
 		 * Remove one node from tree, all subnodes will be removed, too.
-		 * @param node
 		 * 
+		 * @param node
 		 */		
 		public function removeNode(node:Object):void
 		{
@@ -193,8 +197,11 @@ package org.finalbug.data
 		}
 		
 		/**
-		 * Remove all subnodes of a node.
+		 * Remove all subnodes of a node, but this node will not be removed.
 		 * To remove all nodes of the tree, use method clean().
+		 * 
+		 * @param parent
+		 * @throws DataError
 		 */		
 		public function removeAllChildren(parent:Object):void
 		{
