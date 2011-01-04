@@ -14,7 +14,6 @@ package org.finalbug.ui.control
 	
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.Bin;
-	import org.finalbug.ui.control.Icon;
 	import org.finalbug.ui.glazes.Image;
 	import org.finalbug.utils.DataUtil;
 	
@@ -26,6 +25,36 @@ package org.finalbug.ui.control
 	 */	
 	public class Icon extends Bin
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		override protected function updateView():void
+		{
+			super.updateView();
+			// get shown image
+			var size:Number = Math.max(this.displayWidth, this.displayHeight);
+			var newImg:Image;
+			if(size >= 48) newImg = icon128;
+			else if(size >= 32) newImg = icon48;
+			else if(size >= 16) newImg = icon32;
+			else newImg = icon16;
+			if(newImg == null) newImg = this.defaultImg;
+			// remove current image
+			if(img != null && img != newImg)
+			{
+				this.removeChild(img);
+			}
+			// add new image.
+			img = newImg;
+			if(img != null)
+			{
+				this.addChild(img);
+				img.width = this.displayWidth;
+				img.height = this.displayHeight;
+			}
+		}
+		
 		//#######################################
 		// DEFINE
 		//#######################################
@@ -89,38 +118,6 @@ package org.finalbug.ui.control
 		public function Icon()
 		{
 			super();
-		}
-		
-		//#######################################
-		// OVERRIDE
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//#######################################
-		
-		override protected function updateView():void
-		{
-			super.updateView();
-			// get shown image
-			var size:Number = Math.max(this.displayWidth, this.displayHeight);
-			var newImg:Image;
-			if(size >= 48) newImg = icon128;
-			else if(size >= 32) newImg = icon48;
-			else if(size >= 16) newImg = icon32;
-			else newImg = icon16;
-			if(newImg == null) newImg = this.defaultImg;
-			// remove current image
-			if(img != null && img != newImg)
-			{
-				this.removeChild(img);
-			}
-			// add new image.
-			img = newImg;
-			if(img != null)
-			{
-				this.addChild(img);
-				img.width = this.displayWidth;
-				img.height = this.displayHeight;
-			}
 		}
 		
 		//#######################################

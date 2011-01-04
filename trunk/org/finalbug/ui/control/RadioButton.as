@@ -29,6 +29,33 @@ package org.finalbug.ui.control
 	 */
 	public class RadioButton extends UIObject
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		override public function set status(value:String):void
+		{
+			if(this.selected)
+			{
+				value = this.enabled ? Status.SELECTED : Status.SELECTED_DISABLE;
+			}
+			else
+			{
+				value = this.enabled ? Status.NORMAL : Status.DISABLE;
+			}
+			if(this.status != value) super.status = value;
+		}
+		
+		override protected function updateView():void
+		{
+			super.updateView();
+			setPosition();
+		}
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
 		/**
 		 * 
 		 * @default 
@@ -46,6 +73,10 @@ package org.finalbug.ui.control
 		private var box:SkinElement;
 		private var txt:Label;
 		private var bg:Shape;
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
 		
 		/**
 		 * label string
@@ -87,19 +118,6 @@ package org.finalbug.ui.control
 			}
 		}
 		
-		override public function set status(value:String):void
-		{
-			if(this.selected)
-			{
-				value = this.enabled ? Status.SELECTED : Status.SELECTED_DISABLE;
-			}
-			else
-			{
-				value = this.enabled ? Status.NORMAL : Status.DISABLE;
-			}
-			if(this.status != value) super.status = value;
-		}
-		
 		/**
 		 * button's group name. only one button can be selected in one group.
 		 */		
@@ -132,6 +150,10 @@ package org.finalbug.ui.control
 				}
 			}
 		}
+		
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
 		
 		/**
 		 * create a new RadioButton object
@@ -175,11 +197,9 @@ package org.finalbug.ui.control
 			uiSkinData.setSkin(box, txt);
 		}
 		
-		override protected function updateView():void
-		{
-			super.updateView();
-			setPosition();
-		}
+		//#######################################
+		// PUBLIC
+		//#######################################
 		
 		/**
 		 * get selected radiobutton by groupName.
@@ -201,6 +221,14 @@ package org.finalbug.ui.control
 			}
 			return null;
 		}
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
 		
 		private function setPosition():void
 		{
@@ -245,6 +273,21 @@ package org.finalbug.ui.control
 			}
 		}
 		
+		private function unselectedGroup():void
+		{
+			for each(var btn:RadioButton in RadioButton.groupList[_group])
+			{
+				if(btn != null)
+				{
+					btn.selected = false;
+				}
+			}
+		}
+		
+		//#######################################
+		// HANDLER
+		//#######################################
+		
 		private function clickBoxHandler(e:MouseEvent):void
 		{
 			if(!_selected)
@@ -257,17 +300,6 @@ package org.finalbug.ui.control
 				ee.oldData = !this._selected;
 				ee.newData = this._selected;
 				this.dispatchEvent(ee);
-			}
-		}
-		
-		private function unselectedGroup():void
-		{
-			for each(var btn:RadioButton in RadioButton.groupList[_group])
-			{
-				if(btn != null)
-				{
-					btn.selected = false;
-				}
 			}
 		}
 	}

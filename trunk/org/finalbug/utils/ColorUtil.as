@@ -16,7 +16,8 @@ package org.finalbug.utils
 
 	/**
 	 * 
-	 * @author lenovo
+	 * @author Tang Bin
+	 * @since old version
 	 */
 	public class ColorUtil
 	{

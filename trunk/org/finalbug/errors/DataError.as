@@ -14,7 +14,7 @@ package org.finalbug.errors
 	 * DataError
 	 * 
 	 * @author Tang Bin
-	 * @since 2010.8
+	 * @since 2010.08
 	 */	
 	public class DataError extends Error
 	{
@@ -88,6 +88,11 @@ package org.finalbug.errors
 		 */
 		public static const LABEL_TEXT_TOO_LARGE:String = "Label's text too wide or high to display.";
 		
+		/**
+		 * 
+		 * @default 
+		 */
+		public static const STATIC_CLASS:String = "Static class cannot be instanced";
 		/**
 		 * 
 		 * @param message

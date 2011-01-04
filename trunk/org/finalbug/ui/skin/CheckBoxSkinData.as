@@ -20,10 +20,37 @@ package org.finalbug.ui.skin
 	 * CheckBoxSkinData
 	 * 
 	 * @author Tang Bin
-	 * @since 2010
+	 * @since 2010.12
 	 */	
 	public class CheckBoxSkinData extends UISkinDataBase
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		override public function setSkin(...args):void
+		{
+			box = args[0] as SkinElement;
+			if(box != null)
+			{
+				this.setStatusSkinByList(box, boxSkins);
+			}
+			label = args[1] as Label;
+			label.textFormat = textFormats[Status.NORMAL];
+		}
+		
+		override public function setStatus(status:String):void
+		{
+			if(box != null)
+			{
+				box.status = status;
+			}
+			if(label != null && textFormats[status] != null)
+			{
+				label.textFormat = textFormats[status];
+			}
+		}
+		
 		//#######################################
 		// DEFINE
 		//#######################################
@@ -87,35 +114,6 @@ package org.finalbug.ui.skin
 			//
 			textFormats = new Dictionary();
 			textFormats[Status.NORMAL] = new TextFormat("Arial", 12, 0);
-		}
-		
-		//#######################################
-		// OVERRIDE
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//#######################################
-		
-		override public function setSkin(...args):void
-		{
-			box = args[0] as SkinElement;
-			if(box != null)
-			{
-				this.setStatusSkinByList(box, boxSkins);
-			}
-			label = args[1] as Label;
-			label.textFormat = textFormats[Status.NORMAL];
-		}
-		
-		override public function setStatus(status:String):void
-		{
-			if(box != null)
-			{
-				box.status = status;
-			}
-			if(label != null && textFormats[status] != null)
-			{
-				label.textFormat = textFormats[status];
-			}
 		}
 		
 		//#######################################

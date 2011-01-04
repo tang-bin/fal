@@ -17,14 +17,31 @@ package org.finalbug.ui.glazes
 
 	/**
 	 * 
-	 * @author lenovo
+	 * @author Tang Bin
+	 * @since old version
 	 */
 	public class Cylinder extends Glaze
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
 		private var ww:Number;
 		private var hh:Number;
 		private var rr:Number;
 		private var cc:uint;
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
+		
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
 		
 		/**
 		 * 
@@ -43,6 +60,18 @@ package org.finalbug.ui.glazes
 			//
 			drawCylinder();
 		}
+		
+		//#######################################
+		// PUBLIC
+		//#######################################
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
 		
 		private function drawCylinder():void
 		{
@@ -65,5 +94,9 @@ package org.finalbug.ui.glazes
 			this.graphics.drawEllipse(0, -hh - rr, ww, rr * 2);
 			this.graphics.endFill();
 		}
+		
+		//#######################################
+		// HANDLER
+		//#######################################
 	}
 }

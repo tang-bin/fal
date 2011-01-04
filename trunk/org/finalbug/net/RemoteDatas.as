@@ -14,7 +14,8 @@ package org.finalbug.net
 
 	/**
 	 * 
-	 * @author lenovo
+	 * @author Tang Bin
+	 * @since 2010.10
 	 */
 	public class RemoteDatas
 	{

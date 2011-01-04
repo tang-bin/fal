@@ -32,6 +32,36 @@ package org.finalbug.ui
 	public class Bin extends Sprite
 	{
 		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		/**
+		 * @default 0
+		 */		
+		override public function get width():Number
+		{
+			return displayWidth;
+		}
+		override public function set width(value:Number):void
+		{
+			this.displayWidth = MathUtil.getNumArea(value, minWidth, maxWidth);
+			this.updateView();
+		}
+		
+		/**
+		 * @default 0
+		 */		
+		override public function get height():Number
+		{
+			return displayHeight;
+		}
+		override public function set height(value:Number):void
+		{
+			this.displayHeight = MathUtil.getNumArea(value, minHeight, maxHeight);
+			this.updateView();
+		}
+		
+		//#######################################
 		// DEFINE
 		//#######################################
 		
@@ -88,32 +118,6 @@ package org.finalbug.ui
 				_fillStyle = value;
 				drawBg();
 			}
-		}
-		
-		/**
-		 * @default 0
-		 */		
-		override public function get width():Number
-		{
-			return displayWidth;
-		}
-		override public function set width(value:Number):void
-		{
-			this.displayWidth = MathUtil.getNumArea(value, minWidth, maxWidth);
-			this.updateView();
-		}
-		
-		/**
-		 * @default 0
-		 */		
-		override public function get height():Number
-		{
-			return displayHeight;
-		}
-		override public function set height(value:Number):void
-		{
-			this.displayHeight = MathUtil.getNumArea(value, minHeight, maxHeight);
-			this.updateView();
 		}
 		
 		/**

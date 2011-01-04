@@ -13,13 +13,26 @@ package org.finalbug.ui.style
 	import org.finalbug.ui.style.Style;
 	
 	/**
-	 * css.styles.LayoutStyle
+	 * LayoutStyle
 	 *  
 	 * @author Tang Bin
 	 * @since 2010.08
 	 */	
 	public class LayoutStyle extends Style
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		override public function toString():String
+		{
+			return "[x = " + this.x + ", y = " + this.y + ", width = " + this.width + ", height = " + this.height + "]";
+		}
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
 		private var _width:String = "";
 		private var _height:String = "";
 		private var _left:String = "";
@@ -30,13 +43,9 @@ package org.finalbug.ui.style
 		private var _horizontal:String = "";
 		private var _vertical:String = "";
 		
-		/**
-		 * 
-		 */
-		public function LayoutStyle()
-		{
-			super();
-		}
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
 		
 		/**
 		 * The width value count by current layout. 
@@ -129,6 +138,22 @@ package org.finalbug.ui.style
 			}
 		}
 		
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
+		
+		/**
+		 * 
+		 */
+		public function LayoutStyle()
+		{
+			super();
+		}
+		
+		//#######################################
+		// PUBLIC
+		//#######################################
+		
 		/**
 		 * Set layout value.
 		 * 
@@ -167,9 +192,16 @@ package org.finalbug.ui.style
 			return ls;
 		}
 		
-		override public function toString():String
-		{
-			return "[x = " + this.x + ", y = " + this.y + ", width = " + this.width + ", height = " + this.height + "]";
-		}
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
+		
+		//#######################################
+		// HANDLER
+		//#######################################
 	}
 }

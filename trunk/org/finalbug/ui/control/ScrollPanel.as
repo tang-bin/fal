@@ -21,14 +21,79 @@ package org.finalbug.ui.control
 	/**
 	 * This class create a panel with scrollbar x and y.
 	 * 
-	 * @author	Finalbug
+	 * @author Tang Bin
 	 * @since old version
 	 */
 	public class ScrollPanel extends ScrollBox
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		override public function set xScrollEnabled(value:Boolean) : void
+		{
+			super.xScrollEnabled = value;
+			this.updateView();
+		}
+		
+		override public function set yScrollEnabled(value:Boolean) : void
+		{
+			super.yScrollEnabled = value;
+			this.updateView();
+		}
+		
+		override protected function updateView():void
+		{
+			super.updateView();
+			//
+			if(masker != null)
+			{
+				masker.width = super.containerWidth;
+				masker.height = super.containerHeight;
+			}
+			//
+			if(box != null)
+			{
+				if(box.x > 0) box.x = 0;
+				else if(box.x < masker.width - box.width) box.x = masker.width - box.width;
+				//
+				if(box.y > 0) box.y = 0;
+				else if (box.y < masker.height - box.height) box.y = masker.height - box.height;
+				//
+				resetScroll();
+			}
+		}
+		
+		/**
+		 * invoked when change x coordinate scroll.
+		 * @param e
+		 */		
+		override protected function xScrollHandler(e:UIEvent):void
+		{
+			var pos:Number = xBar.position;
+			box.x = - pos * (box.width - masker.width);
+		}
+		
+		/**
+		 * handler of scroll scrollBarY
+		 */
+		override protected function yScrollHandler(e:UIEvent):void
+		{
+			var pos:Number = yBar.position;
+			box.y = - pos * (box.height - masker.height);
+		}
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
 		private var masker:Sprite;
 		private var _dragable:Boolean = true;
 		private var box:Sprite;
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
 		
 		/**
 		 * if the container can be dragged and moved.
@@ -55,17 +120,9 @@ package org.finalbug.ui.control
 			return box;
 		}
 		
-		override public function set xScrollEnabled(value:Boolean) : void
-		{
-			super.xScrollEnabled = value;
-			this.updateView();
-		}
-		
-		override public function set yScrollEnabled(value:Boolean) : void
-		{
-			super.yScrollEnabled = value;
-			this.updateView();
-		}
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
 		
 		/**
 		 * Create a new ScrollPanel object.
@@ -88,27 +145,17 @@ package org.finalbug.ui.control
 			box.addEventListener(MouseEvent.MOUSE_DOWN, pressContainerHandler);
 		}
 		
-		override protected function updateView():void
-		{
-			super.updateView();
-			//
-			if(masker != null)
-			{
-				masker.width = super.containerWidth;
-				masker.height = super.containerHeight;
-			}
-			//
-			if(box != null)
-			{
-				if(box.x > 0) box.x = 0;
-				else if(box.x < masker.width - box.width) box.x = masker.width - box.width;
-				//
-				if(box.y > 0) box.y = 0;
-				else if (box.y < masker.height - box.height) box.y = masker.height - box.height;
-				//
-				resetScroll();
-			}
-		}
+		//#######################################
+		// PUBLIC
+		//#######################################
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
 		
 		private function resetScroll():void
 		{
@@ -139,25 +186,6 @@ package org.finalbug.ui.control
 		//#######################################
 		// HANDLER
 		//#######################################
-		
-		/**
-		 * invoked when change x coordinate scroll.
-		 * @param e
-		 */		
-		override protected function xScrollHandler(e:UIEvent):void
-		{
-			var pos:Number = xBar.position;
-			box.x = - pos * (box.width - masker.width);
-		}
-		
-		/**
-		 * handler of scroll scrollBarY
-		 */
-		override protected function yScrollHandler(e:UIEvent):void
-		{
-			var pos:Number = yBar.position;
-			box.y = - pos * (box.height - masker.height);
-		}
 		
 		/**
 		 * invoked when press container.

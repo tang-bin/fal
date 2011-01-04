@@ -19,10 +19,19 @@ package org.finalbug.ui.control
 	 * StepBar
 	 * 
 	 * @author Tang Bin
-	 * @since 2010
+	 * @since 2010.12
 	 */	
 	public class StepBar extends UIObject
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		override protected function callAtAdded():void
+		{
+			bg = new Flat();
+		}
+		
 		//#######################################
 		// DEFINE
 		//#######################################
@@ -47,17 +56,6 @@ package org.finalbug.ui.control
 		public function StepBar()
 		{
 			super();
-		}
-		
-		//#######################################
-		// OVERRIDE
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//#######################################
-		
-		override protected function callAtAdded():void
-		{
-			bg = new Flat();
 		}
 		
 		//#######################################

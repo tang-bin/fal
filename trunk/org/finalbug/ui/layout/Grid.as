@@ -10,10 +10,7 @@
 //##########################################################
 package org.finalbug.ui.layout
 {
-	import org.finalbug.data.SetType;
 	import org.finalbug.ui.control.Container;
-	import org.finalbug.utils.DataUtil;
-	import org.finalbug.utils.MathUtil;
 
 	/**
 	 * @author Tang Bin
@@ -21,9 +18,21 @@ package org.finalbug.ui.layout
 	 */	
 	public class Grid extends Container
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
 		private var cells:Array = new Array();
 		private var _rows:Array = new Array();
 		private var _columns:Array = new Array(); 
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
 		
 		/**
 		 * 
@@ -59,6 +68,10 @@ package org.finalbug.ui.layout
 			_columns = value;
 		}
 		
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
+		
 		/**
 		 * 
 		 */
@@ -77,6 +90,10 @@ package org.finalbug.ui.layout
 		{
 			return cells[row][column];
 		}
+		
+		//#######################################
+		// PUBLIC
+		//#######################################
 		
 		/**
 		 * 
@@ -141,6 +158,14 @@ package org.finalbug.ui.layout
 			this.measure();
 		}
 		
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
+		
 		private function getCellWidth(index:uint):Number
 		{
 			return Number(columns[index]);
@@ -150,5 +175,9 @@ package org.finalbug.ui.layout
 		{
 			return Number(rows[index]);
 		}
+		
+		//#######################################
+		// HANDLER
+		//#######################################
 	}
 }

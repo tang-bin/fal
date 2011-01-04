@@ -33,6 +33,61 @@ package org.finalbug.ui.control
 	 */
 	public class ScrollBar extends UIObject
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		override public function get width():Number
+		{
+			return _type == Position.HORIZONTAL ? this._length : this._thickness;
+		}
+		override public function set width(value:Number) : void{}
+		
+		override public function get height():Number
+		{
+			return _type == Position.HORIZONTAL ? this._thickness : this._length;
+		}
+		override public function set height(value:Number) : void{}
+		
+		override public function set enabled(value:Boolean):void
+		{
+			super.enabled = value;
+			this.slider.visible = value;
+			this.mouseChildren = this.mouseEnabled = value;
+		}
+		
+		override protected function updateView():void
+		{
+			super.updateView();
+			if(_type == Position.HORIZONTAL)
+			{
+				leftBtn.width = leftBtn.height = _thickness;
+				//
+				rightBtn.x = _length - _thickness;
+				rightBtn.width = rightBtn.height = _thickness;
+				//
+				back.width = availLength;
+				back.height = _thickness;
+				back.x = _thickness;
+			}
+			else
+			{
+				upBtn.width = upBtn.height = _thickness;
+				//
+				downBtn.y = _length - _thickness;
+				downBtn.width = downBtn.height = _thickness;
+				//
+				back.y = _thickness;
+				back.width = _thickness;
+				back.height = availLength;
+			}
+			this.setSlider();
+		}
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
 		/**
 		 * 
 		 * @default 
@@ -63,17 +118,9 @@ package org.finalbug.ui.control
 		
 		private var _enabled:Boolean = true;
 		
-		override public function get width():Number
-		{
-			return _type == Position.HORIZONTAL ? this._length : this._thickness;
-		}
-		override public function set width(value:Number) : void{}
-		
-		override public function get height():Number
-		{
-			return _type == Position.HORIZONTAL ? this._thickness : this._length;
-		}
-		override public function set height(value:Number) : void{}
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
 		
 		/**
 		 * scale value of slider in percent. from 0 to 1.
@@ -147,12 +194,9 @@ package org.finalbug.ui.control
 			return _length - 2 * _thickness;
 		}
 		
-		override public function set enabled(value:Boolean):void
-		{
-			super.enabled = value;
-			this.slider.visible = value;
-			this.mouseChildren = this.mouseEnabled = value;
-		}
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
 		
 		/**
 		 * Constuctor. create and initialize a new scrollBar
@@ -190,33 +234,9 @@ package org.finalbug.ui.control
 			}
 		}
 		
-		override protected function updateView():void
-		{
-			super.updateView();
-			if(_type == Position.HORIZONTAL)
-			{
-				leftBtn.width = leftBtn.height = _thickness;
-				//
-				rightBtn.x = _length - _thickness;
-				rightBtn.width = rightBtn.height = _thickness;
-				//
-				back.width = availLength;
-				back.height = _thickness;
-				back.x = _thickness;
-			}
-			else
-			{
-				upBtn.width = upBtn.height = _thickness;
-				//
-				downBtn.y = _length - _thickness;
-				downBtn.width = downBtn.height = _thickness;
-				//
-				back.y = _thickness;
-				back.width = _thickness;
-				back.height = availLength;
-			}
-			this.setSlider();
-		}
+		//#######################################
+		// PUBLIC
+		//#######################################
 		
 		/**
 		 * 
@@ -229,6 +249,14 @@ package org.finalbug.ui.control
 			_scale = MathUtil.getNumArea(scale, 0, 1);
 			this.setSlider();
 		}
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
 		
 		/**
 		 * change slider's position and size.
@@ -347,8 +375,9 @@ package org.finalbug.ui.control
 			this.dispatchEvent(ee);
 		}
 		
-		//////////////////////////////////////////////////////////////////////////////////
-		// event handlers
+		//#######################################
+		// HANDLER
+		//#######################################
 		
 		private function pressBtnHandler(e:MouseEvent):void
 		{

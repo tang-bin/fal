@@ -25,6 +25,42 @@ package org.finalbug.ui.control
 	 */
 	public class ScrollBox extends UIObject
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		override protected function updateView():void
+		{
+			super.updateView();
+			//
+			if(enableX)
+			{
+				xBar.visible = true;
+				xBar.length = enableY ? displayWidth - yBar.thickness - 2 : displayWidth - 2;
+				xBar.y = displayHeight - xBar.thickness;
+				xBar.x = 1;
+			}
+			else
+			{
+				xBar.visible = false;
+			}
+			if(enableY)
+			{
+				yBar.visible = true;
+				yBar.length = enableX ? displayHeight - xBar.thickness - 2 : displayHeight - 2;
+				yBar.x = displayWidth - yBar.thickness;
+				yBar.y = 1;
+			}
+			else
+			{
+				yBar.visible = false;
+			}
+		}
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
 		/**
 		 * 
 		 * @default 
@@ -45,6 +81,10 @@ package org.finalbug.ui.control
 		 * @default 
 		 */
 		protected var enableY:Boolean; // enable scrollbar y or not
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
 		
 		/**
 		 * Width of container, not the width of scrollContainer.
@@ -104,6 +144,10 @@ package org.finalbug.ui.control
 			}
 		}
 		
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
+		
 		/**
 		 * Create a new ScrollBarContainer object.
 		 * 
@@ -140,33 +184,13 @@ package org.finalbug.ui.control
 			yBar.addEventListener(UIEvent.SCROLL, yScrollHandler);
 		}
 		
-		override protected function updateView():void
-		{
-			super.updateView();
-			//
-			if(enableX)
-			{
-				xBar.visible = true;
-				xBar.length = enableY ? displayWidth - yBar.thickness - 2 : displayWidth - 2;
-				xBar.y = displayHeight - xBar.thickness;
-				xBar.x = 1;
-			}
-			else
-			{
-				xBar.visible = false;
-			}
-			if(enableY)
-			{
-				yBar.visible = true;
-				yBar.length = enableX ? displayHeight - xBar.thickness - 2 : displayHeight - 2;
-				yBar.x = displayWidth - yBar.thickness;
-				yBar.y = 1;
-			}
-			else
-			{
-				yBar.visible = false;
-			}
-		}
+		//#######################################
+		// PUBLIC
+		//#######################################
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
 		
 		/**
 		 * 
@@ -178,5 +202,13 @@ package org.finalbug.ui.control
 		 * @param e
 		 */
 		protected function yScrollHandler(e:UIEvent):void{}
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
+		
+		//#######################################
+		// HANDLER
+		//#######################################
 	}
 }

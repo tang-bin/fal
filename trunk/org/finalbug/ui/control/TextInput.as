@@ -28,11 +28,53 @@ package org.finalbug.ui.control
 	 */
 	public class TextInput extends UIObject
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		override public function set status(value:String):void
+		{
+			if(this.enabled)
+			{
+				if(stage.focus == txt)
+				{
+					value = Status.ACTIVE;
+				}
+				else
+				{
+					value = Status.NORMAL;
+				}
+			}
+			else
+			{
+				value = Status.DISABLE;
+			}
+			if(value != this.status) super.status = value;
+		}
+		
+		override protected function updateView():void
+		{
+			super.updateView();
+			back.width = this.displayWidth;
+			back.height = this.displayHeight;
+			txt.x = txt.y = 1;
+			txt.width = this.displayWidth - 2;
+			txt.height = this.displayHeight - 2;
+		}
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
 		private var _textType:String = "input";
 		private var oldText:String ="";
 		
 		private var back:SkinElement;
 		private var txt:TextField;
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
 		
 		/**
 		 * if current text in textinput display as password.
@@ -116,6 +158,10 @@ package org.finalbug.ui.control
 			this.setTextType();
 		}
 		
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
+		
 		/**
 		 * Create a new TextInput object.
 		 * 
@@ -147,6 +193,10 @@ package org.finalbug.ui.control
 			uiSkinData.setSkin(back, txt);
 		}
 		
+		//#######################################
+		// PUBLIC
+		//#######################################
+		
 		/**
 		 * 
 		 */
@@ -155,35 +205,13 @@ package org.finalbug.ui.control
 			stage.focus = txt;
 		}
 		
-		override public function set status(value:String):void
-		{
-			if(this.enabled)
-			{
-				if(stage.focus == txt)
-				{
-					value = Status.ACTIVE;
-				}
-				else
-				{
-					value = Status.NORMAL;
-				}
-			}
-			else
-			{
-				value = Status.DISABLE;
-			}
-			if(value != this.status) super.status = value;
-		}
+		//#######################################
+		// PROTECTED
+		//#######################################
 		
-		override protected function updateView():void
-		{
-			super.updateView();
-			back.width = this.displayWidth;
-			back.height = this.displayHeight;
-			txt.x = txt.y = 1;
-			txt.width = this.displayWidth - 2;
-			txt.height = this.displayHeight - 2;
-		}
+		//#######################################
+		// PRIVATE
+		//#######################################
 		
 		private function setTextType():void
 		{
@@ -200,6 +228,10 @@ package org.finalbug.ui.control
 				txt.displayAsPassword = _textType == "password";
 			}
 		}
+		
+		//#######################################
+		// HANDLER
+		//#######################################
 		
 		private function txtFocusInHandler(e:FocusEvent):void
 		{

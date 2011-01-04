@@ -34,11 +34,81 @@ package org.finalbug.ui.control
 	 */
 	public class TextArea extends ScrollBox
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		/**
+		 * in Class TextArea, if x scrollbar is disabled, the text input will auto warp.
+		 */		
+		override public function set xScrollEnabled(value:Boolean):void
+		{
+			super.xScrollEnabled = value;
+			txt.wordWrap = !value;
+		}
+		
+		override public function set status(value:String):void
+		{
+			if(this.enabled)
+			{
+				if(stage.focus == txt)
+				{
+					value = Status.ACTIVE;
+				}
+				else
+				{
+					value = Status.NORMAL;
+				}
+			}
+			else
+			{
+				value = Status.DISABLE;
+			}
+			if(value != this.status) super.status = value;
+		}
+		
+		override protected function updateView():void
+		{
+			super.updateView();
+			if(bg != null)
+			{
+				bg.width = this.displayWidth;
+				bg.height = this.displayHeight;
+			}
+			if(txt != null)
+			{
+				txt.width = containerWidth;
+				txt.height = containerHeight;
+			}
+		}
+		
+		override protected function xScrollHandler(e:UIEvent):void
+		{
+			scrollManual = true;
+			txt.scrollH = e.position * txt.maxScrollH;
+			scrollManual = false;
+		}
+		
+		override protected function yScrollHandler(e:UIEvent):void
+		{
+			scrollManual = true;
+			txt.scrollV = e.position * txt.maxScrollV;
+			scrollManual = false;
+		}
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
 		private var bg:SkinElement;
 		private var txt:TextField;
 		private var _embed:Boolean = false;
 		private var scrollManual:Boolean = false;
 		private var _editable:Boolean = true;
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
 		
 		/**
 		 * If this text area can input in or not.
@@ -93,34 +163,9 @@ package org.finalbug.ui.control
 			txt.embedFonts = _embed;
 		}
 		
-		/**
-		 * in Class TextArea, if x scrollbar is disabled, the text input will auto warp.
-		 */		
-		override public function set xScrollEnabled(value:Boolean):void
-		{
-			super.xScrollEnabled = value;
-			txt.wordWrap = !value;
-		}
-		
-		override public function set status(value:String):void
-		{
-			if(this.enabled)
-			{
-				if(stage.focus == txt)
-				{
-					value = Status.ACTIVE;
-				}
-				else
-				{
-					value = Status.NORMAL;
-				}
-			}
-			else
-			{
-				value = Status.DISABLE;
-			}
-			if(value != this.status) super.status = value;
-		}
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
 		
 		/**
 		 * create a new TextArea.
@@ -155,20 +200,17 @@ package org.finalbug.ui.control
 			uiSkinData.setSkin(bg, txt);
 		}
 		
-		override protected function updateView():void
-		{
-			super.updateView();
-			if(bg != null)
-			{
-				bg.width = this.displayWidth;
-				bg.height = this.displayHeight;
-			}
-			if(txt != null)
-			{
-				txt.width = containerWidth;
-				txt.height = containerHeight;
-			}
-		}
+		//#######################################
+		// PUBLIC
+		//#######################################
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
 		
 		private function setEvent():void
 		{
@@ -176,20 +218,6 @@ package org.finalbug.ui.control
 			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
 			txt.addEventListener(Event.CHANGE, changeTextHandler);
 			txt.addEventListener(Event.SCROLL, scrollTextHandler);
-		}
-		
-		override protected function xScrollHandler(e:UIEvent):void
-		{
-			scrollManual = true;
-			txt.scrollH = e.position * txt.maxScrollH;
-			scrollManual = false;
-		}
-		
-		override protected function yScrollHandler(e:UIEvent):void
-		{
-			scrollManual = true;
-			txt.scrollV = e.position * txt.maxScrollV;
-			scrollManual = false;
 		}
 		
 		private function scrollTextHandler(e:Event):void
@@ -229,6 +257,10 @@ package org.finalbug.ui.control
 				}
 			}
 		}
+		
+		//#######################################
+		// HANDLER
+		//#######################################
 		
 		private function txtFocusInHandler(e:FocusEvent):void
 		{

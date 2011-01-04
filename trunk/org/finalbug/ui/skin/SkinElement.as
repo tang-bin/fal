@@ -27,92 +27,12 @@ package org.finalbug.ui.skin
 	 * SkinElement is a display element to show skin.
 	 * 
 	 * @author Tang Bin
-	 * @since 2010
+	 * @since 2010.12
 	 */	
 	public class SkinElement extends Glaze
 	{
 		//#######################################
-		// DEFINE
-		//#######################################
-		
-		private var skinList:Dictionary = new Dictionary();
-		
-		private var currentStatus:String;
-		
-		private var skinChanged:Boolean = false;
-		
-		private var _autoMouseEvent:Boolean = false;
-		
-		//#######################################
-		// GETTER and SETTER
-		//#######################################
-		
-		/**
-		 * 
-		 * @return 
-		 */
-		public function get status():String
-		{
-			return currentStatus;
-		}
-		/**
-		 * 
-		 * @param value
-		 */
-		public function set status(value:String):void
-		{
-			if(value != "" && value != currentStatus && skinList[value] != null)
-			{
-				currentStatus = value;
-				skinChanged = true;
-				updateView();
-			}
-		}
-		
-		/**
-		 * 
-		 * @return 
-		 */
-		public function get autoMouseEvent():Boolean
-		{
-			return _autoMouseEvent;
-		}
-		/**
-		 * 
-		 * @param value
-		 */
-		public function set autoMouseEvent(value:Boolean):void
-		{
-			if(value != _autoMouseEvent)
-			{
-				_autoMouseEvent = value;
-				if(_autoMouseEvent)
-				{
-					setMouseEvent();
-				}
-				else
-				{
-					removeMouseEvent();
-				}
-			}
-		}
-		
-		//#######################################
-		// CONSTRUCTOR.
-		//#######################################
-		
-		/**
-		 * 
-		 */
-		public function SkinElement()
-		{
-			super();
-		}
-		
-		//#######################################
 		// OVERRIDE
-		// Whit out getter, setter and handler
-		// include public, protected and private.
 		//#######################################
 		
 		override protected function updateView():void
@@ -218,6 +138,84 @@ package org.finalbug.ui.skin
 				this.skinChanged = false;
 				super.updateView();
 			}
+		}
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
+		private var skinList:Dictionary = new Dictionary();
+		
+		private var currentStatus:String;
+		
+		private var skinChanged:Boolean = false;
+		
+		private var _autoMouseEvent:Boolean = false;
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
+		
+		/**
+		 * 
+		 * @return 
+		 */
+		public function get status():String
+		{
+			return currentStatus;
+		}
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set status(value:String):void
+		{
+			if(value != "" && value != currentStatus && skinList[value] != null)
+			{
+				currentStatus = value;
+				skinChanged = true;
+				updateView();
+			}
+		}
+		
+		/**
+		 * 
+		 * @return 
+		 */
+		public function get autoMouseEvent():Boolean
+		{
+			return _autoMouseEvent;
+		}
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set autoMouseEvent(value:Boolean):void
+		{
+			if(value != _autoMouseEvent)
+			{
+				_autoMouseEvent = value;
+				if(_autoMouseEvent)
+				{
+					setMouseEvent();
+				}
+				else
+				{
+					removeMouseEvent();
+				}
+			}
+		}
+		
+		//#######################################
+		// CONSTRUCTOR.
+		//#######################################
+		
+		/**
+		 * 
+		 */
+		public function SkinElement()
+		{
+			super();
 		}
 		
 		//#######################################

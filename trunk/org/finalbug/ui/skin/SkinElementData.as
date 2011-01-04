@@ -16,10 +16,14 @@ package org.finalbug.ui.skin
 	 * SkinElementData
 	 * 
 	 * @author Tang Bin
-	 * @since 2010
+	 * @since 2010.12
 	 */	
 	public class SkinElementData
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
 		//#######################################
 		// DEFINE
 		//#######################################
@@ -111,12 +115,6 @@ package org.finalbug.ui.skin
 			this._data = data;
 			this._asDefalut = asDefault;
 		}
-		
-		//#######################################
-		// OVERRIDE
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//#######################################
 		
 		//#######################################
 		// PUBLIC

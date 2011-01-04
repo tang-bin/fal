@@ -18,16 +18,23 @@ package org.finalbug.ui.style
 	import flash.geom.Matrix;
 	
 	import org.finalbug.utils.MathUtil;
-	import org.finalbug.ui.style.Style;
 	
 	/**
-	 * css.styles.FillStyle
+	 * FillStyle
 	 *  
 	 * @author Tang Bin
 	 * @since 2010.08
 	 */	
 	public class FillStyle extends Style
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
 		private var _borderSize:Number = 1;
 		private var _borderColor:Number = 0x999999;
 		private var _borderAlpha:Number = 0;
@@ -60,7 +67,11 @@ package org.finalbug.ui.style
 		private var _shadowAlpha:Number = 0;
 		private var _shadowDistance:Number = 3;
 		private var _shadowStrength:int = 3;
-		private var _shadowBlur:Number = 3
+		private var _shadowBlur:Number = 3;
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
 		
 		/**
 		 * 
@@ -484,6 +495,10 @@ package org.finalbug.ui.style
 			_shadowBlur = value;
 		}
 		
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
+		
 		/**
 		 * 
 		 */
@@ -491,6 +506,10 @@ package org.finalbug.ui.style
 		{
 			super();
 		}
+		
+		//#######################################
+		// PUBLIC
+		//#######################################
 		
 		/**
 		 * 
@@ -612,5 +631,17 @@ package org.finalbug.ui.style
 				}
 			}
 		}
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
+		
+		//#######################################
+		// HANDLER
+		//#######################################
 	}
 }

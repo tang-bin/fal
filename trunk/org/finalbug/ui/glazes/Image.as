@@ -32,6 +32,50 @@ package org.finalbug.ui.glazes
 	public class Image extends Glaze
 	{
 		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		override protected function updateView():void
+		{
+			if(img != null && this.contains(img))
+			{
+				img.width = this.displayWidth;
+				img.height = this.displayHeight;
+			}
+		}
+		
+		override public function resize(width:Number, height:Number):void
+		{
+			this.useFixedSize = true;
+			super.resize(width, height);
+		}
+		
+		override public function set width(value:Number):void
+		{
+			this.useFixedSize = true;
+			super.width = value;
+		}
+		
+		override public function set height(value:Number):void
+		{
+			this.useFixedSize = true;
+			super.height = value;
+		}
+		
+		override public function get scale9Grid():Rectangle
+		{
+			return scale9;
+		}
+		override public function set scale9Grid(innerRectangle:Rectangle):void
+		{
+			scale9 = innerRectangle;
+			if(img != null && this.contains(img))
+			{
+				img.scale9Grid = scale9;
+			}
+		}
+		
+		//#######################################
 		// DEFINE
 		//#######################################
 		
@@ -94,31 +138,6 @@ package org.finalbug.ui.glazes
 			}
 		}
 		
-		override public function set width(value:Number):void
-		{
-			this.useFixedSize = true;
-			super.width = value;
-		}
-		
-		override public function set height(value:Number):void
-		{
-			this.useFixedSize = true;
-			super.height = value;
-		}
-		
-		override public function get scale9Grid():Rectangle
-		{
-			return scale9;
-		}
-		override public function set scale9Grid(innerRectangle:Rectangle):void
-		{
-			scale9 = innerRectangle;
-			if(img != null && this.contains(img))
-			{
-				img.scale9Grid = scale9;
-			}
-		}
-		
 		//#######################################
 		// CONSTRUCTOR.
 		//#######################################
@@ -131,27 +150,6 @@ package org.finalbug.ui.glazes
 		{
 			super();
 			loadImg(url);
-		}
-		
-		//#######################################
-		// OVERRIDE
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//#######################################
-		
-		override protected function updateView():void
-		{
-			if(img != null && this.contains(img))
-			{
-				img.width = this.displayWidth;
-				img.height = this.displayHeight;
-			}
-		}
-		
-		override public function resize(width:Number, height:Number):void
-		{
-			this.useFixedSize = true;
-			super.resize(width, height);
 		}
 		
 		//#######################################

@@ -21,9 +21,18 @@ package org.finalbug.net
 	 * This class is the super class for class which is used to load file(s).
 	 * 
 	 * @author Tang Bin
+	 * @since old version
 	 */
 	public class LoaderObject
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
 		/**
 		 * 
 		 * @default 
@@ -44,6 +53,10 @@ package org.finalbug.net
 		 * @default 
 		 */
 		protected var dispatcher:EventDispatcher = new EventDispatcher();
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
 		
 		/**
 		 * 
@@ -72,6 +85,14 @@ package org.finalbug.net
 			return _loadrate;
 		}
 		
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
+		
+		//#######################################
+		// PUBLIC
+		//#######################################
+		
 		/**
 		 * 
 		 * @param type
@@ -84,6 +105,10 @@ package org.finalbug.net
 		{
 			dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
 		}
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
 		
 		/**
 		 * 
@@ -137,5 +162,13 @@ package org.finalbug.net
 			var ee:LoadEvent = new LoadEvent(LoadEvent.LOAD_FAILED);
 			dispatcher.dispatchEvent(ee);
 		}
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
+		
+		//#######################################
+		// HANDLER
+		//#######################################
 	}
 }

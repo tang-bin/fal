@@ -15,32 +15,14 @@ package org.finalbug.ui.glazes
 
 	/**
 	 * 
-	 * @author lenovo
+	 * @author Tang Bin
+	 * @since old version
 	 */
 	public class Cube extends Glaze
 	{
-		private var _width:Number;
-		private var _height:Number;
-		private var _depth:Number;
-		private var _color:uint;
-		private var _inner:Boolean = false;
-		
-		/**
-		 * 
-		 * @return 
-		 */
-		public function get sideHeight():Number
-		{
-			return _height;
-		}
-		/**
-		 * 
-		 * @return 
-		 */
-		public function get sideWidth():Number
-		{
-			return _width;
-		}
+		//#######################################
+		// OVERRIDE
+		//#######################################
 		
 		override public function get width():Number
 		{
@@ -61,6 +43,41 @@ package org.finalbug.ui.glazes
 			_height = value - _depth;
 			drawCube();
 		}
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
+		private var _width:Number;
+		private var _height:Number;
+		private var _depth:Number;
+		private var _color:uint;
+		private var _inner:Boolean = false;
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
+		
+		/**
+		 * 
+		 * @return 
+		 */
+		public function get sideHeight():Number
+		{
+			return _height;
+		}
+		/**
+		 * 
+		 * @return 
+		 */
+		public function get sideWidth():Number
+		{
+			return _width;
+		}
+		
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
 		
 		/**
 		 * 
@@ -97,6 +114,18 @@ package org.finalbug.ui.glazes
 				drawTop();
 			}
 		}
+		
+		//#######################################
+		// PUBLIC
+		//#######################################
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
 		
 		private function drawBottom():void
 		{
@@ -163,5 +192,9 @@ package org.finalbug.ui.glazes
 			this.graphics.lineTo(0, - _height);
 			this.graphics.endFill();
 		}
+		
+		//#######################################
+		// HANDLER
+		//#######################################
 	}
 }

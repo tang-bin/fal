@@ -15,7 +15,6 @@ package org.finalbug.utils.motion
 	
 	import org.finalbug.data.DataModel;
 	import org.finalbug.events.MotionEvent;
-	import org.osmf.events.TimeEvent;
 	
 	/**
 	 * Class Motion is the superclass of all motion classes such as move and fade.
@@ -25,6 +24,14 @@ package org.finalbug.utils.motion
 	 */	
 	public class Motion extends DataModel
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
 		/**
 		 * 
 		 * @default 
@@ -70,6 +77,10 @@ package org.finalbug.utils.motion
 		
 		internal var _running:Boolean = false;
 		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
+		
 		/**
 		 * 
 		 * @return 
@@ -78,6 +89,10 @@ package org.finalbug.utils.motion
 		{
 			return _running;
 		}
+		
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
 		
 		/**
 		 * 
@@ -90,6 +105,10 @@ package org.finalbug.utils.motion
 				targetList = [target];
 			}
 		}
+		
+		//#######################################
+		// PUBLIC
+		//#######################################
 		
 		/**
 		 * Start motion play.
@@ -132,23 +151,9 @@ package org.finalbug.utils.motion
 			registeredMotions.forEach(stopMotion);
 		}
 		
-		private function startAccount(e:* = null):void
-		{
-			for(var i:Number = 0 ; i < targetList.length ; i++)
-			{
-				count(targetList[i]);
-				this._running = true;
-				var startEvent:MotionEvent = new MotionEvent(MotionEvent.MOTION_START);
-				startEvent.motionTarget = targetList[i];
-				this.dispatchEvent(startEvent);
-			}
-		}
-		
-		private function stopMotion(element:*, index:int, arr:Array):void
-		{
-			MotionRunner.instance.stopAndRemoveMotion(element);
-			this._running = false;
-		}
+		//#######################################
+		// PROTECTED
+		//#######################################
 		
 		/**
 		 * account method dont need complete in Class Motion
@@ -176,5 +181,31 @@ package org.finalbug.utils.motion
 			}
 			return steps;
 		}
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
+		
+		private function startAccount(e:* = null):void
+		{
+			for(var i:Number = 0 ; i < targetList.length ; i++)
+			{
+				count(targetList[i]);
+				this._running = true;
+				var startEvent:MotionEvent = new MotionEvent(MotionEvent.MOTION_START);
+				startEvent.motionTarget = targetList[i];
+				this.dispatchEvent(startEvent);
+			}
+		}
+		
+		private function stopMotion(element:*, index:int, arr:Array):void
+		{
+			MotionRunner.instance.stopAndRemoveMotion(element);
+			this._running = false;
+		}
+		
+		//#######################################
+		// HANDLER
+		//#######################################
 	}
 }

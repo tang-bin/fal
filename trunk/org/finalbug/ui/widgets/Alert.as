@@ -19,6 +19,7 @@ package org.finalbug.ui.widgets
 	
 	import org.finalbug.data.AlertData;
 	import org.finalbug.data.Language;
+	import org.finalbug.errors.DataError;
 	import org.finalbug.errors.UIError;
 	import org.finalbug.ui.control.Button;
 	import org.finalbug.ui.control.Label;
@@ -32,6 +33,14 @@ package org.finalbug.ui.widgets
 	 */
 	public class Alert
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
 		/**
 		 * 
 		 * @default 
@@ -47,6 +56,23 @@ package org.finalbug.ui.widgets
 		private static var stage:Stage;
 		
 		private static var currentData:AlertData;
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
+		
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
+		
+		public function Alert()
+		{
+			throw new DataError(DataError.STATIC_CLASS);
+		}
+		
+		//#######################################
+		// PUBLIC
+		//#######################################
 		
 		/**
 		 * 
@@ -174,6 +200,14 @@ package org.finalbug.ui.widgets
 			}
 		}
 		
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
+		
 		private static function createAlert():void
 		{
 			alertContainer = new Sprite;
@@ -202,11 +236,6 @@ package org.finalbug.ui.widgets
 			stage.addEventListener(Event.RESIZE, resizeHandler);
 			//
 			setAlertView();
-		}
-		
-		private static function removeHandler(e:MouseEvent):void
-		{
-			Alert.remove();
 		}
 		
 		private static function setAlertView():void
@@ -279,6 +308,15 @@ package org.finalbug.ui.widgets
 			}
 		}
 		
+		private static function alertExist():Boolean
+		{
+			return alertContainer != null && stage != null && stage.contains(alertContainer);
+		}
+		
+		//#######################################
+		// HANDLER
+		//#######################################
+		
 		private static function resizeHandler(e:Event):void
 		{
 			if(alertExist())
@@ -287,9 +325,9 @@ package org.finalbug.ui.widgets
 			}
 		}
 		
-		private static function alertExist():Boolean
+		private static function removeHandler(e:MouseEvent):void
 		{
-			return alertContainer != null && stage != null && stage.contains(alertContainer);
+			Alert.remove();
 		}
 	}
 }

@@ -12,7 +12,6 @@ package org.finalbug.utils
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
-	import flash.display.Stage;
 	import flash.utils.Dictionary;
 	
 	import org.finalbug.errors.DataError;
@@ -26,6 +25,10 @@ package org.finalbug.utils
 	 */	
 	public class LayoutManager
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
 		//#######################################
 		// SINGLETON
 		//#######################################
@@ -73,12 +76,6 @@ package org.finalbug.utils
 				throw new DataError(DataError.SINGLETON);
 			}
 		}
-		
-		//#######################################
-		// OVERRIDE
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//#######################################
 		
 		//#######################################
 		// PUBLIC

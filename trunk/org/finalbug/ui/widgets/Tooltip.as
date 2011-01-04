@@ -14,6 +14,7 @@ package org.finalbug.ui.widgets
 	import flash.events.MouseEvent;
 	import flash.text.TextFormat;
 	
+	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.Bin;
 	import org.finalbug.ui.control.Label;
 	import org.finalbug.ui.glazes.Flat;
@@ -27,6 +28,14 @@ package org.finalbug.ui.widgets
 	 */	
 	public class Tooltip
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
 		/**
 		 * 
 		 * @default 
@@ -46,6 +55,27 @@ package org.finalbug.ui.widgets
 		private static var box:Sprite;
 		private static var bg:Flat;
 		private static var txt:Label;
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
+		
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
+		
+		/**
+		 * 
+		 * @throws DataError
+		 */
+		public function Tooltip()
+		{
+			throw new DataError(DataError.STATIC_CLASS);
+		}
+		
+		//#######################################
+		// PUBLIC
+		//#######################################
 		
 		/**
 		 * 
@@ -71,6 +101,14 @@ package org.finalbug.ui.widgets
 				container.stage.removeEventListener(MouseEvent.MOUSE_MOVE, stageMoveHandler);
 			}
 		}
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
 		
 		private static function createTip():void
 		{
@@ -107,12 +145,6 @@ package org.finalbug.ui.widgets
 			container.stage.addEventListener(MouseEvent.MOUSE_MOVE, stageMoveHandler);
 		}
 		
-		private static function stageMoveHandler(e:MouseEvent):void
-		{
-			setBoxPosition();
-			e.updateAfterEvent();
-		}
-		
 		private static function setBoxPosition():void
 		{
 			if(box != null && container.contains(box) && box.visible)
@@ -129,6 +161,16 @@ package org.finalbug.ui.widgets
 					box.y = container.stage.stageHeight - box.height;
 				}
 			}
+		}
+		
+		//#######################################
+		// HANDLER
+		//#######################################
+		
+		private static function stageMoveHandler(e:MouseEvent):void
+		{
+			setBoxPosition();
+			e.updateAfterEvent();
 		}
 	}
 }

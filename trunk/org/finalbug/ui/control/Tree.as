@@ -16,10 +16,14 @@ package org.finalbug.ui.control
 	 * Tree
 	 * 
 	 * @author Tang Bin
-	 * @since 2010
+	 * @since 2011.01
 	 */	
 	public class Tree extends ScrollBox
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
 		//#######################################
 		// DEFINE
 		//#######################################
@@ -41,12 +45,6 @@ package org.finalbug.ui.control
 		{
 			super(xScroll, yScroll);
 		}
-		
-		//#######################################
-		// OVERRIDE
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//#######################################
 		
 		//#######################################
 		// PUBLIC

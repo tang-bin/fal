@@ -18,10 +18,46 @@ package org.finalbug.ui.skin
 	 * ScrollBarSkinData
 	 * 
 	 * @author Tang Bin
-	 * @since 2010
+	 * @since 2010.12
 	 */	
 	public class ScrollBarSkinData extends UISkinDataBase
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		/**
+		 * 
+		 * @param args leftBtn, rightBtn, upBtn, downBtn, back, slider
+		 * 
+		 */		
+		override public function setSkin(...args):void
+		{
+			leftBtn = args[0] as SkinElement;
+			rightBtn = args[1] as SkinElement;
+			upBtn = args[2] as SkinElement;
+			downBtn = args[3] as SkinElement;
+			back = args[4] as SkinElement;
+			slider = args[5] as SkinElement;
+			//
+			if(leftBtn != null) setStatusSkinByList(leftBtn, leftSkinData);
+			if(rightBtn != null) setStatusSkinByList(rightBtn, rightSkinData);
+			if(upBtn != null) setStatusSkinByList(upBtn, upSkinData);
+			if(downBtn != null) setStatusSkinByList(downBtn, downSkinData);
+			if(back != null) setStatusSkinByList(back, backSkinData);
+			if(slider != null) setStatusSkinByList(slider, sliderSkinData);
+		}
+		
+		override public function setStatus(status:String):void
+		{
+			if(leftBtn != null) leftBtn.status = status;
+			if(rightBtn != null) rightBtn.status = status;
+			if(upBtn != null) upBtn.status = status;
+			if(downBtn != null) downBtn.status = status;
+			if(back != null) back.status = status;
+			if(slider != null) slider.status = status;
+		}
+		
 		//#######################################
 		// DEFINE
 		//#######################################
@@ -131,44 +167,6 @@ package org.finalbug.ui.skin
 			//
 			sliderSkinData = new Dictionary();
 			sliderSkinData[Status.NORMAL] = new SkinElementData(Status.NORMAL, SkinElementData.BITMAP_TYPE, new scrollBarSliderCls(), true);
-		}
-		
-		//#######################################
-		// OVERRIDE
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//#######################################
-		
-		/**
-		 * 
-		 * @param args leftBtn, rightBtn, upBtn, downBtn, back, slider
-		 * 
-		 */		
-		override public function setSkin(...args):void
-		{
-			leftBtn = args[0] as SkinElement;
-			rightBtn = args[1] as SkinElement;
-			upBtn = args[2] as SkinElement;
-			downBtn = args[3] as SkinElement;
-			back = args[4] as SkinElement;
-			slider = args[5] as SkinElement;
-			//
-			if(leftBtn != null) setStatusSkinByList(leftBtn, leftSkinData);
-			if(rightBtn != null) setStatusSkinByList(rightBtn, rightSkinData);
-			if(upBtn != null) setStatusSkinByList(upBtn, upSkinData);
-			if(downBtn != null) setStatusSkinByList(downBtn, downSkinData);
-			if(back != null) setStatusSkinByList(back, backSkinData);
-			if(slider != null) setStatusSkinByList(slider, sliderSkinData);
-		}
-		
-		override public function setStatus(status:String):void
-		{
-			if(leftBtn != null) leftBtn.status = status;
-			if(rightBtn != null) rightBtn.status = status;
-			if(upBtn != null) upBtn.status = status;
-			if(downBtn != null) downBtn.status = status;
-			if(back != null) back.status = status;
-			if(slider != null) slider.status = status;
 		}
 		
 		//#######################################

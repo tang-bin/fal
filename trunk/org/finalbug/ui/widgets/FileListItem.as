@@ -34,6 +34,10 @@ package org.finalbug.ui.widgets
 	public class FileListItem extends Container
 	{
 		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		//#######################################
 		// DEFINE
 		//#######################################
 		
@@ -152,12 +156,6 @@ package org.finalbug.ui.widgets
 			createElements();
 			updateView();
 		}
-		
-		//#######################################
-		// OVERRIDE
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//#######################################
 		
 		//#######################################
 		// PUBLIC

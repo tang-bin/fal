@@ -19,25 +19,9 @@ package org.finalbug.utils.motion
 	 */	
 	public class FadeMotion extends Motion
 	{
-		/**
-		 * 
-		 * @default 
-		 */
-		public var alphaFrom:Number;
-		/**
-		 * 
-		 * @default 
-		 */
-		public var alphaTo:Number;
-		
-		/**
-		 * 
-		 * @param target
-		 */
-		public function FadeMotion(target:Object = null)
-		{
-			super(target);
-		}
+		//#######################################
+		// OVERRIDE
+		//#######################################
 		
 		override protected function count(target:Object):void
 		{
@@ -51,5 +35,54 @@ package org.finalbug.utils.motion
 				registeredMotions.push(MotionRunner.instance.register(target, "alpha", aSteps, this.times));
 			}
 		}
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
+		/**
+		 * 
+		 * @default 
+		 */
+		public var alphaFrom:Number;
+		/**
+		 * 
+		 * @default 
+		 */
+		public var alphaTo:Number;
+		
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
+		
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
+		
+		/**
+		 * 
+		 * @param target
+		 */
+		public function FadeMotion(target:Object = null)
+		{
+			super(target);
+		}
+		
+		//#######################################
+		// PUBLIC
+		//#######################################
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
+		
+		//#######################################
+		// HANDLER
+		//#######################################
 	}
 }

@@ -10,11 +10,11 @@
 //##########################################################
 package org.finalbug.utils.motion
 {
-	import org.finalbug.errors.DataError;
-	import org.finalbug.events.MotionEvent;
-	
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
+	
+	import org.finalbug.errors.DataError;
+	import org.finalbug.events.MotionEvent;
 	
 	/**
 	 * Class MotionRunner carry out in singular mode to hand all motions.
@@ -26,10 +26,12 @@ package org.finalbug.utils.motion
 	 */
 	public class MotionRunner
 	{
+		//#######################################
+		// SINGLETON
+		//#######################################
+		
 		private static var mr:MotionRunner;
 		private static var instanceable:Boolean = false;
-		
-		private var motionList:Object = new Object();
 		
 		/**
 		 * 
@@ -45,6 +47,24 @@ package org.finalbug.utils.motion
 			}
 			return mr;
 		}
+		
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
+		private var motionList:Object = new Object();
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
+		
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
 		
 		/**
 		 * 
@@ -63,6 +83,10 @@ package org.finalbug.utils.motion
 				timer.start();
 			}
 		}
+		
+		//#######################################
+		// PUBLIC
+		//#######################################
 		
 		/**
 		 * Register a new moting.
@@ -95,6 +119,18 @@ package org.finalbug.utils.motion
 				delete motionList[motionName];
 			}
 		}
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
+		
+		//#######################################
+		// HANDLER
+		//#######################################
 		
 		/**
 		 * core method of motion. All displayObject's attributes are modified at here.

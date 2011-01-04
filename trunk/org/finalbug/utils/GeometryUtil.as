@@ -14,12 +14,12 @@ package org.finalbug.utils
 	import flash.geom.Rectangle;
 	import org.finalbug.utils.MathUtil;
 	
-	/******************************************************
-	 * utils.GeometryUtil
+	/**
+	 * GeometryUtil
 	 *
 	 * @author Tang Bin
 	 * @since old version
-	  *****************************************************/  
+	 */
 	public class GeometryUtil
 	{
 		/**

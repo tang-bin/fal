@@ -16,7 +16,6 @@ package org.finalbug.ui.control
 	import flash.text.TextFormat;
 	
 	import org.finalbug.errors.DataError;
-	import org.finalbug.ui.control.UIObject;
 	
 	/**
 	 * controls.Label
@@ -26,10 +25,41 @@ package org.finalbug.ui.control
 	 */	
 	public class Label extends UIObject
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		override public function set width(value:Number):void
+		{
+			textWidth = value > 0 ? value : 0;
+			createLabel();
+		}
+		override public function get width():Number
+		{
+			return img.width;
+		}
+		
+		override public function set height(value:Number):void
+		{
+			//trace("Label's height value cannot be set.");
+		}
+		override public function get height():Number
+		{
+			return img.height;
+		}
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
 		private var str:String;
 		private var ft:TextFormat;
 		private var img:Bitmap;
 		private var textWidth:Number = 0;
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
 		
 		/**
 		 * 
@@ -85,24 +115,9 @@ package org.finalbug.ui.control
 			createLabel();
 		}
 		
-		override public function set width(value:Number):void
-		{
-			textWidth = value > 0 ? value : 0;
-			createLabel();
-		}
-		override public function get width():Number
-		{
-			return img.width;
-		}
-		
-		override public function set height(value:Number):void
-		{
-			//trace("Label's height value cannot be set.");
-		}
-		override public function get height():Number
-		{
-			return img.height;
-		}
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
 		
 		/**
 		 * 
@@ -123,6 +138,18 @@ package org.finalbug.ui.control
 			}
 			createLabel();
 		}
+		
+		//#######################################
+		// PUBLIC
+		//#######################################
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
 		
 		private function createLabel():void
 		{
@@ -180,5 +207,9 @@ package org.finalbug.ui.control
 				img.x = 0;
 			}
 		}
+		
+		//#######################################
+		// HANDLER
+		//#######################################
 	}
 }

@@ -19,35 +19,9 @@ package org.finalbug.utils.motion
 	 */	
 	public class SizeMotion extends Motion
 	{
-		/**
-		 * 
-		 * @default 
-		 */
-		public var widthFrom:Number;
-		/**
-		 * 
-		 * @default 
-		 */
-		public var heightFrom:Number;
-		/**
-		 * 
-		 * @default 
-		 */
-		public var widthTo:Number;
-		/**
-		 * 
-		 * @default 
-		 */
-		public var heightTo:Number;
-		
-		/**
-		 * 
-		 * @param target
-		 */
-		public function SizeMotion(target:Object = null)
-		{
-			super(target);
-		}
+		//#######################################
+		// OVERRIDE
+		//#######################################
 		
 		override protected function count(target:Object):void
 		{
@@ -70,5 +44,63 @@ package org.finalbug.utils.motion
 				registeredMotions.push(MotionRunner.instance.register(target, "height", hSteps, this.times));
 			}
 		}
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
+		/**
+		 * 
+		 * @default 
+		 */
+		public var widthFrom:Number;
+		/**
+		 * 
+		 * @default 
+		 */
+		public var heightFrom:Number;
+		/**
+		 * 
+		 * @default 
+		 */
+		public var widthTo:Number;
+		/**
+		 * 
+		 * @default 
+		 */
+		public var heightTo:Number;
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
+		
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
+		
+		/**
+		 * 
+		 * @param target
+		 */
+		public function SizeMotion(target:Object = null)
+		{
+			super(target);
+		}
+		
+		//#######################################
+		// PUBLIC
+		//#######################################
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
+		
+		//#######################################
+		// HANDLER
+		//#######################################
 	}
 }

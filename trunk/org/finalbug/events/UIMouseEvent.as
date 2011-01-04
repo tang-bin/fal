@@ -13,7 +13,8 @@ package org.finalbug.events
 	import flash.events.Event;
 
 	/**
-	 * Class FOSUIEvent defined events which will be dispatched by FOS UI Components.
+	 * Class UIMouseEvent defined events which will be dispatched by UI control 
+	 * components with mouse event.
 	 * 
 	 * @author Tang Bin
 	 * @since old version

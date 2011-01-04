@@ -1,7 +1,13 @@
-/******************************************************
- * [fb-aslib] Finalbug ActionScript Library 
- * http://www.finalbug.org
-  *****************************************************/  
+//##########################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__ |     |__|___|  (____  /____/___  /____/\___  /
+//     \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.net
 {
 	import flash.events.StatusEvent;
@@ -10,11 +16,36 @@ package org.finalbug.net
 	import flash.utils.ByteArray;
 	import flash.utils.Endian;
 	
+	/**
+	 * 
+	 * @author Tang Bin
+	 * @since 2010.08
+	 */	
 	public class LocalConnector
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
+		/**
+		 * 
+		 * @default 
+		 */
 		public var receiveHandler:Function;
+		/**
+		 * 
+		 * @default 
+		 */
 		public var sendFailedHandler:Function;
 		
+		/**
+		 * 
+		 * @default 
+		 */
 		protected var _connected:Boolean;
 		
 		private var bytes:ByteArray;
@@ -23,11 +54,44 @@ package org.finalbug.net
 		private var localName:String;
 		private var remoteName:String;
 		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
+		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get connected():Boolean
 		{
 			return this._connected;
 		}
 		
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
+		
+		/**
+		 * 
+		 * @param localName
+		 * @param remoteName
+		 */
+		public function LocalConnector(localName:String, remoteName:String):void
+		{
+			this.bytes = new ByteArray();
+			this._connected = false;
+			this.localName = localName;
+			this.remoteName = remoteName;
+		}
+		
+		//#######################################
+		// PUBLIC
+		//#######################################
+		
+		/**
+		 * 
+		 * @param data
+		 */
 		public function send(data:Object):void
 		{
 			var bytes:ByteArray = new ByteArray();
@@ -53,24 +117,29 @@ package org.finalbug.net
 			}
 		}
 		
+		/**
+		 * 
+		 * @param item
+		 * @param index
+		 * @param count
+		 */
 		public function onReceiveData(item:Object, index:Object, count:Object):void
 		{
 			this.getData(item, index, count);
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function getDataHandler():String
 		{
 			return "onReceiveData";
 		}
 		
-		public function LocalConnector(localName:String, remoteName:String):void
-		{
-			this.bytes = new ByteArray();
-			this._connected = false;
-			this.localName = localName;
-			this.remoteName = remoteName;
-		}
-		
+		/**
+		 * 
+		 */
 		public function connect():void
 		{
 			this.remoteConn = new LocalConnection();
@@ -90,6 +159,14 @@ package org.finalbug.net
 			}
 			this._connected = true;
 		}
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
 		
 		private function getData(item:Object, indexObj:Object, countObj:Object):void
 		{
@@ -123,6 +200,10 @@ package org.finalbug.net
 		{
 			remoteConn.send(remoteName, this.getDataHandler(), obj, index, count);
 		}
+		
+		//#######################################
+		// HANDLER
+		//#######################################
 		
 		private function sendStatusHandler(event:StatusEvent):void
 		{

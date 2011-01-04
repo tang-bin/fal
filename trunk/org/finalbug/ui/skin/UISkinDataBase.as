@@ -19,10 +19,14 @@ package org.finalbug.ui.skin
 	 * UISkinBase
 	 * 
 	 * @author Tang Bin
-	 * @since 2010
+	 * @since 2010.12
 	 */	
 	public class UISkinDataBase extends DataModel
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
 		//#######################################
 		// DEFINE
 		//#######################################
@@ -42,12 +46,6 @@ package org.finalbug.ui.skin
 		{
 			super();
 		}
-		
-		//#######################################
-		// OVERRIDE
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//#######################################
 		
 		//#######################################
 		// PUBLIC

@@ -24,30 +24,7 @@ package org.finalbug.ui.glazes
 	public class Scale9Bitmap extends Bitmap
 	{
 		//#######################################
-		// DEFINE
-		//#######################################
-		
-		private var sourceData:BitmapData;
-		private var scale9:Rectangle;
-		
-		//#######################################
-		// CONSTRUCTOR.
-		//#######################################
-		
-		/**
-		 * 
-		 * @param source
-		 * @param scale9
-		 */
-		public function Scale9Bitmap(source:Bitmap, scale9:Rectangle)
-		{
-			this.scale9 = scale9;
-			this.sourceData = source.bitmapData.clone();
-			super(source.bitmapData.clone(), source.pixelSnapping, source.smoothing);
-		}
-		
-		//#######################################
-		// GETTER and SETTER
+		// OVERRIDE
 		//#######################################
 		
 		override public function set width(value:Number):void
@@ -69,6 +46,41 @@ package org.finalbug.ui.glazes
 			this.scale9 = innerRectangle;
 			this.apply9Scale(this.width, this.height);
 		}
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
+		private var sourceData:BitmapData;
+		private var scale9:Rectangle;
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
+		
+		//#######################################
+		// CONSTRUCTOR.
+		//#######################################
+		
+		/**
+		 * 
+		 * @param source
+		 * @param scale9
+		 */
+		public function Scale9Bitmap(source:Bitmap, scale9:Rectangle)
+		{
+			this.scale9 = scale9;
+			this.sourceData = source.bitmapData.clone();
+			super(source.bitmapData.clone(), source.pixelSnapping, source.smoothing);
+		}
+		
+		//#######################################
+		// PUBLIC
+		//#######################################
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
 		
 		//#######################################
 		// PRIVATE
@@ -161,5 +173,9 @@ package org.finalbug.ui.glazes
 				bitmapData = sourceData.clone();
 			}
 		}
+		
+		//#######################################
+		// HANDLER
+		//#######################################
 	}
 }

@@ -26,6 +26,25 @@ package org.finalbug.ui.control
 	public class Button extends UIObject
 	{
 		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		override protected function updateView():void
+		{
+			super.updateView();
+			if(bg != null)
+			{
+				bg.width = this.displayWidth;
+				bg.height = this.displayHeight;
+			}
+			if(_label != null)
+			{
+				_label.text = _labelStr;
+				_label.toCenter();
+			}
+		}
+		
+		//#######################################
 		// DEFINE
 		//#######################################
 		
@@ -87,27 +106,6 @@ package org.finalbug.ui.control
 			// set skin data.
 			if(uiSkinData == null) uiSkinData = new ButtonSkinData();
 			uiSkinData.setSkin(bg, _label);
-		}
-		
-		//#######################################
-		// OVERRIDE
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//#######################################
-		
-		override protected function updateView():void
-		{
-			super.updateView();
-			if(bg != null)
-			{
-				bg.width = this.displayWidth;
-				bg.height = this.displayHeight;
-			}
-			if(_label != null)
-			{
-				_label.text = _labelStr;
-				_label.toCenter();
-			}
 		}
 		
 		//#######################################

@@ -22,10 +22,42 @@ package org.finalbug.ui.skin
 	 * TextSkinData
 	 * 
 	 * @author Tang Bin
-	 * @since 2010
+	 * @since 2010.12
 	 */	
 	public class TextSkinData extends UISkinDataBase
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		override public function setSkin(...args):void
+		{
+			box = args[0] as SkinElement;
+			if(box != null)
+			{
+				this.setStatusSkinByList(box, boxSkins);
+			}
+			text = args[1] as TextField;
+			if(text != null)
+			{
+				text.setTextFormat(textFormats[Status.NORMAL]);
+				text.defaultTextFormat = textFormats[Status.NORMAL];
+			}
+		}
+		
+		override public function setStatus(status:String):void
+		{
+			if(box != null)
+			{
+				box.status = status;
+			}
+			if(text != null && textFormats[status] != null)
+			{
+				text.setTextFormat(textFormats[status]);
+				text.defaultTextFormat = textFormats[status];
+			}
+		}
+		
 		//#######################################
 		// DEFINE
 		//#######################################
@@ -79,40 +111,6 @@ package org.finalbug.ui.skin
 			textFormats[Status.NORMAL] = new TextFormat("Arial", 12, 0);
 			//
 			scrollBarSkinData = new ScrollBarSkinData();
-		}
-		
-		//#######################################
-		// OVERRIDE
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//#######################################
-		
-		override public function setSkin(...args):void
-		{
-			box = args[0] as SkinElement;
-			if(box != null)
-			{
-				this.setStatusSkinByList(box, boxSkins);
-			}
-			text = args[1] as TextField;
-			if(text != null)
-			{
-				text.setTextFormat(textFormats[Status.NORMAL]);
-				text.defaultTextFormat = textFormats[Status.NORMAL];
-			}
-		}
-		
-		override public function setStatus(status:String):void
-		{
-			if(box != null)
-			{
-				box.status = status;
-			}
-			if(text != null && textFormats[status] != null)
-			{
-				text.setTextFormat(textFormats[status]);
-				text.defaultTextFormat = textFormats[status];
-			}
 		}
 		
 		//#######################################

@@ -28,6 +28,25 @@ package org.finalbug.ui.control
 	 */
 	public class CheckBox extends UIObject
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		override public function set status(value:String):void
+		{
+			super.status = this.getCurrentStatus(value);
+		}
+		
+		override protected function updateView():void
+		{
+			super.updateView();
+			resetPosition();
+		}
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
 		private const BOX_SIZE:Number = 16;
 		private const OFFSET:Number = 3;
 		
@@ -38,6 +57,10 @@ package org.finalbug.ui.control
 		private var box:SkinElement;
 		private var txt:Label;
 		private var back:Shape;
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
 		
 		/**
 		 * If is checked of not.
@@ -115,10 +138,9 @@ package org.finalbug.ui.control
 			return txt.textColor;
 		}
 		
-		override public function set status(value:String):void
-		{
-			super.status = this.getCurrentStatus(value);
-		}
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
 		
 		/**
 		 * Create a new CheckBox object.
@@ -148,11 +170,17 @@ package org.finalbug.ui.control
 			uiSkinData.setSkin(box, txt);
 		}
 		
-		override protected function updateView():void
-		{
-			super.updateView();
-			resetPosition();
-		}
+		//#######################################
+		// PUBLIC
+		//#######################################
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
 		
 		/**
 		 * set elements position.

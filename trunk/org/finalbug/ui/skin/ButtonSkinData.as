@@ -20,10 +20,14 @@ package org.finalbug.ui.skin
 	 * ButtonSkin
 	 * 
 	 * @author Tang Bin
-	 * @since 2010
+	 * @since 2010.12
 	 */	
 	public class ButtonSkinData extends UISkinDataBase
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
 		//#######################################
 		// DEFINE
 		//#######################################
@@ -83,12 +87,6 @@ package org.finalbug.ui.skin
 			txtFormats[Status.MOUSE_DOWN] = new TextFormat("Arial", 12, 0xFFFFFF, true);
 			txtFormats[Status.DISABLE] = new TextFormat("Arial", 12, 0xFFFFFF, true);
 		}
-		
-		//#######################################
-		// OVERRIDE
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//#######################################
 		
 		//#######################################
 		// PUBLIC

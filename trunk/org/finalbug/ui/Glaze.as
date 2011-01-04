@@ -20,6 +20,10 @@ package org.finalbug.ui
 	public class Glaze extends Bin
 	{
 		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		//#######################################
 		// DEFINE
 		//#######################################
 		
@@ -40,12 +44,6 @@ package org.finalbug.ui
 			this.mouseChildren = this.mouseEnabled = false;
 			this.cacheAsBitmap = true;
 		}
-		
-		//#######################################
-		// OVERRIDE
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//#######################################
 		
 		//#######################################
 		// PUBLIC

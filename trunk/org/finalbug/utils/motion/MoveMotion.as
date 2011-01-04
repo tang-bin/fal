@@ -19,35 +19,9 @@ package org.finalbug.utils.motion
 	 */	
 	public class MoveMotion extends Motion
 	{
-		/**
-		 * x coordinate that target object will move start.
-		 * if not set, current target object's x coordinate will be taken as this value.
-		 */		
-		public var xFrom:Number;
-		
-		/**
-		 * y coordinate that target object will move start.
-		 * if not set, target object's current x coordinate will be taken as this value.  
-		 */		
-		public var yFrom:Number;
-		
-		/**
-		 * x coordinate value that object will move to.
-		 */		
-		public var xTo:Number;
-		/**
-		 * y coordinate value that object will move to.
-		 */		
-		public var yTo:Number;
-		
-		/**
-		 * 
-		 * @param target
-		 */
-		public function MoveMotion(target:Object = null)
-		{
-			super(target);
-		}
+		//#######################################
+		// OVERRIDE
+		//#######################################
 		
 		/**
 		 * account target object's position which will be used during moting effect.
@@ -75,5 +49,63 @@ package org.finalbug.utils.motion
 				registeredMotions.push(MotionRunner.instance.register(target, "y", ySteps, this.times));
 			}
 		}
+		
+		//#######################################
+		// DEFINE
+		//#######################################
+		
+		/**
+		 * x coordinate that target object will move start.
+		 * if not set, current target object's x coordinate will be taken as this value.
+		 */		
+		public var xFrom:Number;
+		
+		/**
+		 * y coordinate that target object will move start.
+		 * if not set, target object's current x coordinate will be taken as this value.  
+		 */		
+		public var yFrom:Number;
+		
+		/**
+		 * x coordinate value that object will move to.
+		 */		
+		public var xTo:Number;
+		/**
+		 * y coordinate value that object will move to.
+		 */		
+		public var yTo:Number;
+		
+		//#######################################
+		// GETTER and SETTER
+		//#######################################
+		
+		//#######################################
+		// CONSTRUCTOR
+		//#######################################
+		
+		/**
+		 * 
+		 * @param target
+		 */
+		public function MoveMotion(target:Object = null)
+		{
+			super(target);
+		}
+		
+		//#######################################
+		// PUBLIC
+		//#######################################
+		
+		//#######################################
+		// PROTECTED
+		//#######################################
+		
+		//#######################################
+		// PRIVATE
+		//#######################################
+		
+		//#######################################
+		// HANDLER
+		//#######################################
 	}
 }

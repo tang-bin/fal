@@ -22,10 +22,42 @@ package org.finalbug.ui.widgets
 	 * FileList
 	 * 
 	 * @author Tang Bin
-	 * @since 2010
+	 * @since 2010.11
 	 */	
 	public class FileList extends ScrollPanel
 	{
+		//#######################################
+		// OVERRIDE
+		//#######################################
+		
+		override protected function updateView():void
+		{
+			if(dd == null) return;
+			// step1, set all exist item is not updated
+			for each(var itemData:Object in items)
+			{
+				itemData.update = false;
+			}
+			// step2, update items
+			dd.forEachFile(createAndShowFiles);
+			// step3, after update items, the items whose update is false will be removed.
+			for each(var itemData2:Object in items)
+			{
+				var item:FileListItem = itemData2.item as FileListItem;
+				if(!itemData2.update)
+				{
+					items[item.data.name] = null;
+					delete items[item.data.name];
+					this.container.removeChild(item);
+				}
+			}
+			// step 4, set position
+			beforeSetItemPosition();
+			dd.forEachFile(doForEachItem);
+			// step 5, refresh scroll panel
+			super.updateView();
+		}
+		
 		//#######################################
 		// DEFINE
 		//#######################################
@@ -67,40 +99,6 @@ package org.finalbug.ui.widgets
 			this.dragable = false;
 			if(data == null) data = new DirectoryData();
 			showDirectory(data);
-		}
-		
-		//#######################################
-		// OVERRIDE
-		// Whit out getter, setter and handler
-		// include public, protected and private.
-		//#######################################
-		
-		override protected function updateView():void
-		{
-			if(dd == null) return;
-			// step1, set all exist item is not updated
-			for each(var itemData:Object in items)
-			{
-				itemData.update = false;
-			}
-			// step2, update items
-			dd.forEachFile(createAndShowFiles);
-			// step3, after update items, the items whose update is false will be removed.
-			for each(var itemData2:Object in items)
-			{
-				var item:FileListItem = itemData2.item as FileListItem;
-				if(!itemData2.update)
-				{
-					items[item.data.name] = null;
-					delete items[item.data.name];
-					this.container.removeChild(item);
-				}
-			}
-			// step 4, set position
-			beforeSetItemPosition();
-			dd.forEachFile(doForEachItem);
-			// step 5, refresh scroll panel
-			super.updateView();
 		}
 		
 		//#######################################
