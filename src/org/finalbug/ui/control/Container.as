@@ -11,6 +11,9 @@
 package org.finalbug.ui.control
 {
 	import flash.display.DisplayObject;
+	import flash.display.Shape;
+	
+	import org.finalbug.utils.DrawUtil;
 	
 	/**
 	 * Class Container is the basic class of the display object used to layout.
@@ -23,11 +26,6 @@ package org.finalbug.ui.control
 		//#######################################
 		// OVERRIDE
 		//#######################################
-		
-		override protected function updateView():void
-		{
-			super.updateView();
-		}
 		
 		//#######################################
 		// DEFINE

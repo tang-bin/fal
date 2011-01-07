@@ -1,7 +1,13 @@
-/******************************************
- * Finalbug ActionScript Library
- * http://www.finalbug.org
- ******************************************/
+//##########################################################
+// __________.__              .__ ___.
+// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+//  \__|     |__|___|__(______/____/_____/____/\___  /
+//                                            /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+//##########################################################
 package org.finalbug.test.tester
 {
 	import flash.events.MouseEvent;
@@ -16,12 +22,12 @@ package org.finalbug.test.tester
 	import org.finalbug.utils.motion.MoveMotion;
 	
 	
-	/******************************************
-	 * org.finalbug.faltester.tester.MotionTester
+	/**
+	 * MotionTester
 	 *
 	 * @author Tang Bin
 	 * @since 2010.08
-	 *****************************************/
+	 */
 	public class MotionTester extends UIObject
 	{
 		/****************************************

@@ -38,11 +38,6 @@ package org.finalbug.errors
 		 * 
 		 * @default 
 		 */
-		public static const INDEX_FLOOD:String = "Data flood, not in valid area.";
-		/**
-		 * 
-		 * @default 
-		 */
 		public static const TYPE_ERROR:String = "Data type error.";
 		/**
 		 * 
@@ -93,6 +88,12 @@ package org.finalbug.errors
 		 * @default 
 		 */
 		public static const STATIC_CLASS:String = "Static class cannot be instanced";
+		
+		/**
+		 * 
+		 * @default 
+		 */
+		public static const INVALID_INDEX:String = "Invalid index number";
 		/**
 		 * 
 		 * @param message
