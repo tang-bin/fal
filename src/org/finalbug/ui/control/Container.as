@@ -13,6 +13,7 @@ package org.finalbug.ui.control
 	import flash.display.DisplayObject;
 	import flash.display.Shape;
 	
+	import org.finalbug.events.UIEvent;
 	import org.finalbug.utils.DrawUtil;
 	
 	/**
@@ -30,6 +31,15 @@ package org.finalbug.ui.control
 		//#######################################
 		// DEFINE
 		//#######################################
+		
+		private const HRank:String = "hRank";
+		private const VRank:String = "vRank";
+		
+		private var _autoRank:Boolean = false;
+		private var _autoRankSpace:Number = 0;
+		private var _autoRankType:String = HRank;
+		private var _autoRankCenter:Boolean = false;
+		private var _autoRankMeasure:Boolean = false;
 		
 		//#######################################
 		// GETTER and SETTER
@@ -117,6 +127,7 @@ package org.finalbug.ui.control
 		{
 			super();
 			this.initSize("100%", "100%");
+			this.addEventListener(UIEvent.CHILDREN_CHANGED, childrenChangedHandler);
 		}
 		
 		//#######################################
@@ -131,7 +142,8 @@ package org.finalbug.ui.control
 		 */
 		public function horizontalRank(space:Number = 0,
 									   center:Boolean = true,
-									   measureAfterRank:Boolean = false):void
+									   measureAfterRank:Boolean = false, 
+									   autoRank:Boolean = false):void
 		{
 			var totalNum:uint = this.numChildren;
 			var currentX:Number = space;
@@ -156,6 +168,15 @@ package org.finalbug.ui.control
 			{
 				measure(space, 0);
 			}
+			//
+			if(autoRank)
+			{
+				_autoRank = true;
+				_autoRankType = HRank;
+				_autoRankCenter = center;
+				_autoRankMeasure = measureAfterRank;
+				_autoRankSpace = space;
+			}
 		}
 		
 		/**
@@ -167,7 +188,8 @@ package org.finalbug.ui.control
 		 */		
 		public function verticalRank(space:Number = 0,
 									 center:Boolean = true,
-									 measureAfterRank:Boolean = false):void
+									 measureAfterRank:Boolean = false,
+									 autoRank:Boolean = false):void
 		{
 			var totalNum:uint = this.numChildren;
 			var currentY:Number = space;
@@ -191,6 +213,15 @@ package org.finalbug.ui.control
 			if(measureAfterRank)
 			{
 				measure(0, space);
+			}
+			//
+			if(autoRank)
+			{
+				_autoRank = true;
+				_autoRankType = VRank;
+				_autoRankCenter = center;
+				_autoRankMeasure = measureAfterRank;
+				_autoRankSpace = space;
 			}
 		}
 		
@@ -233,5 +264,20 @@ package org.finalbug.ui.control
 		//#######################################
 		// HANDLER
 		//#######################################
+		
+		private function childrenChangedHandler():void
+		{
+			if(this._autoRank)
+			{
+				if(this._autoRankType == HRank)
+				{
+					this.horizontalRank(_autoRankSpace, _autoRankCenter, _autoRankMeasure);
+				}
+				else if(this._autoRankType == VRank)
+				{
+					this.verticalRank(_autoRankSpace, _autoRankCenter, _autoRankMeasure);
+				}
+			}
+		}
 	}
 }

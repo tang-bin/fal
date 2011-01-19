@@ -55,6 +55,13 @@ package org.finalbug.events
 		 * @eventType switchTarget 
 		 */
 		public static const SWITCH_TARGET:String = "switchTarget";
+		
+		/**
+		 * 
+		 * @eventType childrenChanged 
+		 */
+		public static const CHILDREN_CHANGED:String = "childrenChanged";
+		
 		/**
 		 * 
 		 * @default 

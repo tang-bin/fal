@@ -12,10 +12,9 @@ package org.finalbug.ui.navigate
 {
 	import flash.display.DisplayObject;
 	
-	import mx.core.Container;
-	
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.control.Button;
+	import org.finalbug.ui.control.Container;
 	import org.finalbug.ui.control.UIObject;
 	import org.finalbug.ui.skin.UISkinDataBase;
 	
@@ -49,15 +48,30 @@ package org.finalbug.ui.navigate
 		// CONSTRUCTOR
 		//#######################################
 		
+		/**
+		 * 
+		 * @param skinData
+		 */
 		public function NavigateTab(skinData:UISkinDataBase=null)
 		{
 			super(skinData);
+			// create children.
+			btnBar = new Container();
+			btnBar.horizontalRank(0, true, false, true);
+			box = new Slider();
+			this.addAll(btnBar, box);
 		}
 		
 		//#######################################
 		// PUBLIC
 		//#######################################
 		
+		/**
+		 * 
+		 * @param label
+		 * @param object
+		 * @param index
+		 */
 		public function addTab(label:String, object:DisplayObject = null, index:int = -1):void
 		{
 			if(index < 0 || index > tabs.length)
@@ -75,6 +89,12 @@ package org.finalbug.ui.navigate
 			box.addChild(data.object);
 		}
 		
+		/**
+		 * 
+		 * @param index
+		 * @return 
+		 * @throws DataError
+		 */
 		public function getTabObjectAt(index:uint):DisplayObject
 		{
 			if(index >= tabs.length)
@@ -84,6 +104,12 @@ package org.finalbug.ui.navigate
 			return (tabs[index] as TabData).object;
 		}
 		
+		/**
+		 * 
+		 * @param index
+		 * @return 
+		 * @throws DataError
+		 */
 		public function getTabLabelAt(index:uint):String
 		{
 			if(index >= tabs.length)
@@ -93,21 +119,43 @@ package org.finalbug.ui.navigate
 			return (tabs[index] as TabData).label;
 		}
 		
+		/**
+		 * 
+		 * @param index
+		 * @param label
+		 */
 		public function setTabLabelAt(index:uint, label:String):void
 		{
+			if(index >= tabs.length)
+			{
+				throw new DataError(DataError.INVALID_INDEX);
+			}
 			
 		}
 		
+		/**
+		 * 
+		 * @param object
+		 * @param label
+		 */
 		public function setTabLabelByObject(object:DisplayObject, label:String):void
 		{
 			
 		}
 		
+		/**
+		 * 
+		 * @param index
+		 */
 		public function removeTabAt(index:uint):void
 		{
 			
 		}
 		
+		/**
+		 * 
+		 * @param object
+		 */
 		public function removeTabByObject(object:DisplayObject):void
 		{
 			
@@ -132,7 +180,19 @@ import org.finalbug.ui.control.Button;
 
 class TabData
 {
+	/**
+	 * 
+	 * @default 
+	 */
 	public var label:String;
+	/**
+	 * 
+	 * @default 
+	 */
 	public var object:DisplayObject;
+	/**
+	 * 
+	 * @default 
+	 */
 	public var btn:Button;
 }

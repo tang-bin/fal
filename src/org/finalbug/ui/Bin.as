@@ -18,6 +18,7 @@ package org.finalbug.ui
 	import org.finalbug.data.Position;
 	import org.finalbug.events.DisplayEvent;
 	import org.finalbug.events.MotionEvent;
+	import org.finalbug.events.UIEvent;
 	import org.finalbug.ui.style.FillStyle;
 	import org.finalbug.utils.MathUtil;
 	import org.finalbug.utils.motion.MoveMotion;
@@ -80,6 +81,46 @@ package org.finalbug.ui
 		{
 			this.displayHeight=MathUtil.getNumArea(value, minHeight, maxHeight);
 			this.updateView();
+		}
+		
+		override public function addChild(child:DisplayObject):DisplayObject
+		{
+			var child:DisplayObject = super.addChild(child);
+			dispatchChildChanged();
+			return child;
+		}
+		
+		override public function addChildAt(child:DisplayObject, index:int):DisplayObject
+		{
+			var child:DisplayObject = super.addChildAt(child, index);
+			dispatchChildChanged();
+			return child;
+		}
+		
+		override public function removeChild(child:DisplayObject):DisplayObject
+		{
+			var child:DisplayObject = super.removeChild(child);
+			dispatchChildChanged();
+			return child;
+		}
+		
+		override public function removeChildAt(index:int):DisplayObject
+		{
+			var child:DisplayObject = super.removeChildAt(index);
+			dispatchChildChanged();
+			return child;
+		}
+		
+		override public function swapChildren(child1:DisplayObject, child2:DisplayObject):void
+		{
+			super.swapChildren(child1, child2);
+			dispatchChildChanged();
+		}
+		
+		override public function swapChildrenAt(index1:int, index2:int):void
+		{
+			super.swapChildrenAt(index1, index2);
+			dispatchChildChanged();
 		}
 		
 		//#######################################
@@ -593,6 +634,12 @@ package org.finalbug.ui
 					_controlPointType="";
 					break;
 			}
+		}
+		
+		private function dispatchChildChanged():void
+		{
+			var ee:UIEvent = new UIEvent(UIEvent.CHILDREN_CHANGED);
+			this.dispatchEvent(ee);
 		}
 		
 		//#######################################
