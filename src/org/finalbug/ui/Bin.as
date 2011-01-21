@@ -20,6 +20,7 @@ package org.finalbug.ui
 	import org.finalbug.events.MotionEvent;
 	import org.finalbug.events.UIEvent;
 	import org.finalbug.ui.style.FillStyle;
+	import org.finalbug.ui.style.LayoutStyle;
 	import org.finalbug.utils.MathUtil;
 	import org.finalbug.utils.motion.MoveMotion;
 	import org.finalbug.utils.motion.SizeMotion;
@@ -57,8 +58,9 @@ package org.finalbug.ui
 		 */
 		override public function set width(value:Number):void
 		{
-			this.displayWidth=MathUtil.getNumArea(value, minWidth, maxWidth);
+			this.displayWidth = MathUtil.getNumArea(value, minWidth, maxWidth);
 			this.updateView();
+			this.dispatchSizeChanged();
 		}
 		
 		/**
@@ -79,10 +81,16 @@ package org.finalbug.ui
 		 */
 		override public function set height(value:Number):void
 		{
-			this.displayHeight=MathUtil.getNumArea(value, minHeight, maxHeight);
+			this.displayHeight = MathUtil.getNumArea(value, minHeight, maxHeight);
 			this.updateView();
+			this.dispatchSizeChanged();
 		}
 		
+		/**
+		 * 
+		 * @param child
+		 * @return 
+		 */
 		override public function addChild(child:DisplayObject):DisplayObject
 		{
 			var child:DisplayObject = super.addChild(child);
@@ -90,6 +98,12 @@ package org.finalbug.ui
 			return child;
 		}
 		
+		/**
+		 * 
+		 * @param child
+		 * @param index
+		 * @return 
+		 */
 		override public function addChildAt(child:DisplayObject, index:int):DisplayObject
 		{
 			var child:DisplayObject = super.addChildAt(child, index);
@@ -97,6 +111,11 @@ package org.finalbug.ui
 			return child;
 		}
 		
+		/**
+		 * 
+		 * @param child
+		 * @return 
+		 */
 		override public function removeChild(child:DisplayObject):DisplayObject
 		{
 			var child:DisplayObject = super.removeChild(child);
@@ -104,6 +123,11 @@ package org.finalbug.ui
 			return child;
 		}
 		
+		/**
+		 * 
+		 * @param index
+		 * @return 
+		 */
 		override public function removeChildAt(index:int):DisplayObject
 		{
 			var child:DisplayObject = super.removeChildAt(index);
@@ -111,12 +135,22 @@ package org.finalbug.ui
 			return child;
 		}
 		
+		/**
+		 * 
+		 * @param child1
+		 * @param child2
+		 */
 		override public function swapChildren(child1:DisplayObject, child2:DisplayObject):void
 		{
 			super.swapChildren(child1, child2);
 			dispatchChildChanged();
 		}
 		
+		/**
+		 * 
+		 * @param index1
+		 * @param index2
+		 */
 		override public function swapChildrenAt(index1:int, index2:int):void
 		{
 			super.swapChildrenAt(index1, index2);
@@ -144,7 +178,13 @@ package org.finalbug.ui
 		 *
 		 * @default null
 		 */
-		protected var _fillStyle:FillStyle=null;
+		protected var _fillStyle:FillStyle = null;
+		
+		/**
+		 * 
+		 * @default 
+		 */
+		protected var _layoutStyle:LayoutStyle = null;
 		
 		private var _maxWidth:Number=4000;
 		private var _maxHeight:Number=4000;
@@ -178,8 +218,30 @@ package org.finalbug.ui
 		{
 			if (_fillStyle != value)
 			{
-				_fillStyle=value;
+				_fillStyle = value;
 				drawBg();
+			}
+		}
+		
+		/**
+		 * 
+		 * @return 
+		 */
+		public function get layoutStyle():LayoutStyle
+		{
+			return _layoutStyle;
+		}
+		
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set layoutStyle(value:LayoutStyle):void
+		{
+			if(_layoutStyle != value)
+			{
+				_layoutStyle = value;
+				this.updateByLayout();
 			}
 		}
 		
@@ -258,6 +320,7 @@ package org.finalbug.ui
 			{
 				this.displayWidth=_maxWidth;
 				this.updateView();
+				this.dispatchSizeChanged();
 			}
 		}
 		
@@ -281,6 +344,7 @@ package org.finalbug.ui
 			{
 				this.displayHeight=_maxHeight;
 				this.updateView();
+				this.dispatchSizeChanged();
 			}
 		}
 		
@@ -304,6 +368,7 @@ package org.finalbug.ui
 			{
 				this.displayWidth=_minWidth;
 				this.updateView();
+				this.dispatchSizeChanged();
 			}
 		}
 		
@@ -327,6 +392,7 @@ package org.finalbug.ui
 			{
 				this.displayHeight=_minHeight;
 				this.updateView();
+				this.dispatchSizeChanged();
 			}
 		}
 		
@@ -340,6 +406,7 @@ package org.finalbug.ui
 		public function Bin()
 		{
 			super();
+			// for first added to stage
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
 		
@@ -356,9 +423,10 @@ package org.finalbug.ui
 		 */
 		public function resize(width:Number, height:Number):void
 		{
-			this.displayWidth=MathUtil.getNumArea(width, this.minWidth, this.maxWidth);
-			this.displayHeight=MathUtil.getNumArea(height, this.minHeight, this.maxHeight);
+			this.displayWidth = MathUtil.getNumArea(width, this.minWidth, this.maxWidth);
+			this.displayHeight = MathUtil.getNumArea(height, this.minHeight, this.maxHeight);
 			this.updateView();
+			this.dispatchSizeChanged();
 		}
 		
 		/**
@@ -546,6 +614,16 @@ package org.finalbug.ui
 			}
 		}
 		
+		public function updateByLayout():void
+		{
+			if(_layoutStyle != null)
+			{
+				this.resize(_layoutStyle.width, _layoutStyle.height);
+				this.x = _layoutStyle.x;
+				this.y = _layoutStyle.y;
+			}
+		}
+		
 		//#######################################
 		// PROTECTED
 		//#######################################
@@ -639,6 +717,20 @@ package org.finalbug.ui
 		private function dispatchChildChanged():void
 		{
 			var ee:UIEvent = new UIEvent(UIEvent.CHILDREN_CHANGED);
+			this.dispatchEvent(ee);
+		}
+		
+		private function dispatchSizeChanged():void
+		{
+			for(var i:uint = this.numChildren ; --i >= 0 ; )
+			{
+				var child:DisplayObject = this.getChildAt(i);
+				if(child is Bin)
+				{
+					(child as Bin).updateByLayout();
+				}
+			}
+			var ee:UIEvent = new UIEvent(UIEvent.RESIZE);
 			this.dispatchEvent(ee);
 		}
 		

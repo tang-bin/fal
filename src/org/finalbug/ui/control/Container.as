@@ -11,10 +11,9 @@
 package org.finalbug.ui.control
 {
 	import flash.display.DisplayObject;
-	import flash.display.Shape;
 	
 	import org.finalbug.events.UIEvent;
-	import org.finalbug.utils.DrawUtil;
+	import org.finalbug.ui.style.FillStyle;
 	
 	/**
 	 * Class Container is the basic class of the display object used to layout.
@@ -27,6 +26,12 @@ package org.finalbug.ui.control
 		//#######################################
 		// OVERRIDE
 		//#######################################
+		
+		override protected function updateView():void
+		{
+			super.updateView();
+			trace("in container", this.name, this.displayWidth, this.displayHeight);
+		}
 		
 		//#######################################
 		// DEFINE
@@ -126,6 +131,7 @@ package org.finalbug.ui.control
 		public function Container()
 		{
 			super();
+			_fillStyle = new FillStyle();
 			this.initSize("100%", "100%");
 			this.addEventListener(UIEvent.CHILDREN_CHANGED, childrenChangedHandler);
 		}
@@ -265,7 +271,7 @@ package org.finalbug.ui.control
 		// HANDLER
 		//#######################################
 		
-		private function childrenChangedHandler():void
+		private function childrenChangedHandler(e:UIEvent):void
 		{
 			if(this._autoRank)
 			{

@@ -11,12 +11,15 @@
 package org.finalbug.ui.navigate
 {
 	import flash.display.DisplayObject;
+	import flash.display.Sprite;
+	import flash.events.MouseEvent;
 	
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.control.Button;
 	import org.finalbug.ui.control.Container;
 	import org.finalbug.ui.control.UIObject;
 	import org.finalbug.ui.skin.UISkinDataBase;
+	import org.finalbug.ui.style.LayoutStyle;
 	
 	
 	/**
@@ -25,7 +28,7 @@ package org.finalbug.ui.navigate
 	 * @author Tang Bin
 	 * @since 2011.01
 	 */	
-	public class NavigateTab extends UIObject
+	public class NavigateTab extends Container
 	{
 		//#######################################
 		// OVERRIDE
@@ -52,41 +55,70 @@ package org.finalbug.ui.navigate
 		 * 
 		 * @param skinData
 		 */
-		public function NavigateTab(skinData:UISkinDataBase=null)
+		public function NavigateTab()
 		{
-			super(skinData);
+			super();
+			this.name = "navigate tab";
 			// create children.
 			btnBar = new Container();
 			btnBar.horizontalRank(0, true, false, true);
 			box = new Slider();
 			this.addAll(btnBar, box);
+			//
+			var btnLS:LayoutStyle = new LayoutStyle();
+			btnLS.setNormalStyle("100%", 22, 0, 0);
+			btnBar.layoutStyle = btnLS;
+			//
+			var boxLS:LayoutStyle = new LayoutStyle();
+			boxLS.setAroundStyle(0, 22, 0, 0);
+			box.layoutStyle = boxLS;
 		}
 		
 		//#######################################
 		// PUBLIC
 		//#######################################
 		
+		
 		/**
+		 * Add new tab into NavigateTab.
 		 * 
-		 * @param label
-		 * @param object
-		 * @param index
+		 * @param label Label string of new tab
+		 * @param object Container of new tab. If null, an new Sprite object will be created and added to tab.
+		 * @param index Index of new tab. -1 means added to the last.
+		 * @return If object is not null, return object, or return the new Sprite object as DisplayObject.
 		 */
-		public function addTab(label:String, object:DisplayObject = null, index:int = -1):void
+		public function addTab(label:String, object:DisplayObject = null, index:int = -1):DisplayObject
 		{
 			if(index < 0 || index > tabs.length)
 			{
 				index = tabs.length;
 			}
 			//
+			if(object == null)
+			{
+				object = new Sprite();
+			}
+			//
 			var data:TabData = new TabData();
 			data.label = label;
 			data.object = object;
 			data.btn = new Button(label);
+			data.btn.addEventListener(MouseEvent.CLICK, clickTabBtnHandler);
 			tabs.splice(index, 0, data);
 			//
-			btnBar.addChild(data.btn);
-			box.addChild(data.object);
+			if(index >=0 && index < btnBar.numChildren)
+			{
+				btnBar.addChildAt(data.btn, index);
+				box.addChildAt(data.object, index);
+			}
+			else
+			{
+				btnBar.addChild(data.btn);
+				box.addChild(data.object);
+			}
+			
+			//
+			return object;
 		}
 		
 		/**
@@ -172,6 +204,16 @@ package org.finalbug.ui.navigate
 		//#######################################
 		// HANDLER
 		//#######################################
+		
+		private function clickTabBtnHandler(e:MouseEvent):void
+		{
+			var btn:Button = e.currentTarget as Button;
+			if(btn != null)
+			{
+				var index:int = btn.parent.getChildIndex(btn);
+				box.selectedIndex = index;
+			}
+		}
 	}
 }
 import flash.display.DisplayObject;

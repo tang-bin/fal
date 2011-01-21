@@ -10,6 +10,8 @@
 //##########################################################
 package org.finalbug.ui.style
 {
+	import flash.display.DisplayObject;
+	
 	import org.finalbug.ui.style.Style;
 	
 	/**
@@ -24,6 +26,10 @@ package org.finalbug.ui.style
 		// OVERRIDE
 		//#######################################
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		override public function toString():String
 		{
 			return "[x = " + this.x + ", y = " + this.y + ", width = " + this.width + ", height = " + this.height + "]";
@@ -52,7 +58,7 @@ package org.finalbug.ui.style
 		 */		
 		public function get width():Number
 		{
-			var parentWidth:Number = (owner != null && owner.parent != null) ? owner.parent.width : 0;
+			var parentWidth:Number = this.getParentWidth();
 			if(validLayoutValue(_width))
 			{
 				return getLayoutValue(_width, parentWidth);
@@ -73,7 +79,7 @@ package org.finalbug.ui.style
 		 */
 		public function get height():Number
 		{
-			var parentHeight:Number = (owner != null && owner.parent != null) ? owner.parent.height : 0;
+			var parentHeight:Number = this.getParentHeight();
 			if(validLayoutValue(_height))
 			{
 				return getLayoutValue(_height, parentHeight);
@@ -94,7 +100,7 @@ package org.finalbug.ui.style
 		 */
 		public function get x():Number
 		{
-			var parentWidth:Number = (owner != null && owner.parent != null) ? owner.parent.width : 0;
+			var parentWidth:Number = this.getParentWidth();
 			if(validLayoutValue(_left))
 			{
 				return getLayoutValue(_left, parentWidth);
@@ -119,7 +125,7 @@ package org.finalbug.ui.style
 		 */
 		public function get y():Number
 		{
-			var parentHeight:Number = (owner != null && owner.parent != null) ? owner.parent.height : 0;
+			var parentHeight:Number = this.getParentHeight();
 			if(validLayoutValue(_top))
 			{
 				return getLayoutValue(_top, parentHeight);
@@ -175,6 +181,58 @@ package org.finalbug.ui.style
 		
 		/**
 		 * 
+		 * @param width
+		 * @param height
+		 */
+		public function setSizeStyle(width:*, height:*):void
+		{
+			this.setValue("width", width);
+			this.setValue("height", height);
+		}
+		
+		/**
+		 * 
+		 * @param top
+		 * @param left
+		 */
+		public function setPositionStyle(top:*, left:*):void
+		{
+			this.setValue("top", top);
+			this.setValue("left", left);
+		}
+		
+		/**
+		 * 
+		 * @param width
+		 * @param height
+		 * @param top
+		 * @param left
+		 */
+		public function setNormalStyle(width:*, height:*, top:*, left:*):void
+		{
+			this.setValue("width", width);
+			this.setValue("height", height);
+			this.setValue("top", top);
+			this.setValue("left", left);
+		}
+		
+		/**
+		 * 
+		 * @param left
+		 * @param top
+		 * @param right
+		 * @param bottom
+		 */
+		public function setAroundStyle(left:*, top:*, right:*, bottom:*):void
+		{
+			this.setValue("left", left);
+			this.setValue("top", top);
+			this.setValue("right", right);
+			this.setValue("bottom", bottom);
+		}
+		
+		/**
+		 * 
 		 * @return 
 		 */
 		public function clone():LayoutStyle
@@ -199,6 +257,30 @@ package org.finalbug.ui.style
 		//#######################################
 		// PRIVATE
 		//#######################################
+		
+		private function getParentWidth():Number
+		{
+			if(owner != null && owner.parent != null)
+			{
+				return owner.parent.width;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		
+		private function getParentHeight():Number
+		{
+			if(owner != null && owner.parent != null)
+			{
+				return owner.parent.height;
+			}
+			else
+			{
+				return 0;
+			}
+		}
 		
 		//#######################################
 		// HANDLER

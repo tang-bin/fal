@@ -16,7 +16,7 @@ package org.finalbug.data
 	import org.finalbug.errors.DataError;
 	
 	/**
-	 * TimeLog
+	 * TimeLog is used to save logs during runtime order by time.
 	 * 
 	 * @author Tang Bin
 	 * @since 2011.01
@@ -105,9 +105,10 @@ package org.finalbug.data
 		}
 		
 		/**
+		 * Get one consecutive log group.
 		 * 
-		 * @param group
-		 * @return 
+		 * @param group Name of group.
+		 * @return A array contains all logs in this group. each item is a log string.
 		 */
 		public function getConsLogs(group:String):Array
 		{
@@ -134,12 +135,38 @@ package org.finalbug.data
 				}
 				rs.push(str);
 			}
+			else
+			{
+				throw new DataError(DataError.DATA_NULL);
+			}
 			return rs;
 		}
 		
 		/**
+		 * Jion one consecutive log group into one string.
 		 * 
-		 * @return 
+		 * @param group Group's name
+		 * @return A string of logs.
+		 */
+		public function getConsString(group:String):String
+		{
+			var arr:Array = getConsLogs(group);
+			var str:String = "";
+			if(arr != null && arr.length > 0)
+			{
+				var len:uint = arr.length;
+				for(var i:uint = 0 ; i < len ; i++)
+				{
+					str += arr[i];
+				}
+			}
+			return str;
+		}
+		
+		/**
+		 * Get all logs as one array.
+		 * 
+		 * @return All logs in one array, each item is a log string.
 		 */
 		public function getAllLogs():Array
 		{
@@ -160,7 +187,7 @@ package org.finalbug.data
 		}
 		
 		/**
-		 * 
+		 * Remove all logs.
 		 */
 		public function clean():void
 		{

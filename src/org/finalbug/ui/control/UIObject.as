@@ -110,7 +110,6 @@ package org.finalbug.ui.control
 		protected var currentStatus:String;
 
 		private var _enabled:Boolean=true;
-		private var _layoutStyle:LayoutStyle;
 
 		//#######################################
 		// GETTER and SETTER
@@ -140,32 +139,6 @@ package org.finalbug.ui.control
 					uiSkinData.setStatus(this.currentStatus);
 				}
 				updateView();
-			}
-		}
-
-		/**
-		 * 
-		 * @return 
-		 */
-		public function get layoutStyle():LayoutStyle
-		{
-			return _layoutStyle;
-		}
-
-		/**
-		 * 
-		 * @param value
-		 */
-		public function set layoutStyle(value:LayoutStyle):void
-		{
-			_layoutStyle=value;
-			if (_layoutStyle != null)
-			{
-				LayoutManager.instance.addLayout(this, _layoutStyle);
-			}
-			else
-			{
-				LayoutManager.instance.removeLayout(this);
 			}
 		}
 
@@ -213,7 +186,7 @@ package org.finalbug.ui.control
 			super();
 			_layoutStyle=new LayoutStyle();
 			uiSkinData=skinData;
-			LayoutManager.instance.addLayout(this, _layoutStyle);
+			//LayoutManager.instance.addLayout(this, _layoutStyle);
 			this.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
 			this.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
 			this.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
