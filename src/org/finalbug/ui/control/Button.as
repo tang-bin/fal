@@ -137,7 +137,6 @@ package org.finalbug.ui.control
 		
 		public function set hold(value:Boolean):void
 		{
-			trace("set hole", value, _holdable, this._hold);
 			if(_holdable && this._hold != value)
 			{
 				_hold = value;

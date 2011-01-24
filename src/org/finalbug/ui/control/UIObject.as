@@ -75,7 +75,6 @@ package org.finalbug.ui.control
 			if (value != currentStatus && value != "")
 			{
 				currentStatus=value;
-				this.countSizeAndPosition();
 				if (uiSkinData != null)
 				{
 					uiSkinData.changeStatus(this.currentStatus);

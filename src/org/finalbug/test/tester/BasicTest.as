@@ -10,6 +10,7 @@
 //##########################################################
 package org.finalbug.test.tester
 {
+	import org.finalbug.ui.control.Button;
 	import org.finalbug.ui.control.Container;
 	
 	
@@ -29,6 +30,8 @@ package org.finalbug.test.tester
 		// DEFINE
 		//#######################################
 		
+		private var btn:Button;
+		
 		//#######################################
 		// GETTER and SETTER
 		//#######################################
@@ -40,8 +43,10 @@ package org.finalbug.test.tester
 		public function BasicTest()
 		{
 			super();
-			this.backgroundColor = 0xFF9900;
-			this.backgroundAlpha = 1;
+			//
+			btn = new Button();
+			this.addAll(btn);
+			btn.left = "50%";
 		}
 		
 		//#######################################

@@ -63,16 +63,6 @@ package org.finalbug.ui
 			if(newWidth != this.width)
 			{
 				_layoutStyle.setValue("width", newWidth);
-				if(this.stage != null)
-				{
-					this.updateSize();
-					this.dispatchSizeChanged();
-					sizeChanged = false;
-				}
-				else
-				{
-					sizeChanged = true;
-				}
 			}
 		}
 		
@@ -98,16 +88,6 @@ package org.finalbug.ui
 			if(newHeight != this.height)
 			{
 				_layoutStyle.setValue("height", newHeight);
-				if(this.stage != null)
-				{
-					this.updateSize();
-					this.dispatchSizeChanged();	
-					sizeChanged = false;
-				}
-				else
-				{
-					sizeChanged = true;
-				}
 			}
 		}
 		
@@ -117,27 +97,7 @@ package org.finalbug.ui
 		 */
 		override public function set x(value:Number):void
 		{
-			var oldWidth:Number = _layoutStyle.width;
-			var oldHeight:Number = _layoutStyle.height;
-			//
 			_layoutStyle.setValue("left", value);
-			var newX:Number = _layoutStyle.x;
-			if (!isNaN(newX)) super.x = newX;
-			//
-			if(oldWidth != _layoutStyle.width || oldHeight != _layoutStyle.height)
-			{
-				// if object's x coordinate is changed, 
-				// call updateSize only if size is changed too.
-				if(this.stage != null)
-				{
-					this.updateSize();
-					sizeChanged = false;
-				}
-				else
-				{
-					sizeChanged = true;
-				}
-			}
 		}
 		
 		/**
@@ -146,27 +106,7 @@ package org.finalbug.ui
 		 */
 		override public function set y(value:Number):void
 		{
-			var oldWidth:Number = _layoutStyle.width;
-			var oldHeight:Number = _layoutStyle.height;
-			//
 			_layoutStyle.setValue("top", value);
-			var newY:Number = _layoutStyle.y;
-			if (!isNaN(newY)) super.y = newY;
-			//
-			if(oldWidth != _layoutStyle.width || oldHeight != _layoutStyle.height)
-			{
-				// if object's x coordinate is changed, 
-				// call updateSize only if size is changed too.
-				if(this.stage != null)
-				{
-					this.updateSize();
-					sizeChanged = false;
-				}
-				else
-				{
-					sizeChanged = true;
-				}
-			}
 		}
 		
 		/**
@@ -253,6 +193,12 @@ package org.finalbug.ui
 		protected var sizeChanged:Boolean = false;
 		
 		/**
+		 * 
+		 * @default 
+		 */
+		protected var positionChanged:Boolean = false;
+		
+		/**
 		 *
 		 * @default null
 		 */
@@ -278,6 +224,134 @@ package org.finalbug.ui
 		//#######################################
 		// GETTER and SETTER
 		//#######################################
+		
+		/**
+		 * 
+		 * @return 
+		 */
+		public function get left():*
+		{
+			return _layoutStyle.getValue("left");
+		}
+		
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set left(value:*):void
+		{
+			_layoutStyle.setValue("left", value);
+		}
+		
+		/**
+		 * 
+		 * @return 
+		 */
+		public function get right():*
+		{
+			return _layoutStyle.getValue("right");
+		}
+		
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set right(value:*):void
+		{
+			_layoutStyle.setValue("right", value);
+		}
+		
+		/**
+		 * 
+		 * @return 
+		 */
+		public function get top():*
+		{
+			return _layoutStyle.getValue("top");
+		}
+		
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set top(value:*):void
+		{
+			_layoutStyle.setValue("top", value);
+		}
+		
+		/**
+		 * 
+		 * @return 
+		 */
+		public function get bottom():*
+		{
+			return _layoutStyle.getValue("bottom");
+		}
+		
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set bottom(value:*):void
+		{
+			_layoutStyle.setValue("bottom", value);
+		}
+		
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set percentWidth(value:Number):void
+		{
+			var str:String = Math.round(value * 100).toString() + "%";
+			_layoutStyle.setValue("width", str);
+		}
+		
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set percentHeight(value:Number):void
+		{
+			var str:String = Math.round(value * 100).toString() + "%";
+			_layoutStyle.setValue("height", str);
+		}
+		
+		/**
+		 * 
+		 * @return 
+		 */
+		public function get horizontal():*
+		{
+			return _layoutStyle.getValue("horizontal");
+		}
+		
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set horizontal(value:*):void
+		{
+			_layoutStyle.setValue("horizontal", value);
+		}
+		
+		/**
+		 * 
+		 * @return 
+		 */
+		public function get vertical():*
+		{
+			return _layoutStyle.getValue("vertical");
+		}
+		
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set vertical(value:*):void
+		{
+			_layoutStyle.setValue("vertical", value);
+		}
 		
 		/**
 		 *
@@ -478,6 +552,8 @@ package org.finalbug.ui
 			super();
 			_layoutStyle = new LayoutStyle();
 			_layoutStyle.owner = this;
+			_layoutStyle.addEventListener(UIEvent.RESIZE, sizeChangedHandler);
+			_layoutStyle.addEventListener(UIEvent.MOVED, positionChangedHandler);
 			// for first added to stage
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
@@ -499,19 +575,8 @@ package org.finalbug.ui
 			var newHeight:Number = MathUtil.getNumArea(height, this.minHeight, this.maxHeight);
 			if(newWidth != this.width || newHeight != this.height)
 			{
-				_layoutStyle.setValue("width", width);
+				_layoutStyle.setValue("width", width, true);
 				_layoutStyle.setValue("height", height);
-				if(this.stage != null)
-				{
-					this.updateSize();
-					this.dispatchSizeChanged();
-					sizeChanged = false;
-				}
-				else
-				{
-					sizeChanged = true;
-				}
-				
 			}
 		}
 		
@@ -720,18 +785,15 @@ package org.finalbug.ui
 			var isBtn:Boolean = this is Button;
 			if(sizeChanged)
 			{
-				countSizeAndPosition();
 				updateSize();
 				dispatchSizeChanged();
 				sizeChanged = false;
 			}
-		}
-		
-		/**
-		 *
-		 */
-		protected function countSizeAndPosition():void
-		{
+			if(positionChanged)
+			{
+				resetPosition();
+				positionChanged = false;
+			}
 		}
 		
 		/**
@@ -756,9 +818,7 @@ package org.finalbug.ui
 		{
 			if(_layoutStyle != null)
 			{
-				this.x = _layoutStyle.x;
-				this.y = _layoutStyle.y;
-				this.updateSize();
+				_layoutStyle.checkAndUpdate();
 			}
 		}
 		
@@ -832,6 +892,12 @@ package org.finalbug.ui
 			this.dispatchEvent(ee);
 		}
 		
+		private function resetPosition():void
+		{
+			super.x = _layoutStyle.x;
+			super.y = _layoutStyle.y;
+		}
+		
 		//#######################################
 		// HANDLER
 		//#######################################
@@ -850,6 +916,33 @@ package org.finalbug.ui
 		{
 			//this.removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 			this.callAtAdded();
+		}
+		
+		private function sizeChangedHandler(e:UIEvent):void
+		{
+			if(this.stage != null)
+			{
+				this.updateSize();
+				this.dispatchSizeChanged();
+				sizeChanged = false;
+			}
+			else
+			{
+				sizeChanged = true;
+			}
+		}
+		
+		private function positionChangedHandler(e:UIEvent):void
+		{
+			if(this.stage != null)
+			{
+				resetPosition();
+				positionChanged = false;
+			}
+			else
+			{
+				positionChanged = true;
+			}
 		}
 	}
 }

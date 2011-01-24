@@ -52,6 +52,12 @@ package org.finalbug.events
 		
 		/**
 		 * 
+		 * @default 
+		 */
+		public static const MOVED:String = "moved";
+		
+		/**
+		 * 
 		 * @eventType switchTarget 
 		 */
 		public static const SWITCH_TARGET:String = "switchTarget";

@@ -36,6 +36,10 @@ package org.finalbug.ui.navigate
 		// DEFINE
 		//#######################################
 		
+		/**
+		 * 
+		 * @default 
+		 */
 		protected const BUTTON_HEIGHT:Number = 26;
 		
 		private var btnBar:Container;
@@ -166,7 +170,11 @@ package org.finalbug.ui.navigate
 			{
 				throw new DataError(DataError.INVALID_INDEX);
 			}
-			
+			var btn:Button = btnBar.getChildAt(index) as Button;
+			if(btn != null)
+			{
+				btn.label = label;
+			}
 		}
 		
 		/**
@@ -176,7 +184,11 @@ package org.finalbug.ui.navigate
 		 */
 		public function setTabLabelByObject(object:DisplayObject, label:String):void
 		{
-			
+			var tabData:TabData = getDataByObject(object);
+			if(tabData != null)
+			{
+				tabData.btn.label = label;
+			}
 		}
 		
 		/**
@@ -185,7 +197,11 @@ package org.finalbug.ui.navigate
 		 */
 		public function removeTabAt(index:uint):void
 		{
-			
+			var tabData:TabData = getDataByIndex(index);
+			if(tabData != null)
+			{
+				removeTab(tabData);
+			}
 		}
 		
 		/**
@@ -194,7 +210,11 @@ package org.finalbug.ui.navigate
 		 */
 		public function removeTabByObject(object:DisplayObject):void
 		{
-			
+			var tabData:TabData = getDataByObject(object);
+			if(tabData != null)
+			{
+				removeTab(tabData);
+			}
 		}
 		
 		//#######################################
@@ -217,6 +237,43 @@ package org.finalbug.ui.navigate
 			box.selectedChild = data.object;
 			// save select data.
 			currentSelected = data;
+		}
+		
+		private function getDataByIndex(index:uint):TabData
+		{
+			var btn:Button = btnBar.getChildAt(index) as Button;
+			if(btn != null)
+			{
+				return tabs[btn];
+			}
+			else
+			{
+				return null;
+			}
+		}
+		
+		private function getDataByObject(object:DisplayObject):TabData
+		{
+			for each(var tabData:TabData in tabs)
+			{
+				if(tabData.object == object)
+				{
+					return tabData;
+				}
+			}
+			return null;
+		}
+		
+		private function removeTab(tabData:TabData):void
+		{
+			btnBar.removeChild(tabData.btn);
+			box.removeChild(tabData.object);
+			if(tabData == currentSelected)
+			{
+				currentSelected = null;
+			}
+			delete tabs[tabData.btn];
+			tabs[tabData.btn] = null;
 		}
 		
 		//#######################################

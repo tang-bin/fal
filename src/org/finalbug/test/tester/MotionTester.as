@@ -139,7 +139,7 @@ package org.finalbug.test.tester
 		
 		private function stopHandler(e:MotionEvent):void
 		{
-			trace("enddd");
+			
 		}
 	}
 }

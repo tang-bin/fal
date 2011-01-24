@@ -28,6 +28,10 @@ package org.finalbug.ui.skin
 		// OVERRIDE
 		//#######################################
 		
+		/**
+		 * 
+		 * @param args
+		 */
 		override public function bindChildren(...args):void
 		{
 			bgSkin = args[0] as Skin;
@@ -42,6 +46,10 @@ package org.finalbug.ui.skin
 			}
 		}
 		
+		/**
+		 * 
+		 * @param status
+		 */
 		override public function changeStatus(status:String):void
 		{
 			if(bgSkin != null)
@@ -117,6 +125,26 @@ package org.finalbug.ui.skin
 		//#######################################
 		// PUBLIC
 		//#######################################
+		
+		/**
+		 * Set Button's skin style.
+		 * 
+		 * @param status Valid status for Button:
+		 * 				NORMAL,
+		 * 				MOUSE_DOWN,
+		 * 				MOUSE_OVER,
+		 * 				DISABLED,
+		 * 				HOLD,
+		 * 				HOLD_MOUSE_DOWN,
+		 * 				HOLE_MOUSE_OVER. 
+		 * @param skinData SkinData for backgroud view.
+		 * @param textFormat Text format for label.
+		 */
+		public function setSkinStyle(status:String, skinData:SkinData, textFormat:TextFormat):void
+		{
+			bgSkinDataList[status] = skinData;
+			txtFormatList[status] = textFormat;
+		}
 		
 		//#######################################
 		// PROTECTED
