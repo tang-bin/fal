@@ -12,7 +12,7 @@ package org.finalbug.ui.control
 {
 	import org.finalbug.data.Position;
 	import org.finalbug.events.UIEvent;
-	import org.finalbug.ui.skin.UISkinDataBase;
+	import org.finalbug.ui.skin.UISkinDataAbstract;
 	import org.finalbug.ui.style.FillStyle;
 	
 	/**
@@ -29,15 +29,15 @@ package org.finalbug.ui.control
 		// OVERRIDE
 		//#######################################
 		
-		override protected function updateView():void
+		override protected function updateSize():void
 		{
-			super.updateView();
+			super.updateSize();
 			//
 			if(enableX)
 			{
 				xBar.visible = true;
-				xBar.length = enableY ? displayWidth - yBar.thickness - 2 : displayWidth - 2;
-				xBar.y = displayHeight - xBar.thickness;
+				xBar.length = enableY ? width - yBar.thickness - 2 : width - 2;
+				xBar.y = height - xBar.thickness;
 				xBar.x = 1;
 			}
 			else
@@ -47,8 +47,8 @@ package org.finalbug.ui.control
 			if(enableY)
 			{
 				yBar.visible = true;
-				yBar.length = enableX ? displayHeight - xBar.thickness - 2 : displayHeight - 2;
-				yBar.x = displayWidth - yBar.thickness;
+				yBar.length = enableX ? height - xBar.thickness - 2 : height - 2;
+				yBar.x = width - yBar.thickness;
 				yBar.y = 1;
 			}
 			else
@@ -91,7 +91,7 @@ package org.finalbug.ui.control
 		 */		
 		public function get containerWidth():Number
 		{
-			return enableY ? displayWidth - yBar.thickness : displayWidth;
+			return enableY ? width - yBar.thickness : width;
 		}
 		
 		/**
@@ -99,7 +99,7 @@ package org.finalbug.ui.control
 		 */		
 		public function get containerHeight():Number
 		{
-			return enableX ? displayHeight - xBar.thickness : displayHeight;
+			return enableX ? height - xBar.thickness : height;
 		}
 		
 		/**
@@ -119,7 +119,7 @@ package org.finalbug.ui.control
 			if(enableX != value)
 			{
 				enableX = value;
-				updateView();
+				updateSize();
 			}
 		}
 		
@@ -140,7 +140,7 @@ package org.finalbug.ui.control
 			if(enableY != value)
 			{
 				enableY = value;
-				updateView();
+				updateSize();
 			}
 		}
 		
@@ -158,7 +158,7 @@ package org.finalbug.ui.control
 		 * @return 
 		 * 
 		 */		
-		public function ScrollBox(xScroll:Boolean = true, yScroll:Boolean = true, skin:UISkinDataBase = null)
+		public function ScrollBox(xScroll:Boolean = true, yScroll:Boolean = true, skin:UISkinDataAbstract = null)
 		{
 			// save parameters
 			super(skin);

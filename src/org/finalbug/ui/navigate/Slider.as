@@ -17,7 +17,7 @@ package org.finalbug.ui.navigate
 	
 	
 	/**
-	 * Slider
+	 * Slider. Like mx component ViewStack.
 	 * 
 	 * @author Tang Bin
 	 * @since 2011.01
@@ -36,6 +36,7 @@ package org.finalbug.ui.navigate
 		override public function addChild(child:DisplayObject):DisplayObject
 		{
 			var addedChild:DisplayObject = super.addChild(child);
+			addedChild.visible = false;
 			refreshIndex();
 			return addedChild;
 		}
@@ -49,6 +50,7 @@ package org.finalbug.ui.navigate
 		override public function addChildAt(child:DisplayObject, index:int):DisplayObject
 		{
 			var addedChild:DisplayObject = super.addChildAt(child, index);
+			addedChild.visible = false;
 			refreshIndex();
 			return addedChild;
 		}
@@ -80,14 +82,14 @@ package org.finalbug.ui.navigate
 		/**
 		 * 
 		 */
-		override protected function updateView():void
+		override protected function updateSize():void
 		{
-			super.updateView();
+			super.updateSize();
 			for(var i:uint = this.numChildren ; --i >= 0 ; )
 			{
 				var child:DisplayObject = this.getChildAt(i);
-				child.width = this.displayWidth;
-				child.height = this.displayHeight;
+				child.width = this.width;
+				child.height = this.height;
 			}
 		}
 		
@@ -200,6 +202,7 @@ package org.finalbug.ui.navigate
 				_selectedChild = null;
 				_selectedIndex = -1;
 			}
+			setShowChildIndex(_selectedIndex);
 		}
 		
 		//#######################################

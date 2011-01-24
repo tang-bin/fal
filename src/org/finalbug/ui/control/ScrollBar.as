@@ -21,8 +21,8 @@ package org.finalbug.ui.control
 	import org.finalbug.events.UIEvent;
 	import org.finalbug.events.UIMouseEvent;
 	import org.finalbug.ui.skin.ScrollBarSkinData;
-	import org.finalbug.ui.skin.SkinElement;
-	import org.finalbug.ui.skin.UISkinDataBase;
+	import org.finalbug.ui.skin.Skin;
+	import org.finalbug.ui.skin.UISkinDataAbstract;
 	import org.finalbug.utils.MathUtil;
 	
 	/**
@@ -56,9 +56,9 @@ package org.finalbug.ui.control
 			this.mouseChildren = this.mouseEnabled = value;
 		}
 		
-		override protected function updateView():void
+		override protected function updateSize():void
 		{
-			super.updateView();
+			super.updateSize();
 			if(_type == Position.HORIZONTAL)
 			{
 				leftBtn.width = leftBtn.height = _thickness;
@@ -109,12 +109,12 @@ package org.finalbug.ui.control
 		private var _length:Number = 100;
 		
 		/* display containers */
-		private var leftBtn:SkinElement;
-		private var rightBtn:SkinElement;
-		private var upBtn:SkinElement;
-		private var downBtn:SkinElement;
-		private var back:SkinElement;
-		private var slider:SkinElement;
+		private var leftBtn:Skin;
+		private var rightBtn:Skin;
+		private var upBtn:Skin;
+		private var downBtn:Skin;
+		private var back:Skin;
+		private var slider:Skin;
 		
 		private var _enabled:Boolean = true;
 		
@@ -173,7 +173,7 @@ package org.finalbug.ui.control
 		public function set length(value:Number):void
 		{
 			this._length = value;
-			this.updateView();
+			this.updateSize();
 		}	
 		
 		/**
@@ -206,7 +206,7 @@ package org.finalbug.ui.control
 		 * @param length Length of ScrollBar, in pixel.
 		 * @param style Display style.
 		 */		
-		public function ScrollBar(type:String, length:Number = 100, skin:UISkinDataBase = null)
+		public function ScrollBar(type:String, length:Number = 100, skin:UISkinDataAbstract = null)
 		{
 			super(skin);
 			if(type != Position.HORIZONTAL && type != Position.VERTICAL)
@@ -285,10 +285,10 @@ package org.finalbug.ui.control
 		
 		private function createScrollBarX():void
 		{
-			leftBtn = new SkinElement();
-			rightBtn = new SkinElement();
-			back = new SkinElement();
-			slider = new SkinElement();
+			leftBtn = new Skin();
+			rightBtn = new Skin();
+			back = new Skin();
+			slider = new Skin();
 			leftBtn.name = "leftBtn";
 			rightBtn.name = "rightBtn";
 			leftBtn.autoMouseEvent = true;
@@ -302,15 +302,15 @@ package org.finalbug.ui.control
 			{
 				uiSkinData = new ScrollBarSkinData();
 			}
-			uiSkinData.setSkin(leftBtn, rightBtn, null, null, back, slider);
+			uiSkinData.bindChildren(leftBtn, rightBtn, null, null, back, slider);
 		}
 		
 		private function createScrollBarY():void
 		{
-			upBtn = new SkinElement();
-			downBtn = new SkinElement();
-			back = new SkinElement();
-			slider = new SkinElement();
+			upBtn = new Skin();
+			downBtn = new Skin();
+			back = new Skin();
+			slider = new Skin();
 			upBtn.name = "upBtn";
 			downBtn.name = "downBtn";
 			upBtn.autoMouseEvent = true;
@@ -324,7 +324,7 @@ package org.finalbug.ui.control
 			{
 				uiSkinData = new ScrollBarSkinData();
 			}
-			uiSkinData.setSkin(null, null, upBtn, downBtn, back, slider);
+			uiSkinData.bindChildren(null, null, upBtn, downBtn, back, slider);
 		}
 		
 		private function stopMove():void

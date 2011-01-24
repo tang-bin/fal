@@ -17,8 +17,8 @@ package org.finalbug.ui.control
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.ui.skin.CheckBoxSkinData;
-	import org.finalbug.ui.skin.SkinElement;
-	import org.finalbug.ui.skin.UISkinDataBase;
+	import org.finalbug.ui.skin.Skin;
+	import org.finalbug.ui.skin.UISkinDataAbstract;
 	
 	/**
 	 * CheckBox component.
@@ -37,9 +37,9 @@ package org.finalbug.ui.control
 			super.status = this.getCurrentStatus(value);
 		}
 		
-		override protected function updateView():void
+		override protected function updateSize():void
 		{
-			super.updateView();
+			super.updateSize();
 			resetPosition();
 		}
 		
@@ -54,7 +54,7 @@ package org.finalbug.ui.control
 		private var _label:String = "CheckBox";	
 		private var _labelPosition:String;
 		
-		private var box:SkinElement;
+		private var box:Skin;
 		private var txt:Label;
 		private var back:Shape;
 		
@@ -148,12 +148,12 @@ package org.finalbug.ui.control
 		 * @param label
 		 * @param style
 		 */		
-		public function CheckBox(label:String = "checkBox", skin:UISkinDataBase = null)
+		public function CheckBox(label:String = "checkBox", skin:UISkinDataAbstract = null)
 		{
 			super(skin);
 			//
 			// create children
-			box = new SkinElement();
+			box = new Skin();
 			box.resize(BOX_SIZE, BOX_SIZE);
 			txt = new Label(_label);
 			back = new Shape();
@@ -167,7 +167,7 @@ package org.finalbug.ui.control
 			{
 				uiSkinData = new CheckBoxSkinData();
 			}
-			uiSkinData.setSkin(box, txt);
+			uiSkinData.bindChildren(box, txt);
 		}
 		
 		//#######################################

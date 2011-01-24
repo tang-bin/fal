@@ -52,9 +52,9 @@ package org.finalbug.ui.glazes
 		{
 			super();
 			this._fillStyle = style == null ? new FillStyle() : style;
-			this.displayWidth = width;
-			this.displayHeight = height;
-			updateView();
+			this.width = width;
+			this.height = height;
+			updateSize();
 		}
 		
 		//#######################################
@@ -66,7 +66,7 @@ package org.finalbug.ui.glazes
 		 */
 		public function refresh():void
 		{
-			this.updateView();
+			this.updateSize();
 		}
 		
 		//#######################################

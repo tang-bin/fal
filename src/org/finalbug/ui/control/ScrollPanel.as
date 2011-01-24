@@ -15,7 +15,7 @@ package org.finalbug.ui.control
 	import flash.geom.Rectangle;
 	
 	import org.finalbug.events.UIEvent;
-	import org.finalbug.ui.skin.UISkinDataBase;
+	import org.finalbug.ui.skin.UISkinDataAbstract;
 	import org.finalbug.utils.DrawUtil;
 	
 	/**
@@ -33,18 +33,18 @@ package org.finalbug.ui.control
 		override public function set xScrollEnabled(value:Boolean) : void
 		{
 			super.xScrollEnabled = value;
-			this.updateView();
+			this.updateSize();
 		}
 		
 		override public function set yScrollEnabled(value:Boolean) : void
 		{
 			super.yScrollEnabled = value;
-			this.updateView();
+			this.updateSize();
 		}
 		
-		override protected function updateView():void
+		override protected function updateSize():void
 		{
-			super.updateView();
+			super.updateSize();
 			//
 			if(masker != null)
 			{
@@ -127,7 +127,7 @@ package org.finalbug.ui.control
 		/**
 		 * Create a new ScrollPanel object.
 		 */
-		public function ScrollPanel(xScroll:Boolean = true, yScroll:Boolean = true, skin:UISkinDataBase = null)
+		public function ScrollPanel(xScroll:Boolean = true, yScroll:Boolean = true, skin:UISkinDataAbstract = null)
 		{
 			super(xScroll, yScroll, skin);
 			masker = new Sprite();

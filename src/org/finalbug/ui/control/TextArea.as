@@ -17,9 +17,9 @@ package org.finalbug.ui.control
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.events.UIEvent;
-	import org.finalbug.ui.skin.SkinElement;
+	import org.finalbug.ui.skin.Skin;
 	import org.finalbug.ui.skin.TextSkinData;
-	import org.finalbug.ui.skin.UISkinDataBase;
+	import org.finalbug.ui.skin.UISkinDataAbstract;
 	
 	/**
 	 * @eventType events.DataEvent.CHANGE_DATA
@@ -67,13 +67,13 @@ package org.finalbug.ui.control
 			if(value != this.status) super.status = value;
 		}
 		
-		override protected function updateView():void
+		override protected function updateSize():void
 		{
-			super.updateView();
+			super.updateSize();
 			if(bg != null)
 			{
-				bg.width = this.displayWidth;
-				bg.height = this.displayHeight;
+				bg.width = this.width;
+				bg.height = this.height;
 			}
 			if(txt != null)
 			{
@@ -100,7 +100,7 @@ package org.finalbug.ui.control
 		// DEFINE
 		//#######################################
 		
-		private var bg:SkinElement;
+		private var bg:Skin;
 		private var txt:TextField;
 		private var _embed:Boolean = false;
 		private var scrollManual:Boolean = false;
@@ -174,16 +174,15 @@ package org.finalbug.ui.control
 		 * @param wordwrap wrap word
 		 * @param style DipslayStyle
 		 */		
-		public function TextArea(skin:UISkinDataBase = null)
+		public function TextArea(skin:UISkinDataAbstract = null)
 		{
 			super(true, true, skin);
 			this.initSize(200, 200);
-			this.autoResizeChildren = false;
 			this.fillStyle = null;
 			//
 			// create children.
-			bg = new SkinElement();
-			bg.resize(this.displayWidth, this.displayHeight);
+			bg = new Skin();
+			bg.resize(this.width, this.height);
 			txt = new TextField();
 			txt.wordWrap = !enableX;
 			txt.multiline = true;
@@ -197,7 +196,7 @@ package org.finalbug.ui.control
 			{
 				uiSkinData = new TextSkinData();
 			}
-			uiSkinData.setSkin(bg, txt);
+			uiSkinData.bindChildren(bg, txt);
 		}
 		
 		//#######################################

@@ -22,43 +22,64 @@ package org.finalbug.ui.skin
 	 * @author Tang Bin
 	 * @since 2010.12
 	 */	
-	public class ButtonSkinData extends UISkinDataBase
+	public class ButtonSkinData extends UISkinDataAbstract
 	{
 		//#######################################
 		// OVERRIDE
 		//#######################################
 		
+		override public function bindChildren(...args):void
+		{
+			bgSkin = args[0] as Skin;
+			if(bgSkin != null)
+			{
+				bindStatusesToSkin(bgSkin, bgSkinDataList);
+			}
+			label = args[1] as Label;
+			if(label != null)
+			{
+				label.textFormat = txtFormatList[Status.NORMAL];
+			}
+		}
+		
+		override public function changeStatus(status:String):void
+		{
+			if(bgSkin != null)
+			{
+				bgSkin.status = status;
+			}
+			if(label != null)
+			{
+				label.textFormat = txtFormatList[status];
+			}
+		}
+		
 		//#######################################
 		// DEFINE
 		//#######################################
 		
-		[Embed(source="/resources/skins/btnSkin_normal.png")]
-		private var normalSkinCls:Class
-		
-		[Embed(source="/resources/skins/btnSkin_over.png")]
-		private var overSkinCls:Class
-		
-		[Embed(source="/resources/skins/btnSkin_down.png")]
-		private var downSkinCls:Class
-		
-		[Embed(source="/resources/skins/btnSkin_disable.png")]
-		private var disableSkinCls:Class
+		[Embed(source="/resources/skins/ButtonNormal.png")]
+		private var ButtonNormal:Class
+		[Embed(source="/resources/skins/ButtonOver.png")]
+		private var ButtonOver:Class
+		[Embed(source="/resources/skins/ButtonDown.png")]
+		private var ButtonDown:Class
+		[Embed(source="/resources/skins/ButtonDisabled.png")]
+		private var ButtonDisabled:Class
+		[Embed(source="/resources/skins/ButtonHold.png")]
+		private var ButtonHold:Class
+		[Embed(source="/resources/skins/ButtonHoldDown.png")]
+		private var ButtonHoldDown:Class
+		[Embed(source="/resources/skins/ButtonHoldOver.png")]
+		private var ButtonHoldOver:Class
 		
 		// skin elements
-		private var bgElement:SkinElement;
+		private var bgSkin:Skin;
 		private var label:Label;
 		
 		// skin data.
-		/**
-		 * 
-		 * @default 
-		 */
-		protected var bgSkins:Dictionary;
-		/**
-		 * 
-		 * @default 
-		 */
-		protected var txtFormats:Dictionary;
+		private var bgSkinDataList:Dictionary;
+		private var txtFormatList:Dictionary;
 		
 		//#######################################
 		// GETTER and SETTER
@@ -73,50 +94,29 @@ package org.finalbug.ui.skin
 		 */
 		public function ButtonSkinData()
 		{
-			super();
 			// skin
-			bgSkins = new Dictionary();
-			bgSkins[Status.NORMAL] = new SkinElementData(Status.NORMAL, SkinElementData.BITMAP_TYPE, new normalSkinCls(), true);
-			bgSkins[Status.MOUSE_OVER] = new SkinElementData(Status.MOUSE_OVER, SkinElementData.BITMAP_TYPE, new overSkinCls());
-			bgSkins[Status.MOUSE_DOWN] = new SkinElementData(Status.MOUSE_DOWN, SkinElementData.BITMAP_TYPE, new downSkinCls());
-			bgSkins[Status.DISABLE] = new SkinElementData(Status.DISABLE, SkinElementData.BITMAP_TYPE, new disableSkinCls());
+			bgSkinDataList = new Dictionary();
+			bgSkinDataList[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new ButtonNormal(), true);
+			bgSkinDataList[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new ButtonOver());
+			bgSkinDataList[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new ButtonDown());
+			bgSkinDataList[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new ButtonDisabled());
+			bgSkinDataList[Status.HOLD] = new SkinData(Status.HOLD, SkinData.BITMAP_TYPE, new ButtonHold());
+			bgSkinDataList[Status.HOLD_MOUSE_DOWN] = new SkinData(Status.HOLD_MOUSE_DOWN, SkinData.BITMAP_TYPE, new ButtonHoldDown());
+			bgSkinDataList[Status.HOLD_MOUSE_OVER] = new SkinData(Status.HOLD_MOUSE_OVER, SkinData.BITMAP_TYPE, new ButtonHoldOver());
 			// text format
-			txtFormats = new Dictionary();
-			txtFormats[Status.NORMAL] = new TextFormat("Arial", 12, 0xFFFFFF, true);
-			txtFormats[Status.MOUSE_OVER] = new TextFormat("Arial", 12, 0xFFFFFF, true);
-			txtFormats[Status.MOUSE_DOWN] = new TextFormat("Arial", 12, 0xFFFFFF, true);
-			txtFormats[Status.DISABLE] = new TextFormat("Arial", 12, 0xFFFFFF, true);
+			txtFormatList = new Dictionary();
+			txtFormatList[Status.NORMAL] = new TextFormat("Arial", 12, 0xFFFFFF, true);
+			txtFormatList[Status.MOUSE_OVER] = new TextFormat("Arial", 12, 0xFFFFFF, true);
+			txtFormatList[Status.MOUSE_DOWN] = new TextFormat("Arial", 12, 0xFFFFFF, true);
+			txtFormatList[Status.DISABLE] = new TextFormat("Arial", 12, 0xFFFFFF, true);
+			txtFormatList[Status.HOLD] = new TextFormat("Arial", 12, 0xFFFFFF, true);
+			txtFormatList[Status.HOLD_MOUSE_DOWN] = new TextFormat("Arial", 12, 0xFFFFFF, true);
+			txtFormatList[Status.HOLD_MOUSE_OVER] = new TextFormat("Arial", 12, 0xFFFFFF, true);
 		}
 		
 		//#######################################
 		// PUBLIC
 		//#######################################
-		
-		override public function setSkin(...args):void
-		{
-			bgElement = args[0] as SkinElement;
-			if(bgElement != null)
-			{
-				setStatusSkinByList(bgElement, bgSkins);
-			}
-			label = args[1] as Label;
-			if(label != null)
-			{
-				label.textFormat = txtFormats[Status.NORMAL];
-			}
-		}
-		
-		override public function setStatus(status:String):void
-		{
-			if(bgElement != null)
-			{
-				bgElement.status = status;
-			}
-			if(label != null)
-			{
-				label.textFormat = txtFormats[status];
-			}
-		}
 		
 		//#######################################
 		// PROTECTED

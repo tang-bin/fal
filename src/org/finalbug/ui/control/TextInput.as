@@ -16,9 +16,9 @@ package org.finalbug.ui.control
 	
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
-	import org.finalbug.ui.skin.SkinElement;
+	import org.finalbug.ui.skin.Skin;
 	import org.finalbug.ui.skin.TextSkinData;
-	import org.finalbug.ui.skin.UISkinDataBase;
+	import org.finalbug.ui.skin.UISkinDataAbstract;
 	
 	/**
 	 * text input component
@@ -52,14 +52,14 @@ package org.finalbug.ui.control
 			if(value != this.status) super.status = value;
 		}
 		
-		override protected function updateView():void
+		override protected function updateSize():void
 		{
-			super.updateView();
-			back.width = this.displayWidth;
-			back.height = this.displayHeight;
+			super.updateSize();
+			back.width = this.width;
+			back.height = this.height;
 			txt.x = txt.y = 1;
-			txt.width = this.displayWidth - 2;
-			txt.height = this.displayHeight - 2;
+			txt.width = this.width - 2;
+			txt.height = this.height - 2;
 		}
 		
 		//#######################################
@@ -69,7 +69,7 @@ package org.finalbug.ui.control
 		private var _textType:String = "input";
 		private var oldText:String ="";
 		
-		private var back:SkinElement;
+		private var back:Skin;
 		private var txt:TextField;
 		
 		//#######################################
@@ -168,14 +168,14 @@ package org.finalbug.ui.control
 		 * @param size Size of 
 		 * @param style Display style
 		 */			
-		public function TextInput(skin:UISkinDataBase = null)
+		public function TextInput(skin:UISkinDataAbstract = null)
 		{
 			super(skin);
 			this.initSize(100, 22);
 			//
 			// create children.
-			back = new SkinElement();
-			back.resize(this.displayWidth, this.displayHeight);
+			back = new Skin();
+			back.resize(this.width, this.height);
 			txt = new TextField();
 			setTextType();
 			this.addAll(back, txt);
@@ -190,7 +190,7 @@ package org.finalbug.ui.control
 			{
 				uiSkinData = new TextSkinData();
 			}
-			uiSkinData.setSkin(back, txt);
+			uiSkinData.bindChildren(back, txt);
 		}
 		
 		//#######################################

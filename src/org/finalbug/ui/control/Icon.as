@@ -29,11 +29,11 @@ package org.finalbug.ui.control
 		// OVERRIDE
 		//#######################################
 		
-		override protected function updateView():void
+		override protected function updateSize():void
 		{
-			super.updateView();
+			super.updateSize();
 			// get shown image
-			var size:Number = Math.max(this.displayWidth, this.displayHeight);
+			var size:Number = Math.max(this.width, this.height);
 			var newImg:Image;
 			if(size >= 48) newImg = icon128;
 			else if(size >= 32) newImg = icon48;
@@ -50,8 +50,8 @@ package org.finalbug.ui.control
 			if(img != null)
 			{
 				this.addChild(img);
-				img.width = this.displayWidth;
-				img.height = this.displayHeight;
+				img.width = this.width;
+				img.height = this.height;
 			}
 		}
 		
@@ -188,8 +188,8 @@ package org.finalbug.ui.control
 			if(icon32 != null) newIcon.addImage(icon32.clone(), ICON_32);
 			if(icon48 != null) newIcon.addImage(icon48.clone(), ICON_48);
 			if(icon128 != null) newIcon.addImage(icon128.clone(), ICON_128);
-			newIcon.width = this.displayWidth;
-			newIcon.height = this.displayHeight;
+			newIcon.width = this.width;
+			newIcon.height = this.height;
 			return newIcon;
 		}
 		

@@ -65,7 +65,6 @@ package org.finalbug.ui.navigate
 		
 		private function resizeStageHandler(e:Event):void
 		{
-			trace("resize", stage.stageWidth, stage.stageHeight);
 			this.resize(stage.stageWidth, stage.stageHeight);
 		}
 	}

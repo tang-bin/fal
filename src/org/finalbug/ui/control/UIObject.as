@@ -15,11 +15,8 @@ package org.finalbug.ui.control
 	
 	import org.finalbug.data.Status;
 	import org.finalbug.ui.Bin;
-	import org.finalbug.ui.skin.UISkinDataBase;
-	import org.finalbug.ui.style.LayoutStyle;
+	import org.finalbug.ui.skin.UISkinDataAbstract;
 	import org.finalbug.ui.widgets.Tooltip;
-	import org.finalbug.utils.LayoutManager;
-	import org.finalbug.utils.MathUtil;
 
 	/**
 	 * UIObject is the super class for all of the UI controls.
@@ -33,56 +30,6 @@ package org.finalbug.ui.control
 		// OVERRIDE
 		//#######################################
 		
-		override public function set width(value:Number):void
-		{
-			var widthValue:Number=MathUtil.getNumArea(value, minWidth, maxWidth)
-			_layoutStyle.setValue("width", widthValue);
-			this.displayWidth=widthValue;
-			this.countSizeAndPosition();
-			this.updateView();
-		}
-		
-		override public function set height(value:Number):void
-		{
-			var heightValue:Number=MathUtil.getNumArea(value, minHeight, maxHeight)
-			_layoutStyle.setValue("height", heightValue);
-			this.displayHeight=heightValue;
-			this.countSizeAndPosition();
-			this.updateView();
-		}
-		
-		override public function set x(value:Number):void
-		{
-			_layoutStyle.setValue("left", value);
-			this.countSizeAndPosition();
-			this.updateView();
-		}
-		
-		override public function set y(value:Number):void
-		{
-			_layoutStyle.setValue("top", value);
-			this.countSizeAndPosition();
-			this.updateView();
-		}
-		
-		override protected function callAtAdded():void
-		{
-			countSizeAndPosition();
-			updateView();
-		}
-		
-		override protected function countSizeAndPosition():void
-		{
-			this.displayWidth=_layoutStyle.width;
-			this.displayHeight=_layoutStyle.height;
-			var newX:Number=_layoutStyle.x;
-			var newY:Number=_layoutStyle.y;
-			if (!isNaN(newX))
-				super.x=newX;
-			if (!isNaN(newY))
-				super.y=newY;
-		}
-		
 		//#######################################
 		// DEFINE
 		//#######################################
@@ -91,24 +38,19 @@ package org.finalbug.ui.control
 		 * 
 		 * @default 
 		 */
-		public var tooltip:String="";
-		/**
-		 * 
-		 * @default 
-		 */
-		public var autoResizeChildren:Boolean=true;
+		public var tooltip:String = "";
 
 		/**
 		 * 
 		 * @default 
 		 */
-		protected var uiSkinData:UISkinDataBase;
+		protected var uiSkinData:UISkinDataAbstract;
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var currentStatus:String;
-
+		
 		private var _enabled:Boolean=true;
 
 		//#######################################
@@ -136,11 +78,13 @@ package org.finalbug.ui.control
 				this.countSizeAndPosition();
 				if (uiSkinData != null)
 				{
-					uiSkinData.setStatus(this.currentStatus);
+					uiSkinData.changeStatus(this.currentStatus);
 				}
-				updateView();
+				updateStyle();
+				updateSize();
 			}
 		}
+
 
 		/**
 		 * 
@@ -173,7 +117,7 @@ package org.finalbug.ui.control
 				}
 			}
 		}
-
+		
 		//#######################################
 		// constructor.
 		//#######################################
@@ -181,12 +125,10 @@ package org.finalbug.ui.control
 		 * 
 		 * @param skinData
 		 */
-		public function UIObject(skinData:UISkinDataBase = null)
+		public function UIObject(skinData:UISkinDataAbstract = null)
 		{
 			super();
-			_layoutStyle=new LayoutStyle();
-			uiSkinData=skinData;
-			//LayoutManager.instance.addLayout(this, _layoutStyle);
+			uiSkinData = skinData;
 			this.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
 			this.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
 			this.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
@@ -196,26 +138,6 @@ package org.finalbug.ui.control
 		//#######################################
 		// PUBLIC
 		//#######################################
-
-		/**
-		 * 
-		 */
-		public function refresh():void
-		{
-			this.countSizeAndPosition();
-			this.updateView();
-			if (this.autoResizeChildren)
-			{
-				for (var i:uint=this.numChildren; --i >= 0; )
-				{
-					var child:DisplayObject=this.getChildAt(i);
-					if (child is UIObject)
-					{
-						(child as UIObject).refresh();
-					}
-				}
-			}
-		}
 
 		//#######################################
 		// PROTECTED
@@ -228,12 +150,22 @@ package org.finalbug.ui.control
 		 */
 		protected function initSize(width:*, height:*):void
 		{
-			this.layoutStyle.setValue("width", width);
-			this.layoutStyle.setValue("height", height);
-			this.displayWidth=this.layoutStyle.width;
-			this.displayHeight=this.layoutStyle.height;
+			_layoutStyle.setValue("width", width);
+			_layoutStyle.setValue("height", height);
+			sizeChanged = true;
 		}
-
+		
+		/**
+		 * This method need be override by the sub classes of UIObject to realize
+		 * changing style such as color, alpha, fillStyle, etc.
+		 * 
+		 * To change the size and position, please override method updateSize.
+		 */
+		protected function updateStyle():void
+		{
+			// show be override by sub classes.
+		}
+		
 		//#######################################
 		// PRIVATE
 		//#######################################
@@ -248,7 +180,7 @@ package org.finalbug.ui.control
 		 */
 		protected function rollOverHandler(e:MouseEvent):void
 		{
-			this.status=Status.MOUSE_OVER;
+			this.status = Status.MOUSE_OVER;
 			if (tooltip != null && tooltip != "")
 			{
 				Tooltip.show(tooltip);
@@ -262,7 +194,7 @@ package org.finalbug.ui.control
 		protected function rollOutHandler(e:MouseEvent):void
 		{
 			Tooltip.remove();
-			this.status=Status.NORMAL;
+			this.status = Status.NORMAL;
 		}
 
 		/**
@@ -271,7 +203,7 @@ package org.finalbug.ui.control
 		 */
 		protected function mouseDownHandler(e:MouseEvent):void
 		{
-			this.status=Status.MOUSE_DOWN;
+			this.status = Status.MOUSE_DOWN;
 		}
 
 		/**
@@ -280,7 +212,7 @@ package org.finalbug.ui.control
 		 */
 		protected function mouseUpHandler(e:MouseEvent):void
 		{
-			this.status=Status.MOUSE_OVER;
+			this.status = Status.MOUSE_OVER;
 		}
 	}
 }

@@ -22,24 +22,24 @@ package org.finalbug.ui.skin
 	 * @author Tang Bin
 	 * @since 2010.12
 	 */	
-	public class CheckBoxSkinData extends UISkinDataBase
+	public class CheckBoxSkinData extends UISkinDataAbstract
 	{
 		//#######################################
 		// OVERRIDE
 		//#######################################
 		
-		override public function setSkin(...args):void
+		override public function bindChildren(...args):void
 		{
-			box = args[0] as SkinElement;
+			box = args[0] as Skin;
 			if(box != null)
 			{
-				this.setStatusSkinByList(box, boxSkins);
+				this.bindStatusesToSkin(box, boxSkins);
 			}
 			label = args[1] as Label;
 			label.textFormat = textFormats[Status.NORMAL];
 		}
 		
-		override public function setStatus(status:String):void
+		override public function changeStatus(status:String):void
 		{
 			if(box != null)
 			{
@@ -73,19 +73,13 @@ package org.finalbug.ui.skin
 		[Embed(source="/resources/skins/checkBoxSelect_disable.png")]
 		private var checkBoxSelectDisableCls:Class;
 		
-		private var box:SkinElement;
+		// skin elements
+		private var box:Skin;
 		private var label:Label;
 		
-		/**
-		 * 
-		 * @default 
-		 */
-		protected var boxSkins:Dictionary;
-		/**
-		 * 
-		 * @default 
-		 */
-		protected var textFormats:Dictionary;
+		// skin data
+		private var boxSkins:Dictionary;
+		private var textFormats:Dictionary;
 		
 		//#######################################
 		// GETTER and SETTER
@@ -100,17 +94,15 @@ package org.finalbug.ui.skin
 		 */
 		public function CheckBoxSkinData()
 		{
-			super();
-			//
 			boxSkins = new Dictionary();
-			boxSkins[Status.NORMAL] = new SkinElementData(Status.NORMAL, SkinElementData.BITMAP_TYPE, new checkBoxNormalCls(), true);
-			boxSkins[Status.MOUSE_OVER] = new SkinElementData(Status.MOUSE_OVER, SkinElementData.BITMAP_TYPE, new checkBoxOverCls());
-			boxSkins[Status.MOUSE_DOWN] = new SkinElementData(Status.MOUSE_DOWN, SkinElementData.BITMAP_TYPE, new checkBoxDownCls());
-			boxSkins[Status.DISABLE] = new SkinElementData(Status.DISABLE, SkinElementData.BITMAP_TYPE, new checkBoxDisableCls());
-			boxSkins[Status.SELECTED] = new SkinElementData(Status.SELECTED, SkinElementData.BITMAP_TYPE, new checkBoxSelectNormalCls());
-			boxSkins[Status.SELECTED_MOUSE_OVER] = new SkinElementData(Status.SELECTED_MOUSE_OVER, SkinElementData.BITMAP_TYPE, new checkBoxSelectOverCls());
-			boxSkins[Status.SELECTED_MOUSE_DOWN] = new SkinElementData(Status.SELECTED_MOUSE_DOWN, SkinElementData.BITMAP_TYPE, new checkBoxSelectDownCls());
-			boxSkins[Status.SELECTED_DISABLE] = new SkinElementData(Status.SELECTED_DISABLE, SkinElementData.BITMAP_TYPE, new checkBoxSelectDisableCls());
+			boxSkins[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new checkBoxNormalCls(), true);
+			boxSkins[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new checkBoxOverCls());
+			boxSkins[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new checkBoxDownCls());
+			boxSkins[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new checkBoxDisableCls());
+			boxSkins[Status.SELECTED] = new SkinData(Status.SELECTED, SkinData.BITMAP_TYPE, new checkBoxSelectNormalCls());
+			boxSkins[Status.SELECTED_MOUSE_OVER] = new SkinData(Status.SELECTED_MOUSE_OVER, SkinData.BITMAP_TYPE, new checkBoxSelectOverCls());
+			boxSkins[Status.SELECTED_MOUSE_DOWN] = new SkinData(Status.SELECTED_MOUSE_DOWN, SkinData.BITMAP_TYPE, new checkBoxSelectDownCls());
+			boxSkins[Status.SELECTED_DISABLE] = new SkinData(Status.SELECTED_DISABLE, SkinData.BITMAP_TYPE, new checkBoxSelectDisableCls());
 			//
 			textFormats = new Dictionary();
 			textFormats[Status.NORMAL] = new TextFormat("Arial", 12, 0);

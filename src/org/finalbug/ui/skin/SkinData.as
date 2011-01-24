@@ -18,7 +18,7 @@ package org.finalbug.ui.skin
 	 * @author Tang Bin
 	 * @since 2010.12
 	 */	
-	public class SkinElementData
+	public class SkinData
 	{
 		//#######################################
 		// OVERRIDE
@@ -108,7 +108,7 @@ package org.finalbug.ui.skin
 		 * @param data
 		 * @param asDefault
 		 */
-		public function SkinElementData(status:String, type:String, data:*, asDefault:Boolean = false)
+		public function SkinData(status:String, type:String, data:*, asDefault:Boolean = false)
 		{
 			this._status = status;
 			this._type = type;

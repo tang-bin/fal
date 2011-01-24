@@ -13,6 +13,7 @@ package org.finalbug.ui.skin
 	import flash.utils.Dictionary;
 	
 	import org.finalbug.data.DataModel;
+	import org.finalbug.errors.DataError;
 	
 	
 	/**
@@ -21,7 +22,7 @@ package org.finalbug.ui.skin
 	 * @author Tang Bin
 	 * @since 2010.12
 	 */	
-	public class UISkinDataBase extends DataModel
+	public class UISkinDataAbstract extends DataModel
 	{
 		//#######################################
 		// OVERRIDE
@@ -42,7 +43,7 @@ package org.finalbug.ui.skin
 		/**
 		 * 
 		 */
-		public function UISkinDataBase()
+		public function UISkinDataAbstract()
 		{
 			super();
 		}
@@ -55,7 +56,7 @@ package org.finalbug.ui.skin
 		 * 
 		 * @param args
 		 */
-		public function setSkin(...args):void
+		public function bindChildren(...args):void
 		{
 			// this method should be overrided in sub classes.
 		}
@@ -64,7 +65,7 @@ package org.finalbug.ui.skin
 		 * 
 		 * @param status
 		 */
-		public function setStatus(status:String):void
+		public function changeStatus(status:String):void
 		{
 			// this method should be overrided in sub classes.
 		}
@@ -75,16 +76,16 @@ package org.finalbug.ui.skin
 		
 		/**
 		 * 
-		 * @param skinElement
+		 * @param skin
 		 * @param list
 		 */
-		protected function setStatusSkinByList(skinElement:SkinElement, list:Dictionary):void
+		protected function bindStatusesToSkin(skin:Skin, list:Dictionary):void
 		{
-			for each(var skinData:SkinElementData in list)
+			for each(var skinData:SkinData in list)
 			{
 				if(skinData != null)
 				{
-					skinElement.setSkin(skinData);
+					skin.setSkinData(skinData);
 				}
 			}
 		}

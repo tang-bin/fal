@@ -13,13 +13,11 @@ package org.finalbug.ui.navigate
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
+	import flash.utils.Dictionary;
 	
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.control.Button;
 	import org.finalbug.ui.control.Container;
-	import org.finalbug.ui.control.UIObject;
-	import org.finalbug.ui.skin.UISkinDataBase;
-	import org.finalbug.ui.style.LayoutStyle;
 	
 	
 	/**
@@ -38,10 +36,14 @@ package org.finalbug.ui.navigate
 		// DEFINE
 		//#######################################
 		
+		protected const BUTTON_HEIGHT:Number = 26;
+		
 		private var btnBar:Container;
 		private var box:Slider;
 		
-		private var tabs:Array = new Array();
+		private var tabs:Dictionary = new Dictionary();
+		
+		private var currentSelected:TabData;
 		
 		//#######################################
 		// GETTER and SETTER
@@ -65,13 +67,8 @@ package org.finalbug.ui.navigate
 			box = new Slider();
 			this.addAll(btnBar, box);
 			//
-			var btnLS:LayoutStyle = new LayoutStyle();
-			btnLS.setNormalStyle("100%", 22, 0, 0);
-			btnBar.layoutStyle = btnLS;
-			//
-			var boxLS:LayoutStyle = new LayoutStyle();
-			boxLS.setAroundStyle(0, 22, 0, 0);
-			box.layoutStyle = boxLS;
+			btnBar.layoutStyle.setNormalStyle("100%", BUTTON_HEIGHT, 0, 0);
+			box.layoutStyle.setAroundStyle(0, BUTTON_HEIGHT, 0, 0);
 		}
 		
 		//#######################################
@@ -89,24 +86,27 @@ package org.finalbug.ui.navigate
 		 */
 		public function addTab(label:String, object:DisplayObject = null, index:int = -1):DisplayObject
 		{
-			if(index < 0 || index > tabs.length)
+			var maxLen:uint = btnBar.numChildren;
+			if(index < 0 || index > maxLen)
 			{
-				index = tabs.length;
+				index = maxLen;
 			}
 			//
 			if(object == null)
 			{
 				object = new Sprite();
 			}
-			//
+			// create elements and data
 			var data:TabData = new TabData();
 			data.label = label;
 			data.object = object;
 			data.btn = new Button(label);
+			data.btn.holdable = true;
 			data.btn.addEventListener(MouseEvent.CLICK, clickTabBtnHandler);
-			tabs.splice(index, 0, data);
-			//
-			if(index >=0 && index < btnBar.numChildren)
+			// save data into dictionary.
+			tabs[data.btn] = data;
+			// add elements to display.
+			if(index >=0 && index < maxLen)
 			{
 				btnBar.addChildAt(data.btn, index);
 				box.addChildAt(data.object, index);
@@ -116,7 +116,11 @@ package org.finalbug.ui.navigate
 				btnBar.addChild(data.btn);
 				box.addChild(data.object);
 			}
-			
+			// change selected
+			if(currentSelected == null)
+			{
+				doSelect(data);
+			}
 			//
 			return object;
 		}
@@ -201,6 +205,20 @@ package org.finalbug.ui.navigate
 		// PRIVATE
 		//#######################################
 		
+		private function doSelect(data:TabData):void
+		{
+			// remove pre-selected
+			if(currentSelected != null)
+			{
+				currentSelected.btn.hold = false;
+			}
+			// select new 
+			data.btn.hold = true;
+			box.selectedChild = data.object;
+			// save select data.
+			currentSelected = data;
+		}
+		
 		//#######################################
 		// HANDLER
 		//#######################################
@@ -210,8 +228,7 @@ package org.finalbug.ui.navigate
 			var btn:Button = e.currentTarget as Button;
 			if(btn != null)
 			{
-				var index:int = btn.parent.getChildIndex(btn);
-				box.selectedIndex = index;
+				this.doSelect(tabs[btn]);
 			}
 		}
 	}

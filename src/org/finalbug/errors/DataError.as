@@ -23,6 +23,13 @@ package org.finalbug.errors
 		 * @default 
 		 */
 		public static const SINGLETON:String = "Class using singleton pattern cannot be instanced.";
+		
+		/**
+		 * 
+		 * @default 
+		 */
+		public static const ABSTRACT:String = "Abstract class cannot be instanced.";
+		
 		/**
 		 * 
 		 * @default 

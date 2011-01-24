@@ -27,10 +27,9 @@ package org.finalbug.ui.control
 		// OVERRIDE
 		//#######################################
 		
-		override protected function updateView():void
+		override protected function updateSize():void
 		{
-			super.updateView();
-			trace("in container", this.name, this.displayWidth, this.displayHeight);
+			super.updateSize();
 		}
 		
 		//#######################################
@@ -235,10 +234,10 @@ package org.finalbug.ui.control
 		 * 
 		 * @param xSpace
 		 * @param ySpace
-		 * @param updateViewAfterMeasure
+		 * @param updateSizeAfterMeasure
 		 * 
 		 */		
-		public function measure(xSpace:Number = 0, ySpace:Number = 0, updateViewAfterMeasure:Boolean = false):void
+		public function measure(xSpace:Number = 0, ySpace:Number = 0, updateSizeAfterMeasure:Boolean = false):void
 		{
 			var maxWidth:Number = 0;
 			var maxHeight:Number = 0;
@@ -250,12 +249,12 @@ package org.finalbug.ui.control
 			}
 			maxWidth += xSpace;
 			maxHeight += ySpace;
-			this.displayWidth = maxWidth;
-			this.displayHeight = maxHeight;
+			this.width = maxWidth;
+			this.height = maxHeight;
 			//
-			if(updateViewAfterMeasure)
+			if(updateSizeAfterMeasure)
 			{
-				this.updateView();
+				this.updateSize();
 			}
 		}
 		

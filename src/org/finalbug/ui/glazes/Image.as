@@ -35,12 +35,12 @@ package org.finalbug.ui.glazes
 		// OVERRIDE
 		//#######################################
 		
-		override protected function updateView():void
+		override protected function updateSize():void
 		{
 			if(img != null && this.contains(img))
 			{
-				img.width = this.displayWidth;
-				img.height = this.displayHeight;
+				img.width = this.width;
+				img.height = this.height;
 			}
 		}
 		
@@ -206,8 +206,8 @@ package org.finalbug.ui.glazes
 			var newImg:Image = new Image();
 			newImg._url = this._url;
 			newImg.bitmapData = this.bitmapData;
-			newImg.displayWidth = this.displayWidth;
-			newImg.displayHeight = this.displayHeight;
+			newImg.width = this.width;
+			newImg.height = this.height;
 			newImg.addImg();
 			return newImg;
 		}
@@ -240,8 +240,8 @@ package org.finalbug.ui.glazes
 			orgh = bitmapData.height;
 			if(!useFixedSize)
 			{
-				this.displayWidth = orgw;
-				this.displayHeight = orgh;
+				this.width = orgw;
+				this.height = orgh;
 			}
 			//
 			if(img != null && this.contains(img))
@@ -253,7 +253,7 @@ package org.finalbug.ui.glazes
 			img = new Scale9Bitmap(new Bitmap(this.bitmapData), scale9);
 			this.addChild(img);
 			//
-			this.updateView();
+			this.updateSize();
 		}
 		
 		//#######################################

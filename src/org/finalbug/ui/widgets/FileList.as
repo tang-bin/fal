@@ -30,7 +30,7 @@ package org.finalbug.ui.widgets
 		// OVERRIDE
 		//#######################################
 		
-		override protected function updateView():void
+		override protected function updateSize():void
 		{
 			if(dd == null) return;
 			// step1, set all exist item is not updated
@@ -55,7 +55,7 @@ package org.finalbug.ui.widgets
 			beforeSetItemPosition();
 			dd.forEachFile(doForEachItem);
 			// step 5, refresh scroll panel
-			super.updateView();
+			super.updateSize();
 		}
 		
 		//#######################################
@@ -112,7 +112,7 @@ package org.finalbug.ui.widgets
 		public function showDirectory(data:FolderData):void
 		{
 			dd = data;
-			this.updateView();
+			this.updateSize();
 		}
 		
 		//#######################################

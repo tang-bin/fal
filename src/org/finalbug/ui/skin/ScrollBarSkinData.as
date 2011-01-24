@@ -20,7 +20,7 @@ package org.finalbug.ui.skin
 	 * @author Tang Bin
 	 * @since 2010.12
 	 */	
-	public class ScrollBarSkinData extends UISkinDataBase
+	public class ScrollBarSkinData extends UISkinDataAbstract
 	{
 		//#######################################
 		// OVERRIDE
@@ -31,24 +31,24 @@ package org.finalbug.ui.skin
 		 * @param args leftBtn, rightBtn, upBtn, downBtn, back, slider
 		 * 
 		 */		
-		override public function setSkin(...args):void
+		override public function bindChildren(...args):void
 		{
-			leftBtn = args[0] as SkinElement;
-			rightBtn = args[1] as SkinElement;
-			upBtn = args[2] as SkinElement;
-			downBtn = args[3] as SkinElement;
-			back = args[4] as SkinElement;
-			slider = args[5] as SkinElement;
+			leftBtn = args[0] as Skin;
+			rightBtn = args[1] as Skin;
+			upBtn = args[2] as Skin;
+			downBtn = args[3] as Skin;
+			back = args[4] as Skin;
+			slider = args[5] as Skin;
 			//
-			if(leftBtn != null) setStatusSkinByList(leftBtn, leftSkinData);
-			if(rightBtn != null) setStatusSkinByList(rightBtn, rightSkinData);
-			if(upBtn != null) setStatusSkinByList(upBtn, upSkinData);
-			if(downBtn != null) setStatusSkinByList(downBtn, downSkinData);
-			if(back != null) setStatusSkinByList(back, backSkinData);
-			if(slider != null) setStatusSkinByList(slider, sliderSkinData);
+			if(leftBtn != null) bindStatusesToSkin(leftBtn, leftSkinData);
+			if(rightBtn != null) bindStatusesToSkin(rightBtn, rightSkinData);
+			if(upBtn != null) bindStatusesToSkin(upBtn, upSkinData);
+			if(downBtn != null) bindStatusesToSkin(downBtn, downSkinData);
+			if(back != null) bindStatusesToSkin(back, backSkinData);
+			if(slider != null) bindStatusesToSkin(slider, sliderSkinData);
 		}
 		
-		override public function setStatus(status:String):void
+		override public function changeStatus(status:String):void
 		{
 			if(leftBtn != null) leftBtn.status = status;
 			if(rightBtn != null) rightBtn.status = status;
@@ -107,12 +107,12 @@ package org.finalbug.ui.skin
 		private var scrollBarBackDisableCls:Class;
 		
 		// skin elements
-		private var leftBtn:SkinElement;
-		private var rightBtn:SkinElement;
-		private var upBtn:SkinElement;
-		private var downBtn:SkinElement;
-		private var back:SkinElement;
-		private var slider:SkinElement;
+		private var leftBtn:Skin;
+		private var rightBtn:Skin;
+		private var upBtn:Skin;
+		private var downBtn:Skin;
+		private var back:Skin;
+		private var slider:Skin;
 		
 		// skin data
 		private var leftSkinData:Dictionary;
@@ -135,38 +135,36 @@ package org.finalbug.ui.skin
 		 */
 		public function ScrollBarSkinData()
 		{
-			super();
-			//
 			leftSkinData = new Dictionary();
-			leftSkinData[Status.NORMAL] = new SkinElementData(Status.NORMAL, SkinElementData.BITMAP_TYPE, new scrollBarLeftNormalCls(), true);
-			leftSkinData[Status.MOUSE_OVER] = new SkinElementData(Status.MOUSE_OVER, SkinElementData.BITMAP_TYPE, new scrollBarLeftOverCls());
-			leftSkinData[Status.MOUSE_DOWN] = new SkinElementData(Status.MOUSE_DOWN, SkinElementData.BITMAP_TYPE, new scrollBarLeftDownCls());
-			leftSkinData[Status.DISABLE] = new SkinElementData(Status.DISABLE, SkinElementData.BITMAP_TYPE, new scrollBarLeftDisableCls());
+			leftSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new scrollBarLeftNormalCls(), true);
+			leftSkinData[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new scrollBarLeftOverCls());
+			leftSkinData[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new scrollBarLeftDownCls());
+			leftSkinData[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new scrollBarLeftDisableCls());
 			//
 			rightSkinData = new Dictionary();
-			rightSkinData[Status.NORMAL] = new SkinElementData(Status.NORMAL, SkinElementData.BITMAP_TYPE, new scrollBarRightNormalCls(), true);
-			rightSkinData[Status.MOUSE_OVER] = new SkinElementData(Status.MOUSE_OVER, SkinElementData.BITMAP_TYPE, new scrollBarRightOverCls());
-			rightSkinData[Status.MOUSE_DOWN] = new SkinElementData(Status.MOUSE_DOWN, SkinElementData.BITMAP_TYPE, new scrollBarRightDownCls());
-			rightSkinData[Status.DISABLE] = new SkinElementData(Status.DISABLE, SkinElementData.BITMAP_TYPE, new scrollBarRightDisableCls());
+			rightSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new scrollBarRightNormalCls(), true);
+			rightSkinData[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new scrollBarRightOverCls());
+			rightSkinData[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new scrollBarRightDownCls());
+			rightSkinData[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new scrollBarRightDisableCls());
 			//
 			upSkinData = new Dictionary();
-			upSkinData[Status.NORMAL] = new SkinElementData(Status.NORMAL, SkinElementData.BITMAP_TYPE, new scrollBarUpNormalCls(), true);
-			upSkinData[Status.MOUSE_OVER] = new SkinElementData(Status.MOUSE_OVER, SkinElementData.BITMAP_TYPE, new scrollBarUpOverCls());
-			upSkinData[Status.MOUSE_DOWN] = new SkinElementData(Status.MOUSE_DOWN, SkinElementData.BITMAP_TYPE, new scrollBarUpDownCls());
-			upSkinData[Status.DISABLE] = new SkinElementData(Status.DISABLE, SkinElementData.BITMAP_TYPE, new scrollBarUpDisableCls());
+			upSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new scrollBarUpNormalCls(), true);
+			upSkinData[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new scrollBarUpOverCls());
+			upSkinData[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new scrollBarUpDownCls());
+			upSkinData[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new scrollBarUpDisableCls());
 			//
 			downSkinData = new Dictionary();
-			downSkinData[Status.NORMAL] = new SkinElementData(Status.NORMAL, SkinElementData.BITMAP_TYPE, new scrollBarDownNormalCls(), true);
-			downSkinData[Status.MOUSE_OVER] = new SkinElementData(Status.MOUSE_OVER, SkinElementData.BITMAP_TYPE, new scrollBarDownOverCls());
-			downSkinData[Status.MOUSE_DOWN] = new SkinElementData(Status.MOUSE_DOWN, SkinElementData.BITMAP_TYPE, new scrollBarDownDownCls());
-			downSkinData[Status.DISABLE] = new SkinElementData(Status.DISABLE, SkinElementData.BITMAP_TYPE, new scrollBarDownDisableCls());
+			downSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new scrollBarDownNormalCls(), true);
+			downSkinData[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new scrollBarDownOverCls());
+			downSkinData[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new scrollBarDownDownCls());
+			downSkinData[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new scrollBarDownDisableCls());
 			//
 			backSkinData = new Dictionary();
-			backSkinData[Status.NORMAL] = new SkinElementData(Status.NORMAL, SkinElementData.BITMAP_TYPE, new scrollBarBackNormalCls(), true);
-			backSkinData[Status.DISABLE] = new SkinElementData(Status.DISABLE, SkinElementData.BITMAP_TYPE, new scrollBarBackDisableCls());
+			backSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new scrollBarBackNormalCls(), true);
+			backSkinData[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new scrollBarBackDisableCls());
 			//
 			sliderSkinData = new Dictionary();
-			sliderSkinData[Status.NORMAL] = new SkinElementData(Status.NORMAL, SkinElementData.BITMAP_TYPE, new scrollBarSliderCls(), true);
+			sliderSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new scrollBarSliderCls(), true);
 		}
 		
 		//#######################################

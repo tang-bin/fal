@@ -22,18 +22,18 @@ package org.finalbug.ui.skin
 	 * @author Tang Bin
 	 * @since 2010.12
 	 */	
-	public class RadioSkinData extends UISkinDataBase
+	public class RadioSkinData extends UISkinDataAbstract
 	{
 		//#######################################
 		// OVERRIDE
 		//#######################################
 		
-		override public function setSkin(...args):void
+		override public function bindChildren(...args):void
 		{
-			box = args[0] as SkinElement;
+			box = args[0] as Skin;
 			if(box != null)
 			{
-				this.setStatusSkinByList(box, boxSkins);
+				this.bindStatusesToSkin(box, boxSkins);
 			}
 			label = args[1] as Label;
 			if(label != null)
@@ -42,7 +42,7 @@ package org.finalbug.ui.skin
 			}
 		}
 		
-		override public function setStatus(status:String):void
+		override public function changeStatus(status:String):void
 		{
 			if(box != null)
 			{
@@ -63,19 +63,13 @@ package org.finalbug.ui.skin
 		[Embed(source="/resources/skins/radioSelect_normal.png")]
 		private var radioSelectDisableCls:Class;
 		
-		private var box:SkinElement;
+		// skin elements
+		private var box:Skin;
 		private var label:Label;
 		
-		/**
-		 * 
-		 * @default 
-		 */
-		protected var boxSkins:Dictionary;
-		/**
-		 * 
-		 * @default 
-		 */
-		protected var textFormats:Dictionary;
+		// skin data
+		private var boxSkins:Dictionary;
+		private var textFormats:Dictionary;
 		
 		//#######################################
 		// GETTER and SETTER
@@ -90,13 +84,11 @@ package org.finalbug.ui.skin
 		 */
 		public function RadioSkinData()
 		{
-			super();
-			//
 			boxSkins = new Dictionary();
-			boxSkins[Status.NORMAL] = new SkinElementData(Status.NORMAL, SkinElementData.BITMAP_TYPE, new radioNormalCls(), true);
-			boxSkins[Status.SELECTED] = new SkinElementData(Status.SELECTED, SkinElementData.BITMAP_TYPE, new radioSelectNormalCls());
-			boxSkins[Status.DISABLE] = new SkinElementData(Status.DISABLE, SkinElementData.BITMAP_TYPE, new radioDisableCls());
-			boxSkins[Status.SELECTED_DISABLE] = new SkinElementData(Status.SELECTED_DISABLE, SkinElementData.BITMAP_TYPE, new radioSelectDisableCls());
+			boxSkins[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new radioNormalCls(), true);
+			boxSkins[Status.SELECTED] = new SkinData(Status.SELECTED, SkinData.BITMAP_TYPE, new radioSelectNormalCls());
+			boxSkins[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new radioDisableCls());
+			boxSkins[Status.SELECTED_DISABLE] = new SkinData(Status.SELECTED_DISABLE, SkinData.BITMAP_TYPE, new radioSelectDisableCls());
 			//
 			textFormats = new Dictionary();
 			textFormats[Status.NORMAL] = new TextFormat("Arial", 12, 0);

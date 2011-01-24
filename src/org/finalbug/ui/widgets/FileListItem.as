@@ -85,7 +85,7 @@ package org.finalbug.ui.widgets
 					throw new DataError(DataError.TYPE_ERROR);
 				}
 				_position = value;
-				this.updateView();
+				this.updateSize();
 			}
 		}
 		
@@ -106,7 +106,7 @@ package org.finalbug.ui.widgets
 			if(value != _extraLabel)
 			{
 				_extraLabel = value;
-				this.updateView();
+				this.updateSize();
 			}
 		}
 		
@@ -154,7 +154,7 @@ package org.finalbug.ui.widgets
 			super();
 			this._data = data;
 			createElements();
-			updateView();
+			updateSize();
 		}
 		
 		//#######################################
@@ -165,11 +165,11 @@ package org.finalbug.ui.widgets
 		// PROTECTED
 		//#######################################
 		
-		override protected function updateView():void
+		override protected function updateSize():void
 		{
-			super.updateView();
+			super.updateSize();
 			if(icon == null && txt == null) return;
-			if(this.displayWidth >0 && this.displayHeight > 0)
+			if(this.width >0 && this.height > 0)
 			{
 				if(icon != null)
 				{
@@ -177,11 +177,11 @@ package org.finalbug.ui.widgets
 					var iconSize:Number = 0;
 					if(_position == Position.TOP || _position == Position.BOTTOM)
 					{
-						if(this.displayHeight < HIDE_LABEL_HEIGHT)
+						if(this.height < HIDE_LABEL_HEIGHT)
 						{
 							// it is too small to display the labels
 							txt.visible = extra.visible = false;
-							iconSize = Math.min(this.displayHeight, this.displayWidth);
+							iconSize = Math.min(this.height, this.width);
 							iconSize -= 2 * SPACE;
 							icon.resize(iconSize, iconSize);
 							icon.toCenter();
@@ -191,15 +191,15 @@ package org.finalbug.ui.widgets
 							txt.visible = true;
 							extra.visible = false;
 							//
-							iconSize = Math.min(this.displayHeight - LABEL_HEIGHT, this.displayWidth);
+							iconSize = Math.min(this.height - LABEL_HEIGHT, this.width);
 							iconSize -= 2 * SPACE;
 							icon.resize(iconSize, iconSize);
-							icon.x = (this.displayWidth - icon.width) / 2;
-							icon.y = (this.displayHeight - LABEL_HEIGHT - icon.height) / 2;
+							icon.x = (this.width - icon.width) / 2;
+							icon.y = (this.height - LABEL_HEIGHT - icon.height) / 2;
 							//
-							txt.width = this.displayWidth - 2 * SPACE;
+							txt.width = this.width - 2 * SPACE;
 							txt.x = SPACE;
-							txt.y = this.displayHeight - txt.height - SPACE;
+							txt.y = this.height - txt.height - SPACE;
 						}
 					}
 				}

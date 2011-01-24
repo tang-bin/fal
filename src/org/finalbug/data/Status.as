@@ -75,6 +75,18 @@ package org.finalbug.data
 		 * @default 
 		 */
 		public static const HOLD:String = "holdStatus";
+		
+		/**
+		 * 
+		 * @default 
+		 */
+		public static const HOLD_MOUSE_DOWN:String = "holeMouseDown";
+		
+		/**
+		 * 
+		 * @default 
+		 */
+		public static const HOLD_MOUSE_OVER:String = "holdMouseOver";
 		/**
 		 * 
 		 * @default 

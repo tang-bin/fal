@@ -19,6 +19,7 @@ package org.finalbug.ui
 	import org.finalbug.events.DisplayEvent;
 	import org.finalbug.events.MotionEvent;
 	import org.finalbug.events.UIEvent;
+	import org.finalbug.ui.control.Button;
 	import org.finalbug.ui.style.FillStyle;
 	import org.finalbug.ui.style.LayoutStyle;
 	import org.finalbug.utils.MathUtil;
@@ -28,7 +29,7 @@ package org.finalbug.ui
 	/**
 	 * Bin is the basic class for all other display object used in fb-aslib.
 	 * This class will override displayObjec's width and height.
-	 * Inside class/subclasses, use displayWidth and displayHeight as object's
+	 * Inside class/subclasses, use width and height as object's
 	 * width and height values.
 	 *
 	 * @author Tang Bin
@@ -45,22 +46,34 @@ package org.finalbug.ui
 		 */
 		override public function get width():Number
 		{
-			return displayWidth;
+			return _layoutStyle.width;
 		}
 		
 		/**
 		 * Set Bin's width.
 		 * Class Bin's width is overrided, change width value will not change the
-		 * display direct, instead, the displayWidth value will be changed and
-		 * updateView() will be invoked.
+		 * display direct, instead, the width value in layoutStyle will be changed and
+		 * updateSize() will be invoked.
 		 *
 		 * @param value
 		 */
 		override public function set width(value:Number):void
 		{
-			this.displayWidth = MathUtil.getNumArea(value, minWidth, maxWidth);
-			this.updateView();
-			this.dispatchSizeChanged();
+			var newWidth:Number = MathUtil.getNumArea(value, minWidth, maxWidth);
+			if(newWidth != this.width)
+			{
+				_layoutStyle.setValue("width", newWidth);
+				if(this.stage != null)
+				{
+					this.updateSize();
+					this.dispatchSizeChanged();
+					sizeChanged = false;
+				}
+				else
+				{
+					sizeChanged = true;
+				}
+			}
 		}
 		
 		/**
@@ -68,22 +81,92 @@ package org.finalbug.ui
 		 */
 		override public function get height():Number
 		{
-			return displayHeight;
+			return _layoutStyle.height;
 		}
 		
 		/**
 		 * Set Bin's height.
 		 * Class Bin's height is overrided, change height value will not change the
-		 * display direct, instead, the displayHeight value will be changed and
-		 * updateView() will be invoked.
+		 * display direct, instead, the height value in layoutStyle will be changed and
+		 * updateSize() will be invoked.
 		 *
 		 * @param value
 		 */
 		override public function set height(value:Number):void
 		{
-			this.displayHeight = MathUtil.getNumArea(value, minHeight, maxHeight);
-			this.updateView();
-			this.dispatchSizeChanged();
+			var newHeight:Number = MathUtil.getNumArea(value, minHeight, maxHeight);
+			if(newHeight != this.height)
+			{
+				_layoutStyle.setValue("height", newHeight);
+				if(this.stage != null)
+				{
+					this.updateSize();
+					this.dispatchSizeChanged();	
+					sizeChanged = false;
+				}
+				else
+				{
+					sizeChanged = true;
+				}
+			}
+		}
+		
+		/**
+		 * 
+		 * @param value
+		 */
+		override public function set x(value:Number):void
+		{
+			var oldWidth:Number = _layoutStyle.width;
+			var oldHeight:Number = _layoutStyle.height;
+			//
+			_layoutStyle.setValue("left", value);
+			var newX:Number = _layoutStyle.x;
+			if (!isNaN(newX)) super.x = newX;
+			//
+			if(oldWidth != _layoutStyle.width || oldHeight != _layoutStyle.height)
+			{
+				// if object's x coordinate is changed, 
+				// call updateSize only if size is changed too.
+				if(this.stage != null)
+				{
+					this.updateSize();
+					sizeChanged = false;
+				}
+				else
+				{
+					sizeChanged = true;
+				}
+			}
+		}
+		
+		/**
+		 * 
+		 * @param value
+		 */
+		override public function set y(value:Number):void
+		{
+			var oldWidth:Number = _layoutStyle.width;
+			var oldHeight:Number = _layoutStyle.height;
+			//
+			_layoutStyle.setValue("top", value);
+			var newY:Number = _layoutStyle.y;
+			if (!isNaN(newY)) super.y = newY;
+			//
+			if(oldWidth != _layoutStyle.width || oldHeight != _layoutStyle.height)
+			{
+				// if object's x coordinate is changed, 
+				// call updateSize only if size is changed too.
+				if(this.stage != null)
+				{
+					this.updateSize();
+					sizeChanged = false;
+				}
+				else
+				{
+					sizeChanged = true;
+				}
+			}
 		}
 		
 		/**
@@ -164,27 +247,22 @@ package org.finalbug.ui
 		private const SMOOTH_DELAY:Number=30;
 		
 		/**
-		 *
-		 * @default 0
+		 * 
+		 * @default 
 		 */
-		protected var displayWidth:Number=0;
-		/**
-		 *
-		 * @default 0
-		 */
-		protected var displayHeight:Number=0;
+		protected var sizeChanged:Boolean = false;
 		
 		/**
 		 *
 		 * @default null
 		 */
-		protected var _fillStyle:FillStyle = null;
+		protected var _fillStyle:FillStyle;
 		
 		/**
 		 * 
 		 * @default 
 		 */
-		protected var _layoutStyle:LayoutStyle = null;
+		protected var _layoutStyle:LayoutStyle;
 		
 		private var _maxWidth:Number=4000;
 		private var _maxHeight:Number=4000;
@@ -195,7 +273,7 @@ package org.finalbug.ui
 		private var sizeMotion:SizeMotion;
 		
 		private var _controlPoint:Point = new Point(0, 0);
-		private var _controlPointType:String="";
+		private var _controlPointType:String = "";
 		
 		//#######################################
 		// GETTER and SETTER
@@ -262,8 +340,8 @@ package org.finalbug.ui
 		 */
 		public function set controlPoint(value:Point):void
 		{
-			_controlPointType="";
-			_controlPoint=value;
+			_controlPointType = "";
+			_controlPoint = value;
 		}
 		
 		/**
@@ -280,7 +358,7 @@ package org.finalbug.ui
 		 */
 		public function set controlX(value:Number):void
 		{
-			this.x=value - controlPoint.x;
+			this.x = value - controlPoint.x;
 		}
 		
 		/**
@@ -316,11 +394,9 @@ package org.finalbug.ui
 		public function set maxWidth(value:Number):void
 		{
 			_maxWidth=value;
-			if (this.displayWidth > _maxWidth)
+			if (this.width > _maxWidth)
 			{
-				this.displayWidth=_maxWidth;
-				this.updateView();
-				this.dispatchSizeChanged();
+				this.width = _maxWidth;
 			}
 		}
 		
@@ -340,11 +416,9 @@ package org.finalbug.ui
 		public function set maxHeight(value:Number):void
 		{
 			_maxHeight=value;
-			if (this.displayHeight > _maxHeight)
+			if (this.height > _maxHeight)
 			{
-				this.displayHeight=_maxHeight;
-				this.updateView();
-				this.dispatchSizeChanged();
+				this.height=_maxHeight;
 			}
 		}
 		
@@ -364,11 +438,9 @@ package org.finalbug.ui
 		public function set minWidth(value:Number):void
 		{
 			_minWidth=Math.max(value, 0);
-			if (this.displayWidth < _minWidth)
+			if (this.width < _minWidth)
 			{
-				this.displayWidth=_minWidth;
-				this.updateView();
-				this.dispatchSizeChanged();
+				this.width = _minWidth;
 			}
 		}
 		
@@ -388,11 +460,9 @@ package org.finalbug.ui
 		public function set minHeight(value:Number):void
 		{
 			_minHeight=Math.max(value, 0);
-			if (this.displayHeight < _minHeight)
+			if (this.height < _minHeight)
 			{
-				this.displayHeight=_minHeight;
-				this.updateView();
-				this.dispatchSizeChanged();
+				this.height = _minHeight;
 			}
 		}
 		
@@ -406,6 +476,8 @@ package org.finalbug.ui
 		public function Bin()
 		{
 			super();
+			_layoutStyle = new LayoutStyle();
+			_layoutStyle.owner = this;
 			// for first added to stage
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
@@ -416,17 +488,31 @@ package org.finalbug.ui
 		
 		/**
 		 * Change Bin's size to target width and height immediately.
-		 * run updateView to reisze.
+		 * run updateSize to reisze.
 		 * 
 		 * @param width
 		 * @param height
 		 */
 		public function resize(width:Number, height:Number):void
 		{
-			this.displayWidth = MathUtil.getNumArea(width, this.minWidth, this.maxWidth);
-			this.displayHeight = MathUtil.getNumArea(height, this.minHeight, this.maxHeight);
-			this.updateView();
-			this.dispatchSizeChanged();
+			var newWidth:Number = MathUtil.getNumArea(width, this.minWidth, this.maxWidth);
+			var newHeight:Number = MathUtil.getNumArea(height, this.minHeight, this.maxHeight);
+			if(newWidth != this.width || newHeight != this.height)
+			{
+				_layoutStyle.setValue("width", width);
+				_layoutStyle.setValue("height", height);
+				if(this.stage != null)
+				{
+					this.updateSize();
+					this.dispatchSizeChanged();
+					sizeChanged = false;
+				}
+				else
+				{
+					sizeChanged = true;
+				}
+				
+			}
 		}
 		
 		/**
@@ -448,11 +534,11 @@ package org.finalbug.ui
 			{
 				this.sizeMotion.stop();
 			}
-			this.sizeMotion.widthFrom=this.displayWidth;
-			this.sizeMotion.heightFrom=this.displayHeight;
-			this.sizeMotion.widthTo=width;
-			this.sizeMotion.heightTo=height;
-			this.sizeMotion.during=during;
+			this.sizeMotion.widthFrom = this.width
+			this.sizeMotion.heightFrom  =this.height
+			this.sizeMotion.widthTo = width;
+			this.sizeMotion.heightTo = height;
+			this.sizeMotion.during = during;
 			this.sizeMotion.start();
 		}
 		
@@ -614,23 +700,14 @@ package org.finalbug.ui
 			}
 		}
 		
-		public function updateByLayout():void
-		{
-			if(_layoutStyle != null)
-			{
-				this.resize(_layoutStyle.width, _layoutStyle.height);
-				this.x = _layoutStyle.x;
-				this.y = _layoutStyle.y;
-			}
-		}
-		
 		//#######################################
 		// PROTECTED
 		//#######################################
+		
 		/**
 		 *
 		 */
-		protected function updateView():void
+		protected function updateSize():void
 		{
 			drawBg();
 		}
@@ -640,6 +717,14 @@ package org.finalbug.ui
 		 */
 		protected function callAtAdded():void
 		{
+			var isBtn:Boolean = this is Button;
+			if(sizeChanged)
+			{
+				countSizeAndPosition();
+				updateSize();
+				dispatchSizeChanged();
+				sizeChanged = false;
+			}
 		}
 		
 		/**
@@ -656,11 +741,24 @@ package org.finalbug.ui
 		{
 			if (_fillStyle != null)
 			{
-				_fillStyle.fill(this, this.displayWidth, this.displayHeight);
+				_fillStyle.fill(this, this.width, this.height);
 			}
 			else
 			{
 				this.graphics.clear();
+			}
+		}
+		
+		/**
+		 * 
+		 */
+		internal function updateByLayout():void
+		{
+			if(_layoutStyle != null)
+			{
+				this.x = _layoutStyle.x;
+				this.y = _layoutStyle.y;
+				this.updateSize();
 			}
 		}
 		
@@ -673,43 +771,43 @@ package org.finalbug.ui
 			switch (_controlPointType)
 			{
 				case Position.TOP_CENTER:
-					_controlPoint.x=displayWidth / 2;
-					_controlPoint.y=0;
+					_controlPoint.x = this.width / 2;
+					_controlPoint.y = 0;
 					break;
 				case Position.TOP_LEFT:
-					_controlPoint.x=_controlPoint.y=0;
+					_controlPoint.x = _controlPoint.y=0;
 					break;
 				case Position.TOP_RIGHT:
-					_controlPoint.x=displayWidth;
-					_controlPoint.y=0;
+					_controlPoint.x = this.width;
+					_controlPoint.y = 0;
 					break;
 				case Position.LEFT_CENTER:
 					_controlPoint.x=0;
-					_controlPoint.y=displayHeight / 2;
+					_controlPoint.y = this.height / 2;
 					break;
 				case Position.CENTER:
-					_controlPoint.x=displayWidth / 2;
-					_controlPoint.y=displayHeight / 2;
+					_controlPoint.x = this.width / 2;
+					_controlPoint.y = this.height / 2;
 					break;
 				case Position.RIGHT_CENTER:
-					_controlPoint.x=displayWidth;
-					_controlPoint.y=displayHeight / 2;
+					_controlPoint.x = this.width;
+					_controlPoint.y = this.height / 2;
 					break;
 				case Position.BOTTOM_LEFT:
-					_controlPoint.x=0;
-					_controlPoint.y=displayHeight;
+					_controlPoint.x = 0;
+					_controlPoint.y = this.height;
 					break;
 				case Position.BOTTOM_CENTER:
-					_controlPoint.x=displayWidth / 2;
-					_controlPoint.y=displayHeight;
+					_controlPoint.x = this.width / 2;
+					_controlPoint.y = this.height;
 					break;
 				case Position.BOTTOM_RIGHT:
-					_controlPoint.x=displayWidth;
-					_controlPoint.y=displayHeight;
+					_controlPoint.x = this.width;
+					_controlPoint.y = this.height;
 					break;
 				default:
-					_controlPoint.x=_controlPoint.y=0;
-					_controlPointType="";
+					_controlPoint.x = _controlPoint.y = 0;
+					_controlPointType = "";
 					break;
 			}
 		}
@@ -750,7 +848,7 @@ package org.finalbug.ui
 		
 		private function addedToStageHandler(e:Event):void
 		{
-			this.removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+			//this.removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 			this.callAtAdded();
 		}
 	}

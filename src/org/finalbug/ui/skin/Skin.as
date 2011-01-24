@@ -29,29 +29,29 @@ package org.finalbug.ui.skin
 	 * @author Tang Bin
 	 * @since 2010.12
 	 */	
-	public class SkinElement extends Glaze
+	public class Skin extends Glaze
 	{
 		//#######################################
 		// OVERRIDE
 		//#######################################
 		
-		override protected function updateView():void
+		override protected function updateSize():void
 		{
 			this.graphics.clear();
 			// remove skin if is changed.
 			if(skinChanged) this.removeAll();
 			//
-			var data:SkinElementData = skinList[currentStatus] as SkinElementData;
+			var data:SkinData = skinDataList[currentStatus] as SkinData;
 			if(data != null)
 			{
 				var rect:Rectangle = data.scale9;
 				// set view start
-				if(data.type == SkinElementData.FILL_TYPE)
+				if(data.type == SkinData.FILL_TYPE)
 				{
 					// fill type, just fill it!
 					this.fillStyle = data.data as FillStyle;
 				}
-				else if(data.type == SkinElementData.VECTORIAL_TYPE)
+				else if(data.type == SkinData.VECTORIAL_TYPE)
 				{
 					// vectogram type, use displayobject directly.
 					var obj:DisplayObject;
@@ -68,8 +68,8 @@ package org.finalbug.ui.skin
 							obj.scale9Grid = rect;
 							obj.name = "skin";
 							this.addChild(obj);
-							obj.width = this.displayWidth;
-							obj.height = this.displayHeight;
+							obj.width = this.width;
+							obj.height = this.height;
 						}
 					}
 					else
@@ -78,12 +78,12 @@ package org.finalbug.ui.skin
 						obj = this.getChildByName("skin") as DisplayObject;
 						if(obj != null)
 						{
-							obj.width = this.displayWidth;
-							obj.height = this.displayHeight;
+							obj.width = this.width;
+							obj.height = this.height;
 						}
 					}
 				}
-				else if(data.type == SkinElementData.BITMAP_TYPE)
+				else if(data.type == SkinData.BITMAP_TYPE)
 				{
 					// bitmap type, use scale9grid bitmap.
 					var img:Scale9Bitmap;
@@ -120,8 +120,8 @@ package org.finalbug.ui.skin
 							img = new Scale9Bitmap(bm, rect);
 							img.name = "skin";
 							this.addChild(img);
-							img.width = this.displayWidth;
-							img.height = this.displayHeight;
+							img.width = this.width;
+							img.height = this.height;
 						}
 					}
 					else
@@ -130,13 +130,13 @@ package org.finalbug.ui.skin
 						img = this.getChildByName("skin") as Scale9Bitmap;
 						if(img != null)
 						{
-							img.width = this.displayWidth;
-							img.height = this.displayHeight;
+							img.width = this.width;
+							img.height = this.height;
 						}
 					}
 				}
 				this.skinChanged = false;
-				super.updateView();
+				super.updateSize();
 			}
 		}
 		
@@ -144,7 +144,7 @@ package org.finalbug.ui.skin
 		// DEFINE
 		//#######################################
 		
-		private var skinList:Dictionary = new Dictionary();
+		private var skinDataList:Dictionary = new Dictionary();
 		
 		private var currentStatus:String;
 		
@@ -170,11 +170,11 @@ package org.finalbug.ui.skin
 		 */
 		public function set status(value:String):void
 		{
-			if(value != "" && value != currentStatus && skinList[value] != null)
+			if(value != "" && value != currentStatus && skinDataList[value] != null)
 			{
 				currentStatus = value;
 				skinChanged = true;
-				updateView();
+				updateSize();
 			}
 		}
 		
@@ -213,7 +213,7 @@ package org.finalbug.ui.skin
 		/**
 		 * 
 		 */
-		public function SkinElement()
+		public function Skin()
 		{
 			super();
 		}
@@ -226,9 +226,9 @@ package org.finalbug.ui.skin
 		 * 
 		 * @param data
 		 */
-		public function setSkin(data:SkinElementData):void
+		public function setSkinData(data:SkinData):void
 		{
-			skinList[data.status] = data;
+			skinDataList[data.status] = data;
 			if(data.asDefault)
 			{
 				this.status = data.status;
@@ -239,12 +239,12 @@ package org.finalbug.ui.skin
 		 * 
 		 * @param status
 		 */
-		public function removeSkin(status:String):void
+		public function removeSkinData(status:String):void
 		{
-			if(skinList[status] != null)
+			if(skinDataList[status] != null)
 			{
-				skinList[status] = null;
-				delete skinList[status];
+				skinDataList[status] = null;
+				delete skinDataList[status];
 			}
 		}
 		

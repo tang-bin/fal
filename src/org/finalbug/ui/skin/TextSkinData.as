@@ -14,8 +14,6 @@ package org.finalbug.ui.skin
 	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
 	
-	import mx.controls.Text;
-	
 	import org.finalbug.data.Status;
 	
 	/**
@@ -24,18 +22,18 @@ package org.finalbug.ui.skin
 	 * @author Tang Bin
 	 * @since 2010.12
 	 */	
-	public class TextSkinData extends UISkinDataBase
+	public class TextSkinData extends UISkinDataAbstract
 	{
 		//#######################################
 		// OVERRIDE
 		//#######################################
 		
-		override public function setSkin(...args):void
+		override public function bindChildren(...args):void
 		{
-			box = args[0] as SkinElement;
+			box = args[0] as Skin;
 			if(box != null)
 			{
-				this.setStatusSkinByList(box, boxSkins);
+				this.bindStatusesToSkin(box, boxSkins);
 			}
 			text = args[1] as TextField;
 			if(text != null)
@@ -45,7 +43,7 @@ package org.finalbug.ui.skin
 			}
 		}
 		
-		override public function setStatus(status:String):void
+		override public function changeStatus(status:String):void
 		{
 			if(box != null)
 			{
@@ -69,23 +67,15 @@ package org.finalbug.ui.skin
 		[Embed(source="/resources/skins/text_disable.png")]
 		private var textDisableCls:Class;
 		
-		private var box:SkinElement;
+		// skin elements
+		private var box:Skin;
 		private var text:TextField;
 		
-		/**
-		 * 
-		 * @default 
-		 */
-		protected var boxSkins:Dictionary;
-		/**
-		 * 
-		 * @default 
-		 */
-		protected var textFormats:Dictionary;
-		/**
-		 * 
-		 * @default 
-		 */
+		// skin data.
+		private var boxSkins:Dictionary;
+		private var textFormats:Dictionary;
+		
+		// extend skin data
 		protected var scrollBarSkinData:ScrollBarSkinData;
 		
 		//#######################################
@@ -101,11 +91,10 @@ package org.finalbug.ui.skin
 		 */
 		public function TextSkinData()
 		{
-			super();
 			boxSkins = new Dictionary();
-			boxSkins[Status.NORMAL] = new SkinElementData(Status.NORMAL, SkinElementData.BITMAP_TYPE, new textNormalCls(), true);
-			boxSkins[Status.ACTIVE] = new SkinElementData(Status.ACTIVE, SkinElementData.BITMAP_TYPE, new textForceCls());
-			boxSkins[Status.DISABLE] = new SkinElementData(Status.DISABLE, SkinElementData.BITMAP_TYPE, new textDisableCls());
+			boxSkins[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new textNormalCls(), true);
+			boxSkins[Status.ACTIVE] = new SkinData(Status.ACTIVE, SkinData.BITMAP_TYPE, new textForceCls());
+			boxSkins[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new textDisableCls());
 			//
 			textFormats = new Dictionary();
 			textFormats[Status.NORMAL] = new TextFormat("Arial", 12, 0);

@@ -17,8 +17,8 @@ package org.finalbug.ui.control
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.ui.skin.RadioSkinData;
-	import org.finalbug.ui.skin.SkinElement;
-	import org.finalbug.ui.skin.UISkinDataBase;
+	import org.finalbug.ui.skin.Skin;
+	import org.finalbug.ui.skin.UISkinDataAbstract;
 	import org.finalbug.utils.DrawUtil;
 	
 	/**
@@ -46,9 +46,9 @@ package org.finalbug.ui.control
 			if(this.status != value) super.status = value;
 		}
 		
-		override protected function updateView():void
+		override protected function updateSize():void
 		{
-			super.updateView();
+			super.updateSize();
 			setPosition();
 		}
 		
@@ -70,7 +70,7 @@ package org.finalbug.ui.control
 		private var _group:String = "";
 		private var _labelPosition:String;
 		
-		private var box:SkinElement;
+		private var box:Skin;
 		private var txt:Label;
 		private var bg:Shape;
 		
@@ -162,7 +162,7 @@ package org.finalbug.ui.control
 		 * @param label Label field
 		 * @param style Display style
 		 */		
-		public function RadioButton(label:String = "RadioButton", groupName:String = "ungrouped", skin:UISkinDataBase = null)
+		public function RadioButton(label:String = "RadioButton", groupName:String = "ungrouped", skin:UISkinDataAbstract = null)
 		{
 			super(skin);
 			//
@@ -176,7 +176,7 @@ package org.finalbug.ui.control
 			RadioButton.groupList[_group].push(this);
 			//
 			// create children.
-			box = new SkinElement();
+			box = new Skin();
 			box.resize(BOX_SIZE, BOX_SIZE);
 			//
 			txt = new Label(_label);
@@ -194,7 +194,7 @@ package org.finalbug.ui.control
 			{
 				uiSkinData = new RadioSkinData();
 			}
-			uiSkinData.setSkin(box, txt);
+			uiSkinData.bindChildren(box, txt);
 		}
 		
 		//#######################################
