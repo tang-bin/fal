@@ -13,11 +13,15 @@ package org.finalbug.ui.navigate
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
+	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
 	
+	import org.finalbug.data.Status;
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.control.Button;
 	import org.finalbug.ui.control.Container;
+	import org.finalbug.ui.skin.ButtonSkinData;
+	import org.finalbug.ui.skin.SkinData;
 	
 	
 	/**
@@ -35,8 +39,24 @@ package org.finalbug.ui.navigate
 		//#######################################
 		// DEFINE
 		//#######################################
+
+		/**
+		 * 
+		 * @default 
+		 */
+		protected const BUTTON_HEIGHT:Number = 24;
 		
-		protected const BUTTON_HEIGHT:Number = 26;
+		/**
+		 * 
+		 * @default 
+		 */
+		protected const BUTTON_SPACE:Number = 2;
+		
+		/**
+		 * 
+		 * @default 
+		 */
+		protected const BAR_SPACE:Number = 5;
 		
 		private var btnBar:Container;
 		private var box:Slider;
@@ -63,12 +83,17 @@ package org.finalbug.ui.navigate
 			this.name = "navigate tab";
 			// create children.
 			btnBar = new Container();
-			btnBar.horizontalRank(0, true, false, true);
+			btnBar.horizontalRank(BUTTON_SPACE, true, false, true);
+			//
 			box = new Slider();
+			box.borderAlpha = 1;
+			box.borderColor = 0x333333;
+			box.backgroundAlpha = 1;
+			box.backgroundColor = 0xFFFFFF;
 			this.addAll(btnBar, box);
 			//
-			btnBar.layoutStyle.setNormalStyle("100%", BUTTON_HEIGHT, 0, 0);
-			box.layoutStyle.setAroundStyle(0, BUTTON_HEIGHT, 0, 0);
+			btnBar.layoutStyle.setNormalStyle(0, 0, "100%", BUTTON_HEIGHT);
+			box.layoutStyle.setAroundStyle(0, BUTTON_HEIGHT + BAR_SPACE, 0, 0);
 		}
 		
 		//#######################################
@@ -100,8 +125,11 @@ package org.finalbug.ui.navigate
 			var data:TabData = new TabData();
 			data.label = label;
 			data.object = object;
+			// set button
 			data.btn = new Button(label);
 			data.btn.holdable = true;
+			data.btn.percentHeight = 1;
+			data.btn.autoWidth = true;
 			data.btn.addEventListener(MouseEvent.CLICK, clickTabBtnHandler);
 			// save data into dictionary.
 			tabs[data.btn] = data;
@@ -166,7 +194,11 @@ package org.finalbug.ui.navigate
 			{
 				throw new DataError(DataError.INVALID_INDEX);
 			}
-			
+			var btn:Button = btnBar.getChildAt(index) as Button;
+			if(btn != null)
+			{
+				btn.label = label;
+			}
 		}
 		
 		/**
@@ -176,7 +208,11 @@ package org.finalbug.ui.navigate
 		 */
 		public function setTabLabelByObject(object:DisplayObject, label:String):void
 		{
-			
+			var tabData:TabData = getDataByObject(object);
+			if(tabData != null)
+			{
+				tabData.btn.label = label;
+			}
 		}
 		
 		/**
@@ -185,7 +221,11 @@ package org.finalbug.ui.navigate
 		 */
 		public function removeTabAt(index:uint):void
 		{
-			
+			var tabData:TabData = getDataByIndex(index);
+			if(tabData != null)
+			{
+				removeTab(tabData);
+			}
 		}
 		
 		/**
@@ -194,7 +234,11 @@ package org.finalbug.ui.navigate
 		 */
 		public function removeTabByObject(object:DisplayObject):void
 		{
-			
+			var tabData:TabData = getDataByObject(object);
+			if(tabData != null)
+			{
+				removeTab(tabData);
+			}
 		}
 		
 		//#######################################
@@ -217,6 +261,43 @@ package org.finalbug.ui.navigate
 			box.selectedChild = data.object;
 			// save select data.
 			currentSelected = data;
+		}
+		
+		private function getDataByIndex(index:uint):TabData
+		{
+			var btn:Button = btnBar.getChildAt(index) as Button;
+			if(btn != null)
+			{
+				return tabs[btn];
+			}
+			else
+			{
+				return null;
+			}
+		}
+		
+		private function getDataByObject(object:DisplayObject):TabData
+		{
+			for each(var tabData:TabData in tabs)
+			{
+				if(tabData.object == object)
+				{
+					return tabData;
+				}
+			}
+			return null;
+		}
+		
+		private function removeTab(tabData:TabData):void
+		{
+			btnBar.removeChild(tabData.btn);
+			box.removeChild(tabData.object);
+			if(tabData == currentSelected)
+			{
+				currentSelected = null;
+			}
+			delete tabs[tabData.btn];
+			tabs[tabData.btn] = null;
 		}
 		
 		//#######################################

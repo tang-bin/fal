@@ -10,6 +10,7 @@
 //##########################################################
 package org.finalbug.ui.skin
 {
+	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
 	
 	import org.finalbug.data.DataModel;

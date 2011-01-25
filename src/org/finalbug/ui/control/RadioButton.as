@@ -37,19 +37,56 @@ package org.finalbug.ui.control
 		{
 			if(this.selected)
 			{
-				value = this.enabled ? Status.SELECTED : Status.SELECTED_DISABLE;
+				value = this.enabled ? Status.SELECTED : Status.SELECTED_DISABLED;
 			}
 			else
 			{
-				value = this.enabled ? Status.NORMAL : Status.DISABLE;
+				value = this.enabled ? Status.NORMAL : Status.DISABLED;
 			}
 			if(this.status != value) super.status = value;
 		}
 		
-		override protected function updateSize():void
+		override protected function updatePosition():void
 		{
-			super.updateSize();
-			setPosition();
+			var ww:Number = Math.max(BOX_SIZE, txt.width);
+			var hh:Number = Math.max(BOX_SIZE, txt.height);
+			//
+			if(_labelPosition == Position.LEFT)
+			{
+				txt.x = 0;
+				txt.y = (hh - txt.height) / 2;
+				box.x = txt.width + OFFSET;
+				box.y = (hh - BOX_SIZE) / 2;
+				bg.width = BOX_SIZE + OFFSET + txt.width;
+				bg.height = hh;
+			}
+			else if(_labelPosition == Position.BOTTOM)
+			{
+				box.y = 0;
+				box.x = (ww - BOX_SIZE) / 2;
+				txt.x = (ww - txt.width) / 2;
+				txt.y = BOX_SIZE + OFFSET;
+				bg.width = ww;
+				bg.height = BOX_SIZE + OFFSET + txt.height;
+			}
+			else if(_labelPosition == Position.TOP)
+			{
+				txt.x = (ww - txt.width) / 2;
+				txt.y = 0;
+				box.x = (ww - BOX_SIZE) / 2;
+				box.y = txt.height + OFFSET;
+				bg.width = ww;
+				bg.height = BOX_SIZE + OFFSET + txt.height;
+			}
+			else
+			{
+				box.x = 0;
+				box.y = (hh - BOX_SIZE) / 2;
+				txt.x = BOX_SIZE + OFFSET;
+				txt.y = (hh - txt.height) / 2;
+				bg.width = BOX_SIZE + OFFSET + txt.width;
+				bg.height = hh;
+			}
 		}
 		
 		//#######################################
@@ -93,7 +130,7 @@ package org.finalbug.ui.control
 		{
 			_label = value == "" ? "RadioButton" : value;
 			txt.text = value;
-			setPosition();
+			updatePosition();
 		}
 		
 		/**
@@ -229,49 +266,6 @@ package org.finalbug.ui.control
 		//#######################################
 		// PRIVATE
 		//#######################################
-		
-		private function setPosition():void
-		{
-			var ww:Number = Math.max(BOX_SIZE, txt.width);
-			var hh:Number = Math.max(BOX_SIZE, txt.height);
-			//
-			if(_labelPosition == Position.LEFT)
-			{
-				txt.x = 0;
-				txt.y = (hh - txt.height) / 2;
-				box.x = txt.width + OFFSET;
-				box.y = (hh - BOX_SIZE) / 2;
-				bg.width = BOX_SIZE + OFFSET + txt.width;
-				bg.height = hh;
-			}
-			else if(_labelPosition == Position.BOTTOM)
-			{
-				box.y = 0;
-				box.x = (ww - BOX_SIZE) / 2;
-				txt.x = (ww - txt.width) / 2;
-				txt.y = BOX_SIZE + OFFSET;
-				bg.width = ww;
-				bg.height = BOX_SIZE + OFFSET + txt.height;
-			}
-			else if(_labelPosition == Position.TOP)
-			{
-				txt.x = (ww - txt.width) / 2;
-				txt.y = 0;
-				box.x = (ww - BOX_SIZE) / 2;
-				box.y = txt.height + OFFSET;
-				bg.width = ww;
-				bg.height = BOX_SIZE + OFFSET + txt.height;
-			}
-			else
-			{
-				box.x = 0;
-				box.y = (hh - BOX_SIZE) / 2;
-				txt.x = BOX_SIZE + OFFSET;
-				txt.y = (hh - txt.height) / 2;
-				bg.width = BOX_SIZE + OFFSET + txt.width;
-				bg.height = hh;
-			}
-		}
 		
 		private function unselectedGroup():void
 		{

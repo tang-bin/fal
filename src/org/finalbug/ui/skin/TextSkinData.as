@@ -60,12 +60,12 @@ package org.finalbug.ui.skin
 		// DEFINE
 		//#######################################
 		
-		[Embed(source="/resources/skins/text_normal.png")]
-		private var textNormalCls:Class;
-		[Embed(source="/resources/skins/text_force.png")]
-		private var textForceCls:Class;
-		[Embed(source="/resources/skins/text_disable.png")]
-		private var textDisableCls:Class;
+		[Embed(source="/resources/skins/TextNormal.png")]
+		private var TextNormal:Class;
+		[Embed(source="/resources/skins/TextForce.png")]
+		private var TextForce:Class;
+		[Embed(source="/resources/skins/TextDisabled.png")]
+		private var TextDisabled:Class;
 		
 		// skin elements
 		private var box:Skin;
@@ -92,9 +92,9 @@ package org.finalbug.ui.skin
 		public function TextSkinData()
 		{
 			boxSkins = new Dictionary();
-			boxSkins[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new textNormalCls(), true);
-			boxSkins[Status.ACTIVE] = new SkinData(Status.ACTIVE, SkinData.BITMAP_TYPE, new textForceCls());
-			boxSkins[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new textDisableCls());
+			boxSkins[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new TextNormal(), true);
+			boxSkins[Status.ACTIVE] = new SkinData(Status.ACTIVE, SkinData.BITMAP_TYPE, new TextForce());
+			boxSkins[Status.DISABLED] = new SkinData(Status.DISABLED, SkinData.BITMAP_TYPE, new TextDisabled());
 			//
 			textFormats = new Dictionary();
 			textFormats[Status.NORMAL] = new TextFormat("Arial", 12, 0);
@@ -105,6 +105,12 @@ package org.finalbug.ui.skin
 		//#######################################
 		// PUBLIC
 		//#######################################
+		
+		public function setSkinStyle(status:String, skinData:SkinData, textFormat:TextFormat):void
+		{
+			boxSkins[status] = skinData;
+			textFormats[status] = textFormat;
+		}
 		
 		//#######################################
 		// PROTECTED

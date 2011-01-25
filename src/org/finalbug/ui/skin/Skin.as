@@ -282,7 +282,7 @@ package org.finalbug.ui.skin
 		
 		private function overHandler(e:MouseEvent):void
 		{
-			if(status != Status.DISABLE)
+			if(status != Status.DISABLED)
 			{
 				this.status = Status.MOUSE_OVER;
 			}
@@ -290,7 +290,7 @@ package org.finalbug.ui.skin
 		
 		private function outHandler(e:MouseEvent):void
 		{
-			if(status != Status.DISABLE)
+			if(status != Status.DISABLED)
 			{
 				this.status = Status.NORMAL;
 			}
@@ -298,7 +298,7 @@ package org.finalbug.ui.skin
 		
 		private function downHandler(e:MouseEvent):void
 		{
-			if(status != Status.DISABLE)
+			if(status != Status.DISABLED)
 			{
 				this.status = Status.MOUSE_DOWN;
 			}
@@ -306,7 +306,7 @@ package org.finalbug.ui.skin
 		
 		private function upHandler(e:MouseEvent):void
 		{
-			if(status != Status.DISABLE)
+			if(status != Status.DISABLED)
 			{
 				this.status = Status.MOUSE_OVER;
 			}

@@ -10,7 +10,10 @@
 //##########################################################
 package org.finalbug.test.tester
 {
+	import org.finalbug.ui.control.Button;
+	import org.finalbug.ui.control.CheckBox;
 	import org.finalbug.ui.control.Container;
+	import org.finalbug.ui.layout.Grid;
 	
 	
 	/**
@@ -29,6 +32,11 @@ package org.finalbug.test.tester
 		// DEFINE
 		//#######################################
 		
+		private var grid:Grid;
+		
+		private var btn:Button;
+		private var checkBox:CheckBox;
+		
 		//#######################################
 		// GETTER and SETTER
 		//#######################################
@@ -40,8 +48,14 @@ package org.finalbug.test.tester
 		public function BasicTest()
 		{
 			super();
-			this.backgroundColor = 0xFF9900;
-			this.backgroundAlpha = 1;
+			//
+			grid = new Grid();
+			grid.percentHeight = grid.percentWidth = 1;
+			this.addAll(grid);
+			grid.rows = ["30%", "30%", "40%"];
+			grid.columns = ["30%", "30%", "40%"];
+			grid.rebuild();
+			trace(grid.width, grid.height);
 		}
 		
 		//#######################################

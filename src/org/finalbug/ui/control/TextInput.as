@@ -47,7 +47,7 @@ package org.finalbug.ui.control
 			}
 			else
 			{
-				value = Status.DISABLE;
+				value = Status.DISABLED;
 			}
 			if(value != this.status) super.status = value;
 		}

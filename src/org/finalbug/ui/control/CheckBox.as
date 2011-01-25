@@ -32,15 +32,64 @@ package org.finalbug.ui.control
 		// OVERRIDE
 		//#######################################
 		
+		/**
+		 * 
+		 * @param value
+		 */
 		override public function set status(value:String):void
 		{
 			super.status = this.getCurrentStatus(value);
 		}
 		
-		override protected function updateSize():void
+		/**
+		 * set elements position.
+		 */		
+		override protected function updatePosition():void
 		{
-			super.updateSize();
-			resetPosition();
+			var ww:Number = Math.max(txt.width, BOX_SIZE);
+			var hh:Number = Math.max(txt.height, BOX_SIZE);
+			//
+			if(_labelPosition == Position.LEFT)
+			{
+				txt.x = 0;
+				txt.y = (hh - txt.height) / 2;
+				box.x = txt.width + OFFSET;
+				box.y = (hh - BOX_SIZE) / 2;
+				back.width = ww + OFFSET + BOX_SIZE;
+				back.height = hh;
+			}
+			else if(_labelPosition == Position.TOP)
+			{
+				txt.x = (ww - txt.width) / 2;
+				txt.y = 0;
+				box.x = (ww - BOX_SIZE) / 2;
+				box.y = txt.height + OFFSET;
+				back.width = ww;
+				back.height = hh + OFFSET + BOX_SIZE;
+			}
+			else if(_labelPosition == Position.BOTTOM)
+			{
+				box.x = (ww - BOX_SIZE) / 2;
+				box.y = 0;
+				txt.x = (ww - txt.height) / 2;
+				txt.y = BOX_SIZE + OFFSET;
+				back.width = ww;
+				back.height = hh + OFFSET + BOX_SIZE;
+			}
+			else
+			{
+				box.x = 0;
+				box.y = (hh - BOX_SIZE) / 2;
+				txt.x = BOX_SIZE + OFFSET;
+				txt.y = (hh - txt.height) / 2;
+				back.width = ww + OFFSET + BOX_SIZE;
+				back.height = hh;
+			}
+			//
+			if(_autoSize)
+			{
+				this.pack();
+			}
 		}
 		
 		//#######################################
@@ -58,9 +107,36 @@ package org.finalbug.ui.control
 		private var txt:Label;
 		private var back:Shape;
 		
+		private var _autoSize:Boolean = true;
+		
 		//#######################################
 		// GETTER and SETTER
 		//#######################################
+		
+		/**
+		 * 
+		 * @return 
+		 */
+		public function get autoSize():Boolean
+		{
+			return _autoSize;
+		}
+		
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set autoSize(value:Boolean):void
+		{
+			if(value != _autoSize)
+			{
+				_autoSize = value;
+				if(value)
+				{
+					pack();
+				}
+			}
+		}
 		
 		/**
 		 * If is checked of not.
@@ -97,7 +173,7 @@ package org.finalbug.ui.control
 		{
 			_label = value;
 			txt.text = value;
-			resetPosition();
+			updatePosition();
 		}
 		
 		/**
@@ -115,7 +191,7 @@ package org.finalbug.ui.control
 		public function set labelPosition(value:String):void
 		{
 			_labelPosition = value;
-			resetPosition();
+			updatePosition();
 		}
 		
 		/**
@@ -182,52 +258,6 @@ package org.finalbug.ui.control
 		// PRIVATE
 		//#######################################
 		
-		/**
-		 * set elements position.
-		 */		
-		private function resetPosition():void
-		{
-			var ww:Number = Math.max(txt.width, BOX_SIZE);
-			var hh:Number = Math.max(txt.height, BOX_SIZE);
-			//
-			if(_labelPosition == Position.LEFT)
-			{
-				txt.x = 0;
-				txt.y = (hh - txt.height) / 2;
-				box.x = txt.width + OFFSET;
-				box.y = (hh - BOX_SIZE) / 2;
-				back.width = ww + OFFSET + BOX_SIZE;
-				back.height = hh;
-			}
-			else if(_labelPosition == Position.TOP)
-			{
-				txt.x = (ww - txt.width) / 2;
-				txt.y = 0;
-				box.x = (ww - BOX_SIZE) / 2;
-				box.y = txt.height + OFFSET;
-				back.width = ww;
-				back.height = hh + OFFSET + BOX_SIZE;
-			}
-			else if(_labelPosition == Position.BOTTOM)
-			{
-				box.x = (ww - BOX_SIZE) / 2;
-				box.y = 0;
-				txt.x = (ww - txt.height) / 2;
-				txt.y = BOX_SIZE + OFFSET;
-				back.width = ww;
-				back.height = hh + OFFSET + BOX_SIZE;
-			}
-			else
-			{
-				box.x = 0;
-				box.y = (hh - BOX_SIZE) / 2;
-				txt.x = BOX_SIZE + OFFSET;
-				txt.y = (hh - txt.height) / 2;
-				back.width = ww + OFFSET + BOX_SIZE;
-				back.height = hh;
-			}
-		}
-		
 		private function getCurrentStatus(status:String):String
 		{
 			if(enabled)
@@ -246,7 +276,7 @@ package org.finalbug.ui.control
 			{
 				if(this._selected)
 				{
-					status = Status.SELECTED_DISABLE;
+					status = Status.SELECTED_DISABLED;
 				}
 			}
 			return status;

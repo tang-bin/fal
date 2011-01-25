@@ -11,6 +11,7 @@
 package org.finalbug.ui.layout
 {
 	import org.finalbug.ui.control.Container;
+	import org.finalbug.ui.style.Style;
 
 	/**
 	 * @author Tang Bin
@@ -110,6 +111,7 @@ package org.finalbug.ui.layout
 			{
 				if(cells[yIndex] == null) cells[yIndex] = new Array();
 				cellHeight = getCellHeight(yIndex);
+				trace("cell height", cellHeight);
 				//
 				var colNum:uint = columns.length;
 				for(var xIndex:uint = 0 ; xIndex < colNum ; xIndex++)
@@ -155,7 +157,7 @@ package org.finalbug.ui.layout
 					}
 				}
 			}
-			this.measure();
+			this.pack();
 		}
 		
 		//#######################################
@@ -168,12 +170,26 @@ package org.finalbug.ui.layout
 		
 		private function getCellWidth(index:uint):Number
 		{
-			return Number(columns[index]);
+			var val:String = columns[index];
+			if(Style.validLayoutValue(val))
+			{
+				var parentWidth:Number = this.parent == null ? 0 : this.parent.width;
+				var num:Number = Style.getLayoutValue(val, parentWidth);
+				return num;
+			}
+			return 0;
 		}
 		
 		private function getCellHeight(index:uint):Number
 		{
-			return Number(rows[index]);
+			var val:String = rows[index];
+			if(Style.validLayoutValue(val))
+			{
+				var parentHeight:Number = this.parent == null ? 0 : this.parent.height;
+				var num:Number = Style.getLayoutValue(val, parentHeight);
+				return num;
+			}
+			return 0;
 		}
 		
 		//#######################################

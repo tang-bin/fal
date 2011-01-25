@@ -45,6 +45,9 @@ package org.finalbug.ui.navigate
 			stage.align = "TL";
 			this.resize(stage.stageWidth, stage.stageHeight);
 			stage.addEventListener(Event.RESIZE, resizeStageHandler);
+			//
+			this.backgroundAlpha = 1;
+			this.backgroundColor = 0xEEEEEE;
 		}
 		
 		//#######################################

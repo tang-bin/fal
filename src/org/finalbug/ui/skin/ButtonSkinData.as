@@ -28,6 +28,10 @@ package org.finalbug.ui.skin
 		// OVERRIDE
 		//#######################################
 		
+		/**
+		 * 
+		 * @param args
+		 */
 		override public function bindChildren(...args):void
 		{
 			bgSkin = args[0] as Skin;
@@ -42,13 +46,17 @@ package org.finalbug.ui.skin
 			}
 		}
 		
+		/**
+		 * 
+		 * @param status
+		 */
 		override public function changeStatus(status:String):void
 		{
 			if(bgSkin != null)
 			{
 				bgSkin.status = status;
 			}
-			if(label != null)
+			if(label != null && txtFormatList[status] != null)
 			{
 				label.textFormat = txtFormatList[status];
 			}
@@ -90,33 +98,51 @@ package org.finalbug.ui.skin
 		//#######################################
 		
 		/**
-		 * 
+		 * Create an new ButtonSkinData object.
 		 */
-		public function ButtonSkinData()
+		public function ButtonSkinData(empty:Boolean = false)
 		{
-			// skin
 			bgSkinDataList = new Dictionary();
-			bgSkinDataList[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new ButtonNormal(), true);
-			bgSkinDataList[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new ButtonOver());
-			bgSkinDataList[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new ButtonDown());
-			bgSkinDataList[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new ButtonDisabled());
-			bgSkinDataList[Status.HOLD] = new SkinData(Status.HOLD, SkinData.BITMAP_TYPE, new ButtonHold());
-			bgSkinDataList[Status.HOLD_MOUSE_DOWN] = new SkinData(Status.HOLD_MOUSE_DOWN, SkinData.BITMAP_TYPE, new ButtonHoldDown());
-			bgSkinDataList[Status.HOLD_MOUSE_OVER] = new SkinData(Status.HOLD_MOUSE_OVER, SkinData.BITMAP_TYPE, new ButtonHoldOver());
-			// text format
 			txtFormatList = new Dictionary();
-			txtFormatList[Status.NORMAL] = new TextFormat("Arial", 12, 0xFFFFFF, true);
-			txtFormatList[Status.MOUSE_OVER] = new TextFormat("Arial", 12, 0xFFFFFF, true);
-			txtFormatList[Status.MOUSE_DOWN] = new TextFormat("Arial", 12, 0xFFFFFF, true);
-			txtFormatList[Status.DISABLE] = new TextFormat("Arial", 12, 0xFFFFFF, true);
-			txtFormatList[Status.HOLD] = new TextFormat("Arial", 12, 0xFFFFFF, true);
-			txtFormatList[Status.HOLD_MOUSE_DOWN] = new TextFormat("Arial", 12, 0xFFFFFF, true);
-			txtFormatList[Status.HOLD_MOUSE_OVER] = new TextFormat("Arial", 12, 0xFFFFFF, true);
+			if(!empty)
+			{
+				// skin
+				bgSkinDataList[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new ButtonNormal(), true);
+				bgSkinDataList[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new ButtonOver());
+				bgSkinDataList[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new ButtonDown());
+				bgSkinDataList[Status.DISABLED] = new SkinData(Status.DISABLED, SkinData.BITMAP_TYPE, new ButtonDisabled());
+				bgSkinDataList[Status.HOLD] = new SkinData(Status.HOLD, SkinData.BITMAP_TYPE, new ButtonHold());
+				bgSkinDataList[Status.HOLD_MOUSE_DOWN] = new SkinData(Status.HOLD_MOUSE_DOWN, SkinData.BITMAP_TYPE, new ButtonHoldDown());
+				bgSkinDataList[Status.HOLD_MOUSE_OVER] = new SkinData(Status.HOLD_MOUSE_OVER, SkinData.BITMAP_TYPE, new ButtonHoldOver());
+				// text format
+				txtFormatList[Status.NORMAL] = new TextFormat("Arial", 12, 0xFFFFFF, true);
+			}
 		}
 		
 		//#######################################
 		// PUBLIC
 		//#######################################
+		
+		/**
+		 * Set Button's skin style.
+		 * This method should be called before transfer this object into any UI object.
+		 * 
+		 * @param status Valid status for Button:
+		 * 				NORMAL,
+		 * 				MOUSE_DOWN,
+		 * 				MOUSE_OVER,
+		 * 				DISABLED,
+		 * 				HOLD,
+		 * 				HOLD_MOUSE_DOWN,
+		 * 				HOLE_MOUSE_OVER. 
+		 * @param skinData SkinData for backgroud view.
+		 * @param textFormat Text format for label.
+		 */
+		public function setSkinStyle(status:String, skinData:SkinData, textFormat:TextFormat):void
+		{
+			bgSkinDataList[status] = skinData;
+			txtFormatList[status] = textFormat;
+		}
 		
 		//#######################################
 		// PROTECTED

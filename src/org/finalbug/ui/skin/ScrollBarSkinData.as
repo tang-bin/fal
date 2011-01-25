@@ -10,6 +10,7 @@
 //##########################################################
 package org.finalbug.ui.skin
 {
+	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
 	
 	import org.finalbug.data.Status;
@@ -62,49 +63,49 @@ package org.finalbug.ui.skin
 		// DEFINE
 		//#######################################
 		
-		[Embed(source="/resources/skins/scrollBarUp_normal.png")]
-		private var scrollBarUpNormalCls:Class;
-		[Embed(source="/resources/skins/scrollBarUp_over.png")]
-		private var scrollBarUpOverCls:Class;
-		[Embed(source="/resources/skins/scrollBarUp_down.png")]
-		private var scrollBarUpDownCls:Class;
-		[Embed(source="/resources/skins/scrollBarUp_disable.png")]
-		private var scrollBarUpDisableCls:Class;
+		[Embed(source="/resources/skins/ScrollBarUpNormal.png")]
+		private var ScrollBarUpNormal:Class;
+		[Embed(source="/resources/skins/ScrollBarUpOver.png")]
+		private var ScrollBarUpOver:Class;
+		[Embed(source="/resources/skins/ScrollBarUpDown.png")]
+		private var ScrollBarUpDown:Class;
+		[Embed(source="/resources/skins/ScrollBarUpDisabled.png")]
+		private var ScrollBarUpDisable:Class;
 		
-		[Embed(source="/resources/skins/scrollBarDown_normal.png")]
-		private var scrollBarDownNormalCls:Class;
-		[Embed(source="/resources/skins/scrollBarDown_over.png")]
-		private var scrollBarDownOverCls:Class;
-		[Embed(source="/resources/skins/scrollBarDown_down.png")]
-		private var scrollBarDownDownCls:Class;
-		[Embed(source="/resources/skins/scrollBarDown_disable.png")]
-		private var scrollBarDownDisableCls:Class;
+		[Embed(source="/resources/skins/ScrollBarDownNormal.png")]
+		private var ScrollBarDownNormal:Class;
+		[Embed(source="/resources/skins/ScrollBarDownOver.png")]
+		private var ScrollBarDownOver:Class;
+		[Embed(source="/resources/skins/ScrollBarDownDown.png")]
+		private var ScrollBarDownDown:Class;
+		[Embed(source="/resources/skins/ScrollBarDownDisabled.png")]
+		private var ScrollBarDownDisable:Class;
 		
-		[Embed(source="/resources/skins/scrollBarLeft_normal.png")]
-		private var scrollBarLeftNormalCls:Class;
-		[Embed(source="/resources/skins/scrollBarLeft_over.png")]
-		private var scrollBarLeftOverCls:Class;
-		[Embed(source="/resources/skins/scrollBarLeft_down.png")]
-		private var scrollBarLeftDownCls:Class;
-		[Embed(source="/resources/skins/scrollBarLeft_disable.png")]
-		private var scrollBarLeftDisableCls:Class;
+		[Embed(source="/resources/skins/ScrollBarLeftNormal.png")]
+		private var ScrollBarLeftNormal:Class;
+		[Embed(source="/resources/skins/ScrollBarLeftOver.png")]
+		private var ScrollBarLeftOver:Class;
+		[Embed(source="/resources/skins/ScrollBarLeftDown.png")]
+		private var ScrollBarLeftDown:Class;
+		[Embed(source="/resources/skins/ScrollBarLeftDisabled.png")]
+		private var ScrollBarLeftDisable:Class;
 		
-		[Embed(source="/resources/skins/scrollBarRight_normal.png")]
-		private var scrollBarRightNormalCls:Class;
-		[Embed(source="/resources/skins/scrollBarRight_over.png")]
-		private var scrollBarRightOverCls:Class;
-		[Embed(source="/resources/skins/scrollBarRight_down.png")]
-		private var scrollBarRightDownCls:Class;
-		[Embed(source="/resources/skins/scrollBarRight_disable.png")]
-		private var scrollBarRightDisableCls:Class;
+		[Embed(source="/resources/skins/ScrollBarRightNormal.png")]
+		private var ScrollBarRightNormal:Class;
+		[Embed(source="/resources/skins/ScrollBarRightOver.png")]
+		private var ScrollBarRightOver:Class;
+		[Embed(source="/resources/skins/ScrollBarRightDown.png")]
+		private var ScrollBarRightDown:Class;
+		[Embed(source="/resources/skins/ScrollBarRightDisabled.png")]
+		private var ScrollBarRightDisable:Class;
 		
-		[Embed(source="/resources/skins/scrollBarSlider.png")]
-		private var scrollBarSliderCls:Class;
+		[Embed(source="/resources/skins/ScrollBarSlider.png")]
+		private var ScrollBarSlider:Class;
 		
-		[Embed(source="/resources/skins/scrollBarBack_normal.png")]
-		private var scrollBarBackNormalCls:Class;
-		[Embed(source="/resources/skins/scrollBarBack_disable.png")]
-		private var scrollBarBackDisableCls:Class;
+		[Embed(source="/resources/skins/ScrollBarBackNormal.png")]
+		private var ScrollBarBackNormal:Class;
+		[Embed(source="/resources/skins/ScrollBarBackDisabled.png")]
+		private var ScrollBarBackDisable:Class;
 		
 		// skin elements
 		private var leftBtn:Skin;
@@ -136,40 +137,56 @@ package org.finalbug.ui.skin
 		public function ScrollBarSkinData()
 		{
 			leftSkinData = new Dictionary();
-			leftSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new scrollBarLeftNormalCls(), true);
-			leftSkinData[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new scrollBarLeftOverCls());
-			leftSkinData[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new scrollBarLeftDownCls());
-			leftSkinData[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new scrollBarLeftDisableCls());
+			leftSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new ScrollBarLeftNormal(), true);
+			leftSkinData[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new ScrollBarLeftOver());
+			leftSkinData[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new ScrollBarLeftDown());
+			leftSkinData[Status.DISABLED] = new SkinData(Status.DISABLED, SkinData.BITMAP_TYPE, new ScrollBarLeftDisable());
 			//
 			rightSkinData = new Dictionary();
-			rightSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new scrollBarRightNormalCls(), true);
-			rightSkinData[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new scrollBarRightOverCls());
-			rightSkinData[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new scrollBarRightDownCls());
-			rightSkinData[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new scrollBarRightDisableCls());
+			rightSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new ScrollBarRightNormal(), true);
+			rightSkinData[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new ScrollBarRightOver());
+			rightSkinData[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new ScrollBarRightDown());
+			rightSkinData[Status.DISABLED] = new SkinData(Status.DISABLED, SkinData.BITMAP_TYPE, new ScrollBarRightDisable());
 			//
 			upSkinData = new Dictionary();
-			upSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new scrollBarUpNormalCls(), true);
-			upSkinData[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new scrollBarUpOverCls());
-			upSkinData[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new scrollBarUpDownCls());
-			upSkinData[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new scrollBarUpDisableCls());
+			upSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new ScrollBarUpNormal(), true);
+			upSkinData[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new ScrollBarUpOver());
+			upSkinData[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new ScrollBarUpDown());
+			upSkinData[Status.DISABLED] = new SkinData(Status.DISABLED, SkinData.BITMAP_TYPE, new ScrollBarUpDisable());
 			//
 			downSkinData = new Dictionary();
-			downSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new scrollBarDownNormalCls(), true);
-			downSkinData[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new scrollBarDownOverCls());
-			downSkinData[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new scrollBarDownDownCls());
-			downSkinData[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new scrollBarDownDisableCls());
+			downSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new ScrollBarDownNormal(), true);
+			downSkinData[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new ScrollBarDownOver());
+			downSkinData[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new ScrollBarDownDown());
+			downSkinData[Status.DISABLED] = new SkinData(Status.DISABLED, SkinData.BITMAP_TYPE, new ScrollBarDownDisable());
 			//
 			backSkinData = new Dictionary();
-			backSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new scrollBarBackNormalCls(), true);
-			backSkinData[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new scrollBarBackDisableCls());
+			backSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new ScrollBarBackNormal(), true);
+			backSkinData[Status.DISABLED] = new SkinData(Status.DISABLED, SkinData.BITMAP_TYPE, new ScrollBarBackDisable());
 			//
 			sliderSkinData = new Dictionary();
-			sliderSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new scrollBarSliderCls(), true);
+			sliderSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new ScrollBarSlider(), true);
 		}
 		
 		//#######################################
 		// PUBLIC
 		//#######################################
+		
+		public function setSkinStyle(status:String,
+									 leftSkin:SkinData = null,
+									 rightSkin:SkinData = null,
+									 upSkin:SkinData = null,
+									 downSkin:SkinData = null,
+									 backSkin:SkinData = null,
+									 sliderSkin:SkinData = null):void
+		{
+			leftSkinData[status] = leftSkin;
+			rightSkinData[status] = rightSkin;
+			upSkinData[status] = upSkin;
+			downSkinData[status] = downSkin;
+			backSkinData[status] = backSkin;
+			sliderSkinData[status] = sliderSkin;
+		}
 		
 		//#######################################
 		// PROTECTED

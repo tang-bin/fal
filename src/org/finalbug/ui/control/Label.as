@@ -41,7 +41,6 @@ package org.finalbug.ui.control
 		
 		override public function set height(value:Number):void
 		{
-			//trace("Label's height value cannot be set.");
 		}
 		override public function get height():Number
 		{

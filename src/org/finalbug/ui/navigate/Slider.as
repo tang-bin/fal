@@ -13,7 +13,7 @@ package org.finalbug.ui.navigate
 	import flash.display.DisplayObject;
 	
 	import org.finalbug.errors.DataError;
-	import org.finalbug.ui.Bin;
+	import org.finalbug.ui.control.Container;
 	
 	
 	/**
@@ -22,7 +22,7 @@ package org.finalbug.ui.navigate
 	 * @author Tang Bin
 	 * @since 2011.01
 	 */	
-	public class Slider extends Bin
+	public class Slider extends Container
 	{
 		//#######################################
 		// OVERRIDE
@@ -152,6 +152,7 @@ package org.finalbug.ui.navigate
 		public function Slider()
 		{
 			super();
+			this.initSize("100%", "100%");
 		}
 		
 		//#######################################

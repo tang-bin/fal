@@ -78,10 +78,7 @@ package org.finalbug.ui.layout
 		 */
 		public function resetPosition(x:Number, y:Number, width:Number, height:Number):void
 		{
-			this.layoutStyle.setValue("x", x);
-			this.layoutStyle.setValue("y", y);
-			this.layoutStyle.setValue("width", width);
-			this.layoutStyle.setValue("height", height);
+			this.layoutStyle.setNormalStyle(x, y, width, height); 
 		}
 		
 		//#######################################

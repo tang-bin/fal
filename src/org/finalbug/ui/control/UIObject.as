@@ -75,7 +75,6 @@ package org.finalbug.ui.control
 			if (value != currentStatus && value != "")
 			{
 				currentStatus=value;
-				this.countSizeAndPosition();
 				if (uiSkinData != null)
 				{
 					uiSkinData.changeStatus(this.currentStatus);
@@ -105,7 +104,7 @@ package org.finalbug.ui.control
 			{
 				_enabled=value;
 				this.mouseEnabled=_enabled;
-				this.status=_enabled ? Status.NORMAL : Status.DISABLE;
+				this.status=_enabled ? Status.NORMAL : Status.DISABLED;
 				//
 				for (var i:uint=this.numChildren; --i >= 0; )
 				{
@@ -138,7 +137,26 @@ package org.finalbug.ui.control
 		//#######################################
 		// PUBLIC
 		//#######################################
-
+		
+		/**
+		 * 
+		 * @param xSpace
+		 * @param ySpace
+		 */
+		public function pack(xSpace:Number = 0, ySpace:Number = 0):void
+		{
+			var maxWidth:Number = 0;
+			var maxHeight:Number = 0;
+			for(var i:uint = this.numChildren ; --i >= 0 ;)
+			{
+				var obj:DisplayObject = this.getChildAt(i);
+				maxWidth = Math.max(maxWidth, obj.x + obj.width);
+				maxHeight = Math.max(maxHeight, obj.y + obj.height);
+			}
+			_layoutStyle.setValueSilent("width", maxWidth + xSpace);
+			_layoutStyle.setValueSilent("height", maxHeight + ySpace);
+		}
+		
 		//#######################################
 		// PROTECTED
 		//#######################################

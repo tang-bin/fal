@@ -27,11 +27,6 @@ package org.finalbug.ui.control
 		// OVERRIDE
 		//#######################################
 		
-		override protected function updateSize():void
-		{
-			super.updateSize();
-		}
-		
 		//#######################################
 		// DEFINE
 		//#######################################
@@ -43,7 +38,7 @@ package org.finalbug.ui.control
 		private var _autoRankSpace:Number = 0;
 		private var _autoRankType:String = HRank;
 		private var _autoRankCenter:Boolean = false;
-		private var _autoRankMeasure:Boolean = false;
+		private var _autoRankPack:Boolean = false;
 		
 		//#######################################
 		// GETTER and SETTER
@@ -133,6 +128,7 @@ package org.finalbug.ui.control
 			_fillStyle = new FillStyle();
 			this.initSize("100%", "100%");
 			this.addEventListener(UIEvent.CHILDREN_CHANGED, childrenChangedHandler);
+			this.addEventListener(UIEvent.CHILDREN_RESIZE, childrenChangedHandler);
 		}
 		
 		//#######################################
@@ -143,11 +139,11 @@ package org.finalbug.ui.control
 		 * 
 		 * @param space
 		 * @param center
-		 * @param measureAfterRank
+		 * @param packAfterRank
 		 */
 		public function horizontalRank(space:Number = 0,
 									   center:Boolean = true,
-									   measureAfterRank:Boolean = false, 
+									   packAfterRank:Boolean = false, 
 									   autoRank:Boolean = false):void
 		{
 			var totalNum:uint = this.numChildren;
@@ -169,9 +165,9 @@ package org.finalbug.ui.control
 					target2.y = (maxHeight - target2.height) / 2;
 				}
 			}
-			if(measureAfterRank)
+			if(packAfterRank)
 			{
-				measure(space, 0);
+				pack(space, 0);
 			}
 			//
 			if(autoRank)
@@ -179,7 +175,7 @@ package org.finalbug.ui.control
 				_autoRank = true;
 				_autoRankType = HRank;
 				_autoRankCenter = center;
-				_autoRankMeasure = measureAfterRank;
+				_autoRankPack = packAfterRank;
 				_autoRankSpace = space;
 			}
 		}
@@ -188,12 +184,12 @@ package org.finalbug.ui.control
 		 * 
 		 * @param space
 		 * @param center
-		 * @param measureAfterRank
+		 * @param packAfterRank
 		 * 
 		 */		
 		public function verticalRank(space:Number = 0,
 									 center:Boolean = true,
-									 measureAfterRank:Boolean = false,
+									 packAfterRank:Boolean = false,
 									 autoRank:Boolean = false):void
 		{
 			var totalNum:uint = this.numChildren;
@@ -215,9 +211,9 @@ package org.finalbug.ui.control
 					target2.y = (maxWidth - target2.width) / 2;
 				}
 			}
-			if(measureAfterRank)
+			if(packAfterRank)
 			{
-				measure(0, space);
+				pack(0, space);
 			}
 			//
 			if(autoRank)
@@ -225,36 +221,8 @@ package org.finalbug.ui.control
 				_autoRank = true;
 				_autoRankType = VRank;
 				_autoRankCenter = center;
-				_autoRankMeasure = measureAfterRank;
+				_autoRankPack = packAfterRank;
 				_autoRankSpace = space;
-			}
-		}
-		
-		/**
-		 * 
-		 * @param xSpace
-		 * @param ySpace
-		 * @param updateSizeAfterMeasure
-		 * 
-		 */		
-		public function measure(xSpace:Number = 0, ySpace:Number = 0, updateSizeAfterMeasure:Boolean = false):void
-		{
-			var maxWidth:Number = 0;
-			var maxHeight:Number = 0;
-			for(var i:uint = this.numChildren ; --i >= 0 ;)
-			{
-				var obj:DisplayObject = this.getChildAt(i);
-				maxWidth = Math.max(maxWidth, obj.x + obj.width);
-				maxHeight = Math.max(maxHeight, obj.y + obj.height);
-			}
-			maxWidth += xSpace;
-			maxHeight += ySpace;
-			this.width = maxWidth;
-			this.height = maxHeight;
-			//
-			if(updateSizeAfterMeasure)
-			{
-				this.updateSize();
 			}
 		}
 		
@@ -276,11 +244,11 @@ package org.finalbug.ui.control
 			{
 				if(this._autoRankType == HRank)
 				{
-					this.horizontalRank(_autoRankSpace, _autoRankCenter, _autoRankMeasure);
+					this.horizontalRank(_autoRankSpace, _autoRankCenter, _autoRankPack);
 				}
 				else if(this._autoRankType == VRank)
 				{
-					this.verticalRank(_autoRankSpace, _autoRankCenter, _autoRankMeasure);
+					this.verticalRank(_autoRankSpace, _autoRankCenter, _autoRankPack);
 				}
 			}
 		}
