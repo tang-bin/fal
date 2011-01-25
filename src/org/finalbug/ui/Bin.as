@@ -19,7 +19,6 @@ package org.finalbug.ui
 	import org.finalbug.events.DisplayEvent;
 	import org.finalbug.events.MotionEvent;
 	import org.finalbug.events.UIEvent;
-	import org.finalbug.ui.control.Button;
 	import org.finalbug.ui.style.FillStyle;
 	import org.finalbug.ui.style.LayoutStyle;
 	import org.finalbug.utils.MathUtil;
@@ -118,6 +117,7 @@ package org.finalbug.ui
 		{
 			var child:DisplayObject = super.addChild(child);
 			dispatchChildChanged();
+			checkChildResizeAndReposition(child);
 			return child;
 		}
 		
@@ -131,6 +131,7 @@ package org.finalbug.ui
 		{
 			var child:DisplayObject = super.addChildAt(child, index);
 			dispatchChildChanged();
+			checkChildResizeAndReposition(child);
 			return child;
 		}
 		
@@ -143,6 +144,7 @@ package org.finalbug.ui
 		{
 			var child:DisplayObject = super.removeChild(child);
 			dispatchChildChanged();
+			checkChildResizeAndReposition(child);
 			return child;
 		}
 		
@@ -155,6 +157,7 @@ package org.finalbug.ui
 		{
 			var child:DisplayObject = super.removeChildAt(index);
 			dispatchChildChanged();
+			checkChildResizeAndReposition(child);
 			return child;
 		}
 		
@@ -190,13 +193,13 @@ package org.finalbug.ui
 		 * 
 		 * @default 
 		 */
-		protected var sizeChanged:Boolean = false;
+		protected var sizeChanged:Boolean = true;
 		
 		/**
 		 * 
 		 * @default 
 		 */
-		protected var positionChanged:Boolean = false;
+		protected var positionChanged:Boolean = true;
 		
 		/**
 		 *
@@ -553,7 +556,7 @@ package org.finalbug.ui
 			_layoutStyle = new LayoutStyle();
 			_layoutStyle.owner = this;
 			_layoutStyle.addEventListener(UIEvent.RESIZE, sizeChangedHandler);
-			_layoutStyle.addEventListener(UIEvent.MOVED, positionChangedHandler);
+			_layoutStyle.addEventListener(UIEvent.REPOSITION, positionChangedHandler);
 			// for first added to stage
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
@@ -778,15 +781,22 @@ package org.finalbug.ui
 		}
 		
 		/**
+		 * updatePosition will be called when object's position is changed.
+		 * Should be overrided by sub classes if necessary.
+		 */
+		protected function updatePosition():void
+		{
+			// Should be overrided by sub classes if necessary.
+		}
+		
+		/**
 		 *
 		 */
 		protected function callAtAdded():void
 		{
-			var isBtn:Boolean = this is Button;
 			if(sizeChanged)
 			{
-				updateSize();
-				dispatchSizeChanged();
+				resetSize();
 				sizeChanged = false;
 			}
 			if(positionChanged)
@@ -892,10 +902,43 @@ package org.finalbug.ui
 			this.dispatchEvent(ee);
 		}
 		
+		private function dispatchPositionChanged():void
+		{
+			var ee:UIEvent = new UIEvent(UIEvent.REPOSITION);
+			this.dispatchEvent(ee);
+		}
+		
 		private function resetPosition():void
 		{
 			super.x = _layoutStyle.x;
 			super.y = _layoutStyle.y;
+			updatePosition();
+			this.dispatchPositionChanged();
+		}
+		
+		private function resetSize():void
+		{
+			this.drawBg();
+			updateSize();
+			this.dispatchPositionChanged();
+		}
+		
+		private function checkChildResizeAndReposition(child:DisplayObject):void
+		{
+			if(child is Bin)
+			{
+				var bin:Bin = child as Bin;
+				if(this.contains(child))
+				{
+					bin.addEventListener(UIEvent.RESIZE, childResizeHandler);
+					bin.addEventListener(UIEvent.REPOSITION, childRepositionHandler);
+				}
+				else
+				{
+					bin.removeEventListener(UIEvent.RESIZE, childResizeHandler);
+					bin.removeEventListener(UIEvent.REPOSITION, childRepositionHandler);
+				}
+			}
 		}
 		
 		//#######################################
@@ -922,8 +965,7 @@ package org.finalbug.ui
 		{
 			if(this.stage != null)
 			{
-				this.updateSize();
-				this.dispatchSizeChanged();
+				this.resetSize();
 				sizeChanged = false;
 			}
 			else
@@ -936,13 +978,25 @@ package org.finalbug.ui
 		{
 			if(this.stage != null)
 			{
-				resetPosition();
+				this.resetPosition();
 				positionChanged = false;
 			}
 			else
 			{
 				positionChanged = true;
 			}
+		}
+		
+		private function childResizeHandler(e:UIEvent):void
+		{
+			var ee:UIEvent = new UIEvent(UIEvent.CHILDREN_RESIZE);
+			this.dispatchEvent(ee);
+		}
+		
+		private function childRepositionHandler(e:UIEvent):void
+		{
+			var ee:UIEvent = new UIEvent(UIEvent.CHILDREN_REPOSITION);
+			this.dispatchEvent(ee);
 		}
 	}
 }

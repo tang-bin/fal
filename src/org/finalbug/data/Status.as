@@ -106,12 +106,12 @@ package org.finalbug.data
 		 * 
 		 * @default 
 		 */
-		public static const SELECTED_DISABLE:String = "selectedDisableStatus";
+		public static const SELECTED_DISABLED:String = "selectedDisabledStatus";
 		/**
 		 * 
 		 * @default 
 		 */
-		public static const DISABLE:String = "disableStatus";
+		public static const DISABLED:String = "disabledStatus";
 		
 		/**
 		 * 
@@ -124,15 +124,5 @@ package org.finalbug.data
 		 * @param status
 		 * @return 
 		 */
-		public static function isValidUISkinStatus(status:String):Boolean
-		{
-			return DataUtil.included(status,
-				NORMAL,
-				MOUSE_OVER,
-				MOUSE_DOWN,
-				HOLD,
-				SELECTED,
-				DISABLE);
-		}
 	}
 }

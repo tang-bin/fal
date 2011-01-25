@@ -55,23 +55,23 @@ package org.finalbug.ui.skin
 		// DEFINE
 		//#######################################
 		
-		[Embed(source="/resources/skins/checkBox_normal.png")]
-		private var checkBoxNormalCls:Class;
-		[Embed(source="/resources/skins/checkBox_over.png")]
-		private var checkBoxOverCls:Class;
-		[Embed(source="/resources/skins/checkBox_down.png")]
-		private var checkBoxDownCls:Class;
-		[Embed(source="/resources/skins/checkBox_disable.png")]
-		private var checkBoxDisableCls:Class;
+		[Embed(source="/resources/skins/CheckBoxNormal.png")]
+		private var CheckBoxNormal:Class;
+		[Embed(source="/resources/skins/CheckBoxOver.png")]
+		private var CheckBoxOver:Class;
+		[Embed(source="/resources/skins/CheckBoxDown.png")]
+		private var CheckBoxDown:Class;
+		[Embed(source="/resources/skins/CheckBoxDisabled.png")]
+		private var CheckBoxDisabled:Class;
 		
-		[Embed(source="/resources/skins/checkBoxSelect_normal.png")]
-		private var checkBoxSelectNormalCls:Class;
-		[Embed(source="/resources/skins/checkBoxSelect_over.png")]
-		private var checkBoxSelectOverCls:Class;
-		[Embed(source="/resources/skins/checkBoxSelect_down.png")]
-		private var checkBoxSelectDownCls:Class;
-		[Embed(source="/resources/skins/checkBoxSelect_disable.png")]
-		private var checkBoxSelectDisableCls:Class;
+		[Embed(source="/resources/skins/CheckBoxSelectNormal.png")]
+		private var CheckBoxSelectNormal:Class;
+		[Embed(source="/resources/skins/CheckBoxSelectOver.png")]
+		private var CheckBoxSelectOver:Class;
+		[Embed(source="/resources/skins/CheckBoxSelectDown.png")]
+		private var CheckBoxSelectDown:Class;
+		[Embed(source="/resources/skins/CheckBoxSelectDisabled.png")]
+		private var CheckBoxSelectDisabled:Class;
 		
 		// skin elements
 		private var box:Skin;
@@ -95,14 +95,14 @@ package org.finalbug.ui.skin
 		public function CheckBoxSkinData()
 		{
 			boxSkins = new Dictionary();
-			boxSkins[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new checkBoxNormalCls(), true);
-			boxSkins[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new checkBoxOverCls());
-			boxSkins[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new checkBoxDownCls());
-			boxSkins[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new checkBoxDisableCls());
-			boxSkins[Status.SELECTED] = new SkinData(Status.SELECTED, SkinData.BITMAP_TYPE, new checkBoxSelectNormalCls());
-			boxSkins[Status.SELECTED_MOUSE_OVER] = new SkinData(Status.SELECTED_MOUSE_OVER, SkinData.BITMAP_TYPE, new checkBoxSelectOverCls());
-			boxSkins[Status.SELECTED_MOUSE_DOWN] = new SkinData(Status.SELECTED_MOUSE_DOWN, SkinData.BITMAP_TYPE, new checkBoxSelectDownCls());
-			boxSkins[Status.SELECTED_DISABLE] = new SkinData(Status.SELECTED_DISABLE, SkinData.BITMAP_TYPE, new checkBoxSelectDisableCls());
+			boxSkins[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new CheckBoxNormal(), true);
+			boxSkins[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new CheckBoxOver());
+			boxSkins[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new CheckBoxDown());
+			boxSkins[Status.DISABLED] = new SkinData(Status.DISABLED, SkinData.BITMAP_TYPE, new CheckBoxDisabled());
+			boxSkins[Status.SELECTED] = new SkinData(Status.SELECTED, SkinData.BITMAP_TYPE, new CheckBoxSelectNormal());
+			boxSkins[Status.SELECTED_MOUSE_OVER] = new SkinData(Status.SELECTED_MOUSE_OVER, SkinData.BITMAP_TYPE, new CheckBoxSelectOver());
+			boxSkins[Status.SELECTED_MOUSE_DOWN] = new SkinData(Status.SELECTED_MOUSE_DOWN, SkinData.BITMAP_TYPE, new CheckBoxSelectDown());
+			boxSkins[Status.SELECTED_DISABLED] = new SkinData(Status.SELECTED_DISABLED, SkinData.BITMAP_TYPE, new CheckBoxSelectDisabled());
 			//
 			textFormats = new Dictionary();
 			textFormats[Status.NORMAL] = new TextFormat("Arial", 12, 0);
@@ -111,6 +111,28 @@ package org.finalbug.ui.skin
 		//#######################################
 		// PUBLIC
 		//#######################################
+		
+		/**
+		 * Set CheckBox's skin style.
+		 * This method should be called before transfer this object into any UI object.
+		 * 
+		 * @param status Valid status for Button:
+		 * 				NORMAL,
+		 * 				MOUSE_DOWN,
+		 * 				MOUSE_OVER,
+		 * 				DISABLED,
+		 * 				SELECTED,
+		 * 				SELECTED_MOUSE_OVER,
+		 * 				SELECTED_MOUSE_DOWN,
+		 * 				SELECTED_DISABLED. 
+		 * @param skinData SkinData for backgroud view.
+		 * @param textFormat Text format for label.
+		 */
+		public function setSkinStyle(status:String, skinData:SkinData, textFormat:TextFormat):void
+		{
+			boxSkins[status] = skinData;
+			textFormats[status] = textFormat;
+		}
 		
 		//#######################################
 		// PROTECTED

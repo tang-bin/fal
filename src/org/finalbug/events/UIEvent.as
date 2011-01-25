@@ -54,7 +54,7 @@ package org.finalbug.events
 		 * 
 		 * @default 
 		 */
-		public static const MOVED:String = "moved";
+		public static const REPOSITION:String = "reposition";
 		
 		/**
 		 * 
@@ -67,6 +67,17 @@ package org.finalbug.events
 		 * @eventType childrenChanged 
 		 */
 		public static const CHILDREN_CHANGED:String = "childrenChanged";
+		
+		/**
+		 * 
+		 * @default 
+		 */
+		public static const CHILDREN_RESIZE:String = "childrenResize";
+		/**
+		 * 
+		 * @default 
+		 */
+		public static const CHILDREN_REPOSITION:String = "childrenReposition";
 		
 		/**
 		 * 

@@ -14,6 +14,7 @@ package org.finalbug.ui.control
 	import flash.events.MouseEvent;
 	
 	import org.finalbug.data.Status;
+	import org.finalbug.ui.Bin;
 	import org.finalbug.ui.glazes.Image;
 	import org.finalbug.ui.skin.ButtonSkinData;
 	import org.finalbug.ui.skin.Skin;
@@ -31,20 +32,47 @@ package org.finalbug.ui.control
 		// OVERRIDE
 		//#######################################
 		
+		/**
+		 * 
+		 */
 		override protected function updateSize():void
 		{
 			super.updateSize();
+			//
+			if(_autoWidth)
+			{
+				var newWidth:Number = _label.width + AUTO_SPACE;
+				if(newWidth != this.width)
+				{
+					this.width = newWidth;
+					return;
+				}
+			}
+			if(_autoHeight)
+			{
+				var newHeight:Number = _label.height + AUTO_SPACE;
+				if(newHeight != this.height)
+				{
+					this.height = newHeight;
+					return;
+				}
+			}
+			//
+			if(_label != null)
+			{
+				_label.toCenter();
+			}
 			if(bg != null)
 			{
 				bg.width = this.width;
 				bg.height = this.height;
 			}
-			if(_label != null)
-			{
-				_label.toCenter();
-			}
 		}
 		
+		/**
+		 * 
+		 * @param value
+		 */
 		override public function set status(value:String):void
 		{
 			if(_holdable)
@@ -65,7 +93,10 @@ package org.finalbug.ui.control
 			super.status = value;
 		}
 		
-		
+		/**
+		 * 
+		 * @param e
+		 */
 		override protected function mouseDownHandler(e:MouseEvent):void
 		{
 			super.mouseDownHandler(e);
@@ -79,6 +110,8 @@ package org.finalbug.ui.control
 		// DEFINE
 		//#######################################
 		
+		private const AUTO_SPACE:Number = 12;
+		
 		// lable string
 		private var _labelStr:String = "Button";
 		
@@ -91,9 +124,70 @@ package org.finalbug.ui.control
 		private var _holdable:Boolean = false;
 		private var _hold:Boolean = false;
 		
+		private var _autoWidth:Boolean = false;
+		private var _autoHeight:Boolean = false;
+		
 		//#######################################
 		// GETTER and SETTER
 		//#######################################
+		
+		/**
+		 * 
+		 * @return 
+		 */
+		public function get autoWidth():Boolean
+		{
+			return _autoWidth;
+		}
+		
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set autoWidth(value:Boolean):void
+		{
+			if(_autoWidth != value)
+			{
+				_autoWidth = value;
+				if(value)
+				{
+					var newWidth:Number = _label.width + AUTO_SPACE;
+					if(newWidth != this.width)
+					{
+						this.width = newWidth;
+					}
+				}
+			}
+		}
+		
+		/**
+		 * 
+		 * @return 
+		 */
+		public function get autoHeight():Boolean
+		{
+			return _autoHeight;
+		}
+		
+		/**
+		 * 
+		 * @param value
+		 */
+		public function set autoHeight(value:Boolean):void
+		{
+			if(_autoHeight != value)
+			{
+				_autoHeight = value;
+				if(value)
+				{
+					var newHeight:Number = _label.height + AUTO_SPACE;
+					if(newHeight != this.height)
+					{
+						this.height = newHeight;
+					}
+				}
+			}
+		}
 		
 		/**
 		 * 
@@ -112,15 +206,24 @@ package org.finalbug.ui.control
 			if(_labelStr != value)
 			{
 				_labelStr = value;
-				this.updateSize();
+				_label.text = value;
+				_label.toCenter();
 			}
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get holdable():Boolean
 		{
 			return _holdable;
 		}
 		
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set holdable(value:Boolean):void
 		{
 			_holdable = value;
@@ -130,11 +233,19 @@ package org.finalbug.ui.control
 			}
 		}
 		
+		/**
+		 * 
+		 * @return 
+		 */
 		public function get hold():Boolean
 		{
 			return _hold;
 		}
 		
+		/**
+		 * 
+		 * @param value
+		 */
 		public function set hold(value:Boolean):void
 		{
 			if(_holdable && this._hold != value)
@@ -168,7 +279,7 @@ package org.finalbug.ui.control
 			this.addAll(bg, _label, icon);
 			//
 			// set skin data.
-			if(uiSkinData == null) uiSkinData = new org.finalbug.ui.skin.ButtonSkinData();
+			if(uiSkinData == null) uiSkinData = new ButtonSkinData();
 			uiSkinData.bindChildren(bg, _label);
 		}
 		

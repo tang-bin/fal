@@ -136,7 +136,7 @@ package org.finalbug.ui.style
 		 * @param str
 		 * @return 
 		 */
-		public function validLayoutValue(str:String):Boolean
+		public static function validLayoutValue(str:String):Boolean
 		{
 			return (Style.NUM_REG.exec(str) || Style.PERCENT_REG.exec(str)) && str != "";
 		}
@@ -147,7 +147,7 @@ package org.finalbug.ui.style
 		 * @param parentValue
 		 * @return 
 		 */
-		public function getLayoutValue(valueStr:String, parentValue:Number = 0):Number
+		public static function getLayoutValue(valueStr:String, parentValue:Number = 0):Number
 		{
 			if(Style.NUM_REG.exec(valueStr))
 			{

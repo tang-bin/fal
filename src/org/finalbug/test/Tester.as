@@ -13,6 +13,7 @@ package org.finalbug.test
 	import org.finalbug.test.tester.BasicTest;
 	import org.finalbug.test.tester.InputTest;
 	import org.finalbug.ui.control.Button;
+	import org.finalbug.ui.control.CheckBox;
 	import org.finalbug.ui.navigate.AppRoot;
 	import org.finalbug.ui.navigate.NavigateTab;
 	
@@ -23,9 +24,10 @@ package org.finalbug.test
 			super();
 			//
 			var tabs:NavigateTab = new NavigateTab();
+			tabs.layoutStyle.setAroundStyle(10, 10, 10, 10);
 			this.addAll(tabs);
 			//
-			tabs.addTab("Basic", new BasicTest());
+			tabs.addTab("BasicBasicBasic", new BasicTest());
 			tabs.addTab("Inputs", new InputTest());
 		}
 	}

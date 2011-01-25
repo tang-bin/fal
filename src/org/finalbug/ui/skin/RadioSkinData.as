@@ -48,20 +48,24 @@ package org.finalbug.ui.skin
 			{
 				box.status = status;
 			}
+			if(label != null && textFormats[status] != null)
+			{
+				label.textFormat = textFormats[status] as TextFormat;
+			}
 		}
 		
 		//#######################################
 		// DEFINE
 		//#######################################
 		
-		[Embed(source="/resources/skins/radio_normal.png")]
-		private var radioNormalCls:Class;
-		[Embed(source="/resources/skins/radioSelect_normal.png")]
-		private var radioSelectNormalCls:Class;
-		[Embed(source="/resources/skins/radio_disable.png")]
-		private var radioDisableCls:Class;
-		[Embed(source="/resources/skins/radioSelect_normal.png")]
-		private var radioSelectDisableCls:Class;
+		[Embed(source="/resources/skins/RadioButtonNormal.png")]
+		private var RadioButtonNormal:Class;
+		[Embed(source="/resources/skins/RadioButtonSelectedNormal.png")]
+		private var RadioButtonSelectedNormal:Class;
+		[Embed(source="/resources/skins/RadioButtonSelectedDisabled.png")]
+		private var RadioButtonSelectedDisabled:Class;
+		[Embed(source="/resources/skins/RadioButtonDisabled.png")]
+		private var RadioButtonDisabled:Class;
 		
 		// skin elements
 		private var box:Skin;
@@ -85,10 +89,10 @@ package org.finalbug.ui.skin
 		public function RadioSkinData()
 		{
 			boxSkins = new Dictionary();
-			boxSkins[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new radioNormalCls(), true);
-			boxSkins[Status.SELECTED] = new SkinData(Status.SELECTED, SkinData.BITMAP_TYPE, new radioSelectNormalCls());
-			boxSkins[Status.DISABLE] = new SkinData(Status.DISABLE, SkinData.BITMAP_TYPE, new radioDisableCls());
-			boxSkins[Status.SELECTED_DISABLE] = new SkinData(Status.SELECTED_DISABLE, SkinData.BITMAP_TYPE, new radioSelectDisableCls());
+			boxSkins[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new RadioButtonNormal(), true);
+			boxSkins[Status.SELECTED] = new SkinData(Status.SELECTED, SkinData.BITMAP_TYPE, new RadioButtonSelectedNormal());
+			boxSkins[Status.DISABLED] = new SkinData(Status.DISABLED, SkinData.BITMAP_TYPE, new RadioButtonDisabled());
+			boxSkins[Status.SELECTED_DISABLED] = new SkinData(Status.SELECTED_DISABLED, SkinData.BITMAP_TYPE, new RadioButtonSelectedDisabled());
 			//
 			textFormats = new Dictionary();
 			textFormats[Status.NORMAL] = new TextFormat("Arial", 12, 0);
@@ -97,6 +101,24 @@ package org.finalbug.ui.skin
 		//#######################################
 		// PUBLIC
 		//#######################################
+		
+		/**
+		 * Set RadioButton's skin style.
+		 * This method should be called before transfer this object into any UI object.
+		 * 
+		 * @param status Valid status for Button:
+		 * 				NORMAL,
+		 * 				SELECTED,
+		 * 				DISABLED,
+		 * 				SELECTED_DISABLED.
+		 * @param skinData SkinData for backgroud view.
+		 * @param textFormat Text format for label.
+		 */
+		public function setSkinStyle(status:String, skinData:SkinData, textFormat:TextFormat):void
+		{
+			boxSkins[status] = skinData;
+			textFormats[status] = textFormat;
+		}
 		
 		//#######################################
 		// PROTECTED

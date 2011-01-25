@@ -191,6 +191,27 @@ package org.finalbug.ui.style
 		
 		/**
 		 * 
+		 * @param name
+		 * @param value
+		 */
+		public function setValueSilent(name:String, value:*):void
+		{
+			if(name == "x") name = "left";
+			else if(name == "y") name = "top";
+			//
+			if(this["_" + name] != null)
+			{
+				this["_" + name] = String(value);
+				//
+				oldWidth = this.width;
+				oldHeight = this.height;
+				oldX = this.x;
+				oldY = this.y;
+			}
+		}
+		
+		/**
+		 * 
 		 */
 		public function checkAndUpdate():void
 		{
@@ -206,7 +227,7 @@ package org.finalbug.ui.style
 			}
 			if(oldX != newX || oldY != newY)
 			{
-				var e2:UIEvent = new UIEvent(UIEvent.MOVED);
+				var e2:UIEvent = new UIEvent(UIEvent.REPOSITION);
 				this.dispatchEvent(e2);
 			}
 			//
@@ -236,7 +257,7 @@ package org.finalbug.ui.style
 		 */
 		public function setSizeStyle(width:*, height:*):void
 		{
-			this.setValue("width", width);
+			this.setValue("width", width, true);
 			this.setValue("height", height);
 		}
 		
@@ -247,7 +268,7 @@ package org.finalbug.ui.style
 		 */
 		public function setPositionStyle(top:*, left:*):void
 		{
-			this.setValue("top", top);
+			this.setValue("top", top, true);
 			this.setValue("left", left);
 		}
 		
@@ -258,11 +279,12 @@ package org.finalbug.ui.style
 		 * @param top
 		 * @param left
 		 */
-		public function setNormalStyle(width:*, height:*, top:*, left:*):void
+		public function setNormalStyle(left:*, top:*, width:*, height:*):void
 		{
-			this.setValue("width", width);
-			this.setValue("height", height);
-			this.setValue("top", top);
+			this.clean();
+			this.setValue("width", width, true);
+			this.setValue("height", height, true);
+			this.setValue("top", top, true);
 			this.setValue("left", left);
 		}
 		
@@ -275,9 +297,10 @@ package org.finalbug.ui.style
 		 */
 		public function setAroundStyle(left:*, top:*, right:*, bottom:*):void
 		{
-			this.setValue("left", left);
-			this.setValue("top", top);
-			this.setValue("right", right);
+			this.clean();
+			this.setValue("left", left, true);
+			this.setValue("top", top, true);
+			this.setValue("right", right, true);
 			this.setValue("bottom", bottom);
 		}
 		
@@ -298,6 +321,18 @@ package org.finalbug.ui.style
 			ls._horizontal = this._horizontal;
 			ls._vertical = this._vertical;
 			return ls;
+		}
+		
+		public function clean():void
+		{
+			this._width = "";
+			this._height = "";
+			this._left = "";
+			this._right = "";
+			this._bottom = "";
+			this._top = "";
+			this._horizontal = "";
+			this._vertical = "";
 		}
 		
 		//#######################################

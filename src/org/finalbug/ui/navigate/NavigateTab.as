@@ -13,11 +13,15 @@ package org.finalbug.ui.navigate
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
+	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
 	
+	import org.finalbug.data.Status;
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.control.Button;
 	import org.finalbug.ui.control.Container;
+	import org.finalbug.ui.skin.ButtonSkinData;
+	import org.finalbug.ui.skin.SkinData;
 	
 	
 	/**
@@ -35,12 +39,24 @@ package org.finalbug.ui.navigate
 		//#######################################
 		// DEFINE
 		//#######################################
+
+		/**
+		 * 
+		 * @default 
+		 */
+		protected const BUTTON_HEIGHT:Number = 24;
 		
 		/**
 		 * 
 		 * @default 
 		 */
-		protected const BUTTON_HEIGHT:Number = 26;
+		protected const BUTTON_SPACE:Number = 2;
+		
+		/**
+		 * 
+		 * @default 
+		 */
+		protected const BAR_SPACE:Number = 5;
 		
 		private var btnBar:Container;
 		private var box:Slider;
@@ -67,12 +83,17 @@ package org.finalbug.ui.navigate
 			this.name = "navigate tab";
 			// create children.
 			btnBar = new Container();
-			btnBar.horizontalRank(0, true, false, true);
+			btnBar.horizontalRank(BUTTON_SPACE, true, false, true);
+			//
 			box = new Slider();
+			box.borderAlpha = 1;
+			box.borderColor = 0x333333;
+			box.backgroundAlpha = 1;
+			box.backgroundColor = 0xFFFFFF;
 			this.addAll(btnBar, box);
 			//
-			btnBar.layoutStyle.setNormalStyle("100%", BUTTON_HEIGHT, 0, 0);
-			box.layoutStyle.setAroundStyle(0, BUTTON_HEIGHT, 0, 0);
+			btnBar.layoutStyle.setNormalStyle(0, 0, "100%", BUTTON_HEIGHT);
+			box.layoutStyle.setAroundStyle(0, BUTTON_HEIGHT + BAR_SPACE, 0, 0);
 		}
 		
 		//#######################################
@@ -104,8 +125,11 @@ package org.finalbug.ui.navigate
 			var data:TabData = new TabData();
 			data.label = label;
 			data.object = object;
+			// set button
 			data.btn = new Button(label);
 			data.btn.holdable = true;
+			data.btn.percentHeight = 1;
+			data.btn.autoWidth = true;
 			data.btn.addEventListener(MouseEvent.CLICK, clickTabBtnHandler);
 			// save data into dictionary.
 			tabs[data.btn] = data;
