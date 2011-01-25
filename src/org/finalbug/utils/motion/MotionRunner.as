@@ -1,21 +1,21 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.utils.motion
 {
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
-	
+
 	import org.finalbug.errors.DataError;
 	import org.finalbug.events.MotionEvent;
-	
+
 	/**
 	 * Class MotionRunner carry out in singular mode to hand all motions.
 	 * during runtime, MotionRunner will create only one timer to do the motion effect.
@@ -26,20 +26,19 @@ package org.finalbug.utils.motion
 	 */
 	public class MotionRunner
 	{
-		//#######################################
+		// #######################################
 		// SINGLETON
-		//#######################################
-		
+		// #######################################
 		private static var mr:MotionRunner;
 		private static var instanceable:Boolean = false;
-		
+
 		/**
 		 * 
 		 * @return 
 		 */
 		public static function get instance():MotionRunner
 		{
-			if(mr == null)
+			if (mr == null)
 			{
 				instanceable = true;
 				mr = new MotionRunner();
@@ -47,32 +46,28 @@ package org.finalbug.utils.motion
 			}
 			return mr;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		private var motionList:Object = new Object();
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @throws DataError
 		 */
 		public function MotionRunner()
 		{
-			if(!instanceable)
+			if (!instanceable)
 			{
 				throw new DataError(DataError.SINGLETON);
 			}
@@ -83,11 +78,10 @@ package org.finalbug.utils.motion
 				timer.start();
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * Register a new moting.
 		 * 
@@ -96,7 +90,7 @@ package org.finalbug.utils.motion
 		 * @param steps Motion steps array.
 		 * 
 		 * @return The name of new moting event. 
-		 */		
+		 */
 		public function register(target:*, value:String, steps:Array, times:uint = 1, motionClass:Motion = null):String
 		{
 			var data:MotionData = new MotionData(target, value, steps, times, motionClass);
@@ -106,42 +100,39 @@ package org.finalbug.utils.motion
 			//
 			return data.name;
 		}
-		
+
 		/**
 		 * 
 		 * @param motionName
 		 */
 		public function stopAndRemoveMotion(motionName:String):void
 		{
-			if(motionList[motionName] != null)
+			if (motionList[motionName] != null)
 			{
 				motionList[motionName] = null;
 				delete motionList[motionName];
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// HANDLER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * core method of motion. All displayObject's attributes are modified at here.
 		 * 
 		 * @param e
-		 */		
+		 */
 		private function motionTimerHandler(e:TimerEvent):void
 		{
-			for each(var d:MotionData in motionList)
+			for each (var d:MotionData in motionList)
 			{
-				if(d.steps.length != 0)
+				if (d.steps.length != 0)
 				{
 					// get next step value
 					var val:* = d.steps.shift();
@@ -149,7 +140,7 @@ package org.finalbug.utils.motion
 					d.copySteps.push(val);
 					d.target[d.value] = val;
 					// dispath motion running event
-					if(d.motionClass != null)
+					if (d.motionClass != null)
 					{
 						var runningEvent:MotionEvent = new MotionEvent(MotionEvent.MOTION_RUNNING);
 						runningEvent.motionTarget = d.target;
@@ -159,16 +150,16 @@ package org.finalbug.utils.motion
 				else
 				{
 					// one loop is end.
-					if(d.times == 0)
+					if (d.times == 0)
 					{
-						// if motion continues 
+						// if motion continues
 						d.steps = d.copySteps;
 						d.copySteps = new Array();
 					}
 					else
 					{
 						var n:String = d.name;
-						if(d.motionClass != null)
+						if (d.motionClass != null)
 						{
 							d.motionClass._running = false;
 							var stopEvent:MotionEvent = new MotionEvent(MotionEvent.MOTION_STOP);
@@ -185,9 +176,8 @@ package org.finalbug.utils.motion
 		}
 	}
 }
+import org.finalbug.utils.motion.Motion;
 
-	import org.finalbug.utils.motion.Motion;
-	
 class MotionData
 {
 	/**
@@ -195,7 +185,6 @@ class MotionData
 	 * @default 
 	 */
 	public static var nameCount:uint = 0;
-	
 	/**
 	 * 
 	 * @default 
@@ -226,13 +215,12 @@ class MotionData
 	 * @default 
 	 */
 	public var times:uint;
-	
 	/**
 	 * 
 	 * @default 
 	 */
 	public var motionClass:Motion;
-	
+
 	/**
 	 * 
 	 * @param target

@@ -5,23 +5,21 @@ package org.finalbug.test.tester
 {
 	import org.finalbug.data.TreeData;
 	import org.finalbug.ui.control.Container;
-	
-	
+
 	/**
 	 * TreeDataTester
 	 * 
 	 * @author Tang Bin
 	 * @since 2010
-	 */	
+	 */
 	public class TreeDataTester extends Container
 	{
 		private var td:TreeData = new TreeData();
-		
+
 		public function TreeDataTester()
 		{
 			super();
-			var xml:XML = 
-				<root a="A" b="B">
+			var xml:XML = <root a="A" b="B">
 					<node name="a1" gender="dog">
 						<node name="a11">aa11</node>
 					</node>
@@ -43,7 +41,7 @@ package org.finalbug.test.tester
 			td.xml = xml;
 			var nodes:Array = td.getNodeByAttribute("name", "a31");
 			trace(td.getNodes(td.root));
-			//td.traceAll();
+			// td.traceAll();
 		}
 	}
 }

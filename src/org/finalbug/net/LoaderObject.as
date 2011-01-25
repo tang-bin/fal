@@ -1,22 +1,22 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.net
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.IOErrorEvent;
 	import flash.events.ProgressEvent;
-	
+
 	import org.finalbug.events.LoadEvent;
-	
+
 	/**
 	 * This class is the super class for class which is used to load file(s).
 	 * 
@@ -25,14 +25,12 @@ package org.finalbug.net
 	 */
 	public class LoaderObject
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @default 
@@ -53,11 +51,10 @@ package org.finalbug.net
 		 * @default 
 		 */
 		protected var dispatcher:EventDispatcher = new EventDispatcher();
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @return 
@@ -66,7 +63,7 @@ package org.finalbug.net
 		{
 			return _loaded;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -75,7 +72,7 @@ package org.finalbug.net
 		{
 			return _failed;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -84,15 +81,13 @@ package org.finalbug.net
 		{
 			return _loadrate;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param type
@@ -105,11 +100,10 @@ package org.finalbug.net
 		{
 			dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param target
@@ -120,7 +114,7 @@ package org.finalbug.net
 			target.addEventListener(ProgressEvent.PROGRESS, onLoading);
 			target.addEventListener(IOErrorEvent.IO_ERROR, onLoadFailed);
 		}
-		
+
 		/**
 		 * 
 		 * @param e
@@ -133,7 +127,7 @@ package org.finalbug.net
 			var ee:LoadEvent = new LoadEvent(LoadEvent.LOAD_SUCCESS);
 			dispatcher.dispatchEvent(ee);
 		}
-		
+
 		/**
 		 * 
 		 * @param e
@@ -149,7 +143,7 @@ package org.finalbug.net
 			_loadrate = ee.loadedRate;
 			dispatcher.dispatchEvent(ee);
 		}
-		
+
 		/**
 		 * 
 		 * @param e
@@ -162,13 +156,12 @@ package org.finalbug.net
 			var ee:LoadEvent = new LoadEvent(LoadEvent.LOAD_FAILED);
 			dispatcher.dispatchEvent(ee);
 		}
-		
-		//#######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
+		// #######################################
 		
-		//#######################################
+		// #######################################
 		// HANDLER
-		//#######################################
+		// #######################################
 	}
 }

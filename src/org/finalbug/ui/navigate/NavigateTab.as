@@ -1,78 +1,63 @@
-//##########################################################
+// ##########################################################
 // ___________.__              .__ ___.
 // \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__ |     |__|___|  (____  /____/___  /____/\___  /
-//     \/             \/     \/         \/     /_____/
+// |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__ |     |__|___|  (____  /____/___  /____/\___  /
+// \/             \/     \/         \/     /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.ui.navigate
 {
+	import org.finalbug.ui.control.Button;
+	import org.finalbug.ui.control.Container;
+
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
-	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
-	
-	import org.finalbug.data.Status;
-	import org.finalbug.errors.DataError;
-	import org.finalbug.ui.control.Button;
-	import org.finalbug.ui.control.Container;
-	import org.finalbug.ui.skin.ButtonSkinData;
-	import org.finalbug.ui.skin.SkinData;
-	
-	
+
 	/**
 	 * NavigateTab, not finished.
 	 * 
 	 * @author Tang Bin
 	 * @since 2011.01
-	 */	
+	 */
 	public class NavigateTab extends Container
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-
+		// #######################################
 		/**
 		 * 
 		 * @default 
 		 */
 		protected const BUTTON_HEIGHT:Number = 24;
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		protected const BUTTON_SPACE:Number = 2;
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		protected const BAR_SPACE:Number = 5;
-		
 		private var btnBar:Container;
 		private var box:Slider;
-		
 		private var tabs:Dictionary = new Dictionary();
-		
 		private var currentSelected:TabData;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param skinData
@@ -95,12 +80,10 @@ package org.finalbug.ui.navigate
 			btnBar.layoutStyle.setNormalStyle(0, 0, "100%", BUTTON_HEIGHT);
 			box.layoutStyle.setAroundStyle(0, BUTTON_HEIGHT + BAR_SPACE, 0, 0);
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
-		
+		// #######################################
 		/**
 		 * Add new tab into NavigateTab.
 		 * 
@@ -112,12 +95,12 @@ package org.finalbug.ui.navigate
 		public function addTab(label:String, object:DisplayObject = null, index:int = -1):DisplayObject
 		{
 			var maxLen:uint = btnBar.numChildren;
-			if(index < 0 || index > maxLen)
+			if (index < 0 || index > maxLen)
 			{
 				index = maxLen;
 			}
 			//
-			if(object == null)
+			if (object == null)
 			{
 				object = new Sprite();
 			}
@@ -134,7 +117,7 @@ package org.finalbug.ui.navigate
 			// save data into dictionary.
 			tabs[data.btn] = data;
 			// add elements to display.
-			if(index >=0 && index < maxLen)
+			if (index >= 0 && index < maxLen)
 			{
 				btnBar.addChildAt(data.btn, index);
 				box.addChildAt(data.object, index);
@@ -145,14 +128,14 @@ package org.finalbug.ui.navigate
 				box.addChild(data.object);
 			}
 			// change selected
-			if(currentSelected == null)
+			if (currentSelected == null)
 			{
 				doSelect(data);
 			}
 			//
 			return object;
 		}
-		
+
 		/**
 		 * 
 		 * @param index
@@ -161,13 +144,17 @@ package org.finalbug.ui.navigate
 		 */
 		public function getTabObjectAt(index:uint):DisplayObject
 		{
-			if(index >= tabs.length)
+			var tabData:TabData = this.getDataByIndex(index);
+			if(tabData != null)
 			{
-				throw new DataError(DataError.INVALID_INDEX);
+				return tabData.object;
 			}
-			return (tabs[index] as TabData).object;
+			else
+			{
+				return null;
+			}
 		}
-		
+
 		/**
 		 * 
 		 * @param index
@@ -176,13 +163,17 @@ package org.finalbug.ui.navigate
 		 */
 		public function getTabLabelAt(index:uint):String
 		{
-			if(index >= tabs.length)
+			var tabData:TabData = this.getDataByIndex(index);
+			if(tabData != null)
 			{
-				throw new DataError(DataError.INVALID_INDEX);
+				return tabData.label;
 			}
-			return (tabs[index] as TabData).label;
+			else
+			{
+				return null;
+			}
 		}
-		
+
 		/**
 		 * 
 		 * @param index
@@ -190,17 +181,15 @@ package org.finalbug.ui.navigate
 		 */
 		public function setTabLabelAt(index:uint, label:String):void
 		{
-			if(index >= tabs.length)
+			var tabData:TabData = this.getDataByIndex(index);
+			if(tabData != null)
 			{
-				throw new DataError(DataError.INVALID_INDEX);
-			}
-			var btn:Button = btnBar.getChildAt(index) as Button;
-			if(btn != null)
-			{
+				var btn:Button = tabData.btn;
 				btn.label = label;
+				tabData.label = label;
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @param object
@@ -209,12 +198,12 @@ package org.finalbug.ui.navigate
 		public function setTabLabelByObject(object:DisplayObject, label:String):void
 		{
 			var tabData:TabData = getDataByObject(object);
-			if(tabData != null)
+			if (tabData != null)
 			{
 				tabData.btn.label = label;
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @param index
@@ -222,12 +211,12 @@ package org.finalbug.ui.navigate
 		public function removeTabAt(index:uint):void
 		{
 			var tabData:TabData = getDataByIndex(index);
-			if(tabData != null)
+			if (tabData != null)
 			{
 				removeTab(tabData);
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @param object
@@ -235,38 +224,36 @@ package org.finalbug.ui.navigate
 		public function removeTabByObject(object:DisplayObject):void
 		{
 			var tabData:TabData = getDataByObject(object);
-			if(tabData != null)
+			if (tabData != null)
 			{
 				removeTab(tabData);
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function doSelect(data:TabData):void
 		{
 			// remove pre-selected
-			if(currentSelected != null)
+			if (currentSelected != null)
 			{
 				currentSelected.btn.hold = false;
 			}
-			// select new 
+			// select new
 			data.btn.hold = true;
 			box.selectedChild = data.object;
 			// save select data.
 			currentSelected = data;
 		}
-		
+
 		private function getDataByIndex(index:uint):TabData
 		{
 			var btn:Button = btnBar.getChildAt(index) as Button;
-			if(btn != null)
+			if (btn != null)
 			{
 				return tabs[btn];
 			}
@@ -275,48 +262,47 @@ package org.finalbug.ui.navigate
 				return null;
 			}
 		}
-		
+
 		private function getDataByObject(object:DisplayObject):TabData
 		{
-			for each(var tabData:TabData in tabs)
+			for each (var tabData:TabData in tabs)
 			{
-				if(tabData.object == object)
+				if (tabData.object == object)
 				{
 					return tabData;
 				}
 			}
 			return null;
 		}
-		
+
 		private function removeTab(tabData:TabData):void
 		{
 			btnBar.removeChild(tabData.btn);
 			box.removeChild(tabData.object);
-			if(tabData == currentSelected)
+			if (tabData == currentSelected)
 			{
 				currentSelected = null;
 			}
 			delete tabs[tabData.btn];
 			tabs[tabData.btn] = null;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// HANDLER
-		//#######################################
-		
+		// #######################################
 		private function clickTabBtnHandler(e:MouseEvent):void
 		{
 			var btn:Button = e.currentTarget as Button;
-			if(btn != null)
+			if (btn != null)
 			{
 				this.doSelect(tabs[btn]);
 			}
 		}
 	}
 }
-import flash.display.DisplayObject;
-
 import org.finalbug.ui.control.Button;
+
+import flash.display.DisplayObject;
 
 class TabData
 {

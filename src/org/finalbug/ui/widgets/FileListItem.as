@@ -1,17 +1,17 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.ui.widgets
 {
 	import flash.text.TextFormat;
-	
+
 	import org.finalbug.data.FileData;
 	import org.finalbug.data.FileType;
 	import org.finalbug.data.FileTypeModel;
@@ -23,46 +23,39 @@ package org.finalbug.ui.widgets
 	import org.finalbug.ui.control.Label;
 	import org.finalbug.ui.style.Style;
 	import org.finalbug.utils.DataUtil;
-	
-	
+
 	/**
 	 * FolderItem
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.11
-	 */	
+	 */
 	public class FileListItem extends Container
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		private static const HIDE_LABEL_HEIGHT:Number = 30;
 		private static const SPACE:Number = 2;
 		private static const LABEL_HEIGHT:Number = 20;
 		private static const LABEL_COLOR:uint = 0x333333;
 		private static const LABEL_SIZE:uint = 12;
-		
 		private static const SELECTED_COLOR:uint = 0xDDDDDD;
 		private static const SELECTED_BORDER:uint = 0x999999;
-		
 		private var _data:FileData;
 		private var icon:Icon;
 		private var txt:Label;
 		private var extra:Label;
-		
 		private var _position:String = Position.BOTTOM;
 		private var _extraLabel:String = "";
 		private var _selected:Boolean = false;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @return 
@@ -71,6 +64,7 @@ package org.finalbug.ui.widgets
 		{
 			return _position;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -78,9 +72,9 @@ package org.finalbug.ui.widgets
 		 */
 		public function set labelPosition(value:String):void
 		{
-			if(value != _position)
+			if (value != _position)
 			{
-				if(!DataUtil.included(value, Position.BOTTOM, Position.LEFT, Position.RIGHT, Position.TOP))
+				if (!DataUtil.included(value, Position.BOTTOM, Position.LEFT, Position.RIGHT, Position.TOP))
 				{
 					throw new DataError(DataError.TYPE_ERROR);
 				}
@@ -88,7 +82,7 @@ package org.finalbug.ui.widgets
 				this.updateSize();
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -97,19 +91,20 @@ package org.finalbug.ui.widgets
 		{
 			return _extraLabel;
 		}
+
 		/**
 		 * 
 		 * @param value
 		 */
 		public function set extraLabel(value:String):void
 		{
-			if(value != _extraLabel)
+			if (value != _extraLabel)
 			{
 				_extraLabel = value;
 				this.updateSize();
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -118,20 +113,21 @@ package org.finalbug.ui.widgets
 		{
 			return this._selected;
 		}
+
 		/**
 		 * 
 		 * @param value
 		 */
 		public function set selected(value:Boolean):void
 		{
-			if(value != _selected)
+			if (value != _selected)
 			{
 				_selected = value;
 				this.backgroundAlpha = _selected ? 1 : 0;
 				this.borderAlpha = _selected ? 1 : 0;
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -140,11 +136,10 @@ package org.finalbug.ui.widgets
 		{
 			return _data;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// CONSTRUCTOR.
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param data
@@ -156,28 +151,26 @@ package org.finalbug.ui.widgets
 			createElements();
 			updateSize();
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
+		// #######################################
 		override protected function updateSize():void
 		{
 			super.updateSize();
-			if(icon == null && txt == null) return;
-			if(this.width >0 && this.height > 0)
+			if (icon == null && txt == null) return;
+			if (this.width > 0 && this.height > 0)
 			{
-				if(icon != null)
+				if (icon != null)
 				{
 					icon.visible = true;
 					var iconSize:Number = 0;
-					if(_position == Position.TOP || _position == Position.BOTTOM)
+					if (_position == Position.TOP || _position == Position.BOTTOM)
 					{
-						if(this.height < HIDE_LABEL_HEIGHT)
+						if (this.height < HIDE_LABEL_HEIGHT)
 						{
 							// it is too small to display the labels
 							txt.visible = extra.visible = false;
@@ -206,32 +199,31 @@ package org.finalbug.ui.widgets
 			}
 			else
 			{
-				if(icon != null) icon.visible = false;
+				if (icon != null) icon.visible = false;
 				txt.visible = false;
 				extra.visible = false;
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function createElements():void
 		{
-			if(icon != null && this.contains(icon))
+			if (icon != null && this.contains(icon))
 			{
 				this.removeChild(icon);
 			}
 			icon = getIcon();
 			this.addChild(icon);
 			//
-			if(txt == null)
+			if (txt == null)
 			{
 				txt = new Label(_data.name, new TextFormat(Style.defaultFont, LABEL_SIZE, LABEL_COLOR, true));
 				this.addChild(txt);
 			}
 			//
-			if(extra == null)
+			if (extra == null)
 			{
 				extra = new Label("");
 				this.addAll(extra);
@@ -241,10 +233,10 @@ package org.finalbug.ui.widgets
 			this.borderColor = SELECTED_BORDER;
 			this.borderAlpha = 0;
 		}
-		
+
 		private function getIcon():Icon
 		{
-			if(FileTypeModel.instance.registered(_data.ext))
+			if (FileTypeModel.instance.registered(_data.ext))
 			{
 				var fileType:FileType = FileTypeModel.instance.getFileType(_data.ext);
 				return fileType.icon;
@@ -254,9 +246,8 @@ package org.finalbug.ui.widgets
 				return IconModel.instance.unknowIcon;
 			}
 		}
-		
-		//#######################################
+		// #######################################
 		// HANDLER
-		//#######################################
+		// #######################################
 	}
 }

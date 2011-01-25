@@ -1,13 +1,13 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.utils
 {
 	/**
@@ -15,7 +15,7 @@ package org.finalbug.utils
 	 * 
 	 * @author Tang Bin
 	 * @since 2010
-	 */	
+	 */
 	public class DateUtil
 	{
 		/**
@@ -26,7 +26,7 @@ package org.finalbug.utils
 		 * @param date
 		 * @param formatString
 		 * @return 
-		 */		
+		 */
 		public static function format(date:Date, formatString:String = "YYYY-MM-DD"):String
 		{
 			var str:String = formatString;
@@ -35,7 +35,7 @@ package org.finalbug.utils
 			str = str.replace(/DD/gi, StringUtil.fillString(date.date.toString(), 2));
 			return str;
 		}
-		
+
 		/**
 		 * 
 		 * @param date

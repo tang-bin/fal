@@ -1,37 +1,35 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.data
 {
 	import flash.utils.Dictionary;
-	
+
 	import org.finalbug.errors.DataError;
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.utils.StringUtil;
-	
+
 	/**
 	 * TreeData defines the data model for a tree or list.
 	 *
 	 * @author Tang Bin
 	 * @since 2010.09
-	 */  
+	 */
 	public class TreeData extends DataModel
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @default 
@@ -42,44 +40,43 @@ package org.finalbug.data
 		 * @default 
 		 */
 		public var stringToNodeFunction:Function;
-		
 		private var _root:NodeData;
 		private var nodes:Dictionary;
 		private var _xml:XML;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * Root data object
-		 */		
+		 */
 		public function get root():Object
 		{
 			return _root.data;
 		}
+
 		/**
 		 * 
 		 * @param value Tree's root node object, cannot be null.
 		 */
 		public function set root(value:Object):void
 		{
-			if(value != null)
+			if (value != null)
 			{
 				_root.data = value;
 			}
 		}
-		
+
 		/**
 		 * Define a treeModel by XML.
 		 * e.g., use XML <node name="a11">aa11</node> to define one tree node,
 		 * and you can get the node object by using method getNodeByAttribute.
 		 * node's name is saved in node object's "nodeName" attribute, 
 		 * and node's value is saved in node object's "nodeValue" attribue.
-		 */		
+		 */
 		public function get xml():XML
 		{
-			if(_xml == null)
+			if (_xml == null)
 			{
 				return getTempXML();
 			}
@@ -88,6 +85,7 @@ package org.finalbug.data
 				return _xml;
 			}
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -100,16 +98,15 @@ package org.finalbug.data
 			var rootChildren:XMLList = _xml.children();
 			var len:uint = rootChildren.length();
 			var index:uint;
-			for(index = 0 ; index < len ; index++)
+			for (index = 0 ; index < len ; index++)
 			{
 				addXMLDataToTree(_root, rootChildren[index]);
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
+		// #######################################
 		/**
 		 * Create an new TreeData object.
 		 */
@@ -118,29 +115,28 @@ package org.finalbug.data
 			super();
 			clean();
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * add an new node to tree.
 		 * 
 		 * @param parent Node's parent node.
 		 * @param node Node object
 		 * @throws DataError Throw out DataError.DATA_NULL error if parent node is not exist. 
-		 */		
+		 */
 		public function addNode(parent:Object, node:Object):void
 		{
 			var parentData:NodeData = nodes[parent] as NodeData;
-			if(parentData != null)
+			if (parentData != null)
 			{
 				var nd:NodeData = new NodeData();
 				nd.parent = parentData;
 				nd.data = node;
 				//
 				var lastData:NodeData = this.getLastChild(parentData);
-				if(lastData != null)
+				if (lastData != null)
 				{
 					nd.prev = lastData;
 					lastData.next = nd;
@@ -157,28 +153,28 @@ package org.finalbug.data
 				throw new DataError(DataError.DATA_NULL);
 			}
 		}
-		
+
 		/**
 		 * Remove one node from tree, all subnodes will be removed, too.
 		 * 
 		 * @param node
-		 */		
+		 */
 		public function removeNode(node:Object):void
 		{
 			var nodeData:NodeData = getNodeByData(node);
-			if(nodeData != null)
+			if (nodeData != null)
 			{
 				var nextNode:NodeData = getNodeByData(nodeData.firstChild);
-				while(nextNode != null)
+				while (nextNode != null)
 				{
 					removeNode(nextNode.data);
 					nextNode = getNodeByData(nextNode.next);
 				}
 				var parentData:NodeData = getNodeByData(nodeData.parent);
-				if(parentData != null)
+				if (parentData != null)
 				{
 					parentData.numChildren -= 1;
-					if(parentData.firstChild == node)
+					if (parentData.firstChild == node)
 					{
 						parentData.firstChild = nodeData.next;
 					}
@@ -186,7 +182,7 @@ package org.finalbug.data
 				nodes[node] = null;
 				delete nodes[node];
 			}
-			else if(node == _root.data)
+			else if (node == _root.data)
 			{
 				this.clean();
 			}
@@ -195,27 +191,27 @@ package org.finalbug.data
 				throw new DataError(DataError.DATA_NULL);
 			}
 		}
-		
+
 		/**
 		 * Remove all subnodes of a node, but this node will not be removed.
 		 * To remove all nodes of the tree, use method clean().
 		 * 
 		 * @param parent
 		 * @throws DataError
-		 */		
+		 */
 		public function removeAllChildren(parent:Object):void
 		{
 			var nodeData:NodeData = getNodeByData(parent);
-			if(parent == _root.data)
+			if (parent == _root.data)
 			{
 				_root.numChildren = 0;
 				_root.firstChild = null;
 				nodes = new Dictionary();
 			}
-			else if(nodeData != null)
+			else if (nodeData != null)
 			{
 				var nextNode:NodeData = getNodeByData(nodeData.firstChild);
-				while(nextNode != null)
+				while (nextNode != null)
 				{
 					removeNode(nextNode.data);
 					nextNode = getNodeByData(nextNode.next);
@@ -228,21 +224,21 @@ package org.finalbug.data
 				throw new DataError(DataError.DATA_NULL);
 			}
 		}
-		
+
 		/**
 		 * Get one node's subnodes. In order.
 		 * 
 		 * @param parent
 		 * @return 
-		 */		
+		 */
 		public function getNodes(parent:Object):Array
 		{
 			var arr:Array = new Array();
 			var parentData:NodeData = getNodeByData(parent);
-			if(parentData != null)
+			if (parentData != null)
 			{
 				var nodeData:NodeData = parentData.firstChild;
-				while(nodeData != null)
+				while (nodeData != null)
 				{
 					arr.push(nodeData.data);
 					nodeData = nodeData.next;
@@ -250,17 +246,17 @@ package org.finalbug.data
 			}
 			return arr;
 		}
-		
+
 		/**
 		 * Get one node's children number.
 		 * 
 		 * @param parent
 		 * @return 
-		 */		
+		 */
 		public function getNumChildren(parent:Object):uint
 		{
 			var parentData:NodeData = getNodeByData(parent);
-			if(parentData != null)
+			if (parentData != null)
 			{
 				return parentData.numChildren;
 			}
@@ -269,19 +265,19 @@ package org.finalbug.data
 				throw new DataError(DataError.DATA_NULL);
 			}
 		}
-		
+
 		/**
 		 * Get node's next node.
 		 * 
 		 * @param node
 		 * @return Return null if no next node 
-		 */		
+		 */
 		public function getNextNode(node:Object):Object
 		{
 			var nodeData:NodeData = getNodeByData(node);
-			if(nodeData != null)
+			if (nodeData != null)
 			{
-				if(nodeData.next != null)
+				if (nodeData.next != null)
 				{
 					return nodeData.next.data;
 				}
@@ -295,19 +291,19 @@ package org.finalbug.data
 				throw new DataError(DataError.DATA_NULL);
 			}
 		}
-		
+
 		/**
 		 * Get node's previous node.
 		 * 
 		 * @param node
 		 * @return Return null if no previous node. 
-		 */		
+		 */
 		public function getPreviousNode(node:Object):Object
 		{
 			var nodeData:NodeData = getNodeByData(node);
-			if(nodeData != null)
+			if (nodeData != null)
 			{
-				if(nodeData.prev != null)
+				if (nodeData.prev != null)
 				{
 					return nodeData.prev.data;
 				}
@@ -321,42 +317,42 @@ package org.finalbug.data
 				throw new DataError(DataError.DATA_NULL);
 			}
 		}
-		
+
 		/**
 		 * Get nodes by thire attributes.
 		 * 
 		 * @param attributeName
 		 * @param value
 		 * @return A list of nodes.
-		 */		
+		 */
 		public function getNodeByAttribute(attributeName:String, value:*):Array
 		{
 			var arr:Array = new Array();
-			for each(var nd:NodeData in nodes)
+			for each (var nd:NodeData in nodes)
 			{
-				if(nd.data.hasOwnProperty(attributeName) && nd.data[attributeName] == value)
+				if (nd.data.hasOwnProperty(attributeName) && nd.data[attributeName] == value)
 				{
 					arr.push(nd.data);
 				}
 			}
 			return arr;
 		}
-		
+
 		/**
 		 * Move node up
 		 * 
 		 * @param node
 		 * @param step
-		 */		
+		 */
 		public function moveUpNode(node:Object, step:uint = 1):void
 		{
-			if(node == _root.data) return;
+			if (node == _root.data) return;
 			var nodeData:NodeData = getNodeByData(node);
-			if(nodeData != null)
+			if (nodeData != null)
 			{
-				if(nodeData.prev != null)
+				if (nodeData.prev != null)
 				{
-					if(nodeData.prev.prev != null)
+					if (nodeData.prev.prev != null)
 					{
 						var node1:NodeData = nodeData.prev.prev;
 						var node2:NodeData = nodeData.prev;
@@ -365,7 +361,7 @@ package org.finalbug.data
 						node2.next = nodeData.next;
 						nodeData.prev = node1;
 						nodeData.next = node2;
-						if(step > 1)
+						if (step > 1)
 						{
 							moveUpNode(node, step - 1);
 						}
@@ -385,22 +381,22 @@ package org.finalbug.data
 				throw new DataError(DataError.DATA_NULL);
 			}
 		}
-		
+
 		/**
 		 * Move mode down.
 		 * 
 		 * @param node
 		 * @param step
-		 */		
+		 */
 		public function moveDownNode(node:Object, step:uint = 1):void
 		{
-			if(node == _root.data) return;
+			if (node == _root.data) return;
 			var nodeData:NodeData = getNodeByData(node);
-			if(nodeData != null)
+			if (nodeData != null)
 			{
-				if(nodeData.next != null)
+				if (nodeData.next != null)
 				{
-					if(nodeData.prev != null)
+					if (nodeData.prev != null)
 					{
 						var node1:NodeData = nodeData.prev
 						var node2:NodeData = nodeData.next;
@@ -420,7 +416,7 @@ package org.finalbug.data
 						node3.next = nodeData;
 						nodeData.parent.firstChild = node3;
 					}
-					if(step > 1)
+					if (step > 1)
 					{
 						moveDownNode(node, step - 1);
 					}
@@ -431,17 +427,17 @@ package org.finalbug.data
 				throw new DataError(DataError.DATA_NULL);
 			}
 		}
-		
+
 		/**
 		 * Move node to the first child of parent.
 		 * 
 		 * @param node
-		 */		
+		 */
 		public function moveModeToFirst(node:Object):void
 		{
-			if(node == _root.data) return;
+			if (node == _root.data) return;
 			var nodeData:NodeData = getNodeByData(node);
-			if(nodeData != null)
+			if (nodeData != null)
 			{
 				this.moveUpNode(node, nodeData.parent.numChildren);
 			}
@@ -450,17 +446,17 @@ package org.finalbug.data
 				throw new DataError(DataError.DATA_NULL);
 			}
 		}
-		
+
 		/**
 		 * Move node to the last child of parent.
 		 * 
 		 * @param node
-		 */		
+		 */
 		public function moveModeToLast(node:Object):void
 		{
-			if(node == _root.data) return;
+			if (node == _root.data) return;
 			var nodeData:NodeData = getNodeByData(node);
-			if(nodeData != null)
+			if (nodeData != null)
 			{
 				this.moveDownNode(node, nodeData.parent.numChildren);
 			}
@@ -469,39 +465,39 @@ package org.finalbug.data
 				throw new DataError(DataError.DATA_NULL);
 			}
 		}
-		
+
 		/**
 		 * Change node's object, but not change node's position.
 		 * 
 		 * @param oldNode
 		 * @param newNode
-		 */		
+		 */
 		public function changeNode(oldNode:Object, newNode:Object):void
 		{
-			if(nodes[newNode])
+			if (nodes[newNode])
 			{
 				throw new DataError(DataError.DATA_NULL);
 			}
-			else if(!nodes[oldNode])
+			else if (!nodes[oldNode])
 			{
 				throw new DataError(DataError.DATA_NULL);
 			}
 			var nodeData:NodeData = getNodeByData(oldNode);
 			nodeData.data = newNode;
 		}
-		
+
 		/**
 		 * change node's parent.
 		 *  
 		 * @param node
 		 * @param newParent
 		 * 
-		 */		
+		 */
 		public function changeParent(node:Object, newParent:Object):void
 		{
 			var nodeData:NodeData = this.getNodeByData(node);
 			var parentData:NodeData = this.getNodeByData(newParent);
-			if(nodeData != null && parentData != null)
+			if (nodeData != null && parentData != null)
 			{
 				this.takeOutNode(nodeData);
 				this.takeOnNode(nodeData, parentData);
@@ -511,18 +507,18 @@ package org.finalbug.data
 				throw new DataError(DataError.DATA_NULL);
 			}
 		}
-		
+
 		/**
 		 * trace all nodes as one tree.
-		 */		
+		 */
 		public function traceAll():void
 		{
 			traceNode(_root, 0);
 		}
-		
+
 		/**
 		 * remove all node and create new root. 
-		 */		
+		 */
 		public function clean():void
 		{
 			_root = new NodeData();
@@ -533,11 +529,10 @@ package org.finalbug.data
 			var ee:DataEvent = new DataEvent(DataEvent.TREE_CLEAN);
 			this.dispatchEvent(ee);
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param node
@@ -547,24 +542,23 @@ package org.finalbug.data
 		{
 			return nodes[node] || node == _root.data;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function getNodeByData(data:Object):NodeData
 		{
-			if(data == null) return null;
+			if (data == null) return null;
 			return nodes[data] as NodeData;
 		}
-		
+
 		private function getLastChild(data:NodeData):NodeData
 		{
-			if(data != null && data.firstChild != null)
+			if (data != null && data.firstChild != null)
 			{
 				var nextData:NodeData = data.firstChild;
 				var currentData:NodeData;
-				while(nextData != null)
+				while (nextData != null)
 				{
 					currentData = nextData;
 					nextData = nextData.next;
@@ -576,23 +570,23 @@ package org.finalbug.data
 				return null;
 			}
 		}
-		
+
 		private function takeOutNode(nodeData:NodeData):void
 		{
-			if(nodeData != null)
+			if (nodeData != null)
 			{
 				var prev:NodeData = nodeData.prev;
 				var next:NodeData = nodeData.next
-				if(prev != null && next != null)
+				if (prev != null && next != null)
 				{
 					prev.next = next;
 					next.prev = prev
 				}
-				else if(prev != null)
+				else if (prev != null)
 				{
 					prev.next = null;
 				}
-				else if(next != null)
+				else if (next != null)
 				{
 					nodeData.parent.firstChild = next;
 					next.prev = null;
@@ -604,11 +598,11 @@ package org.finalbug.data
 				throw new DataError(DataError.DATA_NULL);
 			}
 		}
-		
+
 		private function takeOnNode(nodeData:NodeData, parentData:NodeData):void
 		{
 			nodeData.parent = parentData;
-			if(parentData.numChildren > 0)
+			if (parentData.numChildren > 0)
 			{
 				var lastNode:NodeData = this.getLastChild(parentData);
 				lastNode.next = nodeData;
@@ -620,13 +614,13 @@ package org.finalbug.data
 			}
 			parentData.numChildren += 1;
 		}
-		
+
 		private function traceNode(nodeData:NodeData, lv:uint):void
 		{
 			var str:String = "";
 			str += StringUtil.getBlankSpace(lv * 2);
 			str += "|-> "
-			if(nodeData.data.hasOwnProperty("name"))
+			if (nodeData.data.hasOwnProperty("name"))
 			{
 				str += nodeData.data["name"].toString();
 			}
@@ -636,16 +630,16 @@ package org.finalbug.data
 			}
 			// !! DO NOT remove trace line.
 			trace(str);
-			if(nodeData.numChildren > 0)
+			if (nodeData.numChildren > 0)
 			{
 				traceNode(nodeData.firstChild, lv + 1);
 			}
-			if(nodeData.next != null)
+			if (nodeData.next != null)
 			{
 				traceNode(nodeData.next, lv);
 			}
 		}
-		
+
 		private function getTempXML():XML
 		{
 			var str:String = "<t>";
@@ -653,28 +647,28 @@ package org.finalbug.data
 			str += "</t>"
 			return new XML(str);
 		}
-		
+
 		private function getNextTempXML(node:NodeData):String
 		{
 			var str:String = "";
 			var nodeStr:String = nodeToStringFunction != null ? nodeToStringFunction.call(node.data) : node.data.toString();
 			str += "<n v=\"" + escape(nodeStr) + "\"/>";
-			if(node.firstChild != null)
+			if (node.firstChild != null)
 			{
 				str += getNextTempXML(node.firstChild);
 			}
 			str += "</n>";
-			if(node.next != null)
+			if (node.next != null)
 			{
 				str += getNextTempXML(node.next);
 			}
 			return str;
 		}
-		
+
 		private function addXMLDataToTree(parentData:NodeData, xmlData:XML):void
 		{
 			var newObj:Object = this.getObjectByXML(xmlData);
-			if(newObj != null)
+			if (newObj != null)
 			{
 				this.addNode(parentData.data, newObj);
 				var newNode:NodeData = getNodeByData(newObj);
@@ -682,23 +676,23 @@ package org.finalbug.data
 				var children:XMLList = xmlData.children();
 				var len:uint = children.length();
 				var index:uint = 0;
-				for(index = 0 ; index < len ; index++)
+				for (index = 0 ; index < len ; index++)
 				{
 					var childXML:XML = children[index];
 					addXMLDataToTree(newNode, childXML);
 				}
 			}
 		}
-		
+
 		private function getObjectByXML(xmlData:XML):Object
 		{
 			var obj:Object = new Object();
-			if(xmlData.name() != null)
+			if (xmlData.name() != null)
 			{
 				var attrs:XMLList = xmlData.attributes();
 				var len:uint = attrs.length();
 				var index:uint;
-				for(index = 0 ; index < len ; index++)
+				for (index = 0 ; index < len ; index++)
 				{
 					var attrName:String = attrs[index].name();
 					obj[attrName] = attrs[index];
@@ -712,10 +706,9 @@ package org.finalbug.data
 				return null;
 			}
 		}
-		
-		//#######################################
+		// #######################################
 		// HANDLER
-		//#######################################
+		// #######################################
 	}
 }
 class NodeData

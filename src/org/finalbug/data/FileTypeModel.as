@@ -1,45 +1,43 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.data
 {
 	import flash.utils.Dictionary;
-	
+
 	import org.finalbug.errors.DataError;
-	
+
 	/**
 	 * FileTypeModel use singleton model, defines all file types used in this library.
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.12
-	 */	
+	 */
 	public class FileTypeModel extends DataModel
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// SINGLETON
-		//#######################################
-		
+		// #######################################
 		private static var ft:FileTypeModel;
 		private static var instanceable:Boolean = false;
-		
+
 		/**
 		 * 
 		 * @return 
 		 */
 		public static function get instance():FileTypeModel
 		{
-			if(ft == null)
+			if (ft == null)
 			{
 				instanceable = true;
 				ft = new FileTypeModel();
@@ -47,21 +45,18 @@ package org.finalbug.data
 			}
 			return ft;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		private var list:Dictionary = new Dictionary();
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// CONSTRUCTOR.
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @throws DataError
@@ -69,7 +64,7 @@ package org.finalbug.data
 		public function FileTypeModel()
 		{
 			super();
-			if(!instanceable)
+			if (!instanceable)
 			{
 				throw new DataError(DataError.SINGLETON);
 			}
@@ -78,11 +73,10 @@ package org.finalbug.data
 				registerDefaultTypes();
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param type
@@ -91,7 +85,7 @@ package org.finalbug.data
 		{
 			list[type.ext] = type;
 		}
-		
+
 		/**
 		 * 
 		 * @param type
@@ -100,7 +94,7 @@ package org.finalbug.data
 		public function removeType(type:FileType):void
 		{
 			var ext:String = type.ext;
-			if(list[ext] != null)
+			if (list[ext] != null)
 			{
 				list[ext] = null;
 				delete list[ext];
@@ -110,7 +104,7 @@ package org.finalbug.data
 				throw new DataError(DataError.CANNOT_REMOVE_NONEXISTENT_DATA);
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @param ext
@@ -120,7 +114,7 @@ package org.finalbug.data
 		public function getFileType(ext:String):FileType
 		{
 			ext = ext.toLowerCase();
-			if(list[ext] != null)
+			if (list[ext] != null)
 			{
 				return list[ext];
 			}
@@ -129,7 +123,7 @@ package org.finalbug.data
 				throw new DataError(DataError.DATA_NULL);
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @param ext
@@ -139,15 +133,13 @@ package org.finalbug.data
 		{
 			return list[ext.toLowerCase()] != null;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function registerDefaultTypes():void
 		{
 			this.registerType(new FileType("txt", "", IconModel.instance.docIcon));
@@ -159,9 +151,8 @@ package org.finalbug.data
 			this.registerType(new FileType("avi", "", IconModel.instance.videoIcon));
 			this.registerType(new FileType("mpg", "", IconModel.instance.videoIcon));
 		}
-		
-		//#######################################
+		// #######################################
 		// HANDLER
-		//#######################################
+		// #######################################
 	}
 }

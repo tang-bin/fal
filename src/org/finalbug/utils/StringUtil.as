@@ -1,13 +1,13 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.utils
 {
 	import org.finalbug.utils.MathUtil;
@@ -18,26 +18,26 @@ package org.finalbug.utils
 	 * 
 	 * @author Tang Bin
 	 * @since old version
-	 */	
+	 */
 	public class StringUtil
 	{
 		/**
 		 * uppercase
-		 */		
+		 */
 		public static const UPPERCASE:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		/**
 		 * lowercase
-		 */		
+		 */
 		public static const LOWERCASE:String = "abcedfghijklmnopqrstuvwxyz";
 		/**
 		 * number in string type.
-		 */		
+		 */
 		public static const NUMBER:String = "0123456789";
 		/**
 		 * chars can be used as object's name in AS.
-		 */		
+		 */
 		public static const NAME_AVAILABLE:String = "-_%$#";
-		
+
 		/**
 		 * replace a short string in a long string to another stort string.
 		 * 
@@ -46,7 +46,7 @@ package org.finalbug.utils
 		 * @param newStr
 		 * @return
 		 * 
-		 */		
+		 */
 		public static function getReplaceString(oldStr:String, targetStr:String, newStr:String):String
 		{
 			if (oldStr != "" && targetStr != "")
@@ -60,33 +60,33 @@ package org.finalbug.utils
 			}
 			return oldStr;
 		}
-		
+
 		/**
 		 * Get a random string which is maked up by lowercase.
 		 * @param len Length of the string.
 		 * @return 
 		 * 
-		 */		
+		 */
 		public static function getRandomString(len:Number = 10):String
 		{
 			var s:String = "";
-			for(var i:Number = len ; --i >= 0 ; )
+			for (var i:Number = len ; --i >= 0 ; )
 			{
-				var index:Number = MathUtil.getRandomInt(0, LOWERCASE.length-1);
+				var index:Number = MathUtil.getRandomInt(0, LOWERCASE.length - 1);
 				s += LOWERCASE.charAt(index);
 			}
 			return s;
 		}
-		
+
 		/**
 		 * remove the blank and return/newline in a string.
 		 * 
 		 * @param str
 		 * @return
-		 */		
+		 */
 		public static function removeBlankInString(str:String):String
 		{
-			if(str == "")
+			if (str == "")
 			{
 				return "";
 			}
@@ -98,14 +98,14 @@ package org.finalbug.utils
 				return str;
 			}
 		}
-		
+
 		/**
 		 * account the appear time of one string in another string.
 		 * 
 		 * @param str
 		 * @param subStr
 		 * @return
-		 */		
+		 */
 		public static function getSubstringSum(str:String, subStr:String):Number
 		{
 			var num:Number = 0;
@@ -116,15 +116,15 @@ package org.finalbug.utils
 			{
 				num++;
 			}
-			while (str.indexOf(subStr, c_index+1) != -1)
+			while (str.indexOf(subStr, c_index + 1) != -1)
 			{
-				c_index = str.indexOf(subStr, c_index+1);
+				c_index = str.indexOf(subStr, c_index + 1);
 				ary_str[num] = c_index;
 				num++;
 			}
 			return num;
 		}
-				
+
 		/**
 		 * remove the blank in front of string.
 		 * 
@@ -148,7 +148,7 @@ package org.finalbug.utils
 			str = str.replace(/([^\s]*)\s*$/gi, "$1");
 			return str;
 		}
-		
+
 		/**
 		 * remove blank in front of string and at the end of string.
 		 * 
@@ -161,7 +161,7 @@ package org.finalbug.utils
 			str = StringUtil.trimRight(str);
 			return str;
 		}
-		
+
 		/**
 		 * remove all blank in string.
 		 * 
@@ -173,7 +173,7 @@ package org.finalbug.utils
 			str = str.replace(/\s+/gi, "");
 			return str;
 		}
-		
+
 		/**
 		 * Enter description here
 		 * 
@@ -183,7 +183,7 @@ package org.finalbug.utils
 		 */
 		public static function leftStr(str:String, num:Number):String
 		{
-			if(str.length > num)
+			if (str.length > num)
 			{
 				str = str.substring(0, num);
 			}
@@ -199,7 +199,7 @@ package org.finalbug.utils
 		 */
 		public static function rightStr(str:String, num:Number):String
 		{
-			if(str.length > num)
+			if (str.length > num)
 			{
 				str = str.substr(-num);
 			}
@@ -214,20 +214,20 @@ package org.finalbug.utils
 		 */
 		public static function removeHTML(str:String):String
 		{
-			if(str.length == 0)
+			if (str.length == 0)
 			{
 				return str;
 			}
 			var temp:String = "";
 			var s:Number;
-			while((s = str.indexOf("<")) != -1)
+			while ((s = str.indexOf("<")) != -1)
 			{
 				temp += str.substr(0, s);
 				str = str.substr(str.indexOf(">") + 1, str.length);
 			}
-			return temp+str;
+			return temp + str;
 		}
-		
+
 		/**
 		 * check the string if it contains some illegal char.
 		 * 
@@ -237,13 +237,13 @@ package org.finalbug.utils
 		 */
 		public static function containChars(str:String, chars:String):Boolean
 		{
-			if(chars == null || str == null)
+			if (chars == null || str == null)
 			{
 				return false;
 			}
-			for(var i:Number = chars.length-1 ; i >= 0 ; i--)
+			for (var i:Number = chars.length - 1 ; i >= 0 ; i--)
 			{
-				if(str.indexOf(chars.charAt(i)) >= 0)
+				if (str.indexOf(chars.charAt(i)) >= 0)
 				{
 					return true;
 				}
@@ -263,11 +263,11 @@ package org.finalbug.utils
 		public static function insertStr(pstr:String, str:String, where:Number):String
 		{
 			var leftPart:String = leftStr(pstr, where);
-			var rightPart:String = rightStr(pstr, (pstr.length-where));
+			var rightPart:String = rightStr(pstr, (pstr.length - where));
 			var finalStr:String = leftPart + str + rightPart;
 			return finalStr;
 		}
-		
+
 		/**
 		 * Enter description here
 		 * 
@@ -281,7 +281,7 @@ package org.finalbug.utils
 			str = str.substring(0, str.lastIndexOf("."));
 			return str;
 		}
-		
+
 		/**
 		 * Enter description here
 		 * 
@@ -295,7 +295,7 @@ package org.finalbug.utils
 			str = str.substring(str.lastIndexOf(".") + 1, str.length);
 			return str;
 		}
-		
+
 		/**
 		 * Enter description here
 		 * 
@@ -326,32 +326,32 @@ package org.finalbug.utils
 		 */
 		public static function isEmail(str:String):Boolean
 		{
-			if(str == null || str == "")
+			if (str == null || str == "")
 			{
 				return false;
 			}
 			str = trim(str);
-			var p:RegExp = /(\w|[_.\-])+@((\w|-)+\.)+\w{2,4}+/; 
+			var p:RegExp = /(\w|[_.\-])+@((\w|-)+\.)+\w{2,4}+/;
 			var re:Object = p.exec(str);
 			return re == null ? false : true;
 		}
-		
+
 		/**
 		 * Check if a string is IP address.
 		 * 
 		 * @param str
 		 * @return 
-		 */		
+		 */
 		public static function isIPAddress(str:String):Boolean
 		{
-			if(str == null || str == "")
+			if (str == null || str == "")
 			{
 				return false;
 			}
 			var reg:RegExp = /((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)/;
 			return reg.test(str);
 		}
-		
+
 		/**
 		 * Enter description here
 		 * 
@@ -361,16 +361,16 @@ package org.finalbug.utils
 		 */
 		public static function isURL(str:String):Boolean
 		{
-			if(str == null)
+			if (str == null)
 			{
 				return false;
 			}
 			str = trim(str).toLowerCase();
-			var p:RegExp = /^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/; 
+			var p:RegExp = /^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/;
 			var re:Object = p.exec(str);
 			return re == null ? false : true;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -379,7 +379,7 @@ package org.finalbug.utils
 		{
 			var d:Date = new Date();
 			var str:String = "";
-			//str += d.getUTCFullYear().toString() + "_";
+			// str += d.getUTCFullYear().toString() + "_";
 			str += d.getUTCHours().toString() + "_";
 			str += d.getUTCMinutes().toString() + "_";
 			str += d.getUTCSeconds().toString() + "_";
@@ -388,7 +388,7 @@ package org.finalbug.utils
 			str += d.getUTCDate().toString();
 			return str;
 		}
-		
+
 		/**
 		 * 
 		 * @param str
@@ -398,8 +398,8 @@ package org.finalbug.utils
 		{
 			var r1:RegExp = /\d+%/;
 			return r1.test(str);
-		} 
-		
+		}
+
 		/**
 		 * 
 		 * @param str
@@ -409,12 +409,12 @@ package org.finalbug.utils
 		{
 			var r1:RegExp = /\d+%/;
 			var r2:RegExp = /\d+/;
-			if(r1.test(str))
+			if (r1.test(str))
 			{
 				str = str.substr(0, str.length - 1);
 				return (Number(str) / 100);
 			}
-			else if(r2.test(str))
+			else if (r2.test(str))
 			{
 				return Number(str);
 			}
@@ -423,7 +423,7 @@ package org.finalbug.utils
 				return 0;
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @param arr
@@ -434,10 +434,10 @@ package org.finalbug.utils
 		{
 			var str:String = "";
 			var len:uint = arr.length;
-			for(var i:uint = 0 ; i < len ; i++)
+			for (var i:uint = 0 ; i < len ; i++)
 			{
 				var obj:* = arr[i];
-				if(obj is Array)
+				if (obj is Array)
 				{
 					str += " " + getLogStringFromArray(obj, true);
 				}
@@ -446,10 +446,10 @@ package org.finalbug.utils
 					str += " " + obj.toString();
 				}
 			}
-			if(showArea) str = "[" + str + "]";
+			if (showArea) str = "[" + str + "]";
 			return str;
 		}
-		
+
 		/**
 		 * 
 		 * @param len
@@ -458,13 +458,13 @@ package org.finalbug.utils
 		public static function getBlankSpace(len:uint = 0):String
 		{
 			var str:String = "";
-			for(var i:uint = len ; --i >= 0 ; )
+			for (var i:uint = len ; --i >= 0 ; )
 			{
 				str += " ";
 			}
 			return str;
 		}
-		
+
 		/**
 		 * 
 		 * @param str
@@ -475,9 +475,9 @@ package org.finalbug.utils
 		 */
 		public static function fillString(str:String, len:uint, char:String = "0", prefix:Boolean = true):String
 		{
-			while(str.length < len)
+			while (str.length < len)
 			{
-				if(prefix) str = char + str;
+				if (prefix) str = char + str;
 				else str = str + char;
 			}
 			return str;

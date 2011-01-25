@@ -1,18 +1,18 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.utils
 {
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
-	
+
 	/**
 	 * MathUtil class offers some mathematic methods to extends Math class.
 	 * 
@@ -31,13 +31,13 @@ package org.finalbug.utils
 		public static function dec2Hex(dec:Number, length:Number = 6):String
 		{
 			var decStr:String = dec.toString(16);
-			while(decStr.length < length)
+			while (decStr.length < length)
 			{
 				decStr = "0" + decStr;
 			}
 			return decStr;
 		}
-		
+
 		/**
 		 * Check if the given number is between the max value and min vlaue.
 		 * @param num
@@ -47,25 +47,21 @@ package org.finalbug.utils
 		 * @param includeMax Return true or false when num equal to the max value.
 		 * @return
 		 */
-		public static function checkNumArea(num:Number,
-												min:Number,
-												max:Number,
-												includeMin:Boolean = true,
-												includeMax:Boolean = true):Boolean
+		public static function checkNumArea(num:Number, min:Number, max:Number, includeMin:Boolean = true, includeMax:Boolean = true):Boolean
 		{
-			if(includeMin && num < min)
+			if (includeMin && num < min)
 			{
 				return false;
 			}
-			else if(!includeMin && num <= min)
+			else if (!includeMin && num <= min)
 			{
 				return false
 			}
-			else if(includeMax && num > max)
+			else if (includeMax && num > max)
 			{
 				return false;
 			}
-			else if(!includeMax && num >= max)
+			else if (!includeMax && num >= max)
 			{
 				return false;
 			}
@@ -74,7 +70,7 @@ package org.finalbug.utils
 				return true;
 			}
 		}
-		
+
 		/**
 		 * Check if the given number is between the max value and min value.
 		 * If so, return the given number, 
@@ -83,14 +79,14 @@ package org.finalbug.utils
 		 * @param min
 		 * @param max
 		 * @return
-		 */			
+		 */
 		public static function getNumArea(num:Number, min:Number, max:Number):Number
 		{
-			if(num < min)
+			if (num < min)
 			{
 				return min
 			}
-			else if(num > max)
+			else if (num > max)
 			{
 				return max;
 			}
@@ -99,7 +95,7 @@ package org.finalbug.utils
 				return num;
 			}
 		}
-		
+
 		/**
 		 * Round a number to a given digit.
 		 * 
@@ -111,7 +107,7 @@ package org.finalbug.utils
 		{
 			var rate:Number;
 			var n:int;
-			if(digit > 0)
+			if (digit > 0)
 			{
 				rate = Math.pow(10, digit);
 				n = Math.round(num / rate);
@@ -124,45 +120,45 @@ package org.finalbug.utils
 				return n / rate;
 			}
 		}
-		
+
 		/**
 		 * Format a degree into [-180, 180].
 		 * @param degree
 		 * @return 
-		 */		
+		 */
 		public static function formatDegree(degree:Number):Number
 		{
 			degree = degree % 360;
-			if(degree > 180)
+			if (degree > 180)
 			{
 				degree = degree - 360;
 			}
-			else if(degree < -180)
+			else if (degree < -180)
 			{
 				degree += 360;
 			}
 			return degree;
 		}
-		
+
 		/**
 		 * Format a degree into [-90, 90].
 		 * @param degree
 		 * @return 
-		 */		
+		 */
 		public static function reduceDegree(degree:Number):Number
 		{
 			degree = formatDegree(degree);
-			if(degree > 90)
+			if (degree > 90)
 			{
 				degree = -(180 - degree);
 			}
-			else if(degree < -90)
+			else if (degree < -90)
 			{
 				degree += 180;
 			}
 			return degree;
 		}
-		
+
 		/**
 		 * find roots of a quadratic equation with one unknown such as:
 		 * ax^2 + bx + c = 0
@@ -171,10 +167,10 @@ package org.finalbug.utils
 		 * @param b
 		 * @param c
 		 * @return 
-		 */		
+		 */
 		public static function computeU1E2(a:Number, b:Number, c:Number):Array
 		{
-			if(b * b < 4 * a * c)
+			if (b * b < 4 * a * c)
 			{
 				// Cannot find root.
 				return null;
@@ -187,7 +183,7 @@ package org.finalbug.utils
 				return rs;
 			}
 		}
-		
+
 		/**
 		 * Get a Random integer between 2 given integers.
 		 * 
@@ -195,7 +191,7 @@ package org.finalbug.utils
 		 * @param end
 		 * @return 
 		 * 
-		 */		
+		 */
 		public static function getRandomInt(start:int, end:int):int
 		{
 			var n:Number = Math.random();

@@ -1,13 +1,13 @@
-﻿//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.data
 {
 	import org.finalbug.utils.DataUtil;
@@ -33,7 +33,6 @@ package org.finalbug.data
 		 * @default 
 		 */
 		public static const CANCEL:String = "cancelStatus";
-		
 		/**
 		 * 
 		 * @default 
@@ -54,7 +53,6 @@ package org.finalbug.data
 		 * @default 
 		 */
 		public static const DOWN:String = "downStatus";
-		
 		/**
 		 * 
 		 * @default 
@@ -75,13 +73,11 @@ package org.finalbug.data
 		 * @default 
 		 */
 		public static const HOLD:String = "holdStatus";
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const HOLD_MOUSE_DOWN:String = "holeMouseDown";
-		
 		/**
 		 * 
 		 * @default 
@@ -112,13 +108,11 @@ package org.finalbug.data
 		 * @default 
 		 */
 		public static const DISABLED:String = "disabledStatus";
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const ACTIVE:String = "activeStatus";
-		
 		/**
 		 * 
 		 * @param status

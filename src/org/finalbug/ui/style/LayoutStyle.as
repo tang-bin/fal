@@ -1,32 +1,28 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.ui.style
 {
-	import flash.display.DisplayObject;
-	
 	import org.finalbug.events.UIEvent;
-	import org.finalbug.ui.style.Style;
-	
+
 	/**
 	 * LayoutStyle
 	 *  
 	 * @author Tang Bin
 	 * @since 2010.08
-	 */	
+	 */
 	public class LayoutStyle extends Style
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @return 
@@ -35,41 +31,37 @@ package org.finalbug.ui.style
 		{
 			return "[x = " + this.x + ", y = " + this.y + ", width = " + this.width + ", height = " + this.height + "]";
 		}
-		
-		//#######################################
+
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		private var _width:String = "";
 		private var _height:String = "";
 		private var _left:String = "";
 		private var _right:String = "";
 		private var _top:String = "";
 		private var _bottom:String = "";
-		
 		private var _horizontal:String = "";
 		private var _vertical:String = "";
-		
 		private var oldWidth:Number = NaN;
 		private var oldHeight:Number = NaN;
 		private var oldX:Number = NaN;
 		private var oldY:Number = NaN;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * The width value count by current layout. 
-		 */		
+		 */
 		public function get width():Number
 		{
 			var parentWidth:Number = this.getParentWidth();
-			if(validLayoutValue(_width))
+			if (validLayoutValue(_width))
 			{
 				return getLayoutValue(_width, parentWidth);
 			}
-			else if(validLayoutValue(_left) && validLayoutValue(_right))
+			else if (validLayoutValue(_left) && validLayoutValue(_right))
 			{
 				return parentWidth - getLayoutValue(_left, parentWidth) - getLayoutValue(_right, parentWidth);
 			}
@@ -78,7 +70,7 @@ package org.finalbug.ui.style
 				return 0;
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -86,11 +78,11 @@ package org.finalbug.ui.style
 		public function get height():Number
 		{
 			var parentHeight:Number = this.getParentHeight();
-			if(validLayoutValue(_height))
+			if (validLayoutValue(_height))
 			{
 				return getLayoutValue(_height, parentHeight);
 			}
-			else if(validLayoutValue(_top) && validLayoutValue(_bottom))
+			else if (validLayoutValue(_top) && validLayoutValue(_bottom))
 			{
 				return parentHeight - getLayoutValue(_top, parentHeight) - getLayoutValue(_bottom, parentHeight);
 			}
@@ -99,7 +91,7 @@ package org.finalbug.ui.style
 				return 0;
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -107,15 +99,15 @@ package org.finalbug.ui.style
 		public function get x():Number
 		{
 			var parentWidth:Number = this.getParentWidth();
-			if(validLayoutValue(_left))
+			if (validLayoutValue(_left))
 			{
 				return getLayoutValue(_left, parentWidth);
 			}
-			else if(validLayoutValue(_right) && validLayoutValue(_width))
+			else if (validLayoutValue(_right) && validLayoutValue(_width))
 			{
 				return parentWidth - getLayoutValue(_right, parentWidth) - getLayoutValue(_width, parentWidth);
 			}
-			else if(validLayoutValue(_width) && validLayoutValue(_horizontal))
+			else if (validLayoutValue(_width) && validLayoutValue(_horizontal))
 			{
 				return (parentWidth - getLayoutValue(_width, parentWidth)) / 2 + getLayoutValue(_horizontal);
 			}
@@ -124,7 +116,7 @@ package org.finalbug.ui.style
 				return 0;
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -132,15 +124,15 @@ package org.finalbug.ui.style
 		public function get y():Number
 		{
 			var parentHeight:Number = this.getParentHeight();
-			if(validLayoutValue(_top))
+			if (validLayoutValue(_top))
 			{
 				return getLayoutValue(_top, parentHeight);
 			}
-			else if(validLayoutValue(_bottom) && validLayoutValue(_height))
+			else if (validLayoutValue(_bottom) && validLayoutValue(_height))
 			{
 				return parentHeight - getLayoutValue(_bottom, parentHeight) - getLayoutValue(_height, parentHeight);
 			}
-			else if(validLayoutValue(_height) && validLayoutValue(_vertical))
+			else if (validLayoutValue(_height) && validLayoutValue(_vertical))
 			{
 				return (parentHeight - getLayoutValue(_height, parentHeight)) / 2 + getLayoutValue(_vertical);
 			}
@@ -149,11 +141,10 @@ package org.finalbug.ui.style
 				return 0;
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 */
@@ -161,11 +152,10 @@ package org.finalbug.ui.style
 		{
 			super();
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * Set layout value.
 		 * 
@@ -173,22 +163,22 @@ package org.finalbug.ui.style
 		 * @param value
 		 * @param masMore If true, There is(are) more value(s) will be set next, 
 		 * 				do not chech changes and dispatch event.
-		 */		
+		 */
 		public function setValue(name:String, value:*, hasMore:Boolean = false):void
 		{
-			if(name == "x") name = "left";
-			else if(name == "y") name = "top";
+			if (name == "x") name = "left";
+			else if (name == "y") name = "top";
 			//
-			if(this["_" + name] != null)
+			if (this["_" + name] != null)
 			{
 				this["_" + name] = String(value);
-				if(!hasMore)
+				if (!hasMore)
 				{
 					checkAndUpdate();
 				}
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @param name
@@ -196,10 +186,10 @@ package org.finalbug.ui.style
 		 */
 		public function setValueSilent(name:String, value:*):void
 		{
-			if(name == "x") name = "left";
-			else if(name == "y") name = "top";
+			if (name == "x") name = "left";
+			else if (name == "y") name = "top";
 			//
-			if(this["_" + name] != null)
+			if (this["_" + name] != null)
 			{
 				this["_" + name] = String(value);
 				//
@@ -209,7 +199,7 @@ package org.finalbug.ui.style
 				oldY = this.y;
 			}
 		}
-		
+
 		/**
 		 * 
 		 */
@@ -220,12 +210,12 @@ package org.finalbug.ui.style
 			var newX:Number = this.x;
 			var newY:Number = this.y;
 			//
-			if(oldWidth != newWidth || oldHeight != newHeight)
+			if (oldWidth != newWidth || oldHeight != newHeight)
 			{
 				var e1:UIEvent = new UIEvent(UIEvent.RESIZE);
 				this.dispatchEvent(e1);
 			}
-			if(oldX != newX || oldY != newY)
+			if (oldX != newX || oldY != newY)
 			{
 				var e2:UIEvent = new UIEvent(UIEvent.REPOSITION);
 				this.dispatchEvent(e2);
@@ -236,7 +226,7 @@ package org.finalbug.ui.style
 			oldX = newX;
 			oldY = newY;
 		}
-		
+
 		/**
 		 * 
 		 * @param name
@@ -244,12 +234,12 @@ package org.finalbug.ui.style
 		 */
 		public function getValue(name:String):*
 		{
-			if(name == "x") name = "left";
-			else if(name == "y") name = "top";
+			if (name == "x") name = "left";
+			else if (name == "y") name = "top";
 			//
 			return this["_" + name];
 		}
-		
+
 		/**
 		 * 
 		 * @param width
@@ -260,7 +250,7 @@ package org.finalbug.ui.style
 			this.setValue("width", width, true);
 			this.setValue("height", height);
 		}
-		
+
 		/**
 		 * 
 		 * @param top
@@ -271,7 +261,7 @@ package org.finalbug.ui.style
 			this.setValue("top", top, true);
 			this.setValue("left", left);
 		}
-		
+
 		/**
 		 * 
 		 * @param width
@@ -287,7 +277,7 @@ package org.finalbug.ui.style
 			this.setValue("top", top, true);
 			this.setValue("left", left);
 		}
-		
+
 		/**
 		 * 
 		 * @param left
@@ -303,7 +293,7 @@ package org.finalbug.ui.style
 			this.setValue("right", right, true);
 			this.setValue("bottom", bottom);
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -322,7 +312,7 @@ package org.finalbug.ui.style
 			ls._vertical = this._vertical;
 			return ls;
 		}
-		
+
 		public function clean():void
 		{
 			this._width = "";
@@ -334,18 +324,16 @@ package org.finalbug.ui.style
 			this._horizontal = "";
 			this._vertical = "";
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function getParentWidth():Number
 		{
-			if(owner != null && owner.parent != null)
+			if (owner != null && owner.parent != null)
 			{
 				return owner.parent.width;
 			}
@@ -354,10 +342,10 @@ package org.finalbug.ui.style
 				return 0;
 			}
 		}
-		
+
 		private function getParentHeight():Number
 		{
-			if(owner != null && owner.parent != null)
+			if (owner != null && owner.parent != null)
 			{
 				return owner.parent.height;
 			}
@@ -366,9 +354,8 @@ package org.finalbug.ui.style
 				return 0;
 			}
 		}
-		
-		//#######################################
+		// #######################################
 		// HANDLER
-		//#######################################
+		// #######################################
 	}
 }

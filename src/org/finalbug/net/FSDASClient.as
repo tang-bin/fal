@@ -1,13 +1,13 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.net
 {
 	import flash.events.Event;
@@ -17,55 +17,49 @@ package org.finalbug.net
 	import flash.net.Socket;
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
-	
+
 	import org.finalbug.data.DataModel;
 	import org.finalbug.data.SharedData;
 	import org.finalbug.errors.FSDASClientError;
 	import org.finalbug.events.ConnEvent;
 	import org.finalbug.events.DataEvent;
-	
+
 	/**
 	 * FSD(Finalbug Shared Data) ActionScript Client
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.10
-	 */	
+	 */
 	public class FSDASClient extends DataModel
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		private var data:Object = new Object();
 		private var sk:Socket;
 		private var _host:String;
 		private var _port:uint;
 		private var _connected:Boolean = false;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 */
 		public function FSDASClient()
 		{
-			
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param host
@@ -73,7 +67,7 @@ package org.finalbug.net
 		 */
 		public function connect(host:String, port:uint):void
 		{
-			if(sk != null && sk.connected)
+			if (sk != null && sk.connected)
 			{
 				sk.close();
 			}
@@ -91,15 +85,14 @@ package org.finalbug.net
 				this.dispatchEvent(ee);
 			}
 		}
-		
+
 		/**
 		 * 
 		 */
 		public function close():void
 		{
-			
 		}
-		
+
 		/**
 		 * 
 		 * @param name
@@ -108,7 +101,7 @@ package org.finalbug.net
 		 */
 		public function listenData(name:String):SharedData
 		{
-			if(data[name] != null)
+			if (data[name] != null)
 			{
 				throw new FSDASClientError(FSDASClientError.ALREADY_LISTEN);
 			}
@@ -121,20 +114,18 @@ package org.finalbug.net
 				return sd;
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @param name
 		 */
 		public function stopListenData(name:String):void
 		{
-			
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function setSKEvent():void
 		{
 			sk.addEventListener(ProgressEvent.SOCKET_DATA, getDataHandler);
@@ -143,7 +134,7 @@ package org.finalbug.net
 			sk.addEventListener(Event.CLOSE, closeHandler);
 			sk.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
 		}
-		
+
 		private function removeSKEvent():void
 		{
 			sk.removeEventListener(ProgressEvent.SOCKET_DATA, getDataHandler);
@@ -152,45 +143,43 @@ package org.finalbug.net
 			sk.removeEventListener(Event.CLOSE, closeHandler);
 			sk.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
 		}
-		
-		//#######################################
+
+		// #######################################
 		// HANDLER
-		//#######################################
-		
+		// #######################################
 		private function dataChangedHandler(e:DataEvent):void
 		{
 			// TODO: data is changed by applictions, send it to server now.
 		}
-		
+
 		private function getDataHandler(e:ProgressEvent):void
 		{
 			var data:ByteArray = new ByteArray();
 			sk.readBytes(data);
 			data.position = 0;
-			while(data.bytesAvailable)
+			while (data.bytesAvailable)
 			{
-				
 			}
 		}
-		
+
 		private function securityErrorHandler(e:Event):void
 		{
 			var ee:ConnEvent = new ConnEvent(ConnEvent.CONNECT_ERROR);
 			this.dispatchEvent(ee);
 		}
-		
+
 		private function errorHandler(e:IOErrorEvent):void
 		{
 			var ee:ConnEvent = new ConnEvent(ConnEvent.CONNECT_ERROR);
 			this.dispatchEvent(ee);
 		}
-		
+
 		private function connectHandler(e:Event):void
 		{
 			var ee:ConnEvent = new ConnEvent(ConnEvent.CONNECT);
 			this.dispatchEvent(ee);
 		}
-		
+
 		private function closeHandler(e:Event):void
 		{
 			var ee:ConnEvent = new ConnEvent(ConnEvent.CONNECT_CLOSE);

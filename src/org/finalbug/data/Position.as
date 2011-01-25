@@ -1,14 +1,14 @@
-﻿//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
-package org.finalbug.data 
+// ##########################################################
+package org.finalbug.data
 {
 	/**
 	 * Position defines position values.
@@ -48,7 +48,6 @@ package org.finalbug.data
 		 * @default down
 		 */
 		public static const DOWN:String = "down";
-		
 		/**
 		 * 
 		 * @default topLeft
@@ -69,7 +68,6 @@ package org.finalbug.data
 		 * @default bottomRight
 		 */
 		public static const BOTTOM_RIGHT:String = "bottomRight";
-		
 		/**
 		 * 
 		 * @default topCenter
@@ -95,7 +93,6 @@ package org.finalbug.data
 		 * @default center
 		 */
 		public static const CENTER:String = "center";
-		
 		/**
 		 * 
 		 * @default horizontal

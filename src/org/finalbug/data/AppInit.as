@@ -1,13 +1,13 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.data
 {
 	import flash.display.Loader;
@@ -15,19 +15,18 @@ package org.finalbug.data
 	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
-	
+
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.events.LoadEvent;
 	import org.finalbug.net.BitmapPool;
-	
+
 	/**
 	 * Dispatched when loading status is changed.
 	 * Current loading status is contains in DataEvent.status.
 	 * 
 	 * @eventType org.finalbug.events.DataEvent.CHANGE_DATA
-	 */	
+	 */
 	[Event(name="changeData", type="org.finalbug.event.DataEvent")]
-	
 	/**
 	 * Dispatched when init success.
 	 * After initialize success, AppInit object not longer useful, you can remove
@@ -35,9 +34,8 @@ package org.finalbug.data
 	 * BitmapPool.
 	 * 
 	 * @eventType org.finalbug.event.DataEvent.INIT_END 
-	 */	
+	 */
 	[Event(name="initEnd", type="org.finalbug.event.DataEvent")]
-	
 	/**
 	 * <p>AppInit is used to initialize an appliction, such as load config files and 
 	 * images, swf files and text files. 
@@ -57,35 +55,29 @@ package org.finalbug.data
 	 * @since 2010.12
 	 * @see org.finalbug.data.ConfigModel
 	 * @see org.finalbug.net.BitmapPool
-	 */	
+	 */
 	public class AppInit extends DataModel
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		private var resList:Array;
 		private var resTotalNum:uint;
 		private var resLoader:Loader;
-		
 		private var txtList:Array;
 		private var txtTotalNum:uint;
 		private var txtLoader:URLLoader;
-		
 		private var currentLoadName:String;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// CONSTRUCTOR.
-		//#######################################
-		
+		// #######################################
 		/**
 		 * Create an new AppInit object.
 		 */
@@ -93,11 +85,10 @@ package org.finalbug.data
 		{
 			super();
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * Start load confile file.
 		 * 
@@ -111,27 +102,25 @@ package org.finalbug.data
 			ConfigModel.instance.addEventListener(LoadEvent.LOAD_SUCCESS, loadedConfigHandler);
 			ConfigModel.instance.addEventListener(LoadEvent.LOAD_FAILED, loadConfigErrorHandler);
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function dispatchChange(str:String):void
 		{
 			var ee:DataEvent = new DataEvent(DataEvent.CHANGE_DATA);
 			ee.dataStatus = str;
 			this.dispatchEvent(ee);
 		}
-		
+
 		private function startLoadRes():void
 		{
 			dispatchChange("Loading res ...");
 			var res:Array = ConfigModel.instance.getConfig("loadRes");
-			if(res != null && res.length > 0)
+			if (res != null && res.length > 0)
 			{
 				resList = res;
 				resTotalNum = res.length;
@@ -142,15 +131,15 @@ package org.finalbug.data
 				startLoadTxt();
 			}
 		}
-		
+
 		private function loadRes():void
 		{
-			if(resList.length > 0)
+			if (resList.length > 0)
 			{
 				dispatchChange("Loading res ..." + resList.length + " / " + resTotalNum);
 				var str:String = resList.shift();
 				var index:uint = str.indexOf(":");
-				if(index == -1) loadRes();
+				if (index == -1) loadRes();
 				currentLoadName = str.substring(0, index).toString();
 				var resURL:String = str.substring(index + 1).toString();
 				//
@@ -164,12 +153,12 @@ package org.finalbug.data
 				startLoadTxt();
 			}
 		}
-		
+
 		private function startLoadTxt():void
 		{
 			dispatchChange("Loading txt ...");
 			var txt:Array = ConfigModel.instance.getConfig("loadTxt");
-			if(txt != null && txt.length > 0)
+			if (txt != null && txt.length > 0)
 			{
 				txtList = txt;
 				txtTotalNum = txt.length;
@@ -180,15 +169,15 @@ package org.finalbug.data
 				initEnd();
 			}
 		}
-		
+
 		private function loadTxt():void
 		{
-			if(txtList.length > 0)
+			if (txtList.length > 0)
 			{
 				dispatchChange("Loading txt ..." + txtList.length + " / " + txtTotalNum);
 				var str:String = txtList.shift();
 				var index:uint = str.indexOf(":");
-				if(index == -1) loadTxt();
+				if (index == -1) loadTxt();
 				currentLoadName = str.substring(0, index).toString();
 				var txtURL:String = str.substring(index + 1).toString();
 				//
@@ -201,30 +190,30 @@ package org.finalbug.data
 				initEnd();
 			}
 		}
-		
+
 		private function initEnd():void
 		{
 			dispatchChange("Init End");
 			var ee:DataEvent = new DataEvent(DataEvent.INIT_END);
 			this.dispatchEvent(ee);
 		}
-		
-		//#######################################
+
+		// #######################################
 		// HANDLER
-		//#######################################
-		
+		// #######################################
 		private function loadedConfigHandler(e:LoadEvent):void
 		{
 			dispatchChange("Loading image files...");
 			var images:Array = ConfigModel.instance.getConfig("loadImage");
-			if(images != null)
+			if (images != null)
 			{
 				var len:uint = images.length;
-				for(var i:uint = 0 ; i < len ; i++)
+				for (var i:uint = 0 ; i < len ; i++)
 				{
 					var str:String = images[i].toString();
 					var index:uint = str.indexOf(":");
-					if(index == -1) continue; // format error
+					if (index == -1) continue;
+					// format error
 					var name:String = str.substring(0, index);
 					var url:String = str.substring(index + 1);
 					BitmapPool.instance.addBitmap(name, url);
@@ -239,45 +228,45 @@ package org.finalbug.data
 				startLoadRes();
 			}
 		}
-		
+
 		private function loadConfigErrorHandler(e:LoadEvent):void
 		{
 			dispatchChange("Loading config failed.");
 		}
-		
+
 		private function loadBitmapHandler(e:LoadEvent):void
 		{
 			startLoadRes();
 		}
-		
+
 		private function loadBitmapErrorHandler(e:LoadEvent):void
 		{
 			dispatchChange("Loading image files failed.");
 		}
-		
+
 		private function loadingBitmapHandler(e:LoadEvent):void
 		{
 			var numStr:String = e.loadedNum + "/" + e.totalNum
 			dispatchChange("Loading image files..." + numStr);
 		}
-		
+
 		private function loadedResHandler(e:Event):void
 		{
 			ConfigModel.instance.res[currentLoadName] = resLoader.content;
 			loadRes();
 		}
-		
+
 		private function loadResErrorHandler(e:IOErrorEvent):void
 		{
 			dispatchChange("Loading res failed.");
 		}
-		
+
 		private function loadedTxtHandler(e:Event):void
 		{
 			ConfigModel.instance.txt[currentLoadName] = txtLoader.data;
 			loadTxt();
 		}
-		
+
 		private function loadTxtErrorHandler(e:IOErrorEvent):void
 		{
 			dispatchChange("Loading txt failed.");

@@ -1,13 +1,13 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.events
 {
 	import flash.events.Event;
@@ -18,7 +18,7 @@ package org.finalbug.events
 	 * 
 	 * @author Tang Bin
 	 * @since old version
-	 */	
+	 */
 	public class UIMouseEvent extends Event
 	{
 		/**
@@ -36,7 +36,6 @@ package org.finalbug.events
 		 * @eventType mouseReleaseOutside
 		 */
 		public static const MOUSE_RELEASE_OUTSIDE:String = "mouseReleaseOutside";
-		
 		/**
 		 * 
 		 * @eventType mouseStartDrag
@@ -52,20 +51,19 @@ package org.finalbug.events
 		 * @eventType mouseStopDrag
 		 */
 		public static const MOUSE_STOP_DRAG:String = "mouseStopDrag";
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		public var targetStatus:String = "";
-		
+
 		/**
 		 * 
 		 * @param type
 		 * @param bubbles
 		 * @param cancelable
 		 */
-		public function UIMouseEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
+		public function UIMouseEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false)
 		{
 			super(type, bubbles, cancelable);
 		}

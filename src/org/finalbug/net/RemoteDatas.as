@@ -1,13 +1,13 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.net
 {
 	import org.finalbug.data.SharedData;
@@ -24,9 +24,8 @@ package org.finalbug.net
 		 */
 		public function RemoteDatas()
 		{
-			
 		}
-		
+
 		/**
 		 * 
 		 * @param host
@@ -35,9 +34,8 @@ package org.finalbug.net
 		 */
 		public function connect(host:String, port:uint, application:String):void
 		{
-			
 		}
-		
+
 		/**
 		 * 
 		 * @param dataName
@@ -45,9 +43,8 @@ package org.finalbug.net
 		 */
 		public function listen(dataName:String, data:SharedData):void
 		{
-			
 		}
-		
+
 		/**
 		 * 
 		 * @param dataName
@@ -55,7 +52,6 @@ package org.finalbug.net
 		 */
 		public function stopListen(dataName:String, data:SharedData):void
 		{
-			
 		}
 	}
 }

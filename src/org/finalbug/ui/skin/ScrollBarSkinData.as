@@ -1,37 +1,35 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.ui.skin
 {
-	import flash.text.TextFormat;
-	import flash.utils.Dictionary;
-	
 	import org.finalbug.data.Status;
-	
+
+	import flash.utils.Dictionary;
+
 	/**
 	 * ScrollBarSkinData
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.12
-	 */	
+	 */
 	public class ScrollBarSkinData extends UISkinDataAbstract
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param args leftBtn, rightBtn, upBtn, downBtn, back, slider
 		 * 
-		 */		
+		 */
 		override public function bindChildren(...args):void
 		{
 			leftBtn = args[0] as Skin;
@@ -41,28 +39,27 @@ package org.finalbug.ui.skin
 			back = args[4] as Skin;
 			slider = args[5] as Skin;
 			//
-			if(leftBtn != null) bindStatusesToSkin(leftBtn, leftSkinData);
-			if(rightBtn != null) bindStatusesToSkin(rightBtn, rightSkinData);
-			if(upBtn != null) bindStatusesToSkin(upBtn, upSkinData);
-			if(downBtn != null) bindStatusesToSkin(downBtn, downSkinData);
-			if(back != null) bindStatusesToSkin(back, backSkinData);
-			if(slider != null) bindStatusesToSkin(slider, sliderSkinData);
+			if (leftBtn != null) bindStatusesToSkin(leftBtn, leftSkinData);
+			if (rightBtn != null) bindStatusesToSkin(rightBtn, rightSkinData);
+			if (upBtn != null) bindStatusesToSkin(upBtn, upSkinData);
+			if (downBtn != null) bindStatusesToSkin(downBtn, downSkinData);
+			if (back != null) bindStatusesToSkin(back, backSkinData);
+			if (slider != null) bindStatusesToSkin(slider, sliderSkinData);
 		}
-		
+
 		override public function changeStatus(status:String):void
 		{
-			if(leftBtn != null) leftBtn.status = status;
-			if(rightBtn != null) rightBtn.status = status;
-			if(upBtn != null) upBtn.status = status;
-			if(downBtn != null) downBtn.status = status;
-			if(back != null) back.status = status;
-			if(slider != null) slider.status = status;
+			if (leftBtn != null) leftBtn.status = status;
+			if (rightBtn != null) rightBtn.status = status;
+			if (upBtn != null) upBtn.status = status;
+			if (downBtn != null) downBtn.status = status;
+			if (back != null) back.status = status;
+			if (slider != null) slider.status = status;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		[Embed(source="/resources/skins/ScrollBarUpNormal.png")]
 		private var ScrollBarUpNormal:Class;
 		[Embed(source="/resources/skins/ScrollBarUpOver.png")]
@@ -71,7 +68,6 @@ package org.finalbug.ui.skin
 		private var ScrollBarUpDown:Class;
 		[Embed(source="/resources/skins/ScrollBarUpDisabled.png")]
 		private var ScrollBarUpDisable:Class;
-		
 		[Embed(source="/resources/skins/ScrollBarDownNormal.png")]
 		private var ScrollBarDownNormal:Class;
 		[Embed(source="/resources/skins/ScrollBarDownOver.png")]
@@ -80,7 +76,6 @@ package org.finalbug.ui.skin
 		private var ScrollBarDownDown:Class;
 		[Embed(source="/resources/skins/ScrollBarDownDisabled.png")]
 		private var ScrollBarDownDisable:Class;
-		
 		[Embed(source="/resources/skins/ScrollBarLeftNormal.png")]
 		private var ScrollBarLeftNormal:Class;
 		[Embed(source="/resources/skins/ScrollBarLeftOver.png")]
@@ -89,7 +84,6 @@ package org.finalbug.ui.skin
 		private var ScrollBarLeftDown:Class;
 		[Embed(source="/resources/skins/ScrollBarLeftDisabled.png")]
 		private var ScrollBarLeftDisable:Class;
-		
 		[Embed(source="/resources/skins/ScrollBarRightNormal.png")]
 		private var ScrollBarRightNormal:Class;
 		[Embed(source="/resources/skins/ScrollBarRightOver.png")]
@@ -98,15 +92,12 @@ package org.finalbug.ui.skin
 		private var ScrollBarRightDown:Class;
 		[Embed(source="/resources/skins/ScrollBarRightDisabled.png")]
 		private var ScrollBarRightDisable:Class;
-		
 		[Embed(source="/resources/skins/ScrollBarSlider.png")]
 		private var ScrollBarSlider:Class;
-		
 		[Embed(source="/resources/skins/ScrollBarBackNormal.png")]
 		private var ScrollBarBackNormal:Class;
 		[Embed(source="/resources/skins/ScrollBarBackDisabled.png")]
 		private var ScrollBarBackDisable:Class;
-		
 		// skin elements
 		private var leftBtn:Skin;
 		private var rightBtn:Skin;
@@ -114,7 +105,6 @@ package org.finalbug.ui.skin
 		private var downBtn:Skin;
 		private var back:Skin;
 		private var slider:Skin;
-		
 		// skin data
 		private var leftSkinData:Dictionary;
 		private var rightSkinData:Dictionary;
@@ -122,15 +112,13 @@ package org.finalbug.ui.skin
 		private var downSkinData:Dictionary;
 		private var backSkinData:Dictionary;
 		private var sliderSkinData:Dictionary;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// CONSTRUCTOR.
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 */
@@ -167,18 +155,11 @@ package org.finalbug.ui.skin
 			sliderSkinData = new Dictionary();
 			sliderSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new ScrollBarSlider(), true);
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
-		public function setSkinStyle(status:String,
-									 leftSkin:SkinData = null,
-									 rightSkin:SkinData = null,
-									 upSkin:SkinData = null,
-									 downSkin:SkinData = null,
-									 backSkin:SkinData = null,
-									 sliderSkin:SkinData = null):void
+		// #######################################
+		public function setSkinStyle(status:String, leftSkin:SkinData = null, rightSkin:SkinData = null, upSkin:SkinData = null, downSkin:SkinData = null, backSkin:SkinData = null, sliderSkin:SkinData = null):void
 		{
 			leftSkinData[status] = leftSkin;
 			rightSkinData[status] = rightSkin;
@@ -187,17 +168,16 @@ package org.finalbug.ui.skin
 			backSkinData[status] = backSkin;
 			sliderSkinData[status] = sliderSkin;
 		}
-		
-		//#######################################
+		// #######################################
 		// PROTECTED
-		//#######################################
+		// #######################################
 		
-		//#######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
+		// #######################################
 		
-		//#######################################
+		// #######################################
 		// HANDLER
-		//#######################################
+		// #######################################
 	}
 }

@@ -1,48 +1,46 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.utils
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.utils.Dictionary;
-	
+
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.style.LayoutStyle;
-	
+
 	/**
 	 * LayoutManager
 	 * 
 	 * @author Tang Bin
 	 * @since 2010
-	 */	
+	 */
 	public class LayoutManager
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// SINGLETON
-		//#######################################
-		
+		// #######################################
 		private static var instanceable:Boolean = false;
 		private static var lm:LayoutManager;
-		
+
 		/**
 		 * 
 		 * @return 
 		 */
 		public static function get instance():LayoutManager
 		{
-			if(lm == null)
+			if (lm == null)
 			{
 				instanceable = true;
 				lm = new LayoutManager();
@@ -50,37 +48,33 @@ package org.finalbug.utils
 			}
 			return lm;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		private var list:Dictionary = new Dictionary();
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// CONSTRUCTOR.
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @throws DataError
 		 */
 		public function LayoutManager()
 		{
-			if(!instanceable)
+			if (!instanceable)
 			{
 				throw new DataError(DataError.SINGLETON);
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param target
@@ -91,7 +85,7 @@ package org.finalbug.utils
 			list[target] = data;
 			data.owner = target;
 		}
-		
+
 		/**
 		 * 
 		 * @param target
@@ -99,30 +93,30 @@ package org.finalbug.utils
 		 */
 		public function removeLayout(target:DisplayObject):void
 		{
-			if(list[target] == null)
+			if (list[target] == null)
 			{
 				throw new DataError(DataError.DATA_NULL);
 			}
 			list[target] = null;
 			delete list[target];
 		}
-		
+
 		/**
 		 * 
 		 * @param root
 		 */
 		public function update(root:DisplayObject):void
 		{
-			if(root != null)
+			if (root != null)
 			{
-				if(list[root] != null)
+				if (list[root] != null)
 				{
 					updateLayout(root);
 				}
-				if(root is DisplayObjectContainer)
+				if (root is DisplayObjectContainer)
 				{
 					var rootObj:DisplayObjectContainer = root as DisplayObjectContainer;
-					for(var i:uint = rootObj.numChildren ; --i >= 0 ; )
+					for (var i:uint = rootObj.numChildren ; --i >= 0 ; )
 					{
 						var obj:DisplayObject = rootObj.getChildAt(i) as DisplayObject;
 						update(obj);
@@ -130,15 +124,13 @@ package org.finalbug.utils
 				}
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function updateLayout(target:DisplayObject):void
 		{
 			var data:LayoutStyle = list[target] as LayoutStyle;
@@ -147,9 +139,8 @@ package org.finalbug.utils
 			target.x = data.x;
 			target.y = data.y;
 		}
-		
-		//#######################################
+		// #######################################
 		// HANDLER
-		//#######################################
+		// #######################################
 	}
 }

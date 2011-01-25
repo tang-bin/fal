@@ -1,56 +1,50 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.data
 {
 	import flash.utils.Dictionary;
-	
+
 	import org.finalbug.data.DataModel;
 	import org.finalbug.data.FileData;
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.glazes.Image;
-	
+
 	/**
 	 * FolderData defines the data for one folder.
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.12
-	 */	
+	 */
 	public class FolderData extends DataModel
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		private var _name:String = "";
 		private var _path:String = "";
 		private var _icon:Image;
-		
 		private var _dirFirst:Boolean = true;
 		private var _showHide:Boolean = false;
 		private var _sortBy:String = "name";
 		private var _descOrder:Boolean = false;
-		
 		private var files:Dictionary = new Dictionary();
 		private var fileNames:Array = new Array();
-		
 		private var _currentSelected:Dictionary = new Dictionary();
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @return folder's name
@@ -59,6 +53,7 @@ package org.finalbug.data
 		{
 			return _name;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -67,7 +62,7 @@ package org.finalbug.data
 		{
 			// TODO
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -76,6 +71,7 @@ package org.finalbug.data
 		{
 			return _path;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -84,6 +80,7 @@ package org.finalbug.data
 		{
 			// TODO
 		}
+
 		/**
 		 * 
 		 * @return 
@@ -92,6 +89,7 @@ package org.finalbug.data
 		{
 			return _icon;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -100,7 +98,7 @@ package org.finalbug.data
 		{
 			// TODO
 		}
-		
+
 		/**
 		 * Number of files in folder.
 		 * 
@@ -110,7 +108,7 @@ package org.finalbug.data
 		{
 			return fileNames.length;
 		}
-		
+
 		/**
 		 * @return Selected files in folder.
 		 */
@@ -118,7 +116,7 @@ package org.finalbug.data
 		{
 			return _currentSelected;
 		}
-		
+
 		/**
 		 * 
 		 * @param value
@@ -127,11 +125,10 @@ package org.finalbug.data
 		{
 			// TODO:
 		}
-		
-		//#######################################
+
+		// #######################################
 		// CONSTRUCTOR.
-		//#######################################
-		
+		// #######################################
 		/**
 		 * Create an new FolderData.
 		 */
@@ -139,11 +136,10 @@ package org.finalbug.data
 		{
 			super();
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * Add a file into folder.(data operate)
 		 * 
@@ -153,7 +149,7 @@ package org.finalbug.data
 		public function addFile(file:FileData):void
 		{
 			var fileName:String = file.name;
-			if(files[fileName] != null)
+			if (files[fileName] != null)
 			{
 				throw new DataError(DataError.DATA_EXIST);
 			}
@@ -161,7 +157,7 @@ package org.finalbug.data
 			fileNames.push(fileName);
 			fileNames.sort();
 		}
-		
+
 		/**
 		 * 
 		 * @param file
@@ -171,7 +167,7 @@ package org.finalbug.data
 		{
 			var fileName:String = file.name;
 			var thisFile:FileData = files[fileName] as FileData;
-			if(thisFile != null && thisFile == file)
+			if (thisFile != null && thisFile == file)
 			{
 				files[fileName] = null;
 				delete files[fileName];
@@ -182,7 +178,7 @@ package org.finalbug.data
 				throw new DataError(DataError.DATA_NULL);
 			}
 		}
-		
+
 		/**
 		 * Remove all files in folder.(data operate)
 		 */
@@ -192,7 +188,7 @@ package org.finalbug.data
 			fileNames = new Array();
 			currentSelected = new Dictionary();
 		}
-		
+
 		/**
 		 * Check if one file is include in folder.
 		 * 
@@ -204,7 +200,7 @@ package org.finalbug.data
 			var thisFile:FileData = files[file.name] as FileData;
 			return thisFile != null && thisFile == file;
 		}
-		
+
 		/**
 		 * Get file data by file's name.
 		 * 
@@ -213,45 +209,43 @@ package org.finalbug.data
 		 */
 		public function getFileByName(name:String):FileData
 		{
-			return files[name] as FileData;;
+			return files[name] as FileData;
+			;
 		}
-		
+
 		/**
 		 * Looping run the function for each files in folder.
 		 * 
 		 * @param func Function(file:DirectoryFileData, index:uint, length:uint):void
-		 */		
+		 */
 		public function forEachFile(func:Function):void
 		{
 			var len:uint = fileNames.length;
-			for(var i:uint = 0 ; i < len ; i++)
+			for (var i:uint = 0 ; i < len ; i++)
 			{
 				func.call(this, files[fileNames[i]] as FileData, i, len);
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function removeFileName(fileName:String):void
 		{
-			for(var i:uint = fileNames.length ; --i >= 0 ; )
+			for (var i:uint = fileNames.length ; --i >= 0 ; )
 			{
-				if(fileNames[i] == fileName)
+				if (fileNames[i] == fileName)
 				{
 					fileNames.splice(i, 1);
 					break;
 				}
 			}
 		}
-		
-		//#######################################
+		// #######################################
 		// HANDLER
-		//#######################################
+		// #######################################
 	}
 }

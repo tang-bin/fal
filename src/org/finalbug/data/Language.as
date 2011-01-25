@@ -1,41 +1,38 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
-
+// ##########################################################
 package org.finalbug.data
 {
 	import flash.system.Capabilities;
-	
+
 	import org.finalbug.errors.DataError;
 	import org.finalbug.utils.DataUtil;
-	
+
 	/**
 	 * Language defines usual language strings and language type.
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.12
-	 */	
+	 */
 	/**
 	 * 
 	 * @author lenovo
 	 */
 	public class Language extends DataModel
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @default OK
@@ -56,13 +53,11 @@ package org.finalbug.data
 		 * @default Cancel
 		 */
 		public static var cancel:String = "Cancel";
-		
 		private static var _type:String = "en";
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @return 
@@ -71,17 +66,18 @@ package org.finalbug.data
 		{
 			return type
 		}
+
 		/**
 		 * 
 		 * @param value
 		 */
 		public static function set type(value:String):void
 		{
-			if(!DataUtil.included(value, "zh-CN", "en"))
+			if (!DataUtil.included(value, "zh-CN", "en"))
 			{
 				value = "en";
 			}
-			if(value != _type)
+			if (value != _type)
 			{
 				_type = value;
 				switch(_type)
@@ -101,11 +97,10 @@ package org.finalbug.data
 				}
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// CONSTRUCTOR.
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @throws DataError Throw DataError.STATIC_CLASS error when try to instance Language object.
@@ -115,11 +110,10 @@ package org.finalbug.data
 		{
 			throw new DataError(DataError.STATIC_CLASS);
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param type
@@ -129,23 +123,28 @@ package org.finalbug.data
 		{
 			switch(type)
 			{
-				case "zh-CN":return "简体中文";break;
-				case "en":return "English";break;
-				default: return "Unknown";break;
+				case "zh-CN":
+					return "简体中文";
+					break;
+				case "en":
+					return "English";
+					break;
+				default:
+					return "Unknown";
+					break;
 			}
 			return null;
 		}
-		
-		//#######################################
+		// #######################################
 		// PROTECTED
-		//#######################################
+		// #######################################
 		
-		//#######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
+		// #######################################
 		
-		//#######################################
+		// #######################################
 		// HANDLER
-		//#######################################
+		// #######################################
 	}
 }

@@ -1,13 +1,13 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.net
 {
 	import flash.events.StatusEvent;
@@ -15,22 +15,20 @@ package org.finalbug.net
 	import flash.net.ObjectEncoding;
 	import flash.utils.ByteArray;
 	import flash.utils.Endian;
-	
+
 	/**
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.08
-	 */	
+	 */
 	public class LocalConnector
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @default 
@@ -41,23 +39,20 @@ package org.finalbug.net
 		 * @default 
 		 */
 		public var sendFailedHandler:Function;
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var _connected:Boolean;
-		
 		private var bytes:ByteArray;
 		private var localConn:LocalConnection;
 		private var remoteConn:LocalConnection;
 		private var localName:String;
 		private var remoteName:String;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @return 
@@ -66,11 +61,10 @@ package org.finalbug.net
 		{
 			return this._connected;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param localName
@@ -83,11 +77,10 @@ package org.finalbug.net
 			this.localName = localName;
 			this.remoteName = remoteName;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param data
@@ -98,25 +91,25 @@ package org.finalbug.net
 			bytes.endian = Endian.BIG_ENDIAN;
 			bytes.objectEncoding = ObjectEncoding.AMF3;
 			bytes.writeObject(data);
-			
+
 			var byteLimit:uint = 40 * 1000;
 			var totalBytes:uint = bytes.length;
 			var i:int;
-			var c:int = totalBytes/byteLimit;
-			var r:uint = totalBytes%byteLimit;
-			
+			var c:int = totalBytes / byteLimit;
+			var r:uint = totalBytes % byteLimit;
+
 			var count:int = c + (r > 0 ? 1 : 0);
-			
-			for(i = 0; i < c; i ++)
+
+			for (i = 0; i < c; i++)
 			{
 				this.sendData(bytes, i * byteLimit, byteLimit, i, count);
 			}
-			if(r > 0)
+			if (r > 0)
 			{
 				this.sendData(bytes, c * byteLimit, r, c, count);
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @param item
@@ -127,7 +120,7 @@ package org.finalbug.net
 		{
 			this.getData(item, index, count);
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -136,7 +129,7 @@ package org.finalbug.net
 		{
 			return "onReceiveData";
 		}
-		
+
 		/**
 		 * 
 		 */
@@ -144,11 +137,11 @@ package org.finalbug.net
 		{
 			this.remoteConn = new LocalConnection();
 			this.remoteConn.addEventListener(StatusEvent.STATUS, sendStatusHandler);
-			
+
 			this.localConn = new LocalConnection();
 			this.localConn.allowDomain("*");
 			this.localConn.client = this;
-			
+
 			try
 			{
 				this.localConn.connect(localName);
@@ -159,32 +152,30 @@ package org.finalbug.net
 			}
 			this._connected = true;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function getData(item:Object, indexObj:Object, countObj:Object):void
 		{
 			var index:int = indexObj as int;
 			var count:int = countObj as int;
-			if(index == 0) this.bytes = new ByteArray();
-			
+			if (index == 0) this.bytes = new ByteArray();
+
 			var temp:ByteArray = item as ByteArray;
 			bytes.writeBytes(temp, 0, temp.bytesAvailable);
-			
-			if(index == (count - 1))
+
+			if (index == (count - 1))
 			{
 				bytes.position = 0;
 				var obj:Object = bytes.readObject();
-				if(this.receiveHandler != null) this.receiveHandler(obj);
+				if (this.receiveHandler != null) this.receiveHandler(obj);
 			}
 		}
-		
+
 		private function sendData(bytes:ByteArray, offset:uint, length:uint, index:Object, count:Object):void
 		{
 			var tempBytes:ByteArray = new ByteArray();
@@ -192,26 +183,26 @@ package org.finalbug.net
 			tempBytes.objectEncoding = ObjectEncoding.AMF3;
 			tempBytes.writeBytes(bytes, offset, length);
 			tempBytes.position = 0;
-			
+
 			this.doSendData(tempBytes, index, count);
 		}
-		
+
 		private function doSendData(obj:Object, index:Object, count:Object):void
 		{
 			remoteConn.send(remoteName, this.getDataHandler(), obj, index, count);
 		}
-		
-		//#######################################
+
+		// #######################################
 		// HANDLER
-		//#######################################
-		
+		// #######################################
 		private function sendStatusHandler(event:StatusEvent):void
 		{
-			switch (event.level) {
+			switch (event.level)
+			{
 				case "status":
 					break;
 				case "error":
-					if(sendFailedHandler != null) sendFailedHandler.call(this);
+					if (sendFailedHandler != null) sendFailedHandler.call(this);
 					break;
 			}
 		}

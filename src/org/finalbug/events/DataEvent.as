@@ -1,34 +1,33 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.events
 {
 	import flash.events.Event;
-	
+
 	/**
 	 * DataEvent
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.8
-	 */	
+	 */
 	public class DataEvent extends Event
 	{
 		/**
 		 * @eventType ChangeData
-		 */		
+		 */
 		public static const CHANGE_DATA:String = "ChangeData";
 		/**
 		 * @eventType initEnd
 		 */
 		public static const INIT_END:String = "initEnd";
-		
 		/**
 		 * 
 		 * @default 
@@ -54,7 +53,6 @@ package org.finalbug.events
 		 * @default 
 		 */
 		public var dataStatus:String = "";
-		
 		// for tree model
 		/**
 		 * 
@@ -86,23 +84,21 @@ package org.finalbug.events
 		 * @eventType treeChange
 		 */
 		public static const TREE_CHANGE:String = "treeChange";
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		public var treeNode:Object;
-		
+
 		/**
 		 * 
 		 * @param type
 		 * @param bubbles
 		 * @param cancelable
 		 */
-		public function DataEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
+		public function DataEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false)
 		{
 			super(type, bubbles, cancelable);
 		}
-		
 	}
 }

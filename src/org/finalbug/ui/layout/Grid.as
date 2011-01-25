@@ -1,13 +1,13 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.ui.layout
 {
 	import org.finalbug.ui.control.Container;
@@ -16,25 +16,22 @@ package org.finalbug.ui.layout
 	/**
 	 * @author Tang Bin
 	 * @since 2010.10
-	 */	
+	 */
 	public class Grid extends Container
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		private var cells:Array = new Array();
 		private var _rows:Array = new Array();
-		private var _columns:Array = new Array(); 
-		
-		//#######################################
+		private var _columns:Array = new Array();
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @return 
@@ -43,6 +40,7 @@ package org.finalbug.ui.layout
 		{
 			return _rows;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -51,7 +49,7 @@ package org.finalbug.ui.layout
 		{
 			_rows = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -60,6 +58,7 @@ package org.finalbug.ui.layout
 		{
 			return _columns;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -68,11 +67,10 @@ package org.finalbug.ui.layout
 		{
 			_columns = value;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 */
@@ -80,7 +78,7 @@ package org.finalbug.ui.layout
 		{
 			super();
 		}
-		
+
 		/**
 		 * 
 		 * @param row
@@ -91,11 +89,10 @@ package org.finalbug.ui.layout
 		{
 			return cells[row][column];
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 */
@@ -107,17 +104,17 @@ package org.finalbug.ui.layout
 			var cellHeight:Number = 0;
 			//
 			var rowNum:uint = rows.length;
-			for(var yIndex:uint = 0 ; yIndex < rowNum ; yIndex++)
+			for (var yIndex:uint = 0 ; yIndex < rowNum ; yIndex++)
 			{
-				if(cells[yIndex] == null) cells[yIndex] = new Array();
+				if (cells[yIndex] == null) cells[yIndex] = new Array();
 				cellHeight = getCellHeight(yIndex);
 				trace("cell height", cellHeight);
 				//
 				var colNum:uint = columns.length;
-				for(var xIndex:uint = 0 ; xIndex < colNum ; xIndex++)
+				for (var xIndex:uint = 0 ; xIndex < colNum ; xIndex++)
 				{
 					cellWidth = getCellWidth(xIndex);
-					if(cells[yIndex][xIndex] == null)
+					if (cells[yIndex][xIndex] == null)
 					{
 						cells[yIndex][xIndex] = new GridCell();
 						this.addChild(cells[yIndex][xIndex]);
@@ -128,7 +125,7 @@ package org.finalbug.ui.layout
 					cell.resetPosition(currentX, currentY, cellWidth, cellHeight);
 					cell.updated = true;
 					//
-					if(xIndex == colNum - 1)
+					if (xIndex == colNum - 1)
 					{
 						currentX = 0;
 						currentY += cellHeight;
@@ -140,13 +137,13 @@ package org.finalbug.ui.layout
 				}
 			}
 			// remove cells
-			for(var i:uint = 0 ; i < rowNum ; i++)
+			for (var i:uint = 0 ; i < rowNum ; i++)
 			{
-				for(var j:uint = 0 ; j < rowNum ; j++)
+				for (var j:uint = 0 ; j < rowNum ; j++)
 				{
 					var checkCell:GridCell = cells[i][j] as GridCell;
-					if(checkCell == null) continue;
-					if(checkCell.updated)
+					if (checkCell == null) continue;
+					if (checkCell.updated)
 					{
 						checkCell.updated = false;
 					}
@@ -159,19 +156,17 @@ package org.finalbug.ui.layout
 			}
 			this.pack();
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function getCellWidth(index:uint):Number
 		{
 			var val:String = columns[index];
-			if(Style.validLayoutValue(val))
+			if (Style.validLayoutValue(val))
 			{
 				var parentWidth:Number = this.parent == null ? 0 : this.parent.width;
 				var num:Number = Style.getLayoutValue(val, parentWidth);
@@ -179,11 +174,11 @@ package org.finalbug.ui.layout
 			}
 			return 0;
 		}
-		
+
 		private function getCellHeight(index:uint):Number
 		{
 			var val:String = rows[index];
-			if(Style.validLayoutValue(val))
+			if (Style.validLayoutValue(val))
 			{
 				var parentHeight:Number = this.parent == null ? 0 : this.parent.height;
 				var num:Number = Style.getLayoutValue(val, parentHeight);
@@ -191,9 +186,8 @@ package org.finalbug.ui.layout
 			}
 			return 0;
 		}
-		
-		//#######################################
+		// #######################################
 		// HANDLER
-		//#######################################
+		// #######################################
 	}
 }

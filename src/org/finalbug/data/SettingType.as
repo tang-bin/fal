@@ -1,13 +1,13 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.data
 {
 	/**
@@ -15,7 +15,7 @@ package org.finalbug.data
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.12
-	 */	
+	 */
 	public class SettingType
 	{
 		/**
@@ -36,7 +36,6 @@ package org.finalbug.data
 		 * @default ALL
 		 */
 		public static const ALL:String = "ALL";
-		
 		/**
 		 * Always measn the tasks are running one by one.
 		 * 
@@ -48,6 +47,6 @@ package org.finalbug.data
 		 * 
 		 * @default 
 		 */
-		public static const CONCURRENT:String = "concurrent"; 
+		public static const CONCURRENT:String = "concurrent";
 	}
 }

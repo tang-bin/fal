@@ -1,20 +1,20 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.ui
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.Point;
-	
+
 	import org.finalbug.data.Position;
 	import org.finalbug.events.DisplayEvent;
 	import org.finalbug.events.MotionEvent;
@@ -24,7 +24,7 @@ package org.finalbug.ui
 	import org.finalbug.utils.MathUtil;
 	import org.finalbug.utils.motion.MoveMotion;
 	import org.finalbug.utils.motion.SizeMotion;
-	
+
 	/**
 	 * Bin is the basic class for all other display object used in fb-aslib.
 	 * This class will override displayObjec's width and height.
@@ -36,10 +36,9 @@ package org.finalbug.ui
 	 */
 	public class Bin extends Sprite
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
+		// #######################################
 		/**
 		 * @default 0
 		 */
@@ -47,7 +46,7 @@ package org.finalbug.ui
 		{
 			return _layoutStyle.width;
 		}
-		
+
 		/**
 		 * Set Bin's width.
 		 * Class Bin's width is overrided, change width value will not change the
@@ -59,12 +58,12 @@ package org.finalbug.ui
 		override public function set width(value:Number):void
 		{
 			var newWidth:Number = MathUtil.getNumArea(value, minWidth, maxWidth);
-			if(newWidth != this.width)
+			if (newWidth != this.width)
 			{
 				_layoutStyle.setValue("width", newWidth);
 			}
 		}
-		
+
 		/**
 		 * @default 0
 		 */
@@ -72,7 +71,7 @@ package org.finalbug.ui
 		{
 			return _layoutStyle.height;
 		}
-		
+
 		/**
 		 * Set Bin's height.
 		 * Class Bin's height is overrided, change height value will not change the
@@ -84,12 +83,12 @@ package org.finalbug.ui
 		override public function set height(value:Number):void
 		{
 			var newHeight:Number = MathUtil.getNumArea(value, minHeight, maxHeight);
-			if(newHeight != this.height)
+			if (newHeight != this.height)
 			{
 				_layoutStyle.setValue("height", newHeight);
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @param value
@@ -98,7 +97,7 @@ package org.finalbug.ui
 		{
 			_layoutStyle.setValue("left", value);
 		}
-		
+
 		/**
 		 * 
 		 * @param value
@@ -107,7 +106,7 @@ package org.finalbug.ui
 		{
 			_layoutStyle.setValue("top", value);
 		}
-		
+
 		/**
 		 * 
 		 * @param child
@@ -115,12 +114,12 @@ package org.finalbug.ui
 		 */
 		override public function addChild(child:DisplayObject):DisplayObject
 		{
-			var child:DisplayObject = super.addChild(child);
+			var addedChild:DisplayObject = super.addChild(child);
 			dispatchChildChanged();
-			checkChildResizeAndReposition(child);
-			return child;
+			checkChildResizeAndReposition(addedChild);
+			return addedChild;
 		}
-		
+
 		/**
 		 * 
 		 * @param child
@@ -129,12 +128,12 @@ package org.finalbug.ui
 		 */
 		override public function addChildAt(child:DisplayObject, index:int):DisplayObject
 		{
-			var child:DisplayObject = super.addChildAt(child, index);
+			var addedChild:DisplayObject = super.addChildAt(child, index);
 			dispatchChildChanged();
-			checkChildResizeAndReposition(child);
-			return child;
+			checkChildResizeAndReposition(addedChild);
+			return addedChild;
 		}
-		
+
 		/**
 		 * 
 		 * @param child
@@ -142,12 +141,12 @@ package org.finalbug.ui
 		 */
 		override public function removeChild(child:DisplayObject):DisplayObject
 		{
-			var child:DisplayObject = super.removeChild(child);
+			var removedChild:DisplayObject = super.removeChild(child);
 			dispatchChildChanged();
-			checkChildResizeAndReposition(child);
-			return child;
+			checkChildResizeAndReposition(removedChild);
+			return removedChild;
 		}
-		
+
 		/**
 		 * 
 		 * @param index
@@ -160,7 +159,7 @@ package org.finalbug.ui
 			checkChildResizeAndReposition(child);
 			return child;
 		}
-		
+
 		/**
 		 * 
 		 * @param child1
@@ -171,7 +170,7 @@ package org.finalbug.ui
 			super.swapChildren(child1, child2);
 			dispatchChildChanged();
 		}
-		
+
 		/**
 		 * 
 		 * @param index1
@@ -182,52 +181,42 @@ package org.finalbug.ui
 			super.swapChildrenAt(index1, index2);
 			dispatchChildChanged();
 		}
-		
-		//#######################################
+
+		// #######################################
 		// DEFINE
-		//#######################################
-		
-		private const SMOOTH_DELAY:Number=30;
-		
+		// #######################################
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var sizeChanged:Boolean = true;
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var positionChanged:Boolean = true;
-		
 		/**
 		 *
 		 * @default null
 		 */
 		protected var _fillStyle:FillStyle;
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var _layoutStyle:LayoutStyle;
-		
-		private var _maxWidth:Number=4000;
-		private var _maxHeight:Number=4000;
-		private var _minWidth:Number=0;
-		private var _minHeight:Number=0;
-		
+		private var _maxWidth:Number = 4000;
+		private var _maxHeight:Number = 4000;
+		private var _minWidth:Number = 0;
+		private var _minHeight:Number = 0;
 		private var moveMotion:MoveMotion;
 		private var sizeMotion:SizeMotion;
-		
 		private var _controlPoint:Point = new Point(0, 0);
 		private var _controlPointType:String = "";
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @return 
@@ -236,7 +225,7 @@ package org.finalbug.ui
 		{
 			return _layoutStyle.getValue("left");
 		}
-		
+
 		/**
 		 * 
 		 * @param value
@@ -245,7 +234,7 @@ package org.finalbug.ui
 		{
 			_layoutStyle.setValue("left", value);
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -254,7 +243,7 @@ package org.finalbug.ui
 		{
 			return _layoutStyle.getValue("right");
 		}
-		
+
 		/**
 		 * 
 		 * @param value
@@ -263,7 +252,7 @@ package org.finalbug.ui
 		{
 			_layoutStyle.setValue("right", value);
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -272,7 +261,7 @@ package org.finalbug.ui
 		{
 			return _layoutStyle.getValue("top");
 		}
-		
+
 		/**
 		 * 
 		 * @param value
@@ -281,7 +270,7 @@ package org.finalbug.ui
 		{
 			_layoutStyle.setValue("top", value);
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -290,7 +279,7 @@ package org.finalbug.ui
 		{
 			return _layoutStyle.getValue("bottom");
 		}
-		
+
 		/**
 		 * 
 		 * @param value
@@ -299,7 +288,7 @@ package org.finalbug.ui
 		{
 			_layoutStyle.setValue("bottom", value);
 		}
-		
+
 		/**
 		 * 
 		 * @param value
@@ -309,7 +298,7 @@ package org.finalbug.ui
 			var str:String = Math.round(value * 100).toString() + "%";
 			_layoutStyle.setValue("width", str);
 		}
-		
+
 		/**
 		 * 
 		 * @param value
@@ -319,7 +308,7 @@ package org.finalbug.ui
 			var str:String = Math.round(value * 100).toString() + "%";
 			_layoutStyle.setValue("height", str);
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -328,7 +317,7 @@ package org.finalbug.ui
 		{
 			return _layoutStyle.getValue("horizontal");
 		}
-		
+
 		/**
 		 * 
 		 * @param value
@@ -337,7 +326,7 @@ package org.finalbug.ui
 		{
 			_layoutStyle.setValue("horizontal", value);
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -346,7 +335,7 @@ package org.finalbug.ui
 		{
 			return _layoutStyle.getValue("vertical");
 		}
-		
+
 		/**
 		 * 
 		 * @param value
@@ -355,7 +344,7 @@ package org.finalbug.ui
 		{
 			_layoutStyle.setValue("vertical", value);
 		}
-		
+
 		/**
 		 *
 		 * @return
@@ -364,7 +353,7 @@ package org.finalbug.ui
 		{
 			return _fillStyle;
 		}
-		
+
 		/**
 		 *
 		 * @param value
@@ -377,7 +366,7 @@ package org.finalbug.ui
 				drawBg();
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -386,20 +375,20 @@ package org.finalbug.ui
 		{
 			return _layoutStyle;
 		}
-		
+
 		/**
 		 * 
 		 * @param value
 		 */
 		public function set layoutStyle(value:LayoutStyle):void
 		{
-			if(_layoutStyle != value)
+			if (_layoutStyle != value)
 			{
 				_layoutStyle = value;
 				this.updateByLayout();
 			}
 		}
-		
+
 		/**
 		 * controlPoint is the point used to control the Bin object.
 		 * You can set the position, rotate the object by it's controlPoint.
@@ -410,7 +399,7 @@ package org.finalbug.ui
 			accountControlPoint();
 			return _controlPoint;
 		}
-		
+
 		/**
 		 *
 		 * @param value
@@ -420,7 +409,7 @@ package org.finalbug.ui
 			_controlPointType = "";
 			_controlPoint = value;
 		}
-		
+
 		/**
 		 * The x coordition value of controlPoint from object's parent.
 		 */
@@ -428,7 +417,7 @@ package org.finalbug.ui
 		{
 			return this.x + controlPoint.x;
 		}
-		
+
 		/**
 		 *
 		 * @param value
@@ -437,7 +426,7 @@ package org.finalbug.ui
 		{
 			this.x = value - controlPoint.x;
 		}
-		
+
 		/**
 		 * The y coordition value of controlPoint from object's parent.
 		 */
@@ -445,16 +434,16 @@ package org.finalbug.ui
 		{
 			return this.y + controlPoint.y;
 		}
-		
+
 		/**
 		 *
 		 * @param value
 		 */
 		public function set controlY(value:Number):void
 		{
-			this.y=value - controlPoint.y;
+			this.y = value - controlPoint.y;
 		}
-		
+
 		/**
 		 * The max width value of object.
 		 * @default 4000
@@ -463,20 +452,20 @@ package org.finalbug.ui
 		{
 			return _maxWidth;
 		}
-		
+
 		/**
 		 *
 		 * @param value
 		 */
 		public function set maxWidth(value:Number):void
 		{
-			_maxWidth=value;
+			_maxWidth = value;
 			if (this.width > _maxWidth)
 			{
 				this.width = _maxWidth;
 			}
 		}
-		
+
 		/**
 		 * The max height value of object.
 		 * @default 4000
@@ -485,20 +474,20 @@ package org.finalbug.ui
 		{
 			return _maxHeight;
 		}
-		
+
 		/**
 		 *
 		 * @param value
 		 */
 		public function set maxHeight(value:Number):void
 		{
-			_maxHeight=value;
+			_maxHeight = value;
 			if (this.height > _maxHeight)
 			{
-				this.height=_maxHeight;
+				this.height = _maxHeight;
 			}
 		}
-		
+
 		/**
 		 * The min width value of object.
 		 * @default 0
@@ -507,20 +496,20 @@ package org.finalbug.ui
 		{
 			return _minWidth;
 		}
-		
+
 		/**
 		 *
 		 * @param value
 		 */
 		public function set minWidth(value:Number):void
 		{
-			_minWidth=Math.max(value, 0);
+			_minWidth = Math.max(value, 0);
 			if (this.width < _minWidth)
 			{
 				this.width = _minWidth;
 			}
 		}
-		
+
 		/**
 		 * The min height value of object.
 		 * @default 0
@@ -529,24 +518,23 @@ package org.finalbug.ui
 		{
 			return _minHeight;
 		}
-		
+
 		/**
 		 *
 		 * @param value
 		 */
 		public function set minHeight(value:Number):void
 		{
-			_minHeight=Math.max(value, 0);
+			_minHeight = Math.max(value, 0);
 			if (this.height < _minHeight)
 			{
 				this.height = _minHeight;
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
+		// #######################################
 		/**
 		 * Create an new Bin object.
 		 */
@@ -560,11 +548,10 @@ package org.finalbug.ui
 			// for first added to stage
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * Change Bin's size to target width and height immediately.
 		 * run updateSize to reisze.
@@ -576,13 +563,13 @@ package org.finalbug.ui
 		{
 			var newWidth:Number = MathUtil.getNumArea(width, this.minWidth, this.maxWidth);
 			var newHeight:Number = MathUtil.getNumArea(height, this.minHeight, this.maxHeight);
-			if(newWidth != this.width || newHeight != this.height)
+			if (newWidth != this.width || newHeight != this.height)
 			{
 				_layoutStyle.setValue("width", width, true);
 				_layoutStyle.setValue("height", height);
 			}
 		}
-		
+
 		/**
 		 * Zoom object's size to target width and height smoothly.
 		 * Using Motion classes.
@@ -595,21 +582,21 @@ package org.finalbug.ui
 		{
 			if (this.sizeMotion == null)
 			{
-				this.sizeMotion=new SizeMotion(this);
+				this.sizeMotion = new SizeMotion(this);
 				this.sizeMotion.addEventListener(MotionEvent.MOTION_STOP, stopZoomHandler);
 			}
 			else if (this.sizeMotion.running)
 			{
 				this.sizeMotion.stop();
 			}
-			this.sizeMotion.widthFrom = this.width
-			this.sizeMotion.heightFrom  =this.height
+			this.sizeMotion.widthFrom = this.width;
+			this.sizeMotion.heightFrom = this.height;
 			this.sizeMotion.widthTo = width;
 			this.sizeMotion.heightTo = height;
 			this.sizeMotion.during = during;
 			this.sizeMotion.start();
 		}
-		
+
 		/**
 		 * Move object to target position smoothly.
 		 * Using Motion classes.
@@ -622,21 +609,21 @@ package org.finalbug.ui
 		{
 			if (this.moveMotion == null)
 			{
-				this.moveMotion=new MoveMotion(this);
+				this.moveMotion = new MoveMotion(this);
 				moveMotion.addEventListener(MotionEvent.MOTION_STOP, stopMoveHandler);
 			}
 			else if (this.moveMotion.running)
 			{
 				this.moveMotion.stop();
 			}
-			moveMotion.xFrom=this.x;
-			moveMotion.yFrom=this.y;
-			moveMotion.xTo=x;
-			moveMotion.yTo=y;
-			moveMotion.during=during;
+			moveMotion.xFrom = this.x;
+			moveMotion.yFrom = this.y;
+			moveMotion.xTo = x;
+			moveMotion.yTo = y;
+			moveMotion.during = during;
 			moveMotion.start();
 		}
-		
+
 		/**
 		 * Bring the object to the front of it's parent.
 		 */
@@ -647,7 +634,7 @@ package org.finalbug.ui
 				this.parent.setChildIndex(this, this.parent.numChildren - 1);
 			}
 		}
-		
+
 		/**
 		 * Bring the object to the back of it's parent.
 		 */
@@ -658,7 +645,7 @@ package org.finalbug.ui
 				this.parent.setChildIndex(this, 0);
 			}
 		}
-		
+
 		/**
 		 * Place the object to the center of it's parent.
 		 */
@@ -666,11 +653,11 @@ package org.finalbug.ui
 		{
 			if (this.parent != null)
 			{
-				this.x=(this.parent.width - this.width) / 2;
-				this.y=(this.parent.height - this.height) / 2;
+				this.x = (this.parent.width - this.width) / 2;
+				this.y = (this.parent.height - this.height) / 2;
 			}
 		}
-		
+
 		/**
 		 * Place the object to the specified position
 		 *
@@ -685,60 +672,60 @@ package org.finalbug.ui
 				switch (pos)
 				{
 					case Position.TOP_CENTER:
-						center=true;
+						center = true;
 					case Position.TOP:
 						if (center)
 						{
-							this.x=(this.parent.width - this.width) / 2;
+							this.x = (this.parent.width - this.width) / 2;
 						}
-						this.y=0;
+						this.y = 0;
 						break;
 					case Position.TOP_LEFT:
-						this.x=this.y=0;
+						this.x = this.y = 0;
 						break;
 					case Position.TOP_RIGHT:
-						this.x=this.parent.width - this.width;
-						this.y=0;
+						this.x = this.parent.width - this.width;
+						this.y = 0;
 						break;
 					case Position.LEFT_CENTER:
-						center=true;
+						center = true;
 					case Position.LEFT:
 						if (center)
 						{
-							this.y=(this.parent.height - this.height) / 2;
+							this.y = (this.parent.height - this.height) / 2;
 						}
-						this.x=0;
+						this.x = 0;
 						break;
 					case Position.RIGHT_CENTER:
-						center=true;
+						center = true;
 					case Position.RIGHT:
 						if (center)
 						{
-							this.y=(this.parent.height - this.height) / 2;
+							this.y = (this.parent.height - this.height) / 2;
 						}
-						this.x=this.parent.width - this.width;
+						this.x = this.parent.width - this.width;
 						break;
 					case Position.BOTTOM_CENTER:
-						center=true;
+						center = true;
 					case Position.BOTTOM:
 						if (center)
 						{
-							this.x=(this.parent.width - this.width) / 2;
+							this.x = (this.parent.width - this.width) / 2;
 						}
-						this.y=this.parent.height - this.height;
+						this.y = this.parent.height - this.height;
 						break;
 					case Position.BOTTOM_LEFT:
-						this.x=0;
-						this.y=this.parent.height - this.height;
+						this.x = 0;
+						this.y = this.parent.height - this.height;
 						break;
 					case Position.BOTTOM_RIGHT:
-						this.x=this.parent.width - this.width;
-						this.y=this.parent.height - this.height;
+						this.x = this.parent.width - this.width;
+						this.y = this.parent.height - this.height;
 						break;
 				}
 			}
 		}
-		
+
 		/**
 		 * Add all children.
 		 * 
@@ -746,8 +733,8 @@ package org.finalbug.ui
 		 */
 		public function addAll(... args):void
 		{
-			var len:uint=args.length;
-			for (var i:uint=0; i < len; i++)
+			var len:uint = args.length;
+			for (var i:uint = 0; i < len; i++)
 			{
 				if (args[i] is DisplayObject)
 				{
@@ -755,23 +742,22 @@ package org.finalbug.ui
 				}
 			}
 		}
-		
+
 		/**
 		 * remove all children and clean the graphics.
 		 */
 		public function removeAll():void
 		{
 			this.graphics.clear();
-			for (var i:uint=this.numChildren; --i >= 0; )
+			for (var i:uint = this.numChildren; --i >= 0; )
 			{
 				this.removeChildAt(i);
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
+		// #######################################
 		/**
 		 *
 		 */
@@ -779,7 +765,7 @@ package org.finalbug.ui
 		{
 			drawBg();
 		}
-		
+
 		/**
 		 * updatePosition will be called when object's position is changed.
 		 * Should be overrided by sub classes if necessary.
@@ -788,24 +774,24 @@ package org.finalbug.ui
 		{
 			// Should be overrided by sub classes if necessary.
 		}
-		
+
 		/**
 		 *
 		 */
 		protected function callAtAdded():void
 		{
-			if(sizeChanged)
+			if (sizeChanged)
 			{
 				resetSize();
 				sizeChanged = false;
 			}
-			if(positionChanged)
+			if (positionChanged)
 			{
 				resetPosition();
 				positionChanged = false;
 			}
 		}
-		
+
 		/**
 		 *
 		 */
@@ -820,22 +806,21 @@ package org.finalbug.ui
 				this.graphics.clear();
 			}
 		}
-		
+
 		/**
 		 * 
 		 */
 		internal function updateByLayout():void
 		{
-			if(_layoutStyle != null)
+			if (_layoutStyle != null)
 			{
 				_layoutStyle.checkAndUpdate();
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function accountControlPoint():void
 		{
 			switch (_controlPointType)
@@ -845,14 +830,14 @@ package org.finalbug.ui
 					_controlPoint.y = 0;
 					break;
 				case Position.TOP_LEFT:
-					_controlPoint.x = _controlPoint.y=0;
+					_controlPoint.x = _controlPoint.y = 0;
 					break;
 				case Position.TOP_RIGHT:
 					_controlPoint.x = this.width;
 					_controlPoint.y = 0;
 					break;
 				case Position.LEFT_CENTER:
-					_controlPoint.x=0;
+					_controlPoint.x = 0;
 					_controlPoint.y = this.height / 2;
 					break;
 				case Position.CENTER:
@@ -881,19 +866,19 @@ package org.finalbug.ui
 					break;
 			}
 		}
-		
+
 		private function dispatchChildChanged():void
 		{
 			var ee:UIEvent = new UIEvent(UIEvent.CHILDREN_CHANGED);
 			this.dispatchEvent(ee);
 		}
-		
+
 		private function dispatchSizeChanged():void
 		{
-			for(var i:uint = this.numChildren ; --i >= 0 ; )
+			for (var i:uint = this.numChildren ; --i >= 0 ; )
 			{
 				var child:DisplayObject = this.getChildAt(i);
-				if(child is Bin)
+				if (child is Bin)
 				{
 					(child as Bin).updateByLayout();
 				}
@@ -901,13 +886,13 @@ package org.finalbug.ui
 			var ee:UIEvent = new UIEvent(UIEvent.RESIZE);
 			this.dispatchEvent(ee);
 		}
-		
+
 		private function dispatchPositionChanged():void
 		{
 			var ee:UIEvent = new UIEvent(UIEvent.REPOSITION);
 			this.dispatchEvent(ee);
 		}
-		
+
 		private function resetPosition():void
 		{
 			super.x = _layoutStyle.x;
@@ -915,20 +900,20 @@ package org.finalbug.ui
 			updatePosition();
 			this.dispatchPositionChanged();
 		}
-		
+
 		private function resetSize():void
 		{
 			this.drawBg();
 			updateSize();
-			this.dispatchPositionChanged();
+			this.dispatchSizeChanged();
 		}
-		
+
 		private function checkChildResizeAndReposition(child:DisplayObject):void
 		{
-			if(child is Bin)
+			if (child is Bin)
 			{
 				var bin:Bin = child as Bin;
-				if(this.contains(child))
+				if (this.contains(child))
 				{
 					bin.addEventListener(UIEvent.RESIZE, childResizeHandler);
 					bin.addEventListener(UIEvent.REPOSITION, childRepositionHandler);
@@ -940,30 +925,29 @@ package org.finalbug.ui
 				}
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// HANDLER
-		//#######################################
-		
+		// #######################################
 		private function stopZoomHandler(e:MotionEvent):void
 		{
 			this.dispatchEvent(new DisplayEvent(DisplayEvent.END_ZOOM));
 		}
-		
+
 		private function stopMoveHandler(e:MotionEvent):void
 		{
 			this.dispatchEvent(new DisplayEvent(DisplayEvent.END_MOVE));
 		}
-		
+
 		private function addedToStageHandler(e:Event):void
 		{
-			//this.removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+			// this.removeEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 			this.callAtAdded();
 		}
-		
+
 		private function sizeChangedHandler(e:UIEvent):void
 		{
-			if(this.stage != null)
+			if (this.stage != null)
 			{
 				this.resetSize();
 				sizeChanged = false;
@@ -973,10 +957,10 @@ package org.finalbug.ui
 				sizeChanged = true;
 			}
 		}
-		
+
 		private function positionChangedHandler(e:UIEvent):void
 		{
-			if(this.stage != null)
+			if (this.stage != null)
 			{
 				this.resetPosition();
 				positionChanged = false;
@@ -986,13 +970,13 @@ package org.finalbug.ui
 				positionChanged = true;
 			}
 		}
-		
+
 		private function childResizeHandler(e:UIEvent):void
 		{
 			var ee:UIEvent = new UIEvent(UIEvent.CHILDREN_RESIZE);
 			this.dispatchEvent(ee);
 		}
-		
+
 		private function childRepositionHandler(e:UIEvent):void
 		{
 			var ee:UIEvent = new UIEvent(UIEvent.CHILDREN_REPOSITION);

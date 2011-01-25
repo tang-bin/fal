@@ -1,25 +1,25 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.ui.control
 {
 	import flash.events.Event;
 	import flash.events.FocusEvent;
 	import flash.text.TextField;
-	
+
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.ui.skin.Skin;
 	import org.finalbug.ui.skin.TextSkinData;
 	import org.finalbug.ui.skin.UISkinDataAbstract;
-	
+
 	/**
 	 * text input component
 	 * 
@@ -28,15 +28,14 @@ package org.finalbug.ui.control
 	 */
 	public class TextInput extends UIObject
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
+		// #######################################
 		override public function set status(value:String):void
 		{
-			if(this.enabled)
+			if (this.enabled)
 			{
-				if(stage.focus == txt)
+				if (stage.focus == txt)
 				{
 					value = Status.ACTIVE;
 				}
@@ -49,9 +48,9 @@ package org.finalbug.ui.control
 			{
 				value = Status.DISABLED;
 			}
-			if(value != this.status) super.status = value;
+			if (value != this.status) super.status = value;
 		}
-		
+
 		override protected function updateSize():void
 		{
 			super.updateSize();
@@ -61,44 +60,42 @@ package org.finalbug.ui.control
 			txt.width = this.width - 2;
 			txt.height = this.height - 2;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		private var _textType:String = "input";
-		private var oldText:String ="";
-		
+		private var oldText:String = "";
 		private var back:Skin;
 		private var txt:TextField;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * if current text in textinput display as password.
-		 */		
+		 */
 		public function get password():Boolean
 		{
-			if(txt != null)
+			if (txt != null)
 			{
 				return txt.displayAsPassword;
 			}
 			return false;
 		}
+
 		/**
 		 * 
 		 * @param value
 		 */
 		public function set password(value:Boolean):void
 		{
-			if(txt != null)
+			if (txt != null)
 			{
 				txt.displayAsPassword = value;
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -107,6 +104,7 @@ package org.finalbug.ui.control
 		{
 			return txt.maxChars;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -115,31 +113,32 @@ package org.finalbug.ui.control
 		{
 			txt.maxChars = value;
 		}
-		
+
 		/**
 		 * text string
-		 */		
+		 */
 		public function get text():String
 		{
-			if(txt != null)
+			if (txt != null)
 			{
 				return txt.text;
 			}
 			return "";
 		}
+
 		/**
 		 * 
 		 * @param value
 		 */
 		public function set text(value:String):void
 		{
-			if(txt != null)
+			if (txt != null)
 			{
 				txt.text = value;
 				oldText = value;
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -148,6 +147,7 @@ package org.finalbug.ui.control
 		{
 			return _textType;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -157,17 +157,16 @@ package org.finalbug.ui.control
 			_textType = value;
 			this.setTextType();
 		}
-		
-		//#######################################
+
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
+		// #######################################
 		/**
 		 * Create a new TextInput object.
 		 * 
 		 * @param size Size of 
 		 * @param style Display style
-		 */			
+		 */
 		public function TextInput(skin:UISkinDataAbstract = null)
 		{
 			super(skin);
@@ -186,17 +185,16 @@ package org.finalbug.ui.control
 			txt.addEventListener(Event.CHANGE, changeTextHandler);
 			//
 			// set skin data.
-			if(uiSkinData == null)
+			if (uiSkinData == null)
 			{
 				uiSkinData = new TextSkinData();
 			}
 			uiSkinData.bindChildren(back, txt);
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 */
@@ -204,20 +202,18 @@ package org.finalbug.ui.control
 		{
 			stage.focus = txt;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function setTextType():void
 		{
-			if(txt != null)
+			if (txt != null)
 			{
-				if(!enabled)
+				if (!enabled)
 				{
 					txt.type = "dynamic";
 				}
@@ -228,21 +224,20 @@ package org.finalbug.ui.control
 				txt.displayAsPassword = _textType == "password";
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// HANDLER
-		//#######################################
-		
+		// #######################################
 		private function txtFocusInHandler(e:FocusEvent):void
 		{
 			this.status = Status.ACTIVE;
 		}
-		
+
 		private function txtFocusOutHandler(e:FocusEvent):void
 		{
 			this.status = Status.NORMAL;
 		}
-		
+
 		private function changeTextHandler(e:Event):void
 		{
 			var ee:DataEvent = new DataEvent(DataEvent.CHANGE_DATA);

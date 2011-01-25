@@ -1,18 +1,18 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.ui.control
 {
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
-	
+
 	import org.finalbug.data.Status;
 	import org.finalbug.ui.Bin;
 	import org.finalbug.ui.skin.UISkinDataAbstract;
@@ -26,20 +26,17 @@ package org.finalbug.ui.control
 	 */
 	public class UIObject extends Bin
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-
+		// #######################################
 		/**
 		 * 
 		 * @default 
 		 */
 		public var tooltip:String = "";
-
 		/**
 		 * 
 		 * @default 
@@ -50,13 +47,11 @@ package org.finalbug.ui.control
 		 * @default 
 		 */
 		protected var currentStatus:String;
-		
-		private var _enabled:Boolean=true;
+		private var _enabled:Boolean = true;
 
-		//#######################################
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-
+		// #######################################
 		/**
 		 * 
 		 * @return 
@@ -74,7 +69,7 @@ package org.finalbug.ui.control
 		{
 			if (value != currentStatus && value != "")
 			{
-				currentStatus=value;
+				currentStatus = value;
 				if (uiSkinData != null)
 				{
 					uiSkinData.changeStatus(this.currentStatus);
@@ -83,7 +78,6 @@ package org.finalbug.ui.control
 				updateSize();
 			}
 		}
-
 
 		/**
 		 * 
@@ -102,24 +96,24 @@ package org.finalbug.ui.control
 		{
 			if (_enabled != value)
 			{
-				_enabled=value;
-				this.mouseEnabled=_enabled;
-				this.status=_enabled ? Status.NORMAL : Status.DISABLED;
+				_enabled = value;
+				this.mouseEnabled = _enabled;
+				this.status = _enabled ? Status.NORMAL : Status.DISABLED;
 				//
-				for (var i:uint=this.numChildren; --i >= 0; )
+				for (var i:uint = this.numChildren; --i >= 0; )
 				{
-					var obj:DisplayObject=this.getChildAt(i) as DisplayObject;
+					var obj:DisplayObject = this.getChildAt(i) as DisplayObject;
 					if (obj is UIObject)
 					{
-						(obj as UIObject)._enabled=this._enabled;
+						(obj as UIObject)._enabled = this._enabled;
 					}
 				}
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// constructor.
-		//#######################################
+		// #######################################
 		/**
 		 * 
 		 * @param skinData
@@ -134,10 +128,9 @@ package org.finalbug.ui.control
 			this.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 		}
 
-		//#######################################
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param xSpace
@@ -147,7 +140,7 @@ package org.finalbug.ui.control
 		{
 			var maxWidth:Number = 0;
 			var maxHeight:Number = 0;
-			for(var i:uint = this.numChildren ; --i >= 0 ;)
+			for (var i:uint = this.numChildren ; --i >= 0 ;)
 			{
 				var obj:DisplayObject = this.getChildAt(i);
 				maxWidth = Math.max(maxWidth, obj.x + obj.width);
@@ -156,11 +149,10 @@ package org.finalbug.ui.control
 			_layoutStyle.setValueSilent("width", maxWidth + xSpace);
 			_layoutStyle.setValueSilent("height", maxHeight + ySpace);
 		}
-		
-		//#######################################
-		// PROTECTED
-		//#######################################
 
+		// #######################################
+		// PROTECTED
+		// #######################################
 		/**
 		 * 
 		 * @param width
@@ -172,7 +164,7 @@ package org.finalbug.ui.control
 			_layoutStyle.setValue("height", height);
 			sizeChanged = true;
 		}
-		
+
 		/**
 		 * This method need be override by the sub classes of UIObject to realize
 		 * changing style such as color, alpha, fillStyle, etc.
@@ -183,15 +175,13 @@ package org.finalbug.ui.control
 		{
 			// show be override by sub classes.
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PRIVATE
-		//#######################################
-
-		//#######################################
+		// #######################################
+		// #######################################
 		// HANDLER
-		//#######################################
-
+		// #######################################
 		/**
 		 * 
 		 * @param e

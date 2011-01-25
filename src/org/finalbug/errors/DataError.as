@@ -1,13 +1,13 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.errors
 {
 	/**
@@ -15,7 +15,7 @@ package org.finalbug.errors
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.08
-	 */	
+	 */
 	public class DataError extends Error
 	{
 		/**
@@ -23,13 +23,11 @@ package org.finalbug.errors
 		 * @default 
 		 */
 		public static const SINGLETON:String = "Class using singleton pattern cannot be instanced.";
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const ABSTRACT:String = "Abstract class cannot be instanced.";
-		
 		/**
 		 * 
 		 * @default 
@@ -40,7 +38,6 @@ package org.finalbug.errors
 		 * @default 
 		 */
 		public static const NAME_NOT_EXIST:String = "Object not exist.";
-		
 		/**
 		 * 
 		 * @default 
@@ -71,36 +68,32 @@ package org.finalbug.errors
 		 * @default 
 		 */
 		public static const SET_SHARED_DATA_ERROR:String = "To set data for SharedData, please use setData() method.";
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const SHARED_DATA_TYPE_ERROR:String = "Data type error, expect number, string, boolean, bytearray, treeModel and sharedData.";
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const CANNOT_REMOVE_NONEXISTENT_DATA:String = "Cannot remove nonexistent Data.";
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const LABEL_TEXT_TOO_LARGE:String = "Label's text too wide or high to display.";
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const STATIC_CLASS:String = "Static class cannot be instanced";
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const INVALID_INDEX:String = "Invalid index number";
+
 		/**
 		 * 
 		 * @param message

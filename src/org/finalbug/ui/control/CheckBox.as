@@ -1,25 +1,25 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.ui.control
 {
 	import flash.display.Shape;
 	import flash.events.MouseEvent;
-	
+
 	import org.finalbug.data.Position;
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.ui.skin.CheckBoxSkinData;
 	import org.finalbug.ui.skin.Skin;
 	import org.finalbug.ui.skin.UISkinDataAbstract;
-	
+
 	/**
 	 * CheckBox component.
 	 * 
@@ -28,10 +28,9 @@ package org.finalbug.ui.control
 	 */
 	public class CheckBox extends UIObject
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param value
@@ -40,16 +39,16 @@ package org.finalbug.ui.control
 		{
 			super.status = this.getCurrentStatus(value);
 		}
-		
+
 		/**
 		 * set elements position.
-		 */		
+		 */
 		override protected function updatePosition():void
 		{
 			var ww:Number = Math.max(txt.width, BOX_SIZE);
 			var hh:Number = Math.max(txt.height, BOX_SIZE);
 			//
-			if(_labelPosition == Position.LEFT)
+			if (_labelPosition == Position.LEFT)
 			{
 				txt.x = 0;
 				txt.y = (hh - txt.height) / 2;
@@ -58,7 +57,7 @@ package org.finalbug.ui.control
 				back.width = ww + OFFSET + BOX_SIZE;
 				back.height = hh;
 			}
-			else if(_labelPosition == Position.TOP)
+			else if (_labelPosition == Position.TOP)
 			{
 				txt.x = (ww - txt.width) / 2;
 				txt.y = 0;
@@ -67,7 +66,7 @@ package org.finalbug.ui.control
 				back.width = ww;
 				back.height = hh + OFFSET + BOX_SIZE;
 			}
-			else if(_labelPosition == Position.BOTTOM)
+			else if (_labelPosition == Position.BOTTOM)
 			{
 				box.x = (ww - BOX_SIZE) / 2;
 				box.y = 0;
@@ -86,33 +85,28 @@ package org.finalbug.ui.control
 				back.height = hh;
 			}
 			//
-			if(_autoSize)
+			if (_autoSize)
 			{
 				this.pack();
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		private const BOX_SIZE:Number = 16;
 		private const OFFSET:Number = 3;
-		
 		private var _selected:Boolean = false;
-		private var _label:String = "CheckBox";	
+		private var _label:String = "CheckBox";
 		private var _labelPosition:String;
-		
 		private var box:Skin;
 		private var txt:Label;
 		private var back:Shape;
-		
 		private var _autoSize:Boolean = true;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @return 
@@ -121,23 +115,23 @@ package org.finalbug.ui.control
 		{
 			return _autoSize;
 		}
-		
+
 		/**
 		 * 
 		 * @param value
 		 */
 		public function set autoSize(value:Boolean):void
 		{
-			if(value != _autoSize)
+			if (value != _autoSize)
 			{
 				_autoSize = value;
-				if(value)
+				if (value)
 				{
 					pack();
 				}
 			}
 		}
-		
+
 		/**
 		 * If is checked of not.
 		 */
@@ -145,26 +139,28 @@ package org.finalbug.ui.control
 		{
 			return _selected;
 		}
+
 		/**
 		 * 
 		 * @param value
 		 */
 		public function set selected(value:Boolean):void
 		{
-			if(value != _selected)
+			if (value != _selected)
 			{
 				_selected = value;
 				this.status = getCurrentStatus(_selected ? Status.SELECTED : Status.NORMAL);
 			}
 		}
-		
+
 		/**
 		 * Label text beside box.
-		 */	
+		 */
 		public function get label():String
 		{
 			return _label;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -175,7 +171,7 @@ package org.finalbug.ui.control
 			txt.text = value;
 			updatePosition();
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -184,6 +180,7 @@ package org.finalbug.ui.control
 		{
 			return _labelPosition;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -193,18 +190,19 @@ package org.finalbug.ui.control
 			_labelPosition = value;
 			updatePosition();
 		}
-		
+
 		/**
 		 * 
 		 * @param value
 		 */
 		public function set labelColor(value:Number):void
 		{
-			if(txt != null)
+			if (txt != null)
 			{
 				txt.textColor = value;
 			}
 		}
+
 		/**
 		 * 
 		 * @return 
@@ -213,21 +211,21 @@ package org.finalbug.ui.control
 		{
 			return txt.textColor;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
+		// #######################################
 		/**
 		 * Create a new CheckBox object.
 		 * 
 		 * @param label
 		 * @param style
-		 */		
+		 */
 		public function CheckBox(label:String = "checkBox", skin:UISkinDataAbstract = null)
 		{
 			super(skin);
 			//
+			this._label = label;
 			// create children
 			box = new Skin();
 			box.resize(BOX_SIZE, BOX_SIZE);
@@ -239,58 +237,60 @@ package org.finalbug.ui.control
 			this.addEventListener(MouseEvent.CLICK, clickHandler);
 			//
 			// set skin data
-			if(uiSkinData == null)
+			if (uiSkinData == null)
 			{
 				uiSkinData = new CheckBoxSkinData();
 			}
 			uiSkinData.bindChildren(box, txt);
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function getCurrentStatus(status:String):String
 		{
-			if(enabled)
+			if (enabled)
 			{
-				if(this._selected)
+				if (this._selected)
 				{
 					switch(status)
 					{
-						case Status.NORMAL: status = Status.SELECTED;break;
-						case Status.MOUSE_OVER: status = Status.SELECTED_MOUSE_OVER;break;
-						case Status.MOUSE_DOWN: status = Status.SELECTED_MOUSE_DOWN;break;
+						case Status.NORMAL:
+							status = Status.SELECTED;
+							break;
+						case Status.MOUSE_OVER:
+							status = Status.SELECTED_MOUSE_OVER;
+							break;
+						case Status.MOUSE_DOWN:
+							status = Status.SELECTED_MOUSE_DOWN;
+							break;
 					}
 				}
 			}
 			else
 			{
-				if(this._selected)
+				if (this._selected)
 				{
 					status = Status.SELECTED_DISABLED;
 				}
 			}
 			return status;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// HANDLER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * invoked when click checkbox.
 		 * 
 		 * @param e
-		 */		
+		 */
 		private function clickHandler(e:MouseEvent):void
 		{
 			this.selected = !this.selected;

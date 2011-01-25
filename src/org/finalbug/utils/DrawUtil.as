@@ -1,26 +1,26 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.utils
 {
 	import flash.display.Graphics;
 	import flash.geom.Point;
-	
+
 	import org.finalbug.data.CubeData;
-	
+
 	/**
 	 * DrawUtil
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.12
-	 */	
+	 */
 	public class DrawUtil
 	{
 		/**
@@ -28,14 +28,14 @@ package org.finalbug.utils
 		 * 
 		 * @param sp
 		 * @param cubeData
-		 */		
+		 */
 		public static function drawCube(g:Graphics, cubeData:CubeData):void
 		{
 			g.clear();
 			var xOffset:Number = 0;
 			var yOffset:Number = 0;
 			//
-			if(cubeData.lean == CubeData.LEAN_RIGHT)
+			if (cubeData.lean == CubeData.LEAN_RIGHT)
 			{
 				// draw top
 				xOffset = 0;
@@ -94,7 +94,7 @@ package org.finalbug.utils
 				g.endFill();
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @param g
@@ -102,17 +102,14 @@ package org.finalbug.utils
 		 * @param color
 		 * @param alpha
 		 */
-		public static function drawBlock(g:Graphics,
-										 size:Number = 10,
-										 color:uint = 0,
-										 alpha:Number = 0):void
+		public static function drawBlock(g:Graphics, size:Number = 10, color:uint = 0, alpha:Number = 0):void
 		{
 			g.clear();
 			g.beginFill(color, alpha);
 			g.drawRect(0, 0, size, size);
 			g.endFill();
 		}
-		
+
 		/**
 		 * Draw a triangle.
 		 * First, there will be a rectangle with center point and width and height.
@@ -125,28 +122,24 @@ package org.finalbug.utils
 		 * @param width
 		 * @param height
 		 * @param point
-		 */		
-		public static function drawTriangle(g:Graphics, 
-											center:Point,
-											width:Number,
-											height:Number,
-											point:String = "right"):void
+		 */
+		public static function drawTriangle(g:Graphics, center:Point, width:Number, height:Number, point:String = "right"):void
 		{
 			var x:Number = center.x;
 			var y:Number = center.y;
-			if(point == "up")
+			if (point == "up")
 			{
 				g.moveTo(x, y - height / 2);
 				g.lineTo(x - width / 2, y + height / 2);
 				g.lineTo(x + width / 2, y + height / 2);
 			}
-			else if(point == "down")
+			else if (point == "down")
 			{
 				g.moveTo(x - width / 2, y - height / 2);
 				g.lineTo(x + width / 2, y - height / 2);
 				g.lineTo(x, y + height / 2);
 			}
-			else if(point == "left")
+			else if (point == "left")
 			{
 				g.moveTo(x - width / 2, y);
 				g.lineTo(x + width / 2, y - height / 2);
@@ -159,7 +152,7 @@ package org.finalbug.utils
 				g.lineTo(x - width / 2, y + height / 2);
 			}
 		}
-		
+
 		/**
 		 * Draw a crose.
 		 * 
@@ -167,7 +160,7 @@ package org.finalbug.utils
 		 * @param center
 		 * @param radius
 		 * 
-		 */		
+		 */
 		public static function drawCrose(g:Graphics, center:Point, radius:Number):void
 		{
 			g.moveTo(center.x - radius / 2, center.y - radius / 2);
@@ -175,7 +168,7 @@ package org.finalbug.utils
 			g.moveTo(center.x + radius / 2, center.y - radius / 2);
 			g.lineTo(center.x - radius / 2, center.y + radius / 2);
 		}
-		
+
 		/**
 		 * Draw a ring
 		 * 
@@ -184,7 +177,7 @@ package org.finalbug.utils
 		 * @param innerRadius
 		 * @param outerRadius
 		 * 
-		 */		
+		 */
 		public static function drawFillRing(g:Graphics, center:Point, innerRadius:Number, outerRadius:Number):void
 		{
 			var x:Number = center.x;
@@ -204,7 +197,7 @@ package org.finalbug.utils
 			g.curveTo(x + ir, y + ir, x + ir, y);
 			g.curveTo(x + ir, y - ir, x, y - ir);
 		}
-		
+
 		/**
 		 * Draw a tick.
 		 * this tick will be drawn in a foursquare area.
@@ -215,15 +208,15 @@ package org.finalbug.utils
 		 * @param point
 		 * @param size
 		 * 
-		 */		
+		 */
 		public static function drawTick(g:Graphics, point:Point, size:Number):void
 		{
-			g.moveTo(point.x - 1, point.y + size / 2 +1);
+			g.moveTo(point.x - 1, point.y + size / 2 + 1);
 			g.lineTo(point.x, point.y + size / 2);
 			g.lineTo(point.x + size / 2, point.y + size - 1);
 			g.lineTo(point.x + size + 1, point.y);
 		}
-		
+
 		/**
 		 * Draw a big arrow.
 		 * 
@@ -231,18 +224,18 @@ package org.finalbug.utils
 		 * @param width
 		 * @param height
 		 * 
-		 */		
+		 */
 		public static function drawBigArrow(g:Graphics, width:Number, height:Number):void
 		{
 			g.moveTo(width / 2 - height, - height / 2);
 			g.lineTo(width / 2, 0);
 			g.lineTo(width / 2 - height, height / 2);
-			g.lineTo(width / 2 - height , height / 4);
+			g.lineTo(width / 2 - height, height / 4);
 			g.lineTo(- width / 2, height / 4);
 			g.lineTo(- width / 2, - height / 4);
 			g.lineTo(width / 2 - height, - height / 4);
 		}
-		
+
 		/**
 		 * 
 		 * @param g
@@ -252,14 +245,14 @@ package org.finalbug.utils
 		 */
 		public static function drawSector(g:Graphics, fromAngle:Number, toAngle:Number, radius:Number):void
 		{
-			if(fromAngle > toAngle)
+			if (fromAngle > toAngle)
 			{
 				var tmp:Number = fromAngle;
 				fromAngle = toAngle;
 				toAngle = tmp;
 			}
 			g.moveTo(0, 0);
-			for( ; fromAngle <= toAngle ; fromAngle += 1)
+			for ( ; fromAngle <= toAngle ; fromAngle += 1)
 			{
 				var xx:Number = Math.cos(fromAngle * Math.PI / 180) * radius;
 				var yy:Number = Math.sin(fromAngle * Math.PI / 180) * radius;

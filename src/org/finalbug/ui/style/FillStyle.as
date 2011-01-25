@@ -1,13 +1,13 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.ui.style
 {
 	import flash.display.DisplayObject;
@@ -16,38 +16,34 @@ package org.finalbug.ui.style
 	import flash.filters.DropShadowFilter;
 	import flash.filters.GlowFilter;
 	import flash.geom.Matrix;
-	
+
 	import org.finalbug.utils.MathUtil;
-	
+
 	/**
 	 * FillStyle
 	 *  
 	 * @author Tang Bin
 	 * @since 2010.08
-	 */	
+	 */
 	public class FillStyle extends Style
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		private var _borderSize:Number = 1;
 		private var _borderColor:Number = 0x999999;
 		private var _borderAlpha:Number = 0;
 		private var _bgColor:Number = 0xFFFFFF;
 		private var _bgAlpha:Number = 0;
-		
 		private var _topLeftRadius:Number = 0;
 		private var _topRightRadius:Number = 0;
 		private var _bottomLeftRadius:Number = 0;
 		private var _bottomRightRadius:Number = 0;
 		private var _radius:Number = 0;
 		private var uniformRadius:Boolean = true;
-		
 		private var _bgColors:Array = [0x333, 0xFFF];
 		private var _bgAlphas:Array = [1, 1];
 		private var _bgRotation:Number = 0;
@@ -57,22 +53,19 @@ package org.finalbug.ui.style
 		 * @default 
 		 */
 		public var useGradient:Boolean = false;
-		
 		private var _glowColor:uint = 0;
 		private var _glowAlpha:Number = 0;
 		private var _glowBlur:Number = 2;
 		private var _glowStrength:int = 3;
-		
 		private var _shadowColor:uint = 0;
 		private var _shadowAlpha:Number = 0;
 		private var _shadowDistance:Number = 3;
 		private var _shadowStrength:int = 3;
 		private var _shadowBlur:Number = 3;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @return 
@@ -81,6 +74,7 @@ package org.finalbug.ui.style
 		{
 			return _borderSize;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -90,7 +84,7 @@ package org.finalbug.ui.style
 			value = MathUtil.getNumArea(value, 0, 20);
 			_borderSize = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -99,6 +93,7 @@ package org.finalbug.ui.style
 		{
 			return _borderColor;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -107,7 +102,7 @@ package org.finalbug.ui.style
 		{
 			_borderColor = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -116,6 +111,7 @@ package org.finalbug.ui.style
 		{
 			return _borderAlpha;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -125,7 +121,7 @@ package org.finalbug.ui.style
 			value = MathUtil.getNumArea(value, 0, 1);
 			_borderAlpha = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -134,6 +130,7 @@ package org.finalbug.ui.style
 		{
 			return _bgColor;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -142,7 +139,7 @@ package org.finalbug.ui.style
 		{
 			_bgColor = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -151,7 +148,7 @@ package org.finalbug.ui.style
 		{
 			return _bgAlpha;
 		}
-		
+
 		/**
 		 * 
 		 * @param value
@@ -161,7 +158,7 @@ package org.finalbug.ui.style
 			value = MathUtil.getNumArea(value, 0, 1);
 			_bgAlpha = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -170,107 +167,112 @@ package org.finalbug.ui.style
 		{
 			return _radius;
 		}
+
 		/**
 		 * 
 		 * @param value
 		 */
 		public function set radius(value:Number):void
 		{
-			if(value >= 0)
+			if (value >= 0)
 			{
 				this._radius = value;
 				this.uniformRadius = true;
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @return 
 		 */
 		public function get topLeftRadius():Number
 		{
-			if(this.uniformRadius) return radius;
+			if (this.uniformRadius) return radius;
 			else return _topLeftRadius;
 		}
+
 		/**
 		 * 
 		 * @param value
 		 */
 		public function set topLeftRadius(value:Number):void
 		{
-			if(value >= 0)
+			if (value >= 0)
 			{
 				_topLeftRadius = value;
 				this.uniformRadius = false;
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @return 
 		 */
 		public function get topRightRadius():Number
 		{
-			if(this.uniformRadius) return radius;
+			if (this.uniformRadius) return radius;
 			else return _topRightRadius;
 		}
+
 		/**
 		 * 
 		 * @param value
 		 */
 		public function set topRightRadius(value:Number):void
 		{
-			if(value >= 0)
+			if (value >= 0)
 			{
 				_topRightRadius = value;
 				this.uniformRadius = false;
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @return 
 		 */
 		public function get bottomLeftRadius():Number
 		{
-			if(this.uniformRadius) return radius;
+			if (this.uniformRadius) return radius;
 			else return _bottomLeftRadius;
 		}
+
 		/**
 		 * 
 		 * @param value
 		 */
 		public function set bottomLeftRadius(value:Number):void
 		{
-			if(value >= 0)
+			if (value >= 0)
 			{
 				_bottomLeftRadius = value;
 				this.uniformRadius = false;
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @return 
 		 */
 		public function get bottomRightRadius():Number
 		{
-			if(this.uniformRadius) return radius;
+			if (this.uniformRadius) return radius;
 			else return _bottomRightRadius;
 		}
+
 		/**
 		 * 
 		 * @param value
 		 */
 		public function set bottomRightRadius(value:Number):void
 		{
-			if(value >= 0)
+			if (value >= 0)
 			{
 				_bottomRightRadius = value;
 				this.uniformRadius = false;
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -279,6 +281,7 @@ package org.finalbug.ui.style
 		{
 			return _bgColors;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -287,7 +290,7 @@ package org.finalbug.ui.style
 		{
 			_bgColors = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -296,6 +299,7 @@ package org.finalbug.ui.style
 		{
 			return _bgAlphas;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -304,7 +308,7 @@ package org.finalbug.ui.style
 		{
 			_bgAlphas = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -313,6 +317,7 @@ package org.finalbug.ui.style
 		{
 			return _bgRotation;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -321,7 +326,7 @@ package org.finalbug.ui.style
 		{
 			_bgRotation = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -330,6 +335,7 @@ package org.finalbug.ui.style
 		{
 			return _glowColor;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -338,7 +344,7 @@ package org.finalbug.ui.style
 		{
 			_glowColor = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -347,6 +353,7 @@ package org.finalbug.ui.style
 		{
 			return _glowAlpha;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -356,7 +363,7 @@ package org.finalbug.ui.style
 			value = MathUtil.getNumArea(value, 0, 1);
 			_glowAlpha = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -365,6 +372,7 @@ package org.finalbug.ui.style
 		{
 			return _glowBlur;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -374,7 +382,7 @@ package org.finalbug.ui.style
 			value = MathUtil.getNumArea(value, 0, 100);
 			_glowBlur = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -383,6 +391,7 @@ package org.finalbug.ui.style
 		{
 			return _glowStrength;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -392,7 +401,7 @@ package org.finalbug.ui.style
 			value = MathUtil.getNumArea(value, 1, 3);
 			_glowStrength = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -401,6 +410,7 @@ package org.finalbug.ui.style
 		{
 			return _bgRatios;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -409,7 +419,7 @@ package org.finalbug.ui.style
 		{
 			_bgRatios = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -418,6 +428,7 @@ package org.finalbug.ui.style
 		{
 			return _shadowColor;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -426,7 +437,7 @@ package org.finalbug.ui.style
 		{
 			_shadowColor = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -435,6 +446,7 @@ package org.finalbug.ui.style
 		{
 			return _shadowAlpha;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -443,7 +455,7 @@ package org.finalbug.ui.style
 		{
 			_shadowAlpha = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -452,6 +464,7 @@ package org.finalbug.ui.style
 		{
 			return _shadowDistance;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -460,7 +473,7 @@ package org.finalbug.ui.style
 		{
 			_shadowDistance = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -469,6 +482,7 @@ package org.finalbug.ui.style
 		{
 			return _shadowStrength;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -477,7 +491,7 @@ package org.finalbug.ui.style
 		{
 			_shadowStrength = value;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -486,6 +500,7 @@ package org.finalbug.ui.style
 		{
 			return _shadowBlur;
 		}
+
 		/**
 		 * 
 		 * @param value
@@ -494,11 +509,10 @@ package org.finalbug.ui.style
 		{
 			_shadowBlur = value;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 */
@@ -506,26 +520,20 @@ package org.finalbug.ui.style
 		{
 			super();
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @return 
 		 */
 		public function createGlowFilter():GlowFilter
 		{
-			var gf:GlowFilter = new GlowFilter(this._glowColor, 
-				this._glowAlpha, 
-				this._glowBlur, 
-				this._glowBlur, 
-				this._glowStrength, 
-				3);
+			var gf:GlowFilter = new GlowFilter(this._glowColor, this._glowAlpha, this._glowBlur, this._glowBlur, this._glowStrength, 3);
 			return gf;
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -541,7 +549,7 @@ package org.finalbug.ui.style
 			style.bgAlpha = this.bgAlpha;
 			style.bgColor = this.bgColor;
 			//
-			if(this.uniformRadius)
+			if (this.uniformRadius)
 			{
 				style.radius = this.radius;
 			}
@@ -573,26 +581,26 @@ package org.finalbug.ui.style
 			//
 			return style;
 		}
-		
+
 		/**
 		 * Fill a display object with current style.
 		 * 
 		 * @param target The display object which will be filled in.
 		 * @param width Fill width
 		 * @param height Fill Height
-		 */		
+		 */
 		public function fill(target:DisplayObject, width:Number, height:Number):void
 		{
 			var g:Graphics = target["graphics"] as Graphics;
-			if(g != null)
+			if (g != null)
 			{
 				g.clear();
-				if(width > 0 && height > 0)
+				if (width > 0 && height > 0)
 				{
 					// set border style
 					g.lineStyle(borderSize, borderColor, borderAlpha);
 					// set fill style
-					if(useGradient)
+					if (useGradient)
 					{
 						var fillType:String = GradientType.LINEAR;
 						var matr:Matrix = new Matrix();
@@ -604,44 +612,35 @@ package org.finalbug.ui.style
 						g.beginFill(bgColor, bgAlpha);
 					}
 					//
-					g.drawRoundRectComplex(0, 0, width, height, 
-						topLeftRadius,
-						topRightRadius,
-						bottomLeftRadius,
-						bottomRightRadius);
+					g.drawRoundRectComplex(0, 0, width, height, topLeftRadius, topRightRadius, bottomLeftRadius, bottomRightRadius);
 					g.endFill();
 					//
-					// set filter 
+					// set filter
 					var fs:Array = new Array();
-					if(glowAlpha > 0 && glowBlur > 0)
+					if (glowAlpha > 0 && glowBlur > 0)
 					{
-						var gf:GlowFilter = new GlowFilter(glowColor, glowAlpha,
-							glowBlur, glowBlur,
-							glowStrength, 3);
+						var gf:GlowFilter = new GlowFilter(glowColor, glowAlpha, glowBlur, glowBlur, glowStrength, 3);
 						fs.push(gf);
 					}
-					if(shadowAlpha > 0 && shadowBlur > 0)
+					if (shadowAlpha > 0 && shadowBlur > 0)
 					{
-						var sf:DropShadowFilter = new DropShadowFilter(shadowDistance, 45, 
-							shadowColor, shadowAlpha, 
-							shadowBlur, shadowBlur, shadowStrength);
+						var sf:DropShadowFilter = new DropShadowFilter(shadowDistance, 45, shadowColor, shadowAlpha, shadowBlur, shadowBlur, shadowStrength);
 						fs.push(sf);
 					}
 					target.filters = fs.length == 0 ? null : fs;
 				}
 			}
 		}
-		
-		//#######################################
+		// #######################################
 		// PROTECTED
-		//#######################################
+		// #######################################
 		
-		//#######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
+		// #######################################
 		
-		//#######################################
+		// #######################################
 		// HANDLER
-		//#######################################
+		// #######################################
 	}
 }

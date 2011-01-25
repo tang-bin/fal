@@ -1,13 +1,13 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.ui.skin
 {
 	import flash.display.Bitmap;
@@ -16,52 +16,50 @@ package org.finalbug.ui.skin
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
-	
+
 	import org.finalbug.data.Status;
 	import org.finalbug.ui.Glaze;
 	import org.finalbug.ui.glazes.Scale9Bitmap;
 	import org.finalbug.ui.style.FillStyle;
-	
-	
+
 	/**
 	 * SkinElement is a display element to show skin.
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.12
-	 */	
+	 */
 	public class Skin extends Glaze
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
+		// #######################################
 		override protected function updateSize():void
 		{
 			this.graphics.clear();
 			// remove skin if is changed.
-			if(skinChanged) this.removeAll();
+			if (skinChanged) this.removeAll();
 			//
 			var data:SkinData = skinDataList[currentStatus] as SkinData;
-			if(data != null)
+			if (data != null)
 			{
 				var rect:Rectangle = data.scale9;
 				// set view start
-				if(data.type == SkinData.FILL_TYPE)
+				if (data.type == SkinData.FILL_TYPE)
 				{
 					// fill type, just fill it!
 					this.fillStyle = data.data as FillStyle;
 				}
-				else if(data.type == SkinData.VECTORIAL_TYPE)
+				else if (data.type == SkinData.VECTORIAL_TYPE)
 				{
 					// vectogram type, use displayobject directly.
 					var obj:DisplayObject;
-					if(skinChanged)
+					if (skinChanged)
 					{
 						// add skin if is changed.
-						obj = data.data as DisplayObject
-						if(obj != null)
+						obj = data.data as DisplayObject;
+						if (obj != null)
 						{
-							if(rect == null)
+							if (rect == null)
 							{
 								rect = new Rectangle(0, 0, obj.width, obj.height);
 							}
@@ -76,32 +74,32 @@ package org.finalbug.ui.skin
 					{
 						// if skin not changed, just resize skin's size.
 						obj = this.getChildByName("skin") as DisplayObject;
-						if(obj != null)
+						if (obj != null)
 						{
 							obj.width = this.width;
 							obj.height = this.height;
 						}
 					}
 				}
-				else if(data.type == SkinData.BITMAP_TYPE)
+				else if (data.type == SkinData.BITMAP_TYPE)
 				{
 					// bitmap type, use scale9grid bitmap.
 					var img:Scale9Bitmap;
-					if(skinChanged)
+					if (skinChanged)
 					{
 						// if skin is changed. reset bitmap
 						var bm:Bitmap;
-						if(data.data is Bitmap)
+						if (data.data is Bitmap)
 						{
 							// if the data is bitmap, can be used as bitmap directly.
 							bm = data.data as Bitmap;
 						}
-						else if(data.data is BitmapData)
+						else if (data.data is BitmapData)
 						{
 							// if the data is bitmapData, create new bitmap using it.
 							bm = new Bitmap(data.data as BitmapData);
 						}
-						else if(data.data is DisplayObject)
+						else if (data.data is DisplayObject)
 						{
 							// if the data is not bitmap/bitmapdata, but still a displayobject.
 							// create new bitmap using it.
@@ -110,10 +108,10 @@ package org.finalbug.ui.skin
 							bd.draw(bdObj, null, null, null, null, true);
 							bm = new Bitmap(bd);
 						}
-						if(bm != null)
+						if (bm != null)
 						{
 							// if bitmap is created.
-							if(rect == null)
+							if (rect == null)
 							{
 								rect = new Rectangle(0, 0, bm.width, bm.height);
 							}
@@ -128,7 +126,7 @@ package org.finalbug.ui.skin
 					{
 						// if skin is not changed, just resize skin.
 						img = this.getChildByName("skin") as Scale9Bitmap;
-						if(img != null)
+						if (img != null)
 						{
 							img.width = this.width;
 							img.height = this.height;
@@ -139,23 +137,18 @@ package org.finalbug.ui.skin
 				super.updateSize();
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		private var skinDataList:Dictionary = new Dictionary();
-		
 		private var currentStatus:String;
-		
 		private var skinChanged:Boolean = false;
-		
 		private var _autoMouseEvent:Boolean = false;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @return 
@@ -164,20 +157,21 @@ package org.finalbug.ui.skin
 		{
 			return currentStatus;
 		}
+
 		/**
 		 * 
 		 * @param value
 		 */
 		public function set status(value:String):void
 		{
-			if(value != "" && value != currentStatus && skinDataList[value] != null)
+			if (value != "" && value != currentStatus && skinDataList[value] != null)
 			{
 				currentStatus = value;
 				skinChanged = true;
 				updateSize();
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -186,16 +180,17 @@ package org.finalbug.ui.skin
 		{
 			return _autoMouseEvent;
 		}
+
 		/**
 		 * 
 		 * @param value
 		 */
 		public function set autoMouseEvent(value:Boolean):void
 		{
-			if(value != _autoMouseEvent)
+			if (value != _autoMouseEvent)
 			{
 				_autoMouseEvent = value;
-				if(_autoMouseEvent)
+				if (_autoMouseEvent)
 				{
 					setMouseEvent();
 				}
@@ -205,11 +200,10 @@ package org.finalbug.ui.skin
 				}
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// CONSTRUCTOR.
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 */
@@ -217,11 +211,10 @@ package org.finalbug.ui.skin
 		{
 			super();
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param data
@@ -229,33 +222,31 @@ package org.finalbug.ui.skin
 		public function setSkinData(data:SkinData):void
 		{
 			skinDataList[data.status] = data;
-			if(data.asDefault)
+			if (data.asDefault)
 			{
 				this.status = data.status;
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @param status
 		 */
 		public function removeSkinData(status:String):void
 		{
-			if(skinDataList[status] != null)
+			if (skinDataList[status] != null)
 			{
 				skinDataList[status] = null;
 				delete skinDataList[status];
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function setMouseEvent():void
 		{
 			this.mouseEnabled = true;
@@ -265,7 +256,7 @@ package org.finalbug.ui.skin
 			this.addEventListener(MouseEvent.MOUSE_DOWN, downHandler);
 			this.addEventListener(MouseEvent.MOUSE_UP, upHandler);
 		}
-		
+
 		private function removeMouseEvent():void
 		{
 			this.mouseEnabled = false;
@@ -275,38 +266,37 @@ package org.finalbug.ui.skin
 			this.removeEventListener(MouseEvent.MOUSE_DOWN, downHandler);
 			this.removeEventListener(MouseEvent.MOUSE_UP, upHandler);
 		}
-		
-		//#######################################
+
+		// #######################################
 		// HANDLER
-		//#######################################
-		
+		// #######################################
 		private function overHandler(e:MouseEvent):void
 		{
-			if(status != Status.DISABLED)
+			if (status != Status.DISABLED)
 			{
 				this.status = Status.MOUSE_OVER;
 			}
 		}
-		
+
 		private function outHandler(e:MouseEvent):void
 		{
-			if(status != Status.DISABLED)
+			if (status != Status.DISABLED)
 			{
 				this.status = Status.NORMAL;
 			}
 		}
-		
+
 		private function downHandler(e:MouseEvent):void
 		{
-			if(status != Status.DISABLED)
+			if (status != Status.DISABLED)
 			{
 				this.status = Status.MOUSE_DOWN;
 			}
 		}
-		
+
 		private function upHandler(e:MouseEvent):void
 		{
-			if(status != Status.DISABLED)
+			if (status != Status.DISABLED)
 			{
 				this.status = Status.MOUSE_OVER;
 			}

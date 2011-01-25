@@ -1,13 +1,13 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.errors
 {
 	/**
@@ -15,7 +15,7 @@ package org.finalbug.errors
 	 * 
 	 * @author Tang Bin
 	 * @since old version
-	 */	
+	 */
 	public class MotionError extends Error
 	{
 		/**
@@ -23,13 +23,12 @@ package org.finalbug.errors
 		 * @default 
 		 */
 		public static const START_END_NOT_MATCH:String = "Counts of start values and end values must the same.";
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const COUNT_VALUE_NOT_NUMBER:String = "Count value mast be number";
-		
+
 		/**
 		 * 
 		 * @param message

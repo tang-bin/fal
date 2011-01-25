@@ -5,12 +5,11 @@
 package org.finalbug.test.tester
 {
 	import flash.events.MouseEvent;
-	
+
 	import org.finalbug.ui.control.Button;
 	import org.finalbug.ui.control.Container;
 	import org.finalbug.ui.control.TextArea;
-	
-	
+
 	/******************************************
 	 * org.finalbug.faltester.tester.TextAreaTester
 	 *
@@ -24,16 +23,14 @@ package org.finalbug.test.tester
 		 * DEFINE
 		 *
 		 ****************************************/
-		
 		private var txt:TextArea;
 		private var btn:Button;
-		
+
 		/****************************************
 		 *
 		 * GETTER and SETTER
 		 *
 		 ****************************************/
-		
 		/****************************************
 		 *
 		 * org.finalbug.faltester.tester.TextAreaTester constructor.
@@ -42,9 +39,8 @@ package org.finalbug.test.tester
 		public function TextAreaTester()
 		{
 			super();
-			
 		}
-		
+
 		/****************************************
 		 *
 		 * OVERRIDE METHODS
@@ -52,15 +48,14 @@ package org.finalbug.test.tester
 		 * include public, protected and private.
 		 *
 		 ****************************************/
-		
 		override protected function callAtAdded():void
 		{
 			super.callAtAdded();
-			if(txt == null)
+			if (txt == null)
 			{
 				txt = new TextArea();
 				txt.x = txt.y = 100;
-				//txt.layoutStyle = new LayoutStyle();
+				// txt.layoutStyle = new LayoutStyle();
 				//
 				btn = new Button("CLICK");
 				btn.x = btn.y = 20;
@@ -70,31 +65,27 @@ package org.finalbug.test.tester
 				this.horizontalRank(20);
 			}
 		}
-		
+
 		/****************************************
 		 *
 		 * PUBLIC
 		 *
 		 ****************************************/
-		
 		/****************************************
 		 *
 		 * PROTECTED
 		 *
 		 ****************************************/
-		
 		/****************************************
 		 *
 		 * PRIVATE
 		 *
 		 ****************************************/
-		
 		/****************************************
 		 *
 		 * HANDLER
 		 *
 		 ****************************************/
-		
 		private function clickBtnHandler(e:MouseEvent):void
 		{
 			txt.layoutStyle.setValue("width", "50%");

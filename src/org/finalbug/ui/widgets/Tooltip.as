@@ -1,41 +1,39 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.ui.widgets
 {
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.text.TextFormat;
-	
+
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.Bin;
 	import org.finalbug.ui.control.Label;
 	import org.finalbug.ui.glazes.Flat;
 	import org.finalbug.ui.style.FillStyle;
-	
+
 	/**
 	 * app.Tooltip
 	 *  
 	 * @author Tang Bin
 	 * @since old version
-	 */	
+	 */
 	public class Tooltip
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @default 
@@ -50,20 +48,17 @@ package org.finalbug.ui.widgets
 		 * 
 		 * @default 
 		 */
-		public static var container:Bin
-
+		public static var container:Bin;
 		private static var box:Sprite;
 		private static var bg:Flat;
 		private static var txt:Label;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @throws DataError
@@ -72,47 +67,44 @@ package org.finalbug.ui.widgets
 		{
 			throw new DataError(DataError.STATIC_CLASS);
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param str
 		 */
 		public static function show(str:String):void
 		{
-			if(box == null)
+			if (box == null)
 			{
 				createTip();
 			}
 			showTip(str);
 		}
-		
+
 		/**
 		 * 
 		 */
 		public static function remove():void
 		{
-			if(box != null)
+			if (box != null)
 			{
 				box.visible = false;
 				container.stage.removeEventListener(MouseEvent.MOUSE_MOVE, stageMoveHandler);
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private static function createTip():void
 		{
-			if(container != null)
+			if (container != null)
 			{
 				box = new Sprite();
 				container.addChild(box);
@@ -134,7 +126,7 @@ package org.finalbug.ui.widgets
 				box.visible = false;
 			}
 		}
-		
+
 		private static function showTip(str:String):void
 		{
 			txt.text = str;
@@ -144,29 +136,28 @@ package org.finalbug.ui.widgets
 			setBoxPosition();
 			container.stage.addEventListener(MouseEvent.MOUSE_MOVE, stageMoveHandler);
 		}
-		
+
 		private static function setBoxPosition():void
 		{
-			if(box != null && container.contains(box) && box.visible)
+			if (box != null && container.contains(box) && box.visible)
 			{
 				box.x = container.stage.mouseX + 10;
 				box.y = container.stage.mouseY + 20;
 				//
-				if(box.x + box.width > container.stage.stageWidth)
+				if (box.x + box.width > container.stage.stageWidth)
 				{
 					box.x = container.stage.stageWidth - box.width;
 				}
-				if(box.y + box.height > container.stage.stageHeight)
+				if (box.y + box.height > container.stage.stageHeight)
 				{
 					box.y = container.stage.stageHeight - box.height;
 				}
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// HANDLER
-		//#######################################
-		
+		// #######################################
 		private static function stageMoveHandler(e:MouseEvent):void
 		{
 			setBoxPosition();

@@ -1,20 +1,20 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.ui.glazes
 {
 	import flash.display.Sprite;
 	import flash.events.TimerEvent;
 	import flash.filters.GlowFilter;
 	import flash.utils.Timer;
-	
+
 	import org.finalbug.ui.Glaze;
 	import org.finalbug.utils.DrawUtil;
 
@@ -25,34 +25,28 @@ package org.finalbug.ui.glazes
 	 */
 	public class ProgressRound extends Glaze
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		private var radius:Number = 20;
 		private var backColor:Number = 0x990000;
 		private var frontColor:Number = 0x333333;
 		private var glowColor:Number = 0;
-		
 		private var whitRate:Boolean = true;
 		private var rate:Number = 0;
 		private var runTimer:Timer;
-		
 		private var bg:Sprite;
 		private var front:Sprite;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 */
@@ -65,11 +59,10 @@ package org.finalbug.ui.glazes
 			this.addChild(front);
 			drawRound();
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param radius
@@ -85,7 +78,7 @@ package org.finalbug.ui.glazes
 			this.glowColor = glowColor;
 			drawRound();
 		}
-		
+
 		/**
 		 * 
 		 * @param rate
@@ -96,14 +89,14 @@ package org.finalbug.ui.glazes
 			this.rate = rate;
 			setRate();
 		}
-		
+
 		/**
 		 * 
 		 */
 		public function showRun():void
 		{
 			whitRate = false;
-			if(runTimer != null)
+			if (runTimer != null)
 			{
 				runTimer.stop();
 			}
@@ -113,20 +106,18 @@ package org.finalbug.ui.glazes
 			runTimer.start();
 			drawRound();
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function runTimerHandler(e:TimerEvent):void
 		{
 			rate += 0.02;
 			setRate();
-			if(rate >= 1)
+			if (rate >= 1)
 			{
 				var tmp:Number = backColor;
 				backColor = frontColor;
@@ -136,7 +127,7 @@ package org.finalbug.ui.glazes
 			}
 			e.updateAfterEvent();
 		}
-		
+
 		private function setRate():void
 		{
 			front.graphics.clear();
@@ -148,7 +139,7 @@ package org.finalbug.ui.glazes
 			var gf:GlowFilter = new GlowFilter(glowColor, 0.5, blur, blur);
 			bg.filters = [gf];
 		}
-		
+
 		private function drawRound():void
 		{
 			bg.graphics.clear();
@@ -156,9 +147,8 @@ package org.finalbug.ui.glazes
 			bg.graphics.drawCircle(0, 0, radius);
 			bg.graphics.endFill();
 		}
-		
-		//#######################################
+		// #######################################
 		// HANDLER
-		//#######################################
+		// #######################################
 	}
 }

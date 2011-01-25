@@ -1,42 +1,41 @@
-//##########################################################
+// ##########################################################
 // ___________.__              .__ ___.
 // \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__ |     |__|___|  (____  /____/___  /____/\___  /
-//     \/             \/     \/         \/     /_____/
+// |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__ |     |__|___|  (____  /____/___  /____/\___  /
+// \/             \/     \/         \/     /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.data
 {
 	import flash.utils.Dictionary;
 	import flash.utils.getTimer;
-	
+
 	import org.finalbug.errors.DataError;
-	
+
 	/**
 	 * TimeLog is used to save logs during runtime order by time.
 	 * 
 	 * @author Tang Bin
 	 * @since 2011.01
-	 */	
+	 */
 	public class TimeLog
 	{
-		//#######################################
+		// #######################################
 		// SINGLETON
-		//#######################################
-		
+		// #######################################
 		private static var tl:TimeLog;
 		private static var instanceable:Boolean = false;
-		
+
 		/**
 		 * 
 		 * @return 
 		 */
 		public static function get instance():TimeLog
 		{
-			if(tl == null)
+			if (tl == null)
 			{
 				instanceable = true;
 				tl = new TimeLog();
@@ -44,42 +43,37 @@ package org.finalbug.data
 			}
 			return tl;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		private var logList:Array = new Array();
 		private var consLogList:Dictionary = new Dictionary();
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @throws DataError
 		 */
 		public function TimeLog()
 		{
-			if(!instanceable)
+			if (!instanceable)
 			{
 				throw new DataError(DataError.SINGLETON);
 			}
 		}
-				
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param txt
@@ -94,16 +88,16 @@ package org.finalbug.data
 			data.group = group;
 			logList.push(data);
 			//
-			if(group != null)
+			if (group != null)
 			{
-				if(consLogList[group] == null)
+				if (consLogList[group] == null)
 				{
 					consLogList[group] = new Array();
 				}
 				consLogList[group].push(data);
 			}
 		}
-		
+
 		/**
 		 * Get one consecutive log group.
 		 * 
@@ -115,14 +109,14 @@ package org.finalbug.data
 			var arr:Array = consLogList[group] as Array;
 			var rs:Array = new Array();
 			var lastTime:int;
-			if(arr != null)
+			if (arr != null)
 			{
 				var str:String = "";
 				var len:uint = arr.length;
-				for(var i:uint = 0 ; i < len ; i++)
+				for (var i:uint = 0 ; i < len ; i++)
 				{
 					var data:LogData = arr[i] as LogData;
-					if(i == 0)
+					if (i == 0)
 					{
 						str += "[" + data.group + " - " + data.date + "] ";
 					}
@@ -141,7 +135,7 @@ package org.finalbug.data
 			}
 			return rs;
 		}
-		
+
 		/**
 		 * Jion one consecutive log group into one string.
 		 * 
@@ -152,17 +146,17 @@ package org.finalbug.data
 		{
 			var arr:Array = getConsLogs(group);
 			var str:String = "";
-			if(arr != null && arr.length > 0)
+			if (arr != null && arr.length > 0)
 			{
 				var len:uint = arr.length;
-				for(var i:uint = 0 ; i < len ; i++)
+				for (var i:uint = 0 ; i < len ; i++)
 				{
 					str += arr[i];
 				}
 			}
 			return str;
 		}
-		
+
 		/**
 		 * Get all logs as one array.
 		 * 
@@ -172,11 +166,11 @@ package org.finalbug.data
 		{
 			var rs:Array = new Array();
 			var len:uint = logList.length;
-			for(var i:uint = 0 ; i < len ; i++)
+			for (var i:uint = 0 ; i < len ; i++)
 			{
 				var data:LogData = logList[i] as LogData;
 				var str:String = "[";
-				if(data.group != "")
+				if (data.group != "")
 				{
 					str += data.group + " - ";
 				}
@@ -185,7 +179,7 @@ package org.finalbug.data
 			}
 			return rs;
 		}
-		
+
 		/**
 		 * Remove all logs.
 		 */
@@ -194,18 +188,17 @@ package org.finalbug.data
 			logList = new Array();
 			consLogList = new Dictionary();
 		}
-		
-		//#######################################
+		// #######################################
 		// PROTECTED
-		//#######################################
+		// #######################################
 		
-		//#######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
+		// #######################################
 		
-		//#######################################
+		// #######################################
 		// HANDLER
-		//#######################################
+		// #######################################
 	}
 }
 class LogData
@@ -230,7 +223,7 @@ class LogData
 	 * @default 
 	 */
 	public var txt:String;
-	
+
 	/**
 	 * 
 	 * @return 

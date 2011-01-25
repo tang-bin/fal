@@ -1,18 +1,18 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.test.tester
 {
 	import flash.events.MouseEvent;
 	import flash.utils.getTimer;
-	
+
 	import org.finalbug.events.MotionEvent;
 	import org.finalbug.ui.Bin;
 	import org.finalbug.ui.control.Button;
@@ -20,8 +20,7 @@ package org.finalbug.test.tester
 	import org.finalbug.utils.motion.FadeMotion;
 	import org.finalbug.utils.motion.MotionQueue;
 	import org.finalbug.utils.motion.MoveMotion;
-	
-	
+
 	/**
 	 * MotionTester
 	 *
@@ -35,15 +34,13 @@ package org.finalbug.test.tester
 		 * DEFINE
 		 *
 		 ****************************************/
-		
 		private var container:Bin;
-		
+
 		/****************************************
 		 *
 		 * GETTER and SETTER
 		 *
 		 ****************************************/
-		
 		/****************************************
 		 *
 		 * org.finalbug.faltester.tester.MotionTester constructor.
@@ -53,7 +50,7 @@ package org.finalbug.test.tester
 		{
 			super();
 		}
-		
+
 		/****************************************
 		 *
 		 * OVERRIDE METHODS
@@ -61,7 +58,6 @@ package org.finalbug.test.tester
 		 * include public, protected and private.
 		 *
 		 ****************************************/
-		
 		override protected function callAtAdded():void
 		{
 			var btn:Button = new Button("start");
@@ -80,33 +76,30 @@ package org.finalbug.test.tester
 			mq.addMotion(m);
 			mq.addMotion(f);
 			//
-			//mq.start(SetType.CONCURRENT);
+			// mq.start(SetType.CONCURRENT);
 			mq.addEventListener(MotionEvent.MOTION_STOP, stopHandler);
 		}
-		
+
 		/****************************************
 		 *
 		 * PUBLIC
 		 *
 		 ****************************************/
-		
 		/****************************************
 		 *
 		 * PROTECTED
 		 *
 		 ****************************************/
-		
 		/****************************************
 		 *
 		 * PRIVATE
 		 *
 		 ****************************************/
-		
 		private function startTest(total:uint):void
 		{
 			var t:int = flash.utils.getTimer();
 			var list:Object = new Object();
-			for(var i:uint = 0 ; i < total ; i++)
+			for (var i:uint = 0 ; i < total ; i++)
 			{
 				var bin:Bin = new Bin();
 				bin.graphics.beginFill(0, 0.8);
@@ -116,16 +109,15 @@ package org.finalbug.test.tester
 				bin.moveTo(Math.random() * stage.stageWidth, Math.random() * stage.stageHeight);
 			}
 		}
-		
+
 		/****************************************
 		 *
 		 * HANDLER
 		 *
 		 ****************************************/
-		
 		private function clickBtnHandler(e:MouseEvent):void
 		{
-			if(container == null)
+			if (container == null)
 			{
 				container = new Bin();
 				this.addAll(container);
@@ -136,10 +128,9 @@ package org.finalbug.test.tester
 			}
 			startTest(1000);
 		}
-		
+
 		private function stopHandler(e:MotionEvent):void
 		{
-			
 		}
 	}
 }

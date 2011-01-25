@@ -1,33 +1,32 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.ui.skin
 {
 	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
-	
+
 	import org.finalbug.data.Status;
 	import org.finalbug.ui.control.Label;
-	
+
 	/**
 	 * ButtonSkin
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.12
-	 */	
+	 */
 	public class ButtonSkinData extends UISkinDataAbstract
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param args
@@ -35,68 +34,63 @@ package org.finalbug.ui.skin
 		override public function bindChildren(...args):void
 		{
 			bgSkin = args[0] as Skin;
-			if(bgSkin != null)
+			if (bgSkin != null)
 			{
 				bindStatusesToSkin(bgSkin, bgSkinDataList);
 			}
 			label = args[1] as Label;
-			if(label != null)
+			if (label != null)
 			{
 				label.textFormat = txtFormatList[Status.NORMAL];
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @param status
 		 */
 		override public function changeStatus(status:String):void
 		{
-			if(bgSkin != null)
+			if (bgSkin != null)
 			{
 				bgSkin.status = status;
 			}
-			if(label != null && txtFormatList[status] != null)
+			if (label != null && txtFormatList[status] != null)
 			{
 				label.textFormat = txtFormatList[status];
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		[Embed(source="/resources/skins/ButtonNormal.png")]
-		private var ButtonNormal:Class
+		private var ButtonNormal:Class;
 		[Embed(source="/resources/skins/ButtonOver.png")]
-		private var ButtonOver:Class
+		private var ButtonOver:Class;
 		[Embed(source="/resources/skins/ButtonDown.png")]
-		private var ButtonDown:Class
+		private var ButtonDown:Class;
 		[Embed(source="/resources/skins/ButtonDisabled.png")]
-		private var ButtonDisabled:Class
+		private var ButtonDisabled:Class;
 		[Embed(source="/resources/skins/ButtonHold.png")]
-		private var ButtonHold:Class
+		private var ButtonHold:Class;
 		[Embed(source="/resources/skins/ButtonHoldDown.png")]
-		private var ButtonHoldDown:Class
+		private var ButtonHoldDown:Class;
 		[Embed(source="/resources/skins/ButtonHoldOver.png")]
-		private var ButtonHoldOver:Class
-		
+		private var ButtonHoldOver:Class;
 		// skin elements
 		private var bgSkin:Skin;
 		private var label:Label;
-		
 		// skin data.
 		private var bgSkinDataList:Dictionary;
 		private var txtFormatList:Dictionary;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// CONSTRUCTOR.
-		//#######################################
-		
+		// #######################################
 		/**
 		 * Create an new ButtonSkinData object.
 		 */
@@ -104,7 +98,7 @@ package org.finalbug.ui.skin
 		{
 			bgSkinDataList = new Dictionary();
 			txtFormatList = new Dictionary();
-			if(!empty)
+			if (!empty)
 			{
 				// skin
 				bgSkinDataList[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new ButtonNormal(), true);
@@ -118,11 +112,10 @@ package org.finalbug.ui.skin
 				txtFormatList[Status.NORMAL] = new TextFormat("Arial", 12, 0xFFFFFF, true);
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * Set Button's skin style.
 		 * This method should be called before transfer this object into any UI object.
@@ -143,17 +136,16 @@ package org.finalbug.ui.skin
 			bgSkinDataList[status] = skinData;
 			txtFormatList[status] = textFormat;
 		}
-		
-		//#######################################
+		// #######################################
 		// PROTECTED
-		//#######################################
+		// #######################################
 		
-		//#######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
+		// #######################################
 		
-		//#######################################
+		// #######################################
 		// HANDLER
-		//#######################################
+		// #######################################
 	}
 }

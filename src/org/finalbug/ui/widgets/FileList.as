@@ -1,50 +1,49 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.ui.widgets
 {
 	import flash.events.MouseEvent;
 	import flash.utils.Dictionary;
-	
+
 	import org.finalbug.data.FolderData;
 	import org.finalbug.data.FileData;
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.control.ScrollPanel;
-	
+
 	/**
 	 * FileList
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.11
-	 */	
+	 */
 	public class FileList extends ScrollPanel
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
+		// #######################################
 		override protected function updateSize():void
 		{
-			if(dd == null) return;
+			if (dd == null) return;
 			// step1, set all exist item is not updated
-			for each(var itemData:Object in items)
+			for each (var itemData:Object in items)
 			{
 				itemData.update = false;
 			}
 			// step2, update items
 			dd.forEachFile(createAndShowFiles);
 			// step3, after update items, the items whose update is false will be removed.
-			for each(var itemData2:Object in items)
+			for each (var itemData2:Object in items)
 			{
 				var item:FileListItem = itemData2.item as FileListItem;
-				if(!itemData2.update)
+				if (!itemData2.update)
 				{
 					items[item.data.name] = null;
 					delete items[item.data.name];
@@ -57,17 +56,15 @@ package org.finalbug.ui.widgets
 			// step 5, refresh scroll panel
 			super.updateSize();
 		}
-		
-		//#######################################
+
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var item_height:Number = 32;
-		
 		/**
 		 * 
 		 * @default 
@@ -78,17 +75,14 @@ package org.finalbug.ui.widgets
 		 * @default 
 		 */
 		protected var items:Dictionary = new Dictionary();
-		
 		private var forEachItemFunc:Function;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// CONSTRUCTOR.
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param data
@@ -97,14 +91,13 @@ package org.finalbug.ui.widgets
 		{
 			super(false, true);
 			this.dragable = false;
-			if(data == null) data = new FolderData();
+			if (data == null) data = new FolderData();
 			showDirectory(data);
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param data
@@ -114,11 +107,10 @@ package org.finalbug.ui.widgets
 			dd = data;
 			this.updateSize();
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param file
@@ -128,7 +120,7 @@ package org.finalbug.ui.widgets
 		protected function createAndShowFiles(file:FileData, index:uint, length:uint):void
 		{
 			var itemData:ItemData = items[file.name] as ItemData;
-			if(itemData == null)
+			if (itemData == null)
 			{
 				var item:FileListItem = new FileListItem(file);
 				this.container.addChild(item);
@@ -140,7 +132,7 @@ package org.finalbug.ui.widgets
 			}
 			itemData.update = true;
 		}
-		
+
 		/**
 		 * 
 		 */
@@ -148,7 +140,7 @@ package org.finalbug.ui.widgets
 		{
 			// should be overrided in grid/list/tree boxes.
 		}
-		
+
 		/**
 		 * 
 		 * @param item
@@ -159,15 +151,14 @@ package org.finalbug.ui.widgets
 		{
 			// should be overrided in grid/list/tree boxes.
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function doForEachItem(file:FileData, index:uint, length:uint):void
 		{
 			var item:FileListItem = items[file.name].item as FileListItem;
-			if(item == null)
+			if (item == null)
 			{
 				throw new DataError(DataError.DATA_NULL);
 			}
@@ -176,18 +167,17 @@ package org.finalbug.ui.widgets
 				setItemPosition(item, index, length);
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// HANDLER
-		//#######################################
-		
+		// #######################################
 		private function clickItemHandler(e:MouseEvent):void
 		{
 			var data:FileData = (e.currentTarget as FileListItem).data;
-			if(e.ctrlKey)
+			if (e.ctrlKey)
 			{
 				// select more
-				if(dd.currentSelected[data.name] == null)
+				if (dd.currentSelected[data.name] == null)
 				{
 					this.selectedItem(data, true);
 					dd.currentSelected[data.name] = data;
@@ -202,7 +192,7 @@ package org.finalbug.ui.widgets
 			else
 			{
 				// select one
-				for each(var oldData:FileData in dd.currentSelected)
+				for each (var oldData:FileData in dd.currentSelected)
 				{
 					this.selectedItem(oldData, false);
 				}
@@ -211,11 +201,11 @@ package org.finalbug.ui.widgets
 				dd.currentSelected[data.name] = data;
 			}
 		}
-		
+
 		private function selectedItem(data:FileData, selected:Boolean):void
 		{
 			var item:FileListItem = items[data.name].item as FileListItem;
-			if(item != null)
+			if (item != null)
 			{
 				item.selected = selected;
 			}
@@ -223,7 +213,6 @@ package org.finalbug.ui.widgets
 	}
 }
 import org.finalbug.ui.widgets.FileListItem;
-
 
 class ItemData
 {

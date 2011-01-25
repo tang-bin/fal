@@ -1,33 +1,31 @@
-//##########################################################
+// ##########################################################
 // ___________.__              .__ ___.
 // \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__ |     |__|___|  (____  /____/___  /____/\___  /
-//     \/             \/     \/         \/     /_____/
+// |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__ |     |__|___|  (____  /____/___  /____/\___  /
+// \/             \/     \/         \/     /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.ui.navigate
 {
 	import flash.display.DisplayObject;
-	
+
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.control.Container;
-	
-	
+
 	/**
 	 * Slider. Like mx component ViewStack.
 	 * 
 	 * @author Tang Bin
 	 * @since 2011.01
-	 */	
+	 */
 	public class Slider extends Container
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param child
@@ -40,7 +38,7 @@ package org.finalbug.ui.navigate
 			refreshIndex();
 			return addedChild;
 		}
-		
+
 		/**
 		 * 
 		 * @param child
@@ -54,7 +52,7 @@ package org.finalbug.ui.navigate
 			refreshIndex();
 			return addedChild;
 		}
-		
+
 		/**
 		 * 
 		 * @param child
@@ -66,7 +64,7 @@ package org.finalbug.ui.navigate
 			refreshIndex();
 			return removedChild;
 		}
-		
+
 		/**
 		 * 
 		 * @param index
@@ -78,32 +76,30 @@ package org.finalbug.ui.navigate
 			refreshIndex();
 			return removedChild;
 		}
-		
+
 		/**
 		 * 
 		 */
 		override protected function updateSize():void
 		{
 			super.updateSize();
-			for(var i:uint = this.numChildren ; --i >= 0 ; )
+			for (var i:uint = this.numChildren ; --i >= 0 ; )
 			{
 				var child:DisplayObject = this.getChildAt(i);
 				child.width = this.width;
 				child.height = this.height;
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		private var _selectedIndex:int = -1;
 		private var _selectedChild:DisplayObject = null;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @return 
@@ -112,19 +108,20 @@ package org.finalbug.ui.navigate
 		{
 			return _selectedChild;
 		}
+
 		/**
 		 * 
 		 * @param child
 		 */
 		public function set selectedChild(child:DisplayObject):void
 		{
-			if(this.contains(child))
+			if (this.contains(child))
 			{
 				var index:uint = this.getChildIndex(child);
 				setShowChildIndex(index);
 			}
 		}
-		
+
 		/**
 		 * 
 		 * @return 
@@ -133,6 +130,7 @@ package org.finalbug.ui.navigate
 		{
 			return _selectedIndex;
 		}
+
 		/**
 		 * 
 		 * @param index
@@ -141,11 +139,10 @@ package org.finalbug.ui.navigate
 		{
 			setShowChildIndex(index);
 		}
-		
-		//#######################################
+
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 */
@@ -154,47 +151,44 @@ package org.finalbug.ui.navigate
 			super();
 			this.initSize("100%", "100%");
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		private function setShowChildIndex(index:int):void
 		{
-			if(_selectedIndex != index)
+			if (_selectedIndex != index)
 			{
-				if(index >= this.numChildren || index < -1)
+				if (index >= this.numChildren || index < -1)
 				{
 					throw new DataError(DataError.INVALID_INDEX);
 				}
 				_selectedIndex = index;
-				if(_selectedChild != null)
+				if (_selectedChild != null)
 				{
 					_selectedChild.visible = false;
 				}
-				if(_selectedIndex >= 0)
+				if (_selectedIndex >= 0)
 				{
 					_selectedChild = this.getChildAt(index);
 					_selectedChild.visible = true;
 				}
 				else
 				{
-					_selectedChild = null
+					_selectedChild = null;
 				}
 			}
 		}
-		
+
 		private function refreshIndex():void
 		{
-			if(_selectedChild != null && this.contains(_selectedChild))
+			if (_selectedChild != null && this.contains(_selectedChild))
 			{
 				_selectedIndex = this.getChildIndex(_selectedChild);
 			}
@@ -205,9 +199,8 @@ package org.finalbug.ui.navigate
 			}
 			setShowChildIndex(_selectedIndex);
 		}
-		
-		//#######################################
+		// #######################################
 		// HANDLER
-		//#######################################
+		// #######################################
 	}
 }

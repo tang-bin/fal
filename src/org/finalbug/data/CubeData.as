@@ -1,13 +1,13 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.data
 {
 	import org.finalbug.utils.ColorUtil;
@@ -20,14 +20,12 @@ package org.finalbug.data
 	 */
 	public class CubeData
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		/**
 		 * cube's shadow lean to left.
 		 */
@@ -56,16 +54,14 @@ package org.finalbug.data
 		 * show cube's border or not.
 		 */
 		public var border:Boolean = false;
-
 		private var _color:uint;
 		private var _topColor:uint;
 		private var _sideColor:uint;
 		private var _frontColor:uint;
 
-		//#######################################
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * @default 0xFF0000
 		 */
@@ -109,11 +105,10 @@ package org.finalbug.data
 		{
 			return _frontColor;
 		}
-		
-		//#######################################
+
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
+		// #######################################
 		/**
 		 * Create a new Cubu data.
 		 *
@@ -124,42 +119,38 @@ package org.finalbug.data
 		 * @param lean Cube's lean type. default value CubeData.LEAN_LEFT
 		 * @param border Show Cube's border or not.
 		 */
-		public function CubeData(color:uint=0xFF0000, width:Number=300, height:Number=400, thickness:Number=30, lean:String="", border:Boolean=false)
+		public function CubeData(color:uint = 0xFF0000, width:Number = 300, height:Number = 400, thickness:Number = 30, lean:String = "", border:Boolean = false)
 		{
-			this._color=color;
-			this.width=width;
-			this.height=height;
-			this.thickness=thickness;
+			this._color = color;
+			this.width = width;
+			this.height = height;
+			this.thickness = thickness;
 			this.lean = lean == LEAN_RIGHT ? LEAN_RIGHT : LEAN_LEFT;
-			this.border=border;
+			this.border = border;
 			//
 			accountColor();
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PROTECTED
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
-		
+		// #######################################
 		/**
 		 * account 3 side color values from one single color.
 		 */
 		private function accountColor():void
 		{
-			_topColor=_color;
-			_frontColor=ColorUtil.offsetColor(_color, -50);
-			_sideColor=ColorUtil.offsetColor(_color, 50);
+			_topColor = _color;
+			_frontColor = ColorUtil.offsetColor(_color, -50);
+			_sideColor = ColorUtil.offsetColor(_color, 50);
 		}
-		
-		//#######################################
+		// #######################################
 		// HANDLER
-		//#######################################
+		// #######################################
 	}
 }

@@ -1,13 +1,13 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.data
 {
 	/**
@@ -23,7 +23,6 @@ package org.finalbug.data
 		 * @default Alert
 		 */
 		public var label:String = "Alert";
-		
 		/**
 		 * 
 		 * @default true
@@ -40,7 +39,6 @@ package org.finalbug.data
 		 * @default null
 		 */
 		public var yesFunction:Function;
-		
 		/**
 		 * 
 		 * @default false
@@ -57,7 +55,6 @@ package org.finalbug.data
 		 * @default null
 		 */
 		public var noFunction:Function;
-		
 		/**
 		 * 
 		 * @default false

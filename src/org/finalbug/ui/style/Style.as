@@ -1,35 +1,33 @@
-//##########################################################
+// ##########################################################
 // __________.__              .__ ___.
 // \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-//  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-//  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-//  \__|     |__|___|__(______/____/_____/____/\___  /
-//                                            /_____/
+// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__|     |__|___|__(______/____/_____/____/\___  /
+// /_____/
 // [fb-aslib] Finalbug ActionScript Library
 // http://www.finalbug.org
-//##########################################################
+// ##########################################################
 package org.finalbug.ui.style
 {
 	import flash.display.DisplayObject;
-	
+
 	import org.finalbug.data.DataModel;
-	
+
 	/**
 	 * css.styles.Style
 	 *  
 	 * @author Tang Bin
 	 * @since 2010.08
-	 */	
+	 */
 	public class Style extends DataModel
 	{
-		//#######################################
+		// #######################################
 		// OVERRIDE
-		//#######################################
-		
-		//#######################################
+		// #######################################
+		// #######################################
 		// DEFINE
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @default 
@@ -40,13 +38,11 @@ package org.finalbug.ui.style
 		 * @default 
 		 */
 		public static const PERCENT_REG:RegExp = /^(-?\d*\.?\d*)%$/;
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const defaultFont:String = "Verdana";
-		
 		/**
 		 * 
 		 * @default 
@@ -61,7 +57,7 @@ package org.finalbug.ui.style
 		 * 
 		 * @default 
 		 */
-		public static const SMALL_TEXT_SIZE:Number = 10
+		public static const SMALL_TEXT_SIZE:Number = 10;
 		/**
 		 * 
 		 * @default 
@@ -82,19 +78,16 @@ package org.finalbug.ui.style
 		 * @default 
 		 */
 		public static const LARGEST_TEXT_SIZE:Number = 20;
-		
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var filters:Array = new Array();
-		
 		private var _owner:DisplayObject;
-		
-		//#######################################
+
+		// #######################################
 		// GETTER and SETTER
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @return 
@@ -103,22 +96,22 @@ package org.finalbug.ui.style
 		{
 			return _owner;
 		}
+
 		/**
 		 * 
 		 * @param value
 		 */
 		public function set owner(value:DisplayObject):void
 		{
-			if(_owner != value)
+			if (_owner != value)
 			{
 				_owner = value;
 			}
 		}
-		
-		//#######################################
+
+		// #######################################
 		// CONSTRUCTOR
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 */
@@ -126,11 +119,10 @@ package org.finalbug.ui.style
 		{
 			super();
 		}
-		
-		//#######################################
+
+		// #######################################
 		// PUBLIC
-		//#######################################
-		
+		// #######################################
 		/**
 		 * 
 		 * @param str
@@ -140,7 +132,7 @@ package org.finalbug.ui.style
 		{
 			return (Style.NUM_REG.exec(str) || Style.PERCENT_REG.exec(str)) && str != "";
 		}
-		
+
 		/**
 		 * 
 		 * @param valueStr
@@ -149,11 +141,11 @@ package org.finalbug.ui.style
 		 */
 		public static function getLayoutValue(valueStr:String, parentValue:Number = 0):Number
 		{
-			if(Style.NUM_REG.exec(valueStr))
+			if (Style.NUM_REG.exec(valueStr))
 			{
 				return Number(valueStr);
 			}
-			else if(Style.PERCENT_REG.exec(valueStr))
+			else if (Style.PERCENT_REG.exec(valueStr))
 			{
 				var p:Number = Number(valueStr.replace(Style.PERCENT_REG, "$1"));
 				p = p / 100;
@@ -164,17 +156,16 @@ package org.finalbug.ui.style
 				return 0;
 			}
 		}
-		
-		//#######################################
+		// #######################################
 		// PROTECTED
-		//#######################################
+		// #######################################
 		
-		//#######################################
+		// #######################################
 		// PRIVATE
-		//#######################################
+		// #######################################
 		
-		//#######################################
+		// #######################################
 		// HANDLER
-		//#######################################
+		// #######################################
 	}
 }
