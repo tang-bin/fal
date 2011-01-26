@@ -30,7 +30,7 @@ package org.finalbug.ui.control
 	public class RadioButton extends UIObject
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		override public function set status(value:String):void
 		{
 			if (this.selected)
@@ -87,7 +87,7 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -112,7 +112,7 @@ package org.finalbug.ui.control
 
 		private var bg:Shape;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * label string
 		 */
@@ -189,7 +189,7 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// ******************* CONSTRUCTOR **************************
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * create a new RadioButton object
 		 * 
@@ -232,7 +232,7 @@ package org.finalbug.ui.control
 			uiSkinData.bindChildren(box, txt);
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * get selected radiobutton by groupName.
 		 * 
@@ -254,8 +254,8 @@ package org.finalbug.ui.control
 			return null;
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function unselectedGroup():void
 		{
 			for each (var btn:RadioButton in RadioButton.groupList[_group])
@@ -267,7 +267,7 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 		private function clickBoxHandler(e:MouseEvent):void
 		{
 			if (!_selected)

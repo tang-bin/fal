@@ -27,7 +27,7 @@ package org.finalbug.ui.control
 	public class ScrollPanel extends ScrollBox
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		override public function set xScrollEnabled(value:Boolean):void
 		{
 			super.xScrollEnabled = value;
@@ -81,14 +81,14 @@ package org.finalbug.ui.control
 			box.y = - pos * (box.height - masker.height);
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		private var masker:Sprite;
 
 		private var _dragable:Boolean = true;
 
 		private var box:Sprite;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * if the container can be dragged and moved.
 		 */
@@ -115,7 +115,7 @@ package org.finalbug.ui.control
 			return box;
 		}
 
-		// ******************* CONSTRUCTOR **************************
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * Create a new ScrollPanel object.
 		 */
@@ -137,9 +137,9 @@ package org.finalbug.ui.control
 			box.addEventListener(MouseEvent.MOUSE_DOWN, pressContainerHandler);
 		}
 
-		// ******************* PUBLIC *******************************
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PUBLIC ****************************************************/
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function resetScroll():void
 		{
 			//
@@ -166,7 +166,7 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 		/**
 		 * invoked when press container.
 		 * if enable drag container, set drag events here.

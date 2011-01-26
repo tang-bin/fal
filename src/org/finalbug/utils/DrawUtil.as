@@ -10,10 +10,10 @@
 // **********************************************************
 package org.finalbug.utils
 {
+	import org.finalbug.data.CubeData;
+
 	import flash.display.Graphics;
 	import flash.geom.Point;
-
-	import org.finalbug.data.CubeData;
 
 	/**
 	 * DrawUtil

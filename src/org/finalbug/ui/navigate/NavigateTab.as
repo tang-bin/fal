@@ -27,8 +27,8 @@ package org.finalbug.ui.navigate
 	public class NavigateTab extends Container
 	{
 
-		// ******************* OVERRIDE *****************************
-		// ******************* DEFINE *******************************
+		/******************* OVERRIDE **************************************************/
+		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -55,8 +55,8 @@ package org.finalbug.ui.navigate
 
 		private var currentSelected:TabData;
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 * @param skinData
@@ -80,7 +80,7 @@ package org.finalbug.ui.navigate
 			box.layoutStyle.setAroundStyle(0, BUTTON_HEIGHT + BAR_SPACE, 0, 0);
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * Add new tab into NavigateTab.
 		 * 
@@ -227,8 +227,8 @@ package org.finalbug.ui.navigate
 			}
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function doSelect(data:TabData):void
 		{
 			// remove pre-selected
@@ -280,7 +280,7 @@ package org.finalbug.ui.navigate
 			tabs[tabData.btn] = null;
 		}
 
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 		private function clickTabBtnHandler(e:MouseEvent):void
 		{
 			var btn:Button = e.currentTarget as Button;

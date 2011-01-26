@@ -10,12 +10,12 @@
 // **********************************************************
 package org.finalbug.utils
 {
+	import org.finalbug.errors.DataError;
+	import org.finalbug.ui.style.LayoutStyle;
+
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.utils.Dictionary;
-
-	import org.finalbug.errors.DataError;
-	import org.finalbug.ui.style.LayoutStyle;
 
 	/**
 	 * LayoutManager
@@ -26,7 +26,7 @@ package org.finalbug.utils
 	public class LayoutManager
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		// SINGLETON
 		private static var instanceable:Boolean = false;
 
@@ -47,11 +47,11 @@ package org.finalbug.utils
 			return lm;
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		private var list:Dictionary = new Dictionary();
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************.
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 * @throws DataError
@@ -64,7 +64,7 @@ package org.finalbug.utils
 			}
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param target
@@ -115,8 +115,8 @@ package org.finalbug.utils
 			}
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function updateLayout(target:DisplayObject):void
 		{
 			var data:LayoutStyle = list[target] as LayoutStyle;
@@ -125,6 +125,6 @@ package org.finalbug.utils
 			target.x = data.x;
 			target.y = data.y;
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

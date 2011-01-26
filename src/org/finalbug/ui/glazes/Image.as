@@ -30,7 +30,7 @@ package org.finalbug.ui.glazes
 	public class Image extends Glaze
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		override protected function updateSize():void
 		{
 			if (img != null && this.contains(img))
@@ -72,7 +72,7 @@ package org.finalbug.ui.glazes
 			}
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -93,7 +93,7 @@ package org.finalbug.ui.glazes
 
 		private var scale9:Rectangle;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -135,7 +135,7 @@ package org.finalbug.ui.glazes
 			}
 		}
 
-		// ******************* CONSTRUCTOR **************************.
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 * @param url
@@ -146,7 +146,7 @@ package org.finalbug.ui.glazes
 			loadImg(url);
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param obj
@@ -203,8 +203,8 @@ package org.finalbug.ui.glazes
 			return newImg;
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function removeLoaderEvent():void
 		{
 			loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, loadedHandler);
@@ -241,7 +241,7 @@ package org.finalbug.ui.glazes
 			this.updateSize();
 		}
 
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 		private function loadedHandler(e:Event):void
 		{
 			this.bitmapData = (loader.content as Bitmap).bitmapData;

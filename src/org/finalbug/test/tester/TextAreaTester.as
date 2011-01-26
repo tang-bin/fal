@@ -1,7 +1,13 @@
-/******************************************
- * Finalbug ActionScript Library
- * http://www.finalbug.org
- ******************************************/
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.test.tester
 {
 	import flash.events.MouseEvent;
@@ -10,12 +16,12 @@ package org.finalbug.test.tester
 	import org.finalbug.ui.control.Container;
 	import org.finalbug.ui.control.TextArea;
 
-	/******************************************
-	 * org.finalbug.faltester.tester.TextAreaTester
+	/**
+	 * TextAreaTester
 	 *
 	 * @author Tang Bin
 	 * @since 2010.08
-	 *****************************************/
+	 */
 	public class TextAreaTester extends Container
 	{
 
@@ -23,7 +29,7 @@ package org.finalbug.test.tester
 		 *
 		 * DEFINE
 		 *
-		 ****************************************/
+		 *************************************************************/
 		private var txt:TextArea;
 
 		private var btn:Button;
@@ -32,12 +38,12 @@ package org.finalbug.test.tester
 		 *
 		 * GETTER and SETTER
 		 *
-		 ****************************************/
+		 *************************************************************/
 		/****************************************
 		 *
 		 * org.finalbug.faltester.tester.TextAreaTester constructor.
 		 *
-		 ****************************************/
+		 *************************************************************/
 		public function TextAreaTester()
 		{
 			super();
@@ -49,7 +55,7 @@ package org.finalbug.test.tester
 		 * Whit out getter, setter and handler
 		 * include public, protected and private.
 		 *
-		 ****************************************/
+		 *************************************************************/
 		override protected function callAtAdded():void
 		{
 			super.callAtAdded();
@@ -72,22 +78,22 @@ package org.finalbug.test.tester
 		 *
 		 * PUBLIC
 		 *
-		 ****************************************/
+		 *************************************************************/
 		/****************************************
 		 *
 		 * PROTECTED
 		 *
-		 ****************************************/
+		 *************************************************************/
 		/****************************************
 		 *
 		 * PRIVATE
 		 *
-		 ****************************************/
+		 *************************************************************/
 		/****************************************
 		 *
 		 * HANDLER
 		 *
-		 ****************************************/
+		 *************************************************************/
 		private function clickBtnHandler(e:MouseEvent):void
 		{
 			txt.layoutStyle.setValue("width", "50%");

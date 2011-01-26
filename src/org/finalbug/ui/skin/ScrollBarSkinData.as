@@ -23,7 +23,7 @@ package org.finalbug.ui.skin
 	public class ScrollBarSkinData extends UISkinDataAbstract
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		/**
 		 * 
 		 * @param args leftBtn, rightBtn, upBtn, downBtn, back, slider
@@ -56,7 +56,7 @@ package org.finalbug.ui.skin
 			if (slider != null) slider.status = status;
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		[Embed(source="/resources/skins/ScrollBarUpNormal.png")]
 		private var ScrollBarUpNormal:Class;
 
@@ -140,8 +140,8 @@ package org.finalbug.ui.skin
 
 		private var sliderSkinData:Dictionary;
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************.
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 */
@@ -179,7 +179,7 @@ package org.finalbug.ui.skin
 			sliderSkinData[Status.NORMAL] = new SkinData(Status.NORMAL, SkinData.BITMAP_TYPE, new ScrollBarSlider(), true);
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		public function setSkinStyle(status:String, leftSkin:SkinData = null, rightSkin:SkinData = null, upSkin:SkinData = null, downSkin:SkinData = null, backSkin:SkinData = null, sliderSkin:SkinData = null):void
 		{
 			leftSkinData[status] = leftSkin;
@@ -189,14 +189,14 @@ package org.finalbug.ui.skin
 			backSkinData[status] = backSkin;
 			sliderSkinData[status] = sliderSkin;
 		}
-		// ******************* PROTECTED ****************************
+		/******************* PROTECTED *************************************************/
 		
 		
 		
-		// ******************* PRIVATE ******************************
+		/******************* PRIVATE ***************************************************/
 		
 		
 		
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

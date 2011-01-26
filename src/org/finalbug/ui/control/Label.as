@@ -26,7 +26,7 @@ package org.finalbug.ui.control
 	public class Label extends UIObject
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		override public function set width(value:Number):void
 		{
 			textWidth = value > 0 ? value : 0;
@@ -47,7 +47,7 @@ package org.finalbug.ui.control
 			return img.height;
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		private var str:String;
 
 		private var ft:TextFormat;
@@ -56,7 +56,7 @@ package org.finalbug.ui.control
 
 		private var textWidth:Number = 0;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -114,7 +114,7 @@ package org.finalbug.ui.control
 			createLabel();
 		}
 
-		// ******************* CONSTRUCTOR **************************
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 * @param text
@@ -135,9 +135,9 @@ package org.finalbug.ui.control
 			createLabel();
 		}
 
-		// ******************* PUBLIC *******************************
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PUBLIC ****************************************************/
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function createLabel():void
 		{
 			this.tooltip = "";
@@ -194,6 +194,6 @@ package org.finalbug.ui.control
 				img.x = 0;
 			}
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

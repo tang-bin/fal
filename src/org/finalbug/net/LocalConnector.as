@@ -24,8 +24,8 @@ package org.finalbug.net
 	public class LocalConnector
 	{
 
-		// ******************* OVERRIDE *****************************
-		// ******************* DEFINE *******************************
+		/******************* OVERRIDE **************************************************/
+		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -54,7 +54,7 @@ package org.finalbug.net
 
 		private var remoteName:String;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -64,7 +64,7 @@ package org.finalbug.net
 			return this._connected;
 		}
 
-		// ******************* CONSTRUCTOR **************************
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 * @param localName
@@ -78,7 +78,7 @@ package org.finalbug.net
 			this.remoteName = remoteName;
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param data
@@ -151,8 +151,8 @@ package org.finalbug.net
 			this._connected = true;
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function getData(item:Object, indexObj:Object, countObj:Object):void
 		{
 			var index:int = indexObj as int;
@@ -186,7 +186,7 @@ package org.finalbug.net
 			remoteConn.send(remoteName, this.getDataHandler(), obj, index, count);
 		}
 
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 		private function sendStatusHandler(event:StatusEvent):void
 		{
 			switch (event.level)

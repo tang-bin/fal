@@ -25,8 +25,8 @@ package org.finalbug.utils.motion
 	public class Motion extends DataModel
 	{
 
-		// ******************* OVERRIDE *****************************
-		// ******************* DEFINE *******************************
+		/******************* OVERRIDE **************************************************/
+		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -79,7 +79,7 @@ package org.finalbug.utils.motion
 
 		internal var _running:Boolean = false;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -89,7 +89,7 @@ package org.finalbug.utils.motion
 			return _running;
 		}
 
-		// ******************* CONSTRUCTOR **************************
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 * @param target
@@ -102,7 +102,7 @@ package org.finalbug.utils.motion
 			}
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * Start motion play.
 		 * 
@@ -144,7 +144,7 @@ package org.finalbug.utils.motion
 			registeredMotions.forEach(stopMotion);
 		}
 
-		// ******************* PROTECTED ****************************
+		/******************* PROTECTED *************************************************/
 		/**
 		 * account method dont need complete in Class Motion
 		 * @param target
@@ -174,7 +174,7 @@ package org.finalbug.utils.motion
 			return steps;
 		}
 
-		// ******************* PRIVATE ******************************
+		/******************* PRIVATE ***************************************************/
 		private function startAccount(e:* = null):void
 		{
 			for (var i:Number = 0 ; i < targetList.length ; i++)
@@ -192,6 +192,6 @@ package org.finalbug.utils.motion
 			MotionRunner.instance.stopAndRemoveMotion(element);
 			this._running = false;
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

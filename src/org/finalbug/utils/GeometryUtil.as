@@ -13,8 +13,6 @@ package org.finalbug.utils
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 
-	import org.finalbug.utils.MathUtil;
-
 	/**
 	 * GeometryUtil
 	 *
@@ -112,13 +110,14 @@ package org.finalbug.utils
 		{
 			if (list.length > 0)
 			{
-				var minX:Number = list[0].x;
-				var minY:Number = list[0].y;
-				var maxX:Number = list[0].x + list[0].width;
-				var maxY:Number = list[0].y + list[0].height;
+				var rect:Rectangle = list[0] as Rectangle;
+				var minX:Number = rect.x;
+				var minY:Number = rect.y;
+				var maxX:Number = rect.x + rect.width;
+				var maxY:Number = rect.y + rect.height;
 				for (var i:Number = list.length ; --i >= 0 ; )
 				{
-					var v:* = list[i];
+					var v:Rectangle = list[i] as Rectangle;
 					if (v.x < minX)
 					{
 						minX = v.x;

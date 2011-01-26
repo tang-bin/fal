@@ -24,7 +24,7 @@ package org.finalbug.ui.navigate
 	public class Slider extends Container
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		/**
 		 * 
 		 * @param child
@@ -90,12 +90,12 @@ package org.finalbug.ui.navigate
 			}
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		private var _selectedIndex:int = -1;
 
 		private var _selectedChild:DisplayObject = null;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -136,7 +136,7 @@ package org.finalbug.ui.navigate
 			setShowChildIndex(index);
 		}
 
-		// ******************* CONSTRUCTOR **************************
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 */
@@ -146,9 +146,9 @@ package org.finalbug.ui.navigate
 			this.initSize("100%", "100%");
 		}
 
-		// ******************* PUBLIC *******************************
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PUBLIC ****************************************************/
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function setShowChildIndex(index:int):void
 		{
 			if (_selectedIndex != index)
@@ -187,6 +187,6 @@ package org.finalbug.ui.navigate
 			}
 			setShowChildIndex(_selectedIndex);
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

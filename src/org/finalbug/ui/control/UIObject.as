@@ -27,8 +27,8 @@ package org.finalbug.ui.control
 	public class UIObject extends Bin
 	{
 
-		// ******************* OVERRIDE *****************************
-		// ******************* DEFINE *******************************
+		/******************* OVERRIDE **************************************************/
+		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -49,20 +49,44 @@ package org.finalbug.ui.control
 
 		private var _enabled:Boolean = true;
 
-		// ******************* GETTER and SETTER ********************
+		private var _autoMouseEvent:Boolean = false;
+
+		/******************* GETTER and SETTER *****************************************/
+		public function get autoMouseEvent():Boolean
+		{
+			return _autoMouseEvent;
+		}
+
+		public function set autoMouseEvent(value:Boolean):void
+		{
+			if (value != _autoMouseEvent)
+			{
+				_autoMouseEvent = value;
+				if (value)
+				{
+					this.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
+					this.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
+					this.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+					this.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+				}
+				else
+				{
+					this.removeEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
+					this.removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
+					this.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+					this.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+				}
+			}
+		}
+
 		/**
-		 * 
-		 * @return 
+		 * status of UI object.
 		 */
 		public function get status():String
 		{
 			return currentStatus;
 		}
 
-		/**
-		 * 
-		 * @param value
-		 */
 		public function set status(value:String):void
 		{
 			if (value != currentStatus && value != "")
@@ -118,13 +142,9 @@ package org.finalbug.ui.control
 		{
 			super();
 			uiSkinData = skinData;
-			this.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
-			this.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
-			this.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
-			this.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param xSpace
@@ -132,6 +152,7 @@ package org.finalbug.ui.control
 		 */
 		public function pack(xSpace:Number = 0, ySpace:Number = 0):void
 		{
+			trace("run pack", this);
 			var maxWidth:Number = 0;
 			var maxHeight:Number = 0;
 			for (var i:uint = this.numChildren ; --i >= 0 ;)
@@ -144,7 +165,7 @@ package org.finalbug.ui.control
 			_layoutStyle.setValueSilent("height", maxHeight + ySpace);
 		}
 
-		// ******************* PROTECTED ****************************
+		/******************* PROTECTED *************************************************/
 		/**
 		 * 
 		 * @param width
@@ -168,8 +189,8 @@ package org.finalbug.ui.control
 			// show be override by sub classes.
 		}
 
-		// ******************* PRIVATE ******************************
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
+		/******************* PRIVATE ***************************************************/
 		/**
 		 * 
 		 * @param e

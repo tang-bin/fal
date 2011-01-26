@@ -24,8 +24,8 @@ package org.finalbug.ui.control
 	public class Container extends UIObject
 	{
 
-		// ******************* OVERRIDE *****************************
-		// ******************* DEFINE *******************************
+		/******************* OVERRIDE **************************************************/
+		/******************* DEFINE ****************************************************/
 		private const HRank:String = "hRank";
 
 		private const VRank:String = "vRank";
@@ -40,7 +40,7 @@ package org.finalbug.ui.control
 
 		private var _autoRankPack:Boolean = false;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -117,7 +117,7 @@ package org.finalbug.ui.control
 			this.drawBg();
 		}
 
-		// ******************* CONSTRUCTOR **************************
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 */
@@ -130,7 +130,7 @@ package org.finalbug.ui.control
 			this.addEventListener(UIEvent.CHILDREN_RESIZE, childrenChangedHandler);
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param space
@@ -216,9 +216,9 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
-		// ******************* HANDLER ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function childrenChangedHandler(e:UIEvent):void
 		{
 			if (this._autoRank)

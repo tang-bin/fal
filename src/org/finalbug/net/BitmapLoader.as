@@ -1,22 +1,24 @@
-/******************************************************
- * ___________.__              .__ ___.                 
- * \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____  
- *  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\ 
- *  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
- *  \__ |     |__|___|  (____  /____/___  /____/\___  / 
- *     \/             \/     \/         \/     /_____/  
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
- *****************************************************/
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.net
 {
-	import flash.display.Bitmap;
-	import flash.display.Loader;
-	import flash.events.*;
-	import flash.net.URLRequest;
-
 	import org.finalbug.data.DataModel;
 	import org.finalbug.events.LoadEvent;
+
+	import flash.display.Bitmap;
+	import flash.display.Loader;
+	import flash.events.Event;
+	import flash.events.IOErrorEvent;
+	import flash.events.ProgressEvent;
+	import flash.net.URLRequest;
 
 	/**
 	 * This class is used to load a image file.
@@ -27,8 +29,8 @@ package org.finalbug.net
 	public class BitmapLoader extends DataModel
 	{
 
-		// ******************* OVERRIDE *****************************
-		// ******************* DEFINE *******************************
+		/******************* OVERRIDE **************************************************/
+		/******************* DEFINE ****************************************************/
 		private var loader:Loader;
 
 		private var _url:String;
@@ -39,8 +41,8 @@ package org.finalbug.net
 
 		private var _percent:Number = 0;
 
-		// ******************* DEFINE *******************************
-		// ******************* GETTER and SETTER ********************
+		/******************* DEFINE ****************************************************/
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * File is loaded or not.
 		 */
@@ -77,7 +79,7 @@ package org.finalbug.net
 			return null;
 		}
 
-		// ******************* CONSTRUCTOR **************************.
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * Create a new BitmapLoader.
 		 * 
@@ -92,7 +94,7 @@ package org.finalbug.net
 			}
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * Change current image file URL and reload.
 		 * 
@@ -114,8 +116,8 @@ package org.finalbug.net
 			doLoad();
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function doLoad():void
 		{
 			if (_url != null)
@@ -166,6 +168,6 @@ package org.finalbug.net
 			_percent = newE.loadedRate;
 			this.dispatchEvent(newE);
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

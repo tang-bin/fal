@@ -1,18 +1,19 @@
-/******************************************************
- * ___________.__              .__ ___.                 
- * \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____  
- *  |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\ 
- *  |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
- *  \__ |     |__|___|  (____  /____/___  /____/\___  / 
- *     \/             \/     \/         \/     /_____/  
- * [fb-aslib] Finalbug ActionScript Library
- * http://www.finalbug.org
- *****************************************************/
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.net
 {
 	import org.finalbug.data.DataModel;
 	import org.finalbug.errors.DataError;
 	import org.finalbug.events.LoadEvent;
+	import org.finalbug.utils.DataUtil;
 
 	import flash.display.Bitmap;
 	import flash.events.TimerEvent;
@@ -30,7 +31,7 @@ package org.finalbug.net
 	public class BitmapPool extends DataModel
 	{
 
-		// SINGELTON
+		/******************* SINGLETON ****************************************************/
 		private static var bc:BitmapPool;
 
 		private static var instanceable:Boolean = false;
@@ -50,12 +51,12 @@ package org.finalbug.net
 			return bc;
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		private const checkTimeSpace:Number = 100;
 
+		// bitmapList[bitmap name] = BitmapLoader
 		private var bitmapList:Dictionary;
 
-		// bitmapList[bitmap name] = BitmapLoader
 		private var checkTimer:Timer;
 
 		/**
@@ -65,12 +66,7 @@ package org.finalbug.net
 		 */
 		public function get bitmapCount():Number
 		{
-			var num:Number = 0;
-			for each (var v:* in bitmapList)
-			{
-				num++;
-			}
-			return num;
+			return DataUtil.getObjectCount(bitmapList);
 		}
 
 		/**
@@ -80,7 +76,7 @@ package org.finalbug.net
 		 */
 		public function get allLoaded():Boolean
 		{
-			for each (var v:* in bitmapList)
+			for each (var v:BitmapLoader in bitmapList)
 			{
 				if (!v.loaded)
 				{
@@ -94,17 +90,17 @@ package org.finalbug.net
 		 * Percent of loaded bytes.
 		 * sum of loaded files' bytes / total files' bytes
 		 */
-		public function get loadedBytesRate():Number
+		public function get loadedBytesPercent():Number
 		{
-			var rates:Number = 0;
+			var percent:Number = 0;
 			var count:Number = 0;
 			//
-			for each (var v:* in bitmapList)
+			for each (var v:BitmapLoader in bitmapList)
 			{
-				rates += v.rate;
+				percent += v.percent;
 				count++;
 			}
-			return rates / count;
+			return percent / count;
 		}
 
 		/**
@@ -115,7 +111,7 @@ package org.finalbug.net
 			var loaded:Number = 0;
 			var count:Number = 0;
 			//
-			for each (var v:* in bitmapList)
+			for each (var v:BitmapLoader in bitmapList)
 			{
 				if (v.loaded)
 				{
@@ -126,7 +122,7 @@ package org.finalbug.net
 			return loaded / count;
 		}
 
-		// ******************* CONSTRUCTOR **************************.
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * @throw errors.Errors Throw canNotInstance error when try to instance this class.
 		 */
@@ -142,7 +138,7 @@ package org.finalbug.net
 			}
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * Add a new image file to load
 		 * Image file must be .gif, .jpeg, .jpg, .swf.
@@ -176,11 +172,12 @@ package org.finalbug.net
 		 */
 		public function changeBitmap(bitmapName:String, bitmapURL:String):BitmapLoader
 		{
-			if (bitmapList[bitmapName] == null)
+			var loader:BitmapLoader = bitmapList[bitmapName] as BitmapLoader;
+			if (loader == null)
 			{
 				throw new DataError(DataError.NAME_NOT_EXIST);
 			}
-			bitmapList[bitmapName].changeBitmap(bitmapURL);
+			loader.changeBitmap(bitmapURL);
 			return bitmapList[bitmapName];
 		}
 
@@ -209,13 +206,14 @@ package org.finalbug.net
 		 */
 		public function getBitmap(bitmapName:String):Bitmap
 		{
-			if (bitmapList[bitmapName] == null)
+			var loader:BitmapLoader = bitmapList[bitmapName] as BitmapLoader;
+			if (loader == null)
 			{
 				throw new DataError(DataError.NAME_NOT_EXIST);
 			}
-			if (bitmapList[bitmapName].loaded)
+			if (loader.loaded)
 			{
-				return bitmapList[bitmapName].bitmap;
+				return loader.bitmap;
 			}
 			else
 			{
@@ -251,18 +249,18 @@ package org.finalbug.net
 		{
 			for (var v:String in bitmapList)
 			{
-				if (bitmapList[v].failed)
+				if ((bitmapList[v] as BitmapLoader).failed)
 				{
 					bitmapList[v] = null;
 				}
 			}
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function checkHandler(e:TimerEvent):void
 		{
-			for each (var v:* in bitmapList)
+			for each (var v:BitmapLoader in bitmapList)
 			{
 				if (!v.loaded)
 				{

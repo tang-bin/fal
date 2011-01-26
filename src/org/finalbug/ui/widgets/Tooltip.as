@@ -29,8 +29,8 @@ package org.finalbug.ui.widgets
 	public class Tooltip
 	{
 
-		// ******************* OVERRIDE *****************************
-		// ******************* DEFINE *******************************
+		/******************* OVERRIDE **************************************************/
+		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -55,8 +55,8 @@ package org.finalbug.ui.widgets
 
 		private static var txt:Label;
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 * @throws DataError
@@ -66,7 +66,7 @@ package org.finalbug.ui.widgets
 			throw new DataError(DataError.STATIC_CLASS);
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param str
@@ -92,8 +92,8 @@ package org.finalbug.ui.widgets
 			}
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private static function createTip():void
 		{
 			if (container != null)
@@ -147,7 +147,7 @@ package org.finalbug.ui.widgets
 			}
 		}
 
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 		private static function stageMoveHandler(e:MouseEvent):void
 		{
 			setBoxPosition();

@@ -34,19 +34,19 @@ package org.finalbug.test.tester
 		 *
 		 * DEFINE
 		 *
-		 ****************************************/
+		 *************************************************************/
 		private var container:Bin;
 
 		/****************************************
 		 *
 		 * GETTER and SETTER
 		 *
-		 ****************************************/
+		 *************************************************************/
 		/****************************************
 		 *
 		 * org.finalbug.faltester.tester.MotionTester constructor.
 		 *
-		 ****************************************/
+		 *************************************************************/
 		public function MotionTester()
 		{
 			super();
@@ -58,7 +58,7 @@ package org.finalbug.test.tester
 		 * Whit out getter, setter and handler
 		 * include public, protected and private.
 		 *
-		 ****************************************/
+		 *************************************************************/
 		override protected function callAtAdded():void
 		{
 			var btn:Button = new Button("start");
@@ -85,17 +85,17 @@ package org.finalbug.test.tester
 		 *
 		 * PUBLIC
 		 *
-		 ****************************************/
+		 *************************************************************/
 		/****************************************
 		 *
 		 * PROTECTED
 		 *
-		 ****************************************/
+		 *************************************************************/
 		/****************************************
 		 *
 		 * PRIVATE
 		 *
-		 ****************************************/
+		 *************************************************************/
 		private function startTest(total:uint):void
 		{
 			var t:int = flash.utils.getTimer();
@@ -115,7 +115,7 @@ package org.finalbug.test.tester
 		 *
 		 * HANDLER
 		 *
-		 ****************************************/
+		 *************************************************************/
 		private function clickBtnHandler(e:MouseEvent):void
 		{
 			if (container == null)

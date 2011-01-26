@@ -29,7 +29,7 @@ package org.finalbug.data
 	dynamic public class SharedData extends Proxy
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		override flash_proxy function getProperty(name:*):*
 		{
 			return data[name];
@@ -45,18 +45,16 @@ package org.finalbug.data
 			// nothing need to be done here.
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		private var _parent:SharedData;
 
 		private var _name:String = "";
 
 		private var data:Dictionary = new Dictionary();
 
-		private var modifyLogs:Array = new Array();
-
 		private var dispatchers:Array = new Array();
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -113,7 +111,7 @@ package org.finalbug.data
 			// TODO : set shareData by byteArray
 		}
 
-		// ******************* CONSTRUCTOR **************************
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 */
@@ -121,7 +119,7 @@ package org.finalbug.data
 		{
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * add new event listener to this shared data object.
 		 * 
@@ -270,8 +268,8 @@ package org.finalbug.data
 			return null;
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function checkData(data:*):Boolean
 		{
 			if (data is Number || data is String || data is Boolean || data is ByteArray || data is SharedData || data is TreeData)
@@ -283,6 +281,6 @@ package org.finalbug.data
 				return false;
 			}
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

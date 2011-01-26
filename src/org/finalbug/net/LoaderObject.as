@@ -10,24 +10,26 @@
 // **********************************************************
 package org.finalbug.net
 {
+	import flash.events.IEventDispatcher;
+
+	import org.finalbug.data.DataModel;
 	import org.finalbug.events.LoadEvent;
 
 	import flash.events.Event;
-	import flash.events.EventDispatcher;
 	import flash.events.IOErrorEvent;
 	import flash.events.ProgressEvent;
 
 	/**
-	 * This class is the super class for class which is used to load file(s).
+	 * This class is the super class for classes which are used to load file(s).
 	 * 
 	 * @author Tang Bin
 	 * @since old version
 	 */
-	public class LoaderObject
+	public class LoaderObject extends DataModel
 	{
 
-		// ******************* OVERRIDE *****************************
-		// ******************* DEFINE *******************************
+		/******************* OVERRIDE **************************************************/
+		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -46,13 +48,7 @@ package org.finalbug.net
 		 */
 		protected var _loadrate:Number = 0;
 
-		/**
-		 * 
-		 * @default 
-		 */
-		protected var dispatcher:EventDispatcher = new EventDispatcher();
-
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -80,51 +76,38 @@ package org.finalbug.net
 			return _loadrate;
 		}
 
-		// ******************* CONSTRUCTOR **************************
-		// ******************* PUBLIC *******************************
-		/**
-		 * 
-		 * @param type
-		 * @param listener
-		 * @param useCapture
-		 * @param priority
-		 * @param useWeakReference
-		 */
-		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
-		{
-			dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
-		}
-
-		// ******************* PROTECTED ****************************
+		/******************* CONSTRUCTOR ***********************************************/
+		/******************* PUBLIC ****************************************************/
+		/******************* PROTECTED *************************************************/
 		/**
 		 * 
 		 * @param target
 		 */
-		protected function dispatchEvent(target:*):void
+		protected function setEvent(target:IEventDispatcher):void
 		{
-			target.addEventListener(Event.COMPLETE, onLoadSuccess);
-			target.addEventListener(ProgressEvent.PROGRESS, onLoading);
-			target.addEventListener(IOErrorEvent.IO_ERROR, onLoadFailed);
+			target.addEventListener(Event.COMPLETE, loadedHandler);
+			target.addEventListener(ProgressEvent.PROGRESS, loadingHandler);
+			target.addEventListener(IOErrorEvent.IO_ERROR, loadFailedHandler);
 		}
 
 		/**
 		 * 
 		 * @param e
 		 */
-		protected function onLoadSuccess(e:Event):void
+		protected function loadedHandler(e:Event):void
 		{
 			_loaded = true;
 			_failed = false;
 			_loadrate = 1;
 			var ee:LoadEvent = new LoadEvent(LoadEvent.LOAD_SUCCESS);
-			dispatcher.dispatchEvent(ee);
+			this.dispatchEvent(ee);
 		}
 
 		/**
 		 * 
 		 * @param e
 		 */
-		protected function onLoading(e:ProgressEvent):void
+		protected function loadingHandler(e:ProgressEvent):void
 		{
 			_loaded = false;
 			_failed = false;
@@ -133,25 +116,23 @@ package org.finalbug.net
 			ee.bytesTotal = e.bytesTotal;
 			ee.loadedRate = ee.bytesLoaded / ee.bytesTotal;
 			_loadrate = ee.loadedRate;
-			dispatcher.dispatchEvent(ee);
+			this.dispatchEvent(ee);
 		}
 
 		/**
 		 * 
 		 * @param e
 		 */
-		protected function onLoadFailed(e:IOErrorEvent):void
+		protected function loadFailedHandler(e:IOErrorEvent):void
 		{
 			_loaded = false;
 			_failed = true;
 			_loadrate = 0;
 			var ee:LoadEvent = new LoadEvent(LoadEvent.LOAD_FAILED);
-			dispatcher.dispatchEvent(ee);
+			this.dispatchEvent(ee);
 		}
-		// ******************* PRIVATE ******************************
+		/******************* PRIVATE ***************************************************/
 		
-		
-		
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

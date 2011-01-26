@@ -21,42 +21,46 @@ package org.finalbug.ui.layout
 	public class GridCell extends Container
 	{
 
-		// ******************* OVERRIDE *****************************
-		// ******************* DEFINE *******************************
+		/******************* OVERRIDE **************************************************/
+		/******************* DEFINE ****************************************************/
 		/**
+		 * The column index of cell.
 		 * 
-		 * @default 
+		 * @default 0
 		 */
 		public var xIndex:uint = 0;
 
 		/**
+		 * the row index of cell.
 		 * 
-		 * @default 
+		 * @default 0
 		 */
 		public var yIndex:uint = 0;
 
 		/**
+		 * Cell is updated or not when run rebuild() method in Grid object.
 		 * 
-		 * @default 
+		 * @default false
 		 */
-		public var updated:Boolean = false;
+		internal var updated:Boolean = false;
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
-		 * 
+		 * Create an new GridCell.
 		 */
 		public function GridCell()
 		{
 			super();
 			this.backgroundColor = 0xFF9900;
 			this.backgroundAlpha = 1;
-			this.borderColor = 0;
+			this.borderColor = 0x333333;
 			this.borderAlpha = 1;
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
+		 * Reset cell's position by x, y, width and height values.
 		 * 
 		 * @param x
 		 * @param y
@@ -67,14 +71,8 @@ package org.finalbug.ui.layout
 		{
 			this.layoutStyle.setNormalStyle(x, y, width, height);
 		}
-		// ******************* PROTECTED ****************************
-		
-		
-		
-		// ******************* PRIVATE ******************************
-		
-		
-		
-		// ******************* HANDLER ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
+		/******************* PRIVATE ***************************************************/
 	}
 }

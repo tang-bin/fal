@@ -25,8 +25,8 @@ package org.finalbug.data
 	public class TreeData extends DataModel
 	{
 
-		// ******************* OVERRIDE *****************************
-		// ******************* DEFINE *******************************
+		/******************* OVERRIDE **************************************************/
+		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -45,7 +45,7 @@ package org.finalbug.data
 
 		private var _xml:XML;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * Root data object
 		 */
@@ -103,7 +103,7 @@ package org.finalbug.data
 			}
 		}
 
-		// ******************* CONSTRUCTOR **************************
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * Create an new TreeData object.
 		 */
@@ -113,7 +113,7 @@ package org.finalbug.data
 			clean();
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * add an new node to tree.
 		 * 
@@ -525,7 +525,7 @@ package org.finalbug.data
 			this.dispatchEvent(ee);
 		}
 
-		// ******************* PROTECTED ****************************
+		/******************* PROTECTED *************************************************/
 		/**
 		 * 
 		 * @param node
@@ -536,7 +536,7 @@ package org.finalbug.data
 			return nodes[node] || node == _root.data;
 		}
 
-		// ******************* PRIVATE ******************************
+		/******************* PRIVATE ***************************************************/
 		private function getNodeByData(data:Object):NodeData
 		{
 			if (data == null) return null;
@@ -697,7 +697,7 @@ package org.finalbug.data
 				return null;
 			}
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }
 class NodeData

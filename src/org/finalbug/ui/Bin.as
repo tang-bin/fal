@@ -37,7 +37,7 @@ package org.finalbug.ui
 	public class Bin extends Sprite
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		/**
 		 * @default 0
 		 */
@@ -181,7 +181,7 @@ package org.finalbug.ui
 			dispatchChildChanged();
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -222,7 +222,7 @@ package org.finalbug.ui
 
 		private var _controlPointType:String = "";
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -538,7 +538,7 @@ package org.finalbug.ui
 			}
 		}
 
-		// ******************* CONSTRUCTOR **************************
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * Create an new Bin object.
 		 */
@@ -553,7 +553,7 @@ package org.finalbug.ui
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * Change Bin's size to target width and height immediately.
 		 * run updateSize to reisze.
@@ -567,8 +567,8 @@ package org.finalbug.ui
 			var newHeight:Number = MathUtil.getNumArea(height, this.minHeight, this.maxHeight);
 			if (newWidth != this.width || newHeight != this.height)
 			{
-				_layoutStyle.setValue("width", width, true);
-				_layoutStyle.setValue("height", height);
+				_layoutStyle.setValue("width", newWidth, true);
+				_layoutStyle.setValue("height", newHeight);
 			}
 		}
 
@@ -757,7 +757,7 @@ package org.finalbug.ui
 			}
 		}
 
-		// ******************* PROTECTED ****************************
+		/******************* PROTECTED *************************************************/
 		/**
 		 *
 		 */
@@ -818,7 +818,7 @@ package org.finalbug.ui
 			}
 		}
 
-		// ******************* PRIVATE ******************************
+		/******************* PRIVATE ***************************************************/
 		private function accountControlPoint():void
 		{
 			switch (_controlPointType)
@@ -924,7 +924,7 @@ package org.finalbug.ui
 			}
 		}
 
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 		private function stopZoomHandler(e:MotionEvent):void
 		{
 			this.dispatchEvent(new DisplayEvent(DisplayEvent.END_ZOOM));

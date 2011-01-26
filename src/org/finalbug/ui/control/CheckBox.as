@@ -29,7 +29,7 @@ package org.finalbug.ui.control
 	public class CheckBox extends UIObject
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		/**
 		 * 
 		 * @param value
@@ -90,7 +90,7 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		private const BOX_SIZE:Number = 16;
 
 		private const OFFSET:Number = 3;
@@ -109,7 +109,7 @@ package org.finalbug.ui.control
 
 		private var _autoSize:Boolean = true;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -215,7 +215,7 @@ package org.finalbug.ui.control
 			return txt.textColor;
 		}
 
-		// ******************* CONSTRUCTOR **************************
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * Create a new CheckBox object.
 		 * 
@@ -245,9 +245,9 @@ package org.finalbug.ui.control
 			uiSkinData.bindChildren(box, txt);
 		}
 
-		// ******************* PUBLIC *******************************
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PUBLIC ****************************************************/
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function getCurrentStatus(status:String):String
 		{
 			if (enabled)
@@ -278,7 +278,7 @@ package org.finalbug.ui.control
 			return status;
 		}
 
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 		/**
 		 * invoked when click checkbox.
 		 * 

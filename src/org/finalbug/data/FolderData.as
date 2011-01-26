@@ -24,8 +24,8 @@ package org.finalbug.data
 	public class FolderData extends DataModel
 	{
 
-		// ******************* OVERRIDE *****************************
-		// ******************* DEFINE *******************************
+		/******************* OVERRIDE **************************************************/
+		/******************* DEFINE ****************************************************/
 		private var _name:String = "";
 
 		private var _path:String = "";
@@ -46,7 +46,7 @@ package org.finalbug.data
 
 		private var _currentSelected:Dictionary = new Dictionary();
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return folder's name
@@ -128,7 +128,7 @@ package org.finalbug.data
 			// TODO:
 		}
 
-		// ******************* CONSTRUCTOR **************************.
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * Create an new FolderData.
 		 */
@@ -137,7 +137,7 @@ package org.finalbug.data
 			super();
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * Add a file into folder.(data operate)
 		 * 
@@ -225,8 +225,8 @@ package org.finalbug.data
 			}
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function removeFileName(fileName:String):void
 		{
 			for (var i:uint = fileNames.length ; --i >= 0 ; )
@@ -238,6 +238,6 @@ package org.finalbug.data
 				}
 			}
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

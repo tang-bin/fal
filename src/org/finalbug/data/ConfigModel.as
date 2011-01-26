@@ -10,15 +10,15 @@
 // **********************************************************
 package org.finalbug.data
 {
+	import org.finalbug.errors.DataError;
+	import org.finalbug.events.LoadEvent;
+	import org.finalbug.utils.StringUtil;
+
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.utils.Dictionary;
-
-	import org.finalbug.errors.DataError;
-	import org.finalbug.events.LoadEvent;
-	import org.finalbug.utils.StringUtil;
 
 	/**
 	 * Dispatched when load config file success.
@@ -26,21 +26,18 @@ package org.finalbug.data
 	 * @eventType org.finalbug.event.LoadEvent.LOAD_SUCCESS
 	 */
 	[Event(name="loadSuccess", type="org.finalbug.events.LoadEvent")]
-	
 	/**
 	 * Dispatched when load config file failed.
 	 * 
 	 * @eventType org.finalbug.event.LoadEvent.LOAD_FAILED
 	 */
 	[Event(name="loadFailed", type="org.finalbug.events.LoadEvent")]
-	
 	/**
 	 * Dispatched when loading config file.
 	 * 
 	 * @eventType org.finalbug.event.LoadEvent.LOADING
 	 */
 	[Event(name="loading", type="org.finalbug.events.LoadEvent")]
-	
 	/**
 	 * <p>ConfigModel (as singleton) is used to load and keep config attributes.
 	 * Config file should be a text file, each line is one attribute.
@@ -84,7 +81,7 @@ package org.finalbug.data
 	public class ConfigModel extends DataModel
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		// SINGELTON
 		private static var instanceable:Boolean = false;
 
@@ -105,7 +102,7 @@ package org.finalbug.data
 			return cm;
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -124,8 +121,8 @@ package org.finalbug.data
 
 		private var attrs:Dictionary = new Dictionary();
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************.
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 * @throws DataError
@@ -139,7 +136,7 @@ package org.finalbug.data
 			}
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param URL
@@ -160,8 +157,8 @@ package org.finalbug.data
 			return attrs[configName];
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function doLoad(url:String):void
 		{
 			loader = new URLLoader(new URLRequest(url));
@@ -180,7 +177,7 @@ package org.finalbug.data
 			for (var i:uint = 0 ; i < len ; i++)
 			{
 				// line string:
-				var s:String = StringUtil.trim(arr[i].toString());
+				var s:String = StringUtil.trim(String(arr[i]));
 				// if is comment of empty line;
 				if (s.charAt(0) == "#" || s == "") continue;
 				// remove ; fron end
@@ -197,12 +194,12 @@ package org.finalbug.data
 				else
 				{
 					if (attrs[left] == null) attrs[left] = new Array();
-					attrs[left].push(right);
+					(attrs[left] as Array).push(right);
 				}
 			}
 		}
 
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 		private function loadedHandler(e:Event):void
 		{
 			parseConfig(String(loader.data));

@@ -19,7 +19,7 @@ package org.finalbug.utils.motion
 	public class MoveMotion extends Motion
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		/**
 		 * account target object's position which will be used during moting effect.
 		 * 
@@ -49,7 +49,7 @@ package org.finalbug.utils.motion
 			}
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		/**
 		 * x coordinate that target object will move start.
 		 * if not set, current target object's x coordinate will be taken as this value.
@@ -72,8 +72,8 @@ package org.finalbug.utils.motion
 		 */
 		public var yTo:Number;
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 * @param target
@@ -82,18 +82,18 @@ package org.finalbug.utils.motion
 		{
 			super(target);
 		}
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		
 		
 		
-		// ******************* PROTECTED ****************************
+		/******************* PROTECTED *************************************************/
 		
 		
 		
-		// ******************* PRIVATE ******************************
+		/******************* PRIVATE ***************************************************/
 		
 		
 		
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

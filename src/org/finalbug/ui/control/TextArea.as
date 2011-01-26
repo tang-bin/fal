@@ -34,7 +34,7 @@ package org.finalbug.ui.control
 	public class TextArea extends ScrollBox
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		/**
 		 * in Class TextArea, if x scrollbar is disabled, the text input will auto warp.
 		 */
@@ -93,7 +93,7 @@ package org.finalbug.ui.control
 			scrollManual = false;
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		private var bg:Skin;
 
 		private var txt:TextField;
@@ -104,7 +104,7 @@ package org.finalbug.ui.control
 
 		private var _editable:Boolean = true;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * If this text area can input in or not.
 		 */
@@ -161,7 +161,7 @@ package org.finalbug.ui.control
 			txt.embedFonts = _embed;
 		}
 
-		// ******************* CONSTRUCTOR **************************
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * create a new TextArea.
 		 * 
@@ -195,9 +195,9 @@ package org.finalbug.ui.control
 			uiSkinData.bindChildren(bg, txt);
 		}
 
-		// ******************* PUBLIC *******************************
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PUBLIC ****************************************************/
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function setEvent():void
 		{
 			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
@@ -244,7 +244,7 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 		private function txtFocusInHandler(e:FocusEvent):void
 		{
 			this.status = Status.ACTIVE;

@@ -26,8 +26,8 @@ package org.finalbug.ui.glazes
 	public class ProgressRound extends Glaze
 	{
 
-		// ******************* OVERRIDE *****************************
-		// ******************* DEFINE *******************************
+		/******************* OVERRIDE **************************************************/
+		/******************* DEFINE ****************************************************/
 		private var radius:Number = 20;
 
 		private var backColor:Number = 0x990000;
@@ -46,8 +46,8 @@ package org.finalbug.ui.glazes
 
 		private var front:Sprite;
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 */
@@ -61,7 +61,7 @@ package org.finalbug.ui.glazes
 			drawRound();
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param radius
@@ -106,8 +106,8 @@ package org.finalbug.ui.glazes
 			drawRound();
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function runTimerHandler(e:TimerEvent):void
 		{
 			rate += 0.02;
@@ -142,6 +142,6 @@ package org.finalbug.ui.glazes
 			bg.graphics.drawCircle(0, 0, radius);
 			bg.graphics.endFill();
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

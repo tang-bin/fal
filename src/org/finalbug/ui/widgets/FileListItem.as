@@ -33,8 +33,8 @@ package org.finalbug.ui.widgets
 	public class FileListItem extends Container
 	{
 
-		// ******************* OVERRIDE *****************************
-		// ******************* DEFINE *******************************
+		/******************* OVERRIDE **************************************************/
+		/******************* DEFINE ****************************************************/
 		private static const HIDE_LABEL_HEIGHT:Number = 30;
 
 		private static const SPACE:Number = 2;
@@ -63,7 +63,7 @@ package org.finalbug.ui.widgets
 
 		private var _selected:Boolean = false;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -145,7 +145,7 @@ package org.finalbug.ui.widgets
 			return _data;
 		}
 
-		// ******************* CONSTRUCTOR **************************.
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 * @param data
@@ -158,8 +158,8 @@ package org.finalbug.ui.widgets
 			updateSize();
 		}
 
-		// ******************* PUBLIC *******************************
-		// ******************* PROTECTED ****************************
+		/******************* PUBLIC ****************************************************/
+		/******************* PROTECTED *************************************************/
 		override protected function updateSize():void
 		{
 			super.updateSize();
@@ -207,7 +207,7 @@ package org.finalbug.ui.widgets
 			}
 		}
 
-		// ******************* PRIVATE ******************************
+		/******************* PRIVATE ***************************************************/
 		private function createElements():void
 		{
 			if (icon != null && this.contains(icon))
@@ -246,6 +246,6 @@ package org.finalbug.ui.widgets
 				return IconModel.instance.unknowIcon;
 			}
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

@@ -10,6 +10,7 @@
 // **********************************************************
 package org.finalbug.ui.style
 {
+	import org.finalbug.ui.layout.Grid;
 	import org.finalbug.events.UIEvent;
 
 	/**
@@ -21,7 +22,7 @@ package org.finalbug.ui.style
 	public class LayoutStyle extends Style
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		/**
 		 * 
 		 * @return 
@@ -31,7 +32,7 @@ package org.finalbug.ui.style
 			return "[x = " + this.x + ", y = " + this.y + ", width = " + this.width + ", height = " + this.height + "]";
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		private var _width:String = "";
 
 		private var _height:String = "";
@@ -56,7 +57,7 @@ package org.finalbug.ui.style
 
 		private var oldY:Number = NaN;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * The width value count by current layout. 
 		 */
@@ -148,7 +149,7 @@ package org.finalbug.ui.style
 			}
 		}
 
-		// ******************* CONSTRUCTOR **************************
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 */
@@ -157,7 +158,7 @@ package org.finalbug.ui.style
 			super();
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * Set layout value.
 		 * 
@@ -168,6 +169,7 @@ package org.finalbug.ui.style
 		 */
 		public function setValue(name:String, value:*, hasMore:Boolean = false):void
 		{
+			if(this.owner is Grid) trace("grid layout", this._width);
 			if (name == "x") name = "left";
 			else if (name == "y") name = "top";
 			//
@@ -188,6 +190,7 @@ package org.finalbug.ui.style
 		 */
 		public function setValueSilent(name:String, value:*):void
 		{
+			if(this.owner is Grid) trace("grid layout silent", this._width);
 			if (name == "x") name = "left";
 			else if (name == "y") name = "top";
 			//
@@ -327,8 +330,8 @@ package org.finalbug.ui.style
 			this._vertical = "";
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function getParentWidth():Number
 		{
 			if (owner != null && owner.parent != null)
@@ -352,6 +355,6 @@ package org.finalbug.ui.style
 				return 0;
 			}
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

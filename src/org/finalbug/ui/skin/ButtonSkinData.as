@@ -25,7 +25,7 @@ package org.finalbug.ui.skin
 	public class ButtonSkinData extends UISkinDataAbstract
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		/**
 		 * 
 		 * @param args
@@ -60,7 +60,7 @@ package org.finalbug.ui.skin
 			}
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		[Embed(source="/resources/skins/ButtonNormal.png")]
 		private var ButtonNormal:Class;
 
@@ -92,8 +92,8 @@ package org.finalbug.ui.skin
 
 		private var txtFormatList:Dictionary;
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************.
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * Create an new ButtonSkinData object.
 		 */
@@ -116,7 +116,7 @@ package org.finalbug.ui.skin
 			}
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * Set Button's skin style.
 		 * This method should be called before transfer this object into any UI object.
@@ -137,14 +137,14 @@ package org.finalbug.ui.skin
 			bgSkinDataList[status] = skinData;
 			txtFormatList[status] = textFormat;
 		}
-		// ******************* PROTECTED ****************************
+		/******************* PROTECTED *************************************************/
 		
 		
 		
-		// ******************* PRIVATE ******************************
+		/******************* PRIVATE ***************************************************/
 		
 		
 		
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

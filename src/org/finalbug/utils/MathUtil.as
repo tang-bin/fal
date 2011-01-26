@@ -10,7 +10,6 @@
 // **********************************************************
 package org.finalbug.utils
 {
-
 	/**
 	 * MathUtil class offers some mathematic methods to extends Math class.
 	 * 
@@ -54,7 +53,7 @@ package org.finalbug.utils
 			}
 			else if (!includeMin && num <= min)
 			{
-				return false
+				return false;
 			}
 			else if (includeMax && num > max)
 			{
@@ -83,7 +82,7 @@ package org.finalbug.utils
 		{
 			if (num < min)
 			{
-				return min
+				return min;
 			}
 			else if (num > max)
 			{

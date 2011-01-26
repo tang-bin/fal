@@ -31,7 +31,7 @@ package org.finalbug.ui.skin
 	public class Skin extends Glaze
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		override protected function updateSize():void
 		{
 			this.graphics.clear();
@@ -137,7 +137,7 @@ package org.finalbug.ui.skin
 			}
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		private var skinDataList:Dictionary = new Dictionary();
 
 		private var currentStatus:String;
@@ -146,7 +146,7 @@ package org.finalbug.ui.skin
 
 		private var _autoMouseEvent:Boolean = false;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -199,7 +199,7 @@ package org.finalbug.ui.skin
 			}
 		}
 
-		// ******************* CONSTRUCTOR **************************.
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 */
@@ -208,7 +208,7 @@ package org.finalbug.ui.skin
 			super();
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param data
@@ -235,8 +235,8 @@ package org.finalbug.ui.skin
 			}
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function setMouseEvent():void
 		{
 			this.mouseEnabled = true;
@@ -257,7 +257,7 @@ package org.finalbug.ui.skin
 			this.removeEventListener(MouseEvent.MOUSE_UP, upHandler);
 		}
 
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 		private function overHandler(e:MouseEvent):void
 		{
 			if (status != Status.DISABLED)

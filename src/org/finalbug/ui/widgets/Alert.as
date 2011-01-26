@@ -34,8 +34,8 @@ package org.finalbug.ui.widgets
 	public class Alert
 	{
 
-		// ******************* OVERRIDE *****************************
-		// ******************* DEFINE *******************************
+		/******************* OVERRIDE **************************************************/
+		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -58,14 +58,14 @@ package org.finalbug.ui.widgets
 
 		private static var currentData:AlertData;
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		public function Alert()
 		{
 			throw new DataError(DataError.STATIC_CLASS);
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param owner
@@ -185,8 +185,8 @@ package org.finalbug.ui.widgets
 			}
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private static function createAlert():void
 		{
 			alertContainer = new Sprite;
@@ -292,7 +292,7 @@ package org.finalbug.ui.widgets
 			return alertContainer != null && stage != null && stage.contains(alertContainer);
 		}
 
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 		private static function resizeHandler(e:Event):void
 		{
 			if (alertExist())

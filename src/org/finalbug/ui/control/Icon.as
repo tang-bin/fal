@@ -26,7 +26,7 @@ package org.finalbug.ui.control
 	public class Icon extends Bin
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		override protected function updateSize():void
 		{
 			super.updateSize();
@@ -53,7 +53,7 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -84,7 +84,7 @@ package org.finalbug.ui.control
 
 		private var img:Image;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		private function get icon16():Image
 		{
 			return imgs[ICON_16] as Image;
@@ -105,7 +105,7 @@ package org.finalbug.ui.control
 			return imgs[ICON_128] as Image;
 		}
 
-		// ******************* CONSTRUCTOR **************************.
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 */
@@ -114,7 +114,7 @@ package org.finalbug.ui.control
 			super();
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param img
@@ -184,8 +184,8 @@ package org.finalbug.ui.control
 			return newIcon;
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function setDefaultImg():void
 		{
 			if (imgs[ICON_128] != null) defaultImg = imgs[ICON_128];
@@ -194,6 +194,6 @@ package org.finalbug.ui.control
 			else if (imgs[ICON_16] != null) defaultImg = imgs[ICON_16];
 			else defaultImg = null;
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

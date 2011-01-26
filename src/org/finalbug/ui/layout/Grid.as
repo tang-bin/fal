@@ -14,60 +14,47 @@ package org.finalbug.ui.layout
 	import org.finalbug.ui.style.Style;
 
 	/**
+	 * Grid is the container of multi containers arranged as matrix.
+	 * Each cell of grid is a GirdCell object.
+	 * 
 	 * @author Tang Bin
 	 * @since 2010.10
 	 */
 	public class Grid extends Container
 	{
 
-		// ******************* OVERRIDE *****************************
-		// ******************* DEFINE *******************************
+		/******************* OVERRIDE **************************************************/
+		override protected function updateSize():void
+		{
+			super.updateSize();
+			rebuild();
+		}
+
+		/******************* DEFINE ****************************************************/
+		/**
+		 * rows contains the size of each row.
+		 * each item should be a number(pixel value) or percent string(like "50%").
+		 * <strong>Notice</strong>: set <code>rows</code> and <code>columns</code>
+		 * will not effect until call <code>rebuild()</code> method.
+		 */
+		public var rows:Array = new Array();
+
+		/**
+		 * columns contains the size of each column.
+		 * Each item should be a number(pixel value) or percent string(like "50%").
+		 * <strong>Notice</strong>: set <code>rows</code> and <code>columns</code>
+		 * will not effect until call <code>rebuild()</code> method.
+		 */
+		public var columns:Array = new Array();
+
+		// cells is a 2D array contains all GridCell objects
+		// cells[row][column] = GridCell object.
 		private var cells:Array = new Array();
 
-		private var _rows:Array = new Array();
-
-		private var _columns:Array = new Array();
-
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
-		 * 
-		 * @return 
-		 */
-		public function get rows():Array
-		{
-			return _rows;
-		}
-
-		/**
-		 * 
-		 * @param value
-		 */
-		public function set rows(value:Array):void
-		{
-			_rows = value;
-		}
-
-		/**
-		 * 
-		 * @return 
-		 */
-		public function get columns():Array
-		{
-			return _columns;
-		}
-
-		/**
-		 * 
-		 * @param value
-		 */
-		public function set columns(value:Array):void
-		{
-			_columns = value;
-		}
-
-		// ******************* CONSTRUCTOR **************************
-		/**
-		 * 
+		 * Create an new Grid.
 		 */
 		public function Grid()
 		{
@@ -75,21 +62,28 @@ package org.finalbug.ui.layout
 		}
 
 		/**
+		 * Get the cell at given posision.
 		 * 
-		 * @param row
-		 * @param column
-		 * @return 
+		 * @param row Row of cell
+		 * @param column Column of cell.
+		 * @return The cell at given position.
 		 */
-		public function getCell(row:uint, column:uint):Container
+		public function getCell(row:uint, column:uint):GridCell
 		{
 			return cells[row][column];
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
+		 * Rebuild cells.
+		 * This method should be call after rows and columns value have be set.
 		 * 
+		 * @param doPack Boolean, run pack() or not when cells are rebuilded.
+		 * 		If doPack, the size of grid will be changed to fit the cells size
+		 * 		If not doPack, the size fo grid will not be changed, even some cells
+		 * 		will be shown outside of grid area.
 		 */
-		public function rebuild():void
+		public function rebuild(doPack:Boolean = false):void
 		{
 			var currentX:Number = 0;
 			var currentY:Number = 0;
@@ -99,37 +93,44 @@ package org.finalbug.ui.layout
 			var rowNum:uint = rows.length;
 			for (var yIndex:uint = 0 ; yIndex < rowNum ; yIndex++)
 			{
-				if (cells[yIndex] == null) cells[yIndex] = new Array();
+				if (cells[yIndex] == null)
+				{
+					cells[yIndex] = new Array();
+				}
 				cellHeight = getCellHeight(yIndex);
-				trace("cell height", cellHeight);
 				//
 				var colNum:uint = columns.length;
 				for (var xIndex:uint = 0 ; xIndex < colNum ; xIndex++)
 				{
 					cellWidth = getCellWidth(xIndex);
+					// create and add cell into grid if not exist.
 					if (cells[yIndex][xIndex] == null)
 					{
 						cells[yIndex][xIndex] = new GridCell();
 						this.addChild(cells[yIndex][xIndex]);
 					}
+					// set cell's size and position.
 					var cell:GridCell = cells[yIndex][xIndex] as GridCell;
 					cell.xIndex = xIndex;
 					cell.yIndex = yIndex;
 					cell.resetPosition(currentX, currentY, cellWidth, cellHeight);
+					// Mark cell is changed, so that it will not be remove when clean up.
 					cell.updated = true;
 					//
 					if (xIndex == colNum - 1)
 					{
+						// if new line...
 						currentX = 0;
 						currentY += cellHeight;
 					}
 					else
 					{
+						// or not an new line...
 						currentX += cellWidth;
 					}
 				}
 			}
-			// remove cells
+			// Clean up cells. Remove cell objects that are not exist in grid any more.
 			for (var i:uint = 0 ; i < rowNum ; i++)
 			{
 				for (var j:uint = 0 ; j < rowNum ; j++)
@@ -147,34 +148,45 @@ package org.finalbug.ui.layout
 					}
 				}
 			}
-			this.pack();
+			// doPack means the size of grid will be changed to fit the cells.
+			if (doPack) this.pack();
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
+		/**
+		 * Get the widht of cell at given column.
+		 * 
+		 * @param index Given column index.
+		 * @return The widht of given column.
+		 */
 		private function getCellWidth(index:uint):Number
 		{
 			var val:String = columns[index];
 			if (Style.validLayoutValue(val))
 			{
-				var parentWidth:Number = this.parent == null ? 0 : this.parent.width;
-				var num:Number = Style.getLayoutValue(val, parentWidth);
+				var num:Number = Style.getLayoutValue(val, this.width);
 				return num;
 			}
 			return 0;
 		}
 
+		/**
+		 * Get the height of cell at given row.
+		 * 
+		 * @param index Given row index.
+		 * @return The height of given row.
+		 */
 		private function getCellHeight(index:uint):Number
 		{
 			var val:String = rows[index];
 			if (Style.validLayoutValue(val))
 			{
-				var parentHeight:Number = this.parent == null ? 0 : this.parent.height;
-				var num:Number = Style.getLayoutValue(val, parentHeight);
+				var num:Number = Style.getLayoutValue(val, this.height);
 				return num;
 			}
 			return 0;
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

@@ -24,7 +24,7 @@ package org.finalbug.ui.glazes
 	public class Scale9Bitmap extends Bitmap
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		override public function set width(value:Number):void
 		{
 			apply9Scale(value, height);
@@ -46,13 +46,13 @@ package org.finalbug.ui.glazes
 			this.apply9Scale(this.width, this.height);
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		private var sourceData:BitmapData;
 
 		private var scale9:Rectangle;
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************.
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 * @param source
@@ -65,9 +65,9 @@ package org.finalbug.ui.glazes
 			super(source.bitmapData.clone(), source.pixelSnapping, source.smoothing);
 		}
 
-		// ******************* PUBLIC *******************************
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PUBLIC ****************************************************/
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function apply9Scale(width:Number, height:Number):void
 		{
 			if (bitmapData)
@@ -154,6 +154,6 @@ package org.finalbug.ui.glazes
 				bitmapData = sourceData.clone();
 			}
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

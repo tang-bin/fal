@@ -25,7 +25,7 @@ package org.finalbug.ui.skin
 	public class TextSkinData extends UISkinDataAbstract
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		override public function bindChildren(...args):void
 		{
 			box = args[0] as Skin;
@@ -54,7 +54,7 @@ package org.finalbug.ui.skin
 			}
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		[Embed(source="/resources/skins/TextNormal.png")]
 		private var TextNormal:Class;
 
@@ -77,8 +77,8 @@ package org.finalbug.ui.skin
 		// extend skin data
 		protected var scrollBarSkinData:ScrollBarSkinData;
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************.
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 */
@@ -95,20 +95,20 @@ package org.finalbug.ui.skin
 			scrollBarSkinData = new ScrollBarSkinData();
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		public function setSkinStyle(status:String, skinData:SkinData, textFormat:TextFormat):void
 		{
 			boxSkins[status] = skinData;
 			textFormats[status] = textFormat;
 		}
-		// ******************* PROTECTED ****************************
+		/******************* PROTECTED *************************************************/
 		
 		
 		
-		// ******************* PRIVATE ******************************
+		/******************* PRIVATE ***************************************************/
 		
 		
 		
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

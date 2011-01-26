@@ -26,7 +26,7 @@ package org.finalbug.ui.control
 	public class ScrollBox extends UIObject
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		override protected function updateSize():void
 		{
 			super.updateSize();
@@ -55,7 +55,7 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -84,7 +84,7 @@ package org.finalbug.ui.control
 		protected var enableY:Boolean;
 
 		// enable scrollbar y or not
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * Width of container, not the width of scrollContainer.
 		 */
@@ -145,7 +145,7 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// ******************* CONSTRUCTOR **************************
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * Create a new ScrollBarContainer object.
 		 * 
@@ -182,8 +182,8 @@ package org.finalbug.ui.control
 			yBar.addEventListener(UIEvent.SCROLL, yScrollHandler);
 		}
 
-		// ******************* PUBLIC *******************************
-		// ******************* PROTECTED ****************************
+		/******************* PUBLIC ****************************************************/
+		/******************* PROTECTED *************************************************/
 		/**
 		 * 
 		 * @param e
@@ -199,10 +199,10 @@ package org.finalbug.ui.control
 		protected function yScrollHandler(e:UIEvent):void
 		{
 		}
-		// ******************* PRIVATE ******************************
+		/******************* PRIVATE ***************************************************/
 		
 		
 		
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

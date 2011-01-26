@@ -32,8 +32,8 @@ package org.finalbug.net
 	public class FSDASClient extends DataModel
 	{
 
-		// ******************* OVERRIDE *****************************
-		// ******************* DEFINE *******************************
+		/******************* OVERRIDE **************************************************/
+		/******************* DEFINE ****************************************************/
 		private var data:Object = new Object();
 
 		private var sk:Socket;
@@ -44,8 +44,8 @@ package org.finalbug.net
 
 		private var _connected:Boolean = false;
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 */
@@ -53,7 +53,7 @@ package org.finalbug.net
 		{
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param host
@@ -117,7 +117,7 @@ package org.finalbug.net
 		{
 		}
 
-		// ******************* PRIVATE ******************************
+		/******************* PRIVATE ***************************************************/
 		private function setSKEvent():void
 		{
 			sk.addEventListener(ProgressEvent.SOCKET_DATA, getDataHandler);
@@ -136,7 +136,7 @@ package org.finalbug.net
 			sk.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
 		}
 
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 		private function dataChangedHandler(e:DataEvent):void
 		{
 			// TODO: data is changed by applictions, send it to server now.

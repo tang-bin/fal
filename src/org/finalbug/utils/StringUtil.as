@@ -10,8 +10,6 @@
 // **********************************************************
 package org.finalbug.utils
 {
-	import org.finalbug.utils.MathUtil;
-	import org.finalbug.utils.StringUtil;
 
 	/**
 	 * This class offers some useful methods to deal with string.
@@ -447,7 +445,7 @@ package org.finalbug.utils
 				}
 				else
 				{
-					str += " " + obj.toString();
+					str += " " + String(obj);
 				}
 			}
 			if (showArea) str = "[" + str + "]";

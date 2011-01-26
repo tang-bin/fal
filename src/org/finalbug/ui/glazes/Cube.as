@@ -21,7 +21,7 @@ package org.finalbug.ui.glazes
 	public class Cube extends Glaze
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		override public function get width():Number
 		{
 			return _width + _depth;
@@ -44,7 +44,7 @@ package org.finalbug.ui.glazes
 			drawCube();
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		private var _width:Number;
 
 		private var _height:Number;
@@ -55,7 +55,7 @@ package org.finalbug.ui.glazes
 
 		private var _inner:Boolean = false;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -74,7 +74,7 @@ package org.finalbug.ui.glazes
 			return _width;
 		}
 
-		// ******************* CONSTRUCTOR **************************
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 * @param width
@@ -111,9 +111,9 @@ package org.finalbug.ui.glazes
 			}
 		}
 
-		// ******************* PUBLIC *******************************
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PUBLIC ****************************************************/
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function drawBottom():void
 		{
 			this.graphics.beginFill(ColorUtil.offsetColor(_color, 40), 1);
@@ -179,6 +179,6 @@ package org.finalbug.ui.glazes
 			this.graphics.lineTo(0, - _height);
 			this.graphics.endFill();
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

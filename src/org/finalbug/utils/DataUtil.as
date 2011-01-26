@@ -10,12 +10,12 @@
 // **********************************************************
 package org.finalbug.utils
 {
-	/******************************************************
-	 * utils.DataUtil
+	/**
+	 * DataUtil
 	 *
 	 * @author Tang Bin
 	 * @since old version
-	 *****************************************************/
+	 */
 	public class DataUtil
 	{
 
@@ -60,6 +60,24 @@ package org.finalbug.utils
 				if (values[i] == target) return i;
 			}
 			return -1;
+		}
+		
+		/**
+		 * Using for each to get the number of object's variables.
+		 * 
+		 * @param obj
+		 */
+		public static function getObjectCount(obj:Object):uint
+		{
+			var count:uint = 0;
+			for each(var v:* in obj)
+			{
+				if(v != null)
+				{
+					count++;
+				}
+			}
+			return count;
 		}
 	}
 }

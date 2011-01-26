@@ -29,7 +29,7 @@ package org.finalbug.ui.control
 	public class TextInput extends UIObject
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		override public function set status(value:String):void
 		{
 			if (this.enabled)
@@ -60,7 +60,7 @@ package org.finalbug.ui.control
 			txt.height = this.height - 2;
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		private var _textType:String = "input";
 
 		private var oldText:String = "";
@@ -69,7 +69,7 @@ package org.finalbug.ui.control
 
 		private var txt:TextField;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * if current text in textinput display as password.
 		 */
@@ -156,7 +156,7 @@ package org.finalbug.ui.control
 			this.setTextType();
 		}
 
-		// ******************* CONSTRUCTOR **************************
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * Create a new TextInput object.
 		 * 
@@ -188,7 +188,7 @@ package org.finalbug.ui.control
 			uiSkinData.bindChildren(back, txt);
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 */
@@ -197,8 +197,8 @@ package org.finalbug.ui.control
 			stage.focus = txt;
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function setTextType():void
 		{
 			if (txt != null)
@@ -215,7 +215,7 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 		private function txtFocusInHandler(e:FocusEvent):void
 		{
 			this.status = Status.ACTIVE;

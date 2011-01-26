@@ -25,7 +25,7 @@ package org.finalbug.ui.skin
 	public class CheckBoxSkinData extends UISkinDataAbstract
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		override public function bindChildren(...args):void
 		{
 			box = args[0] as Skin;
@@ -49,7 +49,7 @@ package org.finalbug.ui.skin
 			}
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		[Embed(source="/resources/skins/CheckBoxNormal.png")]
 		private var CheckBoxNormal:Class;
 
@@ -84,8 +84,8 @@ package org.finalbug.ui.skin
 
 		private var textFormats:Dictionary;
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************.
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 */
@@ -105,7 +105,7 @@ package org.finalbug.ui.skin
 			textFormats[Status.NORMAL] = new TextFormat("Arial", 12, 0);
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * Set CheckBox's skin style.
 		 * This method should be called before transfer this object into any UI object.
@@ -127,14 +127,14 @@ package org.finalbug.ui.skin
 			boxSkins[status] = skinData;
 			textFormats[status] = textFormat;
 		}
-		// ******************* PROTECTED ****************************
+		/******************* PROTECTED *************************************************/
 		
 		
 		
-		// ******************* PRIVATE ******************************
+		/******************* PRIVATE ***************************************************/
 		
 		
 		
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

@@ -25,8 +25,8 @@ package org.finalbug.utils.motion
 	public class MotionQueue extends DataModel
 	{
 
-		// ******************* OVERRIDE *****************************
-		// ******************* DEFINE *******************************
+		/******************* OVERRIDE **************************************************/
+		/******************* DEFINE ****************************************************/
 		private var list:Array = new Array();
 
 		private var currentIndex:uint = 0;
@@ -35,8 +35,8 @@ package org.finalbug.utils.motion
 
 		private var _running:Boolean = false;
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 */
@@ -45,7 +45,7 @@ package org.finalbug.utils.motion
 			super();
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param motion
@@ -138,8 +138,8 @@ package org.finalbug.utils.motion
 			}
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function startMotion():void
 		{
 			var motion:Motion = list[currentIndex] as Motion;
@@ -200,6 +200,6 @@ package org.finalbug.utils.motion
 				}
 			}
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

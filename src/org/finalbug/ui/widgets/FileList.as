@@ -27,7 +27,7 @@ package org.finalbug.ui.widgets
 	public class FileList extends ScrollPanel
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		override protected function updateSize():void
 		{
 			if (dd == null) return;
@@ -56,7 +56,7 @@ package org.finalbug.ui.widgets
 			super.updateSize();
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -77,8 +77,8 @@ package org.finalbug.ui.widgets
 
 		private var forEachItemFunc:Function;
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************.
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 * @param data
@@ -91,7 +91,7 @@ package org.finalbug.ui.widgets
 			showDirectory(data);
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param data
@@ -102,7 +102,7 @@ package org.finalbug.ui.widgets
 			this.updateSize();
 		}
 
-		// ******************* PROTECTED ****************************
+		/******************* PROTECTED *************************************************/
 		/**
 		 * 
 		 * @param file
@@ -144,7 +144,7 @@ package org.finalbug.ui.widgets
 			// should be overrided in grid/list/tree boxes.
 		}
 
-		// ******************* PRIVATE ******************************
+		/******************* PRIVATE ***************************************************/
 		private function doForEachItem(file:FileData, index:uint, length:uint):void
 		{
 			var item:FileListItem = items[file.name].item as FileListItem;
@@ -158,7 +158,7 @@ package org.finalbug.ui.widgets
 			}
 		}
 
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 		private function clickItemHandler(e:MouseEvent):void
 		{
 			var data:FileData = (e.currentTarget as FileListItem).data;

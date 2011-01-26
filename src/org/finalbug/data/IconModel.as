@@ -22,7 +22,7 @@ package org.finalbug.data
 	public class IconModel extends DataModel
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		// SINGTON
 		private static var icons:IconModel;
 
@@ -43,7 +43,7 @@ package org.finalbug.data
 			return icons;
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		[Embed(source="/resources/icons/folder_128.png")]
 		private var folder128:Class;
 
@@ -102,7 +102,7 @@ package org.finalbug.data
 
 		private var _unknowIcon:Icon;
 
-		// ******************* GETTER and SETTER ********************
+		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -213,7 +213,7 @@ package org.finalbug.data
 			}
 		}
 
-		// ******************* CONSTRUCTOR **************************.
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * @throws DataError
 		 */
@@ -230,9 +230,9 @@ package org.finalbug.data
 			}
 		}
 
-		// ******************* PUBLIC *******************************
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PUBLIC ****************************************************/
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function setDefaultIcons():void
 		{
 			_folderIcon = new Icon();
@@ -259,6 +259,6 @@ package org.finalbug.data
 			_videoIcon.addImage(new video32(), Icon.ICON_32);
 			_videoIcon.addImage(new video16(), Icon.ICON_16);
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

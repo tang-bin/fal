@@ -23,7 +23,7 @@ package org.finalbug.data
 	public class FileTypeModel extends DataModel
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		// SINGLETON
 		private static var ft:FileTypeModel;
 
@@ -44,11 +44,11 @@ package org.finalbug.data
 			return ft;
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		private var list:Dictionary = new Dictionary();
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************.
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 * @throws DataError
@@ -66,7 +66,7 @@ package org.finalbug.data
 			}
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param type
@@ -124,8 +124,8 @@ package org.finalbug.data
 			return list[ext.toLowerCase()] != null;
 		}
 
-		// ******************* PROTECTED ****************************
-		// ******************* PRIVATE ******************************
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function registerDefaultTypes():void
 		{
 			this.registerType(new FileType("txt", "", IconModel.instance.docIcon));
@@ -137,6 +137,6 @@ package org.finalbug.data
 			this.registerType(new FileType("avi", "", IconModel.instance.videoIcon));
 			this.registerType(new FileType("mpg", "", IconModel.instance.videoIcon));
 		}
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }

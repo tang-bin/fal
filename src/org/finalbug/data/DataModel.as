@@ -27,7 +27,7 @@ package org.finalbug.data
 	public class DataModel extends Proxy
 	{
 
-		// ******************* OVERRIDE *****************************
+		/******************* OVERRIDE **************************************************/
 		override flash_proxy function getProperty(name:*):*
 		{
 			return data[name];
@@ -42,13 +42,13 @@ package org.finalbug.data
 			this.dispatchEvent(ee);
 		}
 
-		// ******************* DEFINE *******************************
+		/******************* DEFINE ****************************************************/
 		private var dispatcher:EventDispatcher = new EventDispatcher();
 
 		private var data:Object = new Object();
 
-		// ******************* GETTER and SETTER ********************
-		// ******************* CONSTRUCTOR **************************
+		/******************* GETTER and SETTER *****************************************/
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 */
@@ -57,7 +57,7 @@ package org.finalbug.data
 			super();
 		}
 
-		// ******************* PUBLIC *******************************
+		/******************* PUBLIC ****************************************************/
 		/**
 		 * @param type
 		 * @param listener
@@ -105,7 +105,7 @@ package org.finalbug.data
 			return flash.utils.getQualifiedClassName(this);
 		}
 
-		// ******************* PROTECTED ****************************
+		/******************* PROTECTED *************************************************/
 		/**
 		 * Dispatch change data event.
 		 * 
@@ -121,10 +121,10 @@ package org.finalbug.data
 			ee.dataName = name;
 			this.dispatchEvent(ee);
 		}
-		// ******************* PRIVATE ******************************
+		/******************* PRIVATE ***************************************************/
 		
 		
 		
-		// ******************* HANDLER ******************************
+		/******************* PRIVATE ***************************************************/
 	}
 }
