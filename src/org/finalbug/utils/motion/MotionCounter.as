@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.utils.motion
 {
 	import org.finalbug.errors.MotionError;
@@ -21,24 +21,24 @@ package org.finalbug.utils.motion
 	 */
 	public class MotionCounter
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
-		// #######################################
-		// DEFINE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
+		// ******************* DEFINE *******************************
 		/**
 		 * even accelerated motion from start point to end point.
 		 */
 		public static const SPEED_UP:String = "speedUp";
+
 		/**
 		 * even speed down motion from start point to end point.
 		 */
 		public static const SPEED_DOWN:String = "speedDown";
+
 		/**
 		 * move from start point to end point as even pace.
 		 */
 		public static const EVEN_PACE:String = "evenPace";
+
 		/**
 		 * move speed type. can be speed up, speed down and even pace.
 		 * 
@@ -47,38 +47,39 @@ package org.finalbug.utils.motion
 		 * @see motion.Moting.EVEN_PACE
 		 */
 		public var speedType:String = "speedDown";
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public var countFunction:Function = getStepList;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var startValues:Array;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var endValues:Array;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var during:uint = 0;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var stepList:Array;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* GETTER and SETTER ********************
+		// ******************* CONSTRUCTOR **************************
 		/**
 		 * 
 		 */
@@ -86,9 +87,7 @@ package org.finalbug.utils.motion
 		{
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * 
 		 * @param startValues
@@ -118,9 +117,7 @@ package org.finalbug.utils.motion
 			}
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
+		// ******************* PROTECTED ****************************
 		/**
 		 * 
 		 * @throws MotionEvent
@@ -166,12 +163,10 @@ package org.finalbug.utils.motion
 				stepList.push(steps);
 			}
 		}
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PRIVATE ******************************
 		
-		// #######################################
-		// HANDLER
-		// #######################################
+		
+		
+		// ******************* HANDLER ******************************
 	}
 }

@@ -1,20 +1,20 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.data
 {
-	import flash.utils.Dictionary;
-
 	import org.finalbug.errors.DataError;
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.utils.StringUtil;
+
+	import flash.utils.Dictionary;
 
 	/**
 	 * TreeData defines the data model for a tree or list.
@@ -24,29 +24,28 @@ package org.finalbug.data
 	 */
 	public class TreeData extends DataModel
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
-		// #######################################
-		// DEFINE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
+		// ******************* DEFINE *******************************
 		/**
 		 * 
 		 * @default 
 		 */
 		public var nodeToStringFunction:Function;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public var stringToNodeFunction:Function;
+
 		private var _root:NodeData;
+
 		private var nodes:Dictionary;
+
 		private var _xml:XML;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
+		// ******************* GETTER and SETTER ********************
 		/**
 		 * Root data object
 		 */
@@ -104,9 +103,7 @@ package org.finalbug.data
 			}
 		}
 
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* CONSTRUCTOR **************************
 		/**
 		 * Create an new TreeData object.
 		 */
@@ -116,9 +113,7 @@ package org.finalbug.data
 			clean();
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * add an new node to tree.
 		 * 
@@ -398,7 +393,7 @@ package org.finalbug.data
 				{
 					if (nodeData.prev != null)
 					{
-						var node1:NodeData = nodeData.prev
+						var node1:NodeData = nodeData.prev;
 						var node2:NodeData = nodeData.next;
 						node1.next = node2;
 						nodeData.prev = node2;
@@ -530,9 +525,7 @@ package org.finalbug.data
 			this.dispatchEvent(ee);
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
+		// ******************* PROTECTED ****************************
 		/**
 		 * 
 		 * @param node
@@ -543,9 +536,7 @@ package org.finalbug.data
 			return nodes[node] || node == _root.data;
 		}
 
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PRIVATE ******************************
 		private function getNodeByData(data:Object):NodeData
 		{
 			if (data == null) return null;
@@ -576,11 +567,11 @@ package org.finalbug.data
 			if (nodeData != null)
 			{
 				var prev:NodeData = nodeData.prev;
-				var next:NodeData = nodeData.next
+				var next:NodeData = nodeData.next;
 				if (prev != null && next != null)
 				{
 					prev.next = next;
-					next.prev = prev
+					next.prev = prev;
 				}
 				else if (prev != null)
 				{
@@ -619,14 +610,14 @@ package org.finalbug.data
 		{
 			var str:String = "";
 			str += StringUtil.getBlankSpace(lv * 2);
-			str += "|-> "
+			str += "|-> ";
 			if (nodeData.data.hasOwnProperty("name"))
 			{
-				str += nodeData.data["name"].toString();
+				str += String(nodeData.data["name"]);
 			}
 			else
 			{
-				str += nodeData.data.toString();
+				str += String(nodeData.data);
 			}
 			// !! DO NOT remove trace line.
 			trace(str);
@@ -644,14 +635,14 @@ package org.finalbug.data
 		{
 			var str:String = "<t>";
 			str += getNextTempXML(_root);
-			str += "</t>"
+			str += "</t>";
 			return new XML(str);
 		}
 
 		private function getNextTempXML(node:NodeData):String
 		{
 			var str:String = "";
-			var nodeStr:String = nodeToStringFunction != null ? nodeToStringFunction.call(node.data) : node.data.toString();
+			var nodeStr:String = nodeToStringFunction != null ? nodeToStringFunction.call(node.data) : String(node.data);
 			str += "<n v=\"" + escape(nodeStr) + "\"/>";
 			if (node.firstChild != null)
 			{
@@ -694,11 +685,11 @@ package org.finalbug.data
 				var index:uint;
 				for (index = 0 ; index < len ; index++)
 				{
-					var attrName:String = attrs[index].name();
+					var attrName:String = attrs[index]["name"]();
 					obj[attrName] = attrs[index];
 				}
-				obj.nodeName = xmlData.name();
-				obj.nodeValue = xmlData.children();
+				obj["nodeName"] = xmlData.name();
+				obj["nodeValue"] = xmlData.children();
 				return obj;
 			}
 			else
@@ -706,38 +697,42 @@ package org.finalbug.data
 				return null;
 			}
 		}
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 	}
 }
 class NodeData
 {
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public var data:Object;
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public var prev:NodeData;
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public var next:NodeData;
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public var parent:NodeData;
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public var firstChild:NodeData;
+
 	/**
 	 * 
 	 * @default 

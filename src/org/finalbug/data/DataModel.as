@@ -1,23 +1,22 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.data
 {
+	import org.finalbug.events.DataEvent;
+
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
-	import flash.utils.ByteArray;
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
 	import flash.utils.getQualifiedClassName;
-
-	import org.finalbug.events.DataEvent;
 
 	/**
 	 * DataModel can be used as the base class for data objects.
@@ -27,9 +26,8 @@ package org.finalbug.data
 	 */
 	public class DataModel extends Proxy
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
 		override flash_proxy function getProperty(name:*):*
 		{
 			return data[name];
@@ -44,18 +42,13 @@ package org.finalbug.data
 			this.dispatchEvent(ee);
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		private var dispatcher:EventDispatcher = new EventDispatcher();
+
 		private var data:Object = new Object();
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* GETTER and SETTER ********************
+		// ******************* CONSTRUCTOR **************************
 		/**
 		 * 
 		 */
@@ -64,9 +57,7 @@ package org.finalbug.data
 			super();
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * @param type
 		 * @param listener
@@ -74,7 +65,11 @@ package org.finalbug.data
 		 * @param priority
 		 * @param useWeakReference
 		 */
-		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
+		public function addEventListener(type:String,
+											listener:Function,
+											useCapture:Boolean = false,
+											priority:int = 0,
+											useWeakReference:Boolean = false):void
 		{
 			dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
 		}
@@ -85,7 +80,9 @@ package org.finalbug.data
 		 * @param listener
 		 * @param useCapture
 		 */
-		public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void
+		public function removeEventListener(type:String,
+												listener:Function,
+												useCapture:Boolean = false):void
 		{
 			dispatcher.removeEventListener(type, listener, useCapture);
 		}
@@ -108,9 +105,7 @@ package org.finalbug.data
 			return flash.utils.getQualifiedClassName(this);
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
+		// ******************* PROTECTED ****************************
 		/**
 		 * Dispatch change data event.
 		 * 
@@ -126,12 +121,10 @@ package org.finalbug.data
 			ee.dataName = name;
 			this.dispatchEvent(ee);
 		}
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PRIVATE ******************************
 		
-		// #######################################
-		// HANDLER
-		// #######################################
+		
+		
+		// ******************* HANDLER ******************************
 	}
 }

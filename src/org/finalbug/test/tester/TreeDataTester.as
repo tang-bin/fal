@@ -14,6 +14,7 @@ package org.finalbug.test.tester
 	 */
 	public class TreeDataTester extends Container
 	{
+
 		private var td:TreeData = new TreeData();
 
 		public function TreeDataTester()

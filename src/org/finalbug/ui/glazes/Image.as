@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.ui.glazes
 {
 	import org.finalbug.events.LoadEvent;
@@ -29,9 +29,8 @@ package org.finalbug.ui.glazes
 	 */
 	public class Image extends Glaze
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
 		override protected function updateSize():void
 		{
 			if (img != null && this.contains(img))
@@ -73,25 +72,28 @@ package org.finalbug.ui.glazes
 			}
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		/**
 		 * 
 		 * @default 
 		 */
 		public var useFixedSize:Boolean = false;
+
 		private var loader:Loader;
+
 		private var _url:String;
+
 		private var bitmapData:BitmapData;
+
 		private var img:Scale9Bitmap;
+
 		private var orgw:Number = 0;
+
 		private var orgh:Number = 0;
+
 		private var scale9:Rectangle;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
+		// ******************* GETTER and SETTER ********************
 		/**
 		 * 
 		 * @return 
@@ -133,9 +135,7 @@ package org.finalbug.ui.glazes
 			}
 		}
 
-		// #######################################
-		// CONSTRUCTOR.
-		// #######################################
+		// ******************* CONSTRUCTOR **************************.
 		/**
 		 * 
 		 * @param url
@@ -146,9 +146,7 @@ package org.finalbug.ui.glazes
 			loadImg(url);
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * 
 		 * @param obj
@@ -205,12 +203,8 @@ package org.finalbug.ui.glazes
 			return newImg;
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PROTECTED ****************************
+		// ******************* PRIVATE ******************************
 		private function removeLoaderEvent():void
 		{
 			loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, loadedHandler);
@@ -247,9 +241,7 @@ package org.finalbug.ui.glazes
 			this.updateSize();
 		}
 
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 		private function loadedHandler(e:Event):void
 		{
 			this.bitmapData = (loader.content as Bitmap).bitmapData;

@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.data
 {
 	import flash.events.Event;
@@ -25,19 +25,22 @@ package org.finalbug.data
 	 * 
 	 * @eventType org.finalbug.event.LoadEvent.LOAD_SUCCESS
 	 */
-	[Event(name="loadSuccess", type="org.finalbug.event.LoadEvent")]
+	[Event(name="loadSuccess", type="org.finalbug.events.LoadEvent")]
+	
 	/**
 	 * Dispatched when load config file failed.
 	 * 
 	 * @eventType org.finalbug.event.LoadEvent.LOAD_FAILED
 	 */
-	[Event(name="loadFailed", type="org.finalbug.event.LoadEvent")]
+	[Event(name="loadFailed", type="org.finalbug.events.LoadEvent")]
+	
 	/**
 	 * Dispatched when loading config file.
 	 * 
 	 * @eventType org.finalbug.event.LoadEvent.LOADING
 	 */
-	[Event(name="loading", type="org.finalbug.event.LoadEvent")]
+	[Event(name="loading", type="org.finalbug.events.LoadEvent")]
+	
 	/**
 	 * <p>ConfigModel (as singleton) is used to load and keep config attributes.
 	 * Config file should be a text file, each line is one attribute.
@@ -80,13 +83,11 @@ package org.finalbug.data
 	 */
 	public class ConfigModel extends DataModel
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
 		// SINGELTON
-		// #######################################
 		private static var instanceable:Boolean = false;
+
 		private static var cm:ConfigModel;
 
 		/**
@@ -104,29 +105,27 @@ package org.finalbug.data
 			return cm;
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		/**
 		 * 
 		 * @default 
 		 */
 		public var res:Dictionary = new Dictionary();
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public var txt:Dictionary = new Dictionary();
+
 		private var loader:URLLoader;
+
 		private var loadQueue:Array = new Array();
+
 		private var attrs:Dictionary = new Dictionary();
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
-		// #######################################
-		// CONSTRUCTOR.
-		// #######################################
+		// ******************* GETTER and SETTER ********************
+		// ******************* CONSTRUCTOR **************************.
 		/**
 		 * 
 		 * @throws DataError
@@ -140,9 +139,7 @@ package org.finalbug.data
 			}
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * 
 		 * @param URL
@@ -163,12 +160,8 @@ package org.finalbug.data
 			return attrs[configName];
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PROTECTED ****************************
+		// ******************* PRIVATE ******************************
 		private function doLoad(url:String):void
 		{
 			loader = new URLLoader(new URLRequest(url));
@@ -209,9 +202,7 @@ package org.finalbug.data
 			}
 		}
 
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 		private function loadedHandler(e:Event):void
 		{
 			parseConfig(String(loader.data));

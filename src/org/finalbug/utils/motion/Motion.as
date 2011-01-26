@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.utils.motion
 {
 	import flash.events.TimerEvent;
@@ -24,59 +24,62 @@ package org.finalbug.utils.motion
 	 */
 	public class Motion extends DataModel
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
-		// #######################################
-		// DEFINE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
+		// ******************* DEFINE *******************************
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const INTERVAL:Number = 30;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public var during:uint = 300;
+
 		// motion will be done during this time, in millisecond.
 		/**
 		 * 
 		 * @default 
 		 */
 		public var delayTime:Number = 0;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var targetList:Array;
+
 		// list of display objects
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var times:uint = 1;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var getBack:Boolean = false;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var registeredMotions:Array;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var counter:MotionCounter;
+
 		internal var _running:Boolean = false;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
+		// ******************* GETTER and SETTER ********************
 		/**
 		 * 
 		 * @return 
@@ -86,9 +89,7 @@ package org.finalbug.utils.motion
 			return _running;
 		}
 
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* CONSTRUCTOR **************************
 		/**
 		 * 
 		 * @param target
@@ -101,9 +102,7 @@ package org.finalbug.utils.motion
 			}
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * Start motion play.
 		 * 
@@ -145,9 +144,7 @@ package org.finalbug.utils.motion
 			registeredMotions.forEach(stopMotion);
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
+		// ******************* PROTECTED ****************************
 		/**
 		 * account method dont need complete in Class Motion
 		 * @param target
@@ -177,9 +174,7 @@ package org.finalbug.utils.motion
 			return steps;
 		}
 
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PRIVATE ******************************
 		private function startAccount(e:* = null):void
 		{
 			for (var i:Number = 0 ; i < targetList.length ; i++)
@@ -197,8 +192,6 @@ package org.finalbug.utils.motion
 			MotionRunner.instance.stopAndRemoveMotion(element);
 			this._running = false;
 		}
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 	}
 }

@@ -1,17 +1,15 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.data
 {
-	import flash.system.Capabilities;
-
 	import org.finalbug.errors.DataError;
 	import org.finalbug.utils.DataUtil;
 
@@ -27,44 +25,43 @@ package org.finalbug.data
 	 */
 	public class Language extends DataModel
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
-		// #######################################
-		// DEFINE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
+		// ******************* DEFINE *******************************
 		/**
 		 * 
 		 * @default OK
 		 */
 		public static var OK:String = "OK";
+
 		/**
 		 * 
 		 * @default Yes
 		 */
 		public static var Yes:String = "Yes";
+
 		/**
 		 * 
 		 * @default No
 		 */
 		public static var No:String = "No";
+
 		/**
 		 * 
 		 * @default Cancel
 		 */
 		public static var cancel:String = "Cancel";
+
 		private static var _type:String = "en";
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
+		// ******************* GETTER and SETTER ********************
 		/**
 		 * 
 		 * @return 
 		 */
 		public static function get type():String
 		{
-			return type
+			return type;
 		}
 
 		/**
@@ -98,12 +95,11 @@ package org.finalbug.data
 			}
 		}
 
-		// #######################################
-		// CONSTRUCTOR.
-		// #######################################
+		// ******************* CONSTRUCTOR **************************.
 		/**
 		 * 
-		 * @throws DataError Throw DataError.STATIC_CLASS error when try to instance Language object.
+		 * @throws DataError Throw DataError.STATIC_CLASS error when try to
+		 * instance Language object.
 		 * Language is static class, cannot be instanced.
 		 */
 		public function Language()
@@ -111,9 +107,7 @@ package org.finalbug.data
 			throw new DataError(DataError.STATIC_CLASS);
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * 
 		 * @param type
@@ -135,16 +129,14 @@ package org.finalbug.data
 			}
 			return null;
 		}
-		// #######################################
-		// PROTECTED
-		// #######################################
+		// ******************* PROTECTED ****************************
 		
-		// #######################################
-		// PRIVATE
-		// #######################################
 		
-		// #######################################
-		// HANDLER
-		// #######################################
+		
+		// ******************* PRIVATE ******************************
+		
+		
+		
+		// ******************* HANDLER ******************************
 	}
 }

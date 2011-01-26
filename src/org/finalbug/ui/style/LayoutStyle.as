@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.ui.style
 {
 	import org.finalbug.events.UIEvent;
@@ -20,9 +20,8 @@ package org.finalbug.ui.style
 	 */
 	public class LayoutStyle extends Style
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
 		/**
 		 * 
 		 * @return 
@@ -32,25 +31,32 @@ package org.finalbug.ui.style
 			return "[x = " + this.x + ", y = " + this.y + ", width = " + this.width + ", height = " + this.height + "]";
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		private var _width:String = "";
+
 		private var _height:String = "";
+
 		private var _left:String = "";
+
 		private var _right:String = "";
+
 		private var _top:String = "";
+
 		private var _bottom:String = "";
+
 		private var _horizontal:String = "";
+
 		private var _vertical:String = "";
+
 		private var oldWidth:Number = NaN;
+
 		private var oldHeight:Number = NaN;
+
 		private var oldX:Number = NaN;
+
 		private var oldY:Number = NaN;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
+		// ******************* GETTER and SETTER ********************
 		/**
 		 * The width value count by current layout. 
 		 */
@@ -142,9 +148,7 @@ package org.finalbug.ui.style
 			}
 		}
 
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* CONSTRUCTOR **************************
 		/**
 		 * 
 		 */
@@ -153,9 +157,7 @@ package org.finalbug.ui.style
 			super();
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * Set layout value.
 		 * 
@@ -325,12 +327,8 @@ package org.finalbug.ui.style
 			this._vertical = "";
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PROTECTED ****************************
+		// ******************* PRIVATE ******************************
 		private function getParentWidth():Number
 		{
 			if (owner != null && owner.parent != null)
@@ -354,8 +352,6 @@ package org.finalbug.ui.style
 				return 0;
 			}
 		}
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 	}
 }

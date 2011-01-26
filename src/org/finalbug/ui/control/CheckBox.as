@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.ui.control
 {
 	import flash.display.Shape;
@@ -28,9 +28,8 @@ package org.finalbug.ui.control
 	 */
 	public class CheckBox extends UIObject
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
 		/**
 		 * 
 		 * @param value
@@ -91,22 +90,26 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		private const BOX_SIZE:Number = 16;
+
 		private const OFFSET:Number = 3;
+
 		private var _selected:Boolean = false;
+
 		private var _label:String = "CheckBox";
+
 		private var _labelPosition:String;
+
 		private var box:Skin;
+
 		private var txt:Label;
+
 		private var back:Shape;
+
 		private var _autoSize:Boolean = true;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
+		// ******************* GETTER and SETTER ********************
 		/**
 		 * 
 		 * @return 
@@ -212,9 +215,7 @@ package org.finalbug.ui.control
 			return txt.textColor;
 		}
 
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* CONSTRUCTOR **************************
 		/**
 		 * Create a new CheckBox object.
 		 * 
@@ -244,15 +245,9 @@ package org.finalbug.ui.control
 			uiSkinData.bindChildren(box, txt);
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
-		// #######################################
-		// PROTECTED
-		// #######################################
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PUBLIC *******************************
+		// ******************* PROTECTED ****************************
+		// ******************* PRIVATE ******************************
 		private function getCurrentStatus(status:String):String
 		{
 			if (enabled)
@@ -283,9 +278,7 @@ package org.finalbug.ui.control
 			return status;
 		}
 
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 		/**
 		 * invoked when click checkbox.
 		 * 

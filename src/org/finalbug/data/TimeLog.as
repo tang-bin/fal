@@ -1,19 +1,19 @@
-// ##########################################################
+// **********************************************************
 // ___________.__              .__ ___.
 // \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
 // |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
 // |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
 // \__ |     |__|___|  (____  /____/___  /____/\___  /
 // \/             \/     \/         \/     /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.data
 {
+	import org.finalbug.errors.DataError;
+
 	import flash.utils.Dictionary;
 	import flash.utils.getTimer;
-
-	import org.finalbug.errors.DataError;
 
 	/**
 	 * TimeLog is used to save logs during runtime order by time.
@@ -23,10 +23,10 @@ package org.finalbug.data
 	 */
 	public class TimeLog
 	{
-		// #######################################
+
 		// SINGLETON
-		// #######################################
 		private static var tl:TimeLog;
+
 		private static var instanceable:Boolean = false;
 
 		/**
@@ -44,21 +44,14 @@ package org.finalbug.data
 			return tl;
 		}
 
-		// #######################################
-		// OVERRIDE
-		// #######################################
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* OVERRIDE *****************************
+		// ******************* DEFINE *******************************
 		private var logList:Array = new Array();
+
 		private var consLogList:Dictionary = new Dictionary();
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* GETTER and SETTER ********************
+		// ******************* CONSTRUCTOR **************************
 		/**
 		 * 
 		 * @throws DataError
@@ -71,9 +64,7 @@ package org.finalbug.data
 			}
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * 
 		 * @param txt
@@ -94,7 +85,7 @@ package org.finalbug.data
 				{
 					consLogList[group] = new Array();
 				}
-				consLogList[group].push(data);
+				(consLogList[group] as Array).push(data);
 			}
 		}
 
@@ -188,36 +179,38 @@ package org.finalbug.data
 			logList = new Array();
 			consLogList = new Dictionary();
 		}
-		// #######################################
-		// PROTECTED
-		// #######################################
+		// ******************* PROTECTED ****************************
 		
-		// #######################################
-		// PRIVATE
-		// #######################################
 		
-		// #######################################
-		// HANDLER
-		// #######################################
+		
+		// ******************* PRIVATE ******************************
+		
+		
+		
+		// ******************* HANDLER ******************************
 	}
 }
 class LogData
 {
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public var time:int;
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public var timestamp:Date;
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public var group:String;
+
 	/**
 	 * 
 	 * @default 

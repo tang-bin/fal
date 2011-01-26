@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.utils.motion
 {
 	/**
@@ -18,9 +18,8 @@ package org.finalbug.utils.motion
 	 */
 	public class SizeMotion extends Motion
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
 		override protected function count(target:Object):void
 		{
 			if (times >= 0)
@@ -43,27 +42,28 @@ package org.finalbug.utils.motion
 			}
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		/**
 		 * If widthFrom is not set, target's current width will be set as default. 
 		 * 
 		 * @default NaN
 		 */
 		public var widthFrom:Number;
+
 		/**
 		 * If heightFrom is not set, target's current height will be set as default.
 		 * 
 		 * @default NaN
 		 */
 		public var heightFrom:Number;
+
 		/**
 		 * If widthTo is not set, target's current width will be set as default
 		 * 
 		 * @default NaN
 		 */
 		public var widthTo:Number;
+
 		/**
 		 * If heightTo is not set, target's current height will be set as default.
 		 * 
@@ -71,12 +71,8 @@ package org.finalbug.utils.motion
 		 */
 		public var heightTo:Number;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* GETTER and SETTER ********************
+		// ******************* CONSTRUCTOR **************************
 		/**
 		 * Create an new SizeMotion.
 		 * 
@@ -86,20 +82,18 @@ package org.finalbug.utils.motion
 		{
 			super(target);
 		}
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		
-		// #######################################
-		// PROTECTED
-		// #######################################
 		
-		// #######################################
-		// PRIVATE
-		// #######################################
 		
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* PROTECTED ****************************
+		
+		
+		
+		// ******************* PRIVATE ******************************
+		
+		
+		
+		// ******************* HANDLER ******************************
 	}
 }

@@ -1,28 +1,27 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.net
 {
+	import org.finalbug.data.DataModel;
+	import org.finalbug.data.SharedData;
+	import org.finalbug.errors.FSDASClientError;
+	import org.finalbug.events.ConnEvent;
+	import org.finalbug.events.DataEvent;
+
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.events.ProgressEvent;
 	import flash.events.SecurityErrorEvent;
 	import flash.net.Socket;
 	import flash.utils.ByteArray;
-	import flash.utils.Dictionary;
-
-	import org.finalbug.data.DataModel;
-	import org.finalbug.data.SharedData;
-	import org.finalbug.errors.FSDASClientError;
-	import org.finalbug.events.ConnEvent;
-	import org.finalbug.events.DataEvent;
 
 	/**
 	 * FSD(Finalbug Shared Data) ActionScript Client
@@ -32,24 +31,21 @@ package org.finalbug.net
 	 */
 	public class FSDASClient extends DataModel
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
-		// #######################################
-		// DEFINE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
+		// ******************* DEFINE *******************************
 		private var data:Object = new Object();
+
 		private var sk:Socket;
+
 		private var _host:String;
+
 		private var _port:uint;
+
 		private var _connected:Boolean = false;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* GETTER and SETTER ********************
+		// ******************* CONSTRUCTOR **************************
 		/**
 		 * 
 		 */
@@ -57,9 +53,7 @@ package org.finalbug.net
 		{
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * 
 		 * @param host
@@ -123,9 +117,7 @@ package org.finalbug.net
 		{
 		}
 
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PRIVATE ******************************
 		private function setSKEvent():void
 		{
 			sk.addEventListener(ProgressEvent.SOCKET_DATA, getDataHandler);
@@ -144,9 +136,7 @@ package org.finalbug.net
 			sk.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
 		}
 
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 		private function dataChangedHandler(e:DataEvent):void
 		{
 			// TODO: data is changed by applictions, send it to server now.

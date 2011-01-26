@@ -1,21 +1,19 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.data
 {
-	import flash.utils.Dictionary;
-
-	import org.finalbug.data.DataModel;
-	import org.finalbug.data.FileData;
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.glazes.Image;
+
+	import flash.utils.Dictionary;
 
 	/**
 	 * FolderData defines the data for one folder.
@@ -25,26 +23,30 @@ package org.finalbug.data
 	 */
 	public class FolderData extends DataModel
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
-		// #######################################
-		// DEFINE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
+		// ******************* DEFINE *******************************
 		private var _name:String = "";
+
 		private var _path:String = "";
+
 		private var _icon:Image;
+
 		private var _dirFirst:Boolean = true;
+
 		private var _showHide:Boolean = false;
+
 		private var _sortBy:String = "name";
+
 		private var _descOrder:Boolean = false;
+
 		private var files:Dictionary = new Dictionary();
+
 		private var fileNames:Array = new Array();
+
 		private var _currentSelected:Dictionary = new Dictionary();
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
+		// ******************* GETTER and SETTER ********************
 		/**
 		 * 
 		 * @return folder's name
@@ -126,9 +128,7 @@ package org.finalbug.data
 			// TODO:
 		}
 
-		// #######################################
-		// CONSTRUCTOR.
-		// #######################################
+		// ******************* CONSTRUCTOR **************************.
 		/**
 		 * Create an new FolderData.
 		 */
@@ -137,9 +137,7 @@ package org.finalbug.data
 			super();
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * Add a file into folder.(data operate)
 		 * 
@@ -227,12 +225,8 @@ package org.finalbug.data
 			}
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PROTECTED ****************************
+		// ******************* PRIVATE ******************************
 		private function removeFileName(fileName:String):void
 		{
 			for (var i:uint = fileNames.length ; --i >= 0 ; )
@@ -244,8 +238,6 @@ package org.finalbug.data
 				}
 			}
 		}
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 	}
 }

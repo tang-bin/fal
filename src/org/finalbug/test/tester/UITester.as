@@ -6,7 +6,9 @@ package org.finalbug.test.tester
 
 	public class UITester extends Container
 	{
+
 		private var btn:Button;
+
 		private var ta:TextArea;
 
 		public function UITester()

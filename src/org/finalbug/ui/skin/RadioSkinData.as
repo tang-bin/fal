@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.ui.skin
 {
 	import flash.text.TextFormat;
@@ -24,9 +24,8 @@ package org.finalbug.ui.skin
 	 */
 	public class RadioSkinData extends UISkinDataAbstract
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
 		override public function bindChildren(...args):void
 		{
 			box = args[0] as Skin;
@@ -53,30 +52,31 @@ package org.finalbug.ui.skin
 			}
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		[Embed(source="/resources/skins/RadioButtonNormal.png")]
 		private var RadioButtonNormal:Class;
+
 		[Embed(source="/resources/skins/RadioButtonSelectedNormal.png")]
 		private var RadioButtonSelectedNormal:Class;
+
 		[Embed(source="/resources/skins/RadioButtonSelectedDisabled.png")]
 		private var RadioButtonSelectedDisabled:Class;
+
 		[Embed(source="/resources/skins/RadioButtonDisabled.png")]
 		private var RadioButtonDisabled:Class;
+
 		// skin elements
 		private var box:Skin;
+
 		private var label:Label;
+
 		// skin data
 		private var boxSkins:Dictionary;
+
 		private var textFormats:Dictionary;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
-		// #######################################
-		// CONSTRUCTOR.
-		// #######################################
+		// ******************* GETTER and SETTER ********************
+		// ******************* CONSTRUCTOR **************************.
 		/**
 		 * 
 		 */
@@ -92,9 +92,7 @@ package org.finalbug.ui.skin
 			textFormats[Status.NORMAL] = new TextFormat("Arial", 12, 0);
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * Set RadioButton's skin style.
 		 * This method should be called before transfer this object into any UI object.
@@ -112,16 +110,14 @@ package org.finalbug.ui.skin
 			boxSkins[status] = skinData;
 			textFormats[status] = textFormat;
 		}
-		// #######################################
-		// PROTECTED
-		// #######################################
+		// ******************* PROTECTED ****************************
 		
-		// #######################################
-		// PRIVATE
-		// #######################################
 		
-		// #######################################
-		// HANDLER
-		// #######################################
+		
+		// ******************* PRIVATE ******************************
+		
+		
+		
+		// ******************* HANDLER ******************************
 	}
 }

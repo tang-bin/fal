@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.ui.skin
 {
 	import flash.display.Bitmap;
@@ -30,9 +30,8 @@ package org.finalbug.ui.skin
 	 */
 	public class Skin extends Glaze
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
 		override protected function updateSize():void
 		{
 			this.graphics.clear();
@@ -138,17 +137,16 @@ package org.finalbug.ui.skin
 			}
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		private var skinDataList:Dictionary = new Dictionary();
+
 		private var currentStatus:String;
+
 		private var skinChanged:Boolean = false;
+
 		private var _autoMouseEvent:Boolean = false;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
+		// ******************* GETTER and SETTER ********************
 		/**
 		 * 
 		 * @return 
@@ -201,9 +199,7 @@ package org.finalbug.ui.skin
 			}
 		}
 
-		// #######################################
-		// CONSTRUCTOR.
-		// #######################################
+		// ******************* CONSTRUCTOR **************************.
 		/**
 		 * 
 		 */
@@ -212,9 +208,7 @@ package org.finalbug.ui.skin
 			super();
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * 
 		 * @param data
@@ -241,12 +235,8 @@ package org.finalbug.ui.skin
 			}
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PROTECTED ****************************
+		// ******************* PRIVATE ******************************
 		private function setMouseEvent():void
 		{
 			this.mouseEnabled = true;
@@ -267,9 +257,7 @@ package org.finalbug.ui.skin
 			this.removeEventListener(MouseEvent.MOUSE_UP, upHandler);
 		}
 
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 		private function overHandler(e:MouseEvent):void
 		{
 			if (status != Status.DISABLED)

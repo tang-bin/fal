@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.ui.skin
 {
 	import flash.text.TextFormat;
@@ -24,9 +24,8 @@ package org.finalbug.ui.skin
 	 */
 	public class ButtonSkinData extends UISkinDataAbstract
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
 		/**
 		 * 
 		 * @param args
@@ -61,36 +60,40 @@ package org.finalbug.ui.skin
 			}
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		[Embed(source="/resources/skins/ButtonNormal.png")]
 		private var ButtonNormal:Class;
+
 		[Embed(source="/resources/skins/ButtonOver.png")]
 		private var ButtonOver:Class;
+
 		[Embed(source="/resources/skins/ButtonDown.png")]
 		private var ButtonDown:Class;
+
 		[Embed(source="/resources/skins/ButtonDisabled.png")]
 		private var ButtonDisabled:Class;
+
 		[Embed(source="/resources/skins/ButtonHold.png")]
 		private var ButtonHold:Class;
+
 		[Embed(source="/resources/skins/ButtonHoldDown.png")]
 		private var ButtonHoldDown:Class;
+
 		[Embed(source="/resources/skins/ButtonHoldOver.png")]
 		private var ButtonHoldOver:Class;
+
 		// skin elements
 		private var bgSkin:Skin;
+
 		private var label:Label;
+
 		// skin data.
 		private var bgSkinDataList:Dictionary;
+
 		private var txtFormatList:Dictionary;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
-		// #######################################
-		// CONSTRUCTOR.
-		// #######################################
+		// ******************* GETTER and SETTER ********************
+		// ******************* CONSTRUCTOR **************************.
 		/**
 		 * Create an new ButtonSkinData object.
 		 */
@@ -113,9 +116,7 @@ package org.finalbug.ui.skin
 			}
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * Set Button's skin style.
 		 * This method should be called before transfer this object into any UI object.
@@ -136,16 +137,14 @@ package org.finalbug.ui.skin
 			bgSkinDataList[status] = skinData;
 			txtFormatList[status] = textFormat;
 		}
-		// #######################################
-		// PROTECTED
-		// #######################################
+		// ******************* PROTECTED ****************************
 		
-		// #######################################
-		// PRIVATE
-		// #######################################
 		
-		// #######################################
-		// HANDLER
-		// #######################################
+		
+		// ******************* PRIVATE ******************************
+		
+		
+		
+		// ******************* HANDLER ******************************
 	}
 }

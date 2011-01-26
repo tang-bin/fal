@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.ui.control
 {
 	import flash.events.MouseEvent;
@@ -33,9 +33,8 @@ package org.finalbug.ui.control
 	 */
 	public class ScrollBar extends UIObject
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
 		override public function get width():Number
 		{
 			return _type == Position.HORIZONTAL ? this._length : this._thickness;
@@ -89,38 +88,52 @@ package org.finalbug.ui.control
 			this.setSlider();
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const DEFAULT_THICKNESS:Number = 16;
+
 		/* variates */
 		private var moveStep:Number;
+
 		private var moveTimer:Timer;
+
 		private var clickTimer:Timer;
+
 		private var currentMoveType:String = "";
+
 		private var _type:String;
+
 		private var _defineClickOutside:Boolean = false;
+
 		private var _scale:Number = 0.5;
+
 		private var _position:Number = 0.5;
+
 		private var _speed:Number = 3;
+
 		private var _thickness:Number = 10;
+
 		private var _length:Number = 100;
+
 		/* display containers */
 		private var leftBtn:Skin;
+
 		private var rightBtn:Skin;
+
 		private var upBtn:Skin;
+
 		private var downBtn:Skin;
+
 		private var back:Skin;
+
 		private var slider:Skin;
+
 		private var _enabled:Boolean = true;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
+		// ******************* GETTER and SETTER ********************
 		/**
 		 * scale value of slider in percent. from 0 to 1.
 		 */
@@ -196,9 +209,7 @@ package org.finalbug.ui.control
 			return _length - 2 * _thickness;
 		}
 
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* CONSTRUCTOR **************************
 		/**
 		 * Constuctor. create and initialize a new scrollBar
 		 * 
@@ -235,9 +246,7 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * 
 		 * @param position
@@ -250,12 +259,8 @@ package org.finalbug.ui.control
 			this.setSlider();
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PROTECTED ****************************
+		// ******************* PRIVATE ******************************
 		/**
 		 * change slider's position and size.
 		 */
@@ -375,9 +380,7 @@ package org.finalbug.ui.control
 			this.dispatchEvent(ee);
 		}
 
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 		private function pressBtnHandler(e:MouseEvent):void
 		{
 			if (_enabled)

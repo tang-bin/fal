@@ -1,20 +1,15 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.ui
 {
-	import flash.display.DisplayObject;
-	import flash.display.Sprite;
-	import flash.events.Event;
-	import flash.geom.Point;
-
 	import org.finalbug.data.Position;
 	import org.finalbug.events.DisplayEvent;
 	import org.finalbug.events.MotionEvent;
@@ -24,6 +19,11 @@ package org.finalbug.ui
 	import org.finalbug.utils.MathUtil;
 	import org.finalbug.utils.motion.MoveMotion;
 	import org.finalbug.utils.motion.SizeMotion;
+
+	import flash.display.DisplayObject;
+	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.geom.Point;
 
 	/**
 	 * Bin is the basic class for all other display object used in fb-aslib.
@@ -36,9 +36,8 @@ package org.finalbug.ui
 	 */
 	public class Bin extends Sprite
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
 		/**
 		 * @default 0
 		 */
@@ -182,41 +181,48 @@ package org.finalbug.ui
 			dispatchChildChanged();
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var sizeChanged:Boolean = true;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var positionChanged:Boolean = true;
+
 		/**
 		 *
 		 * @default null
 		 */
 		protected var _fillStyle:FillStyle;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var _layoutStyle:LayoutStyle;
+
 		private var _maxWidth:Number = 4000;
+
 		private var _maxHeight:Number = 4000;
+
 		private var _minWidth:Number = 0;
+
 		private var _minHeight:Number = 0;
+
 		private var moveMotion:MoveMotion;
+
 		private var sizeMotion:SizeMotion;
+
 		private var _controlPoint:Point = new Point(0, 0);
+
 		private var _controlPointType:String = "";
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
+		// ******************* GETTER and SETTER ********************
 		/**
 		 * 
 		 * @return 
@@ -532,9 +538,7 @@ package org.finalbug.ui
 			}
 		}
 
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* CONSTRUCTOR **************************
 		/**
 		 * Create an new Bin object.
 		 */
@@ -549,9 +553,7 @@ package org.finalbug.ui
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * Change Bin's size to target width and height immediately.
 		 * run updateSize to reisze.
@@ -755,9 +757,7 @@ package org.finalbug.ui
 			}
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
+		// ******************* PROTECTED ****************************
 		/**
 		 *
 		 */
@@ -818,9 +818,7 @@ package org.finalbug.ui
 			}
 		}
 
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PRIVATE ******************************
 		private function accountControlPoint():void
 		{
 			switch (_controlPointType)
@@ -926,9 +924,7 @@ package org.finalbug.ui
 			}
 		}
 
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 		private function stopZoomHandler(e:MotionEvent):void
 		{
 			this.dispatchEvent(new DisplayEvent(DisplayEvent.END_ZOOM));

@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.ui.control
 {
 	import flash.display.DisplayObject;
@@ -25,9 +25,8 @@ package org.finalbug.ui.control
 	 */
 	public class Icon extends Bin
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
 		override protected function updateSize():void
 		{
 			super.updateSize();
@@ -54,36 +53,38 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const ICON_16:String = "icon16";
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const ICON_32:String = "icon32";
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const ICON_48:String = "icon48";
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const ICON_128:String = "icon128";
+
 		private var defaultImg:Image;
+
 		private var imgs:Object = new Object();
+
 		private var img:Image;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
+		// ******************* GETTER and SETTER ********************
 		private function get icon16():Image
 		{
 			return imgs[ICON_16] as Image;
@@ -104,9 +105,7 @@ package org.finalbug.ui.control
 			return imgs[ICON_128] as Image;
 		}
 
-		// #######################################
-		// CONSTRUCTOR.
-		// #######################################
+		// ******************* CONSTRUCTOR **************************.
 		/**
 		 * 
 		 */
@@ -115,9 +114,7 @@ package org.finalbug.ui.control
 			super();
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * 
 		 * @param img
@@ -187,12 +184,8 @@ package org.finalbug.ui.control
 			return newIcon;
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PROTECTED ****************************
+		// ******************* PRIVATE ******************************
 		private function setDefaultImg():void
 		{
 			if (imgs[ICON_128] != null) defaultImg = imgs[ICON_128];
@@ -201,8 +194,6 @@ package org.finalbug.ui.control
 			else if (imgs[ICON_16] != null) defaultImg = imgs[ICON_16];
 			else defaultImg = null;
 		}
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 	}
 }

@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.ui.control
 {
 	import flash.display.Shape;
@@ -29,9 +29,8 @@ package org.finalbug.ui.control
 	 */
 	public class RadioButton extends UIObject
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
 		override public function set status(value:String):void
 		{
 			if (this.selected)
@@ -88,27 +87,32 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		/**
 		 * 
 		 * @default 
 		 */
 		protected static var groupList:Object = new Object();
+
 		private const BOX_SIZE:Number = 16;
+
 		private const OFFSET:Number = 3;
+
 		private var _label:String;
+
 		private var _selected:Boolean = false;
+
 		private var _group:String = "";
+
 		private var _labelPosition:String;
+
 		private var box:Skin;
+
 		private var txt:Label;
+
 		private var bg:Shape;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
+		// ******************* GETTER and SETTER ********************
 		/**
 		 * label string
 		 */
@@ -185,9 +189,7 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* CONSTRUCTOR **************************
 		/**
 		 * create a new RadioButton object
 		 * 
@@ -230,9 +232,7 @@ package org.finalbug.ui.control
 			uiSkinData.bindChildren(box, txt);
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * get selected radiobutton by groupName.
 		 * 
@@ -254,12 +254,8 @@ package org.finalbug.ui.control
 			return null;
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PROTECTED ****************************
+		// ******************* PRIVATE ******************************
 		private function unselectedGroup():void
 		{
 			for each (var btn:RadioButton in RadioButton.groupList[_group])
@@ -271,9 +267,7 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 		private function clickBoxHandler(e:MouseEvent):void
 		{
 			if (!_selected)

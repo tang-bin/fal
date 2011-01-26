@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.utils
 {
 	import org.finalbug.utils.MathUtil;
@@ -21,18 +21,22 @@ package org.finalbug.utils
 	 */
 	public class StringUtil
 	{
+
 		/**
 		 * uppercase
 		 */
 		public static const UPPERCASE:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
 		/**
 		 * lowercase
 		 */
 		public static const LOWERCASE:String = "abcedfghijklmnopqrstuvwxyz";
+
 		/**
 		 * number in string type.
 		 */
 		public static const NUMBER:String = "0123456789";
+
 		/**
 		 * chars can be used as object's name in AS.
 		 */

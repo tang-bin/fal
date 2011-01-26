@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.utils
 {
 	import flash.display.DisplayObject;
@@ -21,71 +21,85 @@ package org.finalbug.utils
 	 */
 	public class ColorUtil
 	{
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const RED:uint = 0xFF0000;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const WHITE:uint = 0xFFFFFF;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const BLACK:uint = 0x000000;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const BLUE:uint = 0x0000FF;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const GREEN:uint = 0x00FF00;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const SILVER:uint = 0xEEEEEE;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const GOLD:uint = 0xFED336;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const YELLOW:uint = 0xFFFF00;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const CYAN:uint = 0x00FFFF;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const PURPLE:uint = 0xFF00FF;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const ORANGE:uint = 0xFF9900;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const GRAY:uint = 0xDBDBDB;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const DARK:uint = 0x333333;
+
 		/**
 		 * 
 		 * @default 
@@ -232,7 +246,8 @@ package org.finalbug.utils
 		}
 
 		/**
-		 * Get a alpha array from a color array. and the length of alpha array equals to the color array.
+		 * Get a alpha array from a color array. and the length of alpha array 
+		 * equals to the color array.
 		 * most be used to make a gradient fill.
 		 * 
 		 * @param colorArray

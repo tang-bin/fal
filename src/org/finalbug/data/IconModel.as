@@ -1,21 +1,17 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.data
 {
-	import flash.display.Bitmap;
-
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.control.Icon;
-	import org.finalbug.data.DataModel;
-	import org.finalbug.data.IconModel;
 
 	/**
 	 * IconModel defines default icons used in this library.
@@ -25,13 +21,11 @@ package org.finalbug.data
 	 */
 	public class IconModel extends DataModel
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
 		// SINGTON
-		// #######################################
 		private static var icons:IconModel;
+
 		private static var instanceable:Boolean = false;
 
 		/**
@@ -49,50 +43,66 @@ package org.finalbug.data
 			return icons;
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		[Embed(source="/resources/icons/folder_128.png")]
 		private var folder128:Class;
+
 		[Embed(source="/resources/icons/folder_48.png")]
 		private var folder48:Class;
+
 		[Embed(source="/resources/icons/folder_32.png")]
 		private var folder32:Class;
+
 		[Embed(source="/resources/icons/folder_16.png")]
 		private var folder16:Class;
+
 		[Embed(source="/resources/icons/doc_128.png")]
 		private var doc128:Class;
+
 		[Embed(source="/resources/icons/doc_48.png")]
 		private var doc48:Class;
+
 		[Embed(source="/resources/icons/doc_32.png")]
 		private var doc32:Class;
+
 		[Embed(source="/resources/icons/doc_16.png")]
 		private var doc16:Class;
+
 		[Embed(source="/resources/icons/img_128.png")]
 		private var img128:Class;
+
 		[Embed(source="/resources/icons/img_48.png")]
 		private var img48:Class;
+
 		[Embed(source="/resources/icons/img_32.png")]
 		private var img32:Class;
+
 		[Embed(source="/resources/icons/img_16.png")]
 		private var img16:Class;
+
 		[Embed(source="/resources/icons/video_128.png")]
 		private var video128:Class;
+
 		[Embed(source="/resources/icons/video_48.png")]
 		private var video48:Class;
+
 		[Embed(source="/resources/icons/video_32.png")]
 		private var video32:Class;
+
 		[Embed(source="/resources/icons/video_16.png")]
 		private var video16:Class;
+
 		private var _folderIcon:Icon;
+
 		private var _docIcon:Icon;
+
 		private var _imgIcon:Icon;
+
 		private var _videoIcon:Icon;
+
 		private var _unknowIcon:Icon;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
+		// ******************* GETTER and SETTER ********************
 		/**
 		 * 
 		 * @return 
@@ -203,9 +213,7 @@ package org.finalbug.data
 			}
 		}
 
-		// #######################################
-		// CONSTRUCTOR.
-		// #######################################
+		// ******************* CONSTRUCTOR **************************.
 		/**
 		 * @throws DataError
 		 */
@@ -222,15 +230,9 @@ package org.finalbug.data
 			}
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
-		// #######################################
-		// PROTECTED
-		// #######################################
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PUBLIC *******************************
+		// ******************* PROTECTED ****************************
+		// ******************* PRIVATE ******************************
 		private function setDefaultIcons():void
 		{
 			_folderIcon = new Icon();
@@ -257,8 +259,6 @@ package org.finalbug.data
 			_videoIcon.addImage(new video32(), Icon.ICON_32);
 			_videoIcon.addImage(new video16(), Icon.ICON_16);
 		}
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 	}
 }

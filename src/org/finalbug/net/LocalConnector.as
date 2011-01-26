@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.net
 {
 	import flash.events.StatusEvent;
@@ -23,36 +23,38 @@ package org.finalbug.net
 	 */
 	public class LocalConnector
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
-		// #######################################
-		// DEFINE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
+		// ******************* DEFINE *******************************
 		/**
 		 * 
 		 * @default 
 		 */
 		public var receiveHandler:Function;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public var sendFailedHandler:Function;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var _connected:Boolean;
+
 		private var bytes:ByteArray;
+
 		private var localConn:LocalConnection;
+
 		private var remoteConn:LocalConnection;
+
 		private var localName:String;
+
 		private var remoteName:String;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
+		// ******************* GETTER and SETTER ********************
 		/**
 		 * 
 		 * @return 
@@ -62,9 +64,7 @@ package org.finalbug.net
 			return this._connected;
 		}
 
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* CONSTRUCTOR **************************
 		/**
 		 * 
 		 * @param localName
@@ -78,9 +78,7 @@ package org.finalbug.net
 			this.remoteName = remoteName;
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * 
 		 * @param data
@@ -153,12 +151,8 @@ package org.finalbug.net
 			this._connected = true;
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PROTECTED ****************************
+		// ******************* PRIVATE ******************************
 		private function getData(item:Object, indexObj:Object, countObj:Object):void
 		{
 			var index:int = indexObj as int;
@@ -192,9 +186,7 @@ package org.finalbug.net
 			remoteConn.send(remoteName, this.getDataHandler(), obj, index, count);
 		}
 
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 		private function sendStatusHandler(event:StatusEvent):void
 		{
 			switch (event.level)

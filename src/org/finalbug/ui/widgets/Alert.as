@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.ui.widgets
 {
 	import flash.display.DisplayObject;
@@ -33,40 +33,39 @@ package org.finalbug.ui.widgets
 	 */
 	public class Alert
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
-		// #######################################
-		// DEFINE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
+		// ******************* DEFINE *******************************
 		/**
 		 * 
 		 * @default 
 		 */
 		public static var alertList:Array = new Array();
+
 		private static var alertContainer:Sprite;
+
 		private static var bg:Sprite;
+
 		private static var txt:Label;
+
 		private static var yesBtn:Button;
+
 		private static var noBtn:Button;
+
 		private static var cancelBtn:Button;
+
 		private static var stage:Stage;
+
 		private static var currentData:AlertData;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* GETTER and SETTER ********************
+		// ******************* CONSTRUCTOR **************************
 		public function Alert()
 		{
 			throw new DataError(DataError.STATIC_CLASS);
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * 
 		 * @param owner
@@ -186,12 +185,8 @@ package org.finalbug.ui.widgets
 			}
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PROTECTED ****************************
+		// ******************* PRIVATE ******************************
 		private static function createAlert():void
 		{
 			alertContainer = new Sprite;
@@ -297,9 +292,7 @@ package org.finalbug.ui.widgets
 			return alertContainer != null && stage != null && stage.contains(alertContainer);
 		}
 
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 		private static function resizeHandler(e:Event):void
 		{
 			if (alertExist())

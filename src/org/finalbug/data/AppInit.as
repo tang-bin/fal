@@ -1,24 +1,24 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.data
 {
+	import org.finalbug.events.DataEvent;
+	import org.finalbug.events.LoadEvent;
+	import org.finalbug.net.BitmapPool;
+
 	import flash.display.Loader;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
-
-	import org.finalbug.events.DataEvent;
-	import org.finalbug.events.LoadEvent;
-	import org.finalbug.net.BitmapPool;
 
 	/**
 	 * Dispatched when loading status is changed.
@@ -26,7 +26,7 @@ package org.finalbug.data
 	 * 
 	 * @eventType org.finalbug.events.DataEvent.CHANGE_DATA
 	 */
-	[Event(name="changeData", type="org.finalbug.event.DataEvent")]
+	[Event(name="changeData", type="org.finalbug.events.DataEvent")]
 	/**
 	 * Dispatched when init success.
 	 * After initialize success, AppInit object not longer useful, you can remove
@@ -35,7 +35,7 @@ package org.finalbug.data
 	 * 
 	 * @eventType org.finalbug.event.DataEvent.INIT_END 
 	 */
-	[Event(name="initEnd", type="org.finalbug.event.DataEvent")]
+	[Event(name="initEnd", type="org.finalbug.events.DataEvent")]
 	/**
 	 * <p>AppInit is used to initialize an appliction, such as load config files and 
 	 * images, swf files and text files. 
@@ -58,26 +58,25 @@ package org.finalbug.data
 	 */
 	public class AppInit extends DataModel
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
-		// #######################################
-		// DEFINE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
+		// ******************* DEFINE *******************************
 		private var resList:Array;
+
 		private var resTotalNum:uint;
+
 		private var resLoader:Loader;
+
 		private var txtList:Array;
+
 		private var txtTotalNum:uint;
+
 		private var txtLoader:URLLoader;
+
 		private var currentLoadName:String;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
-		// #######################################
-		// CONSTRUCTOR.
-		// #######################################
+		// ******************* GETTER and SETTER ********************
+		// ******************* CONSTRUCTOR **************************.
 		/**
 		 * Create an new AppInit object.
 		 */
@@ -86,9 +85,7 @@ package org.finalbug.data
 			super();
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * Start load confile file.
 		 * 
@@ -103,12 +100,8 @@ package org.finalbug.data
 			ConfigModel.instance.addEventListener(LoadEvent.LOAD_FAILED, loadConfigErrorHandler);
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PROTECTED ****************************
+		// ******************* PRIVATE ******************************
 		private function dispatchChange(str:String):void
 		{
 			var ee:DataEvent = new DataEvent(DataEvent.CHANGE_DATA);
@@ -198,9 +191,7 @@ package org.finalbug.data
 			this.dispatchEvent(ee);
 		}
 
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 		private function loadedConfigHandler(e:LoadEvent):void
 		{
 			dispatchChange("Loading image files...");
@@ -210,7 +201,7 @@ package org.finalbug.data
 				var len:uint = images.length;
 				for (var i:uint = 0 ; i < len ; i++)
 				{
-					var str:String = images[i].toString();
+					var str:String = images[i] as String;
 					var index:uint = str.indexOf(":");
 					if (index == -1) continue;
 					// format error
@@ -246,7 +237,7 @@ package org.finalbug.data
 
 		private function loadingBitmapHandler(e:LoadEvent):void
 		{
-			var numStr:String = e.loadedNum + "/" + e.totalNum
+			var numStr:String = e.loadedNum + "/" + e.totalNum;
 			dispatchChange("Loading image files..." + numStr);
 		}
 

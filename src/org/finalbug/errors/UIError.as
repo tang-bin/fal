@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.errors
 {
 	/**
@@ -18,21 +18,25 @@ package org.finalbug.errors
 	 */
 	public class UIError extends Error
 	{
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const WRONG_SCROLLBAR_TYPE:String = "ScrollBar component type error.";
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const CONTROL_NULL:String = "Must register status before effect.";
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public static const DISPLAY_OBJECT_NULL:String = "Target displayObject not exist.";
+
 		/**
 		 * 
 		 * @default 

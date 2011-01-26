@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.events
 {
 	import flash.events.Event;
@@ -22,61 +22,74 @@ package org.finalbug.events
 	 */
 	public class LoadEvent extends Event
 	{
+
 		/* event for load */
 		/**
 		 * @eventType loadSuccess
 		 */
 		public static const LOAD_SUCCESS:String = "loadSuccess";
+
 		/**
 		 * @eventType loadFailed
 		 */
 		public static const LOAD_FAILED:String = "loadFailed";
+
 		/**
 		 * @eventType loading
 		 */
 		public static const LOADING:String = "loading";
+
 		/* event for connection */
 		/* event for all kings of net operation */
 		/**
 		 * @eventType timeout
 		 */
 		public static const TIMEOUT:String = "timeout";
+
 		/* event variates */
 		/**
 		 * The name of the object that dispatch this event.
 		 */
 		public var name:String = "";
+
 		/**
 		 * total bytes that will be loaded.
 		 */
 		public var bytesTotal:Number = 0;
+
 		/**
 		 * bytes thet is loaded.
 		 */
 		public var bytesLoaded:Number = 0;
+
 		/**
 		 * current percent of loaded bytes in total bytes.
 		 */
 		public var loadedRate:Number = 0;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public var totalNum:uint = 0;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public var loadedNum:uint = 0;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public var errorNum:uint = 0;
+
 		/**
 		 * A data object can be any object.
 		 */
 		public var data:*;
+
 		/**
 		 * 
 		 * @default 

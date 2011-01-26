@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.ui.style
 {
 	import flash.display.DisplayObject;
@@ -27,45 +27,64 @@ package org.finalbug.ui.style
 	 */
 	public class FillStyle extends Style
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
-		// #######################################
-		// DEFINE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
+		// ******************* DEFINE *******************************
 		private var _borderSize:Number = 1;
+
 		private var _borderColor:Number = 0x999999;
+
 		private var _borderAlpha:Number = 0;
+
 		private var _bgColor:Number = 0xFFFFFF;
+
 		private var _bgAlpha:Number = 0;
+
 		private var _topLeftRadius:Number = 0;
+
 		private var _topRightRadius:Number = 0;
+
 		private var _bottomLeftRadius:Number = 0;
+
 		private var _bottomRightRadius:Number = 0;
+
 		private var _radius:Number = 0;
+
 		private var uniformRadius:Boolean = true;
+
 		private var _bgColors:Array = [0x333, 0xFFF];
+
 		private var _bgAlphas:Array = [1, 1];
+
 		private var _bgRotation:Number = 0;
+
 		private var _bgRatios:Array = [0, 0xFF];
+
 		/**
 		 * 
 		 * @default 
 		 */
 		public var useGradient:Boolean = false;
+
 		private var _glowColor:uint = 0;
+
 		private var _glowAlpha:Number = 0;
+
 		private var _glowBlur:Number = 2;
+
 		private var _glowStrength:int = 3;
+
 		private var _shadowColor:uint = 0;
+
 		private var _shadowAlpha:Number = 0;
+
 		private var _shadowDistance:Number = 3;
+
 		private var _shadowStrength:int = 3;
+
 		private var _shadowBlur:Number = 3;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
+		// ******************* GETTER and SETTER ********************
 		/**
 		 * 
 		 * @return 
@@ -510,9 +529,7 @@ package org.finalbug.ui.style
 			_shadowBlur = value;
 		}
 
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* CONSTRUCTOR **************************
 		/**
 		 * 
 		 */
@@ -521,9 +538,7 @@ package org.finalbug.ui.style
 			super();
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * 
 		 * @return 
@@ -631,16 +646,14 @@ package org.finalbug.ui.style
 				}
 			}
 		}
-		// #######################################
-		// PROTECTED
-		// #######################################
+		// ******************* PROTECTED ****************************
 		
-		// #######################################
-		// PRIVATE
-		// #######################################
 		
-		// #######################################
-		// HANDLER
-		// #######################################
+		
+		// ******************* PRIVATE ******************************
+		
+		
+		
+		// ******************* HANDLER ******************************
 	}
 }

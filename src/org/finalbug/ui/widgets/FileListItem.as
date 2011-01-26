@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.ui.widgets
 {
 	import flash.text.TextFormat;
@@ -32,30 +32,38 @@ package org.finalbug.ui.widgets
 	 */
 	public class FileListItem extends Container
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
-		// #######################################
-		// DEFINE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
+		// ******************* DEFINE *******************************
 		private static const HIDE_LABEL_HEIGHT:Number = 30;
+
 		private static const SPACE:Number = 2;
+
 		private static const LABEL_HEIGHT:Number = 20;
+
 		private static const LABEL_COLOR:uint = 0x333333;
+
 		private static const LABEL_SIZE:uint = 12;
+
 		private static const SELECTED_COLOR:uint = 0xDDDDDD;
+
 		private static const SELECTED_BORDER:uint = 0x999999;
+
 		private var _data:FileData;
+
 		private var icon:Icon;
+
 		private var txt:Label;
+
 		private var extra:Label;
+
 		private var _position:String = Position.BOTTOM;
+
 		private var _extraLabel:String = "";
+
 		private var _selected:Boolean = false;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
+		// ******************* GETTER and SETTER ********************
 		/**
 		 * 
 		 * @return 
@@ -137,9 +145,7 @@ package org.finalbug.ui.widgets
 			return _data;
 		}
 
-		// #######################################
-		// CONSTRUCTOR.
-		// #######################################
+		// ******************* CONSTRUCTOR **************************.
 		/**
 		 * 
 		 * @param data
@@ -152,12 +158,8 @@ package org.finalbug.ui.widgets
 			updateSize();
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
-		// #######################################
-		// PROTECTED
-		// #######################################
+		// ******************* PUBLIC *******************************
+		// ******************* PROTECTED ****************************
 		override protected function updateSize():void
 		{
 			super.updateSize();
@@ -205,9 +207,7 @@ package org.finalbug.ui.widgets
 			}
 		}
 
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PRIVATE ******************************
 		private function createElements():void
 		{
 			if (icon != null && this.contains(icon))
@@ -246,8 +246,6 @@ package org.finalbug.ui.widgets
 				return IconModel.instance.unknowIcon;
 			}
 		}
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 	}
 }

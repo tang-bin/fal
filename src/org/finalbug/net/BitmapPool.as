@@ -10,14 +10,14 @@
  *****************************************************/
 package org.finalbug.net
 {
+	import org.finalbug.data.DataModel;
+	import org.finalbug.errors.DataError;
+	import org.finalbug.events.LoadEvent;
+
 	import flash.display.Bitmap;
 	import flash.events.TimerEvent;
 	import flash.utils.Dictionary;
 	import flash.utils.Timer;
-
-	import org.finalbug.data.DataModel;
-	import org.finalbug.errors.DataError;
-	import org.finalbug.events.LoadEvent;
 
 	/**
 	 * This class is used to keep images which are loaded from outside of .swf file.
@@ -29,10 +29,10 @@ package org.finalbug.net
 	 */
 	public class BitmapPool extends DataModel
 	{
-		// #######################################
+
 		// SINGELTON
-		// #######################################
 		private static var bc:BitmapPool;
+
 		private static var instanceable:Boolean = false;
 
 		/**
@@ -50,11 +50,11 @@ package org.finalbug.net
 			return bc;
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		private const checkTimeSpace:Number = 100;
+
 		private var bitmapList:Dictionary;
+
 		// bitmapList[bitmap name] = BitmapLoader
 		private var checkTimer:Timer;
 
@@ -126,9 +126,7 @@ package org.finalbug.net
 			return loaded / count;
 		}
 
-		// #######################################
-		// CONSTRUCTOR.
-		// #######################################
+		// ******************* CONSTRUCTOR **************************.
 		/**
 		 * @throw errors.Errors Throw canNotInstance error when try to instance this class.
 		 */
@@ -144,9 +142,7 @@ package org.finalbug.net
 			}
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * Add a new image file to load
 		 * Image file must be .gif, .jpeg, .jpg, .swf.
@@ -262,12 +258,8 @@ package org.finalbug.net
 			}
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PROTECTED ****************************
+		// ******************* PRIVATE ******************************
 		private function checkHandler(e:TimerEvent):void
 		{
 			for each (var v:* in bitmapList)

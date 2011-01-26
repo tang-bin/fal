@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.ui.widgets
 {
 	import flash.events.MouseEvent;
@@ -26,9 +26,8 @@ package org.finalbug.ui.widgets
 	 */
 	public class FileList extends ScrollPanel
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
 		override protected function updateSize():void
 		{
 			if (dd == null) return;
@@ -57,32 +56,29 @@ package org.finalbug.ui.widgets
 			super.updateSize();
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var item_height:Number = 32;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var dd:FolderData;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		protected var items:Dictionary = new Dictionary();
+
 		private var forEachItemFunc:Function;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
-		// #######################################
-		// CONSTRUCTOR.
-		// #######################################
+		// ******************* GETTER and SETTER ********************
+		// ******************* CONSTRUCTOR **************************.
 		/**
 		 * 
 		 * @param data
@@ -95,9 +91,7 @@ package org.finalbug.ui.widgets
 			showDirectory(data);
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * 
 		 * @param data
@@ -108,9 +102,7 @@ package org.finalbug.ui.widgets
 			this.updateSize();
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
+		// ******************* PROTECTED ****************************
 		/**
 		 * 
 		 * @param file
@@ -152,9 +144,7 @@ package org.finalbug.ui.widgets
 			// should be overrided in grid/list/tree boxes.
 		}
 
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PRIVATE ******************************
 		private function doForEachItem(file:FileData, index:uint, length:uint):void
 		{
 			var item:FileListItem = items[file.name].item as FileListItem;
@@ -168,9 +158,7 @@ package org.finalbug.ui.widgets
 			}
 		}
 
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 		private function clickItemHandler(e:MouseEvent):void
 		{
 			var data:FileData = (e.currentTarget as FileListItem).data;
@@ -216,11 +204,13 @@ import org.finalbug.ui.widgets.FileListItem;
 
 class ItemData
 {
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public var update:Boolean = false;
+
 	/**
 	 * 
 	 * @default 

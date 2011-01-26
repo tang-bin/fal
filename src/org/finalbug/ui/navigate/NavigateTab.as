@@ -1,13 +1,13 @@
-// ##########################################################
+// **********************************************************
 // ___________.__              .__ ___.
 // \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
 // |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
 // |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
 // \__ |     |__|___|  (____  /____/___  /____/\___  /
 // \/             \/     \/         \/     /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.ui.navigate
 {
 	import org.finalbug.ui.control.Button;
@@ -26,38 +26,37 @@ package org.finalbug.ui.navigate
 	 */
 	public class NavigateTab extends Container
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
-		// #######################################
-		// DEFINE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
+		// ******************* DEFINE *******************************
 		/**
 		 * 
 		 * @default 
 		 */
 		protected const BUTTON_HEIGHT:Number = 24;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		protected const BUTTON_SPACE:Number = 2;
+
 		/**
 		 * 
 		 * @default 
 		 */
 		protected const BAR_SPACE:Number = 5;
+
 		private var btnBar:Container;
+
 		private var box:Slider;
+
 		private var tabs:Dictionary = new Dictionary();
+
 		private var currentSelected:TabData;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* GETTER and SETTER ********************
+		// ******************* CONSTRUCTOR **************************
 		/**
 		 * 
 		 * @param skinData
@@ -81,9 +80,7 @@ package org.finalbug.ui.navigate
 			box.layoutStyle.setAroundStyle(0, BUTTON_HEIGHT + BAR_SPACE, 0, 0);
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * Add new tab into NavigateTab.
 		 * 
@@ -145,7 +142,7 @@ package org.finalbug.ui.navigate
 		public function getTabObjectAt(index:uint):DisplayObject
 		{
 			var tabData:TabData = this.getDataByIndex(index);
-			if(tabData != null)
+			if (tabData != null)
 			{
 				return tabData.object;
 			}
@@ -164,7 +161,7 @@ package org.finalbug.ui.navigate
 		public function getTabLabelAt(index:uint):String
 		{
 			var tabData:TabData = this.getDataByIndex(index);
-			if(tabData != null)
+			if (tabData != null)
 			{
 				return tabData.label;
 			}
@@ -182,7 +179,7 @@ package org.finalbug.ui.navigate
 		public function setTabLabelAt(index:uint, label:String):void
 		{
 			var tabData:TabData = this.getDataByIndex(index);
-			if(tabData != null)
+			if (tabData != null)
 			{
 				var btn:Button = tabData.btn;
 				btn.label = label;
@@ -230,12 +227,8 @@ package org.finalbug.ui.navigate
 			}
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
-		// #######################################
-		// PRIVATE
-		// #######################################
+		// ******************* PROTECTED ****************************
+		// ******************* PRIVATE ******************************
 		private function doSelect(data:TabData):void
 		{
 			// remove pre-selected
@@ -287,9 +280,7 @@ package org.finalbug.ui.navigate
 			tabs[tabData.btn] = null;
 		}
 
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 		private function clickTabBtnHandler(e:MouseEvent):void
 		{
 			var btn:Button = e.currentTarget as Button;
@@ -306,16 +297,19 @@ import flash.display.DisplayObject;
 
 class TabData
 {
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public var label:String;
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public var object:DisplayObject;
+
 	/**
 	 * 
 	 * @default 

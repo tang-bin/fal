@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.ui.skin
 {
 	import flash.text.TextField;
@@ -24,9 +24,8 @@ package org.finalbug.ui.skin
 	 */
 	public class TextSkinData extends UISkinDataAbstract
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
 		override public function bindChildren(...args):void
 		{
 			box = args[0] as Skin;
@@ -55,30 +54,31 @@ package org.finalbug.ui.skin
 			}
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		[Embed(source="/resources/skins/TextNormal.png")]
 		private var TextNormal:Class;
+
 		[Embed(source="/resources/skins/TextForce.png")]
 		private var TextForce:Class;
+
 		[Embed(source="/resources/skins/TextDisabled.png")]
 		private var TextDisabled:Class;
+
 		// skin elements
 		private var box:Skin;
+
 		private var text:TextField;
+
 		// skin data.
 		private var boxSkins:Dictionary;
+
 		private var textFormats:Dictionary;
+
 		// extend skin data
 		protected var scrollBarSkinData:ScrollBarSkinData;
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
-		// #######################################
-		// CONSTRUCTOR.
-		// #######################################
+		// ******************* GETTER and SETTER ********************
+		// ******************* CONSTRUCTOR **************************.
 		/**
 		 * 
 		 */
@@ -95,24 +95,20 @@ package org.finalbug.ui.skin
 			scrollBarSkinData = new ScrollBarSkinData();
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		public function setSkinStyle(status:String, skinData:SkinData, textFormat:TextFormat):void
 		{
 			boxSkins[status] = skinData;
 			textFormats[status] = textFormat;
 		}
-		// #######################################
-		// PROTECTED
-		// #######################################
+		// ******************* PROTECTED ****************************
 		
-		// #######################################
-		// PRIVATE
-		// #######################################
 		
-		// #######################################
-		// HANDLER
-		// #######################################
+		
+		// ******************* PRIVATE ******************************
+		
+		
+		
+		// ******************* HANDLER ******************************
 	}
 }

@@ -1,24 +1,23 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.data
 {
-	import flash.events.Event;
+	import org.finalbug.errors.DataError;
+	import org.finalbug.events.DataEvent;
+
 	import flash.events.EventDispatcher;
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
-
-	import org.finalbug.errors.DataError;
-	import org.finalbug.events.DataEvent;
 
 	/**
 	 * SharedData is a collection of data which type is one of number, string, boolean,
@@ -29,9 +28,8 @@ package org.finalbug.data
 	 */
 	dynamic public class SharedData extends Proxy
 	{
-		// #######################################
-		// OVERRIDE
-		// #######################################
+
+		// ******************* OVERRIDE *****************************
 		override flash_proxy function getProperty(name:*):*
 		{
 			return data[name];
@@ -47,18 +45,18 @@ package org.finalbug.data
 			// nothing need to be done here.
 		}
 
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* DEFINE *******************************
 		private var _parent:SharedData;
+
 		private var _name:String = "";
+
 		private var data:Dictionary = new Dictionary();
+
 		private var modifyLogs:Array = new Array();
+
 		private var dispatchers:Array = new Array();
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
+		// ******************* GETTER and SETTER ********************
 		/**
 		 * 
 		 * @return 
@@ -115,9 +113,7 @@ package org.finalbug.data
 			// TODO : set shareData by byteArray
 		}
 
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* CONSTRUCTOR **************************
 		/**
 		 * 
 		 */
@@ -125,9 +121,7 @@ package org.finalbug.data
 		{
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * add new event listener to this shared data object.
 		 * 
@@ -182,13 +176,13 @@ package org.finalbug.data
 				ee.dataName = name;
 				ee.oldData = data[name];
 				ee.newData = value;
-				ee.dataPath = this.getPath() + name.toString();
+				ee.dataPath = this.getPath() + String(name);
 				// save data
 				data[name] = value;
 				if (value is SharedData)
 				{
 					(value as SharedData).parent = this;
-					(value as SharedData).name = name.toString();
+					(value as SharedData).name = String(name);
 				}
 				// dispatch event
 				for (var i:uint = dispatchers.length ; --i >= 0 ; )
@@ -276,21 +270,8 @@ package org.finalbug.data
 			return null;
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
-		// #######################################
-		// PRIVATE
-		// #######################################
-		private function dispatchEvent(event:Event):void
-		{
-			this.dispatcher.dispatchEvent(event);
-			if (this._parent != null)
-			{
-				this._parent.dispatchEvent(event);
-			}
-		}
-
+		// ******************* PROTECTED ****************************
+		// ******************* PRIVATE ******************************
 		private function checkData(data:*):Boolean
 		{
 			if (data is Number || data is String || data is Boolean || data is ByteArray || data is SharedData || data is TreeData)
@@ -302,8 +283,6 @@ package org.finalbug.data
 				return false;
 			}
 		}
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* HANDLER ******************************
 	}
 }

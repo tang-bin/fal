@@ -5,6 +5,7 @@ package org.finalbug.test.tester
 
 	public class GridTester extends Container
 	{
+
 		private var gd:Grid;
 
 		public function GridTester()

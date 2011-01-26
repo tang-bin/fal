@@ -1,13 +1,13 @@
-// ##########################################################
-// __________.__              .__ ___.
-// \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__|     |__|___|__(______/____/_____/____/\___  /
-// /_____/
-// [fb-aslib] Finalbug ActionScript Library
-// http://www.finalbug.org
-// ##########################################################
+// **********************************************************
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
+// * [fb-aslib] Finalbug ActionScript Library
+// * http://www.finalbug.org
+// **********************************************************
 package org.finalbug.utils.motion
 {
 	import flash.events.TimerEvent;
@@ -26,10 +26,10 @@ package org.finalbug.utils.motion
 	 */
 	public class MotionRunner
 	{
-		// #######################################
+
 		// SINGLETON
-		// #######################################
 		private static var mr:MotionRunner;
+
 		private static var instanceable:Boolean = false;
 
 		/**
@@ -47,20 +47,12 @@ package org.finalbug.utils.motion
 			return mr;
 		}
 
-		// #######################################
-		// OVERRIDE
-		// #######################################
-		// #######################################
-		// DEFINE
-		// #######################################
+		// ******************* OVERRIDE *****************************
+		// ******************* DEFINE *******************************
 		private var motionList:Object = new Object();
 
-		// #######################################
-		// GETTER and SETTER
-		// #######################################
-		// #######################################
-		// CONSTRUCTOR
-		// #######################################
+		// ******************* GETTER and SETTER ********************
+		// ******************* CONSTRUCTOR **************************
 		/**
 		 * 
 		 * @throws DataError
@@ -79,9 +71,7 @@ package org.finalbug.utils.motion
 			}
 		}
 
-		// #######################################
-		// PUBLIC
-		// #######################################
+		// ******************* PUBLIC *******************************
 		/**
 		 * Register a new moting.
 		 * 
@@ -114,15 +104,9 @@ package org.finalbug.utils.motion
 			}
 		}
 
-		// #######################################
-		// PROTECTED
-		// #######################################
-		// #######################################
-		// PRIVATE
-		// #######################################
-		// #######################################
-		// HANDLER
-		// #######################################
+		// ******************* PROTECTED ****************************
+		// ******************* PRIVATE ******************************
+		// ******************* HANDLER ******************************
 		/**
 		 * core method of motion. All displayObject's attributes are modified at here.
 		 * 
@@ -180,41 +164,49 @@ import org.finalbug.utils.motion.Motion;
 
 class MotionData
 {
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public static var nameCount:uint = 0;
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public var name:String;
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public var target:*;
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public var value:String;
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public var steps:Array;
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public var copySteps:Array;
+
 	/**
 	 * 
 	 * @default 
 	 */
 	public var times:uint;
+
 	/**
 	 * 
 	 * @default 

@@ -18,12 +18,14 @@ package org.finalbug.test.tester
 	 *****************************************/
 	public class TextAreaTester extends Container
 	{
+
 		/****************************************
 		 *
 		 * DEFINE
 		 *
 		 ****************************************/
 		private var txt:TextArea;
+
 		private var btn:Button;
 
 		/****************************************
