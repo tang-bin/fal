@@ -924,7 +924,7 @@ package org.finalbug.ui
 			}
 		}
 
-		/******************* PRIVATE ***************************************************/
+		/******************* HANDLER ***************************************************/
 		private function stopZoomHandler(e:MotionEvent):void
 		{
 			this.dispatchEvent(new DisplayEvent(DisplayEvent.END_ZOOM));

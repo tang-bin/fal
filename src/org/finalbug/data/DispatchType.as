@@ -11,17 +11,18 @@
 package org.finalbug.data
 {
 	/**
-	 * DispatchType
+	 * DispatchType.
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.10
+	 * @see org.finalbug.data.SharedData.
 	 */
 	public class DispatchType
 	{
 
 		/**
 		 * 
-		 * @default 
+		 * @default all
 		 */
 		public static const ALL:String = "all";
 

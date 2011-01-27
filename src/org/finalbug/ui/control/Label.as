@@ -123,6 +123,7 @@ package org.finalbug.ui.control
 		public function Label(text:String, textFormat:TextFormat = null)
 		{
 			super();
+			this.autoMouseEvent = true;
 			str = text;
 			if (textFormat == null)
 			{

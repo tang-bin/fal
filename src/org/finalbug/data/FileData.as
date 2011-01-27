@@ -10,10 +10,8 @@
 // **********************************************************
 package org.finalbug.data
 {
-	import org.finalbug.data.DataModel;
-
 	/**
-	 * FileData defines the data for on file.
+	 * FileData defines the data for one file.
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.12
@@ -45,14 +43,11 @@ package org.finalbug.data
 
 		private var _lastModifyDate:Date;
 
-		private var _fileType:String = "";
-
 		private var _type:FileType;
 
 		/******************* GETTER and SETTER *****************************************/
 		/**
-		 * 
-		 * @return File's extension.
+		 * File's extension.
 		 */
 		public function get ext():String
 		{
@@ -60,23 +55,77 @@ package org.finalbug.data
 		}
 
 		/**
-		 * 
-		 * @return File's name
+		 * File's name
 		 */
 		public function get name():String
 		{
 			return this._name;
 		}
 
-		/**
-		 * 
-		 * @param value
-		 */
 		public function set name(value:String):void
 		{
 			var oldValue:String = this._name;
 			this._name = value;
 			this.dispatchChangeData("name", oldValue, value);
+		}
+
+		public function get isDir():Boolean
+		{
+			return _isDir;
+		}
+
+		public function set isDir(value:Boolean):void
+		{
+			if (_isDir != value)
+			{
+				_isDir = value;
+				this.dispatchChangeData("isDir", !value, value);
+			}
+		}
+
+		public function get author():String
+		{
+			return _author;
+		}
+
+		public function set author(value:String):void
+		{
+			if (value != _author)
+			{
+				var oldValue:String = _author;
+				_author = value;
+				this.dispatchChangeData("author", oldValue, value);
+			}
+		}
+
+		public function get createTime():uint
+		{
+			return _createDate.time;
+		}
+
+		public function set createTime(value:uint):void
+		{
+			if (_createDate.time != value)
+			{
+				var oldValue:uint = _createDate.time;
+				_createDate.time = value;
+				this.dispatchChangeData("createTime", oldValue, value);
+			}
+		}
+
+		public function get lastModifyTime():uint
+		{
+			return _lastModifyDate.time;
+		}
+
+		public function set lastModifyTime(value:uint):void
+		{
+			if (_lastModifyDate.time != value)
+			{
+				var oldValue:uint = _lastModifyDate.time;
+				_lastModifyDate.time = value;
+				this.dispatchChangeData("lastModifyTime", oldValue, value);
+			}
 		}
 
 		/******************* CONSTRUCTOR ***********************************************/
@@ -89,19 +138,12 @@ package org.finalbug.data
 		{
 			super();
 			this._type = type;
+			_createDate = new Date();
+			_lastModifyDate = new Date();
 		}
 		/******************* PUBLIC ****************************************************/
-		
-		
-		
 		/******************* PROTECTED *************************************************/
-		
-		
-		
 		/******************* PRIVATE ***************************************************/
-		
-		
-		
-		/******************* PRIVATE ***************************************************/
+		/******************* HANDLER ***************************************************/
 	}
 }

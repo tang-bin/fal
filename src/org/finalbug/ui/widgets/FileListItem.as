@@ -10,8 +10,6 @@
 // **********************************************************
 package org.finalbug.ui.widgets
 {
-	import flash.text.TextFormat;
-
 	import org.finalbug.data.FileData;
 	import org.finalbug.data.FileType;
 	import org.finalbug.data.FileTypeModel;
@@ -24,6 +22,8 @@ package org.finalbug.ui.widgets
 	import org.finalbug.ui.style.Style;
 	import org.finalbug.utils.DataUtil;
 
+	import flash.text.TextFormat;
+
 	/**
 	 * FolderItem
 	 * 
@@ -34,7 +34,101 @@ package org.finalbug.ui.widgets
 	{
 
 		/******************* OVERRIDE **************************************************/
+		override protected function updateSize():void
+		{
+			super.updateSize();
+			// if no icon and txt, do nothing.
+			if (icon == null && txt == null) return;
+			// set position.
+			if (this.width > 0 && this.height > 0)
+			{
+				if (icon != null)
+				{
+					icon.visible = true;
+					var iconSize:Number = 0;
+					if (_position == Position.RIGHT)
+					{
+						if (this.width < this.height * 1.5)
+						{
+							// width is too small to show text.
+							txt.visible = extra.visible = false;
+							iconSize = Math.min(this.height, this.width);
+							iconSize -= 2 * SPACE;
+							icon.resize(iconSize, iconSize);
+							icon.toCenter();
+						}
+						else
+						{
+							// show text beside icon.
+							txt.visible = extra.visible = true;
+							//
+							iconSize = Math.min(this.height, this.width);
+							iconSize -= 2 * SPACE;
+							icon.resize(iconSize, iconSize);
+							icon.x = icon.y = SPACE;
+							//
+							txt.width = this.width - 3 * SPACE - iconSize;
+							trace(this.width, iconSize, txt.width);
+							txt.x = 2 * SPACE + iconSize;
+							txt.y = SPACE;
+							//
+							extra.width = txt.width;
+							extra.x = txt.x;
+							extra.y = txt.y + txt.height + SPACE;
+						}
+					}
+					else
+					{
+						if (this.height < HIDE_LABEL_HEIGHT)
+						{
+							// it is too small to display the label, txt and extra will not be shown.
+							txt.visible = extra.visible = false;
+							iconSize = Math.min(this.height, this.width);
+							iconSize -= 2 * SPACE;
+							icon.resize(iconSize, iconSize);
+							icon.toCenter();
+						}
+						else
+						{
+							txt.visible = true;
+							extra.visible = false;
+							//
+							iconSize = Math.min(this.height - LABEL_HEIGHT, this.width);
+							iconSize -= 2 * SPACE;
+							icon.resize(iconSize, iconSize);
+							icon.x = (this.width - icon.width) / 2;
+							icon.y = (this.height - LABEL_HEIGHT - icon.height) / 2;
+							//
+							txt.width = this.width - 2 * SPACE;
+							txt.x = SPACE;
+							txt.y = this.height - txt.height - SPACE;
+						}
+					}
+				}
+				else
+				{
+					// icon must not be null here, if null, the code logic is breaken.
+				}
+			}
+			else
+			{
+				if (icon != null) icon.visible = false;
+				txt.visible = false;
+				extra.visible = false;
+			}
+		}
+
 		/******************* DEFINE ****************************************************/
+		public static const SIZE_MEDIUM:Number = 64;
+
+		public static const SIZE_SMALL:Number = 32;
+
+		public static const SIZE_TINY:Number = 20;
+
+		public static const SIZE_BIG:Number = 88;
+
+		public static const SIZE_LARGE:Number = 128;
+
 		private static const HIDE_LABEL_HEIGHT:Number = 30;
 
 		private static const SPACE:Number = 2;
@@ -66,23 +160,18 @@ package org.finalbug.ui.widgets
 		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
-		 * @return 
+		 * @throws DataError
 		 */
 		public function get labelPosition():String
 		{
 			return _position;
 		}
 
-		/**
-		 * 
-		 * @param value
-		 * @throws DataError
-		 */
 		public function set labelPosition(value:String):void
 		{
 			if (value != _position)
 			{
-				if (!DataUtil.included(value, Position.BOTTOM, Position.LEFT, Position.RIGHT, Position.TOP))
+				if (!DataUtil.included(value, Position.BOTTOM, Position.RIGHT))
 				{
 					throw new DataError(DataError.TYPE_ERROR);
 				}
@@ -100,10 +189,6 @@ package org.finalbug.ui.widgets
 			return _extraLabel;
 		}
 
-		/**
-		 * 
-		 * @param value
-		 */
 		public function set extraLabel(value:String):void
 		{
 			if (value != _extraLabel)
@@ -122,10 +207,6 @@ package org.finalbug.ui.widgets
 			return this._selected;
 		}
 
-		/**
-		 * 
-		 * @param value
-		 */
 		public function set selected(value:Boolean):void
 		{
 			if (value != _selected)
@@ -153,63 +234,10 @@ package org.finalbug.ui.widgets
 		public function FileListItem(data:FileData)
 		{
 			super();
+			// init and save data.
+			this.initSize(SIZE_MEDIUM, SIZE_MEDIUM);
 			this._data = data;
-			createElements();
-			updateSize();
-		}
-
-		/******************* PUBLIC ****************************************************/
-		/******************* PROTECTED *************************************************/
-		override protected function updateSize():void
-		{
-			super.updateSize();
-			if (icon == null && txt == null) return;
-			if (this.width > 0 && this.height > 0)
-			{
-				if (icon != null)
-				{
-					icon.visible = true;
-					var iconSize:Number = 0;
-					if (_position == Position.TOP || _position == Position.BOTTOM)
-					{
-						if (this.height < HIDE_LABEL_HEIGHT)
-						{
-							// it is too small to display the labels
-							txt.visible = extra.visible = false;
-							iconSize = Math.min(this.height, this.width);
-							iconSize -= 2 * SPACE;
-							icon.resize(iconSize, iconSize);
-							icon.toCenter();
-						}
-						else
-						{
-							txt.visible = true;
-							extra.visible = false;
-							//
-							iconSize = Math.min(this.height - LABEL_HEIGHT, this.width);
-							iconSize -= 2 * SPACE;
-							icon.resize(iconSize, iconSize);
-							icon.x = (this.width - icon.width) / 2;
-							icon.y = (this.height - LABEL_HEIGHT - icon.height) / 2;
-							//
-							txt.width = this.width - 2 * SPACE;
-							txt.x = SPACE;
-							txt.y = this.height - txt.height - SPACE;
-						}
-					}
-				}
-			}
-			else
-			{
-				if (icon != null) icon.visible = false;
-				txt.visible = false;
-				extra.visible = false;
-			}
-		}
-
-		/******************* PRIVATE ***************************************************/
-		private function createElements():void
-		{
+			// create children.
 			if (icon != null && this.contains(icon))
 			{
 				this.removeChild(icon);
@@ -219,7 +247,7 @@ package org.finalbug.ui.widgets
 			//
 			if (txt == null)
 			{
-				txt = new Label(_data.name, new TextFormat(Style.defaultFont, LABEL_SIZE, LABEL_COLOR, true));
+				txt = new Label(_data.name, new TextFormat(Style.defaultFont, LABEL_SIZE, LABEL_COLOR, false));
 				this.addChild(txt);
 			}
 			//
@@ -234,6 +262,9 @@ package org.finalbug.ui.widgets
 			this.borderAlpha = 0;
 		}
 
+		/******************* PUBLIC ****************************************************/
+		/******************* PROTECTED *************************************************/
+		/******************* PRIVATE ***************************************************/
 		private function getIcon():Icon
 		{
 			if (FileTypeModel.instance.registered(_data.ext))
@@ -246,6 +277,6 @@ package org.finalbug.ui.widgets
 				return IconModel.instance.unknowIcon;
 			}
 		}
-		/******************* PRIVATE ***************************************************/
+		/******************* HANDLER ***************************************************/
 	}
 }

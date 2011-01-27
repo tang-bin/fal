@@ -20,18 +20,21 @@ package org.finalbug.data
 	{
 
 		/**
+		 * The alert string will be shown
 		 * 
 		 * @default Alert
 		 */
 		public var label:String = "Alert";
 
 		/**
+		 * Show yes button or not.
 		 * 
 		 * @default true
 		 */
 		public var showYes:Boolean = true;
 
 		/**
+		 * The text string on yes button.
 		 * 
 		 * @default Yes
 		 */
@@ -45,12 +48,14 @@ package org.finalbug.data
 		public var yesFunction:Function;
 
 		/**
+		 * Show no button or not.
 		 * 
 		 * @default false
 		 */
 		public var showNo:Boolean = false;
 
 		/**
+		 * The text string on no button.
 		 * 
 		 * @default No
 		 */
@@ -64,12 +69,14 @@ package org.finalbug.data
 		public var noFunction:Function;
 
 		/**
+		 * Show cancel button or not.
 		 * 
 		 * @default false
 		 */
 		public var showCancel:Boolean = false;
 
 		/**
+		 * The text on cancel button.
 		 * 
 		 * @default Cancel
 		 */

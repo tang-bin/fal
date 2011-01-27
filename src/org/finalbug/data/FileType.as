@@ -24,32 +24,30 @@ package org.finalbug.data
 		/******************* OVERRIDE **************************************************/
 		/******************* DEFINE ****************************************************/
 		/**
-		 * FileType's description.
+		 * Description of file type.
 		 * 
 		 * @default 
 		 */
 		public var description:String = "";
 
+		// is a dir
 		private var _isDir:Boolean = false;
 
+		// ext name.
 		private var _ext:String = "";
 
+		// icon
 		private var _icon:Icon;
 
 		/******************* GETTER and SETTER *****************************************/
 		/**
-		 * 
-		 * @return 
+		 * If this is a directory or file.
 		 */
 		public function get isDir():Boolean
 		{
 			return _isDir;
 		}
 
-		/**
-		 * 
-		 * @param value
-		 */
 		public function set isDir(value:Boolean):void
 		{
 			if (value != _isDir)
@@ -60,8 +58,7 @@ package org.finalbug.data
 		}
 
 		/**
-		 * 
-		 * @return 
+		 * The extension string of file.
 		 */
 		public function get ext():String
 		{
@@ -69,18 +66,13 @@ package org.finalbug.data
 		}
 
 		/**
-		 * 
-		 * @return 
+		 * file icon.
 		 */
 		public function get icon():Icon
 		{
 			return this.isDir ? IconModel.instance.folderIcon : _icon.clone();
 		}
 
-		/**
-		 * 
-		 * @param value
-		 */
 		public function set icon(value:Icon):void
 		{
 			this._icon = value;
@@ -102,17 +94,8 @@ package org.finalbug.data
 			this._icon = icon;
 		}
 		/******************* PUBLIC ****************************************************/
-		
-		
-		
 		/******************* PROTECTED *************************************************/
-		
-		
-		
 		/******************* PRIVATE ***************************************************/
-		
-		
-		
-		/******************* PRIVATE ***************************************************/
+		/******************* HANDLER ***************************************************/
 	}
 }

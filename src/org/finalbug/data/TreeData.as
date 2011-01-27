@@ -17,7 +17,7 @@ package org.finalbug.data
 	import flash.utils.Dictionary;
 
 	/**
-	 * TreeData defines the data model for a tree or list.
+	 * TreeData defines the data model for tree and list.
 	 *
 	 * @author Tang Bin
 	 * @since 2010.09
@@ -28,12 +28,21 @@ package org.finalbug.data
 		/******************* OVERRIDE **************************************************/
 		/******************* DEFINE ****************************************************/
 		/**
+		 * The toString() method for each node object. 
+		 * It will be called when convert node to XML string.
+		 * This method take node's data as parameter.
 		 * 
-		 * @default 
+		 * <code>function nodeToStringFunction(nodeData:Object):String;</code>
+		 * 
+		 * @default null
 		 */
 		public var nodeToStringFunction:Function;
 
 		/**
+		 * Used to convert string to node object. Will be called when convert XML.
+		 * This method take string as parameter and return the node data object.
+		 * 
+		 * <code>function stringToNodeFunction(str:String):Object;</code>
 		 * 
 		 * @default 
 		 */
@@ -54,10 +63,6 @@ package org.finalbug.data
 			return _root.data;
 		}
 
-		/**
-		 * 
-		 * @param value Tree's root node object, cannot be null.
-		 */
 		public function set root(value:Object):void
 		{
 			if (value != null)
@@ -68,7 +73,7 @@ package org.finalbug.data
 
 		/**
 		 * Define a treeModel by XML.
-		 * e.g., use XML <node name="a11">aa11</node> to define one tree node,
+		 * e.g., use XML <code><node name="a11">aa11</node></code> to define one tree node,
 		 * and you can get the node object by using method getNodeByAttribute.
 		 * node's name is saved in node object's "nodeName" attribute, 
 		 * and node's value is saved in node object's "nodeValue" attribue.
@@ -85,10 +90,6 @@ package org.finalbug.data
 			}
 		}
 
-		/**
-		 * 
-		 * @param value
-		 */
 		public function set xml(value:XML):void
 		{
 			_xml = value;
@@ -642,7 +643,15 @@ package org.finalbug.data
 		private function getNextTempXML(node:NodeData):String
 		{
 			var str:String = "";
-			var nodeStr:String = nodeToStringFunction != null ? nodeToStringFunction.call(node.data) : String(node.data);
+			var nodeStr:String;
+			if (nodeToStringFunction != null)
+			{
+				nodeStr = nodeToStringFunction.call(this, node.data);
+			}
+			else
+			{
+				nodeStr = String(node.data);
+			}
 			str += "<n v=\"" + escape(nodeStr) + "\"/>";
 			if (node.firstChild != null)
 			{
@@ -703,39 +712,21 @@ package org.finalbug.data
 class NodeData
 {
 
-	/**
-	 * 
-	 * @default 
-	 */
+	// node's data object.
 	public var data:Object;
 
-	/**
-	 * 
-	 * @default 
-	 */
+	// node's previous node.
 	public var prev:NodeData;
 
-	/**
-	 * 
-	 * @default 
-	 */
+	// node's next node.
 	public var next:NodeData;
 
-	/**
-	 * 
-	 * @default 
-	 */
+	// node's parent node.
 	public var parent:NodeData;
 
-	/**
-	 * 
-	 * @default 
-	 */
+	// node's first child node.
 	public var firstChild:NodeData;
 
-	/**
-	 * 
-	 * @default 
-	 */
+	// number of node's children.
 	public var numChildren:uint = 0;
 }

@@ -48,18 +48,13 @@ package org.finalbug.data
 
 		/******************* GETTER and SETTER *****************************************/
 		/**
-		 * 
-		 * @return folder's name
+		 * folder's name
 		 */
 		public function get name():String
 		{
 			return _name;
 		}
 
-		/**
-		 * 
-		 * @param value
-		 */
 		public function set name(value:String):void
 		{
 			// TODO

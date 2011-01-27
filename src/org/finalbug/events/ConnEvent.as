@@ -37,13 +37,19 @@ package org.finalbug.events
 		 * 
 		 * @eventType connect 
 		 */
-		public static const CONNECT:String = "connect";
+		public static const CONNECTED:String = "connect";
+
+		public static const UNCONNECTED:String = "unconnected";
 
 		/**
 		 * 
 		 * @connectError connectClose 
 		 */
 		public static const CONNECT_CLOSE:String = "connectClose";
+
+		public static const VERIFIED:String = "verified";
+
+		public static const UNVERIFIED:String = "unverified";
 
 		/**
 		 * 

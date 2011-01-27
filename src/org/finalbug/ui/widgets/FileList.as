@@ -10,13 +10,13 @@
 // **********************************************************
 package org.finalbug.ui.widgets
 {
-	import flash.events.MouseEvent;
-	import flash.utils.Dictionary;
-
-	import org.finalbug.data.FolderData;
 	import org.finalbug.data.FileData;
+	import org.finalbug.data.FolderData;
 	import org.finalbug.errors.DataError;
 	import org.finalbug.ui.control.ScrollPanel;
+
+	import flash.events.MouseEvent;
+	import flash.utils.Dictionary;
 
 	/**
 	 * FileList
@@ -30,16 +30,17 @@ package org.finalbug.ui.widgets
 		/******************* OVERRIDE **************************************************/
 		override protected function updateSize():void
 		{
-			if (dd == null) return;
-			// step1, set all exist item is not updated
-			for each (var itemData:Object in items)
+			// if folderData is not set, do nothing.
+			if (folderData == null) return;
+			// STEP 1, set all exist item is not updated
+			for each (var itemData:ItemData in items)
 			{
 				itemData.update = false;
 			}
-			// step2, update items
-			dd.forEachFile(createAndShowFiles);
-			// step3, after update items, the items whose update is false will be removed.
-			for each (var itemData2:Object in items)
+			// STEP 2, update items
+			folderData.forEachFile(createAndShowFiles);
+			// STEP 3, after update items, the items whose update is false will be removed.
+			for each (var itemData2:ItemData in items)
 			{
 				var item:FileListItem = itemData2.item as FileListItem;
 				if (!itemData2.update)
@@ -49,10 +50,10 @@ package org.finalbug.ui.widgets
 					this.container.removeChild(item);
 				}
 			}
-			// step 4, set position
+			// STEP 4, set position
 			beforeSetItemPosition();
-			dd.forEachFile(doForEachItem);
-			// step 5, refresh scroll panel
+			folderData.forEachFile(doForEachItem);
+			// STEP 5, refresh scroll panel
 			super.updateSize();
 		}
 
@@ -67,7 +68,7 @@ package org.finalbug.ui.widgets
 		 * 
 		 * @default 
 		 */
-		protected var dd:FolderData;
+		protected var folderData:FolderData;
 
 		/**
 		 * 
@@ -98,7 +99,7 @@ package org.finalbug.ui.widgets
 		 */
 		public function showDirectory(data:FolderData):void
 		{
-			dd = data;
+			folderData = data;
 			this.updateSize();
 		}
 
@@ -106,12 +107,10 @@ package org.finalbug.ui.widgets
 		/**
 		 * 
 		 * @param file
-		 * @param index
-		 * @param length
 		 */
-		protected function createAndShowFiles(file:FileData, index:uint, length:uint):void
+		protected function createAndShowFiles(file:FileData):void
 		{
-			var itemData:ItemData = items[file.name] as ItemData;
+			var itemData:ItemData = getItemData(file.name);
 			if (itemData == null)
 			{
 				var item:FileListItem = new FileListItem(file);
@@ -147,7 +146,7 @@ package org.finalbug.ui.widgets
 		/******************* PRIVATE ***************************************************/
 		private function doForEachItem(file:FileData, index:uint, length:uint):void
 		{
-			var item:FileListItem = items[file.name].item as FileListItem;
+			var item:FileListItem = getItemData(file.name).item as FileListItem;
 			if (item == null)
 			{
 				throw new DataError(DataError.DATA_NULL);
@@ -158,41 +157,46 @@ package org.finalbug.ui.widgets
 			}
 		}
 
-		/******************* PRIVATE ***************************************************/
+		private function getItemData(name:String):ItemData
+		{
+			return items[name] as ItemData;
+		}
+
+		/******************* HANDLER ***************************************************/
 		private function clickItemHandler(e:MouseEvent):void
 		{
 			var data:FileData = (e.currentTarget as FileListItem).data;
 			if (e.ctrlKey)
 			{
 				// select more
-				if (dd.currentSelected[data.name] == null)
+				if (folderData.currentSelected[data.name] == null)
 				{
 					this.selectedItem(data, true);
-					dd.currentSelected[data.name] = data;
+					folderData.currentSelected[data.name] = data;
 				}
 				else
 				{
 					this.selectedItem(data, false);
-					dd.currentSelected[data.name] = null;
-					delete dd.currentSelected[data.name];
+					folderData.currentSelected[data.name] = null;
+					delete folderData.currentSelected[data.name];
 				}
 			}
 			else
 			{
 				// select one
-				for each (var oldData:FileData in dd.currentSelected)
+				for each (var oldData:FileData in folderData.currentSelected)
 				{
 					this.selectedItem(oldData, false);
 				}
 				this.selectedItem(data, true);
-				dd.currentSelected = new Dictionary();
-				dd.currentSelected[data.name] = data;
+				folderData.currentSelected = new Dictionary();
+				folderData.currentSelected[data.name] = data;
 			}
 		}
 
 		private function selectedItem(data:FileData, selected:Boolean):void
 		{
-			var item:FileListItem = items[data.name].item as FileListItem;
+			var item:FileListItem = getItemData(data.name).item as FileListItem;
 			if (item != null)
 			{
 				item.selected = selected;

@@ -10,12 +10,13 @@
 // **********************************************************
 package org.finalbug.data
 {
-	import flash.utils.Dictionary;
-
 	import org.finalbug.errors.DataError;
+
+	import flash.utils.Dictionary;
 
 	/**
 	 * FileTypeModel use singleton model, defines all file types used in this library.
+	 * You can also regiester your file type into this model and use it in your projects.
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.12
@@ -23,8 +24,7 @@ package org.finalbug.data
 	public class FileTypeModel extends DataModel
 	{
 
-		/******************* OVERRIDE **************************************************/
-		// SINGLETON
+		/******************* SINGLETON **************************************************/
 		private static var ft:FileTypeModel;
 
 		private static var instanceable:Boolean = false;
@@ -44,6 +44,7 @@ package org.finalbug.data
 			return ft;
 		}
 
+		/******************* OVERRIDE **************************************************/
 		/******************* DEFINE ****************************************************/
 		private var list:Dictionary = new Dictionary();
 
@@ -68,6 +69,7 @@ package org.finalbug.data
 
 		/******************* PUBLIC ****************************************************/
 		/**
+		 * Register an new file type.
 		 * 
 		 * @param type
 		 */

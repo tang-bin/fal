@@ -200,7 +200,7 @@ package org.finalbug.ui.control
 			this.status = Status.MOUSE_OVER;
 			if (tooltip != null && tooltip != "")
 			{
-				Tooltip.show(tooltip);
+				Tooltip.show(this, tooltip);
 			}
 		}
 
