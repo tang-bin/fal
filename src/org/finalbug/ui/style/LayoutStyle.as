@@ -14,8 +14,19 @@ package org.finalbug.ui.style
 	import org.finalbug.events.UIEvent;
 
 	/**
-	 * LayoutStyle
-	 *  
+	 * <p>LayoutStyle define the layout data of Bin and its subclasses.</p>
+	 * 
+	 * <p>You can set layout values by call method <code>setValue()</code>,
+	 * and you can get layout via x, y, width and height values.</p>
+	 * 
+	 * <p>These are the valid names of layout value:
+	 * <code>x, y, width, height, left, top, right, botton, horizontal, vertical</code>.
+	 * Each value can be a number to express the absolute value in pixel, 
+	 * or can be a percent string like "50%" to express the relative value.
+	 * You can also use string to express absolute values as "50".</p>
+	 * 
+	 * <p></p>
+	 * 
 	 * @author Tang Bin
 	 * @since 2010.08
 	 */

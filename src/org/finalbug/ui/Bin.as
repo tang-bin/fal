@@ -224,80 +224,69 @@ package org.finalbug.ui
 
 		/******************* GETTER and SETTER *****************************************/
 		/**
-		 * 
-		 * @return 
+		 * Distance from current object's left edge to its parent's left edge.
+		 * Should be number in pixel or percent in string.
+		 * Check class LayoutStyle for more detials about layout.
 		 */
 		public function get left():*
 		{
 			return _layoutStyle.getValue("left");
 		}
 
-		/**
-		 * 
-		 * @param value
-		 */
 		public function set left(value:*):void
 		{
 			_layoutStyle.setValue("left", value);
 		}
 
 		/**
-		 * 
-		 * @return 
+		 * Distance from current object's right edge to its parent's right edge.
+		 * Should be number in pixel or percent in string.
+		 * Check class LayoutStyle for more detials about layout.
 		 */
 		public function get right():*
 		{
 			return _layoutStyle.getValue("right");
 		}
 
-		/**
-		 * 
-		 * @param value
-		 */
 		public function set right(value:*):void
 		{
 			_layoutStyle.setValue("right", value);
 		}
 
 		/**
-		 * 
-		 * @return 
+		 * Distance from current object's top edge to its parent's top edge.
+		 * Should be number in pixel or percent in string.
+		 * Check class LayoutStyle for more detials about layout.
 		 */
 		public function get top():*
 		{
 			return _layoutStyle.getValue("top");
 		}
 
-		/**
-		 * 
-		 * @param value
-		 */
 		public function set top(value:*):void
 		{
 			_layoutStyle.setValue("top", value);
 		}
 
 		/**
-		 * 
-		 * @return 
+		 * Distance from current object's bottom edge to its parent's bottom edge.
+		 * Should be number in pixel or percent in string.
+		 * Check class LayoutStyle for more detials about layout.
 		 */
 		public function get bottom():*
 		{
 			return _layoutStyle.getValue("bottom");
 		}
 
-		/**
-		 * 
-		 * @param value
-		 */
 		public function set bottom(value:*):void
 		{
 			_layoutStyle.setValue("bottom", value);
 		}
 
 		/**
-		 * 
-		 * @param value
+		 * Object's percent width value compared with its parent.
+		 * From 0 to 1.
+		 * Check class LayoutStyle for more details about layout.
 		 */
 		public function set percentWidth(value:Number):void
 		{
@@ -306,8 +295,9 @@ package org.finalbug.ui
 		}
 
 		/**
-		 * 
-		 * @param value
+		 * Object's percent height value compared with its parent.
+		 * From 0 to 1.
+		 * Check class LayoutStyle for more details about layout.
 		 */
 		public function set percentHeight(value:Number):void
 		{
@@ -316,54 +306,41 @@ package org.finalbug.ui
 		}
 
 		/**
-		 * 
-		 * @return 
+		 * Horizontal offset of object.
+		 * Check class LayoutStyle for more details about layout.
 		 */
 		public function get horizontal():*
 		{
 			return _layoutStyle.getValue("horizontal");
 		}
 
-		/**
-		 * 
-		 * @param value
-		 */
 		public function set horizontal(value:*):void
 		{
 			_layoutStyle.setValue("horizontal", value);
 		}
 
 		/**
-		 * 
-		 * @return 
+		 * vertical offset of object.
+		 * Check class LayoutStyle for more details about layout.
 		 */
 		public function get vertical():*
 		{
 			return _layoutStyle.getValue("vertical");
 		}
 
-		/**
-		 * 
-		 * @param value
-		 */
 		public function set vertical(value:*):void
 		{
 			_layoutStyle.setValue("vertical", value);
 		}
 
 		/**
-		 *
-		 * @return
+		 * fillStyle data of object.
 		 */
 		public function get fillStyle():FillStyle
 		{
 			return _fillStyle;
 		}
 
-		/**
-		 *
-		 * @param value
-		 */
 		public function set fillStyle(value:FillStyle):void
 		{
 			if (_fillStyle != value)
@@ -374,18 +351,13 @@ package org.finalbug.ui
 		}
 
 		/**
-		 * 
-		 * @return 
+		 * layout data of object.
 		 */
 		public function get layoutStyle():LayoutStyle
 		{
 			return _layoutStyle;
 		}
 
-		/**
-		 * 
-		 * @param value
-		 */
 		public function set layoutStyle(value:LayoutStyle):void
 		{
 			if (_layoutStyle != value)
@@ -406,10 +378,6 @@ package org.finalbug.ui
 			return _controlPoint;
 		}
 
-		/**
-		 *
-		 * @param value
-		 */
 		public function set controlPoint(value:Point):void
 		{
 			_controlPointType = "";
@@ -424,10 +392,6 @@ package org.finalbug.ui
 			return this.x + controlPoint.x;
 		}
 
-		/**
-		 *
-		 * @param value
-		 */
 		public function set controlX(value:Number):void
 		{
 			this.x = value - controlPoint.x;
@@ -441,10 +405,6 @@ package org.finalbug.ui
 			return this.y + controlPoint.y;
 		}
 
-		/**
-		 *
-		 * @param value
-		 */
 		public function set controlY(value:Number):void
 		{
 			this.y = value - controlPoint.y;
@@ -459,10 +419,6 @@ package org.finalbug.ui
 			return _maxWidth;
 		}
 
-		/**
-		 *
-		 * @param value
-		 */
 		public function set maxWidth(value:Number):void
 		{
 			_maxWidth = value;
@@ -481,10 +437,6 @@ package org.finalbug.ui
 			return _maxHeight;
 		}
 
-		/**
-		 *
-		 * @param value
-		 */
 		public function set maxHeight(value:Number):void
 		{
 			_maxHeight = value;
@@ -503,10 +455,6 @@ package org.finalbug.ui
 			return _minWidth;
 		}
 
-		/**
-		 *
-		 * @param value
-		 */
 		public function set minWidth(value:Number):void
 		{
 			_minWidth = Math.max(value, 0);
@@ -525,10 +473,6 @@ package org.finalbug.ui
 			return _minHeight;
 		}
 
-		/**
-		 *
-		 * @param value
-		 */
 		public function set minHeight(value:Number):void
 		{
 			_minHeight = Math.max(value, 0);

@@ -10,14 +10,14 @@
 // **********************************************************
 package org.finalbug.utils.motion
 {
-	import flash.events.TimerEvent;
-	import flash.utils.Timer;
-
 	import org.finalbug.data.DataModel;
 	import org.finalbug.events.MotionEvent;
 
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
+
 	/**
-	 * Class Motion is the superclass of all motion classes such as move and fade.
+	 * Motion is the superclass of all motion classes such as move and fade.
 	 * 
 	 * @author Tang Bin
 	 * @since old version
@@ -28,46 +28,50 @@ package org.finalbug.utils.motion
 		/******************* OVERRIDE **************************************************/
 		/******************* DEFINE ****************************************************/
 		/**
+		 * Run motion runner every INTERVAL milliseconds.
 		 * 
-		 * @default 
+		 * @default 30
 		 */
 		public static const INTERVAL:Number = 30;
 
 		/**
+		 * Running time of motion. In millisecond.
 		 * 
-		 * @default 
+		 * @default 300
 		 */
 		public var during:uint = 300;
 
-		// motion will be done during this time, in millisecond.
 		/**
+		 * Start time delay, in millisecond.
 		 * 
-		 * @default 
+		 * @default 0
 		 */
 		public var delayTime:Number = 0;
 
 		/**
+		 * A list of object will run the motion.
 		 * 
-		 * @default 
+		 * @default null
 		 */
 		protected var targetList:Array;
 
-		// list of display objects
 		/**
+		 * How many times will be run.
 		 * 
-		 * @default 
+		 * @default 1
 		 */
 		protected var times:uint = 1;
 
 		/**
+		 * If <code>times</code> is larger than 1, <code>getBack</code> define 
+		 * if run in reversive in the even times.
 		 * 
-		 * @default 
+		 * @default false
 		 */
 		protected var getBack:Boolean = false;
 
 		/**
 		 * 
-		 * @default 
 		 */
 		protected var registeredMotions:Array;
 
