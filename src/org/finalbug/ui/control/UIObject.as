@@ -10,13 +10,13 @@
 // **********************************************************
 package org.finalbug.ui.control
 {
-	import flash.display.DisplayObject;
-	import flash.events.MouseEvent;
-
 	import org.finalbug.data.Status;
 	import org.finalbug.ui.Bin;
 	import org.finalbug.ui.skin.UISkinDataAbstract;
 	import org.finalbug.ui.widgets.Tooltip;
+
+	import flash.display.DisplayObject;
+	import flash.events.MouseEvent;
 
 	/**
 	 * UIObject is the super class for all of the UI controls.
@@ -30,20 +30,21 @@ package org.finalbug.ui.control
 		/******************* OVERRIDE **************************************************/
 		/******************* DEFINE ****************************************************/
 		/**
+		 * Tooltip text. Will be shown when mouse roll over.
 		 * 
-		 * @default 
+		 * @see org.finalbug.widgets.Tooltip
 		 */
 		public var tooltip:String = "";
 
 		/**
-		 * 
-		 * @default 
+		 * UI skin data.
 		 */
 		protected var uiSkinData:UISkinDataAbstract;
 
 		/**
+		 * current status string.
 		 * 
-		 * @default 
+		 * @see org.finalbug.data.Status
 		 */
 		protected var currentStatus:String;
 
@@ -52,6 +53,14 @@ package org.finalbug.ui.control
 		private var _autoMouseEvent:Boolean = false;
 
 		/******************* GETTER and SETTER *****************************************/
+		/**
+		 * Call default mouse roll over, mouse down, mouse roll out event if 
+		 * auotMouseEvent is true.
+		 * 
+		 * Call default mouse event will make UIObject reset size(call resetSize() method).
+		 * 
+		 * @default false
+		 */
 		public function get autoMouseEvent():Boolean
 		{
 			return _autoMouseEvent;
@@ -80,7 +89,9 @@ package org.finalbug.ui.control
 		}
 
 		/**
-		 * status of UI object.
+		 * status of UI object. Change status will change SkinData's status.
+		 * 
+		 * @see org.finalbug.data.Status
 		 */
 		public function get status():String
 		{
@@ -102,18 +113,13 @@ package org.finalbug.ui.control
 		}
 
 		/**
-		 * 
-		 * @return 
+		 * Enable or disable UIObject.
 		 */
 		public function get enabled():Boolean
 		{
 			return _enabled;
 		}
 
-		/**
-		 * 
-		 * @param value
-		 */
 		public function set enabled(value:Boolean):void
 		{
 			if (_enabled != value)
@@ -133,8 +139,9 @@ package org.finalbug.ui.control
 			}
 		}
 
-		// constructor.
+		/******************* CONSTRUCTOR ***********************************************/
 		/**
+		 * Create an new UIObject.
 		 * 
 		 * @param skinData
 		 */
@@ -146,9 +153,12 @@ package org.finalbug.ui.control
 
 		/******************* PUBLIC ****************************************************/
 		/**
+		 * Re-check UIObject's size by its children's size.
+		 * Width and height value may be reset after pack, but resetSize() method
+		 * will not be called.
 		 * 
-		 * @param xSpace
-		 * @param ySpace
+		 * @param xSpace Final width = real width + xSpace
+		 * @param ySpace Final height = real height + ySpace
 		 */
 		public function pack(xSpace:Number = 0, ySpace:Number = 0):void
 		{
@@ -167,9 +177,12 @@ package org.finalbug.ui.control
 
 		/******************* PROTECTED *************************************************/
 		/**
+		 * Size initialization.
+		 * This method will change layout style and resetSize() method may be called
+		 * if size is changed.
 		 * 
-		 * @param width
-		 * @param height
+		 * @param width New width, number in pixel or percent string.
+		 * @param height New height, number in pixel or percent string.
 		 */
 		protected function initSize(width:*, height:*):void
 		{
@@ -179,7 +192,7 @@ package org.finalbug.ui.control
 		}
 
 		/**
-		 * This method need be override by the sub classes of UIObject to realize
+		 * This method should be override by the sub classes of UIObject.
 		 * changing style such as color, alpha, fillStyle, etc.
 		 * 
 		 * To change the size and position, please override method updateSize.
@@ -190,9 +203,9 @@ package org.finalbug.ui.control
 		}
 
 		/******************* PRIVATE ***************************************************/
-		/******************* PRIVATE ***************************************************/
+		/******************* HANDLER ***************************************************/
 		/**
-		 * 
+		 * Auto mouse event roll over handler.
 		 * @param e
 		 */
 		protected function rollOverHandler(e:MouseEvent):void
@@ -205,7 +218,7 @@ package org.finalbug.ui.control
 		}
 
 		/**
-		 * 
+		 * Auto mouse event roll out handler.
 		 * @param e
 		 */
 		protected function rollOutHandler(e:MouseEvent):void
@@ -215,7 +228,7 @@ package org.finalbug.ui.control
 		}
 
 		/**
-		 * 
+		 * Auto mouse event down handler.
 		 * @param e
 		 */
 		protected function mouseDownHandler(e:MouseEvent):void
@@ -224,7 +237,7 @@ package org.finalbug.ui.control
 		}
 
 		/**
-		 * 
+		 * Auto mouse event up handler.
 		 * @param e
 		 */
 		protected function mouseUpHandler(e:MouseEvent):void
