@@ -13,9 +13,9 @@ package org.finalbug.ui.control
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
-
+	
 	import org.finalbug.events.UIEvent;
-	import org.finalbug.ui.skin.UISkinDataAbstract;
+	import org.finalbug.ui.style.ScrollBoxStyle;
 	import org.finalbug.utils.DrawUtil;
 
 	/**
@@ -119,9 +119,9 @@ package org.finalbug.ui.control
 		/**
 		 * Create a new ScrollPanel object.
 		 */
-		public function ScrollPanel(xScroll:Boolean = true, yScroll:Boolean = true, skin:UISkinDataAbstract = null)
+		public function ScrollPanel(xScroll:Boolean = true, yScroll:Boolean = true, style:ScrollBoxStyle = null)
 		{
-			super(xScroll, yScroll, skin);
+			super(xScroll, yScroll, style);
 			masker = new Sprite();
 			masker.mouseChildren = masker.mouseChildren = false;
 			DrawUtil.drawBlock(masker.graphics);

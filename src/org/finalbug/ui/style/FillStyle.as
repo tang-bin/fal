@@ -10,6 +10,9 @@
 // **********************************************************
 package org.finalbug.ui.style
 {
+	import org.finalbug.utils.DataUtil;
+
+	import flash.utils.Dictionary;
 	import flash.display.DisplayObject;
 	import flash.display.GradientType;
 	import flash.display.Graphics;
@@ -30,6 +33,8 @@ package org.finalbug.ui.style
 
 		/******************* OVERRIDE **************************************************/
 		/******************* DEFINE ****************************************************/
+		private var bindList:Dictionary = new Dictionary();
+
 		private var _borderSize:Number = 1;
 
 		private var _borderColor:Number = 0x999999;
@@ -101,7 +106,11 @@ package org.finalbug.ui.style
 		public function set borderSize(value:Number):void
 		{
 			value = MathUtil.getNumArea(value, 0, 20);
-			_borderSize = value;
+			if (_borderSize != value)
+			{
+				_borderSize = value;
+				refreshBind();
+			}
 		}
 
 		/**
@@ -119,7 +128,11 @@ package org.finalbug.ui.style
 		 */
 		public function set borderColor(value:Number):void
 		{
-			_borderColor = value;
+			if (value != _borderColor)
+			{
+				_borderColor = value;
+				refreshBind();
+			}
 		}
 
 		/**
@@ -138,7 +151,11 @@ package org.finalbug.ui.style
 		public function set borderAlpha(value:Number):void
 		{
 			value = MathUtil.getNumArea(value, 0, 1);
-			_borderAlpha = value;
+			if (value != _borderAlpha)
+			{
+				_borderAlpha = value;
+				refreshBind();
+			}
 		}
 
 		/**
@@ -156,7 +173,11 @@ package org.finalbug.ui.style
 		 */
 		public function set bgColor(value:Number):void
 		{
-			_bgColor = value;
+			if (value != _bgColor)
+			{
+				_bgColor = value;
+				refreshBind();
+			}
 		}
 
 		/**
@@ -175,7 +196,11 @@ package org.finalbug.ui.style
 		public function set bgAlpha(value:Number):void
 		{
 			value = MathUtil.getNumArea(value, 0, 1);
-			_bgAlpha = value;
+			if (_bgAlpha != value)
+			{
+				_bgAlpha = value;
+				refreshBind();
+			}
 		}
 
 		/**
@@ -197,6 +222,7 @@ package org.finalbug.ui.style
 			{
 				this._radius = value;
 				this.uniformRadius = true;
+				refreshBind();
 			}
 		}
 
@@ -220,6 +246,7 @@ package org.finalbug.ui.style
 			{
 				_topLeftRadius = value;
 				this.uniformRadius = false;
+				refreshBind();
 			}
 		}
 
@@ -243,6 +270,7 @@ package org.finalbug.ui.style
 			{
 				_topRightRadius = value;
 				this.uniformRadius = false;
+				refreshBind();
 			}
 		}
 
@@ -266,6 +294,7 @@ package org.finalbug.ui.style
 			{
 				_bottomLeftRadius = value;
 				this.uniformRadius = false;
+				refreshBind();
 			}
 		}
 
@@ -289,6 +318,7 @@ package org.finalbug.ui.style
 			{
 				_bottomRightRadius = value;
 				this.uniformRadius = false;
+				refreshBind();
 			}
 		}
 
@@ -307,7 +337,11 @@ package org.finalbug.ui.style
 		 */
 		public function set bgColors(value:Array):void
 		{
-			_bgColors = value;
+			if (_bgColors != value)
+			{
+				_bgColors = value;
+				refreshBind();
+			}
 		}
 
 		/**
@@ -325,7 +359,11 @@ package org.finalbug.ui.style
 		 */
 		public function set bgAlphas(value:Array):void
 		{
-			_bgAlphas = value;
+			if (value != _bgAlphas)
+			{
+				_bgAlphas = value;
+				refreshBind();
+			}
 		}
 
 		/**
@@ -343,7 +381,11 @@ package org.finalbug.ui.style
 		 */
 		public function set bgRotation(value:Number):void
 		{
-			_bgRotation = value;
+			if (value != _bgRotation)
+			{
+				_bgRotation = value;
+				refreshBind();
+			}
 		}
 
 		/**
@@ -361,7 +403,11 @@ package org.finalbug.ui.style
 		 */
 		public function set glowColor(value:Number):void
 		{
-			_glowColor = value;
+			if (value != _glowColor)
+			{
+				_glowColor = value;
+				refreshBind();
+			}
 		}
 
 		/**
@@ -380,7 +426,11 @@ package org.finalbug.ui.style
 		public function set glowAlpha(value:Number):void
 		{
 			value = MathUtil.getNumArea(value, 0, 1);
-			_glowAlpha = value;
+			if (value != _glowAlpha)
+			{
+				_glowAlpha = value;
+				refreshBind();
+			}
 		}
 
 		/**
@@ -399,7 +449,11 @@ package org.finalbug.ui.style
 		public function set glowBlur(value:Number):void
 		{
 			value = MathUtil.getNumArea(value, 0, 100);
-			_glowBlur = value;
+			if (value != _glowBlur)
+			{
+				_glowBlur = value;
+				refreshBind();
+			}
 		}
 
 		/**
@@ -418,7 +472,11 @@ package org.finalbug.ui.style
 		public function set glowStrength(value:int):void
 		{
 			value = MathUtil.getNumArea(value, 1, 3);
-			_glowStrength = value;
+			if (value != _glowStrength)
+			{
+				_glowStrength = value;
+				refreshBind();
+			}
 		}
 
 		/**
@@ -436,7 +494,11 @@ package org.finalbug.ui.style
 		 */
 		public function set bgRatios(value:Array):void
 		{
-			_bgRatios = value;
+			if (value != _bgRatios)
+			{
+				_bgRatios = value;
+				refreshBind();
+			}
 		}
 
 		/**
@@ -454,7 +516,11 @@ package org.finalbug.ui.style
 		 */
 		public function set shadowColor(value:uint):void
 		{
-			_shadowColor = value;
+			if (value != _shadowColor)
+			{
+				_shadowColor = value;
+				refreshBind();
+			}
 		}
 
 		/**
@@ -472,7 +538,11 @@ package org.finalbug.ui.style
 		 */
 		public function set shadowAlpha(value:Number):void
 		{
-			_shadowAlpha = value;
+			if (value != _shadowAlpha)
+			{
+				_shadowAlpha = value;
+				refreshBind();
+			}
 		}
 
 		/**
@@ -490,7 +560,11 @@ package org.finalbug.ui.style
 		 */
 		public function set shadowDistance(value:Number):void
 		{
-			_shadowDistance = value;
+			if (value != _shadowDistance)
+			{
+				_shadowDistance = value;
+				refreshBind();
+			}
 		}
 
 		/**
@@ -508,7 +582,11 @@ package org.finalbug.ui.style
 		 */
 		public function set shadowStrength(value:Number):void
 		{
-			_shadowStrength = value;
+			if (value != _shadowStrength)
+			{
+				_shadowStrength = value;
+				refreshBind();
+			}
 		}
 
 		/**
@@ -526,7 +604,11 @@ package org.finalbug.ui.style
 		 */
 		public function set shadowBlur(value:Number):void
 		{
-			_shadowBlur = value;
+			if (value != _shadowBlur)
+			{
+				_shadowBlur = value;
+				refreshBind();
+			}
 		}
 
 		/******************* CONSTRUCTOR ***********************************************/
@@ -577,9 +659,9 @@ package org.finalbug.ui.style
 				style.bottomRightRadius = this.bottomRightRadius;
 			}
 			//
-			style.bgColors = this.bgColors;
-			style.bgAlphas = this.bgAlphas;
-			style.bgRatios = this.bgRatios;
+			style.bgColors = DataUtil.arrayClone(this.bgColors);
+			style.bgAlphas = DataUtil.arrayClone(this.bgAlphas);
+			style.bgRatios = DataUtil.arrayClone(this.bgRatios);
 			style.bgRotation = this.bgRotation;
 			style.useGradient = this.useGradient;
 			//
@@ -597,6 +679,47 @@ package org.finalbug.ui.style
 			return style;
 		}
 
+		public function copy(style:FillStyle):void
+		{
+			this.filters = style.filters;
+			//
+			this.borderSize = style.borderSize;
+			this.borderAlpha = style.borderAlpha;
+			this.borderColor = style.borderColor;
+			this.bgAlpha = style.bgAlpha;
+			this.bgColor = style.bgColor;
+			//
+			if (style.uniformRadius)
+			{
+				this.radius = style.radius;
+			}
+			else
+			{
+				this.radius = style.radius;
+				this.topLeftRadius = style.topLeftRadius;
+				this.topRightRadius = style.topRightRadius;
+				this.bottomLeftRadius = style.bottomLeftRadius;
+				this.bottomRightRadius = style.bottomRightRadius;
+			}
+			//
+			this.bgColors = DataUtil.arrayClone(style.bgColors);
+			this.bgAlphas = DataUtil.arrayClone(style.bgAlphas);
+			this.bgRatios = DataUtil.arrayClone(style.bgRatios);
+			this.bgRotation = style.bgRotation;
+			this.useGradient = style.useGradient;
+			//
+			this.glowColor = style.glowColor;
+			this.glowAlpha = style.glowAlpha;
+			this.glowBlur = style.glowBlur;
+			this.glowStrength = style.glowStrength;
+			//
+			this.shadowColor = style.shadowColor;
+			this.shadowAlpha = style.shadowAlpha;
+			this.shadowDistance = style.shadowDistance;
+			this.shadowStrength = style.shadowStrength;
+			this.shadowBlur = style.shadowBlur;
+		}
+
 		/**
 		 * Fill a display object with current style.
 		 * 
@@ -604,12 +727,37 @@ package org.finalbug.ui.style
 		 * @param width Fill width
 		 * @param height Fill Height
 		 */
-		public function fill(target:DisplayObject, width:Number, height:Number):void
+		public function fill(target:DisplayObject, width:Number, height:Number, clear:Boolean = true, binding:Boolean = false):void
 		{
 			var g:Graphics = target["graphics"] as Graphics;
 			if (g != null)
 			{
-				g.clear();
+				// save binding data.
+				if (binding)
+				{
+					if (bindList[target] == null)
+					{
+						bindList[target] = new BindData(target, width, height, clear);
+					}
+					else
+					{
+						var oldData:BindData = bindList[target] as BindData;
+						oldData.clear = clear;
+						oldData.width = width;
+						oldData.height = height;
+					}
+				}
+				else if (!binding && bindList[target] != null)
+				{
+					bindList[target] = null;
+					delete bindList[target];
+				}
+				// do draw.
+				if (clear)
+				{
+					g.clear();
+				}
+				//
 				if (width > 0 && height > 0)
 				{
 					// set border style
@@ -646,14 +794,46 @@ package org.finalbug.ui.style
 				}
 			}
 		}
+
+		public function removeBind(target:DisplayObject):void
+		{
+			if (bindList[target])
+			{
+				bindList[target] = null;
+				delete bindList[target];
+			}
+		}
+
 		/******************* PROTECTED *************************************************/
-		
-		
-		
 		/******************* PRIVATE ***************************************************/
-		
-		
-		
+		private function refreshBind():void
+		{
+			for each (var data:BindData in bindList)
+			{
+				this.fill(data.target, data.width, data.height, data.clear, true);
+			}
+		}
 		/******************* PRIVATE ***************************************************/
+	}
+}
+import flash.display.DisplayObject;
+
+class BindData
+{
+
+	public var target:DisplayObject;
+
+	public var width:Number;
+
+	public var height:Number;
+
+	public var clear:Boolean;
+
+	public function BindData(target:DisplayObject, width:Number, height:Number, clear:Boolean)
+	{
+		this.target = target;
+		this.width = width;
+		this.height = height;
+		this.clear = clear;
 	}
 }

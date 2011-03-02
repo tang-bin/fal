@@ -108,9 +108,9 @@ package org.finalbug.ui.skin
 				bgSkinDataList[Status.MOUSE_OVER] = new SkinData(Status.MOUSE_OVER, SkinData.BITMAP_TYPE, new ButtonOver());
 				bgSkinDataList[Status.MOUSE_DOWN] = new SkinData(Status.MOUSE_DOWN, SkinData.BITMAP_TYPE, new ButtonDown());
 				bgSkinDataList[Status.DISABLED] = new SkinData(Status.DISABLED, SkinData.BITMAP_TYPE, new ButtonDisabled());
-				bgSkinDataList[Status.HOLD] = new SkinData(Status.HOLD, SkinData.BITMAP_TYPE, new ButtonHold());
-				bgSkinDataList[Status.HOLD_MOUSE_DOWN] = new SkinData(Status.HOLD_MOUSE_DOWN, SkinData.BITMAP_TYPE, new ButtonHoldDown());
-				bgSkinDataList[Status.HOLD_MOUSE_OVER] = new SkinData(Status.HOLD_MOUSE_OVER, SkinData.BITMAP_TYPE, new ButtonHoldOver());
+				bgSkinDataList[Status.SELECTED] = new SkinData(Status.SELECTED, SkinData.BITMAP_TYPE, new ButtonHold());
+				bgSkinDataList[Status.SELECTED_MOUSE_DOWN] = new SkinData(Status.SELECTED_MOUSE_DOWN, SkinData.BITMAP_TYPE, new ButtonHoldDown());
+				bgSkinDataList[Status.SELECTED_MOUSE_OVER] = new SkinData(Status.SELECTED_MOUSE_OVER, SkinData.BITMAP_TYPE, new ButtonHoldOver());
 				// text format
 				txtFormatList[Status.NORMAL] = new TextFormat("Arial", 12, 0xFFFFFF, true);
 			}

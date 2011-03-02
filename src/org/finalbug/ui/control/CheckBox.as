@@ -12,13 +12,13 @@ package org.finalbug.ui.control
 {
 	import flash.display.Shape;
 	import flash.events.MouseEvent;
-
+	
 	import org.finalbug.data.Position;
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
-	import org.finalbug.ui.skin.CheckBoxSkinData;
 	import org.finalbug.ui.skin.Skin;
-	import org.finalbug.ui.skin.UISkinDataAbstract;
+	import org.finalbug.ui.style.CheckBoxStyle;
+	import org.finalbug.ui.style.UIStyle;
 
 	/**
 	 * CheckBox component.
@@ -222,9 +222,9 @@ package org.finalbug.ui.control
 		 * @param label
 		 * @param style
 		 */
-		public function CheckBox(label:String = "checkBox", skin:UISkinDataAbstract = null)
+		public function CheckBox(label:String = "checkBox", style:CheckBoxStyle = null)
 		{
-			super(skin);
+			super(style == null ? UIStyle.defaultCheckBoxStyle : style);
 			//
 			this._label = label;
 			// create children
@@ -238,11 +238,7 @@ package org.finalbug.ui.control
 			this.addEventListener(MouseEvent.CLICK, clickHandler);
 			//
 			// set skin data
-			if (uiSkinData == null)
-			{
-				uiSkinData = new CheckBoxSkinData();
-			}
-			uiSkinData.bindChildren(box, txt);
+			this.status = Status.NORMAL;
 		}
 
 		/******************* PUBLIC ****************************************************/

@@ -11,10 +11,10 @@
 package org.finalbug.ui.control
 {
 	import org.finalbug.data.Status;
+	import org.finalbug.ui.glazes.Flat;
 	import org.finalbug.ui.glazes.Image;
-	import org.finalbug.ui.skin.ButtonSkinData;
-	import org.finalbug.ui.skin.Skin;
-	import org.finalbug.ui.skin.UISkinDataAbstract;
+	import org.finalbug.ui.style.ButtonStyle;
+	import org.finalbug.ui.style.UIStyle;
 
 	import flash.events.MouseEvent;
 
@@ -26,6 +26,31 @@ package org.finalbug.ui.control
 	 */
 	public class Button extends UIObject
 	{
+
+		/******************* CONSTRUCTOR ***********************************************/
+		/**
+		 * 
+		 * @param text
+		 * @param skin
+		 */
+		public function Button(text:String = "Button", style:ButtonStyle = null)
+		{
+			super(style == null ? UIStyle.defaultButtonStyle : style);
+			// save and init paramters.
+			this.autoMouseEvent = true;
+			this.mouseChildren = false;
+			this._labelStr = text;
+			this.initSize(80, 24);
+			//
+			// create elements
+			bg = new Flat();
+			_label = new Label(this._labelStr);
+			icon = new Image();
+			this.addAll(bg, _label, icon);
+			//
+			// set skin data.
+			this.status = Status.NORMAL;
+		}
 
 		/******************* OVERRIDE **************************************************/
 		/**
@@ -71,22 +96,62 @@ package org.finalbug.ui.control
 		 */
 		override public function set status(value:String):void
 		{
-			if (_holdable)
+			if (_selectedable)
 			{
 				if (value == Status.NORMAL)
 				{
-					value = _hold ? Status.HOLD : Status.NORMAL;
+					value = _selected ? Status.SELECTED : Status.NORMAL;
 				}
 				else if (value == Status.MOUSE_DOWN)
 				{
-					value = _hold ? Status.HOLD_MOUSE_DOWN : Status.MOUSE_DOWN;
+					value = _selected ? Status.SELECTED_MOUSE_DOWN : Status.MOUSE_DOWN;
 				}
 				else if (value == Status.MOUSE_OVER)
 				{
-					value = _hold ? Status.HOLD_MOUSE_OVER : Status.MOUSE_OVER;
+					value = _selected ? Status.SELECTED_MOUSE_OVER : Status.MOUSE_OVER;
 				}
 			}
 			super.status = value;
+		}
+
+		override protected function updateStyle():void
+		{
+			trace("update style in button", this.width, this.height);
+			switch(currentStatus)
+			{
+				case Status.NORMAL:
+					bg.fillStyle = uiStyle.normalFillStyle;
+					_label.textFormat = uiStyle.normalTextFormat;
+					break;
+				case Status.SELECTED:
+					bg.fillStyle = uiStyle.selectedFillStyle;
+					_label.textFormat = uiStyle.selectedTextFormat;
+					break;
+				case Status.MOUSE_OVER:
+					bg.fillStyle = uiStyle.overFillStyle;
+					_label.textFormat = uiStyle.overTextFormat;
+					break;
+				case Status.SELECTED_MOUSE_OVER:
+					bg.fillStyle = uiStyle.selectedOverFillStyle;
+					_label.textFormat = uiStyle.selectedOverTextFormat;
+					break;
+				case Status.MOUSE_DOWN:
+					bg.fillStyle = uiStyle.downFillStyle;
+					_label.textFormat = uiStyle.downTextFormat;
+					break;
+				case Status.SELECTED_MOUSE_DOWN:
+					bg.fillStyle = uiStyle.selectedDownFillStyle;
+					_label.textFormat = uiStyle.selectedDownTextFormat;
+					break;
+				case Status.DISABLED:
+					bg.fillStyle = uiStyle.disabledFillStyle;
+					_label.textFormat = uiStyle.disabledTextFormat;
+					break;
+				case Status.SELECTED_DISABLED:
+					bg.fillStyle = uiStyle.selectedDisabledFillStyle;
+					_label.textFormat = uiStyle.selectedDisabledTextFormat;
+					break;
+			}
 		}
 
 		/**
@@ -96,9 +161,9 @@ package org.finalbug.ui.control
 		override protected function mouseDownHandler(e:MouseEvent):void
 		{
 			super.mouseDownHandler(e);
-			if (_holdable)
+			if (_selectedable)
 			{
-				_hold = !_hold;
+				_selected = !_selected;
 			}
 		}
 
@@ -111,14 +176,14 @@ package org.finalbug.ui.control
 		// children
 		private var _label:Label;
 
-		private var bg:Skin;
+		private var bg:Flat;
 
 		private var icon:Image;
 
 		// variables
-		private var _holdable:Boolean = false;
+		private var _selectedable:Boolean = false;
 
-		private var _hold:Boolean = false;
+		private var _selected:Boolean = false;
 
 		private var _autoWidth:Boolean = false;
 
@@ -210,21 +275,21 @@ package org.finalbug.ui.control
 		 * 
 		 * @return 
 		 */
-		public function get holdable():Boolean
+		public function get selecteable():Boolean
 		{
-			return _holdable;
+			return _selectedable;
 		}
 
 		/**
 		 * 
 		 * @param value
 		 */
-		public function set holdable(value:Boolean):void
+		public function set selecteable(value:Boolean):void
 		{
-			_holdable = value;
-			if (!_holdable)
+			_selectedable = value;
+			if (!_selectedable)
 			{
-				_hold = false;
+				_selected = false;
 			}
 		}
 
@@ -232,47 +297,22 @@ package org.finalbug.ui.control
 		 * 
 		 * @return 
 		 */
-		public function get hold():Boolean
+		public function get selected():Boolean
 		{
-			return _hold;
+			return _selected;
 		}
 
 		/**
 		 * 
 		 * @param value
 		 */
-		public function set hold(value:Boolean):void
+		public function set selected(value:Boolean):void
 		{
-			if (_holdable && this._hold != value)
+			if (_selectedable && this._selected != value)
 			{
-				_hold = value;
-				this.status = _hold ? Status.HOLD : Status.NORMAL;
+				_selected = value;
+				this.status = _selected ? Status.SELECTED : Status.NORMAL;
 			}
-		}
-
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * 
-		 * @param text
-		 * @param skin
-		 */
-		public function Button(text:String = "Button", skin:UISkinDataAbstract = null)
-		{
-			super(skin);
-			// save and init paramters.
-			this.mouseChildren = false;
-			this._labelStr = text;
-			this.initSize(80, 24);
-			//
-			// create elements
-			bg = new Skin();
-			_label = new Label(this._labelStr);
-			icon = new Image();
-			this.addAll(bg, _label, icon);
-			//
-			// set skin data.
-			if (uiSkinData == null) uiSkinData = new ButtonSkinData();
-			uiSkinData.bindChildren(bg, _label);
 		}
 		/******************* PUBLIC ****************************************************/
 		

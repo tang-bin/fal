@@ -23,10 +23,22 @@ package org.finalbug.ui.control
 	public class StepBar extends UIObject
 	{
 
+		/******************* CONSTRUCTOR ***********************************************/
+		/**
+		 * 
+		 */
+		public function StepBar()
+		{
+		}
+
 		/******************* OVERRIDE **************************************************/
 		override protected function callAtAdded():void
 		{
 			bg = new Flat();
+			slider = new Flat();
+			fromTxt = new Label("frome");
+			toTxt = new Label("to");
+			tipTxt = new TextField();
 		}
 
 		/******************* DEFINE ****************************************************/
@@ -39,16 +51,8 @@ package org.finalbug.ui.control
 		private var toTxt:Label;
 
 		private var tipTxt:TextField;
-
 		/******************* GETTER and SETTER *****************************************/
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * 
-		 */
-		public function StepBar()
-		{
-			super();
-		}
+		
 		/******************* PUBLIC ****************************************************/
 		
 		

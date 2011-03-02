@@ -10,9 +10,9 @@
 // **********************************************************
 package org.finalbug.ui.control
 {
+	import org.finalbug.ui.style.UIStyle;
 	import org.finalbug.data.Status;
 	import org.finalbug.ui.Bin;
-	import org.finalbug.ui.skin.UISkinDataAbstract;
 	import org.finalbug.ui.widgets.Tooltip;
 
 	import flash.display.DisplayObject;
@@ -36,10 +36,7 @@ package org.finalbug.ui.control
 		 */
 		public var tooltip:String = "";
 
-		/**
-		 * UI skin data.
-		 */
-		protected var uiSkinData:UISkinDataAbstract;
+		protected var uiStyle:UIStyle;
 
 		/**
 		 * current status string.
@@ -103,10 +100,6 @@ package org.finalbug.ui.control
 			if (value != currentStatus && value != "")
 			{
 				currentStatus = value;
-				if (uiSkinData != null)
-				{
-					uiSkinData.changeStatus(this.currentStatus);
-				}
 				updateStyle();
 				updateSize();
 			}
@@ -145,10 +138,10 @@ package org.finalbug.ui.control
 		 * 
 		 * @param skinData
 		 */
-		public function UIObject(skinData:UISkinDataAbstract = null)
+		public function UIObject(uiStyle:UIStyle = null)
 		{
 			super();
-			uiSkinData = skinData;
+			this.uiStyle = uiStyle;
 		}
 
 		/******************* PUBLIC ****************************************************/

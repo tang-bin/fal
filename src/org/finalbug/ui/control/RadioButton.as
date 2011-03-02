@@ -12,13 +12,13 @@ package org.finalbug.ui.control
 {
 	import flash.display.Shape;
 	import flash.events.MouseEvent;
-
+	
 	import org.finalbug.data.Position;
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
-	import org.finalbug.ui.skin.RadioSkinData;
 	import org.finalbug.ui.skin.Skin;
-	import org.finalbug.ui.skin.UISkinDataAbstract;
+	import org.finalbug.ui.style.RadioButtonStyle;
+	import org.finalbug.ui.style.UIStyle;
 	import org.finalbug.utils.DrawUtil;
 
 	/**
@@ -197,9 +197,9 @@ package org.finalbug.ui.control
 		 * @param label Label field
 		 * @param style Display style
 		 */
-		public function RadioButton(label:String = "RadioButton", groupName:String = "ungrouped", skin:UISkinDataAbstract = null)
+		public function RadioButton(label:String = "RadioButton", groupName:String = "ungrouped", style:RadioButtonStyle = null)
 		{
-			super(skin);
+			super(style == null ? UIStyle.defaultRadioButtonStyle : style);
 			//
 			// save data.
 			_group = groupName;
@@ -225,11 +225,7 @@ package org.finalbug.ui.control
 			this.addEventListener(MouseEvent.CLICK, clickBoxHandler);
 			//
 			// set skin data.
-			if (uiSkinData == null)
-			{
-				uiSkinData = new RadioSkinData();
-			}
-			uiSkinData.bindChildren(box, txt);
+			this.status = Status.NORMAL;
 		}
 
 		/******************* PUBLIC ****************************************************/

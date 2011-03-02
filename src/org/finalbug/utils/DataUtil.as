@@ -10,6 +10,8 @@
 // **********************************************************
 package org.finalbug.utils
 {
+	import flash.text.TextFormat;
+
 	/**
 	 * DataUtil
 	 *
@@ -61,7 +63,7 @@ package org.finalbug.utils
 			}
 			return -1;
 		}
-		
+
 		/**
 		 * Using for each to get the number of object's variables.
 		 * 
@@ -70,14 +72,44 @@ package org.finalbug.utils
 		public static function getObjectCount(obj:Object):uint
 		{
 			var count:uint = 0;
-			for each(var v:* in obj)
+			for each (var v:* in obj)
 			{
-				if(v != null)
+				if (v != null)
 				{
 					count++;
 				}
 			}
 			return count;
+		}
+
+		public static function arrayClone(arr:Array):Array
+		{
+			var newArr:Array = new Array();
+			var len:uint = arr.length;
+			for (var i:uint = 0 ; i < len ; i++)
+			{
+				if (arr[i] is Array)
+				{
+					newArr.push(DataUtil.arrayClone(arr[i]));
+				}
+				else
+				{
+					newArr.push(arr[i]);
+				}
+			}
+			return newArr;
+		}
+
+		public static function textFormatClone(from:TextFormat, to:TextFormat):void
+		{
+			var values:Array = ["font", "color", "size", "align", "blockIndent"];
+			values.push("bold", "bullet", "indent", "italic", "leading");
+			values.push("leftMargin", "rightMargin", "tabStops");
+			values.push("target", "underline", "url");
+			for (var i:uint = values.length ; --i >= 0 ; )
+			{
+				to[values[i]] = from[values[i]];
+			}
 		}
 	}
 }

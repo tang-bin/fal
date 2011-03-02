@@ -10,16 +10,15 @@
 // **********************************************************
 package org.finalbug.ui.control
 {
-	import flash.events.Event;
-	import flash.events.FocusEvent;
-	import flash.text.TextField;
-
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.events.UIEvent;
 	import org.finalbug.ui.skin.Skin;
-	import org.finalbug.ui.skin.TextSkinData;
-	import org.finalbug.ui.skin.UISkinDataAbstract;
+	import org.finalbug.ui.style.ScrollBoxStyle;
+
+	import flash.events.Event;
+	import flash.events.FocusEvent;
+	import flash.text.TextField;
 
 	/**
 	 * @eventType events.DataEvent.CHANGE_DATA
@@ -169,9 +168,9 @@ package org.finalbug.ui.control
 		 * @param wordwrap wrap word
 		 * @param style DipslayStyle
 		 */
-		public function TextArea(skin:UISkinDataAbstract = null)
+		public function TextArea(style:ScrollBoxStyle = null)
 		{
-			super(true, true, skin);
+			super(true, true, style);
 			this.initSize(200, 200);
 			this.fillStyle = null;
 			//
@@ -188,11 +187,7 @@ package org.finalbug.ui.control
 			setEvent();
 			//
 			// set skin data.
-			if (uiSkinData == null)
-			{
-				uiSkinData = new TextSkinData();
-			}
-			uiSkinData.bindChildren(bg, txt);
+			this.status = Status.NORMAL;
 		}
 
 		/******************* PUBLIC ****************************************************/

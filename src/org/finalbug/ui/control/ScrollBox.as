@@ -12,8 +12,9 @@ package org.finalbug.ui.control
 {
 	import org.finalbug.data.Position;
 	import org.finalbug.events.UIEvent;
-	import org.finalbug.ui.skin.UISkinDataAbstract;
 	import org.finalbug.ui.style.FillStyle;
+	import org.finalbug.ui.style.ScrollBoxStyle;
+	import org.finalbug.ui.style.UIStyle;
 
 	/**
 	 * This class is a container with scroll bar.
@@ -156,10 +157,10 @@ package org.finalbug.ui.control
 		 * @return 
 		 * 
 		 */
-		public function ScrollBox(xScroll:Boolean = true, yScroll:Boolean = true, skin:UISkinDataAbstract = null)
+		public function ScrollBox(xScroll:Boolean = true, yScroll:Boolean = true, style:ScrollBoxStyle = null)
 		{
 			// save parameters
-			super(skin);
+			super(style == null ? UIStyle.defaultScrollBoxStyle : style);
 			enableX = xScroll;
 			enableY = yScroll;
 			//

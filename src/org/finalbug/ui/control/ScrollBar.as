@@ -10,20 +10,20 @@
 // **********************************************************
 package org.finalbug.ui.control
 {
-	import flash.events.MouseEvent;
-	import flash.events.TimerEvent;
-	import flash.geom.Rectangle;
-	import flash.utils.Timer;
-
 	import org.finalbug.data.Position;
 	import org.finalbug.data.Status;
 	import org.finalbug.errors.UIError;
 	import org.finalbug.events.UIEvent;
 	import org.finalbug.events.UIMouseEvent;
-	import org.finalbug.ui.skin.ScrollBarSkinData;
 	import org.finalbug.ui.skin.Skin;
-	import org.finalbug.ui.skin.UISkinDataAbstract;
+	import org.finalbug.ui.style.ScrollBarStyle;
+	import org.finalbug.ui.style.UIStyle;
 	import org.finalbug.utils.MathUtil;
+
+	import flash.events.MouseEvent;
+	import flash.events.TimerEvent;
+	import flash.geom.Rectangle;
+	import flash.utils.Timer;
 
 	/**
 	 * ScrollBar
@@ -218,9 +218,9 @@ package org.finalbug.ui.control
 		 * @param length Length of ScrollBar, in pixel.
 		 * @param style Display style.
 		 */
-		public function ScrollBar(type:String, length:Number = 100, skin:UISkinDataAbstract = null)
+		public function ScrollBar(type:String, length:Number = 100, style:ScrollBarStyle = null)
 		{
-			super(skin);
+			super(style == null ? UIStyle.defaultScrollBarStyle : style);
 			if (type != Position.HORIZONTAL && type != Position.VERTICAL)
 			{
 				throw new UIError(UIError.WRONG_SCROLLBAR_TYPE);
@@ -303,11 +303,7 @@ package org.finalbug.ui.control
 			//
 			this.addAll(back, leftBtn, rightBtn, slider);
 			//
-			if (uiSkinData == null)
-			{
-				uiSkinData = new ScrollBarSkinData();
-			}
-			uiSkinData.bindChildren(leftBtn, rightBtn, null, null, back, slider);
+			this.status = Status.NORMAL;
 		}
 
 		private function createScrollBarY():void
@@ -325,11 +321,7 @@ package org.finalbug.ui.control
 			//
 			this.addAll(back, upBtn, downBtn, slider);
 			//
-			if (uiSkinData == null)
-			{
-				uiSkinData = new ScrollBarSkinData();
-			}
-			uiSkinData.bindChildren(null, null, upBtn, downBtn, back, slider);
+			this.status = Status.NORMAL;
 		}
 
 		private function stopMove():void

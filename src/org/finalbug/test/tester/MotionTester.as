@@ -1,3 +1,13 @@
+// ##############################################################################
+// ___________.__              .__ ___.
+// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// \__ |     |__|___|  (____  /____/___  /____/\___  /
+// \/             \/     \/         \/     /_____/
+// [fb-aslib] Finalbug ActionScript Library
+// http://www.finalbug.org
+// ##############################################################################
 // **********************************************************
 // * __________.__              .__ ___.
 // * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
@@ -11,7 +21,6 @@
 package org.finalbug.test.tester
 {
 	import flash.events.MouseEvent;
-	import flash.utils.getTimer;
 
 	import org.finalbug.events.MotionEvent;
 	import org.finalbug.ui.Bin;
@@ -32,13 +41,6 @@ package org.finalbug.test.tester
 
 		/****************************************
 		 *
-		 * DEFINE
-		 *
-		 *************************************************************/
-		private var container:Bin;
-
-		/****************************************
-		 *
 		 * GETTER and SETTER
 		 *
 		 *************************************************************/
@@ -49,8 +51,14 @@ package org.finalbug.test.tester
 		 *************************************************************/
 		public function MotionTester()
 		{
-			super();
 		}
+
+		/****************************************
+		 *
+		 * DEFINE
+		 *
+		 *************************************************************/
+		private var container:Bin;
 
 		/****************************************
 		 *
@@ -83,36 +91,6 @@ package org.finalbug.test.tester
 
 		/****************************************
 		 *
-		 * PUBLIC
-		 *
-		 *************************************************************/
-		/****************************************
-		 *
-		 * PROTECTED
-		 *
-		 *************************************************************/
-		/****************************************
-		 *
-		 * PRIVATE
-		 *
-		 *************************************************************/
-		private function startTest(total:uint):void
-		{
-			var t:int = flash.utils.getTimer();
-			var list:Object = new Object();
-			for (var i:uint = 0 ; i < total ; i++)
-			{
-				var bin:Bin = new Bin();
-				bin.graphics.beginFill(0, 0.8);
-				bin.graphics.drawRect(0, 0, 2, 2);
-				bin.graphics.endFill();
-				container.addAll(bin);
-				bin.moveTo(Math.random() * stage.stageWidth, Math.random() * stage.stageHeight);
-			}
-		}
-
-		/****************************************
-		 *
 		 * HANDLER
 		 *
 		 *************************************************************/
@@ -128,6 +106,34 @@ package org.finalbug.test.tester
 				container.removeAll();
 			}
 			startTest(1000);
+		}
+
+		/****************************************
+		 *
+		 * PUBLIC
+		 *
+		 *************************************************************/
+		/****************************************
+		 *
+		 * PROTECTED
+		 *
+		 *************************************************************/
+		/****************************************
+		 *
+		 * PRIVATE
+		 *
+		 *************************************************************/
+		private function startTest(total:uint):void
+		{
+			for (var i:uint = 0; i < total; i++)
+			{
+				var bin:Bin = new Bin();
+				bin.graphics.beginFill(0, 0.8);
+				bin.graphics.drawRect(0, 0, 2, 2);
+				bin.graphics.endFill();
+				container.addAll(bin);
+				bin.moveTo(Math.random() * stage.stageWidth, Math.random() * stage.stageHeight);
+			}
 		}
 
 		private function stopHandler(e:MotionEvent):void

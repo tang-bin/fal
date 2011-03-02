@@ -179,7 +179,7 @@ package org.finalbug.utils.motion
 		}
 
 		/******************* PRIVATE ***************************************************/
-		private function startAccount(e:* = null):void
+		private function startAccount(event:* = null):void
 		{
 			for (var i:Number = 0 ; i < targetList.length ; i++)
 			{

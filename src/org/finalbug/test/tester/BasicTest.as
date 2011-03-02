@@ -17,7 +17,7 @@ package org.finalbug.test.tester
 	 * BasicTest
 	 * 
 	 * @author Tang Bin
-	 * @since 2011
+	 * @since 2011.01
 	 */
 	public class BasicTest extends Container
 	{

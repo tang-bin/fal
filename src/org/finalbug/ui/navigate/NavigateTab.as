@@ -107,7 +107,7 @@ package org.finalbug.ui.navigate
 			data.object = object;
 			// set button
 			data.btn = new Button(label);
-			data.btn.holdable = true;
+			data.btn.selecteable = true;
 			data.btn.percentHeight = 1;
 			data.btn.autoWidth = true;
 			data.btn.addEventListener(MouseEvent.CLICK, clickTabBtnHandler);
@@ -234,10 +234,10 @@ package org.finalbug.ui.navigate
 			// remove pre-selected
 			if (currentSelected != null)
 			{
-				currentSelected.btn.hold = false;
+				currentSelected.btn.selected = false;
 			}
 			// select new
-			data.btn.hold = true;
+			data.btn.selected = true;
 			box.selectedChild = data.object;
 			// save select data.
 			currentSelected = data;

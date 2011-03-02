@@ -62,6 +62,58 @@ package org.finalbug.data
 
 		/**
 		 * 
+		 */
+		public function get dirFirst():Boolean
+		{
+			return _dirFirst;
+		}
+
+		public function set dirFirst(value:Boolean):void
+		{
+			// TODO
+		}
+
+		/**
+		 * 
+		 */
+		public function get showHide():Boolean
+		{
+			return _showHide;
+		}
+
+		public function set showHide(value:Boolean):void
+		{
+			// TODO
+		}
+
+		/**
+		 * 
+		 */
+		public function get sortBy():String
+		{
+			return _sortBy;
+		}
+
+		public function set sortBy(value:String):void
+		{
+			// TODO
+		}
+
+		/**
+		 * 
+		 */
+		public function get descOrder():Boolean
+		{
+			return _descOrder;
+		}
+
+		public function set descOrder(value:Boolean):void
+		{
+			// TODO
+		}
+
+		/**
+		 * 
 		 * @return 
 		 */
 		public function get path():String

@@ -13,12 +13,12 @@ package org.finalbug.ui.control
 	import flash.events.Event;
 	import flash.events.FocusEvent;
 	import flash.text.TextField;
-
+	
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.ui.skin.Skin;
-	import org.finalbug.ui.skin.TextSkinData;
-	import org.finalbug.ui.skin.UISkinDataAbstract;
+	import org.finalbug.ui.style.TextInputStyle;
+	import org.finalbug.ui.style.UIStyle;
 
 	/**
 	 * text input component
@@ -163,9 +163,9 @@ package org.finalbug.ui.control
 		 * @param size Size of 
 		 * @param style Display style
 		 */
-		public function TextInput(skin:UISkinDataAbstract = null)
+		public function TextInput(style:TextInputStyle = null)
 		{
-			super(skin);
+			super(style == null ? UIStyle.defaultTextInputStyle : style);
 			this.initSize(100, 22);
 			//
 			// create children.
@@ -181,11 +181,7 @@ package org.finalbug.ui.control
 			txt.addEventListener(Event.CHANGE, changeTextHandler);
 			//
 			// set skin data.
-			if (uiSkinData == null)
-			{
-				uiSkinData = new TextSkinData();
-			}
-			uiSkinData.bindChildren(back, txt);
+			this.status = Status.NORMAL;
 		}
 
 		/******************* PUBLIC ****************************************************/
