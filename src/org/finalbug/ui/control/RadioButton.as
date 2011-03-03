@@ -10,13 +10,14 @@
 // **********************************************************
 package org.finalbug.ui.control
 {
+	import org.finalbug.ui.glazes.Flat;
+
 	import flash.display.Shape;
 	import flash.events.MouseEvent;
-	
+
 	import org.finalbug.data.Position;
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
-	import org.finalbug.ui.skin.Skin;
 	import org.finalbug.ui.style.RadioButtonStyle;
 	import org.finalbug.ui.style.UIStyle;
 	import org.finalbug.utils.DrawUtil;
@@ -29,6 +30,47 @@ package org.finalbug.ui.control
 	 */
 	public class RadioButton extends UIObject
 	{
+
+		/**
+		 * create a new RadioButton object
+		 * 
+		 * @param groupName Group name.
+		 * @param label Label field
+		 * @param style Display style
+		 */
+		public function RadioButton(label:String = "RadioButton", groupName:String = "ungrouped", style:RadioButtonStyle = null)
+		{
+			super(style == null ? UIStyle.defaultRadioButtonStyle : style);
+			//
+			// save data.
+			_group = groupName;
+			_label = label == "" ? "RadioButton" : label;
+			if (RadioButton.groupList[_group] == null)
+			{
+				RadioButton.groupList[_group] = new Array();
+			}
+			(RadioButton.groupList[_group] as Array).push(this);
+			//
+			// create children.
+			box = new Flat();
+			box.resize(BOX_SIZE, BOX_SIZE);
+			flag = new Flat();
+			flag.resize(FLAG_SIZE, FLAG_SIZE);
+			flag.fillStyle = (uiStyle as RadioButtonStyle).flatFillStyle;
+			//
+			txt = new Label(_label);
+			//
+			bg = new Shape();
+			DrawUtil.drawBlock(bg.graphics);
+			//
+			this.addAll(bg, box, flag, txt);
+			//
+			// set event
+			this.addEventListener(MouseEvent.CLICK, clickBoxHandler);
+			//
+			// set skin data.
+			this.status = Status.NORMAL;
+		}
 
 		/******************* OVERRIDE **************************************************/
 		override public function set status(value:String):void
@@ -85,6 +127,25 @@ package org.finalbug.ui.control
 				bg.width = BOX_SIZE + OFFSET + txt.width;
 				bg.height = hh;
 			}
+			var flagOffset:Number = (BOX_SIZE - FLAG_SIZE) / 2;
+			flag.x = box.x + flagOffset;
+			flag.y = box.y + flagOffset;
+		}
+
+		override protected function updateStyle():void
+		{
+			if (this.currentStatus == Status.SELECTED)
+			{
+				box.fillStyle = uiStyle.selectedFillStyle;
+				txt.textFormat = uiStyle.selectedTextFormat;
+				flag.visible = true;
+			}
+			else
+			{
+				box.fillStyle = uiStyle.normalFillStyle;
+				txt.textFormat = uiStyle.normalTextFormat;
+				flag.visible = false;
+			}
 		}
 
 		/******************* DEFINE ****************************************************/
@@ -94,7 +155,9 @@ package org.finalbug.ui.control
 		 */
 		protected static var groupList:Object = new Object();
 
-		private const BOX_SIZE:Number = 16;
+		private const BOX_SIZE:Number = 14;
+
+		private const FLAG_SIZE:Number = 7;
 
 		private const OFFSET:Number = 3;
 
@@ -106,7 +169,9 @@ package org.finalbug.ui.control
 
 		private var _labelPosition:String;
 
-		private var box:Skin;
+		private var box:Flat;
+
+		private var flag:Flat;
 
 		private var txt:Label;
 
@@ -187,45 +252,6 @@ package org.finalbug.ui.control
 					}
 				}
 			}
-		}
-
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * create a new RadioButton object
-		 * 
-		 * @param groupName Group name.
-		 * @param label Label field
-		 * @param style Display style
-		 */
-		public function RadioButton(label:String = "RadioButton", groupName:String = "ungrouped", style:RadioButtonStyle = null)
-		{
-			super(style == null ? UIStyle.defaultRadioButtonStyle : style);
-			//
-			// save data.
-			_group = groupName;
-			_label = label == "" ? "RadioButton" : label;
-			if (RadioButton.groupList[_group] == null)
-			{
-				RadioButton.groupList[_group] = new Array();
-			}
-			(RadioButton.groupList[_group] as Array).push(this);
-			//
-			// create children.
-			box = new Skin();
-			box.resize(BOX_SIZE, BOX_SIZE);
-			//
-			txt = new Label(_label);
-			//
-			bg = new Shape();
-			DrawUtil.drawBlock(bg.graphics);
-			//
-			this.addAll(bg, box, txt);
-			//
-			// set event
-			this.addEventListener(MouseEvent.CLICK, clickBoxHandler);
-			//
-			// set skin data.
-			this.status = Status.NORMAL;
 		}
 
 		/******************* PUBLIC ****************************************************/

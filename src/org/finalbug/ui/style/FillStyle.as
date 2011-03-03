@@ -79,6 +79,8 @@ package org.finalbug.ui.style
 
 		private var _glowStrength:int = 3;
 
+		private var _innerGlow:Boolean = false;
+
 		private var _shadowColor:uint = 0;
 
 		private var _shadowAlpha:Number = 0;
@@ -598,10 +600,6 @@ package org.finalbug.ui.style
 			return _shadowBlur;
 		}
 
-		/**
-		 * 
-		 * @param value
-		 */
 		public function set shadowBlur(value:Number):void
 		{
 			if (value != _shadowBlur)
@@ -611,13 +609,34 @@ package org.finalbug.ui.style
 			}
 		}
 
+		/**
+		 * 
+		 */
+		public function get innerGlow():Boolean
+		{
+			return _innerGlow;
+		}
+
+		public function set innerGlow(value:Boolean):void
+		{
+			if (value != _innerGlow)
+			{
+				_innerGlow = value;
+				refreshBind();
+			}
+		}
+
 		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 */
-		public function FillStyle()
+		public function FillStyle(style:FillStyle = null)
 		{
 			super();
+			if (style != null)
+			{
+				this.copy(style);
+			}
 		}
 
 		/******************* PUBLIC ****************************************************/
@@ -669,6 +688,7 @@ package org.finalbug.ui.style
 			style.glowAlpha = this.glowAlpha;
 			style.glowBlur = this.glowBlur;
 			style.glowStrength = this.glowStrength;
+			style.innerGlow = this.innerGlow;
 			//
 			style.shadowColor = this.shadowColor;
 			style.shadowAlpha = this.shadowAlpha;
@@ -683,41 +703,44 @@ package org.finalbug.ui.style
 		{
 			this.filters = style.filters;
 			//
-			this.borderSize = style.borderSize;
-			this.borderAlpha = style.borderAlpha;
-			this.borderColor = style.borderColor;
-			this.bgAlpha = style.bgAlpha;
-			this.bgColor = style.bgColor;
+			this._borderSize = style.borderSize;
+			this._borderAlpha = style.borderAlpha;
+			this._borderColor = style.borderColor;
+			this._bgAlpha = style.bgAlpha;
+			this._bgColor = style.bgColor;
 			//
 			if (style.uniformRadius)
 			{
-				this.radius = style.radius;
+				this._radius = style.radius;
 			}
 			else
 			{
-				this.radius = style.radius;
-				this.topLeftRadius = style.topLeftRadius;
-				this.topRightRadius = style.topRightRadius;
-				this.bottomLeftRadius = style.bottomLeftRadius;
-				this.bottomRightRadius = style.bottomRightRadius;
+				this._radius = style.radius;
+				this._topLeftRadius = style.topLeftRadius;
+				this._topRightRadius = style.topRightRadius;
+				this._bottomLeftRadius = style.bottomLeftRadius;
+				this._bottomRightRadius = style.bottomRightRadius;
 			}
 			//
-			this.bgColors = DataUtil.arrayClone(style.bgColors);
-			this.bgAlphas = DataUtil.arrayClone(style.bgAlphas);
-			this.bgRatios = DataUtil.arrayClone(style.bgRatios);
-			this.bgRotation = style.bgRotation;
+			this._bgColors = DataUtil.arrayClone(style.bgColors);
+			this._bgAlphas = DataUtil.arrayClone(style.bgAlphas);
+			this._bgRatios = DataUtil.arrayClone(style.bgRatios);
+			this._bgRotation = style.bgRotation;
 			this.useGradient = style.useGradient;
 			//
-			this.glowColor = style.glowColor;
-			this.glowAlpha = style.glowAlpha;
-			this.glowBlur = style.glowBlur;
-			this.glowStrength = style.glowStrength;
+			this._glowColor = style.glowColor;
+			this._glowAlpha = style.glowAlpha;
+			this._glowBlur = style.glowBlur;
+			this._glowStrength = style.glowStrength;
+			this._innerGlow = style.innerGlow;
 			//
-			this.shadowColor = style.shadowColor;
-			this.shadowAlpha = style.shadowAlpha;
-			this.shadowDistance = style.shadowDistance;
-			this.shadowStrength = style.shadowStrength;
-			this.shadowBlur = style.shadowBlur;
+			this._shadowColor = style.shadowColor;
+			this._shadowAlpha = style.shadowAlpha;
+			this._shadowDistance = style.shadowDistance;
+			this._shadowStrength = style.shadowStrength;
+			this._shadowBlur = style.shadowBlur;
+			//
+			this.refreshBind();
 		}
 
 		/**
@@ -782,7 +805,7 @@ package org.finalbug.ui.style
 					var fs:Array = new Array();
 					if (glowAlpha > 0 && glowBlur > 0)
 					{
-						var gf:GlowFilter = new GlowFilter(glowColor, glowAlpha, glowBlur, glowBlur, glowStrength, 3);
+						var gf:GlowFilter = new GlowFilter(glowColor, glowAlpha, glowBlur, glowBlur, glowStrength, 3, _innerGlow);
 						fs.push(gf);
 					}
 					if (shadowAlpha > 0 && shadowBlur > 0)

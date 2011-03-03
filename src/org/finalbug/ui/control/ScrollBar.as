@@ -10,12 +10,16 @@
 // **********************************************************
 package org.finalbug.ui.control
 {
+	import flash.display.Shape;
+	import flash.geom.Point;
+
+	import org.finalbug.utils.DrawUtil;
+	import org.finalbug.ui.glazes.Flat;
 	import org.finalbug.data.Position;
 	import org.finalbug.data.Status;
 	import org.finalbug.errors.UIError;
 	import org.finalbug.events.UIEvent;
 	import org.finalbug.events.UIMouseEvent;
-	import org.finalbug.ui.skin.Skin;
 	import org.finalbug.ui.style.ScrollBarStyle;
 	import org.finalbug.ui.style.UIStyle;
 	import org.finalbug.utils.MathUtil;
@@ -33,6 +37,42 @@ package org.finalbug.ui.control
 	 */
 	public class ScrollBar extends UIObject
 	{
+
+		/**
+		 * Constuctor. create and initialize a new scrollBar
+		 * 
+		 * @param type ScrollType, can be Position.HORIZONTAL or Position.VERTICAL.
+		 * 				Once this parameter is set, cannot be changed during runtime.
+		 * @param length Length of ScrollBar, in pixel.
+		 * @param style Display style.
+		 */
+		public function ScrollBar(type:String, length:Number = 100, style:ScrollBarStyle = null)
+		{
+			super(style == null ? UIStyle.defaultScrollBarStyle : style);
+			if (type != Position.HORIZONTAL && type != Position.VERTICAL)
+			{
+				throw new UIError(UIError.WRONG_SCROLLBAR_TYPE);
+			}
+			_type = type;
+			this._thickness = DEFAULT_THICKNESS;
+			this._length = length;
+			//
+			// create children and set events.
+			if (_type == Position.HORIZONTAL)
+			{
+				createScrollBarX();
+				leftBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
+				rightBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
+				slider.addEventListener(MouseEvent.MOUSE_DOWN, pressSliderHandler);
+			}
+			else
+			{
+				createScrollBarY();
+				upBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
+				downBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
+				slider.addEventListener(MouseEvent.MOUSE_DOWN, pressSliderHandler);
+			}
+		}
 
 		/******************* OVERRIDE **************************************************/
 		override public function get width():Number
@@ -95,6 +135,8 @@ package org.finalbug.ui.control
 		 */
 		public static const DEFAULT_THICKNESS:Number = 16;
 
+		private static const ARROW_SIZE:Number = 9;
+
 		/* variates */
 		private var moveStep:Number;
 
@@ -119,17 +161,17 @@ package org.finalbug.ui.control
 		private var _length:Number = 100;
 
 		/* display containers */
-		private var leftBtn:Skin;
+		private var leftBtn:Flat;
 
-		private var rightBtn:Skin;
+		private var rightBtn:Flat;
 
-		private var upBtn:Skin;
+		private var upBtn:Flat;
 
-		private var downBtn:Skin;
+		private var downBtn:Flat;
 
-		private var back:Skin;
+		private var back:Flat;
 
-		private var slider:Skin;
+		private var slider:Flat;
 
 		private var _enabled:Boolean = true;
 
@@ -209,43 +251,6 @@ package org.finalbug.ui.control
 			return _length - 2 * _thickness;
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * Constuctor. create and initialize a new scrollBar
-		 * 
-		 * @param type ScrollType, can be Position.HORIZONTAL or Position.VERTICAL.
-		 * 				Once this parameter is set, cannot be changed during runtime.
-		 * @param length Length of ScrollBar, in pixel.
-		 * @param style Display style.
-		 */
-		public function ScrollBar(type:String, length:Number = 100, style:ScrollBarStyle = null)
-		{
-			super(style == null ? UIStyle.defaultScrollBarStyle : style);
-			if (type != Position.HORIZONTAL && type != Position.VERTICAL)
-			{
-				throw new UIError(UIError.WRONG_SCROLLBAR_TYPE);
-			}
-			_type = type;
-			this._thickness = DEFAULT_THICKNESS;
-			this._length = length;
-			//
-			// create children and set events.
-			if (_type == Position.HORIZONTAL)
-			{
-				createScrollBarX();
-				leftBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
-				rightBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
-				slider.addEventListener(MouseEvent.MOUSE_DOWN, pressSliderHandler);
-			}
-			else
-			{
-				createScrollBarY();
-				upBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
-				downBtn.addEventListener(MouseEvent.MOUSE_DOWN, pressBtnHandler);
-				slider.addEventListener(MouseEvent.MOUSE_DOWN, pressSliderHandler);
-			}
-		}
-
 		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
@@ -274,7 +279,6 @@ package org.finalbug.ui.control
 					slider.width = len;
 					slider.height = _thickness;
 					slider.x = (availLength - slider.width) * _position + _thickness;
-					;
 					slider.y = 0;
 				}
 				else
@@ -283,21 +287,24 @@ package org.finalbug.ui.control
 					slider.height = len;
 					slider.x = 0;
 					slider.y = (availLength - slider.height) * _position + _thickness;
-					;
 				}
 			}
 		}
 
 		private function createScrollBarX():void
 		{
-			leftBtn = new Skin();
-			rightBtn = new Skin();
-			back = new Skin();
-			slider = new Skin();
+			var style:ScrollBarStyle = uiStyle as ScrollBarStyle;
+			leftBtn = new Flat();
+			leftBtn.fillStyle = style.buttonFillStyle;
+			rightBtn = new Flat();
+			rightBtn.fillStyle = style.buttonFillStyle;
+			back = new Flat();
+			back.fillStyle = style.backFillStyle;
+			slider = new Flat();
+			slider.fillStyle = style.sliderFillStyle;
 			leftBtn.name = "leftBtn";
 			rightBtn.name = "rightBtn";
-			leftBtn.autoMouseEvent = true;
-			rightBtn.autoMouseEvent = true;
+			drawTriangle();
 			//
 			leftBtn.mouseEnabled = rightBtn.mouseEnabled = slider.mouseEnabled = true;
 			//
@@ -308,14 +315,18 @@ package org.finalbug.ui.control
 
 		private function createScrollBarY():void
 		{
-			upBtn = new Skin();
-			downBtn = new Skin();
-			back = new Skin();
-			slider = new Skin();
+			var style:ScrollBarStyle = uiStyle as ScrollBarStyle;
+			upBtn = new Flat();
+			upBtn.fillStyle = style.buttonFillStyle;
+			downBtn = new Flat();
+			downBtn.fillStyle = style.buttonFillStyle;
+			back = new Flat();
+			back.fillStyle = style.backFillStyle;
+			slider = new Flat();
+			slider.fillStyle = style.sliderFillStyle;
 			upBtn.name = "upBtn";
 			downBtn.name = "downBtn";
-			upBtn.autoMouseEvent = true;
-			downBtn.autoMouseEvent = true;
+			drawTriangle();
 			//
 			upBtn.mouseEnabled = downBtn.mouseEnabled = slider.mouseEnabled = true;
 			//
@@ -372,13 +383,75 @@ package org.finalbug.ui.control
 			this.dispatchEvent(ee);
 		}
 
-		/******************* PRIVATE ***************************************************/
+		private function drawTriangle():void
+		{
+			var center:Point = new Point(_thickness / 2, _thickness / 2);
+			var size:Number = ARROW_SIZE;
+			if (upBtn != null)
+			{
+				var upArrow:Shape = upBtn.getChildByName("arrow") as Shape;
+				if (upArrow == null)
+				{
+					upArrow = new Shape();
+					upArrow.name = "arrow";
+					upBtn.addChild(upArrow);
+				}
+				upArrow.graphics.clear();
+				upArrow.graphics.beginFill((uiStyle as ScrollBarStyle).arrowColor, 1);
+				DrawUtil.drawTriangle(upArrow.graphics, center, size, size, Position.UP);
+				upArrow.graphics.endFill();
+			}
+			if (downBtn != null)
+			{
+				var downArrow:Shape = downBtn.getChildByName("arrow") as Shape;
+				if (downArrow == null)
+				{
+					downArrow = new Shape();
+					downArrow.name = "arrow";
+					downBtn.addChild(downArrow);
+				}
+				downArrow.graphics.clear();
+				downArrow.graphics.beginFill((uiStyle as ScrollBarStyle).arrowColor, 1);
+				DrawUtil.drawTriangle(downArrow.graphics, center, size, size, Position.DOWN);
+				downArrow.graphics.endFill();
+			}
+			if (leftBtn != null)
+			{
+				var leftArrow:Shape = leftBtn.getChildByName("arrow") as Shape;
+				if (leftArrow == null)
+				{
+					leftArrow = new Shape();
+					leftArrow.name = "arrow";
+					leftBtn.addChild(leftArrow);
+				}
+				leftArrow.graphics.clear();
+				leftArrow.graphics.beginFill((uiStyle as ScrollBarStyle).arrowColor, 1);
+				DrawUtil.drawTriangle(leftArrow.graphics, center, size, size, Position.LEFT);
+				leftArrow.graphics.endFill();
+			}
+			if (rightBtn != null)
+			{
+				var rightArrow:Shape = rightBtn.getChildByName("arrow") as Shape;
+				if (rightArrow == null)
+				{
+					rightArrow = new Shape();
+					rightArrow.name = "arrow";
+					rightBtn.addChild(rightArrow);
+				}
+				rightArrow.graphics.clear();
+				rightArrow.graphics.beginFill((uiStyle as ScrollBarStyle).arrowColor, 1);
+				DrawUtil.drawTriangle(rightArrow.graphics, center, size, size, Position.RIGHT);
+				rightArrow.graphics.endFill();
+			}
+		}
+
+		/******************* HANDLER ***************************************************/
 		private function pressBtnHandler(e:MouseEvent):void
 		{
 			if (_enabled)
 			{
 				moveStep = (this.availLength - slider.width) * _speed / 100;
-				var btnName:String = (e.target as Skin).name;
+				var btnName:String = (e.target as Flat).name;
 				//
 				if (btnName == "leftBtn")
 				{

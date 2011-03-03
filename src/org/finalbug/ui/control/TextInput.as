@@ -10,13 +10,14 @@
 // **********************************************************
 package org.finalbug.ui.control
 {
+	import org.finalbug.ui.glazes.Flat;
+
 	import flash.events.Event;
 	import flash.events.FocusEvent;
 	import flash.text.TextField;
-	
+
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
-	import org.finalbug.ui.skin.Skin;
 	import org.finalbug.ui.style.TextInputStyle;
 	import org.finalbug.ui.style.UIStyle;
 
@@ -29,14 +30,41 @@ package org.finalbug.ui.control
 	public class TextInput extends UIObject
 	{
 
+		/**
+		 * Create a new TextInput object.
+		 * 
+		 * @param size Size of 
+		 * @param style Display style
+		 */
+		public function TextInput(style:TextInputStyle = null)
+		{
+			super(style == null ? UIStyle.defaultTextInputStyle : style);
+			this.initSize(100, 22);
+			//
+			// create children.
+			back = new Flat();
+			back.resize(this.width, this.height);
+			txt = new TextField();
+			setTextType();
+			this.addAll(back, txt);
+			//
+			// set events
+			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
+			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
+			txt.addEventListener(Event.CHANGE, changeTextHandler);
+			//
+			// set skin data.
+			this.status = Status.NORMAL;
+		}
+
 		/******************* OVERRIDE **************************************************/
 		override public function set status(value:String):void
 		{
 			if (this.enabled)
 			{
-				if (stage.focus == txt)
+				if (this.stage != null && stage.focus == txt)
 				{
-					value = Status.ACTIVE;
+					value = Status.SELECTED;
 				}
 				else
 				{
@@ -60,12 +88,28 @@ package org.finalbug.ui.control
 			txt.height = this.height - 2;
 		}
 
+		override protected function updateStyle():void
+		{
+			if (this.currentStatus == Status.SELECTED)
+			{
+				back.fillStyle = uiStyle.selectedFillStyle;
+				txt.setTextFormat(uiStyle.selectedTextFormat);
+				txt.defaultTextFormat = uiStyle.selectedTextFormat;
+			}
+			else
+			{
+				back.fillStyle = uiStyle.normalFillStyle;
+				txt.setTextFormat(uiStyle.normalTextFormat);
+				txt.defaultTextFormat = uiStyle.normalTextFormat;
+			}
+		}
+
 		/******************* DEFINE ****************************************************/
 		private var _textType:String = "input";
 
 		private var oldText:String = "";
 
-		private var back:Skin;
+		private var back:Flat;
 
 		private var txt:TextField;
 
@@ -156,34 +200,6 @@ package org.finalbug.ui.control
 			this.setTextType();
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * Create a new TextInput object.
-		 * 
-		 * @param size Size of 
-		 * @param style Display style
-		 */
-		public function TextInput(style:TextInputStyle = null)
-		{
-			super(style == null ? UIStyle.defaultTextInputStyle : style);
-			this.initSize(100, 22);
-			//
-			// create children.
-			back = new Skin();
-			back.resize(this.width, this.height);
-			txt = new TextField();
-			setTextType();
-			this.addAll(back, txt);
-			//
-			// set events
-			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
-			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
-			txt.addEventListener(Event.CHANGE, changeTextHandler);
-			//
-			// set skin data.
-			this.status = Status.NORMAL;
-		}
-
 		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
@@ -211,10 +227,10 @@ package org.finalbug.ui.control
 			}
 		}
 
-		/******************* PRIVATE ***************************************************/
+		/******************* HANDLER ***************************************************/
 		private function txtFocusInHandler(e:FocusEvent):void
 		{
-			this.status = Status.ACTIVE;
+			this.status = Status.SELECTED;
 		}
 
 		private function txtFocusOutHandler(e:FocusEvent):void

@@ -27,6 +27,43 @@ package org.finalbug.ui.control
 	public class ScrollBox extends UIObject
 	{
 
+		/**
+		 * Create a new ScrollBarContainer object.
+		 * 
+		 * @param size Default value is (100, 100).
+		 * @param enableScrollBarX
+		 * @param enableScrollBarY
+		 * @param scrollBarStyle
+		 * @return 
+		 * 
+		 */
+		public function ScrollBox(xScroll:Boolean = true, yScroll:Boolean = true, style:ScrollBoxStyle = null)
+		{
+			// save parameters
+			super(style == null ? UIStyle.defaultScrollBoxStyle : style);
+			enableX = xScroll;
+			enableY = yScroll;
+			//
+			var defaultFillStyle:FillStyle = new FillStyle();
+			defaultFillStyle.bgAlpha = 1;
+			defaultFillStyle.bgColor = 0xFFFFFF;
+			defaultFillStyle.borderAlpha = 1;
+			defaultFillStyle.borderColor = 0xCCCCCC;
+			this.fillStyle = defaultFillStyle;
+			//
+			// create children.
+			style = uiStyle as ScrollBoxStyle;
+			xBar = new ScrollBar(Position.HORIZONTAL, 100, style.scrollBarStyle);
+			yBar = new ScrollBar(Position.VERTICAL, 100, style.scrollBarStyle);
+			this.addAll(xBar, yBar);
+			//
+			xBar.enabled = xBar.visible = false;
+			yBar.enabled = yBar.visible = false;
+			//
+			xBar.addEventListener(UIEvent.SCROLL, xScrollHandler);
+			yBar.addEventListener(UIEvent.SCROLL, yScrollHandler);
+		}
+
 		/******************* OVERRIDE **************************************************/
 		override protected function updateSize():void
 		{
@@ -144,43 +181,6 @@ package org.finalbug.ui.control
 				enableY = value;
 				updateSize();
 			}
-		}
-
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * Create a new ScrollBarContainer object.
-		 * 
-		 * @param size Default value is (100, 100).
-		 * @param enableScrollBarX
-		 * @param enableScrollBarY
-		 * @param scrollBarStyle
-		 * @return 
-		 * 
-		 */
-		public function ScrollBox(xScroll:Boolean = true, yScroll:Boolean = true, style:ScrollBoxStyle = null)
-		{
-			// save parameters
-			super(style == null ? UIStyle.defaultScrollBoxStyle : style);
-			enableX = xScroll;
-			enableY = yScroll;
-			//
-			var defaultFillStyle:FillStyle = new FillStyle();
-			defaultFillStyle.bgAlpha = 1;
-			defaultFillStyle.bgColor = 0xFFFFFF;
-			defaultFillStyle.borderAlpha = 1;
-			defaultFillStyle.borderColor = 0xCCCCCC;
-			this.fillStyle = defaultFillStyle;
-			//
-			// create children.
-			xBar = new ScrollBar(Position.HORIZONTAL);
-			yBar = new ScrollBar(Position.VERTICAL);
-			this.addAll(xBar, yBar);
-			//
-			xBar.enabled = xBar.visible = false;
-			yBar.enabled = yBar.visible = false;
-			//
-			xBar.addEventListener(UIEvent.SCROLL, xScrollHandler);
-			yBar.addEventListener(UIEvent.SCROLL, yScrollHandler);
 		}
 
 		/******************* PUBLIC ****************************************************/

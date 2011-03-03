@@ -10,27 +10,36 @@
 // **********************************************************
 package org.finalbug.ui.style
 {
-	
 	/**
 	 * CheckBoxStyle
 	 * 
 	 * @author Tang Bin
 	 * @since 2011-2-3
-	 */	
+	 */
 	public class TextInputStyle extends UIStyle
 	{
-		/******************* OVERRIDE **************************************************/
-		/******************* DEFINE ****************************************************/
-		/******************* GETTER and SETTER *****************************************/
-		/******************* CONSTRUCTOR ***********************************************/
-		/******************* PUBLIC ****************************************************/
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
-		/******************* HANDLER ***************************************************/
-		
+
 		public function TextInputStyle()
 		{
-			super();
+			with(this.normalFillStyle)
+			{
+				bgColor = 0xFFFFF0;
+				bgAlpha = 1;
+				borderColor = 0x990000;
+				borderAlpha = 1;
+			}
+			with(this.normalTextFormat)
+			{
+				font = "Arial";
+				color = 0x333333;
+				size = 12;
+			}
+			super.applyStyleToAll(this.normalFillStyle);
+			super.applyTextFormatToAll(this.normalTextFormat);
+			//
+			selectedFillStyle.glowAlpha = 0.5;
+			selectedFillStyle.innerGlow = true;
+			selectedFillStyle.glowColor = 0x000000;
 		}
 	}
 }

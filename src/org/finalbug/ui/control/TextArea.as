@@ -13,7 +13,7 @@ package org.finalbug.ui.control
 	import org.finalbug.data.Status;
 	import org.finalbug.events.DataEvent;
 	import org.finalbug.events.UIEvent;
-	import org.finalbug.ui.skin.Skin;
+	import org.finalbug.ui.glazes.Flat;
 	import org.finalbug.ui.style.ScrollBoxStyle;
 
 	import flash.events.Event;
@@ -33,6 +33,35 @@ package org.finalbug.ui.control
 	public class TextArea extends ScrollBox
 	{
 
+		/**
+		 * create a new TextArea.
+		 * 
+		 * @param size
+		 * @param wordwrap wrap word
+		 * @param style DipslayStyle
+		 */
+		public function TextArea(style:ScrollBoxStyle = null)
+		{
+			super(true, true, style);
+			this.initSize(200, 200);
+			this.fillStyle = null;
+			//
+			// create children.
+			bg = new Flat();
+			bg.resize(this.width, this.height);
+			txt = new TextField();
+			txt.wordWrap = !enableX;
+			txt.multiline = true;
+			this.addAll(bg, txt);
+			bg.toBack();
+			// move bg to the back of all children.
+			txt.type = "input";
+			setEvent();
+			//
+			// set skin data.
+			this.status = Status.NORMAL;
+		}
+
 		/******************* OVERRIDE **************************************************/
 		/**
 		 * in Class TextArea, if x scrollbar is disabled, the text input will auto warp.
@@ -47,9 +76,9 @@ package org.finalbug.ui.control
 		{
 			if (this.enabled)
 			{
-				if (stage.focus == txt)
+				if (stage != null && stage.focus == txt)
 				{
-					value = Status.ACTIVE;
+					value = Status.SELECTED;
 				}
 				else
 				{
@@ -78,6 +107,22 @@ package org.finalbug.ui.control
 			}
 		}
 
+		override protected function updateStyle():void
+		{
+			if (this.currentStatus == Status.SELECTED)
+			{
+				bg.fillStyle = uiStyle.selectedFillStyle;
+				txt.setTextFormat(uiStyle.selectedTextFormat);
+				txt.defaultTextFormat = uiStyle.selectedTextFormat;
+			}
+			else
+			{
+				bg.fillStyle = uiStyle.normalFillStyle;
+				txt.setTextFormat(uiStyle.normalTextFormat);
+				txt.defaultTextFormat = uiStyle.normalTextFormat;
+			}
+		}
+
 		override protected function xScrollHandler(e:UIEvent):void
 		{
 			scrollManual = true;
@@ -93,7 +138,7 @@ package org.finalbug.ui.control
 		}
 
 		/******************* DEFINE ****************************************************/
-		private var bg:Skin;
+		private var bg:Flat;
 
 		private var txt:TextField;
 
@@ -160,36 +205,6 @@ package org.finalbug.ui.control
 			txt.embedFonts = _embed;
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * create a new TextArea.
-		 * 
-		 * @param size
-		 * @param wordwrap wrap word
-		 * @param style DipslayStyle
-		 */
-		public function TextArea(style:ScrollBoxStyle = null)
-		{
-			super(true, true, style);
-			this.initSize(200, 200);
-			this.fillStyle = null;
-			//
-			// create children.
-			bg = new Skin();
-			bg.resize(this.width, this.height);
-			txt = new TextField();
-			txt.wordWrap = !enableX;
-			txt.multiline = true;
-			this.addAll(bg, txt);
-			bg.toBack();
-			// move bg to the back of all children.
-			txt.type = "input";
-			setEvent();
-			//
-			// set skin data.
-			this.status = Status.NORMAL;
-		}
-
 		/******************* PUBLIC ****************************************************/
 		/******************* PROTECTED *************************************************/
 		/******************* PRIVATE ***************************************************/
@@ -242,7 +257,7 @@ package org.finalbug.ui.control
 		/******************* PRIVATE ***************************************************/
 		private function txtFocusInHandler(e:FocusEvent):void
 		{
-			this.status = Status.ACTIVE;
+			this.status = Status.SELECTED;
 		}
 
 		private function txtFocusOutHandler(e:FocusEvent):void
