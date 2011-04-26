@@ -18,7 +18,6 @@ package ftk.test
 
 	public class Tester extends AppRoot
 	{
-
 		public function Tester()
 		{
 			super();

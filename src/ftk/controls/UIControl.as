@@ -10,16 +10,16 @@
 // **********************************************************
 package ftk.controls
 {
-	import flash.display.DisplayObject;
-	import flash.events.MouseEvent;
 	import ftk.core.Bin;
 	import ftk.data.Status;
 	import ftk.style.UIStyle;
 	import ftk.widgets.Tooltip;
 
+	import flash.display.DisplayObject;
+	import flash.events.MouseEvent;
 
 	/**
-	 * UIControl is the super class for all of the UI controls.
+	 * UIControl is the super class for UI controls.
 	 *
 	 * @author Tang Bin
 	 * @since 2010.08
@@ -40,7 +40,7 @@ package ftk.controls
 		/**
 		 * Tooltip text. Will be shown when mouse roll over.
 		 * 
-		 * @see org.finalbug.widgets.Tooltip
+		 * @see ftk.widgets.Tooltip
 		 */
 		public var tooltip:String = "";
 
@@ -49,7 +49,7 @@ package ftk.controls
 		/**
 		 * current status string.
 		 * 
-		 * @see org.finalbug.data.Status
+		 * @see ftk.data.Status
 		 */
 		protected var currentStatus:String;
 
@@ -95,7 +95,7 @@ package ftk.controls
 		/**
 		 * status of UI object. Change status will change SkinData's status.
 		 * 
-		 * @see org.finalbug.data.Status
+		 * @see ftk.data.Status
 		 */
 		public function get status():String
 		{

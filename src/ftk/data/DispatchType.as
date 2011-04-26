@@ -15,7 +15,7 @@ package ftk.data
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.10
-	 * @see org.finalbug.data.SharedData.
+	 * @see ftk.data.SharedData.
 	 */
 	public class DispatchType
 	{

@@ -10,13 +10,13 @@
 // **********************************************************
 package ftk.controls
 {
-	import flash.events.MouseEvent;
 	import ftk.data.Status;
 	import ftk.graphs.Flat;
 	import ftk.graphs.Image;
 	import ftk.style.ButtonStyle;
 	import ftk.style.UIStyle;
 
+	import flash.events.MouseEvent;
 
 	/**
 	 * Button
@@ -38,7 +38,7 @@ package ftk.controls
 			this.autoMouseEvent = true;
 			this.mouseChildren = false;
 			this._labelStr = text;
-			this.initSize(80, 24);
+			this.initSize(ButtonStyle.DEFAULT_WIDTH, ButtonStyle.DEFAULT_HEIGHT);
 			//
 			// create elements
 			bg = new Flat();
@@ -113,7 +113,6 @@ package ftk.controls
 
 		override protected function updateStyle():void
 		{
-			trace("update style in button", this.width, this.height);
 			switch(currentStatus)
 			{
 				case Status.NORMAL:

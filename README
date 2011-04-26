@@ -1,4 +1,4 @@
-[fb-aslib] Finalbug ActionScript Library
-http://www.finalbug.org
+Flex ToolKits.
+http://www.finalbug.org/projects/ftk
 
-Finalbug ActionScript Library, for short "fb-aslib", is an open sources ActionScript Classes package which is written and managed by me (Tang Bin) from year 2006 to the present. This project contains some basic classes and methods for quick development using ActionScript, and some UI components and GUI widgets. I also expect it contains framework-like tools, data collectors, network connection managers, and other advanced tools. Tt depends on how many free hours I can spend on it and I don't think it is optimistically. Even so, I am doing my best to improve this project and hope it will helpful for you.
+Flex ToolKits, for short "FTK", is an open sources ActionScript/MXML package which is written and managed by me (Tang Bin) from year 2006 to the present. This project contains some basic classes and methods for quick development using ActionScript/MXML, and some UI components and GUI widgets. I also expect it contains framework-like tools, data collectors, network connection managers, and other advanced tools. Tt depends on how many free hours I can spend on it and I don't think it is optimistically. Even so, I am doing my best to improve this project and hope it will helpful for you.

@@ -46,7 +46,7 @@ package ftk.test.tester
 		 *************************************************************/
 		/****************************************
 		 *
-		 * org.finalbug.faltester.tester.MotionTester constructor.
+		 * ftk.faltester.tester.MotionTester constructor.
 		 *
 		 *************************************************************/
 		public function MotionTester()

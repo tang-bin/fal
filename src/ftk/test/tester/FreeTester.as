@@ -21,11 +21,12 @@ package ftk.test.tester
 	 */
 	public class FreeTester extends Container
 	{
-
 		public function FreeTester()
 		{
 			super();
 			var b:Button = new Button();
+			b.left = "50%";
+			b.bottom = 20;
 			this.addAll(b);
 		}
 	}

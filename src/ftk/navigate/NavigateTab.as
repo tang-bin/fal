@@ -14,9 +14,9 @@ package ftk.navigate
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.utils.Dictionary;
+
 	import ftk.controls.Button;
 	import ftk.layout.Container;
-
 
 	/**
 	 * NavigateTab, not finished.
@@ -26,20 +26,19 @@ package ftk.navigate
 	 */
 	public class NavigateTab extends Container
 	{
-
 		/******************* OVERRIDE **************************************************/
 		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
 		 */
-		protected const BUTTON_HEIGHT:Number = 24;
+		protected const BUTTON_HEIGHT:Number = 20;
 
 		/**
 		 * 
 		 * @default 
 		 */
-		protected const BUTTON_SPACE:Number = 2;
+		protected const BUTTON_SPACE:Number = 5;
 
 		/**
 		 * 
@@ -67,7 +66,8 @@ package ftk.navigate
 			this.name = "navigate tab";
 			// create children.
 			btnBar = new Container();
-			btnBar.horizontalRank(BUTTON_SPACE, true, false, true);
+			btnBar.horizontalRank(BUTTON_SPACE, true, false);
+			btnBar.autoRank = true;
 			//
 			box = new Slider();
 			box.borderAlpha = 1;
@@ -292,12 +292,11 @@ package ftk.navigate
 	}
 }
 import flash.display.DisplayObject;
-import ftk.controls.Button;
 
+import ftk.controls.Button;
 
 class TabData
 {
-
 	/**
 	 * 
 	 * @default 

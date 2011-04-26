@@ -18,6 +18,10 @@ package ftk.style
 	 */
 	public class ButtonStyle extends UIStyle
 	{
+		public static const DEFAULT_HEIGHT:Number = 19;
+
+		public static const DEFAULT_WIDTH:Number = 80;
+
 		public function ButtonStyle()
 		{
 			with(this.normalFillStyle)

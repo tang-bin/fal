@@ -11,13 +11,17 @@
 package ftk.layout
 {
 	import flash.display.DisplayObject;
+
 	import ftk.core.Bin;
 	import ftk.events.UIEvent;
 	import ftk.style.FillStyle;
 
-
 	/**
 	 * Class Container is the basic class of the display object used to layout.
+	 * Container contains basic method to position its children.
+	 * 
+	 * To learn more about the differents around Bin, Container and UIControl, see
+	 * ftk.core.Bin.
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.10
@@ -49,6 +53,23 @@ package ftk.layout
 		private var _autoRankCenter:Boolean = false;
 
 		private var _autoRankPack:Boolean = false;
+
+		public function get autoRank():Boolean
+		{
+			return _autoRank;
+		}
+
+		public function set autoRank(value:Boolean):void
+		{
+			if (value != _autoRank)
+			{
+				_autoRank = value;
+				if (value)
+				{
+					doRank();
+				}
+			}
+		}
 
 		/**
 		 * 
@@ -132,7 +153,7 @@ package ftk.layout
 		 * @param center
 		 * @param packAfterRank
 		 */
-		public function horizontalRank(space:Number = 0, center:Boolean = true, packAfterRank:Boolean = false, autoRank:Boolean = false):void
+		public function horizontalRank(space:Number = 0, center:Boolean = true, packAfterRank:Boolean = false):void
 		{
 			var totalNum:uint = this.numChildren;
 			var currentX:Number = space;
@@ -158,14 +179,10 @@ package ftk.layout
 				pack(space, 0);
 			}
 			//
-			if (autoRank)
-			{
-				_autoRank = true;
-				_autoRankType = HRank;
-				_autoRankCenter = center;
-				_autoRankPack = packAfterRank;
-				_autoRankSpace = space;
-			}
+			_autoRankType = HRank;
+			_autoRankCenter = center;
+			_autoRankPack = packAfterRank;
+			_autoRankSpace = space;
 		}
 
 		/**
@@ -175,7 +192,7 @@ package ftk.layout
 		 * @param packAfterRank
 		 * 
 		 */
-		public function verticalRank(space:Number = 0, center:Boolean = true, packAfterRank:Boolean = false, autoRank:Boolean = false):void
+		public function verticalRank(space:Number = 0, center:Boolean = true, packAfterRank:Boolean = false):void
 		{
 			var totalNum:uint = this.numChildren;
 			var currentY:Number = space;
@@ -201,28 +218,29 @@ package ftk.layout
 				pack(0, space);
 			}
 			//
-			if (autoRank)
-			{
-				_autoRank = true;
-				_autoRankType = VRank;
-				_autoRankCenter = center;
-				_autoRankPack = packAfterRank;
-				_autoRankSpace = space;
-			}
+			_autoRankType = VRank;
+			_autoRankCenter = center;
+			_autoRankPack = packAfterRank;
+			_autoRankSpace = space;
 		}
 
 		private function childrenChangedHandler(e:UIEvent):void
 		{
 			if (this._autoRank)
 			{
-				if (this._autoRankType == HRank)
-				{
-					this.horizontalRank(_autoRankSpace, _autoRankCenter, _autoRankPack);
-				}
-				else if (this._autoRankType == VRank)
-				{
-					this.verticalRank(_autoRankSpace, _autoRankCenter, _autoRankPack);
-				}
+				doRank();
+			}
+		}
+
+		private function doRank():void
+		{
+			if (this._autoRankType == HRank)
+			{
+				this.horizontalRank(_autoRankSpace, _autoRankCenter, _autoRankPack);
+			}
+			else if (this._autoRankType == VRank)
+			{
+				this.verticalRank(_autoRankSpace, _autoRankCenter, _autoRankPack);
 			}
 		}
 	}

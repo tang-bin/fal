@@ -144,7 +144,7 @@ package ftk.net
 		 * 
 		 * @throws DataError Throw NAME_EXIST error when the bitmap name already exist.
 		 * 
-		 * @see org.finalbug.net.BitmapLoader
+		 * @see ftk.net.BitmapLoader
 		 */
 		public function addBitmap(bitmapName:String, bitmapURL:String):BitmapLoader
 		{

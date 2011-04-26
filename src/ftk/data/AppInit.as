@@ -24,7 +24,7 @@ package ftk.data
 	 * Dispatched when loading status is changed.
 	 * Current loading status is contains in DataEvent.status.
 	 * 
-	 * @eventType org.finalbug.events.DataEvent.CHANGE_DATA
+	 * @eventType ftk.events.DataEvent.CHANGE_DATA
 	 */
 	[Event(name="changeData", type="ftk.events.DataEvent")]
 	/**
@@ -33,7 +33,7 @@ package ftk.data
 	 * and delete it. All attributes and loaded objects are in the ConfigModel and 
 	 * BitmapPool.
 	 * 
-	 * @eventType org.finalbug.event.DataEvent.INIT_END 
+	 * @eventType ftk.event.DataEvent.INIT_END 
 	 */
 	[Event(name="initEnd", type="ftk.events.DataEvent")]
 	/**
@@ -54,8 +54,8 @@ package ftk.data
 	 * @author Tang Bin
 	 * @since 2010.12
 	 * 
-	 * @see org.finalbug.data.ConfigModel
-	 * @see org.finalbug.net.BitmapPool
+	 * @see ftk.data.ConfigModel
+	 * @see ftk.net.BitmapPool
 	 */
 	public class AppInit extends DataModel
 	{

@@ -23,19 +23,19 @@ package ftk.data
 	/**
 	 * Dispatched when load config file success.
 	 * 
-	 * @eventType org.finalbug.event.LoadEvent.LOAD_SUCCESS
+	 * @eventType ftk.event.LoadEvent.LOAD_SUCCESS
 	 */
 	[Event(name="loadSuccess", type="ftk.events.LoadEvent")]
 	/**
 	 * Dispatched when load config file failed.
 	 * 
-	 * @eventType org.finalbug.event.LoadEvent.LOAD_FAILED
+	 * @eventType ftk.event.LoadEvent.LOAD_FAILED
 	 */
 	[Event(name="loadFailed", type="ftk.events.LoadEvent")]
 	/**
 	 * Dispatched when loading config file.
 	 * 
-	 * @eventType org.finalbug.event.LoadEvent.LOADING
+	 * @eventType ftk.event.LoadEvent.LOADING
 	 */
 	[Event(name="loading", type="ftk.events.LoadEvent")]
 	/**
@@ -75,8 +75,8 @@ package ftk.data
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.12
-	 * @see org.finalbug.net.BitmapPool
-	 * @see org.finalbug.data.AppInit
+	 * @see ftk.net.BitmapPool
+	 * @see ftk.data.AppInit
 	 */
 	public class ConfigModel extends DataModel
 	{

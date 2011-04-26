@@ -10,11 +10,11 @@
 // **********************************************************
 package ftk.data
 {
-	import flash.utils.Dictionary;
-
 	import ftk.errors.DataError;
 	import ftk.events.DataEvent;
 	import ftk.utils.StringUtil;
+
+	import flash.utils.Dictionary;
 
 	/**
 	 * TreeData defines the data model for tree and list.

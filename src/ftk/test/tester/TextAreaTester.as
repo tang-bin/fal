@@ -41,7 +41,7 @@ package ftk.test.tester
 		 *************************************************************/
 		/****************************************
 		 *
-		 * org.finalbug.faltester.tester.TextAreaTester constructor.
+		 * ftk.faltester.tester.TextAreaTester constructor.
 		 *
 		 *************************************************************/
 		public function TextAreaTester()

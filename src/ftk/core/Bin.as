@@ -10,10 +10,6 @@
 // **********************************************************
 package ftk.core
 {
-	import flash.display.DisplayObject;
-	import flash.display.Sprite;
-	import flash.events.Event;
-	import flash.geom.Point;
 	import ftk.data.Position;
 	import ftk.events.DisplayEvent;
 	import ftk.events.MotionEvent;
@@ -24,10 +20,14 @@ package ftk.core
 	import ftk.style.LayoutStyle;
 	import ftk.utils.MathUtil;
 
+	import flash.display.DisplayObject;
+	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.geom.Point;
 
 	/**
-	 * Bin is the basic class for all other display object used in fb-aslib.
-	 * This class will override displayObjec's width and height.
+	 * Bin is the basic class for all other display object used in FTK.
+	 * This class will override displayObjec's width and height getter/setter method.
 	 * Inside class/subclasses, use width and height as object's
 	 * width and height values.
 	 *
@@ -697,7 +697,7 @@ package ftk.core
 
 		/**
 		 * Re-check UIControl's size by its children's size.
-		 * Width and height value may be reset after pack, but resetSize() method
+		 * Width and height value will be reset after pack, but resetSize() method
 		 * will not be called.
 		 * 
 		 * @param xSpace Final width = real width + xSpace
