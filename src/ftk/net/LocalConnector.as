@@ -6,7 +6,7 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.net
 {
@@ -23,9 +23,19 @@ package ftk.net
 	 */
 	public class LocalConnector
 	{
+		/**
+		 * 
+		 * @param localName
+		 * @param remoteName
+		 */
+		public function LocalConnector(localName:String, remoteName:String):void
+		{
+			this.bytes = new ByteArray();
+			this._connected = false;
+			this.localName = localName;
+			this.remoteName = remoteName;
+		}
 
-		/******************* OVERRIDE **************************************************/
-		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -54,7 +64,6 @@ package ftk.net
 
 		private var remoteName:String;
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -64,21 +73,6 @@ package ftk.net
 			return this._connected;
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * 
-		 * @param localName
-		 * @param remoteName
-		 */
-		public function LocalConnector(localName:String, remoteName:String):void
-		{
-			this.bytes = new ByteArray();
-			this._connected = false;
-			this.localName = localName;
-			this.remoteName = remoteName;
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param data
@@ -151,8 +145,6 @@ package ftk.net
 			this._connected = true;
 		}
 
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function getData(item:Object, indexObj:Object, countObj:Object):void
 		{
 			var index:int = indexObj as int;
@@ -186,7 +178,6 @@ package ftk.net
 			remoteConn.send(remoteName, this.getDataHandler(), obj, index, count);
 		}
 
-		/******************* PRIVATE ***************************************************/
 		private function sendStatusHandler(event:StatusEvent):void
 		{
 			switch (event.level)

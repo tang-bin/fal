@@ -6,11 +6,11 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.data
 {
-	import ftk.ui.control.Icon;
+	import ftk.controls.Icon;
 
 	/**
 	 * FileType defines file's type.
@@ -20,9 +20,21 @@ package ftk.data
 	 */
 	public class FileType extends DataModel
 	{
+		/**
+		 * Create an new FileType.
+		 * 
+		 * @param ext File's extantion.
+		 * @param des File's type description.
+		 * @param icon File's type icon
+		 */
+		public function FileType(ext:String, des:String = "", icon:Icon = null)
+		{
+			super();
+			this._ext = ext.toLowerCase();
+			this.description = des;
+			this._icon = icon;
+		}
 
-		/******************* OVERRIDE **************************************************/
-		/******************* DEFINE ****************************************************/
 		/**
 		 * Description of file type.
 		 * 
@@ -39,7 +51,6 @@ package ftk.data
 		// icon
 		private var _icon:Icon;
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * If this is a directory or file.
 		 */
@@ -77,25 +88,5 @@ package ftk.data
 		{
 			this._icon = value;
 		}
-
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * Create an new FileType.
-		 * 
-		 * @param ext File's extantion.
-		 * @param des File's type description.
-		 * @param icon File's type icon
-		 */
-		public function FileType(ext:String, des:String = "", icon:Icon = null)
-		{
-			super();
-			this._ext = ext.toLowerCase();
-			this.description = des;
-			this._icon = icon;
-		}
-		/******************* PUBLIC ****************************************************/
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
-		/******************* HANDLER ***************************************************/
 	}
 }

@@ -6,7 +6,7 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.net
 {
@@ -14,10 +14,9 @@ package ftk.net
 	import flash.events.IEventDispatcher;
 	import flash.events.IOErrorEvent;
 	import flash.events.ProgressEvent;
+
 	import ftk.data.DataModel;
 	import ftk.events.LoadEvent;
-
-
 
 	/**
 	 * This class is the super class for classes which are used to load file(s).
@@ -27,9 +26,6 @@ package ftk.net
 	 */
 	public class LoaderObject extends DataModel
 	{
-
-		/******************* OVERRIDE **************************************************/
-		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -48,7 +44,6 @@ package ftk.net
 		 */
 		protected var _loadrate:Number = 0;
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -76,9 +71,6 @@ package ftk.net
 			return _loadrate;
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/******************* PUBLIC ****************************************************/
-		/******************* PROTECTED *************************************************/
 		/**
 		 * 
 		 * @param target
@@ -131,8 +123,5 @@ package ftk.net
 			var ee:LoadEvent = new LoadEvent(LoadEvent.LOAD_FAILED);
 			this.dispatchEvent(ee);
 		}
-		/******************* PRIVATE ***************************************************/
-		
-		/******************* PRIVATE ***************************************************/
 	}
 }

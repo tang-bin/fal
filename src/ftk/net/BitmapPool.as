@@ -6,7 +6,7 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.net
 {
@@ -14,11 +14,11 @@ package ftk.net
 	import flash.events.TimerEvent;
 	import flash.utils.Dictionary;
 	import flash.utils.Timer;
+
 	import ftk.data.DataModel;
 	import ftk.errors.DataError;
 	import ftk.events.LoadEvent;
 	import ftk.utils.DataUtil;
-
 
 	/**
 	 * This class is used to keep images which are loaded from outside of .swf file.
@@ -30,8 +30,21 @@ package ftk.net
 	 */
 	public class BitmapPool extends DataModel
 	{
+		/**
+		 * @throw errors.Errors Throw canNotInstance error when try to instance this class.
+		 */
+		public function BitmapPool()
+		{
+			if (instanceable)
+			{
+				bitmapList = new Dictionary();
+			}
+			else
+			{
+				throw new DataError(DataError.SINGLETON);
+			}
+		}
 
-		/******************* SINGLETON ****************************************************/
 		private static var bc:BitmapPool;
 
 		private static var instanceable:Boolean = false;
@@ -51,7 +64,6 @@ package ftk.net
 			return bc;
 		}
 
-		/******************* DEFINE ****************************************************/
 		private const checkTimeSpace:Number = 100;
 
 		// bitmapList[bitmap name] = BitmapLoader
@@ -122,23 +134,6 @@ package ftk.net
 			return loaded / count;
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * @throw errors.Errors Throw canNotInstance error when try to instance this class.
-		 */
-		public function BitmapPool()
-		{
-			if (instanceable)
-			{
-				bitmapList = new Dictionary();
-			}
-			else
-			{
-				throw new DataError(DataError.SINGLETON);
-			}
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * Add a new image file to load
 		 * Image file must be .gif, .jpeg, .jpg, .swf.
@@ -256,8 +251,6 @@ package ftk.net
 			}
 		}
 
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function checkHandler(e:TimerEvent):void
 		{
 			for each (var v:BitmapLoader in bitmapList)

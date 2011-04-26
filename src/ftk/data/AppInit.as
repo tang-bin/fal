@@ -6,7 +6,7 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.data
 {
@@ -15,10 +15,10 @@ package ftk.data
 	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+
 	import ftk.events.DataEvent;
 	import ftk.events.LoadEvent;
 	import ftk.net.BitmapPool;
-
 
 	/**
 	 * Dispatched when loading status is changed.
@@ -27,7 +27,6 @@ package ftk.data
 	 * @eventType org.finalbug.events.DataEvent.CHANGE_DATA
 	 */
 	[Event(name="changeData", type="ftk.events.DataEvent")]
-	
 	/**
 	 * Dispatched when init success.
 	 * After initialize success, AppInit object not longer useful, you can remove
@@ -37,7 +36,6 @@ package ftk.data
 	 * @eventType org.finalbug.event.DataEvent.INIT_END 
 	 */
 	[Event(name="initEnd", type="ftk.events.DataEvent")]
-	
 	/**
 	 * <p>AppInit is used to initialize an appliction, such as load config files and 
 	 * images, swf files and text files. 
@@ -55,30 +53,12 @@ package ftk.data
 	 * 
 	 * @author Tang Bin
 	 * @since 2010.12
+	 * 
 	 * @see org.finalbug.data.ConfigModel
 	 * @see org.finalbug.net.BitmapPool
 	 */
 	public class AppInit extends DataModel
 	{
-
-		/******************* OVERRIDE **************************************************/
-		/******************* DEFINE ****************************************************/
-		private var resList:Array;
-
-		private var resTotalNum:uint;
-
-		private var resLoader:Loader;
-
-		private var txtList:Array;
-
-		private var txtTotalNum:uint;
-
-		private var txtLoader:URLLoader;
-
-		private var currentLoadName:String;
-
-		/******************* GETTER and SETTER *****************************************/
-		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * Create an new AppInit object.
 		 */
@@ -87,7 +67,14 @@ package ftk.data
 			super();
 		}
 
-		/******************* PUBLIC ****************************************************/
+		private var resList:Array;
+		private var resTotalNum:uint;
+		private var resLoader:Loader;
+		private var txtList:Array;
+		private var txtTotalNum:uint;
+		private var txtLoader:URLLoader;
+		private var currentLoadName:String;
+
 		/**
 		 * Start load confile file.
 		 * 
@@ -102,8 +89,6 @@ package ftk.data
 			ConfigModel.instance.addEventListener(LoadEvent.LOAD_FAILED, loadConfigErrorHandler);
 		}
 
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function dispatchChange(str:String):void
 		{
 			var ee:DataEvent = new DataEvent(DataEvent.CHANGE_DATA);
@@ -193,7 +178,6 @@ package ftk.data
 			this.dispatchEvent(ee);
 		}
 
-		/******************* PRIVATE ***************************************************/
 		private function loadedConfigHandler(e:LoadEvent):void
 		{
 			dispatchChange("Loading image files...");

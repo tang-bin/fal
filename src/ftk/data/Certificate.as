@@ -6,7 +6,7 @@
 // #  \__|     |__|___|__(______/____/_____/____/\___  /
 // #                                            /_____/
 // # Flex ToolKits by Finalbug
-// # http://www.finalbug.org
+// # http://www.finalbug.org/projects/ftk
 // ##########################################################
 package ftk.data
 {
@@ -16,9 +16,9 @@ package ftk.data
 	import flash.events.SecurityErrorEvent;
 	import flash.net.Socket;
 	import flash.utils.ByteArray;
+
 	import ftk.errors.ConnError;
 	import ftk.events.ConnEvent;
-
 
 	/**
 	 * Certificate is used to connect to remote server and verify name and key value.
@@ -29,60 +29,48 @@ package ftk.data
 	 */
 	public class Certificate extends DataModel
 	{
+		/**
+		 * Create an new Certificate object.
+		 */
+		public function Certificate()
+		{
+			super();
+		}
 
-		/******************* OVERRIDE **************************************************/
-		/******************* DEFINE ****************************************************/
 		// send type: verify
 		private const TYPE_SEND_VERIFY:uint = 0;
-
 		// send type: normal data
 		private const TYPE_SEND_NORMAL:uint = 1;
-
 		// get data type: verify.
 		private const TYPE_GET_VERIFY:uint = 2;
-
 		// get data type: normal data.
 		private const TYPE_GET_NORMAL:uint = 3;
-
 		// verify success, read only type.
 		private const VERIFY_RS_READ_ONLY:uint = 11;
-
 		// verify success, write only type.
 		private const VERIFY_RS_WRITE_ONLY:uint = 12;
-
 		// verify success, read and write type.
 		private const VERIFY_RS_FULL:uint = 13;
-
 		// verify failed, server deny.
 		private const VERIFY_RS_DENY:uint = 14;
-
 		// name used to verify.
 		private var _name:String = "";
-
 		// key used to verify.
 		private var _key:String = "";
-
 		// verified or not.
 		private var _verified:Boolean = false;
-
 		// connected to server or not.
 		private var _connected:Boolean = false;
-
 		// remote server host.
 		private var _host:String = "";
-
 		// remote server port
 		private var _port:uint = 0;
-
 		// keep connect to server after verified, only effect if verified successful.
 		private var _keepConnect:Boolean = false;
-
 		// socket
 		private var sk:Socket;
-
 		private var _verifyType:uint = 0;
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * Name will be used to verify.
 		 */
@@ -161,16 +149,6 @@ package ftk.data
 			return _port;
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * Create an new Certificate object.
-		 */
-		public function Certificate()
-		{
-			super();
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * Verify the connection.
 		 * 
@@ -225,8 +203,6 @@ package ftk.data
 			}
 		}
 
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function setVerified(value:Boolean):void
 		{
 			if (value != _verified)
@@ -285,7 +261,6 @@ package ftk.data
 			}
 		}
 
-		/******************* HANDLER ***************************************************/
 		private function getDataHandler(e:ProgressEvent):void
 		{
 			var data:ByteArray = new ByteArray();

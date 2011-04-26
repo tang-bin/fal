@@ -6,7 +6,7 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.data
 {
@@ -19,42 +19,41 @@ package ftk.data
 	 * @author Tang Bin
 	 * @since 2010.12
 	 */
-	/**
-	 * 
-	 * @author lenovo
-	 */
 	public class Language extends DataModel
 	{
+		/**
+		 * 
+		 * @throws DataError Throw DataError.STATIC_CLASS error when try to
+		 * instance Language object.
+		 * Language is static class, cannot be instanced.
+		 */
+		public function Language()
+		{
+			throw new DataError(DataError.STATIC_CLASS);
+		}
 
-		/******************* OVERRIDE **************************************************/
-		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default OK
 		 */
 		public static var OK:String = "OK";
-
 		/**
 		 * 
 		 * @default Yes
 		 */
 		public static var Yes:String = "Yes";
-
 		/**
 		 * 
 		 * @default No
 		 */
 		public static var No:String = "No";
-
 		/**
 		 * 
 		 * @default Cancel
 		 */
 		public static var cancel:String = "Cancel";
-
 		private static var _type:String = "en";
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -95,19 +94,6 @@ package ftk.data
 			}
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * 
-		 * @throws DataError Throw DataError.STATIC_CLASS error when try to
-		 * instance Language object.
-		 * Language is static class, cannot be instanced.
-		 */
-		public function Language()
-		{
-			throw new DataError(DataError.STATIC_CLASS);
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param type
@@ -129,14 +115,5 @@ package ftk.data
 			}
 			return null;
 		}
-		/******************* PROTECTED *************************************************/
-		
-		
-		
-		/******************* PRIVATE ***************************************************/
-		
-		
-		
-		/******************* PRIVATE ***************************************************/
 	}
 }

@@ -6,7 +6,7 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.data
 {
@@ -15,10 +15,10 @@ package ftk.data
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.utils.Dictionary;
+
 	import ftk.errors.DataError;
 	import ftk.events.LoadEvent;
 	import ftk.utils.StringUtil;
-
 
 	/**
 	 * Dispatched when load config file success.
@@ -80,11 +80,21 @@ package ftk.data
 	 */
 	public class ConfigModel extends DataModel
 	{
+		/**
+		 * 
+		 * @throws DataError
+		 */
+		public function ConfigModel()
+		{
+			super();
+			if (!instanceable)
+			{
+				throw new DataError(DataError.SINGLETON);
+			}
+		}
 
-		/******************* OVERRIDE **************************************************/
 		// SINGELTON
 		private static var instanceable:Boolean = false;
-
 		private static var cm:ConfigModel;
 
 		/**
@@ -102,41 +112,20 @@ package ftk.data
 			return cm;
 		}
 
-		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
 		 */
 		public var res:Dictionary = new Dictionary();
-
 		/**
 		 * 
 		 * @default 
 		 */
 		public var txt:Dictionary = new Dictionary();
-
 		private var loader:URLLoader;
-
 		private var loadQueue:Array = new Array();
-
 		private var attrs:Dictionary = new Dictionary();
 
-		/******************* GETTER and SETTER *****************************************/
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * 
-		 * @throws DataError
-		 */
-		public function ConfigModel()
-		{
-			super();
-			if (!instanceable)
-			{
-				throw new DataError(DataError.SINGLETON);
-			}
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param URL
@@ -157,8 +146,6 @@ package ftk.data
 			return attrs[configName];
 		}
 
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function doLoad(url:String):void
 		{
 			loader = new URLLoader(new URLRequest(url));
@@ -199,7 +186,6 @@ package ftk.data
 			}
 		}
 
-		/******************* PRIVATE ***************************************************/
 		private function loadedHandler(e:Event):void
 		{
 			parseConfig(String(loader.data));

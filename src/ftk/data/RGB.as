@@ -6,7 +6,7 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.data
 {
@@ -20,9 +20,20 @@ package ftk.data
 	 */
 	public class RGB extends DataModel
 	{
+		/**
+		 * Create an new RGB color.
+		 * 
+		 * @param red
+		 * @param green
+		 * @param blue
+		 * @param alpha
+		 */
+		public function RGB(red:uint = 0, green:uint = 0, blue:uint = 0, alpha:Number = 1)
+		{
+			super();
+			setRGB(red, green, blue, alpha);
+		}
 
-		/******************* OVERRIDE **************************************************/
-		/******************* DEFINE ****************************************************/
 		private var _r:uint = 0;
 
 		private var _g:uint = 0;
@@ -31,7 +42,6 @@ package ftk.data
 
 		private var _alpha:Number = 1;
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -143,22 +153,6 @@ package ftk.data
 			b = value & 0xFF;
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * Create an new RGB color.
-		 * 
-		 * @param red
-		 * @param green
-		 * @param blue
-		 * @param alpha
-		 */
-		public function RGB(red:uint = 0, green:uint = 0, blue:uint = 0, alpha:Number = 1)
-		{
-			super();
-			setRGB(red, green, blue, alpha);
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param red
@@ -173,14 +167,5 @@ package ftk.data
 			b = blue;
 			this.alpha = alpha;
 		}
-		/******************* PROTECTED *************************************************/
-		
-		
-		
-		/******************* PRIVATE ***************************************************/
-		
-		
-		
-		/******************* PRIVATE ***************************************************/
 	}
 }

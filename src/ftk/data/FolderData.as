@@ -6,13 +6,13 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.data
 {
 	import flash.utils.Dictionary;
 	import ftk.errors.DataError;
-	import ftk.ui.glazes.Image;
+	import ftk.graphs.Image;
 
 
 	/**
@@ -23,9 +23,14 @@ package ftk.data
 	 */
 	public class FolderData extends DataModel
 	{
+		/**
+		 * Create an new FolderData.
+		 */
+		public function FolderData()
+		{
+			super();
+		}
 
-		/******************* OVERRIDE **************************************************/
-		/******************* DEFINE ****************************************************/
 		private var _name:String = "";
 
 		private var _path:String = "";
@@ -46,7 +51,6 @@ package ftk.data
 
 		private var _currentSelected:Dictionary = new Dictionary();
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * folder's name
 		 */
@@ -175,16 +179,6 @@ package ftk.data
 			// TODO:
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * Create an new FolderData.
-		 */
-		public function FolderData()
-		{
-			super();
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * Add a file into folder.(data operate)
 		 * 
@@ -272,8 +266,6 @@ package ftk.data
 			}
 		}
 
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function removeFileName(fileName:String):void
 		{
 			for (var i:uint = fileNames.length ; --i >= 0 ; )
@@ -285,6 +277,5 @@ package ftk.data
 				}
 			}
 		}
-		/******************* PRIVATE ***************************************************/
 	}
 }

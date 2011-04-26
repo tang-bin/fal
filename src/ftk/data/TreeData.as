@@ -6,15 +6,15 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.data
 {
 	import flash.utils.Dictionary;
+
 	import ftk.errors.DataError;
 	import ftk.events.DataEvent;
 	import ftk.utils.StringUtil;
-
 
 	/**
 	 * TreeData defines the data model for tree and list.
@@ -24,9 +24,15 @@ package ftk.data
 	 */
 	public class TreeData extends DataModel
 	{
+		/**
+		 * Create an new TreeData object.
+		 */
+		public function TreeData()
+		{
+			super();
+			clean();
+		}
 
-		/******************* OVERRIDE **************************************************/
-		/******************* DEFINE ****************************************************/
 		/**
 		 * The toString() method for each node object. 
 		 * It will be called when convert node to XML string.
@@ -54,7 +60,6 @@ package ftk.data
 
 		private var _xml:XML;
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * Root data object
 		 */
@@ -104,17 +109,6 @@ package ftk.data
 			}
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * Create an new TreeData object.
-		 */
-		public function TreeData()
-		{
-			super();
-			clean();
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * add an new node to tree.
 		 * 
@@ -526,7 +520,6 @@ package ftk.data
 			this.dispatchEvent(ee);
 		}
 
-		/******************* PROTECTED *************************************************/
 		/**
 		 * 
 		 * @param node
@@ -537,7 +530,6 @@ package ftk.data
 			return nodes[node] || node == _root.data;
 		}
 
-		/******************* PRIVATE ***************************************************/
 		private function getNodeByData(data:Object):NodeData
 		{
 			if (data == null) return null;
@@ -706,12 +698,10 @@ package ftk.data
 				return null;
 			}
 		}
-		/******************* PRIVATE ***************************************************/
 	}
 }
 class NodeData
 {
-
 	// node's data object.
 	public var data:Object;
 

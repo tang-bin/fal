@@ -6,13 +6,13 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.data
 {
 	import flash.utils.Dictionary;
-	import ftk.errors.DataError;
 
+	import ftk.errors.DataError;
 
 	/**
 	 * FileTypeModel use singleton model, defines all file types used in this library.
@@ -23,8 +23,23 @@ package ftk.data
 	 */
 	public class FileTypeModel extends DataModel
 	{
+		/**
+		 * 
+		 * @throws DataError
+		 */
+		public function FileTypeModel()
+		{
+			super();
+			if (!instanceable)
+			{
+				throw new DataError(DataError.SINGLETON);
+			}
+			else
+			{
+				registerDefaultTypes();
+			}
+		}
 
-		/******************* SINGLETON **************************************************/
 		private static var ft:FileTypeModel;
 
 		private static var instanceable:Boolean = false;
@@ -44,30 +59,8 @@ package ftk.data
 			return ft;
 		}
 
-		/******************* OVERRIDE **************************************************/
-		/******************* DEFINE ****************************************************/
 		private var list:Dictionary = new Dictionary();
 
-		/******************* GETTER and SETTER *****************************************/
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * 
-		 * @throws DataError
-		 */
-		public function FileTypeModel()
-		{
-			super();
-			if (!instanceable)
-			{
-				throw new DataError(DataError.SINGLETON);
-			}
-			else
-			{
-				registerDefaultTypes();
-			}
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * Register an new file type.
 		 * 
@@ -126,8 +119,6 @@ package ftk.data
 			return list[ext.toLowerCase()] != null;
 		}
 
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function registerDefaultTypes():void
 		{
 			this.registerType(new FileType("txt", "", IconModel.instance.docIcon));
@@ -139,6 +130,5 @@ package ftk.data
 			this.registerType(new FileType("avi", "", IconModel.instance.videoIcon));
 			this.registerType(new FileType("mpg", "", IconModel.instance.videoIcon));
 		}
-		/******************* PRIVATE ***************************************************/
 	}
 }

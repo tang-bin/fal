@@ -6,14 +6,14 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.test.tester
 {
 	import flash.events.MouseEvent;
-	import ftk.ui.control.Button;
-	import ftk.ui.control.Container;
-	import ftk.ui.control.TextArea;
+	import ftk.controls.Button;
+	import ftk.controls.TextArea;
+	import ftk.layout.Container;
 
 
 	/**

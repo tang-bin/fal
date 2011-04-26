@@ -6,7 +6,7 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.net
 {
@@ -16,9 +16,9 @@ package ftk.net
 	import flash.events.IOErrorEvent;
 	import flash.events.ProgressEvent;
 	import flash.net.URLRequest;
+
 	import ftk.data.DataModel;
 	import ftk.events.LoadEvent;
-
 
 	/**
 	 * This class is used to load a image file.
@@ -28,9 +28,20 @@ package ftk.net
 	 */
 	public class BitmapLoader extends DataModel
 	{
+		/**
+		 * Create a new BitmapLoader.
+		 * 
+		 * @param URL Image file URL.
+		 */
+		public function BitmapLoader(URL:String, loadAtStart:Boolean = true)
+		{
+			_url = URL;
+			if (loadAtStart)
+			{
+				doLoad();
+			}
+		}
 
-		/******************* OVERRIDE **************************************************/
-		/******************* DEFINE ****************************************************/
 		private var loader:Loader;
 
 		private var _url:String;
@@ -41,8 +52,6 @@ package ftk.net
 
 		private var _percent:Number = 0;
 
-		/******************* DEFINE ****************************************************/
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * File is loaded or not.
 		 */
@@ -79,22 +88,6 @@ package ftk.net
 			return null;
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * Create a new BitmapLoader.
-		 * 
-		 * @param URL Image file URL.
-		 */
-		public function BitmapLoader(URL:String, loadAtStart:Boolean = true)
-		{
-			_url = URL;
-			if (loadAtStart)
-			{
-				doLoad();
-			}
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * Change current image file URL and reload.
 		 * 
@@ -116,8 +109,6 @@ package ftk.net
 			doLoad();
 		}
 
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function doLoad():void
 		{
 			if (_url != null)
@@ -168,6 +159,5 @@ package ftk.net
 			_percent = newE.loadedRate;
 			this.dispatchEvent(newE);
 		}
-		/******************* PRIVATE ***************************************************/
 	}
 }

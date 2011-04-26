@@ -6,14 +6,14 @@
 // \__ |     |__|___|  (____  /____/___  /____/\___  /
 // \/             \/     \/         \/     /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.data
 {
 	import flash.utils.Dictionary;
 	import flash.utils.getTimer;
-	import ftk.errors.DataError;
 
+	import ftk.errors.DataError;
 
 	/**
 	 * TimeLog is used to save logs during runtime order by time.
@@ -23,8 +23,18 @@ package ftk.data
 	 */
 	public class TimeLog
 	{
+		/**
+		 * 
+		 * @throws DataError
+		 */
+		public function TimeLog()
+		{
+			if (!instanceable)
+			{
+				throw new DataError(DataError.SINGLETON);
+			}
+		}
 
-		// SINGLETON
 		private static var tl:TimeLog;
 
 		private static var instanceable:Boolean = false;
@@ -44,27 +54,10 @@ package ftk.data
 			return tl;
 		}
 
-		/******************* OVERRIDE **************************************************/
-		/******************* DEFINE ****************************************************/
 		private var logList:Array = new Array();
 
 		private var consLogList:Dictionary = new Dictionary();
 
-		/******************* GETTER and SETTER *****************************************/
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * 
-		 * @throws DataError
-		 */
-		public function TimeLog()
-		{
-			if (!instanceable)
-			{
-				throw new DataError(DataError.SINGLETON);
-			}
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param txt
@@ -179,20 +172,10 @@ package ftk.data
 			logList = new Array();
 			consLogList = new Dictionary();
 		}
-		/******************* PROTECTED *************************************************/
-		
-		
-		
-		/******************* PRIVATE ***************************************************/
-		
-		
-		
-		/******************* PRIVATE ***************************************************/
 	}
 }
 class LogData
 {
-
 	/**
 	 * 
 	 * @default 

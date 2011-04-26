@@ -6,12 +6,12 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.data
 {
+	import ftk.controls.Icon;
 	import ftk.errors.DataError;
-	import ftk.ui.control.Icon;
 
 	/**
 	 * IconModel defines default icons used in this library.
@@ -21,8 +21,22 @@ package ftk.data
 	 */
 	public class IconModel extends DataModel
 	{
+		/**
+		 * @throws DataError
+		 */
+		public function IconModel()
+		{
+			super();
+			if (!instanceable)
+			{
+				throw new DataError(DataError.SINGLETON);
+			}
+			else
+			{
+				setDefaultIcons();
+			}
+		}
 
-		/******************* OVERRIDE **************************************************/
 		// SINGTON
 		private static var icons:IconModel;
 
@@ -43,7 +57,6 @@ package ftk.data
 			return icons;
 		}
 
-		/******************* DEFINE ****************************************************/
 		[Embed(source="/resources/icons/folder_128.png")]
 		private var folder128:Class;
 
@@ -102,7 +115,6 @@ package ftk.data
 
 		private var _unknowIcon:Icon;
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -213,26 +225,6 @@ package ftk.data
 			}
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * @throws DataError
-		 */
-		public function IconModel()
-		{
-			super();
-			if (!instanceable)
-			{
-				throw new DataError(DataError.SINGLETON);
-			}
-			else
-			{
-				setDefaultIcons();
-			}
-		}
-
-		/******************* PUBLIC ****************************************************/
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function setDefaultIcons():void
 		{
 			_folderIcon = new Icon();
@@ -259,6 +251,5 @@ package ftk.data
 			_videoIcon.addImage(new video32(), Icon.ICON_32);
 			_videoIcon.addImage(new video16(), Icon.ICON_16);
 		}
-		/******************* PRIVATE ***************************************************/
 	}
 }

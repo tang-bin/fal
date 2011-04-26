@@ -6,12 +6,11 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.events
 {
 	import flash.events.Event;
-
 
 	/**
 	 * Event class for net operations. mostly are load files and connect to server.
@@ -21,7 +20,6 @@ package ftk.events
 	 */
 	public class LoadEvent extends Event
 	{
-
 		/* event for load */
 		/**
 		 * @eventType loadSuccess

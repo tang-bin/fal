@@ -6,12 +6,12 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.test.tester
 {
-	import ftk.ui.control.Container;
-	import ftk.ui.layout.Grid;
+	import ftk.layout.Container;
+	import ftk.layout.Grid;
 
 	/**
 	 * BasicTest
@@ -21,13 +21,6 @@ package ftk.test.tester
 	 */
 	public class BasicTest extends Container
 	{
-
-		/******************* OVERRIDE **************************************************/
-		/******************* DEFINE ****************************************************/
-		private var grid:Grid;
-
-		/******************* GETTER and SETTER *****************************************/
-		/******************* CONSTRUCTOR ***********************************************/
 		public function BasicTest()
 		{
 			super();
@@ -40,18 +33,7 @@ package ftk.test.tester
 			grid.rebuild();
 			trace(grid.width, grid.height);
 		}
-		/******************* PUBLIC ****************************************************/
-		
-		
-		
-		/******************* PROTECTED *************************************************/
-		
-		
-		
-		/******************* PRIVATE ***************************************************/
-		
-		
-		
-		/******************* PRIVATE ***************************************************/
+
+		private var grid:Grid;
 	}
 }

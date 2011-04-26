@@ -6,15 +6,15 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.test
 {
+	import ftk.navigate.AppRoot;
+	import ftk.navigate.NavigateTab;
 	import ftk.test.tester.BasicTest;
 	import ftk.test.tester.FreeTester;
 	import ftk.test.tester.InputTest;
-	import ftk.ui.navigate.AppRoot;
-	import ftk.ui.navigate.NavigateTab;
 
 	public class Tester extends AppRoot
 	{

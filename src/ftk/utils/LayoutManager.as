@@ -6,7 +6,7 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.utils
 {
@@ -14,7 +14,7 @@ package ftk.utils
 	import flash.display.DisplayObjectContainer;
 	import flash.utils.Dictionary;
 	import ftk.errors.DataError;
-	import ftk.ui.style.LayoutStyle;
+	import ftk.style.LayoutStyle;
 
 
 	/**

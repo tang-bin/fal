@@ -6,12 +6,12 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.events
 {
 	import flash.events.Event;
-	import ftk.utils.motion.Motion;
+	import ftk.motion.Motion;
 
 
 	/**
@@ -22,7 +22,6 @@ package ftk.events
 	 */
 	public class MotionEvent extends Event
 	{
-
 		/**
 		 * Trigger handler when moving object.
 		 * 

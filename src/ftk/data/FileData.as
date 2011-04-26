@@ -6,7 +6,7 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.data
 {
@@ -18,8 +18,19 @@ package ftk.data
 	 */
 	public class FileData extends DataModel
 	{
+		/**
+		 * Create an new FileData.
+		 * 
+		 * @param type File's type.
+		 */
+		public function FileData(type:FileType)
+		{
+			super();
+			this._type = type;
+			_createDate = new Date();
+			_lastModifyDate = new Date();
+		}
 
-		/******************* OVERRIDE **************************************************/
 		/**
 		 * 
 		 * @return 
@@ -30,7 +41,6 @@ package ftk.data
 			return str;
 		}
 
-		/******************* DEFINE ****************************************************/
 		private var _uid:String = "0";
 
 		private var _isDir:Boolean = false;
@@ -45,7 +55,6 @@ package ftk.data
 
 		private var _type:FileType;
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * File's extension.
 		 */
@@ -127,23 +136,5 @@ package ftk.data
 				this.dispatchChangeData("lastModifyTime", oldValue, value);
 			}
 		}
-
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * Create an new FileData.
-		 * 
-		 * @param type File's type.
-		 */
-		public function FileData(type:FileType)
-		{
-			super();
-			this._type = type;
-			_createDate = new Date();
-			_lastModifyDate = new Date();
-		}
-		/******************* PUBLIC ****************************************************/
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
-		/******************* HANDLER ***************************************************/
 	}
 }

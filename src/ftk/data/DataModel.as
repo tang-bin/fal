@@ -6,7 +6,7 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.data
 {
@@ -15,8 +15,8 @@ package ftk.data
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
 	import flash.utils.getQualifiedClassName;
-	import ftk.events.DataEvent;
 
+	import ftk.events.DataEvent;
 
 	/**
 	 * DataModel can be used as the base class for data objects.
@@ -26,7 +26,14 @@ package ftk.data
 	 */
 	public class DataModel extends Proxy
 	{
-		/******************* OVERRIDE **************************************************/
+		/**
+		 * 
+		 */
+		public function DataModel()
+		{
+			super();
+		}
+
 		override flash_proxy function getProperty(name:*):*
 		{
 			return data[name];
@@ -41,21 +48,10 @@ package ftk.data
 			this.dispatchEvent(ee);
 		}
 
-		/******************* DEFINE ****************************************************/
 		private var dispatcher:EventDispatcher = new EventDispatcher();
+
 		private var data:Object = new Object();
 
-		/******************* GETTER and SETTER *****************************************/
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * 
-		 */
-		public function DataModel()
-		{
-			super();
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * @param type
 		 * @param listener
@@ -97,7 +93,6 @@ package ftk.data
 			return flash.utils.getQualifiedClassName(this);
 		}
 
-		/******************* PROTECTED *************************************************/
 		/**
 		 * Dispatch change data event.
 		 * 
@@ -113,6 +108,5 @@ package ftk.data
 			ee.dataName = name;
 			this.dispatchEvent(ee);
 		}
-		/******************* PRIVATE ***************************************************/
 	}
 }

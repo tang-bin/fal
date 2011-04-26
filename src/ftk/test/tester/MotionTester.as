@@ -6,7 +6,7 @@
 // \__ |     |__|___|  (____  /____/___  /____/\___  /
 // \/             \/     \/         \/     /_____/
 // Flex ToolKits by Finalbug
-// http://www.finalbug.org
+// http://www.finalbug.org/projects/ftk
 // ##############################################################################
 // **********************************************************
 // * __________.__              .__ ___.
@@ -16,18 +16,18 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.test.tester
 {
 	import flash.events.MouseEvent;
+	import ftk.controls.Button;
+	import ftk.controls.UIControl;
+	import ftk.core.Bin;
 	import ftk.events.MotionEvent;
-	import ftk.ui.Bin;
-	import ftk.ui.control.Button;
-	import ftk.ui.control.UIObject;
-	import ftk.utils.motion.FadeMotion;
-	import ftk.utils.motion.MotionQueue;
-	import ftk.utils.motion.MoveMotion;
+	import ftk.motion.FadeMotion;
+	import ftk.motion.MotionQueue;
+	import ftk.motion.MoveMotion;
 
 
 	/**
@@ -36,7 +36,7 @@ package ftk.test.tester
 	 * @author Tang Bin
 	 * @since 2010.08
 	 */
-	public class MotionTester extends UIObject
+	public class MotionTester extends UIControl
 	{
 
 		/****************************************

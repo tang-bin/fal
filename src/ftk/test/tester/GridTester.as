@@ -6,16 +6,15 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.test.tester
 {
-	import ftk.ui.control.Container;
-	import ftk.ui.layout.Grid;
+	import ftk.layout.Container;
+	import ftk.layout.Grid;
 
 	public class GridTester extends Container
 	{
-
 		private var gd:Grid;
 
 		public function GridTester()

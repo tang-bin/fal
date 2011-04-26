@@ -6,7 +6,7 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.data
 {
@@ -20,9 +20,21 @@ package ftk.data
 	 */
 	public class CubeData
 	{
+		/**
+		 * Create a new Cubu data.
+		 *
+		 * @param color Cube's color
+		 * @param width Cube's width
+		 * @param height Cube's height
+		 * @param thickness Cube's thickness
+		 * @param lean Cube's lean type. default value CubeData.LEAN_LEFT
+		 * @param border Show Cube's border or not.
+		 */
+		public function CubeData()
+		{
+			accountColor();
+		}
 
-		/******************* OVERRIDE **************************************************/
-		/******************* DEFINE ****************************************************/
 		/**
 		 * cube's shadow lean to left.
 		 */
@@ -36,37 +48,36 @@ package ftk.data
 		/**
 		 * width of cube
 		 */
-		public var width:Number;
+		public var width:Number = 300;
 
 		/**
 		 * height of cube
 		 */
-		public var height:Number;
+		public var height:Number = 400;
 
 		/**
 		 * thickness of cube
 		 */
-		public var thickness:Number;
+		public var thickness:Number = 30;
 
 		/**
 		 * which side the cube lean to, can be CubuData.LEAN_LEFT or CubuData.LEAN_RIGHT.
 		 */
-		public var lean:String;
+		public var lean:String = "";
 
 		/**
 		 * show cube's border or not.
 		 */
 		public var border:Boolean = false;
 
-		private var _color:uint;
+		private var _color:uint = 0x990000;
 
-		private var _topColor:uint;
+		private var _topColor:uint = 0x990000;
 
-		private var _sideColor:uint;
+		private var _sideColor:uint = 0x990000;
 
-		private var _frontColor:uint;
+		private var _frontColor:uint = 0x990000;
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * @default 0xFF0000
 		 */
@@ -111,37 +122,6 @@ package ftk.data
 			return _frontColor;
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * Create a new Cubu data.
-		 *
-		 * @param color Cube's color
-		 * @param width Cube's width
-		 * @param height Cube's height
-		 * @param thickness Cube's thickness
-		 * @param lean Cube's lean type. default value CubeData.LEAN_LEFT
-		 * @param border Show Cube's border or not.
-		 */
-		public function CubeData(color:uint = 0xFF0000,
-									width:Number = 300,
-									height:Number = 400,
-									thickness:Number = 30,
-									lean:String = "",
-									border:Boolean = false)
-		{
-			this._color = color;
-			this.width = width;
-			this.height = height;
-			this.thickness = thickness;
-			this.lean = lean == LEAN_RIGHT ? LEAN_RIGHT : LEAN_LEFT;
-			this.border = border;
-			//
-			accountColor();
-		}
-
-		/******************* PUBLIC ****************************************************/
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		/**
 		 * account 3 side color values from one single color.
 		 */
@@ -151,6 +131,5 @@ package ftk.data
 			_frontColor = ColorUtil.offsetColor(_color, -50);
 			_sideColor = ColorUtil.offsetColor(_color, 50);
 		}
-		/******************* PRIVATE ***************************************************/
 	}
 }

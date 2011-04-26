@@ -6,7 +6,7 @@
 // *  \__|     |__|___|__(______/____/_____/____/\___  /
 // *                                            /_____/
 // * Flex ToolKits by Finalbug
-// * http://www.finalbug.org
+// * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.data
 {
@@ -15,9 +15,9 @@ package ftk.data
 	import flash.utils.Dictionary;
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
+
 	import ftk.errors.DataError;
 	import ftk.events.DataEvent;
-
 
 	/**
 	 * <p>SharedData is a collection of number, string, boolean, SharedData, byteArray and TreeModel.</p>
@@ -40,8 +40,14 @@ package ftk.data
 	 */
 	public class SharedData extends Proxy
 	{
+		/**
+		 * Create an new sharedData object.
+		 */
+		public function SharedData()
+		{
+			super();
+		}
 
-		/******************* OVERRIDE **************************************************/
 		/**
 		 * Get property of sharedData object.
 		 */
@@ -63,7 +69,6 @@ package ftk.data
 			// nothing need to be done here.
 		}
 
-		/******************* DEFINE ****************************************************/
 		// sharedData's parent.
 		private var _parent:SharedData;
 
@@ -80,7 +85,6 @@ package ftk.data
 
 		private var _remotePath:String;
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * SharedData object's parent.
 		 */
@@ -141,16 +145,6 @@ package ftk.data
 			return path;
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * Create an new sharedData object.
-		 */
-		public function SharedData()
-		{
-			super();
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * Add new event listener to this shared data object.
 		 * Different with other addEventListener(), this method has a argument named "level".
@@ -306,8 +300,6 @@ package ftk.data
 			}
 		}
 
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function checkData(data:*):Boolean
 		{
 			if (data is Number || data is String || data is Boolean || data is ByteArray || data is SharedData || data is TreeData)
@@ -329,6 +321,5 @@ package ftk.data
 			}
 			return sd;
 		}
-		/******************* PRIVATE ***************************************************/
 	}
 }
