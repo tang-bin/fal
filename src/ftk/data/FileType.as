@@ -10,7 +10,7 @@
 // **********************************************************
 package ftk.data
 {
-	import ftk.controls.Icon;
+	import ftk.display.Icon;
 
 	/**
 	 * FileType defines file's type.

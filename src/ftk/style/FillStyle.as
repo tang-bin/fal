@@ -10,6 +10,9 @@
 // **********************************************************
 package ftk.style
 {
+	import ftk.utils.DataUtil;
+	import ftk.utils.MathUtil;
+
 	import flash.display.DisplayObject;
 	import flash.display.GradientType;
 	import flash.display.Graphics;
@@ -17,9 +20,6 @@ package ftk.style
 	import flash.filters.GlowFilter;
 	import flash.geom.Matrix;
 	import flash.utils.Dictionary;
-
-	import ftk.utils.DataUtil;
-	import ftk.utils.MathUtil;
 
 	/**
 	 * FillStyle

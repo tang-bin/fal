@@ -12,7 +12,7 @@ package ftk.test
 {
 	import ftk.navigate.AppRoot;
 	import ftk.navigate.NavigateTab;
-	import ftk.test.tester.BasicTest;
+	import ftk.test.tester.ControlsTest;
 	import ftk.test.tester.FreeTester;
 	import ftk.test.tester.InputTest;
 
@@ -27,7 +27,7 @@ package ftk.test
 			this.addAll(tabs);
 			//
 			tabs.addTab("Free", new FreeTester());
-			tabs.addTab("BasicBasicBasic", new BasicTest());
+			tabs.addTab("Controls", new ControlsTest());
 			tabs.addTab("Inputs", new InputTest());
 		}
 	}

@@ -11,8 +11,8 @@
 package ftk.controls
 {
 	import flash.text.TextField;
-	import ftk.graphs.Flat;
 
+	import ftk.graphs.Flat;
 
 	/**
 	 * StepBar
@@ -22,8 +22,6 @@ package ftk.controls
 	 */
 	public class StepBar extends UIControl
 	{
-
-		/******************* CONSTRUCTOR ***********************************************/
 		/**
 		 * 
 		 */
@@ -31,7 +29,6 @@ package ftk.controls
 		{
 		}
 
-		/******************* OVERRIDE **************************************************/
 		override protected function callAtAdded():void
 		{
 			bg = new Flat();
@@ -41,7 +38,6 @@ package ftk.controls
 			tipTxt = new TextField();
 		}
 
-		/******************* DEFINE ****************************************************/
 		private var bg:Flat;
 
 		private var slider:Flat;
@@ -51,20 +47,5 @@ package ftk.controls
 		private var toTxt:Label;
 
 		private var tipTxt:TextField;
-		/******************* GETTER and SETTER *****************************************/
-		
-		/******************* PUBLIC ****************************************************/
-		
-		
-		
-		/******************* PROTECTED *************************************************/
-		
-		
-		
-		/******************* PRIVATE ***************************************************/
-		
-		
-		
-		/******************* PRIVATE ***************************************************/
 	}
 }

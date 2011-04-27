@@ -10,19 +10,19 @@
 // **********************************************************
 package ftk.widgets
 {
-	import ftk.controls.Icon;
+	import flash.text.TextFormat;
 	import ftk.controls.Label;
 	import ftk.data.FileData;
 	import ftk.data.FileType;
 	import ftk.data.FileTypeModel;
 	import ftk.data.IconModel;
 	import ftk.data.Position;
+	import ftk.display.Icon;
 	import ftk.errors.DataError;
 	import ftk.layout.Container;
 	import ftk.style.Style;
 	import ftk.utils.DataUtil;
 
-	import flash.text.TextFormat;
 
 	/**
 	 * FolderItem

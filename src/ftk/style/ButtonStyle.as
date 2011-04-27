@@ -27,11 +27,11 @@ package ftk.style
 			with(this.normalFillStyle)
 			{
 				bgAlphas = [1, 1];
-				bgColors = [0x990000, 0x000000];
+				bgColors = [0x990000, 0x660000];
 				useGradient = true;
 				bgRotation = 90;
-				radius = 4;
-				glowAlpha = 0.5;
+				radius = 3;
+				glowAlpha = 0.4;
 				glowColor = 0x000000;
 			}
 			with(this.normalTextFormat)

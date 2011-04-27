@@ -19,19 +19,17 @@ package ftk.test.tester
 	 * @author Tang Bin
 	 * @since 2011.01
 	 */
-	public class BasicTest extends Container
+	public class ControlsTest extends Container
 	{
-		public function BasicTest()
+		public function ControlsTest()
 		{
 			super();
 			//
 			grid = new Grid();
 			grid.percentHeight = grid.percentWidth = 1;
 			this.addAll(grid);
-			grid.rows = ["30%", "30%", "40%"];
-			grid.columns = ["30%", "30%", "40%"];
+			grid.rowNumber = grid.columnNumber = 5;
 			grid.rebuild();
-			trace(grid.width, grid.height);
 		}
 
 		private var grid:Grid;

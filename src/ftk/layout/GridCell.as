@@ -10,6 +10,7 @@
 // **********************************************************
 package ftk.layout
 {
+	import flash.display.Sprite;
 
 	/**
 	 * GridCell is the cell used in class Grid.
@@ -19,9 +20,18 @@ package ftk.layout
 	 */
 	public class GridCell extends Container
 	{
+		/**
+		 * Create an new GridCell.
+		 */
+		public function GridCell()
+		{
+			super();
+			this.backgroundColor = 0xFFFFFF;
+			this.backgroundAlpha = 1;
+			this.borderColor = 0x333333;
+			this.borderAlpha = 0;
+		}
 
-		/******************* OVERRIDE **************************************************/
-		/******************* DEFINE ****************************************************/
 		/**
 		 * The column index of cell.
 		 * 
@@ -43,21 +53,6 @@ package ftk.layout
 		 */
 		internal var updated:Boolean = false;
 
-		/******************* GETTER and SETTER *****************************************/
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * Create an new GridCell.
-		 */
-		public function GridCell()
-		{
-			super();
-			this.backgroundColor = 0xFF9900;
-			this.backgroundAlpha = 1;
-			this.borderColor = 0x333333;
-			this.borderAlpha = 1;
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * Reset cell's position by x, y, width and height values.
 		 * 
@@ -70,8 +65,5 @@ package ftk.layout
 		{
 			this.layoutStyle.setNormalStyle(x, y, width, height);
 		}
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
-		/******************* PRIVATE ***************************************************/
 	}
 }

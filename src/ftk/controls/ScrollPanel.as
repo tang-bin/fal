@@ -10,13 +10,13 @@
 // **********************************************************
 package ftk.controls
 {
-	import flash.display.Sprite;
-	import flash.events.MouseEvent;
-	import flash.geom.Rectangle;
 	import ftk.events.UIEvent;
 	import ftk.style.ScrollBoxStyle;
 	import ftk.utils.DrawUtil;
-	
+
+	import flash.display.Sprite;
+	import flash.events.MouseEvent;
+	import flash.geom.Rectangle;
 
 	/**
 	 * This class create a panel with scrollbar x and y.
@@ -26,8 +26,27 @@ package ftk.controls
 	 */
 	public class ScrollPanel extends ScrollBox
 	{
+		/**
+		 * Create a new ScrollPanel object.
+		 */
+		public function ScrollPanel(xScroll:Boolean = true, yScroll:Boolean = true, style:ScrollBoxStyle = null)
+		{
+			super(xScroll, yScroll, style);
+			masker = new Sprite();
+			masker.mouseChildren = masker.mouseChildren = false;
+			DrawUtil.drawBlock(masker.graphics);
+			box = new Sprite();
+			// draw a invisible point at (0, 0) to make box count size for (0, 0) point.
+			box.graphics.beginFill(0, 0);
+			box.graphics.drawRect(0, 0, 1, 1);
+			box.graphics.endFill();
+			//
+			box.mask = masker;
+			this.addAll(box, masker);
+			//
+			box.addEventListener(MouseEvent.MOUSE_DOWN, pressContainerHandler);
+		}
 
-		/******************* OVERRIDE **************************************************/
 		override public function set xScrollEnabled(value:Boolean):void
 		{
 			super.xScrollEnabled = value;
@@ -81,14 +100,12 @@ package ftk.controls
 			box.y = - pos * (box.height - masker.height);
 		}
 
-		/******************* DEFINE ****************************************************/
 		private var masker:Sprite;
 
 		private var _dragable:Boolean = true;
 
 		private var box:Sprite;
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * if the container can be dragged and moved.
 		 */
@@ -115,31 +132,6 @@ package ftk.controls
 			return box;
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * Create a new ScrollPanel object.
-		 */
-		public function ScrollPanel(xScroll:Boolean = true, yScroll:Boolean = true, style:ScrollBoxStyle = null)
-		{
-			super(xScroll, yScroll, style);
-			masker = new Sprite();
-			masker.mouseChildren = masker.mouseChildren = false;
-			DrawUtil.drawBlock(masker.graphics);
-			box = new Sprite();
-			// draw a invisible point at (0, 0) to make box count size for (0, 0) point.
-			box.graphics.beginFill(0, 0);
-			box.graphics.drawRect(0, 0, 1, 1);
-			box.graphics.endFill();
-			//
-			box.mask = masker;
-			this.addAll(box, masker);
-			//
-			box.addEventListener(MouseEvent.MOUSE_DOWN, pressContainerHandler);
-		}
-
-		/******************* PUBLIC ****************************************************/
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function resetScroll():void
 		{
 			//
@@ -166,7 +158,6 @@ package ftk.controls
 			}
 		}
 
-		/******************* PRIVATE ***************************************************/
 		/**
 		 * invoked when press container.
 		 * if enable drag container, set drag events here.

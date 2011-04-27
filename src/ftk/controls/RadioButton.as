@@ -10,8 +10,6 @@
 // **********************************************************
 package ftk.controls
 {
-	import flash.display.Shape;
-	import flash.events.MouseEvent;
 	import ftk.data.Position;
 	import ftk.data.Status;
 	import ftk.events.DataEvent;
@@ -19,6 +17,9 @@ package ftk.controls
 	import ftk.style.RadioButtonStyle;
 	import ftk.style.UIStyle;
 	import ftk.utils.DrawUtil;
+
+	import flash.display.Shape;
+	import flash.events.MouseEvent;
 
 
 
@@ -72,7 +73,6 @@ package ftk.controls
 			this.status = Status.NORMAL;
 		}
 
-		/******************* OVERRIDE **************************************************/
 		override public function set status(value:String):void
 		{
 			if (this.selected)
@@ -148,7 +148,6 @@ package ftk.controls
 			}
 		}
 
-		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -177,7 +176,6 @@ package ftk.controls
 
 		private var bg:Shape;
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * label string
 		 */
@@ -254,7 +252,6 @@ package ftk.controls
 			}
 		}
 
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * get selected radiobutton by groupName.
 		 * 
@@ -276,8 +273,6 @@ package ftk.controls
 			return null;
 		}
 
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function unselectedGroup():void
 		{
 			for each (var btn:RadioButton in RadioButton.groupList[_group])
@@ -289,7 +284,6 @@ package ftk.controls
 			}
 		}
 
-		/******************* PRIVATE ***************************************************/
 		private function clickBoxHandler(e:MouseEvent):void
 		{
 			if (!_selected)

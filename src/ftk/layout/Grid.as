@@ -21,15 +21,20 @@ package ftk.layout
 	 */
 	public class Grid extends Container
 	{
+		/**
+		 * Create an new Grid.
+		 */
+		public function Grid()
+		{
+			super();
+		}
 
-		/******************* OVERRIDE **************************************************/
 		override protected function updateSize():void
 		{
 			super.updateSize();
 			rebuild();
 		}
 
-		/******************* DEFINE ****************************************************/
 		/**
 		 * rows contains the size of each row.
 		 * each item should be a number(pixel value) or percent string(like "50%").
@@ -46,18 +51,44 @@ package ftk.layout
 		 */
 		public var columns:Array = new Array();
 
+		public var minCellWidth:Number = 10;
+
+		public var minCellHeight:Number = 10;
+
 		// cells is a 2D array contains all GridCell objects
 		// cells[row][column] = GridCell object.
 		private var cells:Array = new Array();
 
-		/******************* GETTER and SETTER *****************************************/
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * Create an new Grid.
-		 */
-		public function Grid()
+		private var cellWidths:Array;
+
+		private var cellHeights:Array;
+
+		public function get rowNumber():uint
 		{
-			super();
+			return rows.length;
+		}
+
+		public function set rowNumber(value:uint):void
+		{
+			rows = new Array();
+			for (var i:uint = 0 ; i < value ; i++)
+			{
+				rows.push("");
+			}
+		}
+
+		public function get columnNumber():uint
+		{
+			return columns.length;
+		}
+
+		public function set columnNumber(value:uint):void
+		{
+			columns = new Array();
+			for (var i:uint = 0 ; i < value ; i++)
+			{
+				columns.push("");
+			}
 		}
 
 		/**
@@ -72,7 +103,6 @@ package ftk.layout
 			return cells[row][column];
 		}
 
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * Rebuild cells.
 		 * This method should be call after rows and columns value have be set.
@@ -84,6 +114,7 @@ package ftk.layout
 		 */
 		public function rebuild(doPack:Boolean = false):void
 		{
+			countWidthAndHeight();
 			var currentX:Number = 0;
 			var currentY:Number = 0;
 			var cellWidth:Number = 0;
@@ -96,12 +127,12 @@ package ftk.layout
 				{
 					cells[yIndex] = new Array();
 				}
-				cellHeight = getCellHeight(yIndex);
+				cellHeight = cellHeights[yIndex];
 				//
 				var colNum:uint = columns.length;
 				for (var xIndex:uint = 0 ; xIndex < colNum ; xIndex++)
 				{
-					cellWidth = getCellWidth(xIndex);
+					cellWidth = cellWidths[xIndex];
 					// create and add cell into grid if not exist.
 					if (cells[yIndex][xIndex] == null)
 					{
@@ -151,8 +182,75 @@ package ftk.layout
 			if (doPack) this.pack();
 		}
 
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
+		private function countWidthAndHeight():void
+		{
+			cellWidths = new Array();
+			var cols:uint = columns.length;
+			var fixWidth:Number = 0;
+			var emptyWidthIndexes:Array = new Array();
+			for (var xIndex:uint = 0 ; xIndex < cols ; xIndex++)
+			{
+				var newWidth:Number = getCellWidth(xIndex);
+				cellWidths.push(newWidth);
+				if (newWidth > 0)
+				{
+					fixWidth += newWidth;
+				}
+				else
+				{
+					emptyWidthIndexes.push(xIndex);
+				}
+			}
+			var emptyWidthCount:uint = emptyWidthIndexes.length;
+			if (emptyWidthCount > 0)
+			{
+				var remainWidth:Number = this.width - fixWidth;
+				var eachWidth:Number = remainWidth / emptyWidthCount;
+				if (eachWidth < minCellWidth)
+				{
+					eachWidth = minCellWidth;
+				}
+				for (var xIndex2:uint = 0 ; xIndex2 < emptyWidthCount ; xIndex2++)
+				{
+					var emptyWidthIndex:int = int(emptyWidthIndexes[xIndex2]);
+					cellWidths[emptyWidthIndex] = eachWidth;
+				}
+			}
+			//
+			cellHeights = new Array();
+			var rowCount:uint = rows.length;
+			var fixHeight:Number = 0;
+			var emptyHeightIndexes:Array = new Array();
+			for (var yIndex:uint = 0 ; yIndex < rowCount ; yIndex++)
+			{
+				var newHeight:Number = getCellHeight(yIndex);
+				cellHeights.push(newHeight);
+				if (newHeight > 0)
+				{
+					fixHeight += newHeight;
+				}
+				else
+				{
+					emptyHeightIndexes.push(yIndex);
+				}
+			}
+			var emptyHeightCount:uint = emptyHeightIndexes.length;
+			if (emptyHeightCount > 0)
+			{
+				var remainHeight:Number = this.height - fixHeight;
+				var eachHeight:Number = remainHeight / emptyHeightCount;
+				if (eachHeight < minCellHeight)
+				{
+					eachHeight = minCellHeight;
+				}
+				for (var yIndex2:uint = 0 ; yIndex2 < emptyHeightCount ; yIndex2++)
+				{
+					var emptyHeightIndex:int = int(emptyHeightIndexes[yIndex2]);
+					cellHeights[emptyHeightIndex] = eachHeight;
+				}
+			}
+		}
+
 		/**
 		 * Get the widht of cell at given column.
 		 * 
@@ -186,6 +284,5 @@ package ftk.layout
 			}
 			return 0;
 		}
-		/******************* HANDLER ***************************************************/
 	}
 }

@@ -10,12 +10,6 @@
 // **********************************************************
 package ftk.controls
 {
-	import flash.display.Shape;
-	import flash.events.MouseEvent;
-	import flash.events.TimerEvent;
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
-	import flash.utils.Timer;
 	import ftk.data.Position;
 	import ftk.data.Status;
 	import ftk.errors.UIError;
@@ -27,7 +21,12 @@ package ftk.controls
 	import ftk.utils.DrawUtil;
 	import ftk.utils.MathUtil;
 
-
+	import flash.display.Shape;
+	import flash.events.MouseEvent;
+	import flash.events.TimerEvent;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
+	import flash.utils.Timer;
 
 	/**
 	 * ScrollBar
@@ -37,7 +36,6 @@ package ftk.controls
 	 */
 	public class ScrollBar extends UIControl
 	{
-
 		/**
 		 * Constuctor. create and initialize a new scrollBar
 		 * 
@@ -74,7 +72,6 @@ package ftk.controls
 			}
 		}
 
-		/******************* OVERRIDE **************************************************/
 		override public function get width():Number
 		{
 			return _type == Position.HORIZONTAL ? this._length : this._thickness;
@@ -128,7 +125,6 @@ package ftk.controls
 			this.setSlider();
 		}
 
-		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -175,7 +171,6 @@ package ftk.controls
 
 		private var _enabled:Boolean = true;
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * scale value of slider in percent. from 0 to 1.
 		 */
@@ -251,7 +246,6 @@ package ftk.controls
 			return _length - 2 * _thickness;
 		}
 
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param position
@@ -264,8 +258,6 @@ package ftk.controls
 			this.setSlider();
 		}
 
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		/**
 		 * change slider's position and size.
 		 */
@@ -445,7 +437,6 @@ package ftk.controls
 			}
 		}
 
-		/******************* HANDLER ***************************************************/
 		private function pressBtnHandler(e:MouseEvent):void
 		{
 			if (_enabled)

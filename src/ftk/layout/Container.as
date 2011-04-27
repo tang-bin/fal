@@ -11,10 +11,10 @@
 package ftk.layout
 {
 	import flash.display.DisplayObject;
-
-	import ftk.core.Bin;
+	import ftk.display.Bin;
 	import ftk.events.UIEvent;
 	import ftk.style.FillStyle;
+
 
 	/**
 	 * Class Container is the basic class of the display object used to layout.
@@ -69,82 +69,6 @@ package ftk.layout
 					doRank();
 				}
 			}
-		}
-
-		/**
-		 * 
-		 * @return 
-		 */
-		public function get backgroundColor():uint
-		{
-			return this.fillStyle.bgColor;
-		}
-
-		/**
-		 * 
-		 * @param value
-		 */
-		public function set backgroundColor(value:uint):void
-		{
-			this.fillStyle.bgColor = value;
-			this.drawBg();
-		}
-
-		/**
-		 * 
-		 * @return 
-		 */
-		public function get backgroundAlpha():Number
-		{
-			return this.fillStyle.bgAlpha;
-		}
-
-		/**
-		 * 
-		 * @param value
-		 */
-		public function set backgroundAlpha(value:Number):void
-		{
-			this.fillStyle.bgAlpha = value;
-			this.drawBg();
-		}
-
-		/**
-		 * 
-		 * @return 
-		 */
-		public function get borderColor():uint
-		{
-			return this.fillStyle.borderColor;
-		}
-
-		/**
-		 * 
-		 * @param value
-		 */
-		public function set borderColor(value:uint):void
-		{
-			this.fillStyle.borderColor = value;
-			this.drawBg();
-		}
-
-		/**
-		 * 
-		 * @return 
-		 */
-		public function get borderAlpha():Number
-		{
-			return this.fillStyle.borderAlpha;
-		}
-
-		/**
-		 * 
-		 * @param value
-		 */
-		public function set borderAlpha(value:Number):void
-		{
-			this.fillStyle.borderAlpha = value;
-			this.drawBg();
 		}
 
 		/**

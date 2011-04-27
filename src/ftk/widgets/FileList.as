@@ -26,7 +26,18 @@ package ftk.widgets
 	 */
 	public class FileList extends ScrollPanel
 	{
-		/******************* OVERRIDE **************************************************/
+		/**
+		 * 
+		 * @param data
+		 */
+		public function FileList(data:FolderData = null)
+		{
+			super(false, true);
+			this.dragable = false;
+			if (data == null) data = new FolderData();
+			showDirectory(data);
+		}
+
 		override protected function updateSize():void
 		{
 			// if folderData is not set, do nothing.
@@ -56,7 +67,6 @@ package ftk.widgets
 			super.updateSize();
 		}
 
-		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -77,21 +87,6 @@ package ftk.widgets
 
 		private var forEachItemFunc:Function;
 
-		/******************* GETTER and SETTER *****************************************/
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * 
-		 * @param data
-		 */
-		public function FileList(data:FolderData = null)
-		{
-			super(false, true);
-			this.dragable = false;
-			if (data == null) data = new FolderData();
-			showDirectory(data);
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param data
@@ -102,7 +97,6 @@ package ftk.widgets
 			this.updateSize();
 		}
 
-		/******************* PROTECTED *************************************************/
 		/**
 		 * 
 		 * @param file
@@ -142,7 +136,6 @@ package ftk.widgets
 			// should be overrided in grid/list/tree boxes.
 		}
 
-		/******************* PRIVATE ***************************************************/
 		private function doForEachItem(file:FileData, index:uint, length:uint):void
 		{
 			var item:FileListItem = getItemData(file.name).item as FileListItem;
@@ -161,7 +154,6 @@ package ftk.widgets
 			return items[name] as ItemData;
 		}
 
-		/******************* HANDLER ***************************************************/
 		private function clickItemHandler(e:MouseEvent):void
 		{
 			var data:FileData = (e.currentTarget as FileListItem).data;

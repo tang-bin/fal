@@ -8,14 +8,13 @@
 // * Flex ToolKits by Finalbug
 // * http://www.finalbug.org/projects/ftk
 // **********************************************************
-package ftk.controls
+package ftk.display
 {
 	import flash.display.DisplayObject;
-	import ftk.core.Bin;
+
 	import ftk.errors.DataError;
 	import ftk.graphs.Image;
 	import ftk.utils.DataUtil;
-
 
 	/**
 	 * Icon
@@ -25,8 +24,14 @@ package ftk.controls
 	 */
 	public class Icon extends Bin
 	{
+		/**
+		 * 
+		 */
+		public function Icon()
+		{
+			super();
+		}
 
-		/******************* OVERRIDE **************************************************/
 		override protected function updateSize():void
 		{
 			super.updateSize();
@@ -53,7 +58,6 @@ package ftk.controls
 			}
 		}
 
-		/******************* DEFINE ****************************************************/
 		/**
 		 * 
 		 * @default 
@@ -84,7 +88,6 @@ package ftk.controls
 
 		private var img:Image;
 
-		/******************* GETTER and SETTER *****************************************/
 		private function get icon16():Image
 		{
 			return imgs[ICON_16] as Image;
@@ -105,16 +108,6 @@ package ftk.controls
 			return imgs[ICON_128] as Image;
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * 
-		 */
-		public function Icon()
-		{
-			super();
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param img
@@ -184,8 +177,6 @@ package ftk.controls
 			return newIcon;
 		}
 
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function setDefaultImg():void
 		{
 			if (imgs[ICON_128] != null) defaultImg = imgs[ICON_128];
@@ -194,6 +185,5 @@ package ftk.controls
 			else if (imgs[ICON_16] != null) defaultImg = imgs[ICON_16];
 			else defaultImg = null;
 		}
-		/******************* PRIVATE ***************************************************/
 	}
 }

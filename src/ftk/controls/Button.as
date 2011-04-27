@@ -11,7 +11,6 @@
 package ftk.controls
 {
 	import ftk.data.Status;
-	import ftk.graphs.Flat;
 	import ftk.graphs.Image;
 	import ftk.style.ButtonStyle;
 	import ftk.style.UIStyle;
@@ -41,10 +40,9 @@ package ftk.controls
 			this.initSize(ButtonStyle.DEFAULT_WIDTH, ButtonStyle.DEFAULT_HEIGHT);
 			//
 			// create elements
-			bg = new Flat();
 			_label = new Label(this._labelStr);
 			icon = new Image();
-			this.addAll(bg, _label, icon);
+			this.addAll(_label, icon);
 			//
 			// set skin data.
 			this.status = Status.NORMAL;
@@ -59,7 +57,7 @@ package ftk.controls
 			//
 			if (_autoWidth)
 			{
-				var newWidth:Number = _label.width + AUTO_SPACE;
+				var newWidth:Number = _label.width + AUTO_PADDING_WIDTH;
 				if (newWidth != this.width)
 				{
 					this.width = newWidth;
@@ -68,7 +66,7 @@ package ftk.controls
 			}
 			if (_autoHeight)
 			{
-				var newHeight:Number = _label.height + AUTO_SPACE;
+				var newHeight:Number = _label.height + AUTO_PADDING_HEIGHT;
 				if (newHeight != this.height)
 				{
 					this.height = newHeight;
@@ -79,11 +77,6 @@ package ftk.controls
 			if (_label != null)
 			{
 				_label.toCenter();
-			}
-			if (bg != null)
-			{
-				bg.width = this.width;
-				bg.height = this.height;
 			}
 		}
 
@@ -116,35 +109,36 @@ package ftk.controls
 			switch(currentStatus)
 			{
 				case Status.NORMAL:
-					bg.fillStyle = uiStyle.normalFillStyle;
+					// bg.fillStyle = uiStyle.normalFillStyle;
+					this._fillStyle = uiStyle.normalFillStyle;
 					_label.textFormat = uiStyle.normalTextFormat;
 					break;
 				case Status.SELECTED:
-					bg.fillStyle = uiStyle.selectedFillStyle;
+					this.fillStyle = uiStyle.selectedFillStyle;
 					_label.textFormat = uiStyle.selectedTextFormat;
 					break;
 				case Status.MOUSE_OVER:
-					bg.fillStyle = uiStyle.overFillStyle;
+					this.fillStyle = uiStyle.overFillStyle;
 					_label.textFormat = uiStyle.overTextFormat;
 					break;
 				case Status.SELECTED_MOUSE_OVER:
-					bg.fillStyle = uiStyle.selectedOverFillStyle;
+					this.fillStyle = uiStyle.selectedOverFillStyle;
 					_label.textFormat = uiStyle.selectedOverTextFormat;
 					break;
 				case Status.MOUSE_DOWN:
-					bg.fillStyle = uiStyle.downFillStyle;
+					this.fillStyle = uiStyle.downFillStyle;
 					_label.textFormat = uiStyle.downTextFormat;
 					break;
 				case Status.SELECTED_MOUSE_DOWN:
-					bg.fillStyle = uiStyle.selectedDownFillStyle;
+					this.fillStyle = uiStyle.selectedDownFillStyle;
 					_label.textFormat = uiStyle.selectedDownTextFormat;
 					break;
 				case Status.DISABLED:
-					bg.fillStyle = uiStyle.disabledFillStyle;
+					this.fillStyle = uiStyle.disabledFillStyle;
 					_label.textFormat = uiStyle.disabledTextFormat;
 					break;
 				case Status.SELECTED_DISABLED:
-					bg.fillStyle = uiStyle.selectedDisabledFillStyle;
+					this.fillStyle = uiStyle.selectedDisabledFillStyle;
 					_label.textFormat = uiStyle.selectedDisabledTextFormat;
 					break;
 			}
@@ -163,15 +157,15 @@ package ftk.controls
 			}
 		}
 
-		private const AUTO_SPACE:Number = 12;
+		private const AUTO_PADDING_WIDTH:Number = 12;
+
+		private const AUTO_PADDING_HEIGHT:Number = 4;
 
 		// lable string
 		private var _labelStr:String = "Button";
 
 		// children
 		private var _label:Label;
-
-		private var bg:Flat;
 
 		private var icon:Image;
 
@@ -204,7 +198,7 @@ package ftk.controls
 				_autoWidth = value;
 				if (value)
 				{
-					var newWidth:Number = _label.width + AUTO_SPACE;
+					var newWidth:Number = _label.width + AUTO_PADDING_WIDTH;
 					if (newWidth != this.width)
 					{
 						this.width = newWidth;
@@ -233,7 +227,7 @@ package ftk.controls
 				_autoHeight = value;
 				if (value)
 				{
-					var newHeight:Number = _label.height + AUTO_SPACE;
+					var newHeight:Number = _label.height + AUTO_PADDING_HEIGHT;
 					if (newHeight != this.height)
 					{
 						this.height = newHeight;

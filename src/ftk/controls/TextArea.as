@@ -10,15 +10,15 @@
 // **********************************************************
 package ftk.controls
 {
-	import flash.events.Event;
-	import flash.events.FocusEvent;
-	import flash.text.TextField;
 	import ftk.data.Status;
 	import ftk.events.DataEvent;
 	import ftk.events.UIEvent;
 	import ftk.graphs.Flat;
 	import ftk.style.ScrollBoxStyle;
 
+	import flash.events.Event;
+	import flash.events.FocusEvent;
+	import flash.text.TextField;
 
 	/**
 	 * @eventType events.DataEvent.CHANGE_DATA
@@ -32,7 +32,6 @@ package ftk.controls
 	 */
 	public class TextArea extends ScrollBox
 	{
-
 		/**
 		 * create a new TextArea.
 		 * 
@@ -62,7 +61,6 @@ package ftk.controls
 			this.status = Status.NORMAL;
 		}
 
-		/******************* OVERRIDE **************************************************/
 		/**
 		 * in Class TextArea, if x scrollbar is disabled, the text input will auto warp.
 		 */
@@ -137,7 +135,6 @@ package ftk.controls
 			scrollManual = false;
 		}
 
-		/******************* DEFINE ****************************************************/
 		private var bg:Flat;
 
 		private var txt:TextField;
@@ -148,7 +145,6 @@ package ftk.controls
 
 		private var _editable:Boolean = true;
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * If this text area can input in or not.
 		 */
@@ -205,9 +201,6 @@ package ftk.controls
 			txt.embedFonts = _embed;
 		}
 
-		/******************* PUBLIC ****************************************************/
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function setEvent():void
 		{
 			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
@@ -254,7 +247,6 @@ package ftk.controls
 			}
 		}
 
-		/******************* PRIVATE ***************************************************/
 		private function txtFocusInHandler(e:FocusEvent):void
 		{
 			this.status = Status.SELECTED;

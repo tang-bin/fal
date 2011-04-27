@@ -8,7 +8,7 @@
 // * Flex ToolKits by Finalbug
 // * http://www.finalbug.org/projects/ftk
 // **********************************************************
-package ftk.core
+package ftk.display
 {
 	/**
 	 * Glaze is the basic class for all static graphic classes.
@@ -16,9 +16,9 @@ package ftk.core
 	 * @author Tang Bin
 	 * @since 2010.08
 	 */
-	public class Glaze extends Bin
+	public class Graph extends Bin
 	{
-		public function Glaze()
+		public function Graph()
 		{
 			super();
 			this.mouseChildren = this.mouseEnabled = false;

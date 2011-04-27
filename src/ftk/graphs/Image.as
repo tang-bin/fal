@@ -19,15 +19,15 @@ package ftk.graphs
 	import flash.events.ProgressEvent;
 	import flash.geom.Rectangle;
 	import flash.net.URLRequest;
-
-	import ftk.core.Glaze;
+	import ftk.display.Graph;
 	import ftk.events.LoadEvent;
+
 
 	/**
 	 * @author Tang Bin
 	 * @since old version
 	 */
-	public class Image extends Glaze
+	public class Image extends Graph
 	{
 		/**
 		 * 

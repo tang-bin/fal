@@ -10,6 +10,7 @@
 // **********************************************************
 package ftk.test.tester
 {
+	import ftk.controls.CheckBox;
 	import ftk.controls.Button;
 	import ftk.layout.Container;
 
@@ -24,10 +25,8 @@ package ftk.test.tester
 		public function FreeTester()
 		{
 			super();
-			var b:Button = new Button();
-			b.left = "50%";
-			b.bottom = 20;
-			this.addAll(b);
+			var c:CheckBox = new CheckBox();
+			this.addAll(c);
 		}
 	}
 }

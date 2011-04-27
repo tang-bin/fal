@@ -10,12 +10,12 @@
 // **********************************************************
 package ftk.controls
 {
+	import ftk.errors.DataError;
+
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
-	import ftk.errors.DataError;
-
 
 	/**
 	 * controls.Label
@@ -25,8 +25,26 @@ package ftk.controls
 	 */
 	public class Label extends UIControl
 	{
+		/**
+		 * 
+		 * @param text
+		 * @param textFormat
+		 */
+		public function Label(text:String = "", textFormat:TextFormat = null)
+		{
+			this.autoMouseEvent = true;
+			str = text;
+			if (textFormat == null)
+			{
+				ft = new TextFormat("Verdana", 12, 0x333333);
+			}
+			else
+			{
+				ft = textFormat;
+			}
+			createLabel();
+		}
 
-		/******************* OVERRIDE **************************************************/
 		override public function set width(value:Number):void
 		{
 			textWidth = value > 0 ? value : 0;
@@ -47,7 +65,6 @@ package ftk.controls
 			return img.height;
 		}
 
-		/******************* DEFINE ****************************************************/
 		private var str:String;
 
 		private var ft:TextFormat;
@@ -56,7 +73,6 @@ package ftk.controls
 
 		private var textWidth:Number = 0;
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -114,37 +130,15 @@ package ftk.controls
 			createLabel();
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * 
-		 * @param text
-		 * @param textFormat
-		 */
-		public function Label(text:String, textFormat:TextFormat = null)
-		{
-			this.autoMouseEvent = true;
-			str = text;
-			if (textFormat == null)
-			{
-				ft = new TextFormat("Verdana", 12, 0x333333);
-			}
-			else
-			{
-				ft = textFormat;
-			}
-			createLabel();
-		}
-
-		/******************* PUBLIC ****************************************************/
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function createLabel():void
 		{
 			this.tooltip = "";
+			// create textField.
 			var t:TextField = new TextField();
 			t.multiline = true;
 			t.setTextFormat(ft);
 			t.defaultTextFormat = ft;
+			// account display text string.
 			if (this.textWidth > 0)
 			{
 				t.text = "...";
@@ -168,6 +162,9 @@ package ftk.controls
 			}
 			t.width = t.textWidth + 4;
 			t.height = t.textHeight + 4;
+			//
+			// most of time Label is used to display text not very large (width and height).
+			// because in Label text will be converted to bitmap to be displayed.
 			try
 			{
 				var bd:BitmapData = new BitmapData(t.width, t.height, true, 0x00000000);
@@ -178,7 +175,7 @@ package ftk.controls
 				throw new DataError(DataError.LABEL_TEXT_TOO_LARGE);
 			}
 			//
-			if (img != null)
+			if (img != null && this.contains(img))
 			{
 				this.removeChild(img);
 			}
@@ -194,6 +191,5 @@ package ftk.controls
 				img.x = 0;
 			}
 		}
-		/******************* PRIVATE ***************************************************/
 	}
 }

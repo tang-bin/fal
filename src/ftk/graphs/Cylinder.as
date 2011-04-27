@@ -11,16 +11,16 @@
 package ftk.graphs
 {
 	import flash.display.GradientType;
-
-	import ftk.core.Glaze;
+	import ftk.display.Graph;
 	import ftk.utils.ColorUtil;
+
 
 	/**
 	 * 
 	 * @author Tang Bin
 	 * @since old version
 	 */
-	public class Cylinder extends Glaze
+	public class Cylinder extends Graph
 	{
 		/**
 		 * 

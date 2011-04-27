@@ -10,7 +10,7 @@
 // **********************************************************
 package ftk.graphs
 {
-	import ftk.core.Glaze;
+	import ftk.display.Graph;
 	import ftk.utils.ColorUtil;
 
 	/**
@@ -18,7 +18,7 @@ package ftk.graphs
 	 * @author Tang Bin
 	 * @since old version
 	 */
-	public class Cube extends Glaze
+	public class Cube extends Graph
 	{
 		/**
 		 * 

@@ -26,7 +26,6 @@ package ftk.controls
 	 */
 	public class ScrollBox extends UIControl
 	{
-
 		/**
 		 * Create a new ScrollBarContainer object.
 		 * 
@@ -64,7 +63,6 @@ package ftk.controls
 			yBar.addEventListener(UIEvent.SCROLL, yScrollHandler);
 		}
 
-		/******************* OVERRIDE **************************************************/
 		override protected function updateSize():void
 		{
 			super.updateSize();
@@ -93,36 +91,30 @@ package ftk.controls
 			}
 		}
 
-		/******************* DEFINE ****************************************************/
 		/**
-		 * 
+		 * scroll bar X
 		 * @default 
 		 */
 		protected var xBar:ScrollBar;
 
-		// scroll bar X
 		/**
-		 * 
+		 * scroll bar Y
 		 * @default 
 		 */
 		protected var yBar:ScrollBar;
 
-		// scroll bar Y
 		/**
-		 * 
+		 * enable scrollbar x or not
 		 * @default 
 		 */
 		protected var enableX:Boolean;
 
-		// enable scrollbar x or not
 		/**
-		 * 
+		 * enable scrollbar y or not
 		 * @default 
 		 */
 		protected var enableY:Boolean;
 
-		// enable scrollbar y or not
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * Width of container, not the width of scrollContainer.
 		 */
@@ -183,8 +175,6 @@ package ftk.controls
 			}
 		}
 
-		/******************* PUBLIC ****************************************************/
-		/******************* PROTECTED *************************************************/
 		/**
 		 * 
 		 * @param e
@@ -200,10 +190,5 @@ package ftk.controls
 		protected function yScrollHandler(e:UIEvent):void
 		{
 		}
-		/******************* PRIVATE ***************************************************/
-		
-		
-		
-		/******************* PRIVATE ***************************************************/
 	}
 }

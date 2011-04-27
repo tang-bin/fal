@@ -10,13 +10,13 @@
 // **********************************************************
 package ftk.controls
 {
-	import ftk.core.Bin;
+	import flash.display.DisplayObject;
+	import flash.events.MouseEvent;
 	import ftk.data.Status;
+	import ftk.display.Bin;
 	import ftk.style.UIStyle;
 	import ftk.widgets.Tooltip;
 
-	import flash.display.DisplayObject;
-	import flash.events.MouseEvent;
 
 	/**
 	 * UIControl is the super class for UI controls.

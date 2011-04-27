@@ -23,7 +23,7 @@ package ftk.test.tester
 	import flash.events.MouseEvent;
 	import ftk.controls.Button;
 	import ftk.controls.UIControl;
-	import ftk.core.Bin;
+	import ftk.display.Bin;
 	import ftk.events.MotionEvent;
 	import ftk.motion.FadeMotion;
 	import ftk.motion.MotionQueue;

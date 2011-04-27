@@ -14,16 +14,16 @@ package ftk.graphs
 	import flash.events.TimerEvent;
 	import flash.filters.GlowFilter;
 	import flash.utils.Timer;
-
-	import ftk.core.Glaze;
+	import ftk.display.Graph;
 	import ftk.utils.DrawUtil;
+
 
 	/**
 	 * 
 	 * @author Tang Bin
 	 * @since old version
 	 */
-	public class ProgressRound extends Glaze
+	public class ProgressRound extends Graph
 	{
 		/**
 		 * 

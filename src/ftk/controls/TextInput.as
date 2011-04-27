@@ -10,16 +10,15 @@
 // **********************************************************
 package ftk.controls
 {
-	import flash.events.Event;
-	import flash.events.FocusEvent;
-	import flash.text.TextField;
 	import ftk.data.Status;
 	import ftk.events.DataEvent;
 	import ftk.graphs.Flat;
 	import ftk.style.TextInputStyle;
 	import ftk.style.UIStyle;
 
-
+	import flash.events.Event;
+	import flash.events.FocusEvent;
+	import flash.text.TextField;
 
 	/**
 	 * text input component
@@ -29,7 +28,6 @@ package ftk.controls
 	 */
 	public class TextInput extends UIControl
 	{
-
 		/**
 		 * Create a new TextInput object.
 		 * 
@@ -57,7 +55,6 @@ package ftk.controls
 			this.status = Status.NORMAL;
 		}
 
-		/******************* OVERRIDE **************************************************/
 		override public function set status(value:String):void
 		{
 			if (this.enabled)
@@ -104,7 +101,6 @@ package ftk.controls
 			}
 		}
 
-		/******************* DEFINE ****************************************************/
 		private var _textType:String = "input";
 
 		private var oldText:String = "";
@@ -113,7 +109,6 @@ package ftk.controls
 
 		private var txt:TextField;
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * if current text in textinput display as password.
 		 */
@@ -200,7 +195,6 @@ package ftk.controls
 			this.setTextType();
 		}
 
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 */
@@ -209,8 +203,6 @@ package ftk.controls
 			stage.focus = txt;
 		}
 
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function setTextType():void
 		{
 			if (txt != null)
@@ -227,7 +219,6 @@ package ftk.controls
 			}
 		}
 
-		/******************* HANDLER ***************************************************/
 		private function txtFocusInHandler(e:FocusEvent):void
 		{
 			this.status = Status.SELECTED;
