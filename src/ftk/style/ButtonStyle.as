@@ -48,15 +48,49 @@ package ftk.style
 			this.selectedOverFillStyle.bgColors = [0xCC0000, 0x660000];
 			this.selectedOverTextFormat.color = 0xFFFFFF;
 			//
+			this.selectedFillStyle.bgColors = [0xCC0000, 0xCC0000];
+			/*
 			this.selectedFillStyle.borderAlpha = 1;
-			this.selectedFillStyle.borderColor = 0xFFFFFF;
+			this.selectedFillStyle.borderColor = 0x000000;
 			this.selectedFillStyle.borderSize = 2;
 			this.selectedOverFillStyle.borderAlpha = 1;
-			this.selectedOverFillStyle.borderColor = 0xFFFFFF;
+			this.selectedOverFillStyle.borderColor = 0x000000;
 			this.selectedOverFillStyle.borderSize = 2;
 			this.selectedDownFillStyle.borderAlpha = 1;
-			this.selectedDownFillStyle.borderColor = 0xFFFFFF;
+			this.selectedDownFillStyle.borderColor = 0x000000;
 			this.selectedDownFillStyle.borderSize = 2;
+			 * 
+			 */
+		}
+
+		public function setAsNavigateLeftButton():void
+		{
+			this.setStyleToAll("topLeftRadius", 4);
+			this.setStyleToAll("bottomLeftRadius", 4);
+			this.setStyleToAll("topRightRadius", 0);
+			this.setStyleToAll("bottomRightRadius", 0);
+			this.setStyleToAll("glowAlpha", 0);
+			this.dispatchStyleChanged();
+		}
+
+		public function setAsNavigateRightButton():void
+		{
+			this.setStyleToAll("topLeftRadius", 0);
+			this.setStyleToAll("bottomLeftRadius", 0);
+			this.setStyleToAll("topRightRadius", 4);
+			this.setStyleToAll("bottomRightRadius", 4);
+			this.setStyleToAll("glowAlpha", 0);
+			this.dispatchStyleChanged();
+		}
+
+		public function setAsNavigateNormalButton():void
+		{
+			this.setStyleToAll("topLeftRadius", 0);
+			this.setStyleToAll("bottomLeftRadius", 0);
+			this.setStyleToAll("topRightRadius", 0);
+			this.setStyleToAll("bottomRightRadius", 0);
+			this.setStyleToAll("glowAlpha", 0);
+			this.dispatchStyleChanged();
 		}
 	}
 }

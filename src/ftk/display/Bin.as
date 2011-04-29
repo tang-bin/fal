@@ -353,11 +353,8 @@ package ftk.display
 
 		public function set fillStyle(value:FillStyle):void
 		{
-			if (_fillStyle != value)
-			{
-				_fillStyle = value;
-				drawBg();
-			}
+			_fillStyle = value;
+			drawBg();
 		}
 
 		/**

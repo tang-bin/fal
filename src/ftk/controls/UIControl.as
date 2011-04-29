@@ -10,13 +10,15 @@
 // **********************************************************
 package ftk.controls
 {
+	import ftk.events.DataEvent;
+
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
+
 	import ftk.data.Status;
 	import ftk.display.Bin;
 	import ftk.style.UIStyle;
 	import ftk.widgets.Tooltip;
-
 
 	/**
 	 * UIControl is the super class for UI controls.
@@ -34,7 +36,11 @@ package ftk.controls
 		public function UIControl(uiStyle:UIStyle = null)
 		{
 			super();
-			this.uiStyle = uiStyle;
+			this._uiStyle = uiStyle;
+			if (_uiStyle != null)
+			{
+				_uiStyle.addEventListener(DataEvent.CHANGE_STYLE, changeStyleHandler);
+			}
 		}
 
 		/**
@@ -43,8 +49,6 @@ package ftk.controls
 		 * @see ftk.widgets.Tooltip
 		 */
 		public var tooltip:String = "";
-
-		protected var uiStyle:UIStyle;
 
 		/**
 		 * current status string.
@@ -55,7 +59,27 @@ package ftk.controls
 
 		private var _enabled:Boolean = true;
 
+		private var _uiStyle:UIStyle;
+
 		private var _autoMouseEvent:Boolean = false;
+
+		public function get uiStyle():UIStyle
+		{
+			return _uiStyle;
+		}
+
+		public function set uiStyle(value:UIStyle):void
+		{
+			if (value != _uiStyle)
+			{
+				if (_uiStyle != null)
+				{
+					_uiStyle.removeEventListener(DataEvent.CHANGE_STYLE, changeStyleHandler);
+				}
+				_uiStyle = value;
+				_uiStyle.addEventListener(DataEvent.CHANGE_STYLE, changeStyleHandler);
+			}
+		}
 
 		/**
 		 * Call default mouse roll over, mouse down, mouse roll out event if 
@@ -189,6 +213,11 @@ package ftk.controls
 		protected function mouseUpHandler(e:MouseEvent):void
 		{
 			this.status = Status.MOUSE_OVER;
+		}
+
+		protected function changeStyleHandler(e:DataEvent):void
+		{
+			this.updateStyle();
 		}
 	}
 }

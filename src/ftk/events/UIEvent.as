@@ -35,12 +35,6 @@ package ftk.events
 
 		/**
 		 * 
-		 * @default 
-		 */
-		public var closeTarget:*;
-
-		/**
-		 * 
 		 * @eventType hide 
 		 */
 		public static const HIDE:String = "hide";
@@ -81,16 +75,16 @@ package ftk.events
 		 */
 		public static const CHILDREN_REPOSITION:String = "childrenReposition";
 
-		/**
-		 * 
-		 * @default 
-		 */
+		public static const CHANGE:String = "change";
+
+		public var closeTarget:*;
+
+		public var selectedIndex:uint;
+
+		public var selectedID:uint;
+
 		public var oldTarget:*;
 
-		/**
-		 * 
-		 * @default 
-		 */
 		public var newTarget:*;
 
 		/**

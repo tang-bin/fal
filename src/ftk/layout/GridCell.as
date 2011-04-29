@@ -10,8 +10,6 @@
 // **********************************************************
 package ftk.layout
 {
-	import flash.display.Sprite;
-
 	/**
 	 * GridCell is the cell used in class Grid.
 	 *  
@@ -63,7 +61,7 @@ package ftk.layout
 		 */
 		public function resetPosition(x:Number, y:Number, width:Number, height:Number):void
 		{
-			this.layoutStyle.setNormalStyle(x, y, width, height);
+			this.layoutStyle.setRetangleStyle(x, y, width, height);
 		}
 	}
 }

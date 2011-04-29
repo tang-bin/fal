@@ -63,6 +63,46 @@ package ftk.layout
 
 		private var cellHeights:Array;
 
+		private var _cellBorderColor:uint = 0x333333;
+
+		private var _cellBorderAlpha:Number = 0;
+
+		public function get cellBorderColor():uint
+		{
+			return _cellBorderColor;
+		}
+
+		public function set cellBorderColor(value:uint):void
+		{
+			if (value != _cellBorderColor)
+			{
+				_cellBorderColor = value;
+				for (var i:uint = cells.length ; --i >= 0 ; )
+				{
+					var cell:GridCell = cells[i] as GridCell;
+					cell.borderColor = value;
+				}
+			}
+		}
+
+		public function get cellBorderAlpha():Number
+		{
+			return _cellBorderAlpha;
+		}
+
+		public function set cellBorderAlpha(value:Number):void
+		{
+			if (value != _cellBorderAlpha)
+			{
+				_cellBorderAlpha = value;
+				for (var i:uint = cells.length ; --i >= 0 ; )
+				{
+					var cell:GridCell = cells[i] as GridCell;
+					cell.borderAlpha = value;
+				}
+			}
+		}
+
 		public function get rowNumber():uint
 		{
 			return rows.length;
@@ -136,8 +176,11 @@ package ftk.layout
 					// create and add cell into grid if not exist.
 					if (cells[yIndex][xIndex] == null)
 					{
-						cells[yIndex][xIndex] = new GridCell();
-						this.addChild(cells[yIndex][xIndex]);
+						var newCell:GridCell = new GridCell();
+						newCell.borderColor = _cellBorderColor;
+						newCell.borderAlpha = _cellBorderAlpha;
+						cells[yIndex][xIndex] = newCell;
+						this.addChild(newCell);
 					}
 					// set cell's size and position.
 					var cell:GridCell = cells[yIndex][xIndex] as GridCell;

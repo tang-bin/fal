@@ -1,30 +1,37 @@
 // **********************************************************
-// ___________.__              .__ ___.
-// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__ |     |__|___|  (____  /____/___  /____/\___  /
-// \/             \/     \/         \/     /_____/
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
 // * Flex ToolKits by Finalbug
 // * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.navigate
 {
-	import flash.display.DisplayObject;
 	import ftk.errors.DataError;
 	import ftk.layout.Container;
 
+	import flash.display.DisplayObject;
 
 	/**
-	 * Slider. Like mx component ViewStack.
+	 * Slider. similer with mx component ViewStack.
 	 * 
 	 * @author Tang Bin
 	 * @since 2011.01
 	 */
 	public class Slider extends Container
 	{
+		/**
+		 * 
+		 */
+		public function Slider()
+		{
+			super();
+			this.initSize("100%", "100%");
+		}
 
-		/******************* OVERRIDE **************************************************/
 		/**
 		 * 
 		 * @param child
@@ -90,12 +97,10 @@ package ftk.navigate
 			}
 		}
 
-		/******************* DEFINE ****************************************************/
 		private var _selectedIndex:int = -1;
 
 		private var _selectedChild:DisplayObject = null;
 
-		/******************* GETTER and SETTER *****************************************/
 		/**
 		 * 
 		 * @return 
@@ -136,19 +141,6 @@ package ftk.navigate
 			setShowChildIndex(index);
 		}
 
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * 
-		 */
-		public function Slider()
-		{
-			super();
-			this.initSize("100%", "100%");
-		}
-
-		/******************* PUBLIC ****************************************************/
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function setShowChildIndex(index:int):void
 		{
 			if (_selectedIndex != index)
@@ -187,6 +179,5 @@ package ftk.navigate
 			}
 			setShowChildIndex(_selectedIndex);
 		}
-		/******************* PRIVATE ***************************************************/
 	}
 }

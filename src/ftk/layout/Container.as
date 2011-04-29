@@ -10,11 +10,12 @@
 // **********************************************************
 package ftk.layout
 {
+	import flash.geom.Rectangle;
 	import flash.display.DisplayObject;
+
 	import ftk.display.Bin;
 	import ftk.events.UIEvent;
 	import ftk.style.FillStyle;
-
 
 	/**
 	 * Class Container is the basic class of the display object used to layout.
@@ -38,6 +39,12 @@ package ftk.layout
 			this.initSize("100%", "100%");
 			this.addEventListener(UIEvent.CHILDREN_CHANGED, childrenChangedHandler);
 			this.addEventListener(UIEvent.CHILDREN_RESIZE, childrenChangedHandler);
+		}
+
+		override protected function updateSize():void
+		{
+			super.updateSize();
+			this.scrollRect = new Rectangle(0, 0, this.width, this.height);
 		}
 
 		private const HRank:String = "hRank";

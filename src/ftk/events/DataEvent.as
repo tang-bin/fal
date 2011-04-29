@@ -25,6 +25,8 @@ package ftk.events
 		 */
 		public static const CHANGE_DATA:String = "ChangeData";
 
+		public static const CHANGE_STYLE:String = "changeStyle";
+
 		/**
 		 * @eventType initEnd
 		 */

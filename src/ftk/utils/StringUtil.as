@@ -482,5 +482,13 @@ package ftk.utils
 			}
 			return str;
 		}
+
+		public static function pickIDFromName(name:String, separator:String = "_"):uint
+		{
+			var reg:RegExp = new RegExp("^.*" + separator + "(.*)$");
+			var IDStr:String = name.replace(reg, "$1");
+			var ID:uint = uint(IDStr);
+			return ID;
+		}
 	}
 }

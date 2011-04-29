@@ -22,7 +22,6 @@ package ftk.utils
 	 */
 	public class DisplayUtil
 	{
-
 		/**
 		 * Get target display object's center point.
 		 * 

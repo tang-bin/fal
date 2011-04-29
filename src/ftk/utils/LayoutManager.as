@@ -13,20 +13,30 @@ package ftk.utils
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.utils.Dictionary;
+
 	import ftk.errors.DataError;
 	import ftk.style.LayoutStyle;
 
-
 	/**
-	 * LayoutManager
+	 * LayoutManager. Singleton mode.
 	 * 
 	 * @author Tang Bin
 	 * @since 2010
 	 */
 	public class LayoutManager
 	{
+		/**
+		 * 
+		 * @throws DataError
+		 */
+		public function LayoutManager()
+		{
+			if (!instanceable)
+			{
+				throw new DataError(DataError.SINGLETON);
+			}
+		}
 
-		/******************* OVERRIDE **************************************************/
 		// SINGLETON
 		private static var instanceable:Boolean = false;
 
@@ -47,24 +57,8 @@ package ftk.utils
 			return lm;
 		}
 
-		/******************* DEFINE ****************************************************/
 		private var list:Dictionary = new Dictionary();
 
-		/******************* GETTER and SETTER *****************************************/
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * 
-		 * @throws DataError
-		 */
-		public function LayoutManager()
-		{
-			if (!instanceable)
-			{
-				throw new DataError(DataError.SINGLETON);
-			}
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * 
 		 * @param target
@@ -115,8 +109,6 @@ package ftk.utils
 			}
 		}
 
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function updateLayout(target:DisplayObject):void
 		{
 			var data:LayoutStyle = list[target] as LayoutStyle;
@@ -125,6 +117,5 @@ package ftk.utils
 			target.x = data.x;
 			target.y = data.y;
 		}
-		/******************* PRIVATE ***************************************************/
 	}
 }

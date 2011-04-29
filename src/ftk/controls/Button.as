@@ -110,7 +110,7 @@ package ftk.controls
 			{
 				case Status.NORMAL:
 					// bg.fillStyle = uiStyle.normalFillStyle;
-					this._fillStyle = uiStyle.normalFillStyle;
+					this.fillStyle = uiStyle.normalFillStyle;
 					_label.textFormat = uiStyle.normalTextFormat;
 					break;
 				case Status.SELECTED:

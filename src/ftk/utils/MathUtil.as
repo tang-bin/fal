@@ -18,7 +18,6 @@ package ftk.utils
 	 */
 	public class MathUtil
 	{
-
 		/**
 		 * Change a decimal number to a hex string.
 		 * @param dec

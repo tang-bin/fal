@@ -10,10 +10,10 @@
 // **********************************************************
 package ftk.utils
 {
-	import flash.display.Graphics;
-	import flash.geom.Point;
 	import ftk.data.CubeData;
 
+	import flash.display.Graphics;
+	import flash.geom.Point;
 
 	/**
 	 * DrawUtil
@@ -23,7 +23,6 @@ package ftk.utils
 	 */
 	public class DrawUtil
 	{
-
 		/**
 		 * Draw a cube in target display object.
 		 * 

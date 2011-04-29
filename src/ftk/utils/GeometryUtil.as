@@ -21,7 +21,6 @@ package ftk.utils
 	 */
 	public class GeometryUtil
 	{
-
 		/**
 		 * Get a new Size which is geometric proportion zoom in/out from a given size object.
 		 * @param oldSize Given size object.

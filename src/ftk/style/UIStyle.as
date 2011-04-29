@@ -10,6 +10,8 @@
 // **********************************************************
 package ftk.style
 {
+	import ftk.events.DataEvent;
+
 	import flash.text.TextFormat;
 
 	import ftk.utils.DataUtil;
@@ -32,6 +34,9 @@ package ftk.style
 			_selectedDownFS = new FillStyle();
 			_disabledFS = new FillStyle();
 			_selectedDisabledFS = new FillStyle();
+			//
+			allFillStyles.push(_normalFS, _selectedFS, _overFS, _selectedOverFS, _downFS, _selectedDownFS, _disabledFS, _selectedDisabledFS);
+			//
 			_normalTF = new TextFormat();
 			_selectedTF = new TextFormat();
 			_overTF = new TextFormat();
@@ -40,7 +45,13 @@ package ftk.style
 			_selectedDownTF = new TextFormat();
 			_disabledTF = new TextFormat();
 			_selectedDisabledTF = new TextFormat();
+			//
+			allTextFormat.push(_normalTF, _selectedTF, _overTF, _selectedOverTF, _downTF, _selectedDownTF, _disabledTF, _selectedDisabledTF);
 		}
+
+		public var allFillStyles:Array = new Array();
+
+		public var allTextFormat:Array = new Array();
 
 		private static var _defaultButtonStyle:ButtonStyle;
 
@@ -220,28 +231,58 @@ package ftk.style
 			return _selectedDisabledTF;
 		}
 
+		public function setStyleToAll(property:String, value:*):void
+		{
+			for (var i:uint = allFillStyles.length ; --i >= 0 ; )
+			{
+				var fs:FillStyle = allFillStyles[i] as FillStyle;
+				if (fs != null && fs.hasOwnProperty(property))
+				{
+					fs[property] = value;
+				}
+			}
+		}
+
+		public function setTextFormatToAll(property:String, value:*):void
+		{
+			for (var i:uint = allTextFormat.length ; --i >= 0 ; )
+			{
+				var tf:TextFormat = allTextFormat[i] as TextFormat;
+				if (tf != null && tf.hasOwnProperty(property))
+				{
+					tf[property] = value;
+				}
+			}
+		}
+
 		public function applyStyleToAll(style:FillStyle):void
 		{
-			this.normalFillStyle.copy(style);
-			this.overFillStyle.copy(style);
-			this.downFillStyle.copy(style);
-			this.disabledFillStyle.copy(style);
-			this.selectedFillStyle.copy(style);
-			this.selectedOverFillStyle.copy(style);
-			this.selectedDownFillStyle.copy(style);
-			this.selectedDisabledFillStyle.copy(style);
+			for (var i:uint = allFillStyles.length ; --i >= 0 ; )
+			{
+				var fs:FillStyle = allFillStyles[i] as FillStyle;
+				if (fs != null)
+				{
+					fs.copy(style);
+				}
+			}
 		}
 
 		public function applyTextFormatToAll(textFormat:TextFormat):void
 		{
-			DataUtil.textFormatClone(textFormat, this.normalTextFormat);
-			DataUtil.textFormatClone(textFormat, this.overTextFormat);
-			DataUtil.textFormatClone(textFormat, this.downTextFormat);
-			DataUtil.textFormatClone(textFormat, this.disabledTextFormat);
-			DataUtil.textFormatClone(textFormat, this.selectedTextFormat);
-			DataUtil.textFormatClone(textFormat, this.selectedOverTextFormat);
-			DataUtil.textFormatClone(textFormat, this.selectedDownTextFormat);
-			DataUtil.textFormatClone(textFormat, this.selectedDisabledTextFormat);
+			for (var i:uint = allTextFormat.length ; --i >= 0 ; )
+			{
+				var tf:TextFormat = allTextFormat[i] as TextFormat;
+				if (tf != null)
+				{
+					DataUtil.textFormatClone(textFormat, tf);
+				}
+			}
+		}
+
+		protected function dispatchStyleChanged():void
+		{
+			var ee:DataEvent = new DataEvent(DataEvent.CHANGE_STYLE);
+			this.dispatchEvent(ee);
 		}
 	}
 }

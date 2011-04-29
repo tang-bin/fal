@@ -279,7 +279,7 @@ package ftk.style
 		 * @param top
 		 * @param left
 		 */
-		public function setNormalStyle(left:*, top:*, width:*, height:*):void
+		public function setRetangleStyle(left:*, top:*, width:*, height:*):void
 		{
 			this.clean();
 			this.setValue("width", width, true);

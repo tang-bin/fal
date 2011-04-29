@@ -1,22 +1,21 @@
 // **********************************************************
-// ___________.__              .__ ___.
-// \_   _____/|__| ____ _____  |  |\_ |__  __ __  ____
-// |    __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
-// |   |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
-// \__ |     |__|___|  (____  /____/___  /____/\___  /
-// \/             \/     \/         \/     /_____/
+// * __________.__              .__ ___.
+// * \_  _____/|__| ____ _____  |  |\_ |__  __ __  ____
+// *  |   __)  |  |/    \\__  \ |  | | __ \|  |  \/ ___\
+// *  |  |     |  |   |  \/ __ \|  |_| \_\ \  |  / /_/  >
+// *  \__|     |__|___|__(______/____/_____/____/\___  /
+// *                                            /_____/
 // * Flex ToolKits by Finalbug
 // * http://www.finalbug.org/projects/ftk
 // **********************************************************
 package ftk.navigate
 {
+	import ftk.events.UIEvent;
+	import ftk.layout.Container;
+
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
-	import flash.events.MouseEvent;
 	import flash.utils.Dictionary;
-
-	import ftk.controls.Button;
-	import ftk.layout.Container;
 
 	/**
 	 * NavigateTab, not finished.
@@ -26,8 +25,27 @@ package ftk.navigate
 	 */
 	public class NavigateTab extends Container
 	{
-		/******************* OVERRIDE **************************************************/
-		/******************* DEFINE ****************************************************/
+		/**
+		 * 
+		 * @param skinData
+		 */
+		public function NavigateTab()
+		{
+			super();
+			this.name = "navigate tab";
+			// create children.
+			bar = new NavigateBar();
+			bar.addEventListener(UIEvent.CHANGE, clickToChangeTabHandler);
+			//
+			box = new Slider();
+			box.backgroundAlpha = 1;
+			box.backgroundColor = 0xFFFFFF;
+			this.addAll(bar, box);
+			//
+			bar.layoutStyle.setRetangleStyle(0, 0, "100%", BUTTON_HEIGHT);
+			box.layoutStyle.setAroundStyle(0, BUTTON_HEIGHT + BAR_SPACE, 0, 0);
+		}
+
 		/**
 		 * 
 		 * @default 
@@ -38,15 +56,9 @@ package ftk.navigate
 		 * 
 		 * @default 
 		 */
-		protected const BUTTON_SPACE:Number = 5;
-
-		/**
-		 * 
-		 * @default 
-		 */
 		protected const BAR_SPACE:Number = 5;
 
-		private var btnBar:Container;
+		private var bar:NavigateBar;
 
 		private var box:Slider;
 
@@ -54,33 +66,6 @@ package ftk.navigate
 
 		private var currentSelected:TabData;
 
-		/******************* GETTER and SETTER *****************************************/
-		/******************* CONSTRUCTOR ***********************************************/
-		/**
-		 * 
-		 * @param skinData
-		 */
-		public function NavigateTab()
-		{
-			super();
-			this.name = "navigate tab";
-			// create children.
-			btnBar = new Container();
-			btnBar.horizontalRank(BUTTON_SPACE, true, false);
-			btnBar.autoRank = true;
-			//
-			box = new Slider();
-			box.borderAlpha = 1;
-			box.borderColor = 0x333333;
-			box.backgroundAlpha = 1;
-			box.backgroundColor = 0xFFFFFF;
-			this.addAll(btnBar, box);
-			//
-			btnBar.layoutStyle.setNormalStyle(0, 0, "100%", BUTTON_HEIGHT);
-			box.layoutStyle.setAroundStyle(0, BUTTON_HEIGHT + BAR_SPACE, 0, 0);
-		}
-
-		/******************* PUBLIC ****************************************************/
 		/**
 		 * Add new tab into NavigateTab.
 		 * 
@@ -91,7 +76,7 @@ package ftk.navigate
 		 */
 		public function addTab(label:String, object:DisplayObject = null, index:int = -1):DisplayObject
 		{
-			var maxLen:uint = btnBar.numChildren;
+			var maxLen:uint = bar.numberTabs;
 			if (index < 0 || index > maxLen)
 			{
 				index = maxLen;
@@ -105,25 +90,19 @@ package ftk.navigate
 			var data:TabData = new TabData();
 			data.label = label;
 			data.object = object;
-			// set button
-			data.btn = new Button(label);
-			data.btn.selecteable = true;
-			data.btn.percentHeight = 1;
-			data.btn.autoWidth = true;
-			data.btn.addEventListener(MouseEvent.CLICK, clickTabBtnHandler);
-			// save data into dictionary.
-			tabs[data.btn] = data;
 			// add elements to display.
 			if (index >= 0 && index < maxLen)
 			{
-				btnBar.addChildAt(data.btn, index);
+				data.tabID = bar.addTabAt(index, label);
 				box.addChildAt(data.object, index);
 			}
 			else
 			{
-				btnBar.addChild(data.btn);
+				data.tabID = bar.addTab(label);
 				box.addChild(data.object);
 			}
+			// save data into dictionary.
+			tabs[data.tabID] = data;
 			// change selected
 			if (currentSelected == null)
 			{
@@ -181,8 +160,7 @@ package ftk.navigate
 			var tabData:TabData = this.getDataByIndex(index);
 			if (tabData != null)
 			{
-				var btn:Button = tabData.btn;
-				btn.label = label;
+				bar.setLabelByID(tabData.tabID, label);
 				tabData.label = label;
 			}
 		}
@@ -197,7 +175,7 @@ package ftk.navigate
 			var tabData:TabData = getDataByObject(object);
 			if (tabData != null)
 			{
-				tabData.btn.label = label;
+				bar.setLabelByID(tabData.tabID, label);
 			}
 		}
 
@@ -227,17 +205,10 @@ package ftk.navigate
 			}
 		}
 
-		/******************* PROTECTED *************************************************/
-		/******************* PRIVATE ***************************************************/
 		private function doSelect(data:TabData):void
 		{
-			// remove pre-selected
-			if (currentSelected != null)
-			{
-				currentSelected.btn.selected = false;
-			}
+			bar.selectedID = data.tabID;
 			// select new
-			data.btn.selected = true;
 			box.selectedChild = data.object;
 			// save select data.
 			currentSelected = data;
@@ -245,15 +216,8 @@ package ftk.navigate
 
 		private function getDataByIndex(index:uint):TabData
 		{
-			var btn:Button = btnBar.getChildAt(index) as Button;
-			if (btn != null)
-			{
-				return tabs[btn];
-			}
-			else
-			{
-				return null;
-			}
+			var ID:int = bar.getIDByIndex(index);
+			return tabs[ID];
 		}
 
 		private function getDataByObject(object:DisplayObject):TabData
@@ -270,48 +234,30 @@ package ftk.navigate
 
 		private function removeTab(tabData:TabData):void
 		{
-			btnBar.removeChild(tabData.btn);
+			bar.removeTabByID(tabData.tabID);
 			box.removeChild(tabData.object);
 			if (tabData == currentSelected)
 			{
 				currentSelected = null;
 			}
-			delete tabs[tabData.btn];
-			tabs[tabData.btn] = null;
+			delete tabs[tabData.tabID];
+			tabs[tabData.tabID] = null;
 		}
 
-		/******************* PRIVATE ***************************************************/
-		private function clickTabBtnHandler(e:MouseEvent):void
+		private function clickToChangeTabHandler(e:UIEvent):void
 		{
-			var btn:Button = e.currentTarget as Button;
-			if (btn != null)
-			{
-				this.doSelect(tabs[btn]);
-			}
+			trace(e.selectedID, e.selectedIndex);
+			this.doSelect(tabs[e.selectedID]);
 		}
 	}
 }
 import flash.display.DisplayObject;
 
-import ftk.controls.Button;
-
 class TabData
 {
-	/**
-	 * 
-	 * @default 
-	 */
 	public var label:String;
 
-	/**
-	 * 
-	 * @default 
-	 */
 	public var object:DisplayObject;
 
-	/**
-	 * 
-	 * @default 
-	 */
-	public var btn:Button;
+	public var tabID:uint;
 }

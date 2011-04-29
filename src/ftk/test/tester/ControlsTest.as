@@ -26,6 +26,7 @@ package ftk.test.tester
 			super();
 			//
 			grid = new Grid();
+			grid.cellBorderAlpha = 1;
 			grid.percentHeight = grid.percentWidth = 1;
 			this.addAll(grid);
 			grid.rowNumber = grid.columnNumber = 5;
