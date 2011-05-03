@@ -108,6 +108,8 @@ package ftk.data
 		 */
 		public static const CENTER:String = "center";
 
+		public static const MIDDLE:String = "middle";
+
 		/**
 		 * 
 		 * @default horizontal
@@ -119,5 +121,15 @@ package ftk.data
 		 * @default vertical
 		 */
 		public static const VERTICAL:String = "vertical";
+
+		public static function isAlignValue(value:String):Boolean
+		{
+			return value == LEFT || value == CENTER || value == RIGHT;
+		}
+
+		public static function isVAlignValue(value:String):Boolean
+		{
+			return value == TOP || value == MIDDLE || value == BOTTOM;
+		}
 	}
 }

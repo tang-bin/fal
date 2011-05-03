@@ -10,6 +10,9 @@
 // **********************************************************
 package ftk.test.tester
 {
+	import ftk.controls.Button;
+	import ftk.controls.CheckBox;
+	import ftk.controls.RadioButton;
 	import ftk.layout.Container;
 	import ftk.layout.Grid;
 
@@ -29,8 +32,24 @@ package ftk.test.tester
 			grid.cellBorderAlpha = 1;
 			grid.percentHeight = grid.percentWidth = 1;
 			this.addAll(grid);
-			grid.rowNumber = grid.columnNumber = 5;
+			//
+			grid.columnNumber = 3;
+			grid.rows = [100, 50, 100, 50, 100, 50];
+			//
 			grid.rebuild();
+			//
+			// button
+			grid.getCell(0, 0).addChild(new Button());
+			grid.getCell(1, 0).text = "Button";
+			//
+			// checkbox
+			grid.getCell(0, 1).addChild(new CheckBox());
+			grid.getCell(1, 1).text = "CheckBox";
+			//
+			// radioButton
+			grid.getCell(0, 2).addChild(new RadioButton("btn1", "test"));
+			grid.getCell(0, 2).addChild(new RadioButton("btn2", "test"));
+			grid.getCell(1, 2).text = "RadioButton";
 		}
 
 		private var grid:Grid;

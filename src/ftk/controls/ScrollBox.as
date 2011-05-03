@@ -12,19 +12,18 @@ package ftk.controls
 {
 	import ftk.data.Position;
 	import ftk.events.UIEvent;
+	import ftk.layout.Container;
 	import ftk.style.FillStyle;
-	import ftk.style.ScrollBoxStyle;
-	import ftk.style.UIStyle;
 
 	/**
 	 * This class is a container with scroll bar.
-	 * In cage object, only create scrollBar, but not set scrollbar events.
+	 * In this object, only create scrollBar, but not set scrollbar events.
 	 * Class cage is used as other components' super class.
 	 * 
 	 * @author Tang Bin
 	 * @since old version
 	 */
-	public class ScrollBox extends UIControl
+	public class ScrollBox extends Container
 	{
 		/**
 		 * Create a new ScrollBarContainer object.
@@ -36,10 +35,10 @@ package ftk.controls
 		 * @return 
 		 * 
 		 */
-		public function ScrollBox(xScroll:Boolean = true, yScroll:Boolean = true, style:ScrollBoxStyle = null)
+		public function ScrollBox(xScroll:Boolean = true, yScroll:Boolean = true)
 		{
 			// save parameters
-			super(style == null ? UIStyle.defaultScrollBoxStyle : style);
+			super();
 			enableX = xScroll;
 			enableY = yScroll;
 			//
@@ -51,9 +50,8 @@ package ftk.controls
 			this.fillStyle = defaultFillStyle;
 			//
 			// create children.
-			style = uiStyle as ScrollBoxStyle;
-			xBar = new ScrollBar(Position.HORIZONTAL, 100, style.scrollBarStyle);
-			yBar = new ScrollBar(Position.VERTICAL, 100, style.scrollBarStyle);
+			xBar = new ScrollBar(Position.HORIZONTAL, 100);
+			yBar = new ScrollBar(Position.VERTICAL, 100);
 			this.addAll(xBar, yBar);
 			//
 			xBar.enabled = xBar.visible = false;
@@ -67,11 +65,12 @@ package ftk.controls
 		{
 			super.updateSize();
 			//
+			trace("xxxxxxxxxxxxxxxx", enableY, yBar.enabled);
 			if (enableX)
 			{
-				xBar.visible = true;
-				xBar.length = enableY ? width - yBar.thickness - 2 : width - 2;
-				xBar.y = height - xBar.thickness;
+				xBar.visible = xBar.enabled;
+				xBar.length = width - 2;
+				xBar.y = height - 1;
 				xBar.x = 1;
 			}
 			else
@@ -80,9 +79,9 @@ package ftk.controls
 			}
 			if (enableY)
 			{
-				yBar.visible = true;
-				yBar.length = enableX ? height - xBar.thickness - 2 : height - 2;
-				yBar.x = width - yBar.thickness;
+				yBar.visible = yBar.enabled;
+				yBar.length = height - 2;
+				yBar.x = width - 1;
 				yBar.y = 1;
 			}
 			else
@@ -114,22 +113,6 @@ package ftk.controls
 		 * @default 
 		 */
 		protected var enableY:Boolean;
-
-		/**
-		 * Width of container, not the width of scrollContainer.
-		 */
-		public function get containerWidth():Number
-		{
-			return enableY ? width - yBar.thickness : width;
-		}
-
-		/**
-		 * height of container.
-		 */
-		public function get containerHeight():Number
-		{
-			return enableX ? height - xBar.thickness : height;
-		}
 
 		/**
 		 * 

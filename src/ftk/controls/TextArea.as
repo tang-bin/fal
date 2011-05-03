@@ -10,15 +10,13 @@
 // **********************************************************
 package ftk.controls
 {
-	import ftk.data.Status;
 	import ftk.events.DataEvent;
 	import ftk.events.UIEvent;
-	import ftk.graphs.Flat;
-	import ftk.style.ScrollBoxStyle;
+	import ftk.style.Style;
 
 	import flash.events.Event;
-	import flash.events.FocusEvent;
 	import flash.text.TextField;
+	import flash.text.TextFormat;
 
 	/**
 	 * @eventType events.DataEvent.CHANGE_DATA
@@ -39,26 +37,22 @@ package ftk.controls
 		 * @param wordwrap wrap word
 		 * @param style DipslayStyle
 		 */
-		public function TextArea(style:ScrollBoxStyle = null)
+		public function TextArea()
 		{
-			super(true, true, style);
+			super(true, true);
 			this.initSize(200, 200);
-			this.fillStyle = null;
 			//
-			// create children.
-			bg = new Flat();
-			bg.resize(this.width, this.height);
 			txt = new TextField();
 			txt.wordWrap = !enableX;
 			txt.multiline = true;
-			this.addAll(bg, txt);
-			bg.toBack();
-			// move bg to the back of all children.
+			this.addAll(txt);
+			txt.defaultTextFormat = new TextFormat(Style.defaultFont, Style.NORMAL_TEXT_SIZE, 0);
+			this.setChildIndex(txt, 0);
 			txt.type = "input";
+			//
 			setEvent();
 			//
-			// set skin data.
-			this.status = Status.NORMAL;
+			setScrollView();
 		}
 
 		/**
@@ -70,54 +64,13 @@ package ftk.controls
 			txt.wordWrap = !value;
 		}
 
-		override public function set status(value:String):void
-		{
-			if (this.enabled)
-			{
-				if (stage != null && stage.focus == txt)
-				{
-					value = Status.SELECTED;
-				}
-				else
-				{
-					value = Status.NORMAL;
-				}
-			}
-			else
-			{
-				value = Status.DISABLED;
-			}
-			if (value != this.status) super.status = value;
-		}
-
 		override protected function updateSize():void
 		{
 			super.updateSize();
-			if (bg != null)
-			{
-				bg.width = this.width;
-				bg.height = this.height;
-			}
 			if (txt != null)
 			{
-				txt.width = containerWidth;
-				txt.height = containerHeight;
-			}
-		}
-
-		override protected function updateStyle():void
-		{
-			if (this.currentStatus == Status.SELECTED)
-			{
-				bg.fillStyle = uiStyle.selectedFillStyle;
-				txt.setTextFormat(uiStyle.selectedTextFormat);
-				txt.defaultTextFormat = uiStyle.selectedTextFormat;
-			}
-			else
-			{
-				bg.fillStyle = uiStyle.normalFillStyle;
-				txt.setTextFormat(uiStyle.normalTextFormat);
-				txt.defaultTextFormat = uiStyle.normalTextFormat;
+				txt.width = this.width;
+				txt.height = this.height;
 			}
 		}
 
@@ -135,15 +88,28 @@ package ftk.controls
 			scrollManual = false;
 		}
 
-		private var bg:Flat;
-
 		private var txt:TextField;
-
-		private var _embed:Boolean = false;
 
 		private var scrollManual:Boolean = false;
 
 		private var _editable:Boolean = true;
+
+		private var _enabled:Boolean = true;
+
+		public function get enabled():Boolean
+		{
+			return _enabled;
+		}
+
+		public function set enabled(value:Boolean):void
+		{
+			if (value != _enabled)
+			{
+				_enabled = value;
+				setScrollView();
+				setTextType();
+			}
+		}
 
 		/**
 		 * If this text area can input in or not.
@@ -162,7 +128,7 @@ package ftk.controls
 			if (value != this._editable)
 			{
 				this._editable = value;
-				txt.type = value && enabled ? "input" : "dynamic";
+				setTextType();
 			}
 		}
 
@@ -183,28 +149,24 @@ package ftk.controls
 			txt.text = value;
 		}
 
-		/**
-		 * embed font or not.
-		 */
-		public function get embed():Boolean
+		public function get textFormat():TextFormat
 		{
-			return _embed;
+			return txt.defaultTextFormat;
 		}
 
-		/**
-		 * 
-		 * @param b
-		 */
-		public function set embed(b:Boolean):void
+		public function set textFormat(textFormat:TextFormat):void
 		{
-			_embed = b;
-			txt.embedFonts = _embed;
+			txt.defaultTextFormat = textFormat;
+			txt.setTextFormat(textFormat);
+		}
+
+		private function setTextType():void
+		{
+			txt.type = _editable && _enabled ? "input" : "dynamic";
 		}
 
 		private function setEvent():void
 		{
-			txt.addEventListener(FocusEvent.FOCUS_IN, txtFocusInHandler);
-			txt.addEventListener(FocusEvent.FOCUS_OUT, txtFocusOutHandler);
 			txt.addEventListener(Event.CHANGE, changeTextHandler);
 			txt.addEventListener(Event.SCROLL, scrollTextHandler);
 		}
@@ -219,42 +181,42 @@ package ftk.controls
 
 		private function setScrollView():void
 		{
+			trace(enableY, enabled, txt.maxScrollV, yBar.enabled);
 			if (enableY && enabled)
 			{
 				if (txt.maxScrollV > 1)
 				{
-					yBar.enabled = true;
+					yBar.enabled = yBar.visible = true;
 					yBar.scale = txt.numLines / (txt.numLines + txt.maxScrollV);
 					yBar.position = txt.scrollV / txt.maxScrollV;
 				}
 				else if (yBar != null && yBar.enabled)
 				{
-					yBar.enabled = false;
+					yBar.enabled = yBar.visible = false;
+					trace(yBar.visible);
 				}
+			}
+			else
+			{
+				yBar.enabled = yBar.visible = false;
 			}
 			if (enableX && enabled)
 			{
 				if (txt.maxScrollH > 1)
 				{
-					xBar.enabled = true;
+					xBar.enabled = xBar.visible = true;
 					xBar.scale = txt.width / (txt.width + txt.maxScrollH);
 					xBar.position = txt.scrollH / txt.maxScrollH;
 				}
 				else if (xBar != null && xBar.enabled)
 				{
-					xBar.enabled = false;
+					xBar.enabled = xBar.visible = false;
 				}
 			}
-		}
-
-		private function txtFocusInHandler(e:FocusEvent):void
-		{
-			this.status = Status.SELECTED;
-		}
-
-		private function txtFocusOutHandler(e:FocusEvent):void
-		{
-			this.status = Status.NORMAL;
+			else
+			{
+				xBar.enabled = xBar.visible = false;
+			}
 		}
 
 		private function changeTextHandler(e:Event):void

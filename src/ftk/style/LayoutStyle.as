@@ -174,9 +174,14 @@ package ftk.style
 		 */
 		public function setValue(name:String, value:*, hasMore:Boolean = false):void
 		{
-			if (this.owner is Grid) trace("grid layout", this._width);
-			if (name == "x") name = "left";
-			else if (name == "y") name = "top";
+			if (name == "x")
+			{
+				name = "left";
+			}
+			else if (name == "y")
+			{
+				name = "top";
+			}
 			//
 			if (this["_" + name] != null)
 			{
@@ -195,9 +200,14 @@ package ftk.style
 		 */
 		public function setValueSilent(name:String, value:*):void
 		{
-			if (this.owner is Grid) trace("grid layout silent", this._width);
-			if (name == "x") name = "left";
-			else if (name == "y") name = "top";
+			if (name == "x")
+			{
+				name = "left";
+			}
+			else if (name == "y")
+			{
+				name = "top";
+			}
 			//
 			if (this["_" + name] != null)
 			{
@@ -244,8 +254,14 @@ package ftk.style
 		 */
 		public function getValue(name:String):*
 		{
-			if (name == "x") name = "left";
-			else if (name == "y") name = "top";
+			if (name == "x")
+			{
+				name = "left";
+			}
+			else if (name == "y")
+			{
+				name = "top";
+			}
 			//
 			return this["_" + name];
 		}

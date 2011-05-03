@@ -11,14 +11,11 @@
 package ftk.test.tester
 {
 	import ftk.controls.Button;
-	import ftk.controls.TextArea;
 	import ftk.layout.Container;
 
 	public class UITester extends Container
 	{
 		private var btn:Button;
-
-		private var ta:TextArea;
 
 		public function UITester()
 		{

@@ -11,8 +11,6 @@
 package ftk.controls
 {
 	import ftk.events.UIEvent;
-	import ftk.style.ScrollBoxStyle;
-	import ftk.utils.DrawUtil;
 
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
@@ -29,20 +27,16 @@ package ftk.controls
 		/**
 		 * Create a new ScrollPanel object.
 		 */
-		public function ScrollPanel(xScroll:Boolean = true, yScroll:Boolean = true, style:ScrollBoxStyle = null)
+		public function ScrollPanel(xScroll:Boolean = true, yScroll:Boolean = true)
 		{
-			super(xScroll, yScroll, style);
-			masker = new Sprite();
-			masker.mouseChildren = masker.mouseChildren = false;
-			DrawUtil.drawBlock(masker.graphics);
+			super(xScroll, yScroll);
 			box = new Sprite();
 			// draw a invisible point at (0, 0) to make box count size for (0, 0) point.
 			box.graphics.beginFill(0, 0);
 			box.graphics.drawRect(0, 0, 1, 1);
 			box.graphics.endFill();
 			//
-			box.mask = masker;
-			this.addAll(box, masker);
+			this.addAll(box);
 			//
 			box.addEventListener(MouseEvent.MOUSE_DOWN, pressContainerHandler);
 		}
@@ -63,19 +57,25 @@ package ftk.controls
 		{
 			super.updateSize();
 			//
-			if (masker != null)
-			{
-				masker.width = super.containerWidth;
-				masker.height = super.containerHeight;
-			}
-			//
 			if (box != null)
 			{
-				if (box.x > 0) box.x = 0;
-				else if (box.x < masker.width - box.width) box.x = masker.width - box.width;
+				if (box.x > 0)
+				{
+					box.x = 0;
+				}
+				else if (box.x < this.width - box.width)
+				{
+					box.x = this.width - box.width;
+				}
 				//
-				if (box.y > 0) box.y = 0;
-				else if (box.y < masker.height - box.height) box.y = masker.height - box.height;
+				if (box.y > 0)
+				{
+					box.y = 0;
+				}
+				else if (box.y < this.height - box.height)
+				{
+					box.y = this.height - box.height;
+				}
 				//
 				resetScroll();
 			}
@@ -88,7 +88,7 @@ package ftk.controls
 		override protected function xScrollHandler(e:UIEvent):void
 		{
 			var pos:Number = xBar.position;
-			box.x = - pos * (box.width - masker.width);
+			box.x = - pos * (box.width - this.width);
 		}
 
 		/**
@@ -97,31 +97,12 @@ package ftk.controls
 		override protected function yScrollHandler(e:UIEvent):void
 		{
 			var pos:Number = yBar.position;
-			box.y = - pos * (box.height - masker.height);
+			box.y = - pos * (box.height - this.height);
 		}
 
-		private var masker:Sprite;
-
-		private var _dragable:Boolean = true;
+		public var dragable:Boolean = true;
 
 		private var box:Sprite;
-
-		/**
-		 * if the container can be dragged and moved.
-		 */
-		public function get dragable():Boolean
-		{
-			return _dragable;
-		}
-
-		/**
-		 * 
-		 * @param val
-		 */
-		public function set dragable(val:Boolean):void
-		{
-			_dragable = val;
-		}
 
 		/**
 		 * 
@@ -132,29 +113,33 @@ package ftk.controls
 			return box;
 		}
 
+		public function refresh():void
+		{
+			updateSize();
+		}
+
 		private function resetScroll():void
 		{
-			//
-			if (box.width <= masker.width)
+			if (box.width <= this.width)
 			{
 				xBar.enabled = false;
 			}
 			else if (enableX)
 			{
 				xBar.enabled = true;
-				xBar.scale = masker.width / box.width;
-				xBar.position = box.x / (masker.width - box.width);
+				xBar.scale = this.width / box.width;
+				xBar.position = box.x / (this.width - box.width);
 			}
 			//
-			if (box.height <= masker.height)
+			if (box.height <= this.height)
 			{
 				yBar.enabled = false;
 			}
 			else if (enableY)
 			{
 				yBar.enabled = true;
-				yBar.scale = masker.height / box.height;
-				yBar.position = box.y / (masker.height - box.height);
+				yBar.scale = this.height / box.height;
+				yBar.position = box.y / (this.height - box.height);
 			}
 		}
 
@@ -166,9 +151,9 @@ package ftk.controls
 		 */
 		private function pressContainerHandler(e:MouseEvent):void
 		{
-			if (_dragable)
+			if (dragable)
 			{
-				var rec:Rectangle = new Rectangle(0, 0, masker.width - box.width, masker.height - box.height);
+				var rec:Rectangle = new Rectangle(0, 0, this.width - box.width, this.height - box.height);
 				box.startDrag(false, rec);
 				stage.addEventListener(MouseEvent.MOUSE_UP, releaseContainerHandler);
 				stage.addEventListener(MouseEvent.MOUSE_MOVE, dragContainerHandler);

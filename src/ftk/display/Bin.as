@@ -46,8 +46,16 @@ package ftk.display
 			_layoutStyle.owner = this;
 			_layoutStyle.addEventListener(UIEvent.RESIZE, sizeChangedHandler);
 			_layoutStyle.addEventListener(UIEvent.REPOSITION, positionChangedHandler);
+			//
 			// for first added to stage
 			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+		}
+
+		override public function stopDrag():void
+		{
+			super.stopDrag();
+			_layoutStyle.setValueSilent("left", super.x);
+			_layoutStyle.setValueSilent("top", super.y);
 		}
 
 		/**
@@ -106,6 +114,7 @@ package ftk.display
 		 */
 		override public function set x(value:Number):void
 		{
+			_layoutStyle.setValueSilent("top", super.y);
 			_layoutStyle.setValue("left", value);
 		}
 
@@ -115,6 +124,7 @@ package ftk.display
 		 */
 		override public function set y(value:Number):void
 		{
+			_layoutStyle.setValueSilent("left", super.x);
 			_layoutStyle.setValue("top", value);
 		}
 
@@ -193,28 +203,12 @@ package ftk.display
 			dispatchChildChanged();
 		}
 
-		/**
-		 * 
-		 * @default 
-		 */
 		protected var sizeChanged:Boolean = true;
 
-		/**
-		 * 
-		 * @default 
-		 */
 		protected var positionChanged:Boolean = true;
 
-		/**
-		 *
-		 * @default null
-		 */
 		protected var _fillStyle:FillStyle;
 
-		/**
-		 * 
-		 * @default 
-		 */
 		protected var _layoutStyle:LayoutStyle;
 
 		private var _maxWidth:Number = 4000;
@@ -769,7 +763,7 @@ package ftk.display
 		}
 
 		/**
-		 * Re-check UIControl's size by its children's size.
+		 * Re-check object's size by its children's size.
 		 * Width and height value will be reset after pack, but resetSize() method
 		 * will not be called.
 		 * 

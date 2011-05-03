@@ -21,8 +21,6 @@ package ftk.controls
 	import flash.display.Shape;
 	import flash.events.MouseEvent;
 
-
-
 	/**
 	 * radio button
 	 * 
@@ -31,7 +29,6 @@ package ftk.controls
 	 */
 	public class RadioButton extends UIControl
 	{
-
 		/**
 		 * create a new RadioButton object
 		 * 
@@ -130,6 +127,7 @@ package ftk.controls
 			var flagOffset:Number = (BOX_SIZE - FLAG_SIZE) / 2;
 			flag.x = box.x + flagOffset;
 			flag.y = box.y + flagOffset;
+			super.pack();
 		}
 
 		override protected function updateStyle():void
