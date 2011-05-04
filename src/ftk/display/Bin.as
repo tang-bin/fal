@@ -10,8 +10,6 @@
 // **********************************************************
 package ftk.display
 {
-	import ftk.controls.ListItemBase;
-	import ftk.controls.ListBase;
 	import ftk.data.Position;
 	import ftk.events.DisplayEvent;
 	import ftk.events.MotionEvent;
@@ -126,7 +124,7 @@ package ftk.display
 		 */
 		override public function set y(value:Number):void
 		{
-			//_layoutStyle.setValueSilent("left", super.x);
+			// _layoutStyle.setValueSilent("left", super.x);
 			_layoutStyle.setValue("top", value);
 		}
 
@@ -900,10 +898,6 @@ package ftk.display
 				var child:DisplayObject = this.getChildAt(i);
 				if (child is Bin)
 				{
-					if (this is ListBase && child is ListItemBase)
-					{
-						trace("xxxxxxxxxxxxxxx", i);
-					}
 					(child as Bin).layoutStyle.checkAndUpdate();
 				}
 			}

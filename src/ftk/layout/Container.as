@@ -41,12 +41,15 @@ package ftk.layout
 			this.initSize("100%", "100%");
 			this.addEventListener(UIEvent.CHILDREN_CHANGED, childrenChangedHandler);
 			this.addEventListener(UIEvent.CHILDREN_RESIZE, childrenChangedHandler);
-			this.addEventListener(UIEvent.RESIZE, childrenChangedHandler);
 		}
 
 		override protected function updateSize():void
 		{
 			super.updateSize();
+			if (this._autoRank)
+			{
+				rank();
+			}
 			updateDisplaySize();
 		}
 
