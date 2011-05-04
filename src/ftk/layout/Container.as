@@ -11,14 +11,13 @@
 package ftk.layout
 {
 	import ftk.data.Position;
-
-	import flash.events.MouseEvent;
-	import flash.geom.Rectangle;
-	import flash.display.DisplayObject;
-
 	import ftk.display.Bin;
 	import ftk.events.UIEvent;
 	import ftk.style.FillStyle;
+
+	import flash.display.DisplayObject;
+	import flash.events.MouseEvent;
+	import flash.geom.Rectangle;
 
 	/**
 	 * Class Container is the basic class of the display object used to layout.
@@ -51,19 +50,15 @@ package ftk.layout
 			updateDisplaySize();
 		}
 
-		private const HRank:String = "hRank";
-
-		private const VRank:String = "vRank";
-
 		private var _autoRank:Boolean = false;
 
-		private var _autoRankSpace:Number = 0;
+		private var _rankGap:Number = 0;
 
-		private var _autoRankType:String = HRank;
+		private var _rankType:String = Position.HORIZONTAL;
 
-		private var _autoRankCenter:Boolean = false;
+		private var _align:String = Position.LEFT;
 
-		private var _autoRankPack:Boolean = false;
+		private var _valign:String = Position.TOP;
 
 		private var _displayWidth:Number = 0;
 
@@ -77,10 +72,6 @@ package ftk.layout
 
 		private var scrollStartY:Number = 0;
 
-		private var _align:String = Position.LEFT;
-
-		private var _valign:String = Position.TOP;
-
 		public function get align():String
 		{
 			return _align;
@@ -91,7 +82,7 @@ package ftk.layout
 			if (Position.isAlignValue(value) && value != _align)
 			{
 				_align = value;
-				alignChildren(_autoRankSpace);
+				rank();
 			}
 		}
 
@@ -105,7 +96,39 @@ package ftk.layout
 			if (Position.isVAlignValue(value) && value != _valign)
 			{
 				_valign = value;
-				valignChildren(_autoRankSpace);
+				rank();
+			}
+		}
+
+		public function get rankType():String
+		{
+			return _rankType;
+		}
+
+		/**
+		 * rankType should be Position.HORIZONTAL or Position.VERTICAL.
+		 * or the container will do nothing during rank.
+		 */
+		public function set rankType(value:String):void
+		{
+			if (value != _rankType)
+			{
+				_rankType = value;
+				rank();
+			}
+		}
+
+		public function get rankGap():Number
+		{
+			return _rankGap;
+		}
+
+		public function set rankGap(value:Number):void
+		{
+			if (_rankGap != value)
+			{
+				_rankGap = value;
+				rank();
 			}
 		}
 
@@ -149,113 +172,91 @@ package ftk.layout
 				_autoRank = value;
 				if (value)
 				{
-					doRank();
+					rank();
 				}
 			}
 		}
 
-		/**
-		 * 
-		 * @param space
-		 * @param center
-		 * @param packAfterRank
-		 */
-		public function horizontalRank(space:Number = 0, center:Boolean = true, packAfterRank:Boolean = false):void
+		public function rank(isauto:Boolean = false):void
 		{
 			var totalNum:uint = this.numChildren;
-			var currentX:Number = space;
-			var maxHeight:Number = 0;
-			for (var i:uint = 0 ; i < totalNum ; i++)
+			if (totalNum == 0)
 			{
-				var target:DisplayObject = this.getChildAt(i);
-				target.x = currentX;
-				target.y = 0;
-				currentX += target.width + space;
-				if (target.height > maxHeight) maxHeight = target.height;
+				return;
 			}
-			if (center)
+			else if (totalNum == 1)
 			{
-				for (var j:uint = 0 ; j < totalNum ; j++)
+				var child:DisplayObject = this.getChildAt(0);
+				setChildAlign(child);
+				setChildVAlign(child);
+			}
+			else if (_rankType == Position.HORIZONTAL)
+			{
+				var currentX:Number = 0;
+				for (var i:uint = 0 ; i < totalNum ; i++)
 				{
-					var target2:DisplayObject = this.getChildAt(j);
-					target2.y = (maxHeight - target2.height) / 2;
+					var target:DisplayObject = this.getChildAt(i);
+					target.x = currentX;
+					setChildVAlign(target);
+					currentX += (target.width + _rankGap);
+				}
+				if (_align != Position.LEFT)
+				{
+					var leftChild:DisplayObject = this.getChildAt(0);
+					var rightChild:DisplayObject = this.getChildAt(totalNum - 1);
+					var xStart:Number = leftChild.x;
+					var xEnd:Number = rightChild.x + rightChild.width;
+					var offsetX:Number = this.width - xStart - xEnd;
+					if (_align == Position.CENTER)
+					{
+						offsetX = offsetX / 2;
+					}
+					for (var j:uint = 0 ; j < totalNum ; j++)
+					{
+						var target2:DisplayObject = this.getChildAt(j);
+						target2.x += offsetX;
+					}
 				}
 			}
-			if (packAfterRank)
+			else if (_rankType == Position.VERTICAL)
 			{
-				pack(space, 0);
-			}
-			else
-			{
-				alignChildren(space);
-			}
-			//
-			_autoRankType = HRank;
-			_autoRankCenter = center;
-			_autoRankPack = packAfterRank;
-			_autoRankSpace = space;
-		}
-
-		/**
-		 * 
-		 * @param space
-		 * @param center
-		 * @param packAfterRank
-		 * 
-		 */
-		public function verticalRank(space:Number = 0, center:Boolean = true, packAfterRank:Boolean = false):void
-		{
-			var totalNum:uint = this.numChildren;
-			var currentY:Number = space;
-			var maxWidth:Number = 0;
-			for (var i:uint = 0 ; i < totalNum ; i++)
-			{
-				var target:DisplayObject = this.getChildAt(i);
-				target.y = currentY;
-				target.x = 0;
-				currentY += target.height + space;
-				if (target.width > maxWidth) maxWidth = target.width;
-			}
-			if (center)
-			{
-				for (var j:uint = 0 ; j < totalNum ; j++)
+				var currentY:Number = 0;
+				for (var k:uint = 0 ; k < totalNum ; k++)
 				{
-					var target2:DisplayObject = this.getChildAt(j);
-					target2.y = (maxWidth - target2.width) / 2;
+					var target3:DisplayObject = this.getChildAt(k);
+					target3.y = currentY;
+					currentY += 50;
+					if (!isauto)
+					{
+						setChildAlign(target3);
+						currentY += (target3.height + _rankGap);
+					}
+				}
+				if (_valign != Position.TOP)
+				{
+					var topChild:DisplayObject = this.getChildAt(0);
+					var bottomChild:DisplayObject = this.getChildAt(totalNum - 1);
+					var yStart:Number = topChild.x;
+					var yEnd:Number = bottomChild.x + bottomChild.height;
+					var offsetY:Number = this.height - yStart - yEnd;
+					if (_valign == Position.MIDDLE)
+					{
+						offsetY = offsetY / 2;
+					}
+					for (var n:uint = 0 ; n < totalNum ; n++)
+					{
+						var target4:DisplayObject = this.getChildAt(n);
+						target4.x += offsetY;
+					}
 				}
 			}
-			if (packAfterRank)
-			{
-				pack(0, space);
-			}
-			else
-			{
-				valignChildren(space);
-			}
-			//
-			_autoRankType = VRank;
-			_autoRankCenter = center;
-			_autoRankPack = packAfterRank;
-			_autoRankSpace = space;
 		}
 
 		private function childrenChangedHandler(e:UIEvent):void
 		{
 			if (this._autoRank)
 			{
-				doRank();
-			}
-		}
-
-		private function doRank():void
-		{
-			if (this._autoRankType == HRank)
-			{
-				this.horizontalRank(_autoRankSpace, _autoRankCenter, _autoRankPack);
-			}
-			else if (this._autoRankType == VRank)
-			{
-				this.verticalRank(_autoRankSpace, _autoRankCenter, _autoRankPack);
+				rank(true);
 			}
 		}
 
@@ -279,41 +280,6 @@ package ftk.layout
 			}
 		}
 
-		private function alignChildren(space:Number):void
-		{
-			var totalNum:uint = this.numChildren;
-			if (totalNum == 1)
-			{
-				var c:DisplayObject = this.getChildAt(0);
-				c.x = (this.width - c.width) / 2;
-				setChildVAlign(c);
-			}
-			else if (totalNum > 1)
-			{
-				var firstChild:DisplayObject = this.getChildAt(0);
-				var lastChild:DisplayObject = this.getChildAt(totalNum - 1);
-				var xStart:Number = firstChild.x;
-				var xEnd:Number = lastChild.x + lastChild.width;
-				// offsetX for right align
-				var offsetX:Number = this.width - xStart - xEnd;
-				if (_align == Position.LEFT)
-				{
-					offsetX = 0;
-				}
-				else if (_align == Position.CENTER)
-				{
-					offsetX = offsetX / 2;
-				}
-				for (var i:uint = 0 ; i < totalNum; i++)
-				{
-					var child:DisplayObject = this.getChildAt(i);
-					child.x = offsetX;
-					setChildVAlign(child);
-					offsetX += child.width + space;
-				}
-			}
-		}
-
 		private function setChildVAlign(child:DisplayObject):void
 		{
 			if (_valign == Position.TOP)
@@ -327,41 +293,6 @@ package ftk.layout
 			else
 			{
 				child.y = this.height - child.height;
-			}
-		}
-
-		private function valignChildren(space:Number):void
-		{
-			var totalNum:uint = this.numChildren;
-			if (totalNum == 1)
-			{
-				var c:DisplayObject = this.getChildAt(0);
-				setChildAlign(c);
-				c.y = (this.height - c.height) / 2;
-			}
-			else if (totalNum > 1)
-			{
-				var firstChild:DisplayObject = this.getChildAt(0);
-				var lastChild:DisplayObject = this.getChildAt(totalNum - 1);
-				var yStart:Number = firstChild.y;
-				var yEnd:Number = lastChild.y + lastChild.height;
-				// offsetY for top valign
-				var offsetY:Number = this.height - yStart - yEnd;
-				if (_valign == Position.TOP)
-				{
-					offsetY = 0;
-				}
-				else if (_valign == Position.MIDDLE)
-				{
-					offsetY /= 2;
-				}
-				for (var i:uint = 0 ; i < totalNum; i++)
-				{
-					var child:DisplayObject = this.getChildAt(i);
-					child.y = offsetY;
-					setChildAlign(child);
-					offsetY += child.height + space;
-				}
 			}
 		}
 

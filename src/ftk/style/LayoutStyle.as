@@ -10,8 +10,8 @@
 // **********************************************************
 package ftk.style
 {
+	import ftk.controls.ListItemBase;
 	import ftk.events.UIEvent;
-	import ftk.layout.Grid;
 
 	/**
 	 * <p>LayoutStyle define the layout data of Bin and its subclasses.</p>

@@ -38,7 +38,7 @@ package ftk.layout
 			this.autoRank = true;
 			this.align = Position.CENTER;
 			this.valign = Position.MIDDLE;
-			this.horizontalRank(0, true, false);
+			this.rankGap = 5;
 		}
 
 		/**

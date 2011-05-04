@@ -10,6 +10,8 @@
 // **********************************************************
 package ftk.display
 {
+	import ftk.controls.ListItemBase;
+	import ftk.controls.ListBase;
 	import ftk.data.Position;
 	import ftk.events.DisplayEvent;
 	import ftk.events.MotionEvent;
@@ -124,7 +126,7 @@ package ftk.display
 		 */
 		override public function set y(value:Number):void
 		{
-			_layoutStyle.setValueSilent("left", super.x);
+			//_layoutStyle.setValueSilent("left", super.x);
 			_layoutStyle.setValue("top", value);
 		}
 
@@ -357,15 +359,6 @@ package ftk.display
 		public function get layoutStyle():LayoutStyle
 		{
 			return _layoutStyle;
-		}
-
-		public function set layoutStyle(value:LayoutStyle):void
-		{
-			if (_layoutStyle != value)
-			{
-				_layoutStyle = value;
-				this.updateByLayout();
-			}
 		}
 
 		/**
@@ -848,17 +841,6 @@ package ftk.display
 			sizeChanged = true;
 		}
 
-		/**
-		 * 
-		 */
-		internal function updateByLayout():void
-		{
-			if (_layoutStyle != null)
-			{
-				_layoutStyle.checkAndUpdate();
-			}
-		}
-
 		private function accountControlPoint():void
 		{
 			switch (_controlPointType)
@@ -918,7 +900,11 @@ package ftk.display
 				var child:DisplayObject = this.getChildAt(i);
 				if (child is Bin)
 				{
-					(child as Bin).updateByLayout();
+					if (this is ListBase && child is ListItemBase)
+					{
+						trace("xxxxxxxxxxxxxxx", i);
+					}
+					(child as Bin).layoutStyle.checkAndUpdate();
 				}
 			}
 			var ee:UIEvent = new UIEvent(UIEvent.RESIZE);
@@ -941,7 +927,6 @@ package ftk.display
 
 		private function resetSize():void
 		{
-			this.drawBg();
 			updateSize();
 			this.dispatchSizeChanged();
 		}

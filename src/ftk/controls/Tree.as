@@ -10,6 +10,8 @@
 // **********************************************************
 package ftk.controls
 {
+	import ftk.data.TreeData;
+
 	/**
 	 * Tree
 	 * 
@@ -26,6 +28,21 @@ package ftk.controls
 		public function Tree(xScroll:Boolean = true, yScroll:Boolean = true)
 		{
 			super(xScroll, yScroll);
+		}
+
+		private var _data:TreeData;
+
+		public function get data():TreeData
+		{
+			return _data;
+		}
+
+		public function set data(value:TreeData):void
+		{
+			if (_data != value)
+			{
+				_data = value;
+			}
 		}
 	}
 }

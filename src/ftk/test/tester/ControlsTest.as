@@ -13,6 +13,8 @@ package ftk.test.tester
 	import ftk.controls.Button;
 	import ftk.controls.CheckBox;
 	import ftk.controls.RadioButton;
+	import ftk.controls.TextArea;
+	import ftk.controls.TextInput;
 	import ftk.layout.Container;
 	import ftk.layout.Grid;
 
@@ -30,11 +32,12 @@ package ftk.test.tester
 			//
 			grid = new Grid();
 			grid.cellBorderAlpha = 1;
+			grid.cellBorderColor = 0xEEEEEE;
 			grid.percentHeight = grid.percentWidth = 1;
 			this.addAll(grid);
 			//
 			grid.columnNumber = 3;
-			grid.rows = [100, 50, 100, 50, 100, 50];
+			grid.rows = [100, 30, 100, 30, 100, 30];
 			//
 			grid.rebuild();
 			//
@@ -50,6 +53,14 @@ package ftk.test.tester
 			grid.getCell(0, 2).addChild(new RadioButton("btn1", "test"));
 			grid.getCell(0, 2).addChild(new RadioButton("btn2", "test"));
 			grid.getCell(1, 2).text = "RadioButton";
+			//
+			grid.getCell(2, 0).addChild(new TextInput());
+			grid.getCell(3, 0).text = "TextInput";
+			//
+			var ta:TextArea = new TextArea();
+			ta.percentWidth = ta.percentHeight = 1;
+			grid.getCell(2, 1).addChild(ta);
+			grid.getCell(3, 1).text = "TextArea";
 		}
 
 		private var grid:Grid;

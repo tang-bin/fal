@@ -10,6 +10,7 @@
 // **********************************************************
 package ftk.navigate
 {
+	import ftk.data.Position;
 	import ftk.style.ButtonStyle;
 	import ftk.controls.Button;
 	import ftk.events.UIEvent;
@@ -30,7 +31,8 @@ package ftk.navigate
 		{
 			super();
 			btns = new Dictionary();
-			this.horizontalRank(BUTTON_SPACE, true, false);
+			this.rankGap = BUTTON_SPACE;
+			this.valign = Position.MIDDLE;
 			this.autoRank = true;
 		}
 

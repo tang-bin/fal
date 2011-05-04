@@ -10,6 +10,8 @@
 // **********************************************************
 package ftk.test
 {
+	import ftk.data.Position;
+	import ftk.layout.Container;
 	import ftk.navigate.AppRoot;
 	import ftk.navigate.NavigateTab;
 	import ftk.test.tester.ControlsTest;
@@ -20,12 +22,28 @@ package ftk.test
 		public function Tester()
 		{
 			super();
+			var c:Container = new Container();
+			this.addAll(c);
+			c.autoRank = true;
+			c.rankType = Position.VERTICAL;
 			//
-			var tab:NavigateTab = new NavigateTab();
-			tab.addTab("Playground", new FreeTester());
-			tab.addTab("UI Controls", new ControlsTest());
-			tab.layoutStyle.setAroundStyle(5, 5, 5, 5);
-			this.addAll(tab);
+			for (var i:uint = 0 ; i < 5 ; i++)
+			{
+				var cc:Container = new Container();
+				cc.height = 20;
+				cc.borderAlpha = 1;
+				c.addAll(cc);
+			}
+			c.rank();
+			//
+		/*
+		var tab:NavigateTab = new NavigateTab();
+		tab.addTab("Playground", new FreeTester());
+		tab.addTab("UI Controls", new ControlsTest());
+		tab.layoutStyle.setAroundStyle(5, 5, 5, 5);
+		this.addAll(tab);
+		 * 
+		 */
 		}
 	}
 }

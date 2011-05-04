@@ -10,8 +10,7 @@
 // **********************************************************
 package ftk.test.tester
 {
-	import ftk.controls.CheckBox;
-	import ftk.controls.Button;
+	import ftk.controls.ListBase;
 	import ftk.layout.Container;
 
 	/**
@@ -25,8 +24,15 @@ package ftk.test.tester
 		public function FreeTester()
 		{
 			super();
-			var c:CheckBox = new CheckBox();
-			this.addAll(c);
+			var l:ListBase = new ListBase();
+			this.addAll(l);
+			var arr:Array = new Array();
+			arr.push({label:"a1"});
+			arr.push({label:"a2"});
+			arr.push({label:"a3"});
+			arr.push({label:"a4"});
+			arr.push({label:"a5"});
+			l.data = arr;
 		}
 	}
 }
