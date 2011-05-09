@@ -68,11 +68,17 @@ package ftk.data
 		}
 
 		private var resList:Array;
+
 		private var resTotalNum:uint;
+
 		private var resLoader:Loader;
+
 		private var txtList:Array;
+
 		private var txtTotalNum:uint;
+
 		private var txtLoader:URLLoader;
+
 		private var currentLoadName:String;
 
 		/**

@@ -124,7 +124,7 @@ package ftk.display
 		 */
 		override public function set y(value:Number):void
 		{
-			// _layoutStyle.setValueSilent("left", super.x);
+			_layoutStyle.setValueSilent("left", super.x);
 			_layoutStyle.setValue("top", value);
 		}
 

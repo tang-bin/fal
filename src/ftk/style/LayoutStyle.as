@@ -10,7 +10,6 @@
 // **********************************************************
 package ftk.style
 {
-	import ftk.controls.ListItemBase;
 	import ftk.events.UIEvent;
 
 	/**
