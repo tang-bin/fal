@@ -10,11 +10,11 @@
 // **********************************************************
 package ftk.motion
 {
-	import flash.events.TimerEvent;
-	import flash.utils.Timer;
-
 	import ftk.data.DataModel;
 	import ftk.events.MotionEvent;
+
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 
 	/**
 	 * Motion is the superclass of all motion classes such as move and fade.
